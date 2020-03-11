@@ -10,7 +10,14 @@ export default {
 
 export const Size = () => ({
   components: { Btn },
-  template: '<btn @click="action">Button</btn>',
+  template: `
+    <div class="flex items-center my-2">
+      <btn class="mx-2" @click="action" size="lg">Large</btn>
+      <btn class="mx-2" @click="action" size="md">Medium</btn>
+      <btn class="mx-2" @click="action" size="sm">Small</btn>
+      <btn class="mx-2" @click="action" size="xs">Extra Small</btn>
+    </div>
+  `,
   methods: { action: action('clicked') },
 });
 
@@ -40,7 +47,7 @@ Fill.story = {
 
 export const Icon = () => ({
   components: { Btn },
-  template: '<btn @click="action">😀 😎 👍 💯</btn>',
+  template: '<btn icon="plus" @click="action">Text with Icon</btn>',
   methods: { action: action('clicked') },
 });
 
