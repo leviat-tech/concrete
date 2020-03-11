@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import '../assets/styles/index.scss'
 import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
