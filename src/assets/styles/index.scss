@@ -13,7 +13,11 @@ $spacing: (
   'md': $spacing-baseline * 4,
   'lg': $spacing-baseline * 5,
   'xl': $spacing-baseline * 6,
-  '2xl': $spacing-baseline * 8,
+  '2xl': $spacing-baseline * 7,
+  '3xl': $spacing-baseline * 8,
+  '4xl': $spacing-baseline * 9,
+  '5xl': $spacing-baseline * 10,
+  '6xl': $spacing-baseline * 12,
 );
 
 $height-baseline: 8px;
@@ -187,7 +191,7 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
   }
 
   &.icon {
-    padding-left: map-get($spacing, '2xl');
+    padding-left: map-get($spacing, '4xl');
   }
 
   + .icon {

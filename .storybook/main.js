@@ -17,5 +17,5 @@ module.exports = {
     return config;
   },
   stories: ['../stories/**/*.stories.js'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links', 'storybook-addon-designs'],
+  addons: ['@storybook/addon-storysource', 'storybook-addon-designs'],
 };

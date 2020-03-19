@@ -1,5 +1,3 @@
-import { action } from '@storybook/addon-actions';
-
 import TextField from '../src/components/TextField';
 
 export default {
@@ -15,7 +13,6 @@ export const Solid = () => ({
       <text-field :style="{ marginTop: '8px' } "value="disabled" :disabled="true" />
     </div>
   `,
-  methods: { action: action('clicked') },
 });
 
 Solid.story = {
@@ -35,7 +32,6 @@ export const Outline = () => ({
       <text-field :style="{ marginTop: '8px' }" value="disabled" fill="outline" :disabled="true" />
     </div>
   `,
-  methods: { action: action('clicked') },
 });
 
 Outline.story = {
@@ -55,7 +51,6 @@ export const Icon = () => ({
       <text-field :style="{ marginTop: '8px' }" icon="search" value="disabled w/icon" :disabled="true" />
     </div>
   `,
-  methods: { action: action('clicked') },
 });
 
 Icon.story = {

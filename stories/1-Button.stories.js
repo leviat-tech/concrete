@@ -1,5 +1,3 @@
-import { action } from '@storybook/addon-actions';
-
 import Btn from '../src/components/Button';
 
 export default {
@@ -11,13 +9,12 @@ export const Size = () => ({
   components: { Btn },
   template: `
     <div>
-      <btn @click="action" size="lg">Large</btn>
-      <btn @click="action" size="md">Medium</btn>
-      <btn @click="action" size="sm">Small</btn>
-      <btn @click="action" size="xs">Extra Small</btn>
+      <btn size="lg">Large</btn>
+      <btn size="md">Medium</btn>
+      <btn size="sm">Small</btn>
+      <btn size="xs">Extra Small</btn>
     </div>
   `,
-  methods: { action: action('clicked') },
 });
 
 Size.story = {
@@ -33,10 +30,10 @@ export const Fill = () => ({
   components: { Btn },
   template: `
     <div>
-      <btn @click="action">Solid</btn>
-      <btn @click="action" fill="outline">Outline</btn>
-      <btn @click="action" fill="ghost">Ghost</btn>
-      <btn @click="action" :disabled="true">Disabled</btn>
+      <btn>Solid</btn>
+      <btn fill="outline">Outline</btn>
+      <btn fill="ghost">Ghost</btn>
+      <btn :disabled="true">Disabled</btn>
     </div>
   `,
 });
@@ -54,8 +51,8 @@ export const Color = () => ({
   components: { Btn },
   template: `
     <div>
-      <btn @click="action" color="primary">Primary</btn>
-      <btn @click="action" color="danger">Danger</btn>
+      <btn color="primary">Primary</btn>
+      <btn color="danger">Danger</btn>
     </div>
   `,
 })
@@ -64,11 +61,10 @@ export const Icon = () => ({
   components: { Btn },
   template: `
     <div>
-      <btn icon="plus" @click="action" />
-      <btn icon="plus" @click="action">Text with Icon</btn>
+      <btn icon="plus" />
+      <btn icon="plus">Text with Icon</btn>
     </div>
   `,
-  methods: { action: action('clicked') },
 });
 
 Icon.story = {
