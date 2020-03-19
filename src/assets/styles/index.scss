@@ -1,3 +1,135 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+html {
+  height: 100%;
+  font-family: "Helvetica Neue";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+$spacing-baseline: 4px;
+$spacing: (
+  '2xs': $spacing-baseline,
+  'xs': $spacing-baseline * 2,
+  'sm': $spacing-baseline * 3,
+  'md': $spacing-baseline * 4,
+  'lg': $spacing-baseline * 5,
+  'xl': $spacing-baseline * 6,
+  '2xl': $spacing-baseline * 8,
+);
+
+$height-baseline: 8px;
+$height: (
+  'xs': $height-baseline * 3,
+  'sm': $height-baseline * 4,
+  'md': $height-baseline * 5,
+  'lg': $height-baseline * 6,
+  'xl': $height-baseline * 8,
+);
+
+$color-blue: #4299E1;
+$color-red: #f56565;
+$color-black: #000000;
+$color-white: #FFFFFF;
+$color-gray-01: #F6F7FB;
+$color-gray-02: #F7FAFC;
+$color-gray-03: #E6EBF0;
+$color-gray-04: #CBD5E0;
+$color-gray-05: #A0AEBF;
+$color-gray-06: #718096;
+$color-gray-07: #3B3E48;
+$color-gray-08: #2A2C34;
+
+$font-size: (
+  '2xs': 12px,
+  'xs': 14px,
+  'sm': 16px,
+  'md': 18px,
+  'lg': 24px,
+  'xl': 32px,
+  '2xl': 48px,
+  '3xl': 60px,
+);
+
+$border: 1px;
+$radius: 4px;
+
+$sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
+
+@function bigger($size, $amount) {
+  @return nth($sizes, index($sizes, $size) + $amount);
+}
+
+@function smaller($size, $amount) {
+  @return nth($sizes, index($sizes, $size) - $amount);
+}
+
+@mixin btn-kind($color) {
+  background: $color;
+
+  &:hover {
+    background: scale-color($color, $lightness: -15%);
+  }
+
+  &:active {
+    background: scale-color($color, $lightness: -25%);
+  }
+
+  &.outline {
+    background: $color-white;
+    color: $color;
+    border: $border solid $color;
+  }
+
+  &.ghost {
+    background: $color-white;
+    color: $color;
+  }
+}
+
+@mixin btn-size($size) {
+  height: map-get($height, $size);
+  font-size: map-get($font-size, smaller($size, 1));
+}
+
+.btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: $color-white;
+  padding-left: map-get($spacing, 'md');
+  padding-right: map-get($spacing, 'md');
+  border-radius: $radius;
+
+  &.text-icon {
+    padding-left: map-get($spacing, 'sm');
+  }
+
+  &.primary {
+    @include btn-kind($color-blue);
+  }
+
+  &.danger {
+    @include btn-kind($color-red);
+  }
+
+  &.disabled {
+    background: $color-gray-03;
+    color: $color-gray-05;
+  }
+
+  &.xs {
+    padding-left: map-get($spacing, 'sm');
+    padding-right: map-get($spacing, 'sm');
+    height: map-get($height, 'xs');
+    font-size: map-get($font-size, '2xs');
+  }
+
+  @each $size in 'sm', 'md', 'lg' {
+    &.#{$size} {
+      @include btn-size($size)
+    }
+  };
+
+  .text-icon {
+    margin-right: map-get($spacing, '2xs');
+  }
+}

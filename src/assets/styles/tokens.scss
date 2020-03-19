@@ -1,0 +1,46 @@
+$spacing-baseline: 4px;
+$spacing: (
+  '2xs': $spacing-baseline,
+  'xs': $spacing-baseline * 2,
+  'sm': $spacing-baseline * 3,
+  'md': $spacing-baseline * 4,
+  'lg': $spacing-baseline * 5,
+  'xl': $spacing-baseline * 6,
+  '2xl': $spacing-baseline * 8,
+);
+
+$height-baseline: 8px;
+$height: (
+  'xs': $height-baseline * 3,
+  'sm': $height-baseline * 4,
+  'md': $height-baseline * 5,
+  'lg': $height-baseline * 6,
+  'xl': $height-baseline * 8,
+);
+
+$color-blue: #4299E1;
+$color-red: #f56565;
+$color-black: #000000;
+$color-white: #FFFFFF;
+$color-gray-01: #F6F7FB;
+$color-gray-02: #F7FAFC;
+$color-gray-03: #E6EBF0;
+$color-gray-04: #CBD5E0;
+$color-gray-05: #A0AEBF;
+$color-gray-06: #718096;
+$color-gray-07: #3B3E48;
+$color-gray-08: #2A2C34;
+
+$font-size: (
+  '2xs': 12px,
+  'xs': 14px,
+  'sm': 16px,
+  'md': 18px,
+  'lg': 24px,
+  'xl': 32px,
+  '2xl': 48px,
+  '3xl': 60px,
+);
+
+$border: 1px;
+$radius: 4px;

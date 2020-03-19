@@ -1,0 +1,9 @@
+$sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
+
+@function bigger($size, $amount) {
+  @return nth($sizes, index($sizes, $size) + $amount);
+}
+
+@function smaller($size, $amount) {
+  @return nth($sizes, index($sizes, $size) - $amount);
+}

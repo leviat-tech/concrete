@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
 
 import Btn from '../src/components/Button';
 
@@ -11,11 +10,11 @@ export default {
 export const Size = () => ({
   components: { Btn },
   template: `
-    <div class="flex items-center my-2">
-      <btn class="mx-2" @click="action" size="lg">Large</btn>
-      <btn class="mx-2" @click="action" size="md">Medium</btn>
-      <btn class="mx-2" @click="action" size="sm">Small</btn>
-      <btn class="mx-2" @click="action" size="xs">Extra Small</btn>
+    <div>
+      <btn @click="action" size="lg">Large</btn>
+      <btn @click="action" size="md">Medium</btn>
+      <btn @click="action" size="sm">Small</btn>
+      <btn @click="action" size="xs">Extra Small</btn>
     </div>
   `,
   methods: { action: action('clicked') },
@@ -32,8 +31,14 @@ Size.story = {
 
 export const Fill = () => ({
   components: { Btn },
-  template: '<btn @click="action">Button</btn>',
-  methods: { action: linkTo('clicked') },
+  template: `
+    <div>
+      <btn @click="action">Solid</btn>
+      <btn @click="action" fill="outline">Outline</btn>
+      <btn @click="action" fill="ghost">Ghost</btn>
+      <btn @click="action" :disabled="true">Disabled</btn>
+    </div>
+  `,
 });
 
 Fill.story = {
@@ -47,7 +52,12 @@ Fill.story = {
 
 export const Icon = () => ({
   components: { Btn },
-  template: '<btn icon="plus" @click="action">Text with Icon</btn>',
+  template: `
+    <div>
+      <btn icon="plus" @click="action" />
+      <btn icon="plus" @click="action">Text with Icon</btn>
+    </div>
+  `,
   methods: { action: action('clicked') },
 });
 

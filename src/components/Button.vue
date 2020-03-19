@@ -1,12 +1,19 @@
 <template>
   <button
-    class="bg-blue-500 hover:bg-blue-700 text-white rounded"
-    :class="[textSize, paddingX, height]"
+    :class="[
+      'btn',
+      size,
+      (!disabled && color),
+      (!disabled && fill),
+      (disabled && 'disabled'),
+      (icon && $slots.default && 'text-icon')
+    ]"
     @click="$emit('click')"
+    :disabled="disabled"
   >
     <font-awesome-icon
       v-if="icon"
-      :class="[iconMargin]"
+      :class="[ $slots.default && 'text-icon' ]"
       :icon="icon"
     />
     <slot></slot>
@@ -22,23 +29,6 @@ export default {
   components: {
     FontAwesomeIcon,
   },
-  computed: {
-    textSize() {
-      return `text-${this.size}`
-    },
-    paddingX() {
-      const paddingRight = this.size === 'xs' ? 3 : 4;
-      const paddingLeft = this.icon ? paddingRight - 1 : paddingRight;
-      return `pl-${paddingLeft} pr-${paddingRight}`
-    },
-    height() {
-      const heightMapping = { lg: 12, md: 10, sm: 8, xs: 6 };
-      return `h-${heightMapping[this.size]}`;
-    },
-    iconMargin() {
-      return (this.size === 'lg' || this.size === 'md') ? 'mr-2' : 'mr-1';
-    }
-  },
   props: {
     size: {
       type: String,
@@ -47,7 +37,8 @@ export default {
     },
     color: {
       type: String,
-      default: 'blue',
+      default: 'primary',
+      validator: (prop) => ['primary', 'danger']
     },
     fill: {
       type: String,
