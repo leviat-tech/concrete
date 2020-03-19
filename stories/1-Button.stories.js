@@ -50,6 +50,16 @@ Fill.story = {
   }
 };
 
+export const Color = () => ({
+  components: { Btn },
+  template: `
+    <div>
+      <btn @click="action" color="primary">Primary</btn>
+      <btn @click="action" color="danger">Danger</btn>
+    </div>
+  `,
+})
+
 export const Icon = () => ({
   components: { Btn },
   template: `

@@ -29,14 +29,12 @@ $color-blue: #4299E1;
 $color-red: #f56565;
 $color-black: #000000;
 $color-white: #FFFFFF;
-$color-gray-01: #F6F7FB;
-$color-gray-02: #F7FAFC;
-$color-gray-03: #E6EBF0;
-$color-gray-04: #CBD5E0;
-$color-gray-05: #A0AEBF;
-$color-gray-06: #718096;
-$color-gray-07: #3B3E48;
-$color-gray-08: #2A2C34;
+$color-gray-01: #F7FAFC;
+$color-gray-02: #E6EBF0;
+$color-gray-03: #CBD5E0;
+$color-gray-04: #A0AEBF;
+$color-gray-05: #718096;
+$color-gray-06: #3B3E48;
 
 $font-size: (
   '2xs': 12px,
@@ -49,7 +47,8 @@ $font-size: (
   '3xl': 60px,
 );
 
-$border: 1px;
+$border-sm: 1px;
+$border-lg: 2px;
 $radius: 4px;
 
 $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
@@ -76,7 +75,7 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
   &.outline {
     background: $color-white;
     color: $color;
-    border: $border solid $color;
+    border: $border-sm solid $color;
   }
 
   &.ghost {
@@ -91,6 +90,7 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
 }
 
 .btn {
+  border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -112,8 +112,8 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
   }
 
   &.disabled {
-    background: $color-gray-03;
-    color: $color-gray-05;
+    background: $color-gray-02;
+    color: $color-gray-04;
   }
 
   &.xs {
@@ -132,4 +132,69 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
   .text-icon {
     margin-right: map-get($spacing, '2xs');
   }
+}
+
+.text-field {
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: $color-gray-01;
+  border-radius: $radius;
+  padding-top: map-get($spacing, 'xs');
+  padding-bottom: map-get($spacing, 'xs');
+  padding-left: map-get($spacing, 'md');
+  padding-right: map-get($spacing, 'md');
+  font-size: map-get($font-size, '2xs');
+  color: $color-gray-06;
+
+  // &:hover {
+  //   background: $color-gray-02;
+  // }
+
+  &:focus {
+    color: $color-black;
+    background: $color-white;
+    border: $border-lg solid $color-blue;
+  }
+
+  &.disabled {
+    color: $color-gray-03;
+  }
+
+  &.outline, &.icon {
+    background: $color-white;
+    color: $color-gray-05;
+    border: $border-sm solid $color-gray-05;
+    box-sizing: border-box;
+ 
+    &:focus {
+      color: $color-black;
+      background: $color-white;
+      border: $border-lg solid $color-blue;
+    }
+
+    // &:hover:not(.disabled) {
+    //   color: $color-gray-06;
+    //   border: $border-sm solid $color-gray-06;
+    // }
+
+    &.disabled {
+      color: $color-gray-03;
+      background: $color-gray-01;
+      border: $border-sm solid $color-gray-02;
+    }
+  }
+
+  &.icon {
+    padding-left: map-get($spacing, '2xl');
+  }
+
+  + .icon {
+    position: absolute;
+    margin-top: 8px;
+    color: $color-gray-04;
+    left: map-get($spacing, 'lg');
+  }
+
 }
