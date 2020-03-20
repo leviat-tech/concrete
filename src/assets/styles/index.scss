@@ -146,7 +146,7 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
 
 @mixin input {
   border: none;
-  background: $color-gray-01;
+  background: $color-blue;
   border-radius: $radius;
   padding-top: map-get($spacing, 'xs');
   padding-bottom: map-get($spacing, 'xs');
