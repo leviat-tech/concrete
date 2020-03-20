@@ -153,7 +153,7 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
   padding-left: map-get($spacing, 'md');
   padding-right: map-get($spacing, 'md');
   font-size: map-get($font-size, '2xs');
-  color: $color-gray-05;
+  color: $color-blue;
 
   &:hover {
     background: $color-gray-02;
