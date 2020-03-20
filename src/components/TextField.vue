@@ -1,10 +1,10 @@
 <template>
-  <div class="relative">
+  <div class="text-field">
     <input
-      class="text-field"
-      :class="[fill, icon && 'icon', disabled && 'disabled']"
+      class="input"
+      :class="[fill, icon && 'with-icon', disabled && 'disabled']"
       type="text"
-      :value="localValue"
+      v-model="localValue"
       :placeholder="placeholder"
       :disabled="disabled"
       @keydown.enter="$emit('blur')"
@@ -23,7 +23,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default {
-  name: 'Button',
+  name: 'TextField',
   data() {
     return {
       localValue: '',
@@ -42,7 +42,7 @@ export default {
       default: 'solid',
       validator: (prop) => ['solid', 'outline'].includes(prop),
     },
-    placehoder: {
+    placeholder: {
       type: String,
       default: '',
     },

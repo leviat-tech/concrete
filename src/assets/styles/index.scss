@@ -34,11 +34,15 @@ $color-red: #f56565;
 $color-black: #000000;
 $color-white: #FFFFFF;
 $color-gray-01: #F7FAFC;
-$color-gray-02: #E6EBF0;
-$color-gray-03: #CBD5E0;
-$color-gray-04: #A0AEBF;
-$color-gray-05: #718096;
-$color-gray-06: #3B3E48;
+$color-gray-02: #F3F4F5;
+$color-gray-03: #E5E7EA;
+$color-gray-04: #D8DBE1;
+$color-gray-05: #C0C3CA;
+$color-gray-06: #A6AAB3;
+$color-gray-07: #80848E;
+$color-gray-08: #5F636E;
+$color-gray-09: #3C404B;
+$color-gray-10: #161C2C;
 
 $font-size: (
   '2xs': 12px,
@@ -63,6 +67,11 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
 
 @function smaller($size, $amount) {
   @return nth($sizes, index($sizes, $size) - $amount);
+}
+
+@mixin shadow {
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: $radius;
 }
 
 @mixin btn-kind($color) {
@@ -95,9 +104,6 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
 
 .btn {
   border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   color: $color-white;
   padding-left: map-get($spacing, 'md');
   padding-right: map-get($spacing, 'md');
@@ -138,11 +144,8 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
   }
 }
 
-.text-field {
+@mixin input {
   border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   background: $color-gray-01;
   border-radius: $radius;
   padding-top: map-get($spacing, 'xs');
@@ -150,11 +153,12 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
   padding-left: map-get($spacing, 'md');
   padding-right: map-get($spacing, 'md');
   font-size: map-get($font-size, '2xs');
-  color: $color-gray-06;
+  color: $color-gray-05;
 
-  // &:hover {
-  //   background: $color-gray-02;
-  // }
+  &:hover {
+    background: $color-gray-02;
+    color: $color-gray-06;
+  }
 
   &:focus {
     color: $color-black;
@@ -171,17 +175,17 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
     color: $color-gray-05;
     border: $border-sm solid $color-gray-05;
     box-sizing: border-box;
- 
+
+    &:hover {
+      border: $border-sm solid $color-gray-06;
+      color: $color-gray-06;
+    }
+
     &:focus {
       color: $color-black;
       background: $color-white;
       border: $border-lg solid $color-blue;
     }
-
-    // &:hover:not(.disabled) {
-    //   color: $color-gray-06;
-    //   border: $border-sm solid $color-gray-06;
-    // }
 
     &.disabled {
       color: $color-gray-03;
@@ -190,15 +194,63 @@ $sizes: '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl';
     }
   }
 
-  &.icon {
+  &.with-icon {
     padding-left: map-get($spacing, '4xl');
   }
+}
 
-  + .icon {
+.text-field {
+  position: relative;
+  .input {
+    @include input;
+  }
+  .icon {
     position: absolute;
-    margin-top: 8px;
+    margin-top: map-get($spacing, 'xs');
     color: $color-gray-04;
-    left: map-get($spacing, 'lg');
+    left: map-get($spacing, 'sm');
   }
 
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+
+  .input-container {
+    display: flex;
+    .icon {
+      position: absolute;
+      margin-top: map-get($spacing, 'xs');
+      color: $color-gray-04;
+      left: map-get($spacing, 'sm');   
+    }
+    .input {
+      @include input;
+      flex: 1;
+    }
+  }
+  .options {
+    @include shadow;
+    width: 100%;
+    position: absolute;
+    list-style-type: none;
+    margin-top: map-get($spacing, '5xl');
+    padding-top: map-get($spacing, '2xs');
+    padding-bottom: map-get($spacing, '2xs');
+    padding-left: 0px;
+
+    .option {
+      font-size: map-get($font-size, 'xs');
+      padding-top: map-get($spacing, '2xs');
+      padding-bottom: map-get($spacing, '2xs');
+      padding-left: map-get($spacing, '3xl');
+
+      &:hover, &.keyed {
+        background: $color-gray-02;
+      }
+    }
+  }
 }

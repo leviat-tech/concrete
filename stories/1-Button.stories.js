@@ -43,7 +43,7 @@ Fill.story = {
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/EyyyqqiepniAIPLROMzyzt/Component-Library?node-id=59%3A401',
-    }
+    },
   }
 };
 
@@ -56,6 +56,12 @@ export const Color = () => ({
     </div>
   `,
 })
+
+Color.story = {
+  parameters: {
+    notes: ''
+  }
+}
 
 export const Icon = () => ({
   components: { Btn },
