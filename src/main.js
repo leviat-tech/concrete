@@ -1,8 +1,18 @@
-import Vue from "vue";
-import App from "./App.vue";
+import Button from './components/Button.vue';
+import Dropdown from './components/Dropdown.vue';
+import TextField from './components/TextField.vue';
+import './assets/styles/index.scss';
 
-Vue.config.productionTip = false;
+const components = {
+  Button,
+  Dropdown,
+  TextField,
+}
 
-new Vue({
-  render: h => h(App)
-}).$mount("#app");
+export default components;
+
+export {
+  Button,
+  Dropdown,
+  TextField,
+};

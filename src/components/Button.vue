@@ -38,7 +38,7 @@ export default {
     color: {
       type: String,
       default: 'primary',
-      validator: (prop) => ['primary', 'danger']
+      validator: (prop) => ['primary', 'danger'].includes(prop),
     },
     fill: {
       type: String,
