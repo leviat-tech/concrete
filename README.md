@@ -1,4 +1,4 @@
-# crh-design
+# Concrete Design System
 
 ## Project setup
 ```
