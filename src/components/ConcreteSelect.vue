@@ -41,7 +41,7 @@ import ChevronDown from '../assets/chevron-down.svg';
 
 
 export default {
-  name: 'Select',
+  name: 'ConcreteSelect',
   components: {
     ChevronDown,
   },

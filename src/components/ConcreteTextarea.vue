@@ -8,29 +8,30 @@
       {{ label }}
     </div>
     <div class="concrete-input input" :class="{ focused }">
-      <input
+      <textarea
         v-model="localValue"
-        type="text"
+        :rows="rows"
         :placeholder="placeholder"
         :disabled="disabled || readOnly"
         @keydown.enter="handleUpdate"
         @focus="focused = true"
         @blur="handleBlur"
         @input="handleChange"
-      >
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ConcreteTextInput',
+  name: 'ConcreteTextarea',
   props: {
     placeholder: { type: String, default: '' },
     label: { type: String, default: '' },
     value: { type: [String, Number], default: '' },
     disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },
+    rows: { type: Number, default: 10 },
   },
   data() {
     return {
@@ -74,4 +75,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
+
+.concrete-select-row {
+  align-items: start;
+}
 </style>

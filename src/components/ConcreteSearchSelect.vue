@@ -57,7 +57,7 @@ import Check from '../assets/check.svg';
 
 
 export default {
-  name: 'SearchSelect',
+  name: 'ConcreteSearchSelect',
   components: {
     Plus,
     Check,

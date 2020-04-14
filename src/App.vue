@@ -32,6 +32,13 @@
       />
     </div>
     <div class="input-row">
+      <concrete-textarea
+        v-model="textareaValue"
+        placeholder="Enter a Value"
+        label="Textarea"
+      />
+    </div>
+    <div class="input-row">
       <concrete-quantity-input
         v-model="quantityValue"
         placeholder="Enter a Value"
@@ -73,6 +80,7 @@ import ConcreteButton from './components/ConcreteButton.vue';
 import ConcreteSelect from './components/ConcreteSelect.vue';
 import ConcreteQuantityInput from './components/ConcreteQuantityInput.vue';
 import ConcreteTextInput from './components/ConcreteTextInput.vue';
+import ConcreteTextarea from './components/ConcreteTextarea.vue';
 import ConcreteCheckbox from './components/ConcreteCheckbox.vue';
 import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
 import ConcreteModal from './components/ConcreteModal.vue';
@@ -84,6 +92,7 @@ export default {
   components: {
     ConcreteButton,
     ConcreteTextInput,
+    ConcreteTextarea,
     ConcreteQuantityInput,
     ConcreteSelect,
     ConcreteSearchSelect,
@@ -94,6 +103,7 @@ export default {
   data() {
     return {
       textValue: null,
+      textareaValue: null,
       quantityValue: 0,
       selectValue: 1,
       searchText: '',

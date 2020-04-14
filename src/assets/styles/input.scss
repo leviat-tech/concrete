@@ -5,7 +5,6 @@
   width: 100%;
   display: flex;
   align-items: center;
-  height: 2rem;
 }
 
 .concrete-input-label {
@@ -27,7 +26,6 @@
   border-color: $color-gray-04;
   border-radius: $radius;
   background-color: $color-gray-01;
-  height: 2rem;
   max-width: 28rem;
   width: 100%;
   position: relative;
@@ -52,6 +50,18 @@
     &:focus {
       outline: none;
     }
+  }
+
+  textarea {
+    padding: 0.25rem;
+    font-size: $text-base;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    min-width: 100%;
+    min-height: 2rem;
+    font-family: sans-serif;
+    line-height: 1.25rem;
   }
 }
 
