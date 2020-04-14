@@ -21,10 +21,6 @@
     "build-bundle": "vue-cli-service build --target lib --name concrete ./src/main.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.27",
-    "@fortawesome/pro-regular-svg-icons": "^5.12.1",
-    "@fortawesome/pro-solid-svg-icons": "^5.12.1",
-    "@fortawesome/vue-fontawesome": "^0.1.9",
     "core-js": "^3.6.4",
     "vue": "^2.6.11"
   },
