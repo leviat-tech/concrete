@@ -12,6 +12,8 @@
         v-model="localValue"
         type="checkbox"
         :disabled="disabled"
+        @focus="focused = true"
+        @blur="focused = false"
         @change="handleChange"
       >
     </div>
@@ -29,6 +31,7 @@ export default {
   data() {
     return {
       localValue: false,
+      focused: false,
     };
   },
   watch: {

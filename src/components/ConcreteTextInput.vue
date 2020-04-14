@@ -14,7 +14,8 @@
         :placeholder="placeholder"
         :disabled="disabled || readOnly"
         @keydown.enter="handleUpdate"
-        @blur="handleUpdate"
+        @focus="focused = true"
+        @blur="handleBlur"
         @input="handleChange"
       >
     </div>
@@ -34,6 +35,7 @@ export default {
   data() {
     return {
       localValue: '',
+      focused: null,
     };
   },
   watch: {
@@ -55,6 +57,10 @@ export default {
       if (this.localValue !== this.value) {
         this.$emit('change-value', this.localValue);
       }
+    },
+    handleBlur() {
+      this.focused = false;
+      this.handleUpdate();
     },
     handleUpdate() {
       if (this.localValue !== this.value) {

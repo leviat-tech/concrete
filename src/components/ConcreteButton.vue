@@ -8,7 +8,6 @@
       (!disabled && fill),
       (disabled && 'disabled'),
       (inProgress && 'in-progress'),
-      (icon && $slots.default && 'text-icon')
     ]"
     :disabled="disabled"
     @click="click"

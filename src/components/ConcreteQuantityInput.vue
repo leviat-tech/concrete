@@ -53,20 +53,22 @@ export default {
     coercedValue() {
       if (parseFloat(this.localValue) !== parseFloat(this.value)) {
         const value = this.localValue * 1;
-        if (this.maximum && this.maximum < value) return this.maximum;
-        if (this.minimum && this.minimum > value) return this.minimum;
+        if (this.maximum != null && this.maximum < value) return this.maximum;
+        if (this.minimum != null && this.minimum > value) return this.minimum;
 
         return value;
       }
-      return undefined;
+      return this.value;
     },
   },
   watch: {
     // In the event that "value" is changed outside the context of this
     // component, the localValue here will be set to match.
     value: {
-      handler() {
-        this.localValue = this.value;
+      handler(nv) {
+        if (nv != null) {
+          this.localValue = this.value;
+        }
       },
     },
   },
@@ -83,8 +85,13 @@ export default {
       this.focused = false;
       this.handleUpdate();
     },
-    handleChange() {
-      if (typeof this.coercedValue === 'number') {
+    handleChange(e) {
+      if (e.inputType === 'insertReplacementText'
+          && typeof this.coercedValue === 'number') {
+        this.localValue = this.coercedValue;
+        this.$emit('update', this.coercedValue);
+        this.$emit('input', this.coercedValue);
+      } else if (typeof this.coercedValue === 'number') {
         this.$emit('change-value', this.coercedValue);
       }
     },
@@ -93,6 +100,8 @@ export default {
         this.localValue = this.coercedValue;
         this.$emit('update', this.coercedValue);
         this.$emit('input', this.coercedValue);
+      } else {
+        this.localValue = this.value;
       }
     },
   },
