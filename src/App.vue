@@ -13,6 +13,16 @@
       <concrete-button :play="true" :progress="50">
         Hello
       </concrete-button>
+      <concrete-button @click="showModal = true">
+        Click for modal
+      </concrete-button>
+      <concrete-modal
+        v-if="showModal"
+        title="Modal Title"
+        @close="showModal = false"
+      >
+        This is modal content.
+      </concrete-modal>
     </div>
     <div class="input-row">
       <concrete-text-input
@@ -65,6 +75,7 @@ import ConcreteQuantityInput from './components/ConcreteQuantityInput.vue';
 import ConcreteTextInput from './components/ConcreteTextInput.vue';
 import ConcreteCheckbox from './components/ConcreteCheckbox.vue';
 import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
+import ConcreteModal from './components/ConcreteModal.vue';
 import Plus from './assets/plus.svg';
 
 
@@ -77,6 +88,7 @@ export default {
     ConcreteSelect,
     ConcreteSearchSelect,
     ConcreteCheckbox,
+    ConcreteModal,
     Plus,
   },
   data() {
@@ -87,6 +99,7 @@ export default {
       searchText: '',
       searchSelectValue: null,
       booleanValue: false,
+      showModal: false,
     };
   },
   computed: {
@@ -116,6 +129,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 60px;
+}
+
+.concrete-button {
+  margin-right: 0.5rem;
 }
 
 @import './assets/styles/index.scss';

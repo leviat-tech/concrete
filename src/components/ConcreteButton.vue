@@ -184,22 +184,22 @@ export default {
 
   &.xs {
     height: 1.5rem;
-    font-size: 0.75rem;
+    font-size: $text-xs;
   }
 
   &.sm {
     height: 2rem;
-    font-size: 0.875rem;
+    font-size: $text-sm;
   }
 
   &.md {
     height: 2.5rem;
-    font-size: 1rem;
+    font-size: $text-base;
   }
 
   &.lg {
     height: 3rem;
-    font-size: 1.125rem;
+    font-size: $text-lg;
   }
 
   .icon {

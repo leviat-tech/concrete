@@ -3,6 +3,14 @@ html {
   font-family: "Helvetica Neue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e2e8f0;
 }
 
 .input-row {
@@ -19,4 +27,12 @@ html {
   display: inline-block;
   height: 1em;
   vertical-align: -0.125em;
+}
+
+.red-text {
+  color: red;
+}
+
+p {
+  margin-top: 0;
 }
