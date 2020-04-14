@@ -39,11 +39,8 @@
     border: $border-sm solid $color-blue;
   }
 
-  input {
-    padding-left: 0.25rem;
-  }
-  
   select, input {
+    padding-left: 0.25rem;
     padding-right: 0.25rem;
     height: 2rem;
     font-size: $text-base;
