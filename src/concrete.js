@@ -6,16 +6,23 @@ import ConcreteTextInput from './components/ConcreteTextInput.vue';
 import ConcreteModal from './components/ConcreteModal.vue';
 
 
-export default {
+const components = [
   ConcreteButton,
   ConcreteSearchSelect,
   ConcreteSelect,
   ConcreteQuantityInput,
   ConcreteTextInput,
   ConcreteModal,
+];
+
+const install = (Vue) => {
+  components.forEach((component) => {
+    Vue.component(component.name, component);
+  });
 };
 
-export {
+export default {
+  install,
   ConcreteButton,
   ConcreteSearchSelect,
   ConcreteSelect,
