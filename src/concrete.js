@@ -23,6 +23,10 @@ const install = (Vue) => {
 
 export default {
   install,
+  ...components,
+};
+
+export {
   ConcreteButton,
   ConcreteSearchSelect,
   ConcreteSelect,
