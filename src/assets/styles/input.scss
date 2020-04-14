@@ -1,0 +1,85 @@
+@import './variables.scss';
+
+.concrete-select-row {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 2rem;
+}
+
+.concrete-input-label {
+  width: 10rem;
+  height: 2rem;
+  line-height: 2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 0.5rem;
+
+  &.disabled {
+    color: $color-gray-03;
+  }
+}
+
+.concrete-input {
+  border: $border-sm solid;
+  border-color: $color-gray-04;
+  border-radius: $radius;
+  background-color: $color-gray-01;
+  height: 2rem;
+  max-width: 28rem;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:focus, &.focused {
+    color: $color-black;
+    border: $border-sm solid $color-blue;
+  }
+
+  input {
+    padding-left: 0.25rem;
+  }
+  
+  select, input {
+    padding-right: 0.25rem;
+    height: 2rem;
+    font-size: 1rem;
+    appearance: none;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.concrete-input-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  pointer-events: none;
+}
+
+.concrete-units {
+  pointer-events: none;
+  padding-right: 0.25rem;
+  padding-left: 0.25rem;
+  flex: none;
+}
+
+.svg-inline {
+  font-size: .75rem;
+  overflow: visible;
+  display: inline-block;
+  height: 1em;
+  vertical-align: -0.125em;
+}

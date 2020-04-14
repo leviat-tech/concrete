@@ -1,18 +1,17 @@
 <template>
-  <div class="dropdown">
-    <div class="input-container">
-      <font-awesome-icon
-        v-if="!disabled && !!icon"
-        :icon="['far', icon]"
-        class="icon"
-        @click="$emit('click-icon')"
-      />
+  <div class="concrete-select-row row">
+    <div
+      v-if="label !== null"
+      class="concrete-input-label label"
+      :class="{ disabled }"
+    >
+      {{ label }}
+    </div>
+    <div class="concrete-input input" :class="{ focused }">
       <input
         ref="input"
-        class="input"
-        :class="[fill, icon && 'with-icon']"
-        type="text"
         v-model="localText"
+        type="text"
         :placeholder="localPlaceholder"
         :disabled="disabled"
         @input="handleChange"
@@ -21,45 +20,60 @@
         @keydown.up="handleKeyUp"
         @keydown.enter="handleKeyEnter"
         @blur="handleBlur"
-      />
-    </div>
-    <ul
-      v-show="showOptions"
-      class="options"
-    >
-      <li
-        v-for="(option, index) in options"
-        class="option"
-        :class="{ keyed: index === arrowCounter }"
-        :key="index"
-        @mousedown="handleSelect(option)"
       >
-        {{ option.label }}
-      </li>
-    </ul>
+      <div class="concrete-input-icon">
+        <plus
+          v-if="!disabled && !!icon"
+          @click="$emit('click-icon')"
+        />
+      </div>
+      <ul
+        v-show="showOptions"
+        class="concrete-select-options"
+      >
+        <li
+          v-for="(option, index) in options"
+          :key="index"
+          class="option"
+          :class="{ keyed: index === arrowCounter }"
+          @mousedown="handleSelect(option)"
+        >
+          <div class="option-check">
+            <check v-if="value === option.value" />
+            <div v-else>&nbsp;</div>
+          </div>
+          <div>
+            {{ option.label }}
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Plus from '../assets/plus.svg';
+import Check from '../assets/check.svg';
 
 
 export default {
+  name: 'SearchSelect',
   components: {
-    FontAwesomeIcon,
+    Plus,
+    Check,
   },
   props: {
     options: {
       type: Array,
       default: () => [],
     },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
     placeholder: {
       type: String,
       default: '',
+    },
+    label: {
+      type: String,
+      default: null,
     },
     text: {
       type: String,
@@ -77,10 +91,15 @@ export default {
       type: String,
       default: 'plus',
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       selected: null,
+      focused: false,
       localText: '',
       localPlaceholder: '',
       arrowCounter: -1,
@@ -91,7 +110,7 @@ export default {
     value: {
       immediate: true,
       handler() {
-        const option = this.options.find(o => o.value === this.value);
+        const option = this.options.find((o) => o.value === this.value);
         if (option) {
           this.selected = option.label;
           this.localText = option.label;
@@ -136,11 +155,13 @@ export default {
       this.$emit('search', this.localText);
     },
     handleSelect(option) {
-      this.$emit('select', option.value);
+      this.$emit('input', option.value);
       this.selected = option.label;
       this.localText = option.label;
       this.showOptions = false;
-      this.arrowCounter = -1;
+      this.arrowCounter = this.options
+        .map((o) => o.value)
+        .indexOf(option.value);
     },
     handleKeyDown() {
       if (this.arrowCounter < this.options.length - 1) {
@@ -162,3 +183,36 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/styles/input.scss';
+
+.concrete-select-options {
+  @include shadow;
+  background-color: $color-gray-02;
+  border: $border-sm solid $color-gray-04;
+  width: 100%;
+  position: absolute;
+  list-style-type: none;
+  top: 1rem;
+  padding-left: 0;
+
+  .option {
+    display: flex;
+    align-items: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem;
+
+    &:hover, &.keyed {
+      background-color: $color-blue-highlight;
+      color: white;
+    }
+
+    .option-check {
+      width: 1rem;
+    }
+  }
+}
+
+</style>

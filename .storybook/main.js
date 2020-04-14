@@ -6,12 +6,30 @@ module.exports = {
     // You can change the configuration based on that.
     // 'PRODUCTION' is used when building the static version of storybook.
 
-    // Make whatever fine-grained changes you need
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-      include: path.resolve(__dirname, '../'),
+    config.module.rules = config.module.rules.map(rule => {
+      if (rule.test.toString().includes('svg')) {
+        const test = rule.test
+          .toString()
+          .replace('svg|', '')
+          .replace(/\//g, '');
+        return { ...rule, test: new RegExp(test) };
+      } else {
+        return rule;
+      }
     });
+
+    // Make whatever fine-grained changes you need
+    config.module.rules.push(
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        include: path.resolve(__dirname, '../'),
+      },
+      {
+        test: /\.svg$/,
+        use: ['vue-svg-loader'],
+      },
+    );
 
     // Return the altered config
     return config;

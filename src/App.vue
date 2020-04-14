@@ -1,23 +1,123 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <div class="input-row">
+      <concrete-button>
+        Hello
+      </concrete-button>
+      <concrete-button>
+        <plus />
+      </concrete-button>
+      <concrete-button :play="true">
+        Hello
+      </concrete-button>
+      <concrete-button :play="true" :progress="50">
+        Hello
+      </concrete-button>
+    </div>
+    <div class="input-row">
+      <concrete-text-input
+        v-model="textValue"
+        placeholder="Enter a Value"
+        label="Text Input"
+      />
+    </div>
+    <div class="input-row">
+      <concrete-quantity-input
+        v-model="quantityValue"
+        placeholder="Enter a Value"
+        label="Quantity Input"
+        :precision="1"
+        units="m"
+        :maximum="5"
+        :minimum="0"
+      />
+    </div>
+    <div class="input-row">
+      <concrete-select
+        v-model="selectValue"
+        placeholder="Select an Option"
+        label="Select"
+        :options="options"
+      />
+    </div>
+    <div class="input-row">
+      <concrete-search-select
+        v-model="searchSelectValue"
+        placeholder="Select an Option"
+        label="Search Select"
+        :options="filteredOptions"
+        @search="handleSearch"
+      />
+    </div>
+    <div class="input-row">
+      <concrete-checkbox
+        v-model="booleanValue"
+        label="Checkbox"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import ConcreteButton from './components/ConcreteButton.vue';
+import ConcreteSelect from './components/ConcreteSelect.vue';
+import ConcreteQuantityInput from './components/ConcreteQuantityInput.vue';
+import ConcreteTextInput from './components/ConcreteTextInput.vue';
+import ConcreteCheckbox from './components/ConcreteCheckbox.vue';
+import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
+import Plus from './assets/plus.svg';
+
 
 export default {
-  name: "App",
+  name: 'App',
+  components: {
+    ConcreteButton,
+    ConcreteTextInput,
+    ConcreteQuantityInput,
+    ConcreteSelect,
+    ConcreteSearchSelect,
+    ConcreteCheckbox,
+    Plus,
+  },
+  data() {
+    return {
+      textValue: null,
+      quantityValue: 0,
+      selectValue: 1,
+      searchText: '',
+      searchSelectValue: null,
+      booleanValue: false,
+    };
+  },
+  computed: {
+    options() {
+      return [
+        { label: 'hello', value: 1 },
+        { label: 'darkness', value: 2 },
+        { label: 'my', value: 3 },
+        { label: 'old', value: 4 },
+        { label: 'friend', value: 5 },
+      ];
+    },
+    filteredOptions() {
+      return this.options.filter((o) => o.label.includes(this.searchText));
+    },
+  },
+  methods: {
+    handleSearch(text) {
+      this.searchText = text;
+    },
+  },
 };
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
+
+@import './assets/styles/index.scss';
+
 </style>

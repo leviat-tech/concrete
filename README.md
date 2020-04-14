@@ -1,29 +1,17 @@
-# Concrete Design System
+<h1 align="center">
+  Concrete Design System
+</h1>
 
-## Project setup
-```
-npm install
-```
+> Concrete is a Vue UI toolkit designed and built by the team at [www.crh.io](https://www.crh.io).
+> It is intended for technical interfaces, with components specifically tailored
+> for engineering and design software.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+A sandbox of all components can be found at [concrete.crh.io](https://concrete.crh.io).
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Installation
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## Documentation
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Contributing
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Contributors should follow the [Guide for Contributors](/CONTRIBUTORS.md) for instructions on setting up the development environment.

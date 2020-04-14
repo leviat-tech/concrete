@@ -1,0 +1,212 @@
+<template>
+  <button
+    :class="[
+      'concrete-button',
+      'btn',
+      size,
+      (!disabled && color),
+      (!disabled && fill),
+      (disabled && 'disabled'),
+      (inProgress && 'in-progress'),
+      (icon && $slots.default && 'text-icon')
+    ]"
+    :disabled="disabled"
+    @click="click"
+  >
+    <div
+      :style="progressStyle"
+      class="progress-bar"
+    >
+      &nbsp;
+    </div>
+    <div class="button-content">
+      <play v-if="play && !inProgress" class="icon" />
+      <times-circle v-if="inProgress" class="icon" @click="cancel" />
+      <slot />
+    </div>
+  </button>
+</template>
+
+<script>
+import Play from '../assets/play.svg';
+import TimesCircle from '../assets/times-circle.svg';
+
+
+export default {
+  name: 'ConcreteButton',
+  components: {
+    Play,
+    TimesCircle,
+  },
+  props: {
+    size: {
+      type: String,
+      default: 'sm',
+      validator: (prop) => ['lg', 'md', 'sm', 'xs'].includes(prop),
+    },
+    color: {
+      type: String,
+      default: 'primary',
+      validator: (prop) => ['primary', 'danger'].includes(prop),
+    },
+    fill: {
+      type: String,
+      default: 'solid',
+      validator: (prop) => ['solid', 'outline', 'ghost'].includes(prop),
+    },
+    play: { type: Boolean, default: false },
+    progress: { type: Number, default: null },
+    fake: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
+  },
+  data() {
+    return {
+      fakeProgress: 20,
+      intervalId: null,
+    };
+  },
+  computed: {
+    inProgress() {
+      return this.progress && this.progress < 100;
+    },
+    progressStyle() {
+      if (!this.progress || this.progress >= 100) {
+        return { display: 'none' };
+      }
+
+      if (this.fake) {
+        return { width: `${this.fakeProgress}%` };
+      }
+
+      return { width: `${this.progress}%` };
+    },
+  },
+  watch: {
+    progress: {
+      handler(nv) {
+        if (this.fake) {
+          this.fakeProgress = nv;
+          if (nv >= 100) {
+            clearInterval(this.intervalId);
+          }
+        }
+      },
+    },
+  },
+  methods: {
+    click() {
+      this.$emit('click');
+      if (this.fake) {
+        this.fakeProgress = 20;
+        this.intervalId = setInterval(() => {
+          const diff = 90 - this.fakeProgress;
+          if (diff > 0 && diff < 90) this.fakeProgress += diff / 20;
+        }, 100);
+      }
+    },
+    cancel(e) {
+      e.stopPropagation();
+      this.$emit('cancel');
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+@import '../assets/styles/variables.scss';
+
+@mixin btn-kind($color) {
+  background: $color;
+
+  &:hover {
+    background: scale-color($color, $lightness: -15%);
+  }
+
+  &:active {
+    background: scale-color($color, $lightness: -25%);
+  }
+
+  &.outline {
+    background: $color-white;
+    color: $color;
+    border: $border-sm solid $color;
+  }
+
+  &.ghost {
+    background: $color-white;
+    color: $color;
+  }
+}
+
+.concrete-button {
+  border: none;
+  color: $color-white;
+  border-radius: $radius;
+  position: relative;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  &.primary {
+    @include btn-kind($color-blue);
+  }
+
+  &.danger {
+    @include btn-kind($color-red);
+  }
+
+  &.disabled {
+    background: $color-gray-02;
+    color: $color-gray-04;
+  }
+
+  &.in-progress {
+    background: $color-gray-02;
+    color: $color-gray-04;
+
+    &:hover {
+      background: $color-gray-02;
+      color: $color-black;
+    }
+  }
+
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(#209cef, #1985dd);
+    opacity: 1;
+  }
+
+  .button-content {
+    position: relative;
+  }
+
+  &.xs {
+    height: 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  &.sm {
+    height: 2rem;
+    font-size: 0.875rem;
+  }
+
+  &.md {
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+
+  &.lg {
+    height: 3rem;
+    font-size: 1.125rem;
+  }
+
+  .icon {
+    height: 0.75rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+</style>

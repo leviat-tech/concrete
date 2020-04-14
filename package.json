@@ -1,11 +1,19 @@
 {
   "name": "@crh/concrete",
   "version": "0.1.0",
-  "private": true,
+  "license": "Apache-2.0",
+  "contributors": [
+    {
+      "name": "David Anderson <david@davidcanderson.net>"
+    },
+    {
+      "name": "Lee Araneta <lee.araneta@gmail.com>"
+    }
+  ],
   "main": "./dist/concrete.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006 public",
@@ -32,19 +40,20 @@
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-plugin-unit-jest": "~4.2.0",
     "@vue/cli-service": "~4.2.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-airbnb": "^5.0.2",
     "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "babel-preset-vue": "^2.0.2",
     "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.1.2",
     "node-sass": "^4.13.1",
-    "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
     "storybook-addon-designs": "^5.2.0",
     "storybook-chromatic": "^3.5.2",
+    "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11"
   }
 }
