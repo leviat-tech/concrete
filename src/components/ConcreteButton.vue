@@ -171,6 +171,7 @@ export default {
 
   .progress-bar {
     position: absolute;
+    border-radius: $radius;
     top: 0;
     left: 0;
     height: 100%;
