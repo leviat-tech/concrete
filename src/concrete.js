@@ -1,18 +1,25 @@
 import ConcreteButton from './components/ConcreteButton.vue';
+import ConcreteCheckbox from './components/ConcreteCheckbox.vue';
+import ConcreteModal from './components/ConcreteModal.vue';
+import ConcreteQuantityInput from './components/ConcreteQuantityInput.vue';
 import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
 import ConcreteSelect from './components/ConcreteSelect.vue';
-import ConcreteQuantityInput from './components/ConcreteQuantityInput.vue';
+import ConcreteTextarea from './components/ConcreteTextarea.vue';
 import ConcreteTextInput from './components/ConcreteTextInput.vue';
-import ConcreteModal from './components/ConcreteModal.vue';
+import { ConcreteTable, ConcreteColumn } from './components/ConcreteTable.vue';
 
 
 const components = [
   ConcreteButton,
+  ConcreteCheckbox,
+  ConcreteModal,
+  ConcreteQuantityInput,
   ConcreteSearchSelect,
   ConcreteSelect,
-  ConcreteQuantityInput,
+  ConcreteTextarea,
   ConcreteTextInput,
-  ConcreteModal,
+  ConcreteTable,
+  ConcreteColumn,
 ];
 
 const install = (Vue) => {
@@ -28,9 +35,13 @@ export default {
 
 export {
   ConcreteButton,
+  ConcreteCheckbox,
+  ConcreteModal,
+  ConcreteQuantityInput,
   ConcreteSearchSelect,
   ConcreteSelect,
-  ConcreteQuantityInput,
+  ConcreteTextarea,
   ConcreteTextInput,
-  ConcreteModal,
+  ConcreteTable,
+  ConcreteColumn,
 };

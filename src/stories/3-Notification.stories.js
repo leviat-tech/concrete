@@ -1,13 +1,13 @@
-import ConcreteModal from '../src/components/ConcreteModal.vue';
-import ConcreteButton from '../src/components/ConcreteButton.vue';
+import ConcreteModal from '../components/ConcreteModal.vue';
+import ConcreteButton from '../components/ConcreteButton.vue';
 
 
 export default {
-  title: 'Modal',
+  title: 'Notification',
   components: { ConcreteModal, ConcreteButton },
 };
 
-export const All = () => ({
+export const Modal = () => ({
   components: { ConcreteModal, ConcreteButton },
   data() {
     return {

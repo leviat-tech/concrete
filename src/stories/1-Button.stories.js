@@ -1,5 +1,5 @@
-import ConcreteButton from '../src/components/ConcreteButton.vue';
-import Plus from '../src/assets/plus.svg';
+import ConcreteButton from '../components/ConcreteButton.vue';
+import Plus from '../assets/plus.svg';
 
 
 export default {

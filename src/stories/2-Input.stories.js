@@ -1,14 +1,16 @@
-import ConcreteSelect from '../src/components/ConcreteSelect.vue';
-import ConcreteQuantityInput from '../src/components/ConcreteQuantityInput.vue';
-import ConcreteTextInput from '../src/components/ConcreteTextInput.vue';
-import ConcreteCheckbox from '../src/components/ConcreteCheckbox.vue';
-import ConcreteSearchSelect from '../src/components/ConcreteSearchSelect.vue';
+import ConcreteSelect from '../components/ConcreteSelect.vue';
+import ConcreteQuantityInput from '../components/ConcreteQuantityInput.vue';
+import ConcreteTextInput from '../components/ConcreteTextInput.vue';
+import ConcreteTextarea from '../components/ConcreteTextarea.vue';
+import ConcreteCheckbox from '../components/ConcreteCheckbox.vue';
+import ConcreteSearchSelect from '../components/ConcreteSearchSelect.vue';
 
 
 export default {
   title: 'Input',
   components: {
     ConcreteTextInput,
+    ConcreteTextarea,
     ConcreteQuantityInput,
     ConcreteSelect,
     ConcreteSearchSelect,
@@ -19,6 +21,7 @@ export default {
 export const Active = () => ({
   components: {
     ConcreteTextInput,
+    ConcreteTextarea,
     ConcreteQuantityInput,
     ConcreteSelect,
     ConcreteSearchSelect,
@@ -27,6 +30,7 @@ export const Active = () => ({
   data() {
     return {
       textValue: null,
+      textareaValue: null,
       quantityValue: 0,
       selectValue: 1,
       searchText: '',
@@ -60,6 +64,13 @@ export const Active = () => ({
           placeholder="Enter a Value"
           label="Text Input"
           v-model="textValue"
+        />
+      </div>
+      <div class="input-row">
+        <concrete-textarea
+          placeholder="Enter a Value"
+          label="Textarea"
+          v-model="textareaValue"
         />
       </div>
       <div class="input-row">

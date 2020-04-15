@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'QuantityInput',
+  name: 'ConcreteQuantityInput',
   props: {
     placeholder: { type: String, default: '' },
     precision: { type: Number, default: 1 },
