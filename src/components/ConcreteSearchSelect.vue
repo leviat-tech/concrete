@@ -135,12 +135,14 @@ export default {
   },
   methods: {
     handleFocus() {
+      this.focused = true;
       this.localText = '';
       this.$emit('search', '');
       this.showOptions = true;
       this.localPlaceholder = this.selected || this.placeholder;
     },
     handleBlur() {
+      this.focused = false;
       this.$emit('blur');
       if (this.selected) {
         this.localPlaceholder = '';
