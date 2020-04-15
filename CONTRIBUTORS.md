@@ -51,6 +51,11 @@ Layout Components:
   * Data tree
   * Card List
 
+Drawing:
+  * 2D SVG viewport
+  * 2D canvas viewport?
+  * 3D viewport
+
 Other:
   * Image-select (i.e., like the balcony type switcher)
   * File uploader
