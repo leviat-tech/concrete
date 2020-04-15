@@ -72,6 +72,28 @@
         label="Checkbox"
       />
     </div>
+    <div class="input-row">
+      <concrete-table
+        :data="tableData"
+        :initial-sort="{
+          direction: 'asc',
+          prop: 'name',
+        }"
+      >
+        <concrete-column
+          prop="name"
+          label="Name"
+        />
+        <concrete-column
+          prop="quantity"
+          label="Quantity"
+        />
+        <concrete-column
+          prop="animal"
+          label="Animal"
+        />
+      </concrete-table>
+    </div>
   </div>
 </template>
 
@@ -84,6 +106,7 @@ import ConcreteTextarea from './components/ConcreteTextarea.vue';
 import ConcreteCheckbox from './components/ConcreteCheckbox.vue';
 import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
 import ConcreteModal from './components/ConcreteModal.vue';
+import { ConcreteTable, ConcreteColumn } from './components/ConcreteTable.vue';
 import Plus from './assets/plus.svg';
 
 
@@ -98,6 +121,8 @@ export default {
     ConcreteSearchSelect,
     ConcreteCheckbox,
     ConcreteModal,
+    ConcreteTable,
+    ConcreteColumn,
     Plus,
   },
   data() {
@@ -120,6 +145,13 @@ export default {
         { label: 'my', value: 3 },
         { label: 'old', value: 4 },
         { label: 'friend', value: 5 },
+      ];
+    },
+    tableData() {
+      return [
+        { name: 'Wendy', quantity: 3, animal: 'cat' },
+        { name: 'Roger', quantity: 2, animal: 'pigeon' },
+        { name: 'Angie', quantity: 4, animal: 'mink' },
       ];
     },
     filteredOptions() {

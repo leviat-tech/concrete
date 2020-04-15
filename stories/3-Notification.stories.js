@@ -3,11 +3,11 @@ import ConcreteButton from '../src/components/ConcreteButton.vue';
 
 
 export default {
-  title: 'Modal',
+  title: 'Notification',
   components: { ConcreteModal, ConcreteButton },
 };
 
-export const All = () => ({
+export const Modal = () => ({
   components: { ConcreteModal, ConcreteButton },
   data() {
     return {
