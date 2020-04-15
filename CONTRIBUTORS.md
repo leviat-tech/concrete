@@ -10,8 +10,6 @@ npm install
 npm run serve
 ```
 
-This library uses [Storybook](https://www.learnstorybook.com/) as a sandbox for testing UI components.
-
 ### Run Storybook sandbox
 ```
 npm run storybook
@@ -32,5 +30,32 @@ npm run test:unit
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Roadmap
+
+Simple Components:
+  * Radio input
+  * Tooltip
+  * Alertbox
+  * Multi-select
+  * Color picker
+  * Pagination
+
+Icons:
+  * Common UI elements
+
+Layout Components:
+  * Tab switcher
+  * Accordion/Collapse
+  * Layout frames
+  * Toolbar
+  * Data tree
+  * Card List
+
+Other:
+  * Image-select (i.e., like the balcony type switcher)
+  * File uploader
+  * Add confirmation buttons to modal
+  * Compact versions of tables, inputs, etc.
+
+Documentation:
+  * (all components need documentation)
