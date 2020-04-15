@@ -1,9 +1,9 @@
-import ConcreteSelect from '../src/components/ConcreteSelect.vue';
-import ConcreteQuantityInput from '../src/components/ConcreteQuantityInput.vue';
-import ConcreteTextInput from '../src/components/ConcreteTextInput.vue';
-import ConcreteTextarea from '../src/components/ConcreteTextarea.vue';
-import ConcreteCheckbox from '../src/components/ConcreteCheckbox.vue';
-import ConcreteSearchSelect from '../src/components/ConcreteSearchSelect.vue';
+import ConcreteSelect from '../components/ConcreteSelect.vue';
+import ConcreteQuantityInput from '../components/ConcreteQuantityInput.vue';
+import ConcreteTextInput from '../components/ConcreteTextInput.vue';
+import ConcreteTextarea from '../components/ConcreteTextarea.vue';
+import ConcreteCheckbox from '../components/ConcreteCheckbox.vue';
+import ConcreteSearchSelect from '../components/ConcreteSearchSelect.vue';
 
 
 export default {

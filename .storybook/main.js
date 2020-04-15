@@ -1,39 +1,26 @@
-const path = require('path');
-
 module.exports = {
-  webpackFinal: async (config, { configType }) => {
-    // `configType` has a value of 'DEVELOPMENT' or 'PRODUCTION'
-    // You can change the configuration based on that.
-    // 'PRODUCTION' is used when building the static version of storybook.
-
-    config.module.rules = config.module.rules.map(rule => {
-      if (rule.test.toString().includes('svg')) {
-        const test = rule.test
-          .toString()
-          .replace('svg|', '')
-          .replace(/\//g, '');
-        return { ...rule, test: new RegExp(test) };
-      } else {
-        return rule;
-      }
-    });
-
-    // Make whatever fine-grained changes you need
-    config.module.rules.push(
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-        include: path.resolve(__dirname, '../'),
-      },
-      {
-        test: /\.svg$/,
-        use: ['vue-svg-loader'],
-      },
-    );
-
-    // Return the altered config
-    return config;
-  },
-  stories: ['../stories/**/*.stories.js'],
-  addons: ['@storybook/addon-storysource', 'storybook-addon-designs', '@storybook/addon-notes/register-panel'],
+  stories: ['../src/**/*.stories.(js|jsx|ts|tsx|mdx)'],
+  addons: [
+    // '@storybook/addon-actions',
+    // {
+    //   name: '@storybook/addon-docs',
+    //   options: {
+    //     babelOptions: {
+    //       presets: [
+    //         [
+    //           '@vue/cli-plugin-babel/preset',
+    //           {
+    //             jsx: false,
+    //           },
+    //         ],
+    //       ],
+    //     },
+    //   },
+    // },
+    // '@storybook/addon-knobs',
+    // '@storybook/addon-links',
+    '@storybook/addon-storysource',
+    'storybook-addon-designs',
+    '@storybook/addon-notes/register-panel',
+  ],
 };

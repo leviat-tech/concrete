@@ -6,6 +6,7 @@ import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
 import ConcreteSelect from './components/ConcreteSelect.vue';
 import ConcreteTextarea from './components/ConcreteTextarea.vue';
 import ConcreteTextInput from './components/ConcreteTextInput.vue';
+import { ConcreteTable, ConcreteColumn } from './components/ConcreteTable.vue';
 
 
 const components = [
@@ -17,6 +18,8 @@ const components = [
   ConcreteSelect,
   ConcreteTextarea,
   ConcreteTextInput,
+  ConcreteTable,
+  ConcreteColumn,
 ];
 
 const install = (Vue) => {
@@ -39,4 +42,6 @@ export {
   ConcreteSelect,
   ConcreteTextarea,
   ConcreteTextInput,
+  ConcreteTable,
+  ConcreteColumn,
 };

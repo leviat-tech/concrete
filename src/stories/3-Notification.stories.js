@@ -1,5 +1,5 @@
-import ConcreteModal from '../src/components/ConcreteModal.vue';
-import ConcreteButton from '../src/components/ConcreteButton.vue';
+import ConcreteModal from '../components/ConcreteModal.vue';
+import ConcreteButton from '../components/ConcreteButton.vue';
 
 
 export default {
