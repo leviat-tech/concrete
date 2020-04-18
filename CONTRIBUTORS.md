@@ -50,6 +50,7 @@ Layout Components:
   * Toolbar
   * Data tree
   * Card List
+  * Masonry
 
 Drawing:
   * 2D SVG viewport
@@ -61,6 +62,7 @@ Other:
   * File uploader
   * Add confirmation buttons to modal
   * Compact versions of tables, inputs, etc.
+  * light/dark theme
 
 Documentation:
   * (all components need documentation)

@@ -1,31 +1,31 @@
-import ConcreteSelect from '../components/ConcreteSelect.vue';
-import ConcreteQuantityInput from '../components/ConcreteQuantityInput.vue';
-import ConcreteTextInput from '../components/ConcreteTextInput.vue';
-import ConcreteTextarea from '../components/ConcreteTextarea.vue';
-import ConcreteCheckbox from '../components/ConcreteCheckbox.vue';
-import ConcreteSearchSelect from '../components/ConcreteSearchSelect.vue';
+import CSelect from '../components/Select.vue';
+import CQuantityInput from '../components/QuantityInput.vue';
+import CTextInput from '../components/TextInput.vue';
+import CTextarea from '../components/Textarea.vue';
+import CCheckbox from '../components/Checkbox.vue';
+import CSearchSelect from '../components/SearchSelect.vue';
 
 
 export default {
   title: 'Input',
   components: {
-    ConcreteTextInput,
-    ConcreteTextarea,
-    ConcreteQuantityInput,
-    ConcreteSelect,
-    ConcreteSearchSelect,
-    ConcreteCheckbox,
+    CTextInput,
+    CTextarea,
+    CQuantityInput,
+    CSelect,
+    CSearchSelect,
+    CCheckbox,
   },
 };
 
 export const Active = () => ({
   components: {
-    ConcreteTextInput,
-    ConcreteTextarea,
-    ConcreteQuantityInput,
-    ConcreteSelect,
-    ConcreteSearchSelect,
-    ConcreteCheckbox,
+    CTextInput,
+    CTextarea,
+    CQuantityInput,
+    CSelect,
+    CSearchSelect,
+    CCheckbox,
   },
   data() {
     return {
@@ -60,21 +60,21 @@ export const Active = () => ({
   template: `
     <div>
       <div class="input-row">
-        <concrete-text-input
+        <c-text-input
           placeholder="Enter a Value"
           label="Text Input"
           v-model="textValue"
         />
       </div>
       <div class="input-row">
-        <concrete-textarea
+        <c-textarea
           placeholder="Enter a Value"
           label="Textarea"
           v-model="textareaValue"
         />
       </div>
       <div class="input-row">
-        <concrete-quantity-input
+        <c-quantity-input
           placeholder="Enter a Value"
           label="Quantity Input"
           :precision="1"
@@ -85,7 +85,7 @@ export const Active = () => ({
         />
       </div>
       <div class="input-row">
-        <concrete-select
+        <c-select
           placeholder="Select an Option"
           label="Select"
           :options="options"
@@ -93,7 +93,7 @@ export const Active = () => ({
         />
       </div>
       <div class="input-row">
-        <concrete-search-select
+        <c-search-select
           placeholder="Select an Option"
           label="Search Select"
           :options="filteredOptions"
@@ -102,7 +102,7 @@ export const Active = () => ({
         />
       </div>
       <div class="input-row">
-        <concrete-checkbox
+        <c-checkbox
           label="Checkbox"
           v-model="booleanValue"
         />

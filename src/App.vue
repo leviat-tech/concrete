@@ -1,45 +1,45 @@
 <template>
   <div id="app">
     <div class="input-row">
-      <concrete-button>
+      <c-button>
         Hello
-      </concrete-button>
-      <concrete-button>
+      </c-button>
+      <c-button>
         <plus />
-      </concrete-button>
-      <concrete-button :play="true">
+      </c-button>
+      <c-button :play="true">
         Hello
-      </concrete-button>
-      <concrete-button :play="true" :progress="50">
+      </c-button>
+      <c-button :play="true" :progress="50">
         Hello
-      </concrete-button>
-      <concrete-button @click="showModal = true">
+      </c-button>
+      <c-button @click="showModal = true">
         Click for modal
-      </concrete-button>
-      <concrete-modal
+      </c-button>
+      <c-modal
         v-if="showModal"
         title="Modal Title"
         @close="showModal = false"
       >
         This is modal content.
-      </concrete-modal>
+      </c-modal>
     </div>
     <div class="input-row">
-      <concrete-text-input
+      <c-text-input
         v-model="textValue"
         placeholder="Enter a Value"
         label="Text Input"
       />
     </div>
     <div class="input-row">
-      <concrete-textarea
+      <c-textarea
         v-model="textareaValue"
         placeholder="Enter a Value"
         label="Textarea"
       />
     </div>
     <div class="input-row">
-      <concrete-quantity-input
+      <c-quantity-input
         v-model="quantityValue"
         placeholder="Enter a Value"
         label="Quantity Input"
@@ -50,7 +50,7 @@
       />
     </div>
     <div class="input-row">
-      <concrete-select
+      <c-select
         v-model="selectValue"
         placeholder="Select an Option"
         label="Select"
@@ -58,7 +58,7 @@
       />
     </div>
     <div class="input-row">
-      <concrete-search-select
+      <c-search-select
         v-model="searchSelectValue"
         placeholder="Select an Option"
         label="Search Select"
@@ -67,62 +67,84 @@
       />
     </div>
     <div class="input-row">
-      <concrete-checkbox
+      <c-checkbox
         v-model="booleanValue"
         label="Checkbox"
       />
     </div>
     <div class="input-row">
-      <concrete-table
+      <c-table
         :data="tableData"
         :initial-sort="{
           direction: 'asc',
           prop: 'name',
         }"
       >
-        <concrete-column
+        <c-column
           prop="name"
           label="Name"
         />
-        <concrete-column
+        <c-column
           prop="quantity"
           label="Quantity"
         />
-        <concrete-column
+        <c-column
           prop="animal"
           label="Animal"
         />
-      </concrete-table>
+      </c-table>
+    </div>
+    <div class="tab-container">
+      <c-tab-switcher
+        tab-position="top"
+      >
+        <template v-slot:labels>
+          <c-tab-label>Tab Label 1</c-tab-label>
+          <c-tab-label>Tab Label 2</c-tab-label>
+        </template>
+        <template v-slot:content>
+          <c-tab>Tab content 1</c-tab>
+          <c-tab>Tab content 2</c-tab>
+        </template>
+      </c-tab-switcher>
     </div>
   </div>
 </template>
 
 <script>
-import ConcreteButton from './components/ConcreteButton.vue';
-import ConcreteSelect from './components/ConcreteSelect.vue';
-import ConcreteQuantityInput from './components/ConcreteQuantityInput.vue';
-import ConcreteTextInput from './components/ConcreteTextInput.vue';
-import ConcreteTextarea from './components/ConcreteTextarea.vue';
-import ConcreteCheckbox from './components/ConcreteCheckbox.vue';
-import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
-import ConcreteModal from './components/ConcreteModal.vue';
-import { ConcreteTable, ConcreteColumn } from './components/ConcreteTable.vue';
+import CButton from './components/Button.vue';
+import CSelect from './components/Select.vue';
+import CQuantityInput from './components/QuantityInput.vue';
+import CTextInput from './components/TextInput.vue';
+import CTextarea from './components/Textarea.vue';
+import CCheckbox from './components/Checkbox.vue';
+import CSearchSelect from './components/SearchSelect.vue';
+import CModal from './components/Modal.vue';
+import { CTable, CColumn } from './components/Table.vue';
+import {
+  CTabSwitcher,
+  CTabLabel,
+  CTab,
+} from './components/TabSwitcher.vue';
 import Plus from './assets/plus.svg';
 
 
 export default {
   name: 'App',
   components: {
-    ConcreteButton,
-    ConcreteTextInput,
-    ConcreteTextarea,
-    ConcreteQuantityInput,
-    ConcreteSelect,
-    ConcreteSearchSelect,
-    ConcreteCheckbox,
-    ConcreteModal,
-    ConcreteTable,
-    ConcreteColumn,
+    CButton,
+    CTextInput,
+    CTextarea,
+    CQuantityInput,
+    CSelect,
+    CSearchSelect,
+    CCheckbox,
+    CModal,
+    CTable,
+    CColumn,
+    CTabSwitcher,
+    CTabLabel,
+    CTab,
     Plus,
   },
   data() {
@@ -167,6 +189,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import './assets/styles/index.scss';
+@import './assets/styles/variables.scss';
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -177,6 +202,11 @@ export default {
   margin-right: 0.5rem;
 }
 
-@import './assets/styles/index.scss';
+.tab-container {
+  width: 24rem;
+  height: 24rem;
+  border: $border-sm solid $color-gray-04;
+}
+
 
 </style>

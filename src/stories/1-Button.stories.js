@@ -1,20 +1,20 @@
-import ConcreteButton from '../components/ConcreteButton.vue';
+import CButton from '../components/Button.vue';
 import Plus from '../assets/plus.svg';
 
 
 export default {
   title: 'Button',
-  component: ConcreteButton,
+  component: CButton,
 };
 
 export const Size = () => ({
-  components: { ConcreteButton },
+  components: { CButton },
   template: `
     <div>
-      <concrete-button size="lg">Large</concrete-button>
-      <concrete-button size="md">Medium</concrete-button>
-      <concrete-button size="sm">Small</concrete-button>
-      <concrete-button size="xs">Extra Small</concrete-button>
+      <c-button size="lg">Large</c-button>
+      <c-button size="md">Medium</c-button>
+      <c-button size="sm">Small</c-button>
+      <c-button size="xs">Extra Small</c-button>
     </div>
   `,
 });
@@ -29,13 +29,13 @@ Size.story = {
 };
 
 export const Fill = () => ({
-  components: { ConcreteButton },
+  components: { CButton },
   template: `
     <div>
-      <concrete-button>Solid</concrete-button>
-      <concrete-button fill="outline">Outline</concrete-button>
-      <concrete-button fill="ghost">Ghost</concrete-button>
-      <concrete-button :disabled="true">Disabled</concrete-button>
+      <c-button>Solid</c-button>
+      <c-button fill="outline">Outline</c-button>
+      <c-button fill="ghost">Ghost</c-button>
+      <c-button :disabled="true">Disabled</c-button>
     </div>
   `,
 });
@@ -50,11 +50,11 @@ Fill.story = {
 };
 
 export const Color = () => ({
-  components: { ConcreteButton },
+  components: { CButton },
   template: `
     <div>
-      <concrete-button color="primary">Primary</concrete-button>
-      <concrete-button color="danger">Danger</concrete-button>
+      <c-button color="primary">Primary</c-button>
+      <c-button color="danger">Danger</c-button>
     </div>
   `,
 });
@@ -66,13 +66,13 @@ Color.story = {
 };
 
 export const Icon = () => ({
-  components: { ConcreteButton, Plus },
+  components: { CButton, Plus },
   template: `
     <div>
-      <concrete-button>
+      <c-button>
         <plus />
-      </concrete-button>
-      <concrete-button icon="plus"><plus /> Text with Icon</concrete-button>
+      </c-button>
+      <c-button icon="plus"><plus /> Text with Icon</c-button>
     </div>
   `,
 });
@@ -87,7 +87,7 @@ Icon.story = {
 };
 
 export const Progress = () => ({
-  components: { ConcreteButton },
+  components: { CButton },
   data() {
     return {
       progress: 0,
@@ -108,7 +108,7 @@ export const Progress = () => ({
   },
   template: `
     <div>
-      <concrete-button
+      <c-button
         :play="true"
         :fake="true"
         :progress="progress"
@@ -116,7 +116,7 @@ export const Progress = () => ({
         @cancel="cancel"
       >
         Click for Progress
-      </concrete-button>
+      </c-button>
     </div>
   `,
 });

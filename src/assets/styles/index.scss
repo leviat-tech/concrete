@@ -20,6 +20,18 @@ html {
   align-items: center;
 }
 
+.tab-div {
+  width: 24rem;
+  height: 24rem;
+  border: 1px solid #D8DBE1;
+}
+
+.concrete-tab-content {
+  .content {
+    padding: 1rem;
+  }
+}
+
 .svg-inline {
   font-size: .75rem;
   overflow: visible;

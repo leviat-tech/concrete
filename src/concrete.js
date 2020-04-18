@@ -1,25 +1,29 @@
-import ConcreteButton from './components/ConcreteButton.vue';
-import ConcreteCheckbox from './components/ConcreteCheckbox.vue';
-import ConcreteModal from './components/ConcreteModal.vue';
-import ConcreteQuantityInput from './components/ConcreteQuantityInput.vue';
-import ConcreteSearchSelect from './components/ConcreteSearchSelect.vue';
-import ConcreteSelect from './components/ConcreteSelect.vue';
-import ConcreteTextarea from './components/ConcreteTextarea.vue';
-import ConcreteTextInput from './components/ConcreteTextInput.vue';
-import { ConcreteTable, ConcreteColumn } from './components/ConcreteTable.vue';
+import CButton from './components/Button.vue';
+import CCheckbox from './components/Checkbox.vue';
+import CModal from './components/Modal.vue';
+import CQuantityInput from './components/QuantityInput.vue';
+import CSearchSelect from './components/SearchSelect.vue';
+import CSelect from './components/Select.vue';
+import CTextarea from './components/Textarea.vue';
+import CTextInput from './components/TextInput.vue';
+import { CTable, CColumn } from './components/Table.vue';
+import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
 
 
 const components = [
-  ConcreteButton,
-  ConcreteCheckbox,
-  ConcreteModal,
-  ConcreteQuantityInput,
-  ConcreteSearchSelect,
-  ConcreteSelect,
-  ConcreteTextarea,
-  ConcreteTextInput,
-  ConcreteTable,
-  ConcreteColumn,
+  CButton,
+  CCheckbox,
+  CModal,
+  CQuantityInput,
+  CSearchSelect,
+  CSelect,
+  CTextarea,
+  CTextInput,
+  CTable,
+  CColumn,
+  CTabSwitcher,
+  CTabLabel,
+  CTab,
 ];
 
 const install = (Vue) => {
@@ -34,14 +38,17 @@ export default {
 };
 
 export {
-  ConcreteButton,
-  ConcreteCheckbox,
-  ConcreteModal,
-  ConcreteQuantityInput,
-  ConcreteSearchSelect,
-  ConcreteSelect,
-  ConcreteTextarea,
-  ConcreteTextInput,
-  ConcreteTable,
-  ConcreteColumn,
+  CButton,
+  CCheckbox,
+  CModal,
+  CQuantityInput,
+  CSearchSelect,
+  CSelect,
+  CTextarea,
+  CTextInput,
+  CTable,
+  CColumn,
+  CTabSwitcher,
+  CTabLabel,
+  CTab,
 };

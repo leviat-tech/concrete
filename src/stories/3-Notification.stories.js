@@ -1,14 +1,14 @@
-import ConcreteModal from '../components/ConcreteModal.vue';
-import ConcreteButton from '../components/ConcreteButton.vue';
+import CModal from '../components/Modal.vue';
+import CButton from '../components/Button.vue';
 
 
 export default {
   title: 'Notification',
-  components: { ConcreteModal, ConcreteButton },
+  components: { CModal, CButton },
 };
 
 export const Modal = () => ({
-  components: { ConcreteModal, ConcreteButton },
+  components: { CModal, CButton },
   data() {
     return {
       simpleModal: false,
@@ -18,38 +18,38 @@ export const Modal = () => ({
   },
   template: `
   <div>
-    <concrete-button @click="simpleModal = true">
+    <c-button @click="simpleModal = true">
       Simple Modal
-    </concrete-button>
-    <concrete-button @click="modalWithTitle = true">
+    </c-button>
+    <c-button @click="modalWithTitle = true">
       Modal With Title
-    </concrete-button>
-    <concrete-button @click="modalWithTextOnly = true">
+    </c-button>
+    <c-button @click="modalWithTextOnly = true">
       Modal With Text Only
-    </concrete-button>
-    <concrete-modal
+    </c-button>
+    <c-modal
       v-if="simpleModal"
       @close="simpleModal = false"
     >
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et <span class="red-text">dolore magna aliqua</span>.</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </concrete-modal>
-    <concrete-modal
+    </c-modal>
+    <c-modal
       v-if="modalWithTitle"
       title="Modal Title"
       @close="modalWithTitle = false"
     >
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et <span class="red-text">dolore magna aliqua</span>.</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </concrete-modal>
-    <concrete-modal
+    </c-modal>
+    <c-modal
       v-if="modalWithTextOnly"
       :closeable="false"
       @close="modalWithTextOnly = false"
     >
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et <span class="red-text">dolore magna aliqua</span>.</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </concrete-modal>
+    </c-modal>
   </div>
   `,
 });

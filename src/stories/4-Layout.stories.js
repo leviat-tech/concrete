@@ -1,13 +1,14 @@
-import { ConcreteTable, ConcreteColumn } from '../components/ConcreteTable.vue';
+import { CTable, CColumn } from '../components/Table.vue';
+import { CTabSwitcher, CTabLabel, CTab } from '../components/TabSwitcher.vue';
 
 
 export default {
   title: 'Layout',
-  components: { ConcreteTable, ConcreteColumn },
+  components: { CTable, CColumn, CTabSwitcher, CTabLabel, CTab },
 };
 
 export const Table = () => ({
-  components: { ConcreteTable, ConcreteColumn },
+  components: { CTable, CColumn },
   computed: {
     tableData() {
       return [
@@ -19,26 +20,44 @@ export const Table = () => ({
   },
   template: `
     <div>
-      <concrete-table
+      <c-table
         :data="tableData"
         :initial-sort="{
           direction: 'asc',
           prop: 'name',
         }"
       >
-        <concrete-column
+        <c-column
           prop="name"
           label="Name"
         />
-        <concrete-column
+        <c-column
           prop="quantity"
           label="Quantity"
         />
-        <concrete-column
+        <c-column
           prop="animal"
           label="Animal"
         />
-      </concrete-table>
+      </c-table>
+    </div>
+  `,
+});
+
+export const TabSwitcher = () => ({
+  components: { CTabSwitcher, CTabLabel, CTab },
+  template: `
+    <div class="tab-div">
+      <c-tab-switcher>
+        <template v-slot:labels>
+          <c-tab-label>Tab Label 1</c-tab-label>
+          <c-tab-label>Tab Label 2</c-tab-label>
+        </template>
+        <template v-slot:content>
+          <c-tab>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</c-tab>
+          <c-tab>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</c-tab>
+        </template>
+      </c-tab-switcher>
     </div>
   `,
 });

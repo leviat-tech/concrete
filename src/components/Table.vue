@@ -70,7 +70,7 @@ const TableCell = {
   },
 };
 
-const ConcreteColumn = {
+const CColumn = {
   render() {
     return (
       <div>
@@ -86,7 +86,7 @@ const ConcreteColumn = {
   },
 };
 
-const ConcreteTable = {
+const CTable = {
   name: 'ConcreteTable',
   components: {
     TableCell,
@@ -146,9 +146,9 @@ const ConcreteTable = {
   },
 };
 
-export default ConcreteTable;
+export default CTable;
 
-export { ConcreteTable, ConcreteColumn };
+export { CTable, CColumn };
 
 </script>
 
