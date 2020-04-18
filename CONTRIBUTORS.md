@@ -44,6 +44,7 @@ Icons:
   * Common UI elements
 
 Layout Components:
+  * Paging (ios-style)
   * Accordion/Collapse
   * Layout frames
   * Toolbar
