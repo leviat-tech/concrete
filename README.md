@@ -46,6 +46,17 @@ export default {
 
 A sandbox of all components including documentation can be found at [concrete.crh.io](https://concrete.crh.io).
 
+Styling:
+The components require no styles. Out of the box, they will show the same default styling that is present in the sandbox implementation. Any of these styles can be overriden on a per-project basis. Because the components themselves used scoped styles, an additional class selector should be used when overriding styles (to achieve a greater specificity than the default styles). For convencience, most of the key element classes have an additional class which can be used for this purpose. For example:
+
+```
+.concrete-button.button {
+  border: 1px solid black;
+}
+```
+
+Inspecting any element will reveal its key class names.
+
 ## Contributing
 
 Contributors should follow the [Guide for Contributors](/CONTRIBUTORS.md) for instructions on setting up the development environment.
