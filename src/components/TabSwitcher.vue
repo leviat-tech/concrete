@@ -129,6 +129,10 @@ export {
     border-bottom: $border-sm solid $color-gray-04;
   }
 
+  &.bottom {
+    border-top: $border-sm solid $color-gray-04;
+  }
+
   .label {
     font-size: $text-sm;
     width: 100%;

@@ -44,7 +44,6 @@ Icons:
   * Common UI elements
 
 Layout Components:
-  * Tab switcher
   * Accordion/Collapse
   * Layout frames
   * Toolbar
