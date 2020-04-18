@@ -1,7 +1,7 @@
 <template>
-  <div class="concrete-table-container">
+  <div class="concrete-table-container concrete">
     <slot />
-    <table class="concrete-table table">
+    <table class="concrete-table concrete">
       <colgroup>
         <col
           v-for="(column, index) in columns"
@@ -9,7 +9,7 @@
           :class="column.$vnode.data.staticClass"
         >
       </colgroup>
-      <tr class="concrete-table-header-row row">
+      <tr class="concrete-table-header-row concrete">
         <th
           v-for="column in columns"
           :key="column.label"

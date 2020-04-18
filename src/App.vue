@@ -1,24 +1,12 @@
 <template>
   <div id="app">
     <div class="input-row">
-      <c-button>
-        Hello
-      </c-button>
-      <c-button>
-        <plus />
-      </c-button>
-      <c-button :play="true">
-        Hello
-      </c-button>
-      <c-button :play="true" :progress="50">
-        Hello
-      </c-button>
-      <c-button @click="showModal = true">
-        Click for modal
-      </c-button>
-      <c-button @click="showAlertbox">
-        Click for alertbox
-      </c-button>
+      <c-button>Hello</c-button>
+      <c-button><plus /></c-button>
+      <c-button :play="true">Hello</c-button>
+      <c-button :play="true" :progress="50">Hello</c-button>
+      <c-button @click="showModal = true">Click for modal</c-button>
+      <c-button @click="showAlertbox">Click for alertbox</c-button>
       <c-modal
         v-if="showModal"
         title="Modal Title"
@@ -76,6 +64,13 @@
       />
     </div>
     <div class="input-row">
+      <c-radio
+        v-model="radioValue"
+        :options="radioOptions"
+        label="Radio"
+      />
+    </div>
+    <div class="input-row">
       <c-table
         :data="tableData"
         :initial-sort="{
@@ -121,6 +116,7 @@ import CQuantityInput from './components/QuantityInput.vue';
 import CTextInput from './components/TextInput.vue';
 import CTextarea from './components/Textarea.vue';
 import CCheckbox from './components/Checkbox.vue';
+import CRadio from './components/Radio.vue';
 import CSearchSelect from './components/SearchSelect.vue';
 import CModal from './components/Modal.vue';
 import { CTable, CColumn } from './components/Table.vue';
@@ -142,6 +138,7 @@ export default {
     CSelect,
     CSearchSelect,
     CCheckbox,
+    CRadio,
     CModal,
     CTable,
     CColumn,
@@ -159,6 +156,7 @@ export default {
       searchText: '',
       searchSelectValue: null,
       booleanValue: false,
+      radioValue: null,
       showModal: false,
     };
   },
@@ -170,6 +168,12 @@ export default {
         { label: 'my', value: 3 },
         { label: 'old', value: 4 },
         { label: 'friend', value: 5 },
+      ];
+    },
+    radioOptions() {
+      return [
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' },
       ];
     },
     tableData() {
@@ -213,6 +217,5 @@ export default {
   height: 24rem;
   border: $border-sm solid $color-gray-04;
 }
-
 
 </style>

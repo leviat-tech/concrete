@@ -1,5 +1,6 @@
 import CButton from './components/Button.vue';
 import CCheckbox from './components/Checkbox.vue';
+import CRadio from './components/Radio.vue';
 import CModal from './components/Modal.vue';
 import CQuantityInput from './components/QuantityInput.vue';
 import CSearchSelect from './components/SearchSelect.vue';
@@ -14,6 +15,7 @@ import CAlert from './components/alert';
 const components = [
   CButton,
   CCheckbox,
+  CRadio,
   CModal,
   CQuantityInput,
   CSearchSelect,
@@ -44,6 +46,7 @@ export default {
 export {
   CButton,
   CCheckbox,
+  CRadio,
   CModal,
   CQuantityInput,
   CSearchSelect,

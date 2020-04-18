@@ -15,6 +15,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   padding-right: 0.5rem;
+  flex: none;
 
   &.disabled {
     color: $color-gray-03;

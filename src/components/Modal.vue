@@ -1,9 +1,9 @@
 <template>
   <div
-    class="concrete-modal-background bkgd"
+    class="concrete-modal-background concrete"
     @click.self="$emit('close')"
   >
-    <div class="concrete-modal modal">
+    <div class="concrete-modal concrete">
       <div
         class="header"
         :class="{ title }"

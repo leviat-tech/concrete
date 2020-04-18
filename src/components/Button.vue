@@ -2,7 +2,7 @@
   <button
     :class="[
       'concrete-button',
-      'btn',
+      'concrete',
       size,
       (!disabled && color),
       (!disabled && fill),

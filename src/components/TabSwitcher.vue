@@ -1,12 +1,12 @@
 <template>
-  <div class="concrete-tab-switcher">
-    <div v-if="tabPosition === 'top'" class="concrete-tab-labels top">
+  <div class="concrete-tab-switcher concrete">
+    <div v-if="tabPosition === 'top'" class="concrete-tab-labels top concrete">
       <slot name="labels" @click-tab="clickTab" />
     </div>
-    <div class="concrete-tab-content">
+    <div class="concrete-tab-content concrete">
       <slot name="content" />
     </div>
-    <div v-if="tabPosition === 'bottom'" class="concrete-tab-labels bottom">
+    <div v-if="tabPosition === 'bottom'" class="concrete-tab-labels bottom concrete">
       <slot name="labels" @click-tab="clickTab" />
     </div>
   </div>

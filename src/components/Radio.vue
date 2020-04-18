@@ -7,25 +7,31 @@
     >
       {{ label }}
     </div>
-    <div class="concrete-checkbox concrete" :class="{ focused }">
-      <input
-        v-model="localValue"
-        type="checkbox"
-        :disabled="disabled"
-        @focus="focused = true"
-        @blur="focused = false"
-        @change="handleChange"
-      >
+    <div class="concrete-radio concrete" :class="{ focused }">
+      <div v-for="option in options" :key="option.value" class="option">
+        <input
+          :id="option.value"
+          v-model="localValue"
+          :value="option.value"
+          type="radio"
+          :disabled="disabled"
+          @focus="focused = true"
+          @blur="focused = false"
+          @change="handleChange"
+        >
+        <label :for="option.value">{{ option.label }}</label>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ConcreteCheckbox',
+  name: 'CRadio',
   props: {
     label: { type: String, default: '' },
-    value: { type: Boolean },
+    value: { type: [String, Number, Boolean], default: null },
+    options: { type: Array, default: () => [] },
     disabled: { type: Boolean, default: false },
   },
   data() {
@@ -57,9 +63,18 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
 
-.concrete-checkbox {
-  max-width: 28rem;
+.concrete-radio {
   width: 100%;
+  display: flex;
+
+  .option {
+    margin-right: 2rem;
+
+    input {
+      margin-right: 0.5rem;
+      outline: none;
+    }
+  }
 }
 
 </style>

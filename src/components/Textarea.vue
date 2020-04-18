@@ -1,13 +1,13 @@
 <template>
-  <div class="concrete-select-row row">
+  <div class="concrete-select-row concrete">
     <div
       v-if="label !== null"
-      class="concrete-input-label label"
+      class="concrete-input-label concrete"
       :class="{ disabled }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input input" :class="{ focused }">
+    <div class="concrete-input concrete" :class="{ focused }">
       <textarea
         v-model="localValue"
         :rows="rows"

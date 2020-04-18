@@ -35,7 +35,6 @@ npm run lint
 Simple Components:
   * Radio input
   * Tooltip
-  * Alertbox
   * Multi-select
   * Color picker
   * Pagination

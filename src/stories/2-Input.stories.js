@@ -3,6 +3,7 @@ import CQuantityInput from '../components/QuantityInput.vue';
 import CTextInput from '../components/TextInput.vue';
 import CTextarea from '../components/Textarea.vue';
 import CCheckbox from '../components/Checkbox.vue';
+import CRadio from '../components/Radio.vue';
 import CSearchSelect from '../components/SearchSelect.vue';
 
 
@@ -15,6 +16,7 @@ export default {
     CSelect,
     CSearchSelect,
     CCheckbox,
+    CRadio,
   },
 };
 
@@ -26,6 +28,7 @@ export const Active = () => ({
     CSelect,
     CSearchSelect,
     CCheckbox,
+    CRadio,
   },
   data() {
     return {
@@ -36,6 +39,7 @@ export const Active = () => ({
       searchText: '',
       searchSelectValue: null,
       booleanValue: false,
+      radioValue: null,
     };
   },
   computed: {
@@ -46,6 +50,12 @@ export const Active = () => ({
         { label: 'my', value: 3 },
         { label: 'old', value: 4 },
         { label: 'friend', value: 5 },
+      ];
+    },
+    radioOptions() {
+      return [
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' },
       ];
     },
     filteredOptions() {
@@ -105,6 +115,13 @@ export const Active = () => ({
         <c-checkbox
           label="Checkbox"
           v-model="booleanValue"
+        />
+      </div>
+      <div class="input-row">
+        <c-radio
+          v-model="radioValue"
+          :options="radioOptions"
+          label="Radio"
         />
       </div>
     </div>
