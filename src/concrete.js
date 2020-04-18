@@ -8,6 +8,7 @@ import CTextarea from './components/Textarea.vue';
 import CTextInput from './components/TextInput.vue';
 import { CTable, CColumn } from './components/Table.vue';
 import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
+import CAlert from './components/alert';
 
 
 const components = [
@@ -30,10 +31,13 @@ const install = (Vue) => {
   components.forEach((component) => {
     Vue.component(component.name, component);
   });
+
+  Vue.prototype.$alert = CAlert; // eslint-disable-line
 };
 
 export default {
   install,
+  CAlert,
   ...components,
 };
 
@@ -51,4 +55,5 @@ export {
   CTabSwitcher,
   CTabLabel,
   CTab,
+  CAlert,
 };

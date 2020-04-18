@@ -16,6 +16,9 @@
       <c-button @click="showModal = true">
         Click for modal
       </c-button>
+      <c-button @click="showAlertbox">
+        Click for alertbox
+      </c-button>
       <c-modal
         v-if="showModal"
         title="Modal Title"
@@ -183,6 +186,9 @@ export default {
   methods: {
     handleSearch(text) {
       this.searchText = text;
+    },
+    showAlertbox() {
+      this.$alert('Message content');
     },
   },
 };
