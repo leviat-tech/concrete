@@ -53,8 +53,7 @@
         v-model="searchSelectValue"
         placeholder="Select an Option"
         label="Search Select"
-        :options="filteredOptions"
-        @search="handleSearch"
+        :options="options"
       />
     </div>
     <div class="input-row">
@@ -182,9 +181,6 @@ export default {
         { name: 'Roger', quantity: 2, animal: 'pigeon' },
         { name: 'Angie', quantity: 4, animal: 'mink' },
       ];
-    },
-    filteredOptions() {
-      return this.options.filter((o) => o.label.includes(this.searchText));
     },
   },
   methods: {

@@ -19,11 +19,12 @@
         @keydown.down="handleKeyDown"
         @keydown.up="handleKeyUp"
         @keydown.enter="handleKeyEnter"
+        @keydown.esc="handleKeyEsc"
         @blur="handleBlur"
       >
       <div class="concrete-input-icon">
         <plus
-          v-if="!disabled && !!icon"
+          v-if="!disabled"
           @click="$emit('click-icon')"
         />
       </div>
@@ -32,7 +33,7 @@
         class="concrete-select-options"
       >
         <li
-          v-for="(option, index) in options"
+          v-for="(option, index) in filteredOptions"
           :key="index"
           class="option"
           :class="{ keyed: index === arrowCounter }"
@@ -63,38 +64,13 @@ export default {
     Check,
   },
   props: {
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    text: {
-      type: String,
-      default: '',
-    },
-    value: {
-      type: Number,
-      default: null,
-    },
-    fill: {
-      type: String,
-      default: 'outline',
-    },
-    icon: {
-      type: String,
-      default: 'plus',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+    options: { type: Array, default: () => [] },
+    placeholder: { type: String, default: '' },
+    label: { type: String, default: null },
+    text: { type: String, default: '' },
+    value: { type: Number, default: null },
+    externalFilter: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
   },
   data() {
     return {
@@ -105,6 +81,13 @@ export default {
       arrowCounter: -1,
       showOptions: false,
     };
+  },
+  computed: {
+    filteredOptions() {
+      if (this.externalSort) return this.options;
+      return this.options.filter((o) => o.label.toLowerCase()
+        .includes(this.localText.toLowerCase()));
+    },
   },
   watch: {
     value: {
@@ -137,13 +120,17 @@ export default {
     handleFocus() {
       this.focused = true;
       this.localText = '';
-      this.$emit('search', '');
+      if (this.externalFilter) {
+        this.$emit('search', '');
+      }
       this.showOptions = true;
       this.localPlaceholder = this.selected || this.placeholder;
     },
     handleBlur() {
       this.focused = false;
-      this.$emit('blur');
+      if (this.externalFilter) {
+        this.$emit('blur');
+      }
       if (this.selected) {
         this.localPlaceholder = '';
         this.localText = this.selected;
@@ -154,7 +141,9 @@ export default {
       this.showOptions = false;
     },
     handleChange() {
-      this.$emit('search', this.localText);
+      if (this.externalFilter) {
+        this.$emit('search', this.localText);
+      }
     },
     handleSelect(option) {
       this.$emit('input', option.value);
@@ -180,6 +169,9 @@ export default {
       if (option) {
         this.handleSelect(option);
       }
+      this.$refs.input.blur();
+    },
+    handleKeyEsc() {
       this.$refs.input.blur();
     },
   },

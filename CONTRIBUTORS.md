@@ -33,7 +33,6 @@ npm run lint
 ### Roadmap
 
 Simple Components:
-  * Radio input
   * Tooltip
   * Multi-select
   * Color picker
