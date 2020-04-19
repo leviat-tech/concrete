@@ -31,6 +31,6 @@ $text-5xl: 3rem;
 $text-6xl: 4rem;
 
 @mixin shadow {
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: $radius;
 }

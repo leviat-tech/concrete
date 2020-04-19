@@ -105,6 +105,14 @@
         </template>
       </c-tab-switcher>
     </div>
+    <div class="input-row">
+      <c-masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 1}" gutter="1.5rem">
+        <div class="card">Hi Dave</div>
+        <div class="card">Second div</div>
+        <div class="card">Third</div>
+        <div class="card">Fourth</div>
+      </c-masonry>
+    </div>
   </div>
 </template>
 
@@ -124,6 +132,7 @@ import {
   CTabLabel,
   CTab,
 } from './components/TabSwitcher.vue';
+import CMasonry from './components/Masonry.vue';
 import Plus from './assets/plus.svg';
 
 
@@ -145,6 +154,7 @@ export default {
     CTabLabel,
     CTab,
     Plus,
+    CMasonry,
   },
   data() {
     return {
@@ -212,6 +222,7 @@ export default {
   width: 24rem;
   height: 24rem;
   border: $border-sm solid $color-gray-04;
+  margin-bottom: 1.5rem;
 }
 
 </style>

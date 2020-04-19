@@ -7,6 +7,7 @@ import CSearchSelect from './components/SearchSelect.vue';
 import CSelect from './components/Select.vue';
 import CTextarea from './components/Textarea.vue';
 import CTextInput from './components/TextInput.vue';
+import CMasonry from './components/Masonry.vue';
 import { CTable, CColumn } from './components/Table.vue';
 import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
 import CAlert from './components/alert';
@@ -27,6 +28,7 @@ const components = [
   CTabSwitcher,
   CTabLabel,
   CTab,
+  CMasonry,
 ];
 
 const install = (Vue) => {
@@ -59,4 +61,5 @@ export {
   CTabLabel,
   CTab,
   CAlert,
+  CMasonry,
 };

@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 html {
   height: 100%;
   font-family: "Helvetica Neue";
@@ -46,4 +48,12 @@ html {
 
 p {
   margin-top: 0;
+}
+
+.card {
+  @include shadow;
+  border: $border-sm solid $color-gray-04;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: $radius;
 }
