@@ -86,8 +86,8 @@ export default {
       this.handleUpdate();
     },
     handleChange(e) {
-      if (e.inputType === 'insertReplacementText'
-          && typeof this.coercedValue === 'number') {
+      const isIncrement = e.inputType !== 'insertText';
+      if (isIncrement && typeof this.coercedValue === 'number') {
         this.localValue = this.coercedValue;
         this.$emit('update', this.coercedValue);
         this.$emit('input', this.coercedValue);
