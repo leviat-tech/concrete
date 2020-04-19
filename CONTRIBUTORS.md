@@ -32,37 +32,32 @@ npm run lint
 
 ### Roadmap
 
-Simple Components:
+Components to do:
+  * Image-select (i.e., like the balcony type switcher)
+  * Paging (ios-style)
+  * Layout frames
   * Tooltip
-  * Multi-select
+  * Toolbar
   * Color picker
   * Pagination
-
-Icons:
-  * Common UI elements
-
-Layout Components:
-  * Paging (ios-style)
-  * Accordion/Collapse
-  * Layout frames
-  * Toolbar
-  * Data tree
-  * Card List
+  * Data tree?
+  * Accordion/Collapse?
+  * File uploader?
 
 Drawing:
   * 2D SVG viewport
   * 2D canvas viewport?
   * 3D viewport
 
-Other:
-  * Image-select (i.e., like the balcony type switcher)
-  * File uploader
-  * Add confirmation buttons to modal
+Icons:
+  * Common UI elements
 
 Refinement:
   * Light/dark themes
   * Animations
   * Compact versions of tables/inputs/etc.
+  * validations -- red highlight, error message
+  * Add confirmation buttons to modal
 
 Documentation:
   * (all components need documentation)

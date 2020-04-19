@@ -5,6 +5,7 @@ import CTextarea from '../components/Textarea.vue';
 import CCheckbox from '../components/Checkbox.vue';
 import CRadio from '../components/Radio.vue';
 import CSearchSelect from '../components/SearchSelect.vue';
+import CMultiSelect from '../components/MultiSelect.vue';
 
 
 export default {
@@ -15,6 +16,7 @@ export default {
     CQuantityInput,
     CSelect,
     CSearchSelect,
+    CMultiSelect,
     CCheckbox,
     CRadio,
   },
@@ -27,6 +29,7 @@ export const Active = () => ({
     CQuantityInput,
     CSelect,
     CSearchSelect,
+    CMultiSelect,
     CCheckbox,
     CRadio,
   },
@@ -40,6 +43,7 @@ export const Active = () => ({
       searchSelectValue: null,
       booleanValue: false,
       radioValue: null,
+      multiselectValues: [],
     };
   },
   computed: {
@@ -60,11 +64,6 @@ export const Active = () => ({
     },
     filteredOptions() {
       return this.options.filter((o) => o.label.includes(this.searchText));
-    },
-  },
-  methods: {
-    handleSearch(text) {
-      this.searchText = text;
     },
   },
   template: `
@@ -104,11 +103,18 @@ export const Active = () => ({
       </div>
       <div class="input-row">
         <c-search-select
+          v-model="searchSelectValue"
           placeholder="Select an Option"
           label="Search Select"
           :options="filteredOptions"
-          v-model="searchSelectValue"
-          @search="handleSearch"
+        />
+      </div>
+      <div class="input-row">
+        <c-multi-select
+          placeholder="Select Multiple Options"
+          label="Multi Select"
+          v-model="multiselectValues"
+          :options="options"
         />
       </div>
       <div class="input-row">

@@ -181,32 +181,5 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
 
-.concrete-select-options {
-  @include shadow;
-  background-color: $color-gray-02;
-  border: $border-sm solid $color-gray-04;
-  width: 100%;
-  position: absolute;
-  list-style-type: none;
-  top: 1rem;
-  padding-left: 0;
-
-  .option {
-    display: flex;
-    align-items: center;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.5rem;
-
-    &:hover, &.keyed {
-      background-color: $color-blue-highlight;
-      color: white;
-    }
-
-    .option-check {
-      width: 1rem;
-    }
-  }
-}
 
 </style>

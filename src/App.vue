@@ -57,6 +57,14 @@
       />
     </div>
     <div class="input-row">
+      <c-multi-select
+        v-model="multiselectValues"
+        placeholder="Select Multiple Options"
+        label="Multi Select"
+        :options="options"
+      />
+    </div>
+    <div class="input-row">
       <c-checkbox
         v-model="booleanValue"
         label="Checkbox"
@@ -125,6 +133,7 @@ import CTextarea from './components/Textarea.vue';
 import CCheckbox from './components/Checkbox.vue';
 import CRadio from './components/Radio.vue';
 import CSearchSelect from './components/SearchSelect.vue';
+import CMultiSelect from './components/MultiSelect.vue';
 import CModal from './components/Modal.vue';
 import { CTable, CColumn } from './components/Table.vue';
 import {
@@ -145,6 +154,7 @@ export default {
     CQuantityInput,
     CSelect,
     CSearchSelect,
+    CMultiSelect,
     CCheckbox,
     CRadio,
     CModal,
@@ -164,6 +174,7 @@ export default {
       selectValue: 1,
       searchText: '',
       searchSelectValue: null,
+      multiselectValues: [],
       booleanValue: false,
       radioValue: null,
       showModal: false,
@@ -177,6 +188,7 @@ export default {
         { label: 'my', value: 3 },
         { label: 'old', value: 4 },
         { label: 'friend', value: 5 },
+        { label: 'goodbye', value: 6 },
       ];
     },
     radioOptions() {

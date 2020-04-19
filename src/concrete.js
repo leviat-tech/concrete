@@ -4,6 +4,7 @@ import CRadio from './components/Radio.vue';
 import CModal from './components/Modal.vue';
 import CQuantityInput from './components/QuantityInput.vue';
 import CSearchSelect from './components/SearchSelect.vue';
+import CMultiSelect from './components/MultiSelect.vue';
 import CSelect from './components/Select.vue';
 import CTextarea from './components/Textarea.vue';
 import CTextInput from './components/TextInput.vue';
@@ -20,6 +21,7 @@ const components = [
   CModal,
   CQuantityInput,
   CSearchSelect,
+  CMultiSelect,
   CSelect,
   CTextarea,
   CTextInput,
@@ -52,6 +54,7 @@ export {
   CModal,
   CQuantityInput,
   CSearchSelect,
+  CMultiSelect,
   CSelect,
   CTextarea,
   CTextInput,
