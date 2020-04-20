@@ -27,7 +27,7 @@ import Times from '../assets/times.svg';
 
 
 export default {
-  name: 'ConcreteModal',
+  name: 'CModal',
   components: { Times },
   props: {
     title: {

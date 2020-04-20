@@ -87,7 +87,7 @@ const CColumn = {
 };
 
 const CTable = {
-  name: 'ConcreteTable',
+  name: 'CTable',
   components: {
     TableCell,
   },

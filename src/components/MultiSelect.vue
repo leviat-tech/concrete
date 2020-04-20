@@ -26,8 +26,8 @@
           />
         </div>
 
-        <span v-if="selected.length === 0" class="placeholder">
-          {{ placeholder || 'Select Options' }}
+        <span v-if="selected.length === 0" class="concrete-placeholder">
+          {{ placeholder }}
         </span>
 
         <div class="concrete-input-icon">
@@ -84,7 +84,7 @@ export default {
   },
   props: {
     options: { type: Array, default: () => [] },
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: 'Select Options' },
     value: { type: Array, default: () => [] },
     label: { type: String, default: '' },
     disabled: { type: Boolean, default: false },
@@ -191,15 +191,10 @@ export default {
     padding-top: 0.25rem;
     display: flex;
     flex-wrap: wrap;
-    min-height: 2.25rem;
 
     &.focused {
       border-radius: 0.25rem 0.25rem 0px 0px;
       border-bottom-color: transparent;
-    }
-
-    .placeholder {
-      color: $color-gray-07;
     }
   }
 
@@ -232,7 +227,6 @@ export default {
 
 
 .concrete-select-options {
-  // top: 3rem;
   left: 0;
 }
 

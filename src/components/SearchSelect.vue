@@ -23,7 +23,7 @@
         @blur="handleBlur"
       >
       <div class="concrete-input-icon">
-        <plus
+        <chevron-down
           v-if="!disabled"
           @click="$emit('click-icon')"
         />
@@ -53,14 +53,14 @@
 </template>
 
 <script>
-import Plus from '../assets/plus.svg';
 import Check from '../assets/check.svg';
+import ChevronDown from '../assets/chevron-down.svg';
 
 
 export default {
-  name: 'ConcreteSearchSelect',
+  name: 'CSearchSelect',
   components: {
-    Plus,
+    ChevronDown,
     Check,
   },
   props: {

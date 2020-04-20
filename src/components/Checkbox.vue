@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'ConcreteCheckbox',
+  name: 'CCheckbox',
   props: {
     label: { type: String, default: '' },
     value: { type: Boolean },

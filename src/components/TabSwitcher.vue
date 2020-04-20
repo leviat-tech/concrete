@@ -14,7 +14,7 @@
 
 <script>
 const CTabLabel = {
-  name: 'ConcreteTabLabel',
+  name: 'CTabLabel',
   data() {
     return {
       index: null,
@@ -47,7 +47,7 @@ const CTabLabel = {
 };
 
 const CTab = {
-  name: 'ConcreteTab',
+  name: 'CTab',
   data() {
     return {
       index: null,
@@ -72,7 +72,7 @@ const CTab = {
 };
 
 const CTabSwitcher = {
-  name: 'ConcreteTabSwitcher',
+  name: 'CTabSwitcher',
   props: {
     tabPosition: {
       type: String,

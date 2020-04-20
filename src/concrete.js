@@ -5,6 +5,7 @@ import CModal from './components/Modal.vue';
 import CQuantityInput from './components/QuantityInput.vue';
 import CSearchSelect from './components/SearchSelect.vue';
 import CMultiSelect from './components/MultiSelect.vue';
+import CNativeSelect from './components/NativeSelect.vue';
 import CSelect from './components/Select.vue';
 import CTextarea from './components/Textarea.vue';
 import CTextInput from './components/TextInput.vue';
@@ -23,6 +24,7 @@ const components = [
   CSearchSelect,
   CMultiSelect,
   CSelect,
+  CNativeSelect,
   CTextarea,
   CTextInput,
   CTable,
@@ -56,6 +58,7 @@ export {
   CSearchSelect,
   CMultiSelect,
   CSelect,
+  CNativeSelect,
   CTextarea,
   CTextInput,
   CTable,

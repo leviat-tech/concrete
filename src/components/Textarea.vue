@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'ConcreteTextarea',
+  name: 'CTextarea',
   props: {
     placeholder: { type: String, default: '' },
     label: { type: String, default: '' },

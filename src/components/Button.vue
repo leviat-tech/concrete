@@ -32,7 +32,7 @@ import TimesCircle from '../assets/times-circle.svg';
 
 
 export default {
-  name: 'ConcreteButton',
+  name: 'CButton',
   components: {
     Play,
     TimesCircle,

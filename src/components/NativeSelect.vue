@@ -8,34 +8,52 @@
       {{ label }}
     </div>
     <div class="concrete-input concrete" :class="{ focused }">
-      <input
+      <select
         v-model="localValue"
-        type="text"
-        :placeholder="placeholder"
-        :disabled="disabled || readOnly"
-        @keydown.enter="handleUpdate"
+        required
+        :disabled="disabled"
         @focus="focused = true"
-        @blur="handleBlur"
-        @input="handleChange"
+        @blur="focused = false"
+        @change="handleChange"
       >
+        <option value="" disabled hidden>
+          {{ placeholder }}
+        </option>
+        <option
+          v-for="(option, i) in options"
+          :key="i"
+          :value="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+      <div class="concrete-input-icon">
+        <chevron-down />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import ChevronDown from '../assets/chevron-down.svg';
+
+
 export default {
-  name: 'CTextInput',
+  name: 'CNativeSelect',
+  components: {
+    ChevronDown,
+  },
   props: {
-    placeholder: { type: String, default: '' },
-    label: { type: String, default: '' },
+    options: { type: Array, default: () => [] },
+    placeholder: { type: String, default: 'Please select one' },
+    label: { type: String, default: null },
     value: { type: [String, Number], default: '' },
     disabled: { type: Boolean, default: false },
-    readOnly: { type: Boolean, default: false },
   },
   data() {
     return {
-      localValue: '',
-      focused: null,
+      localValue: null,
+      focused: false,
     };
   },
   watch: {
@@ -54,19 +72,9 @@ export default {
   },
   methods: {
     handleChange() {
-      if (this.localValue !== this.value) {
-        this.$emit('change-value', this.localValue);
-      }
-    },
-    handleBlur() {
-      this.focused = false;
-      this.handleUpdate();
-    },
-    handleUpdate() {
-      if (this.localValue !== this.value) {
-        this.$emit('update', this.localValue);
-        this.$emit('input', this.localValue);
-      }
+      this.$emit('change-value', this.localValue);
+      this.$emit('update', this.localValue);
+      this.$emit('input', this.localValue);
     },
   },
 };
@@ -74,4 +82,5 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
+
 </style>
