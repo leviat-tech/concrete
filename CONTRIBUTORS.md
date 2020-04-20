@@ -33,7 +33,6 @@ npm run lint
 ### Roadmap
 
 Components to do:
-  * Image-select (i.e., like the balcony type switcher)
   * Paging (ios-style)
   * Layout frames
   * Tooltip
