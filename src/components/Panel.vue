@@ -79,44 +79,136 @@ const CPanel = {
       this.$parent.showChild = null;
     },
   },
-  render(h) {
+  render(h) { // eslint-disable-line
     const vnodes = this.$slots.default || [];
 
-    const [panels, content] = partition(
+    const [panels, content] = partition( // eslint-disable-line
       vnodes,
       (vnode) => get(vnode, 'componentOptions.tag') === 'c-panel',
     );
 
-    if (this.showChild) {
-      const panel = panels.find(
-        (p) => this.showChild === get(p, 'componentOptions.propsData.panelId'),
+    return (
+      <div>
+        { content }
+      </div>
+    );
+
+    // if (this.showChild) {
+    //   const panel = panels.find(
+    //     (p) => this.showChild === get(p, 'componentOptions.propsData.panelId'),
+    //   );
+
+    //   return cloneVnode(h, panel, {
+    //     props: { parentTitle: this.title },
+    //   });
+    // }
+
+    // return (
+    //   <div class="concrete-panel-container">
+    //     <div class="concrete-panel">
+    //       <TitleBar
+    //         title={this.title}
+    //         back={this.parentTitle}
+    //         vOn:go-back={this.goBack}
+    //       />
+    //       <div class="concrete-panel-content">
+    //         { content }
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
+  },
+};
+
+const CPanelSlider = {
+  name: 'CPanelSlider',
+  props: {
+    title: { type: String, default: '' },
+  },
+  data() {
+    return {
+      panelState: [],
+      panels: [],
+    };
+  },
+  methods: {
+    drillDown(id) {
+      this.panelState.push(id);
+    },
+    goBack() {
+      this.panelState.pop();
+    },
+  },
+  render(h) { // eslint-disable-line
+    const vnodes = this.$slots.default || [];
+
+    const [rootPanels, rootContents] = partition(
+      vnodes, (n) => get(n, 'componentOptions.tag') === 'c-panel',
+    );
+
+    const panelList = [];
+    let thisNodePanels = rootPanels;
+    this.panelState.forEach((id, index, arr) => {
+      const thisPanel = thisNodePanels.find(
+        (p) => id === get(p, 'componentOptions.propsData.panelId'),
       );
 
-      return cloneVnode(h, panel, {
-        props: { parentTitle: this.title },
+      const vnode = cloneVnode(h, thisPanel);
+      console.log('vn', vnode);
+
+      const slots = vnode.$slots.default || [];
+
+      const [panels, contents] = partition(
+        slots, (n) => get(n, 'componentOptions.tag') === 'c-panel',
+      );
+
+      panelList.push({
+        contents,
+        vnode,
       });
-    }
+
+      if (arr.length > index + 1) {
+        thisNodePanels = panels;
+      }
+    });
+
+    console.log('PANEL LIST:', panelList);
+
+    const childPanels = panelList.map((p) => {
+      console.log('');
+
+      return (
+        <div class="concrete-panel-content">
+          { p.contents }
+        </div>
+      );
+    });
 
     return (
       <div class="concrete-panel-container">
         <div class="concrete-panel">
           <TitleBar
             title={this.title}
-            back={this.parentTitle}
             vOn:go-back={this.goBack}
           />
+        </div>
+        <div class="concrete-panel-content-container">
           <div class="concrete-panel-content">
-            { content }
+            { rootContents }
           </div>
+          {
+            childPanels
+          }
         </div>
       </div>
     );
   },
 };
 
-export default CPanel;
+export default CPanelSlider;
 
 export {
+  CPanelSlider,
   CPanel,
   CPanelLink,
 };
@@ -138,7 +230,7 @@ export {
 }
 
 .concrete-panels-hidden {
-  display: none;;
+  display: none;
 }
 
 .concrete-panel-link {
@@ -176,7 +268,16 @@ export {
 .concrete-panel-container {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
+  // overflow-x: hidden;
+}
+
+.concrete-panel-content-container {
+  display: flex;
+}
+
+.concrete-panel-content {
+  width: 100%;
+  flex: none;
 }
 
 </style>

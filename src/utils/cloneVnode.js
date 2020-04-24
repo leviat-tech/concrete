@@ -1,4 +1,4 @@
-function clone(h, vnode, options) {
+function clone(h, vnode, options = {}) {
   const classArr = [
     ...(vnode.data.class || []),
   ];

@@ -131,7 +131,7 @@
       label="Dynamic div"
     />
     <div class="tab-container">
-      <c-panel title="Primary">
+      <c-panel-slider title="Primary">
         Content.
         <div v-if="switched">Dynamic content</div>
         <div>
@@ -152,7 +152,7 @@
         <c-panel panel-id="b" title="Another?">
           A different Secondary Panel
         </c-panel>
-      </c-panel>
+      </c-panel-slider>
     </div>
 
     <div class="input-row">
@@ -180,7 +180,7 @@ import CMultiSelect from './components/MultiSelect.vue';
 import CModal from './components/Modal.vue';
 import { CTable, CColumn } from './components/Table.vue';
 import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
-import { CPanel, CPanelLink } from './components/Panel.vue';
+import { CPanelSlider, CPanel, CPanelLink } from './components/Panel.vue';
 import CMasonry from './components/Masonry.vue';
 import Plus from './assets/plus.svg';
 
@@ -204,6 +204,7 @@ export default {
     CTabSwitcher,
     CTabLabel,
     CTab,
+    CPanelSlider,
     CPanel,
     CPanelLink,
     Plus,
