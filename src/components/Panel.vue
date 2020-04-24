@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import partition from 'lodash/partition';
 import BackArrow from '../assets/chevron-left.svg';
 import ForwardArrow from '../assets/chevron-right.svg';
-import cloneVnode from '../utils/cloneVnode';
+// import cloneVnode from '../utils/cloneVnode';
 
 
 const TitleBar = {
@@ -58,31 +58,60 @@ const CPanelLink = {
   },
 };
 
+// const CPanel = {
+//   name: 'CPanel',
+//   components: { CPanelLink, TitleBar },
+//   props: {
+//     panelId: { type: String, default: null },
+//     title: { type: String, default: '' },
+//   },
+//   data() {
+//     return {
+//       showChild: null,
+//     };
+//   },
+//   render(h) { // eslint-disable-line
+//     const vnodes = this.$slots.default || [];
+
+//     const [panels, content] = partition( // eslint-disable-line
+//       vnodes,
+//       (vnode) => get(vnode, 'componentOptions.tag') === 'c-panel',
+//     );
+
+//     const childPanel = this.showChild
+//       ? panels.find((p) => this.showChild === get(p, 'componentOptions.propsData.panelId'))
+//       : [];
+
+//     return (
+//       <div class="concrete-panel-content">
+//         { content }
+//         {
+//           childPanel
+//         }
+//       </div>
+//     );
+//   },
+// };
+
 const CPanel = {
+  functional: true,
   name: 'CPanel',
-  components: { CPanelLink, TitleBar },
   props: {
     panelId: { type: String, default: null },
     title: { type: String, default: '' },
+    showChild: { type: String, default: null },
   },
-  data() {
-    return {
-      panels: [],
-    };
-  },
-  render(h) { // eslint-disable-line
-    const vnodes = this.$slots.default || [];
-
-    const [panels, content] = partition(
-      vnodes,
-      (vnode) => get(vnode, 'componentOptions.tag') === 'c-panel',
+  render(h, { props, scopedSlots }) {
+    console.log('PROPS', props);
+    const slots = scopedSlots.default();
+    const [panels, contents] = partition( // eslint-disable-line
+      slots,
+      (s) => get(s, 'fnOptions.name') === 'CPanel' && !get(s, 'tag'),
     );
-
-    this.panels = panels;
 
     return (
       <div class="concrete-panel-content">
-        { content }
+        { contents }
       </div>
     );
   },
@@ -95,62 +124,38 @@ const CPanelSlider = {
   },
   data() {
     return {
-      showChild: null,
+      panelState: [],
     };
   },
   methods: {
     drillDown(id) {
-      this.showChild = id;
+      this.panelState.push(id);
     },
     goBack() {
-      this.showChild = null;
+      this.panelState.pop();
     },
   },
   render(h) { // eslint-disable-line
     const vnodes = this.$slots.default || [];
 
     const [rootPanels, rootContents] = partition(
-      vnodes, (n) => get(n, 'componentOptions.tag') === 'c-panel',
+      vnodes,
+      (s) => get(s, 'fnOptions.name') === 'CPanel',
     );
 
-    const panelList = [];
-    if (this.showChild) {
-      const childPanel = rootPanels.find(
-        (p) => {
-          console.log('showchild', this.showChild);
-          console.log('pid', get(p, 'componentOptions.propsData.panelId'));
-          return this.showChild === get(p, 'componentOptions.propsData.panelId');
-        },
-      );
+    console.log('rp', rootPanels[0]);
 
-      console.log('cp', childPanel);
+    const panels = this.panelState.reduce((data, id) => {
+      const current = data.panels.find((p) => id === get(p, 'fnOptions.propsData.panelId'));
+      data.vnodes.push(current);
 
-      panelList.push(cloneVnode(childPanel));
-    }
+      console.log('current', current);
 
-    // const panelList = [];
-    // let thisNodePanels = rootPanels;
-    // this.panelState.forEach((id, index, arr) => {
-    //   const thisPanel = thisNodePanels.find(
-    //     (p) => id === get(p, 'componentOptions.propsData.panelId'),
-    //   );
+      // set new data.panels
+      return data;
+    }, { vnodes: [], panels: rootPanels });
 
-    //   const vnode = cloneVnode(h, thisPanel);
-
-    //   const slots = vnode.$slots.default || [];
-
-    //   const [panels, contents] = partition( // eslint-disable-line
-    //     slots, (n) => get(n, 'componentOptions.tag') === 'c-panel',
-    //   );
-
-    //   panelList.push(vnode);
-
-    //   if (arr.length > index + 1) {
-    //     thisNodePanels = panels;
-    //   }
-    // });
-
-    console.log('PANEL LIST:', panelList);
+    console.log('PANEL LIST:', panels.vnodes);
 
     return (
       <div class="concrete-panel-container">
@@ -165,7 +170,7 @@ const CPanelSlider = {
             { rootContents }
           </div>
           {
-            panelList
+            // panels.vnodes
           }
         </div>
       </div>
