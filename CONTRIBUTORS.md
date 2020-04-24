@@ -52,6 +52,7 @@ Icons:
   * Common UI elements
 
 Refinement:
+  * Make custom select components scrollable
   * Light/dark themes
   * Animations
   * Compact versions of tables/inputs/etc.

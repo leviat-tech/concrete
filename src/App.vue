@@ -122,6 +122,39 @@
         </template>
       </c-tab-switcher>
     </div>
+    <c-checkbox
+      v-model="switched2"
+      label="Dynamic div 2"
+    />
+    <c-checkbox
+      v-model="switched"
+      label="Dynamic div"
+    />
+    <div class="tab-container">
+      <c-panel title="Primary">
+        Content.
+        <div v-if="switched">Dynamic content</div>
+        <div>
+          <c-panel-link link-to="a">Drill Down</c-panel-link>
+          <c-panel-link link-to="b">A different menu</c-panel-link>
+        </div>
+        Some more content.
+        <c-panel panel-id="a" title="Secondary">
+          Secondary Content
+          <div v-if="switched2">
+            Secondary optional content.
+          </div>
+          <c-panel-link link-to="x">Drill more?</c-panel-link>
+          <c-panel panel-id="x" title="Tertiary">
+            Tertiary Content
+          </c-panel>
+        </c-panel>
+        <c-panel panel-id="b" title="Another?">
+          A different Secondary Panel
+        </c-panel>
+      </c-panel>
+    </div>
+
     <div class="input-row">
       <c-masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 1}" gutter="1.5rem">
         <div class="card">Hi Dave</div>
@@ -146,11 +179,8 @@ import CSearchSelect from './components/SearchSelect.vue';
 import CMultiSelect from './components/MultiSelect.vue';
 import CModal from './components/Modal.vue';
 import { CTable, CColumn } from './components/Table.vue';
-import {
-  CTabSwitcher,
-  CTabLabel,
-  CTab,
-} from './components/TabSwitcher.vue';
+import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
+import { CPanel, CPanelLink } from './components/Panel.vue';
 import CMasonry from './components/Masonry.vue';
 import Plus from './assets/plus.svg';
 
@@ -174,6 +204,8 @@ export default {
     CTabSwitcher,
     CTabLabel,
     CTab,
+    CPanel,
+    CPanelLink,
     Plus,
     CMasonry,
   },
@@ -190,6 +222,8 @@ export default {
       booleanValue: false,
       radioValue: null,
       showModal: false,
+      switched: true,
+      switched2: true,
     };
   },
   computed: {

@@ -82,9 +82,7 @@ const CTabSwitcher = {
   },
   data() {
     return {
-      activeTab: {
-        index: 0,
-      },
+      activeTab: { index: 0 },
     };
   },
   provide() {
