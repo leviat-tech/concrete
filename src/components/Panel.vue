@@ -18,23 +18,21 @@ const TitleBar = {
       this.$emit('go-back');
     },
   },
-  render(h) {
-    return h('div', {
-      class: 'concrete-panel-titlebar',
-    }, [
-      (this.back && h(
-        'div',
-        {
-          class: 'concrete-panel-back',
-          on: { click: this.goBack },
-        },
-        [
-          h('back-arrow'),
-          this.back,
-        ],
-      )),
-      this.title,
-    ]);
+  render() {
+    return (
+      <div class="concrete-panel-titlebar">
+        {this.back
+          && <div
+            class="concrete-panel-back"
+            vOn:click={this.goBack}
+          >
+            <BackArrow />
+            {this.back}
+          </div>
+        }
+        {this.title}
+      </div>
+    );
   },
 };
 
@@ -47,14 +45,16 @@ const CPanelLink = {
   methods: {
     clickLink() { this.$parent.drillDown(this.linkTo); },
   },
-  render(h) {
-    return h('div', {
-      on: { click: this.clickLink },
-      class: 'concrete-panel-link',
-    }, [
-      ...this.$scopedSlots.default(),
-      h('forward-arrow'),
-    ]);
+  render() {
+    return (
+      <div
+        class="concrete-panel-link"
+        vOn:click={this.clickLink}
+      >
+        { this.$scopedSlots.default() }
+        <ForwardArrow />
+      </div>
+    );
   },
 };
 
@@ -97,31 +97,19 @@ const CPanel = {
       });
     }
 
-    return h(
-      'div',
-      { class: 'concrete-panel-container' },
-      [
-        h('transition', {
-          props: { name: 'slide' },
-        }, [
-          h('div', {
-            class: 'concrete-panel',
-          }, [
-            h('title-bar', {
-              props: {
-                title: this.title,
-                ...(this.parentTitle && { back: this.parentTitle }),
-              },
-              on: { 'go-back': this.goBack },
-            }),
-            h('div', {
-              class: 'concrete-panel-content',
-            }, [
-              ...content,
-            ]),
-          ]),
-        ]),
-      ],
+    return (
+      <div class="concrete-panel-container">
+        <div class="concrete-panel">
+          <TitleBar
+            title={this.title}
+            back={this.parentTitle}
+            vOn:go-back={this.goBack}
+          />
+          <div class="concrete-panel-content">
+            { content }
+          </div>
+        </div>
+      </div>
     );
   },
 };
