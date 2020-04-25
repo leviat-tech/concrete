@@ -1,5 +1,5 @@
 import CButton from '../components/Button.vue';
-import Plus from '../assets/plus.svg';
+import Plus from '../assets/icons/plus.svg';
 
 
 export default {

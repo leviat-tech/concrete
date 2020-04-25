@@ -2,7 +2,7 @@
   <transition name="concrete-alert-fade" @after-leave="handleAfterLeave">
     <div
       v-show="visible"
-      class="concrete-alertbox"
+      class="concrete-alertbox concrete"
       :style="positionStyle"
       role="alert"
     >

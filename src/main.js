@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import App from './App.vue';
-import alert from './components/alert';
+import App from '@/App';
+import alert from '@/components/alert';
 
 
 Vue.prototype.$alert = alert;

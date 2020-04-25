@@ -1,9 +1,12 @@
+import CNativeSelect from '../components/NativeSelect.vue';
 import CSelect from '../components/Select.vue';
 import CQuantityInput from '../components/QuantityInput.vue';
 import CTextInput from '../components/TextInput.vue';
 import CTextarea from '../components/Textarea.vue';
 import CCheckbox from '../components/Checkbox.vue';
+import CRadio from '../components/Radio.vue';
 import CSearchSelect from '../components/SearchSelect.vue';
+import CMultiSelect from '../components/MultiSelect.vue';
 
 
 export default {
@@ -12,9 +15,12 @@ export default {
     CTextInput,
     CTextarea,
     CQuantityInput,
+    CNativeSelect,
     CSelect,
     CSearchSelect,
+    CMultiSelect,
     CCheckbox,
+    CRadio,
   },
 };
 
@@ -23,9 +29,12 @@ export const Active = () => ({
     CTextInput,
     CTextarea,
     CQuantityInput,
+    CNativeSelect,
     CSelect,
     CSearchSelect,
+    CMultiSelect,
     CCheckbox,
+    CRadio,
   },
   data() {
     return {
@@ -34,8 +43,11 @@ export const Active = () => ({
       quantityValue: 0,
       selectValue: 1,
       searchText: '',
+      customSelectValue: '',
       searchSelectValue: null,
       booleanValue: false,
+      radioValue: null,
+      multiselectValues: [],
     };
   },
   computed: {
@@ -48,13 +60,31 @@ export const Active = () => ({
         { label: 'friend', value: 5 },
       ];
     },
+    radioOptions() {
+      return [
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' },
+      ];
+    },
     filteredOptions() {
       return this.options.filter((o) => o.label.includes(this.searchText));
     },
-  },
-  methods: {
-    handleSearch(text) {
-      this.searchText = text;
+    customSelectOptions() {
+      return [
+        { section: 'Screws', image: '/socket-head-screw.png', label: 'Socket Head Screw', value: 1 },
+        { section: 'Screws', image: '/flat-head-screw.png', label: 'Flat Head Screw', value: 2 },
+        { section: 'Screws', image: '/hex-head-screw.png', label: 'Hex Head Screw', value: 3 },
+        { section: 'Screws', image: '/round-head-screw.png', label: 'Round Head Screw', value: 4 },
+        { section: 'Nuts', image: '/flange-nut.png', label: 'Flange Nut', value: 5 },
+        { section: 'Nuts', image: '/hex-nut.png', label: 'Hex Nut', value: 6 },
+        { section: 'Nuts', image: '/lock-nut.png', label: 'Lock Nut', value: 7 },
+        { section: 'Nuts', image: '/slotted-nut.png', label: 'Slotted Nut', value: 8 },
+        { section: 'Washers', image: '/washer.png', label: 'Washer', value: 9 },
+        { section: 'Washers', image: '/lock-washer.png', label: 'Locking Washer', value: 10 },
+        { section: 'Washers', image: '/leveling-washer.png', label: 'Leveling Washer', value: 11 },
+        { section: 'Washers', image: '/cushioning-washer.png', label: 'Cushioning Washer', value: 12 },
+        { section: 'Washers', image: '/sealing-washer.png', label: 'Sealing Washer', value: 12 },
+      ];
     },
   },
   template: `
@@ -85,26 +115,49 @@ export const Active = () => ({
         />
       </div>
       <div class="input-row">
-        <c-select
+        <c-native-select
           placeholder="Select an Option"
-          label="Select"
+          label="Native Select"
           :options="options"
           v-model="selectValue"
         />
       </div>
       <div class="input-row">
+        <c-select
+          v-model="customSelectValue"
+          :show-image="true"
+          :show-sections="true"
+          label="Custom Select"
+          :options="customSelectOptions"
+        />
+      </div>
+      <div class="input-row">
         <c-search-select
+          v-model="searchSelectValue"
           placeholder="Select an Option"
           label="Search Select"
           :options="filteredOptions"
-          v-model="searchSelectValue"
-          @search="handleSearch"
+        />
+      </div>
+      <div class="input-row">
+        <c-multi-select
+          placeholder="Select Multiple Options"
+          label="Multi Select"
+          v-model="multiselectValues"
+          :options="options"
         />
       </div>
       <div class="input-row">
         <c-checkbox
           label="Checkbox"
           v-model="booleanValue"
+        />
+      </div>
+      <div class="input-row">
+        <c-radio
+          v-model="radioValue"
+          :options="radioOptions"
+          label="Radio"
         />
       </div>
     </div>

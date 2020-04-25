@@ -1,7 +1,7 @@
 <template>
-  <div class="concrete-table-container">
+  <div class="concrete-table-container concrete">
     <slot />
-    <table class="concrete-table table">
+    <table class="concrete-table concrete">
       <colgroup>
         <col
           v-for="(column, index) in columns"
@@ -9,7 +9,7 @@
           :class="column.$vnode.data.staticClass"
         >
       </colgroup>
-      <tr class="concrete-table-header-row row">
+      <tr class="concrete-table-header-row concrete">
         <th
           v-for="column in columns"
           :key="column.label"
@@ -17,9 +17,9 @@
           @click="sortable && column.label && clickLabel(column)"
         >
           {{ column.label.toUpperCase() }}
-          <component
-            :is="sortIcon"
+          <c-icon
             v-if="sortable && sortDirection && (column.sortProp || column.prop) === sortProp"
+            :type="sortIcon"
             class="icon"
           />
         </th>
@@ -55,8 +55,7 @@
 
 <script>
 import get from 'lodash/get';
-import ArrowDown from '../assets/long-arrow-down.svg';
-import ArrowUp from '../assets/long-arrow-up.svg';
+import CIcon from '@/components/Icon';
 
 
 const TableCell = {
@@ -87,9 +86,10 @@ const CColumn = {
 };
 
 const CTable = {
-  name: 'ConcreteTable',
+  name: 'CTable',
   components: {
     TableCell,
+    CIcon,
   },
   props: {
     data: { type: Array, required: true },
@@ -108,8 +108,8 @@ const CTable = {
   computed: {
     sortIcon() {
       return this.sortDirection === 'asc'
-        ? ArrowUp
-        : ArrowDown;
+        ? 'long-arrow-up'
+        : 'long-arrow-down';
     },
     sortedData() {
       if (!this.sortProp || !this.sortDirection || this.externalSort) return this.data;

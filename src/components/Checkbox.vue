@@ -1,13 +1,13 @@
 <template>
-  <div class="concrete-select-row row">
+  <div class="concrete-select-row concrete">
     <div
       v-if="label !== null"
-      class="concrete-input-label label"
+      class="concrete-input-label concrete"
       :class="{ disabled }"
     >
       {{ label }}
     </div>
-    <div class="concrete-checkbox checkbox" :class="{ focused }">
+    <div class="concrete-checkbox concrete" :class="{ focused }">
       <input
         v-model="localValue"
         type="checkbox"
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'ConcreteCheckbox',
+  name: 'CCheckbox',
   props: {
     label: { type: String, default: '' },
     value: { type: Boolean },

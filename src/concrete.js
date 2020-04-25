@@ -1,23 +1,33 @@
-import CButton from './components/Button.vue';
-import CCheckbox from './components/Checkbox.vue';
-import CModal from './components/Modal.vue';
-import CQuantityInput from './components/QuantityInput.vue';
-import CSearchSelect from './components/SearchSelect.vue';
-import CSelect from './components/Select.vue';
-import CTextarea from './components/Textarea.vue';
-import CTextInput from './components/TextInput.vue';
-import { CTable, CColumn } from './components/Table.vue';
-import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
-import CAlert from './components/alert';
+import CButton from '@/components/Button';
+import CIcon from '@/components/Icon';
+import CCheckbox from '@/components/Checkbox';
+import CRadio from '@/components/Radio';
+import CModal from '@/components/Modal';
+import CQuantityInput from '@/components/QuantityInput';
+import CSearchSelect from '@/components/SearchSelect';
+import CMultiSelect from '@/components/MultiSelect';
+import CNativeSelect from '@/components/NativeSelect';
+import CSelect from '@/components/Select';
+import CTextarea from '@/components/Textarea';
+import CTextInput from '@/components/TextInput';
+import CMasonry from '@/components/Masonry';
+import { CTable, CColumn } from '@/components/Table';
+import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
+import { CPanelSlider, CPanel, CPanelLink } from '@/components/PanelSlider';
+import CAlert from '@/components/alert';
 
 
 const components = [
   CButton,
+  CIcon,
   CCheckbox,
+  CRadio,
   CModal,
   CQuantityInput,
   CSearchSelect,
+  CMultiSelect,
   CSelect,
+  CNativeSelect,
   CTextarea,
   CTextInput,
   CTable,
@@ -25,6 +35,10 @@ const components = [
   CTabSwitcher,
   CTabLabel,
   CTab,
+  CPanelSlider,
+  CPanelLink,
+  CPanel,
+  CMasonry,
 ];
 
 const install = (Vue) => {
@@ -43,11 +57,15 @@ export default {
 
 export {
   CButton,
+  CIcon,
   CCheckbox,
+  CRadio,
   CModal,
   CQuantityInput,
   CSearchSelect,
+  CMultiSelect,
   CSelect,
+  CNativeSelect,
   CTextarea,
   CTextInput,
   CTable,
@@ -55,5 +73,9 @@ export {
   CTabSwitcher,
   CTabLabel,
   CTab,
+  CPanelSlider,
+  CPanelLink,
+  CPanel,
+  CMasonry,
   CAlert,
 };

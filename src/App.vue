@@ -1,24 +1,12 @@
 <template>
   <div id="app">
     <div class="input-row">
-      <c-button>
-        Hello
-      </c-button>
-      <c-button>
-        <plus />
-      </c-button>
-      <c-button :play="true">
-        Hello
-      </c-button>
-      <c-button :play="true" :progress="50">
-        Hello
-      </c-button>
-      <c-button @click="showModal = true">
-        Click for modal
-      </c-button>
-      <c-button @click="showAlertbox">
-        Click for alertbox
-      </c-button>
+      <c-button>Hello</c-button>
+      <c-button><plus /></c-button>
+      <c-button :play="true">Hello</c-button>
+      <c-button :play="true" :progress="50">Hello</c-button>
+      <c-button @click="showModal = true">Click for modal</c-button>
+      <c-button @click="showAlertbox">Click for alertbox</c-button>
       <c-modal
         v-if="showModal"
         title="Modal Title"
@@ -26,6 +14,9 @@
       >
         This is modal content.
       </c-modal>
+    </div>
+    <div class="input-row">
+      An inline icon: <c-icon type="play" />
     </div>
     <div class="input-row">
       <c-text-input
@@ -53,11 +44,20 @@
       />
     </div>
     <div class="input-row">
-      <c-select
+      <c-native-select
         v-model="selectValue"
         placeholder="Select an Option"
-        label="Select"
+        label="Native Select"
         :options="options"
+      />
+    </div>
+    <div class="input-row">
+      <c-select
+        v-model="customSelectValue"
+        :show-image="true"
+        :show-sections="true"
+        label="Custom Select"
+        :options="customSelectOptions"
       />
     </div>
     <div class="input-row">
@@ -65,14 +65,28 @@
         v-model="searchSelectValue"
         placeholder="Select an Option"
         label="Search Select"
-        :options="filteredOptions"
-        @search="handleSearch"
+        :options="options"
+      />
+    </div>
+    <div class="input-row">
+      <c-multi-select
+        v-model="multiselectValues"
+        placeholder="Select Multiple Options"
+        label="Multi Select"
+        :options="options"
       />
     </div>
     <div class="input-row">
       <c-checkbox
         v-model="booleanValue"
         label="Checkbox"
+      />
+    </div>
+    <div class="input-row">
+      <c-radio
+        v-model="radioValue"
+        :options="radioOptions"
+        label="Radio"
       />
     </div>
     <div class="input-row">
@@ -111,55 +125,115 @@
         </template>
       </c-tab-switcher>
     </div>
+    <c-checkbox
+      v-model="switched2"
+      label="Dynamic div 2"
+    />
+    <c-checkbox
+      v-model="switched"
+      label="Dynamic div"
+    />
+    <div class="tab-container">
+      <c-panel-slider title="Primary">
+        Content.
+        <div v-if="switched">Dynamic content</div>
+        <div>
+          <c-panel-link link-to="a">Drill Down</c-panel-link>
+          <c-panel-link link-to="b">A different menu</c-panel-link>
+        </div>
+        Some more content.
+        <c-panel panel-id="a" title="Secondary">
+          Secondary Content
+          <div v-if="switched2">
+            Secondary optional content.
+          </div>
+          <c-panel-link link-to="x">Drill more?</c-panel-link>
+          <c-panel panel-id="x" title="Tertiary">
+            Tertiary Content
+            <c-panel-link link-to="q">Last one</c-panel-link>
+            <c-panel panel-id="q" title="Last one">
+              Some final content
+            </c-panel>
+          </c-panel>
+        </c-panel>
+        <c-panel panel-id="b" title="Another?">
+          A different Secondary Panel
+        </c-panel>
+      </c-panel-slider>
+    </div>
+
+    <div class="input-row">
+      <c-masonry :cols="{default: 4, 1000: 3, 700: 2, 400: 1}" gutter="1.5rem">
+        <div class="card">Hi Dave</div>
+        <div class="card">Second div</div>
+        <div class="card">Third</div>
+        <div class="card">Fourth</div>
+      </c-masonry>
+    </div>
   </div>
 </template>
 
 <script>
-import CButton from './components/Button.vue';
-import CSelect from './components/Select.vue';
-import CQuantityInput from './components/QuantityInput.vue';
-import CTextInput from './components/TextInput.vue';
-import CTextarea from './components/Textarea.vue';
-import CCheckbox from './components/Checkbox.vue';
-import CSearchSelect from './components/SearchSelect.vue';
-import CModal from './components/Modal.vue';
-import { CTable, CColumn } from './components/Table.vue';
-import {
-  CTabSwitcher,
-  CTabLabel,
-  CTab,
-} from './components/TabSwitcher.vue';
-import Plus from './assets/plus.svg';
+import CButton from '@/components/Button';
+import CIcon from '@/components/Icon';
+import CNativeSelect from '@/components/NativeSelect';
+import CSelect from '@/components/Select';
+import CQuantityInput from '@/components/QuantityInput';
+import CTextInput from '@/components/TextInput';
+import CTextarea from '@/components/Textarea';
+import CCheckbox from '@/components/Checkbox';
+import CRadio from '@/components/Radio';
+import CSearchSelect from '@/components/SearchSelect';
+import CMultiSelect from '@/components/MultiSelect';
+import CModal from '@/components/Modal';
+import { CTable, CColumn } from '@/components/Table';
+import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
+import { CPanelSlider, CPanel, CPanelLink } from '@/components/PanelSlider';
+import CMasonry from '@/components/Masonry';
+import Plus from '@/assets/icons/plus.svg';
 
 
 export default {
   name: 'App',
   components: {
     CButton,
+    CIcon,
     CTextInput,
     CTextarea,
     CQuantityInput,
-    CSelect,
+    CNativeSelect,
     CSearchSelect,
+    CSelect,
+    CMultiSelect,
     CCheckbox,
+    CRadio,
     CModal,
     CTable,
     CColumn,
     CTabSwitcher,
     CTabLabel,
     CTab,
+    CPanelSlider,
+    CPanel,
+    CPanelLink,
     Plus,
+    CMasonry,
   },
   data() {
     return {
       textValue: null,
       textareaValue: null,
       quantityValue: 0,
-      selectValue: 1,
+      selectValue: '',
+      customSelectValue: '',
       searchText: '',
       searchSelectValue: null,
+      multiselectValues: [],
       booleanValue: false,
+      radioValue: null,
       showModal: false,
+      switched: true,
+      switched2: true,
     };
   },
   computed: {
@@ -170,6 +244,13 @@ export default {
         { label: 'my', value: 3 },
         { label: 'old', value: 4 },
         { label: 'friend', value: 5 },
+        { label: 'goodbye', value: 6 },
+      ];
+    },
+    radioOptions() {
+      return [
+        { label: 'Yes', value: 'yes' },
+        { label: 'No', value: 'no' },
       ];
     },
     tableData() {
@@ -179,8 +260,22 @@ export default {
         { name: 'Angie', quantity: 4, animal: 'mink' },
       ];
     },
-    filteredOptions() {
-      return this.options.filter((o) => o.label.includes(this.searchText));
+    customSelectOptions() {
+      return [
+        { section: 'Screws', image: '/images/socket-head-screw.png', label: 'Socket Head Screw', value: 1 },
+        { section: 'Screws', image: '/images/flat-head-screw.png', label: 'Flat Head Screw', value: 2 },
+        { section: 'Screws', image: '/images/hex-head-screw.png', label: 'Hex Head Screw', value: 3 },
+        { section: 'Screws', image: '/images/round-head-screw.png', label: 'Round Head Screw', value: 4 },
+        { section: 'Nuts', image: '/images/flange-nut.png', label: 'Flange Nut', value: 5 },
+        { section: 'Nuts', image: '/images/hex-nut.png', label: 'Hex Nut', value: 6 },
+        { section: 'Nuts', image: '/images/lock-nut.png', label: 'Lock Nut', value: 7 },
+        { section: 'Nuts', image: '/images/slotted-nut.png', label: 'Slotted Nut', value: 8 },
+        { section: 'Washers', image: '/images/washer.png', label: 'Washer', value: 9 },
+        { section: 'Washers', image: '/images/lock-washer.png', label: 'Locking Washer', value: 10 },
+        { section: 'Washers', image: '/images/leveling-washer.png', label: 'Leveling Washer', value: 11 },
+        { section: 'Washers', image: '/images/cushioning-washer.png', label: 'Cushioning Washer', value: 12 },
+        { section: 'Washers', image: '/images/sealing-washer.png', label: 'Sealing Washer', value: 12 },
+      ];
     },
   },
   methods: {
@@ -212,7 +307,7 @@ export default {
   width: 24rem;
   height: 24rem;
   border: $border-sm solid $color-gray-04;
+  margin-bottom: 1.5rem;
 }
-
 
 </style>

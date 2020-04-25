@@ -32,37 +32,29 @@ npm run lint
 
 ### Roadmap
 
-Simple Components:
-  * Radio input
+Components to do:
+  * Layout frames
   * Tooltip
-  * Alertbox
-  * Multi-select
+  * Toolbar
   * Color picker
   * Pagination
-
-Icons:
-  * Common UI elements
-
-Layout Components:
-  * Paging (ios-style)
-  * Accordion/Collapse
-  * Layout frames
-  * Toolbar
-  * Data tree
-  * Card List
-  * Masonry
+  * Data tree?
+  * Accordion/Collapse?
+  * File uploader?
 
 Drawing:
   * 2D SVG viewport
   * 2D canvas viewport?
   * 3D viewport
 
-Other:
-  * Image-select (i.e., like the balcony type switcher)
-  * File uploader
+Refinement:
+  * Make custom select components scrollable
+  * Light/dark themes
+  * Animations
+  * Compact versions of tables/inputs/etc.
+  * validations -- red highlight, error message
   * Add confirmation buttons to modal
-  * Compact versions of tables, inputs, etc.
-  * light/dark theme
 
 Documentation:
   * (all components need documentation)
+  * add icons to storybook

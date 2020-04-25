@@ -2,7 +2,7 @@
   <button
     :class="[
       'concrete-button',
-      'btn',
+      'concrete',
       size,
       (!disabled && color),
       (!disabled && fill),
@@ -19,23 +19,21 @@
       &nbsp;
     </div>
     <div class="button-content">
-      <play v-if="play && !inProgress" class="icon" />
-      <times-circle v-if="inProgress" class="icon" @click="cancel" />
+      <c-icon v-if="play && !inProgress" type="play" class="icon" />
+      <c-icon v-if="inProgress" type="times-circle" class="icon" @click="cancel" />
       <slot />
     </div>
   </button>
 </template>
 
 <script>
-import Play from '../assets/play.svg';
-import TimesCircle from '../assets/times-circle.svg';
+import CIcon from '@/components/Icon';
 
 
 export default {
-  name: 'ConcreteButton',
+  name: 'CButton',
   components: {
-    Play,
-    TimesCircle,
+    CIcon,
   },
   props: {
     size: {
@@ -203,7 +201,6 @@ export default {
   }
 
   .icon {
-    height: 0.75rem;
     margin-right: 0.5rem;
     cursor: pointer;
   }

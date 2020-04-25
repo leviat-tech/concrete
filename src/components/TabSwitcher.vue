@@ -1,12 +1,12 @@
 <template>
-  <div class="concrete-tab-switcher">
-    <div v-if="tabPosition === 'top'" class="concrete-tab-labels top">
+  <div class="concrete-tab-switcher concrete">
+    <div v-if="tabPosition === 'top'" class="concrete-tab-labels top concrete">
       <slot name="labels" @click-tab="clickTab" />
     </div>
-    <div class="concrete-tab-content">
+    <div class="concrete-tab-content concrete">
       <slot name="content" />
     </div>
-    <div v-if="tabPosition === 'bottom'" class="concrete-tab-labels bottom">
+    <div v-if="tabPosition === 'bottom'" class="concrete-tab-labels bottom concrete">
       <slot name="labels" @click-tab="clickTab" />
     </div>
   </div>
@@ -14,7 +14,7 @@
 
 <script>
 const CTabLabel = {
-  name: 'ConcreteTabLabel',
+  name: 'CTabLabel',
   data() {
     return {
       index: null,
@@ -47,7 +47,7 @@ const CTabLabel = {
 };
 
 const CTab = {
-  name: 'ConcreteTab',
+  name: 'CTab',
   data() {
     return {
       index: null,
@@ -72,7 +72,7 @@ const CTab = {
 };
 
 const CTabSwitcher = {
-  name: 'ConcreteTabSwitcher',
+  name: 'CTabSwitcher',
   props: {
     tabPosition: {
       type: String,
@@ -82,9 +82,7 @@ const CTabSwitcher = {
   },
   data() {
     return {
-      activeTab: {
-        index: 0,
-      },
+      activeTab: { index: 0 },
     };
   },
   provide() {
