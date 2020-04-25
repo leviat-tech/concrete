@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import partition from 'lodash/partition';
 import BackArrow from '../assets/chevron-left.svg';
 import ForwardArrow from '../assets/chevron-right.svg';
-// import cloneVnode from '../utils/cloneVnode';
+import cloneVnode from '../utils/cloneVnode';
 
 
 const TitleBar = {
@@ -58,56 +58,21 @@ const CPanelLink = {
   },
 };
 
-// const CPanel = {
-//   name: 'CPanel',
-//   components: { CPanelLink, TitleBar },
-//   props: {
-//     panelId: { type: String, default: null },
-//     title: { type: String, default: '' },
-//   },
-//   data() {
-//     return {
-//       showChild: null,
-//     };
-//   },
-//   render(h) { // eslint-disable-line
-//     const vnodes = this.$slots.default || [];
-
-//     const [panels, content] = partition( // eslint-disable-line
-//       vnodes,
-//       (vnode) => get(vnode, 'componentOptions.tag') === 'c-panel',
-//     );
-
-//     const childPanel = this.showChild
-//       ? panels.find((p) => this.showChild === get(p, 'componentOptions.propsData.panelId'))
-//       : [];
-
-//     return (
-//       <div class="concrete-panel-content">
-//         { content }
-//         {
-//           childPanel
-//         }
-//       </div>
-//     );
-//   },
-// };
-
 const CPanel = {
-  functional: true,
   name: 'CPanel',
   props: {
     panelId: { type: String, default: null },
     title: { type: String, default: '' },
-    showChild: { type: String, default: null },
   },
-  render(h, { props, scopedSlots }) {
-    console.log('PROPS', props);
-    const slots = scopedSlots.default();
-    const [panels, contents] = partition( // eslint-disable-line
-      slots,
-      (s) => get(s, 'fnOptions.name') === 'CPanel' && !get(s, 'tag'),
-    );
+  methods: {
+    drillDown(id) {
+      this.$parent.drillDown(id);
+    },
+  },
+  render() {
+    const slots = this.$scopedSlots.default();
+
+    const contents = slots.filter((s) => get(s, 'componentOptions.tag') !== 'c-panel');
 
     return (
       <div class="concrete-panel-content">
@@ -135,42 +100,59 @@ const CPanelSlider = {
       this.panelState.pop();
     },
   },
-  render(h) { // eslint-disable-line
-    const vnodes = this.$slots.default || [];
+  render(h) {
+    const rootVnodes = this.$slots.default || [];
 
     const [rootPanels, rootContents] = partition(
-      vnodes,
-      (s) => get(s, 'fnOptions.name') === 'CPanel',
+      rootVnodes,
+      (s) => get(s, 'componentOptions.tag') === 'c-panel',
     );
 
-    console.log('rp', rootPanels[0]);
+    const panelList = this.panelState.reduce(({ vnodes, panels }, id) => {
+      const current = panels.find(
+        (p) => id === get(p, 'componentOptions.propsData.panelId'),
+      );
 
-    const panels = this.panelState.reduce((data, id) => {
-      const current = data.panels.find((p) => id === get(p, 'fnOptions.propsData.panelId'));
-      data.vnodes.push(current);
+      const prevPanel = vnodes[vnodes.length - 1];
+      const back = prevPanel
+        ? get(prevPanel, 'componentOptions.propsData.title')
+        : this.title;
 
-      console.log('current', current);
+      const clone = cloneVnode(h, current);
+      vnodes.push(clone);
 
-      // set new data.panels
-      return data;
-    }, { vnodes: [], panels: rootPanels });
+      const childPanels = current.componentOptions.children.filter(
+        (s) => get(s, 'componentOptions.tag') === 'c-panel',
+      );
 
-    console.log('PANEL LIST:', panels.vnodes);
+      return {
+        back,
+        title: get(clone, 'componentOptions.propsData.title'),
+        vnodes,
+        panels: childPanels,
+      };
+    }, { back: null, title: this.title, vnodes: [], panels: rootPanels });
+
+    const depth = this.panelState.length;
 
     return (
       <div class="concrete-panel-container">
         <div class="concrete-panel">
           <TitleBar
-            title={this.title}
+            title={panelList.title}
+            back={panelList.back}
             vOn:go-back={this.goBack}
           />
         </div>
-        <div class="concrete-panel-content-container">
+        <div
+          class="concrete-panel-content-container"
+          style={`transform: translate(-${depth * 100}%, 0)`}
+        >
           <div class="concrete-panel-content">
             { rootContents }
           </div>
           {
-            // panels.vnodes
+            panelList.vnodes
           }
         </div>
       </div>
@@ -241,11 +223,12 @@ export {
 .concrete-panel-container {
   width: 100%;
   height: 100%;
-  // overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 .concrete-panel-content-container {
   display: flex;
+  transition: transform .2s ease;
 }
 
 .concrete-panel-content {

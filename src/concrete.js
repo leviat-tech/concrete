@@ -12,6 +12,7 @@ import CTextInput from './components/TextInput.vue';
 import CMasonry from './components/Masonry.vue';
 import { CTable, CColumn } from './components/Table.vue';
 import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
+import { CPanelSlider, CPanel, CPanelLink } from './components/PanelSlider.vue';
 import CAlert from './components/alert';
 
 
@@ -32,6 +33,9 @@ const components = [
   CTabSwitcher,
   CTabLabel,
   CTab,
+  CPanelSlider,
+  CPanelLink,
+  CPanel,
   CMasonry,
 ];
 
@@ -66,6 +70,9 @@ export {
   CTabSwitcher,
   CTabLabel,
   CTab,
-  CAlert,
+  CPanelSlider,
+  CPanelLink,
+  CPanel,
   CMasonry,
+  CAlert,
 };

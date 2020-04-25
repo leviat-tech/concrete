@@ -147,6 +147,10 @@
           <c-panel-link link-to="x">Drill more?</c-panel-link>
           <c-panel panel-id="x" title="Tertiary">
             Tertiary Content
+            <c-panel-link link-to="q">Last one</c-panel-link>
+            <c-panel panel-id="q" title="Last one">
+              Some final content
+            </c-panel>
           </c-panel>
         </c-panel>
         <c-panel panel-id="b" title="Another?">
@@ -180,7 +184,7 @@ import CMultiSelect from './components/MultiSelect.vue';
 import CModal from './components/Modal.vue';
 import { CTable, CColumn } from './components/Table.vue';
 import { CTabSwitcher, CTabLabel, CTab } from './components/TabSwitcher.vue';
-import { CPanelSlider, CPanel, CPanelLink } from './components/Panel.vue';
+import { CPanelSlider, CPanel, CPanelLink } from './components/PanelSlider.vue';
 import CMasonry from './components/Masonry.vue';
 import Plus from './assets/plus.svg';
 

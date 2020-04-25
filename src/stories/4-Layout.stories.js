@@ -1,11 +1,21 @@
 import { CTable, CColumn } from '../components/Table.vue';
 import { CTabSwitcher, CTabLabel, CTab } from '../components/TabSwitcher.vue';
+import { CPanelSlider, CPanel, CPanelLink } from '../components/PanelSlider.vue';
 import CMasonry from '../components/Masonry.vue';
 
 
 export default {
   title: 'Layout',
-  components: { CTable, CColumn, CTabSwitcher, CTabLabel, CTab },
+  components: {
+    CTable,
+    CColumn,
+    CTabSwitcher,
+    CTabLabel,
+    CTab,
+    CPanelSlider,
+    CPanel,
+    CPanelLink,
+  },
 };
 
 export const Table = () => ({
@@ -59,6 +69,36 @@ export const TabSwitcher = () => ({
           <c-tab>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</c-tab>
         </template>
       </c-tab-switcher>
+    </div>
+  `,
+});
+
+export const PanelSlider = () => ({
+  components: { CPanelSlider, CPanel, CPanelLink },
+  template: `
+    <div class="tab-div">
+      <c-panel-slider title="Primary">
+        Content.
+        <div>
+          <c-panel-link link-to="a">Drill Down</c-panel-link>
+          <c-panel-link link-to="b">A different menu</c-panel-link>
+        </div>
+        Some more content.
+        <c-panel panel-id="a" title="Secondary">
+          Secondary Content
+          <c-panel-link link-to="x">Drill more?</c-panel-link>
+          <c-panel panel-id="x" title="Tertiary">
+            Tertiary Content
+            <c-panel-link link-to="q">Last one</c-panel-link>
+            <c-panel panel-id="q" title="Last one">
+              Some final content
+            </c-panel>
+          </c-panel>
+        </c-panel>
+        <c-panel panel-id="b" title="Another?">
+          A different Secondary Panel
+        </c-panel>
+      </c-panel-slider>
     </div>
   `,
 });
