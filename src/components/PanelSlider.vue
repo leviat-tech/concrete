@@ -81,6 +81,17 @@ const CPanel = {
   },
 };
 
+const CPanelSection = {
+  functional: true,
+  name: 'CPanelSection',
+  render(h, { scopedSlots }) {
+    return [
+      ...scopedSlots.default(),
+      <div class="concrete-panel-divider" />,
+    ];
+  },
+};
+
 const CPanelSlider = {
   name: 'CPanelSlider',
   props: {
@@ -165,6 +176,7 @@ export {
   CPanelSlider,
   CPanel,
   CPanelLink,
+  CPanelSection,
 };
 </script>
 
@@ -189,8 +201,10 @@ export {
 
 .concrete-panel-link {
   cursor: pointer;
+  box-sizing: content-box;
+  margin-left: -1rem;
   width: 100%;
-  padding: 0.75rem;
+  padding: .75rem 1rem .75rem 1rem;
   border-top: $border-sm solid transparent;
   border-bottom: $border-sm solid transparent;
   display: flex;
@@ -208,7 +222,7 @@ export {
   height: 1rem;
   top: 50%;
   margin-top: -0.5rem;
-  padding-left: 0.75rem;
+  padding-left: 1rem;
   cursor: pointer;
   font-size: $text-sm;
   font-weight: normal;
@@ -228,11 +242,25 @@ export {
 .concrete-panel-content-container {
   display: flex;
   transition: transform .2s ease;
+  padding: 1rem;
 }
 
 .concrete-panel-content {
   width: 100%;
+  margin-right: 2rem;
   flex: none;
+}
+
+.concrete-panel-divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: -1rem;
+  border-bottom: $border-sm solid $color-gray-04;
+  width: calc(100% + 2rem);
+
+  &:last-of-type {
+    border-bottom: $border-sm solid transparent;
+  }
 }
 
 </style>

@@ -120,7 +120,7 @@
           <c-tab-label>Tab Label 2</c-tab-label>
         </template>
         <template v-slot:content>
-          <c-tab>
+          <c-tab class="tab-interior">
             <p>Tab content 1.</p>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -131,7 +131,7 @@
               non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </c-tab>
-          <c-tab>
+          <c-tab class="tab-interior">
             <p>Tab content 2</p>
             <p>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
@@ -161,24 +161,34 @@
     />
     <div class="tab-container">
       <c-panel-slider title="Primary">
-        Content.
-        <div v-if="switched">Dynamic content</div>
-        <div>
-          <c-panel-link link-to="a">Drill Down</c-panel-link>
-          <c-panel-link link-to="b">A different menu</c-panel-link>
-        </div>
-        Some more content.
-        <c-panel panel-id="a" title="Secondary">
-          Secondary Content
-          <div v-if="switched2">
-            Secondary optional content.
+        <c-panel-section>
+          Content.
+          <div v-if="switched">Dynamic content</div>
+          <div>
+            <c-panel-link link-to="a">Drill Down</c-panel-link>
+            <c-panel-link link-to="b">A different menu</c-panel-link>
           </div>
-          <c-panel-link link-to="x">Drill more?</c-panel-link>
+        </c-panel-section>
+        <c-panel-section>
+          Some more content.
+        </c-panel-section>
+        <c-panel panel-id="a" title="Secondary">
+          <c-panel-section>
+            Secondary Content
+            <div v-if="switched2">
+              Secondary optional content.
+            </div>
+            <c-panel-link link-to="x">Drill more?</c-panel-link>
+          </c-panel-section>
           <c-panel panel-id="x" title="Tertiary">
-            Tertiary Content
-            <c-panel-link link-to="q">Last one</c-panel-link>
+            <c-panel-section>
+              Tertiary Content
+              <c-panel-link link-to="q">Last one</c-panel-link>
+            </c-panel-section>
             <c-panel panel-id="q" title="Last one">
-              Some final content
+              <c-panel-section>
+                Some final content
+              </c-panel-section>
             </c-panel>
           </c-panel>
         </c-panel>
@@ -214,7 +224,7 @@ import CMultiSelect from '@/components/MultiSelect';
 import CModal from '@/components/Modal';
 import { CTable, CColumn } from '@/components/Table';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
-import { CPanelSlider, CPanel, CPanelLink } from '@/components/PanelSlider';
+import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/PanelSlider';
 import CMasonry from '@/components/Masonry';
 import Plus from '@/assets/icons/plus.svg';
 
@@ -242,6 +252,7 @@ export default {
     CPanelSlider,
     CPanel,
     CPanelLink,
+    CPanelSection,
     Plus,
     CMasonry,
   },
@@ -334,6 +345,10 @@ export default {
   height: 24rem;
   border: $border-sm solid $color-gray-04;
   margin-bottom: 1.5rem;
+}
+
+.tab-interior {
+  padding: 1rem;
 }
 
 </style>
