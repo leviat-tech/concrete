@@ -36,13 +36,15 @@ const CTabLabel = {
       this.$parent.clickTab(this.index);
     },
   },
-  render(h) {
-    return h('div', {
-      on: {
-        click: this.clickTab,
-      },
-      class: ['label', { active: this.isActive }],
-    }, this.$scopedSlots.default());
+  render() {
+    return (
+      <div
+        class={this.isActive ? 'active label' : 'label'}
+        vOn:click={this.clickTab}
+      >
+        { this.$scopedSlots.default() }
+      </div>
+    );
   },
 };
 
@@ -64,10 +66,12 @@ const CTab = {
       this.index = this.tabIndex;
     });
   },
-  render(h) {
-    return h('div', {
-      class: ['content', { hide: !this.isActive }],
-    }, this.$scopedSlots.default());
+  render() {
+    return (
+      <div class={!this.isActive ? 'concrete-content-box hide' : 'concrete-content-box'}>
+        { this.$scopedSlots.default() }
+      </div>
+    );
   },
 };
 
@@ -114,9 +118,34 @@ export {
 <style lang="scss" scoped>
 @import '../assets/styles/variables.scss';
 
+.concrete-tab-switcher {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .concrete-tab-content {
-  .hide {
-    display: none;
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.concrete-content-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transition: opacity .15s ease .15s, visibility 0s linear .15s, transform .15s ease-in .15s;
+  transform: translate(0, 0);
+  opacity: 1;
+  visibility: visible;
+
+  &.hide {
+    transition: opacity .15s ease 0s, visibility 0s linear .15s, transform .15s ease-in 0s;
+    opacity: 0;
+    transform: translate(-100%, 0);
+    visibility: hidden;
   }
 }
 
