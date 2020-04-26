@@ -34,6 +34,7 @@ npm run lint
 
 Components to do:
   * Layout frames
+  * Expanding/minimizing viewports
   * Tooltip
   * Toolbar
   * Color picker
