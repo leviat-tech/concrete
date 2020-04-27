@@ -1,6 +1,6 @@
-import CModal from '../components/Modal.vue';
-import CButton from '../components/Button.vue';
-import alert from '../components/alert';
+import CModal from '../../src/components/Modal.vue';
+import CButton from '../../src/components/Button.vue';
+import alert from '../../src/components/alert';
 
 
 export default {

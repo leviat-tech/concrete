@@ -1,7 +1,7 @@
-import { CTable, CColumn } from '../components/Table.vue';
-import { CTabSwitcher, CTabLabel, CTab } from '../components/TabSwitcher.vue';
-import { CPanelSlider, CPanel, CPanelLink } from '../components/PanelSlider.vue';
-import CMasonry from '../components/Masonry.vue';
+import { CTable, CColumn } from '../../src/components/Table.vue';
+import { CTabSwitcher, CTabLabel, CTab } from '../../src/components/TabSwitcher.vue';
+import { CPanelSlider, CPanel, CPanelLink } from '../../src/components/PanelSlider.vue';
+import CMasonry from '../../src/components/Masonry.vue';
 
 
 export default {

@@ -1,12 +1,12 @@
-import CNativeSelect from '../components/NativeSelect.vue';
-import CSelect from '../components/Select.vue';
-import CQuantityInput from '../components/QuantityInput.vue';
-import CTextInput from '../components/TextInput.vue';
-import CTextarea from '../components/Textarea.vue';
-import CCheckbox from '../components/Checkbox.vue';
-import CRadio from '../components/Radio.vue';
-import CSearchSelect from '../components/SearchSelect.vue';
-import CMultiSelect from '../components/MultiSelect.vue';
+import CNativeSelect from '../../src/components/NativeSelect.vue';
+import CSelect from '../../src/components/Select.vue';
+import CQuantityInput from '../../src/components/QuantityInput.vue';
+import CTextInput from '../../src/components/TextInput.vue';
+import CTextarea from '../../src/components/Textarea.vue';
+import CCheckbox from '../../src/components/Checkbox.vue';
+import CRadio from '../../src/components/Radio.vue';
+import CSearchSelect from '../../src/components/SearchSelect.vue';
+import CMultiSelect from '../../src/components/MultiSelect.vue';
 
 
 export default {

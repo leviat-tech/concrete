@@ -14,6 +14,7 @@ import CMasonry from '@/components/Masonry';
 import { CTable, CColumn } from '@/components/Table';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
 import { CPanelSlider, CPanel, CPanelLink } from '@/components/PanelSlider';
+import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
 import CAlert from '@/components/alert';
 
 
@@ -38,6 +39,9 @@ const components = [
   CPanelSlider,
   CPanelLink,
   CPanel,
+  CToolbar,
+  CToolGroup,
+  CTool,
   CMasonry,
 ];
 
@@ -76,6 +80,9 @@ export {
   CPanelSlider,
   CPanelLink,
   CPanel,
+  CToolbar,
+  CToolGroup,
+  CTool,
   CMasonry,
   CAlert,
 };
