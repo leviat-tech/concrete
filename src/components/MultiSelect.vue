@@ -78,6 +78,7 @@ import CIcon from '@/components/Icon';
 
 
 export default {
+  name: 'CMultiSelect',
   components: {
     CIcon,
   },

@@ -70,6 +70,7 @@ const TableCell = {
 };
 
 const CColumn = {
+  name: 'CColumn',
   render() {
     return (
       <div>

@@ -20,7 +20,7 @@
     </div>
     <div class="button-content">
       <c-icon v-if="play && !inProgress" type="play" class="icon" />
-      <c-icon v-if="inProgress" type="times-circle" class="icon" @click="cancel" />
+      <c-icon v-if="inProgress && cancelable" type="times-circle" class="icon" @click="cancel" />
       <slot />
     </div>
   </button>
@@ -55,6 +55,7 @@ export default {
     progress: { type: Number, default: null },
     fake: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
+    cancelable: { type: Boolean, default: true },
   },
   data() {
     return {
@@ -136,6 +137,7 @@ export default {
 }
 
 .concrete-button {
+  cursor: pointer;
   border: none;
   color: $color-white;
   border-radius: $radius;
@@ -152,11 +154,13 @@ export default {
   }
 
   &.disabled {
+    cursor: not-allowed;
     background: $color-gray-02;
     color: $color-gray-04;
   }
 
   &.in-progress {
+    cursor: not-allowed;
     background: $color-gray-02;
     color: $color-gray-04;
 
