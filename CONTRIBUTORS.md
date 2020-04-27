@@ -49,6 +49,7 @@ Drawing:
   * 3D viewport
 
 Refinement:
+  * Icon sizes
   * Make custom select components scrollable
   * Light/dark themes
   * Animations

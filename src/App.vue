@@ -2,7 +2,7 @@
   <div id="app">
     <div class="input-row">
       <c-button>Hello</c-button>
-      <c-button><plus /></c-button>
+      <c-button><c-icon type="plus" size="lg" /></c-button>
       <c-button :play="true">Hello</c-button>
       <c-button :play="true" :progress="50">Hello</c-button>
       <c-button @click="showModal = true">Click for modal</c-button>
@@ -15,8 +15,19 @@
         This is modal content.
       </c-modal>
     </div>
-    <div class="input-row">
-      An inline icon: <c-icon type="play" />
+    <div>
+      <p class="xs-font">XS size font: <c-icon type="play" /></p>
+      <p class="sm-font">SM size font: <c-icon type="play" /></p>
+      <p class="base-font">Base size font: <c-icon type="play" /></p>
+      <p class="lg-font">LG size font: <c-icon type="play" /></p>
+      <p class="xl-font">XL size font: <c-icon type="play" /></p>
+      <p>
+        <c-icon type="hand" size="xs" />
+        <c-icon type="hand" size="sm" />
+        <c-icon type="hand" size="md" />
+        <c-icon type="hand" size="lg" />
+        <c-icon type="hand" size="xl" />
+      </p>
     </div>
     <div class="input-row">
       <c-text-input
@@ -111,6 +122,22 @@
         />
       </c-table>
     </div>
+    <div>
+      <c-toolbar v-model="currentTool">
+        <c-tool-group>
+          <c-tool name="Select" tool-id="select" icon="pointer-outline" default />
+          <c-tool name="Pan" tool-id="pan" icon="hand" />
+          <c-tool name="Pen" tool-id="pen" icon="pen" />
+        </c-tool-group>
+        <c-tool-group>
+          <c-tool name="Run" tool-id="play" icon="play" />
+          <c-tool name="Pause" tool-id="pause" icon="pause" />
+          <c-tool name="Chamfer" tool-id="chamfer">
+            <chamfer />
+          </c-tool>
+        </c-tool-group>
+      </c-toolbar>
+    </div>
     <div class="tab-container">
       <c-tab-switcher
         tab-position="top"
@@ -164,10 +191,8 @@
         <c-panel-section>
           Content.
           <div v-if="switched">Dynamic content</div>
-          <div>
-            <c-panel-link link-to="a">Drill Down</c-panel-link>
-            <c-panel-link link-to="b">A different menu</c-panel-link>
-          </div>
+          <c-panel-link link-to="a">Drill Down</c-panel-link>
+          <c-panel-link link-to="b">A different menu</c-panel-link>
         </c-panel-section>
         <c-panel-section>
           Some more content.
@@ -222,11 +247,12 @@ import CRadio from '@/components/Radio';
 import CSearchSelect from '@/components/SearchSelect';
 import CMultiSelect from '@/components/MultiSelect';
 import CModal from '@/components/Modal';
+import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
 import { CTable, CColumn } from '@/components/Table';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
 import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/PanelSlider';
 import CMasonry from '@/components/Masonry';
-import Plus from '@/assets/icons/plus.svg';
+import Chamfer from '@/assets/icons/chamfer.svg';
 
 
 export default {
@@ -244,6 +270,9 @@ export default {
     CCheckbox,
     CRadio,
     CModal,
+    CToolbar,
+    CToolGroup,
+    CTool,
     CTable,
     CColumn,
     CTabSwitcher,
@@ -253,8 +282,8 @@ export default {
     CPanel,
     CPanelLink,
     CPanelSection,
-    Plus,
     CMasonry,
+    Chamfer,
   },
   data() {
     return {
@@ -271,6 +300,7 @@ export default {
       showModal: false,
       switched: true,
       switched2: true,
+      currentTool: 'select',
     };
   },
   computed: {
@@ -336,6 +366,10 @@ export default {
   margin-top: 60px;
 }
 
+p {
+  display: block;
+}
+
 .concrete-button {
   margin-right: 0.5rem;
 }
@@ -349,6 +383,26 @@ export default {
 
 .tab-interior {
   padding: 1rem;
+}
+
+.xs-font {
+  font-size: $text-xs;
+}
+
+.sm-font {
+  font-size: $text-sm;
+}
+
+.base-font {
+  font-size: $text-base;
+}
+
+.lg-font {
+  font-size: $text-lg;
+}
+
+.xl-font {
+  font-size: $text-xl;
 }
 
 </style>
