@@ -36,7 +36,6 @@ Components to do:
   * Layout frames
   * Expanding/minimizing viewports
   * Tooltip
-  * Toolbar
   * Color picker
   * Pagination
   * Data tree?
@@ -52,7 +51,7 @@ Refinement:
   * Icon sizes
   * Make custom select components scrollable
   * Light/dark themes
-  * Animations
+  * Add labels to toolbar, select default on 'esc'
   * Compact versions of tables/inputs/etc.
   * validations -- red highlight, error message
   * Add confirmation buttons to modal
