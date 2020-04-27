@@ -136,16 +136,23 @@ export {
   width: 100%;
   height: 100%;
   overflow: auto;
-  transition: opacity .15s ease .15s, visibility 0s linear .15s, transform .15s ease-in .15s;
+  transition: opacity .1s ease .1s,
+              visibility 0s linear .1s,
+              left .1s ease-in .1s;
   transform: translate(0, 0);
+  left: 0;
   opacity: 1;
   visibility: visible;
 
   &.hide {
-    transition: opacity .15s ease 0s, visibility 0s linear .15s, transform .15s ease-in 0s;
+    transition: opacity .1s ease 0s,
+                visibility 0s linear .1s,
+                transform .1s ease-in 0s,
+                left 0s linear .2s;
     opacity: 0;
-    transform: translate(-100%, 0);
+    transform: translate(15%, 0);
     visibility: hidden;
+    left: -30%;
   }
 }
 
