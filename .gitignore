@@ -2,7 +2,8 @@
 node_modules
 /dist
 storybook-static
-docs/.vuepress/public/storybook/
+docs/.vuepress/dist/
+
 
 # local env files
 .env.local

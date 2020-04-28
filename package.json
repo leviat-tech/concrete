@@ -8,7 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "npm run storybook:build && vuepress build docs",
+    "docs:build": "vuepress build docs && npm run storybook:build",
     "storybook:dev": "vue-cli-service storybook:serve -p 6006 -c .storybook -s ./public/images",
     "storybook:build": "vue-cli-service storybook:build -c .storybook -s ./public/images -o docs/.vuepress/dist/storybook/"
   },
