@@ -29,7 +29,7 @@
 export default {
   name: 'CRadio',
   props: {
-    label: { type: String, default: '' },
+    label: { type: String, default: null },
     value: { type: [String, Number, Boolean], default: null },
     options: { type: Array, default: () => [] },
     disabled: { type: Boolean, default: false },
@@ -53,7 +53,6 @@ export default {
   methods: {
     handleChange() {
       this.$emit('change-value', this.localValue);
-      this.$emit('update', this.localValue);
       this.$emit('input', this.localValue);
     },
   },

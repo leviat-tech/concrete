@@ -1,6 +1,6 @@
 # Button
 
-Simple button component. The button will emit 'click' events when clicked, and 'cancel' events when an action is canceled.
+Simple button component. 
 
 ### Size Variants 
 
@@ -80,7 +80,7 @@ If a number between 0-100 is passed to the `progress` prop, the button will indi
 </c-button>
 ```
 
-### Attributes
+### Props
 
 | Name       | Type    | Default | Options               |
 | ---------- | --------| ------- | --------------------- |

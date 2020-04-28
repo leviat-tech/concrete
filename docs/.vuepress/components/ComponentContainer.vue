@@ -26,6 +26,7 @@ export default {
 }
 
 .container-interior {
+  box-sizing: border-box;
   text-align: center;
   border: $border-sm solid $color-gray-04;
   border-radius: 0.5rem;

@@ -7,17 +7,11 @@ const sidebars = {
       path: '/',
     },
     {
-      title: 'Buttons',
-      path: '/components/button',
-    },
-    {
-      title: 'Icons',
-      path: '/components/icons',
-    },
-    {
-      title: 'Input',
+      title: 'Simple Components',
       collapsable: false,
       children: [
+        '/components/button',
+        '/components/icons',
         '/components/text-input',
         '/components/quantity-input',
         '/components/select',

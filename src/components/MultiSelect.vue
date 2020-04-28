@@ -84,9 +84,9 @@ export default {
   },
   props: {
     options: { type: Array, default: () => [] },
-    placeholder: { type: String, default: 'Select Options' },
+    placeholder: { type: String, default: 'Select options' },
     value: { type: Array, default: () => [] },
-    label: { type: String, default: '' },
+    label: { type: String, default: null },
     disabled: { type: Boolean, default: false },
     icon: { type: String, default: 'plus' },
   },
@@ -122,16 +122,11 @@ export default {
     },
   },
   methods: {
-    changeValue(value) {
-      this.$emit('change-value', value);
-      this.displaySearchInput = false;
-    },
     removeSelection(value, e) {
       e.stopPropagation();
       const index = this.localValue.indexOf(value);
       this.localValue.splice(index, 1);
       this.$emit('input', this.localValue);
-      this.$emit('update', this.localValue);
     },
     handleFocus() {
       this.showOptions = true;
@@ -147,7 +142,6 @@ export default {
     handleSelect(option) {
       this.localValue.push(option.value);
       this.$emit('input', this.localValue);
-      this.$emit('update', this.localValue);
       this.searchText = '';
       this.handleBlur();
       this.arrowCounter = this.filteredOptions

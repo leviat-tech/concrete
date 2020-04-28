@@ -10,7 +10,7 @@
     <div class="concrete-input concrete" :class="{ focused }">
       <input
         ref="input"
-        v-model="localText"
+        v-model="searchText"
         type="text"
         :placeholder="localPlaceholder"
         :disabled="disabled"
@@ -41,7 +41,7 @@
           @mousedown="handleSelect(option)"
         >
           <div class="option-check">
-            <c-icon v-if="value === option.value" type="check" />
+            <c-icon v-if="localValue === option.value" type="check" />
             <div v-else>&nbsp;</div>
           </div>
           <div>
@@ -62,19 +62,19 @@ export default {
   components: { CIcon },
   props: {
     options: { type: Array, default: () => [] },
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: 'Please select one' },
     label: { type: String, default: null },
-    text: { type: String, default: '' },
-    value: { type: Number, default: null },
+    value: { type: [String, Number], default: null },
     externalFilter: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     icon: { type: String, default: 'chevron-down' },
   },
   data() {
     return {
-      selected: null,
+      localValue: this.value,
+      localLabel: null,
       focused: false,
-      localText: '',
+      searchText: '',
       localPlaceholder: '',
       arrowCounter: -1,
       showOptions: false,
@@ -84,7 +84,7 @@ export default {
     filteredOptions() {
       if (this.externalSort) return this.options;
       return this.options.filter((o) => o.label.toLowerCase()
-        .includes(this.localText.toLowerCase()));
+        .includes(this.searchText.toLowerCase()));
     },
   },
   watch: {
@@ -93,19 +93,15 @@ export default {
       handler() {
         const option = this.options.find((o) => o.value === this.value);
         if (option) {
-          this.selected = option.label;
-          this.localText = option.label;
+          this.localValue = option.value;
+          this.localLabel = option.label;
+          this.searchText = option.label;
         } else if (!this.disabled) {
-          this.selected = null;
+          this.localValue = null;
+          this.localLabel = null;
           this.localPlaceholder = this.placeholder;
-          this.localText = '';
+          this.searchText = '';
         }
-      },
-    },
-    text: {
-      immediate: true,
-      handler() {
-        this.localText = this.text;
       },
     },
   },
@@ -117,36 +113,37 @@ export default {
   methods: {
     handleFocus() {
       this.focused = true;
-      this.localText = '';
+      this.searchText = '';
       if (this.externalFilter) {
         this.$emit('search', '');
       }
       this.showOptions = true;
-      this.localPlaceholder = this.selected || this.placeholder;
+      this.localPlaceholder = this.localLabel || this.placeholder;
     },
     handleBlur() {
       this.focused = false;
       if (this.externalFilter) {
         this.$emit('blur');
       }
-      if (this.selected) {
+      if (this.localLabel) {
         this.localPlaceholder = '';
-        this.localText = this.selected;
+        this.searchText = this.localLabel;
       } else {
         this.localPlaceholder = this.placeholder;
-        this.localText = '';
+        this.searchText = '';
       }
       this.showOptions = false;
     },
     handleChange() {
       if (this.externalFilter) {
-        this.$emit('search', this.localText);
+        this.$emit('search', this.searchText);
       }
     },
     handleSelect(option) {
+      this.localValue = option.value;
       this.$emit('input', option.value);
-      this.selected = option.label;
-      this.localText = option.label;
+      this.localLabel = option.label;
+      this.searchText = option.label;
       this.showOptions = false;
       this.arrowCounter = this.options
         .map((o) => o.value)

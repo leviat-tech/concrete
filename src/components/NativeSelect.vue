@@ -74,7 +74,6 @@ export default {
   methods: {
     handleChange() {
       this.$emit('change-value', this.localValue);
-      this.$emit('update', this.localValue);
       this.$emit('input', this.localValue);
     },
   },

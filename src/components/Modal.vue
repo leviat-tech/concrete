@@ -45,6 +45,10 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/variables.scss';
 
+.concrete-modal-background * {
+  box-sizing: border-box;
+}
+
 .concrete-modal-background {
   z-index: 50;
   position: fixed;

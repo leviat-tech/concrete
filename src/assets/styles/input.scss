@@ -1,10 +1,15 @@
 @import './variables.scss';
 
 .concrete-select-row {
+  text-align: left;
   box-sizing: border-box;
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.concrete-select-row * {
+  box-sizing: border-box;
 }
 
 .concrete-input-label {

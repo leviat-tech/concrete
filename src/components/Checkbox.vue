@@ -47,7 +47,6 @@ export default {
   methods: {
     handleChange() {
       this.$emit('change-value', this.localValue);
-      this.$emit('update', this.localValue);
       this.$emit('input', this.localValue);
     },
   },
@@ -58,6 +57,7 @@ export default {
 @import '../assets/styles/input.scss';
 
 .concrete-checkbox {
+  text-align: left;
   max-width: 28rem;
   width: 100%;
 }

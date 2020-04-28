@@ -20,7 +20,7 @@
         <template v-if="selected.image">
           &nbsp;
         </template>
-        <c-icon v-else type="generic-image" class="concrete-image generic" />
+        <c-icon v-else type="image" class="concrete-image generic" />
       </div>
       <label v-if="selected.label">
         {{ selected.label }}
@@ -66,7 +66,7 @@
             @mousedown="handleSelect(option)"
           >
             <div class="option-check">
-              <c-icon v-if="value === option.value" type="check" />
+              <c-icon v-if="localValue === option.value" type="check" />
               <div v-else>&nbsp;</div>
             </div>
             <div
@@ -154,7 +154,6 @@ export default {
       this.localValue = option.value;
       this.$emit('change-value', this.localValue);
       this.$emit('input', this.localValue);
-      this.$emit('update', this.localValue);
       this.searchText = '';
       this.handleBlur();
       this.arrowCounter = this.filteredOptions
