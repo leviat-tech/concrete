@@ -7,10 +7,10 @@
     "build-bundle": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "storybook:build": "vue-cli-service storybook:build -c .storybook -s ./public/images -o docs/.vuepress/dist/storybook/",
-    "storybook:dev": "vue-cli-service storybook:serve -p 6006 -c .storybook -s ./public/images",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "npm run storybook:build && vuepress build docs",
+    "storybook:dev": "vue-cli-service storybook:serve -p 6006 -c .storybook -s ./public/images",
+    "storybook:build": "vue-cli-service storybook:build -c .storybook -s ./public/images -o docs/.vuepress/dist/storybook/"
   },
   "main": "./dist/concrete.common.js",
   "dependencies": {

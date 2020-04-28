@@ -15,6 +15,7 @@
       <div
         v-if="showImage"
         class="concrete-image-container"
+        :class="imageSize"
         :style="{ 'background-image': `url('${selected.image}')` }"
       >
         <template v-if="selected.image">
@@ -72,6 +73,7 @@
             <div
               v-if="showImage"
               class="concrete-image-container"
+              :class="imageSize"
               :style="{ 'background-image': `url('${option.image}')` }"
             >
               &nbsp;
@@ -97,6 +99,7 @@ export default {
     options: { type: Array, default: () => [] },
     placeholder: { type: String, default: 'Please select one' },
     showImage: { type: Boolean, default: false },
+    imageSize: { type: String, default: 'md' },
     sortSections: { type: Boolean, default: false },
     showSections: { type: Boolean, default: false },
     label: { type: String, default: null },
@@ -206,12 +209,17 @@ export default {
 
 .concrete-image-container {
   margin: 0.5rem;
+  flex: none;
   width: 5rem;
   height: 2rem;
   margin-right: 1rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+
+  &.sm {
+    width: 2rem;
+  }
 
   .concrete-image {
     &.generic {

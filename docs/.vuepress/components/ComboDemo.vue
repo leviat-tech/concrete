@@ -40,13 +40,14 @@
               />
               <c-select
                 label="Select"
-                placeholder="Select"
+                placeholder="Select one"
                 show-image
+                image-size="sm"
                 :options="[
                   {
                     section: 'Screws',
                     image: '/images/socket-head-screw.png',
-                    label: 'Socket Head',
+                    label: 'Socket Hd.',
                     value: 1
                   },
                   { 
@@ -64,7 +65,7 @@
                   {
                     section: 'Screws',
                     image: '/images/round-head-screw.png',
-                    label: 'Round Head',
+                    label: 'Round Hd.',
                     value: 4
                   }
                 ]"
