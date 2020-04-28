@@ -28,13 +28,14 @@
 }
 
 .concrete-input {
+  min-width: 0;
   border: $border-sm solid;
   border-color: $color-gray-03;
   border-radius: $radius;
   background-color: $color-gray-01;
   max-width: 28rem;
   min-height: 2.25rem;
-  width: 100%;
+  flex: 1 1 0%;
   position: relative;
   display: flex;
   align-items: center;
@@ -46,14 +47,15 @@
   }
 
   select, input {
+    min-width: 0;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
     height: 2rem;
     font-size: $text-base;
     appearance: none;
-    width: 100%;
     background-color: transparent;
     border: none;
+    flex: 1 1 0%;
 
     &:invalid {
       color: $color-gray-07;

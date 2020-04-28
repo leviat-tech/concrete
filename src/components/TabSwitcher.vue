@@ -123,6 +123,11 @@ export {
   height: 100%;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+}
+
+.concrete-tab-switcher * {
+  box-sizing: border-box;
 }
 
 .concrete-tab-content {
@@ -168,11 +173,12 @@ export {
   }
 
   .label {
+    height: 3rem;
+    line-height: 3rem;
+    cursor: pointer;
     font-size: $text-sm;
     width: 100%;
     text-align: center;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
     border-right: $border-sm solid $color-gray-04;
 
     &:last-of-type {
@@ -181,6 +187,10 @@ export {
 
     &:hover, &.active {
       background-color: $color-gray-01;
+    }
+
+    &.active {
+      font-weight: bold;
     }
   }
 }

@@ -60,7 +60,7 @@ const CPanelLink = {
 const CPanel = {
   name: 'CPanel',
   props: {
-    panelId: { type: String, default: null },
+    panelId: { type: String, required: true },
     title: { type: String, default: '' },
   },
   methods: {
@@ -147,23 +147,25 @@ const CPanelSlider = {
 
     return (
       <div class="concrete-panel-container">
-        <div class="concrete-panel">
+        <div class="concrete-panel-title-wrapper">
           <TitleBar
             title={panelList.title}
             back={panelList.back}
             vOn:go-back={this.goBack}
           />
         </div>
-        <div
-          class="concrete-panel-content-container"
-          style={`transform: translate(-${depth * 100}%, 0)`}
-        >
-          <div class="concrete-panel-content">
-            { rootContents }
+        <div class="concrete-panel-content-wrapper">
+          <div
+            class="concrete-panel-content-container"
+            style={`transform: translate(-${depth * 100}%, 0)`}
+          >
+            <div class="concrete-panel-content">
+              { rootContents }
+            </div>
+            {
+              panelList.vnodes
+            }
           </div>
-          {
-            panelList.vnodes
-          }
         </div>
       </div>
     );
@@ -183,6 +185,29 @@ export {
 <style lang="scss">
 @import '../assets/styles/variables.scss';
 
+.concrete-panel-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.concrete-panel-container * {
+  box-sizing: border-box;
+}
+
+.concrete-panel-title-wrapper {
+  flex: none;
+}
+
+.concrete-panel-content-wrapper {
+  flex: 1 1 0%;
+  overflow: auto;
+}
+
 .concrete-panel-titlebar {
   position: relative;
   font-size: $text-base;
@@ -190,9 +215,10 @@ export {
   text-align: center;
   font-weight: bold;
   background-color: $color-gray-01;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  height: 3rem;
+  box-sizing: content-box;
   border-bottom: $border-sm solid $color-gray-04;
+  line-height: 3rem;
 }
 
 .concrete-panels-hidden {
@@ -220,8 +246,6 @@ export {
 .concrete-panel-back {
   position: absolute;
   height: 1rem;
-  top: 50%;
-  margin-top: -0.5rem;
   padding-left: 1rem;
   cursor: pointer;
   font-size: $text-sm;
@@ -231,12 +255,6 @@ export {
   .svg-inline {
     margin-right: 0.5rem;
   }
-}
-
-.concrete-panel-container {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
 }
 
 .concrete-panel-content-container {

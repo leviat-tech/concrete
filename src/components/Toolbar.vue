@@ -60,6 +60,7 @@ const CToolbar = {
   props: {
     value: { type: String, default: null },
     showToolNames: { type: Boolean, default: false },
+    defaultTool: { type: String, default: null },
   },
   data() {
     return {
@@ -91,13 +92,19 @@ export default CToolbar;
 export { CToolbar, CToolGroup, CTool };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/styles/variables.scss';
 
 .concrete-toolbar {
   padding: .25rem;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
+  height: 3rem;
+}
+
+.concrete-toolbar * {
+  box-sizing: border-box;
 }
 
 .concrete-toolbar > * + * {
@@ -106,16 +113,16 @@ export { CToolbar, CToolGroup, CTool };
   border-left: $border-sm solid $color-gray-04;
 }
 
-.concrete-toolbar-group {
+/deep/ .concrete-toolbar-group {
   display: flex;
   align-items: center;
 }
 
-.concrete-toolbar-group > * + * {
+/deep/ .concrete-toolbar-group > * + * {
   margin-left: .25rem;
 }
 
-.concrete-toolbar-tool {
+/deep/ .concrete-toolbar-tool {
   min-width: 2rem;
   height: 2rem;
   line-height: 2rem;

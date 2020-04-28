@@ -32,7 +32,10 @@
         <td
           v-for="(column, idx2) in columns"
           :key="'prop' + idx2"
-          @click="$emit('click', datum)"
+          @click="$emit(
+            'click',
+            { row: datum, cell: { prop: column.prop, value: get(datum, column.prop)} },
+          )"
         >
           <table-cell
             v-if="column.$scopedSlots.default"
@@ -93,7 +96,7 @@ const CTable = {
     CIcon,
   },
   props: {
-    data: { type: Array, required: true },
+    data: { type: Array, default: () => [] },
     emptyText: { type: String, default: 'No data available' },
     initialSort: { type: Object, default: () => ({ direction: 'asc', prop: null }) },
     sortable: { type: Boolean, default: true },
@@ -160,7 +163,12 @@ export { CTable, CColumn };
   width: 100%;
 }
 
+.concrete-table-container * {
+  box-sizing: border-box;
+}
+
 .concrete-table {
+  display: table;
   width: 100%;
   margin-bottom: 1rem;
   table-layout: auto;

@@ -13,7 +13,7 @@ import CTextInput from '@/components/TextInput';
 import CMasonry from '@/components/Masonry';
 import { CTable, CColumn } from '@/components/Table';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
-import { CPanelSlider, CPanel, CPanelLink } from '@/components/PanelSlider';
+import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/PanelSlider';
 import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
 import CAlert from '@/components/alert';
 
@@ -39,6 +39,7 @@ const components = [
   CPanelSlider,
   CPanelLink,
   CPanel,
+  CPanelSection,
   CToolbar,
   CToolGroup,
   CTool,
@@ -80,6 +81,7 @@ export {
   CPanelSlider,
   CPanelLink,
   CPanel,
+  CPanelSection,
   CToolbar,
   CToolGroup,
   CTool,

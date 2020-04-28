@@ -3,8 +3,12 @@ const path = require('path');
 const sidebars = {
   components: [
     {
-      title: 'Installation',
+      title: 'Introduction',
       path: '/',
+    },
+    {
+      title: 'Getting Started',
+      path: '/installation',
     },
     {
       title: 'Simple Components',

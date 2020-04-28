@@ -223,6 +223,8 @@ export default {
 }
 
 .concrete-select-options {
+  z-index: 30;
+
   .section-header {
     margin-top: 1.5rem;
     padding: 0.5rem;

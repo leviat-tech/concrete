@@ -125,7 +125,7 @@
     <div>
       <c-toolbar v-model="currentTool">
         <c-tool-group>
-          <c-tool name="Select" tool-id="select" icon="pointer-outline" default />
+          <c-tool name="Select" tool-id="select" icon="pointer-outline" default-tool />
           <c-tool name="Pan" tool-id="pan" icon="hand" />
           <c-tool name="Pen" tool-id="pen" icon="pen" />
         </c-tool-group>
