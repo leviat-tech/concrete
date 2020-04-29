@@ -98,9 +98,10 @@ export { CToolbar, CToolGroup, CTool };
 .concrete-toolbar {
   padding: .25rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   box-sizing: border-box;
-  height: 3rem;
+  min-height: 3rem;
 }
 
 .concrete-toolbar * {

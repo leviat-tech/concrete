@@ -17,11 +17,27 @@
             <c-tool name="Pause" tool-id="pause" icon="pause" />
           </c-tool-group>
         </c-toolbar>
-        <c-button @click="showModal = true">Click me</c-button>
+        <c-button @click="showModal = true" class="show-modal-button">Click&nbsp;me</c-button>
       </div>
     </div>
-    <div class="sidebar-container">
-      <c-tab-switcher tab-position="bottom">
+    <div
+      class="sidebar-container"
+      :class="{ 'show-sidebar': showSidebar }"
+    >
+      <button
+        class="show-sidebar-button"
+        @click="showSidebar = !showSidebar"
+      >
+        <c-icon
+          :type="showSidebar ? 'chevron-right' : 'chevron-left'"
+          size="lg"
+        />
+      </button>
+      <c-tab-switcher
+        tab-position="bottom"
+        class="tab-switcher"
+        :class="{ 'show-sidebar': showSidebar }"
+      >
         <template v-slot:labels>
           <c-tab-label>Inputs</c-tab-label>
           <c-tab-label>Nested Menus</c-tab-label>
@@ -163,7 +179,8 @@ export default {
   name: 'ComboDemo',
   data() {
     return {
-      showModal: false
+      showModal: false,
+      showSidebar: false,
     }
   }
 }
@@ -181,26 +198,74 @@ export default {
   border: $border-sm solid $color-gray-04;
   border-radius: 0.5rem;
   overflow: hidden;
+  position: relative;
 }
 
 .main-content {
   flex-grow: 1;
 }
 
+.show-modal-button {
+  margin: .25rem .5rem .25rem .5rem; 
+}
+
 .toolbar-container {
   border-bottom: $border-sm solid $color-gray-04;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-right: .5rem;
   box-sizing: border-box;
 }
 
 .sidebar-container {
+  display: flex;
   flex: none;
-  width: 20rem;
+  width: 1.5rem;
   border-left: $border-sm solid $color-gray-04;
+
+  &.show-sidebar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 640px) {
+    width: 20rem;
+  }
+}
+
+.show-sidebar-button {
+  height: 100%;
+  width: 1.5rem;
+  padding: 0;
+  text-align: center;
+  flex: none;
+  background-color: white;
+
+  &:hover {
+    background-color: $color-gray-01;
+  }
+
+  @media (min-width: 640px) {
+    display: none;
+  }
+}
+
+.tab-switcher {
+  display: none;
+  flex: 1 1 0%;
+
+  &.show-sidebar {
+    display: flex;
+  }
+
+  @media (min-width: 640px) {
+    flex: none;
+    width: 20rem;
+    display: flex;
+  }
 }
 
 /deep/ .concrete-input-label.concrete {

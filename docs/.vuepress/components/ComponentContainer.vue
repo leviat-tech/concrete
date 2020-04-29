@@ -30,7 +30,7 @@ export default {
   text-align: center;
   border: $border-sm solid $color-gray-04;
   border-radius: 0.5rem;
-  padding: 4rem 2rem 4rem 2rem;
+  padding: 3rem 2rem 3rem 2rem;
 
   &.light {
     background-color: $color-white;
@@ -44,6 +44,16 @@ export default {
 .container-interior > * + * {
   margin-left: 1rem;
   margin-top: 1rem;
+}
+
+/deep/ .concrete-select-row {
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 </style>

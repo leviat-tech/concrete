@@ -65,7 +65,7 @@ export default {
   padding: 4rem 2rem 4rem 2rem;
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
   column-gap: 1rem;
   row-gap: 2rem;
 
@@ -76,6 +76,7 @@ export default {
   &.dark {
     background-color: $color-gray-10;
   }
+
 }
 
 .icon-thumbnail {

@@ -34,9 +34,13 @@
 
 .container {
   margin: 0 auto;
-  width: 25rem;
+  width: 100%;
   height: 25rem;
   border: $border-sm solid $color-gray-04;
+
+  @media (min-width: 640px) {
+    width: 25rem;
+  }
 }
 
 </style>

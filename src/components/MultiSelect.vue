@@ -14,20 +14,22 @@
         :class="{focused}"
         @click="handleFocus"
       >
-        <div
-          v-for="selection in selected"
-          :key="selection.value"
-          class="selected"
-        >
-          <label> {{ selection.label }} </label>
-          <c-icon
-            type="times-circle"
-            class="icon"
-            @click="removeSelection(selection.value, $event)"
-          />
+        <div v-if="selected.length > 0" class="concrete-selected-container">
+          <div
+            v-for="selection in selected"
+            :key="selection.value"
+            class="selected"
+          >
+            <label> {{ selection.label }} </label>
+            <c-icon
+              type="times-circle"
+              class="icon"
+              @click="removeSelection(selection.value, $event)"
+            />
+          </div>
         </div>
 
-        <span v-if="selected.length === 0" class="concrete-placeholder">
+        <span v-else class="concrete-placeholder">
           {{ placeholder }}
         </span>
 
@@ -181,11 +183,8 @@ export default {
   width: 100%;
 
   .concrete-input {
-    padding-left: 0.25rem;
-    padding-right: 2rem;
-    padding-top: 0.25rem;
+    padding: 0.25rem;
     display: flex;
-    flex-wrap: wrap;
 
     &.focused {
       border-radius: 0.25rem 0.25rem 0px 0px;
@@ -220,6 +219,12 @@ export default {
   }
 }
 
+.concrete-selected-container {
+  flex: 1 1 0%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 .concrete-select-options {
   left: 0;
@@ -232,12 +237,10 @@ export default {
   background-color: $color-blue;
   color: $color-white;
   border-radius: $radius;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0.15rem;
-  padding-bottom: 0.15rem;
-  margin-bottom: 0.25rem;
+  padding: 0.15rem 0.5rem 0.15rem 0.5rem;
   margin-right: 0.25rem;
+  margin-top: 0.125rem;
+  margin-bottom: 0.125rem;
 
   label {
     margin-left: 0.25rem;

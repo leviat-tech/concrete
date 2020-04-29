@@ -23,10 +23,10 @@
         </template>
         <c-icon v-else type="image" class="concrete-image generic" />
       </div>
-      <label v-if="selected.label">
+      <label v-if="selected.label" class="concrete-select-text">
         {{ selected.label }}
       </label>
-      <label v-else class="concrete-placeholder">
+      <label v-else class="concrete-placeholder concrete-select-text">
         {{ placeholder }}
       </label>
       <input
@@ -34,6 +34,7 @@
         v-model="searchText"
         class="concrete-hidden-input"
         type="text"
+        inputmode="none"
         @blur="handleBlur"
         @keydown.down="handleKeyDown"
         @keydown.up="handleKeyUp"
@@ -78,7 +79,7 @@
             >
               &nbsp;
             </div>
-            <div>
+            <div class="concrete-option-label">
               {{ option.label }}
             </div>
           </li>
@@ -228,6 +229,12 @@ export default {
       color: $color-gray-04;
     }
   }
+}
+
+.concrete-select-text, .concrete-option-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .concrete-select-options {
