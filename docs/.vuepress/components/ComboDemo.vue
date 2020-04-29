@@ -26,6 +26,7 @@
     >
       <button
         class="show-sidebar-button"
+        :class="{ 'show-sidebar': showSidebar }"
         @click="showSidebar = !showSidebar"
       >
         <c-icon
@@ -229,6 +230,8 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
+    border-left: 0;
+    background-color: $color-white;
   }
 
   @media (min-width: 640px) {
@@ -237,15 +240,26 @@ export default {
 }
 
 .show-sidebar-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
   height: 100%;
   width: 1.5rem;
   padding: 0;
   text-align: center;
   flex: none;
-  background-color: white;
+  background-color: $color-white;
+
+  &.show-sidebar {
+    border-right: $border-sm solid $color-gray-04;
+  }
 
   &:hover {
     background-color: $color-gray-01;
+  }
+
+  &:active {
+    background-color: $color-gray-02;
   }
 
   @media (min-width: 640px) {
