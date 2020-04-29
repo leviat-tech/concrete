@@ -1,16 +1,16 @@
 <template>
-  <div class="concrete-select-row row">
+  <div class="concrete-select-row concrete">
     <div
       v-if="label !== null"
-      class="concrete-input-label label"
+      class="concrete-input-label concrete"
       :class="{ disabled }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input input" :class="{ focused }">
+    <div class="concrete-input concrete" :class="{ focused }">
       <input
         ref="input"
-        v-model="localText"
+        v-model="searchText"
         type="text"
         :placeholder="localPlaceholder"
         :disabled="disabled"
@@ -19,11 +19,13 @@
         @keydown.down="handleKeyDown"
         @keydown.up="handleKeyUp"
         @keydown.enter="handleKeyEnter"
+        @keydown.esc="handleKeyEsc"
         @blur="handleBlur"
       >
       <div class="concrete-input-icon">
-        <plus
-          v-if="!disabled && !!icon"
+        <c-icon
+          v-if="!disabled"
+          :type="icon"
           @click="$emit('click-icon')"
         />
       </div>
@@ -32,14 +34,14 @@
         class="concrete-select-options"
       >
         <li
-          v-for="(option, index) in options"
+          v-for="(option, index) in filteredOptions"
           :key="index"
           class="option"
           :class="{ keyed: index === arrowCounter }"
           @mousedown="handleSelect(option)"
         >
           <div class="option-check">
-            <check v-if="value === option.value" />
+            <c-icon v-if="localValue === option.value" type="check" />
             <div v-else>&nbsp;</div>
           </div>
           <div>
@@ -52,59 +54,38 @@
 </template>
 
 <script>
-import Plus from '../assets/plus.svg';
-import Check from '../assets/check.svg';
+import CIcon from '@/components/Icon';
 
 
 export default {
-  name: 'ConcreteSearchSelect',
-  components: {
-    Plus,
-    Check,
-  },
+  name: 'CSearchSelect',
+  components: { CIcon },
   props: {
-    options: {
-      type: Array,
-      default: () => [],
-    },
-    placeholder: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: null,
-    },
-    text: {
-      type: String,
-      default: '',
-    },
-    value: {
-      type: Number,
-      default: null,
-    },
-    fill: {
-      type: String,
-      default: 'outline',
-    },
-    icon: {
-      type: String,
-      default: 'plus',
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
+    options: { type: Array, default: () => [] },
+    placeholder: { type: String, default: 'Please select one' },
+    label: { type: String, default: null },
+    value: { type: [String, Number], default: null },
+    externalFilter: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
+    icon: { type: String, default: 'chevron-down' },
   },
   data() {
     return {
-      selected: null,
+      localValue: this.value,
+      localLabel: null,
       focused: false,
-      localText: '',
+      searchText: '',
       localPlaceholder: '',
       arrowCounter: -1,
       showOptions: false,
     };
+  },
+  computed: {
+    filteredOptions() {
+      if (this.externalSort) return this.options;
+      return this.options.filter((o) => o.label.toLowerCase()
+        .includes(this.searchText.toLowerCase()));
+    },
   },
   watch: {
     value: {
@@ -112,19 +93,15 @@ export default {
       handler() {
         const option = this.options.find((o) => o.value === this.value);
         if (option) {
-          this.selected = option.label;
-          this.localText = option.label;
+          this.localValue = option.value;
+          this.localLabel = option.label;
+          this.searchText = option.label;
         } else if (!this.disabled) {
-          this.selected = null;
+          this.localValue = null;
+          this.localLabel = null;
           this.localPlaceholder = this.placeholder;
-          this.localText = '';
+          this.searchText = '';
         }
-      },
-    },
-    text: {
-      immediate: true,
-      handler() {
-        this.localText = this.text;
       },
     },
   },
@@ -136,30 +113,37 @@ export default {
   methods: {
     handleFocus() {
       this.focused = true;
-      this.localText = '';
-      this.$emit('search', '');
+      this.searchText = '';
+      if (this.externalFilter) {
+        this.$emit('search', '');
+      }
       this.showOptions = true;
-      this.localPlaceholder = this.selected || this.placeholder;
+      this.localPlaceholder = this.localLabel || this.placeholder;
     },
     handleBlur() {
       this.focused = false;
-      this.$emit('blur');
-      if (this.selected) {
+      if (this.externalFilter) {
+        this.$emit('blur');
+      }
+      if (this.localLabel) {
         this.localPlaceholder = '';
-        this.localText = this.selected;
+        this.searchText = this.localLabel;
       } else {
         this.localPlaceholder = this.placeholder;
-        this.localText = '';
+        this.searchText = '';
       }
       this.showOptions = false;
     },
     handleChange() {
-      this.$emit('search', this.localText);
+      if (this.externalFilter) {
+        this.$emit('search', this.searchText);
+      }
     },
     handleSelect(option) {
+      this.localValue = option.value;
       this.$emit('input', option.value);
-      this.selected = option.label;
-      this.localText = option.label;
+      this.localLabel = option.label;
+      this.searchText = option.label;
       this.showOptions = false;
       this.arrowCounter = this.options
         .map((o) => o.value)
@@ -182,6 +166,9 @@ export default {
       }
       this.$refs.input.blur();
     },
+    handleKeyEsc() {
+      this.$refs.input.blur();
+    },
   },
 };
 </script>
@@ -189,32 +176,5 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
 
-.concrete-select-options {
-  @include shadow;
-  background-color: $color-gray-02;
-  border: $border-sm solid $color-gray-04;
-  width: 100%;
-  position: absolute;
-  list-style-type: none;
-  top: 1rem;
-  padding-left: 0;
-
-  .option {
-    display: flex;
-    align-items: center;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.5rem;
-
-    &:hover, &.keyed {
-      background-color: $color-blue-highlight;
-      color: white;
-    }
-
-    .option-check {
-      width: 1rem;
-    }
-  }
-}
 
 </style>

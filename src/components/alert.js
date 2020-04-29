@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import CAlertbox from './Alertbox.vue';
+import CAlertbox from '@/components/Alertbox';
 
 // Largely cribbed from:
 // https://github.com/ElemeFE/element/blob/dev/packages/message/src/main.js

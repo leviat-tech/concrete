@@ -1,5 +1,6 @@
-import CModal from '../components/Modal.vue';
-import CButton from '../components/Button.vue';
+import CModal from '../../src/components/Modal.vue';
+import CButton from '../../src/components/Button.vue';
+import alert from '../../src/components/alert';
 
 
 export default {
@@ -50,6 +51,22 @@ export const Modal = () => ({
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et <span class="red-text">dolore magna aliqua</span>.</p>
       <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </c-modal>
+  </div>
+  `,
+});
+
+export const Alertbox = () => ({
+  components: { CButton },
+  methods: {
+    openAlert() {
+      alert('This is an alert message');
+    },
+  },
+  template: `
+  <div>
+    <c-button @click="openAlert">
+      Click for Alert
+    </c-button>
   </div>
   `,
 });

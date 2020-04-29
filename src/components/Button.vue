@@ -2,7 +2,7 @@
   <button
     :class="[
       'concrete-button',
-      'btn',
+      'concrete',
       size,
       (!disabled && color),
       (!disabled && fill),
@@ -19,23 +19,21 @@
       &nbsp;
     </div>
     <div class="button-content">
-      <play v-if="play && !inProgress" class="icon" />
-      <times-circle v-if="inProgress" class="icon" @click="cancel" />
+      <c-icon v-if="play && !inProgress" type="play" class="icon" />
+      <c-icon v-if="inProgress && cancelable" type="times-circle" class="icon" @click="cancel" />
       <slot />
     </div>
   </button>
 </template>
 
 <script>
-import Play from '../assets/play.svg';
-import TimesCircle from '../assets/times-circle.svg';
+import CIcon from '@/components/Icon';
 
 
 export default {
-  name: 'ConcreteButton',
+  name: 'CButton',
   components: {
-    Play,
-    TimesCircle,
+    CIcon,
   },
   props: {
     size: {
@@ -57,6 +55,7 @@ export default {
     progress: { type: Number, default: null },
     fake: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
+    cancelable: { type: Boolean, default: true },
   },
   data() {
     return {
@@ -138,6 +137,7 @@ export default {
 }
 
 .concrete-button {
+  cursor: pointer;
   border: none;
   color: $color-white;
   border-radius: $radius;
@@ -154,11 +154,13 @@ export default {
   }
 
   &.disabled {
+    cursor: not-allowed;
     background: $color-gray-02;
     color: $color-gray-04;
   }
 
   &.in-progress {
+    cursor: not-allowed;
     background: $color-gray-02;
     color: $color-gray-04;
 
@@ -203,7 +205,6 @@ export default {
   }
 
   .icon {
-    height: 0.75rem;
     margin-right: 0.5rem;
     cursor: pointer;
   }

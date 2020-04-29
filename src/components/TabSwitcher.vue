@@ -1,12 +1,12 @@
 <template>
-  <div class="concrete-tab-switcher">
-    <div v-if="tabPosition === 'top'" class="concrete-tab-labels top">
+  <div class="concrete-tab-switcher concrete">
+    <div v-if="tabPosition === 'top'" class="concrete-tab-labels top concrete">
       <slot name="labels" @click-tab="clickTab" />
     </div>
-    <div class="concrete-tab-content">
+    <div class="concrete-tab-content concrete">
       <slot name="content" />
     </div>
-    <div v-if="tabPosition === 'bottom'" class="concrete-tab-labels bottom">
+    <div v-if="tabPosition === 'bottom'" class="concrete-tab-labels bottom concrete">
       <slot name="labels" @click-tab="clickTab" />
     </div>
   </div>
@@ -14,7 +14,7 @@
 
 <script>
 const CTabLabel = {
-  name: 'ConcreteTabLabel',
+  name: 'CTabLabel',
   data() {
     return {
       index: null,
@@ -36,18 +36,20 @@ const CTabLabel = {
       this.$parent.clickTab(this.index);
     },
   },
-  render(h) {
-    return h('div', {
-      on: {
-        click: this.clickTab,
-      },
-      class: ['label', { active: this.isActive }],
-    }, this.$scopedSlots.default());
+  render() {
+    return (
+      <div
+        class={this.isActive ? 'active label' : 'label'}
+        vOn:click={this.clickTab}
+      >
+        { this.$scopedSlots.default() }
+      </div>
+    );
   },
 };
 
 const CTab = {
-  name: 'ConcreteTab',
+  name: 'CTab',
   data() {
     return {
       index: null,
@@ -64,15 +66,17 @@ const CTab = {
       this.index = this.tabIndex;
     });
   },
-  render(h) {
-    return h('div', {
-      class: ['content', { hide: !this.isActive }],
-    }, this.$scopedSlots.default());
+  render() {
+    return (
+      <div class={!this.isActive ? 'concrete-content-box hide' : 'concrete-content-box'}>
+        { this.$scopedSlots.default() }
+      </div>
+    );
   },
 };
 
 const CTabSwitcher = {
-  name: 'ConcreteTabSwitcher',
+  name: 'CTabSwitcher',
   props: {
     tabPosition: {
       type: String,
@@ -82,9 +86,7 @@ const CTabSwitcher = {
   },
   data() {
     return {
-      activeTab: {
-        index: 0,
-      },
+      activeTab: { index: 0 },
     };
   },
   provide() {
@@ -116,9 +118,46 @@ export {
 <style lang="scss" scoped>
 @import '../assets/styles/variables.scss';
 
+.concrete-tab-switcher {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.concrete-tab-switcher * {
+  box-sizing: border-box;
+}
+
 .concrete-tab-content {
-  .hide {
-    display: none;
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.concrete-content-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transition: opacity .1s ease .1s,
+              visibility 0s linear .1s,
+              left .1s ease-in .1s;
+  transform: translate(0, 0);
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+
+  &.hide {
+    transition: opacity .1s ease 0s,
+                visibility 0s linear .1s,
+                transform .1s ease-in 0s,
+                left 0s linear .2s;
+    opacity: 0;
+    transform: translate(15%, 0);
+    visibility: hidden;
+    left: -30%;
   }
 }
 
@@ -134,11 +173,12 @@ export {
   }
 
   .label {
+    height: 3rem;
+    line-height: 3rem;
+    cursor: pointer;
     font-size: $text-sm;
     width: 100%;
     text-align: center;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
     border-right: $border-sm solid $color-gray-04;
 
     &:last-of-type {
@@ -147,6 +187,10 @@ export {
 
     &:hover, &.active {
       background-color: $color-gray-01;
+    }
+
+    &.active {
+      font-weight: bold;
     }
   }
 }

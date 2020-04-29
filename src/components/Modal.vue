@@ -1,9 +1,9 @@
 <template>
   <div
-    class="concrete-modal-background bkgd"
+    class="concrete-modal-background concrete"
     @click.self="$emit('close')"
   >
-    <div class="concrete-modal modal">
+    <div class="concrete-modal concrete">
       <div
         class="header"
         :class="{ title }"
@@ -12,7 +12,7 @@
           {{ title }}
         </div>
         <div v-if="closeable" class="close-button" @click="$emit('close')">
-          <times />
+          <c-icon type="times" />
         </div>
       </div>
       <div class="content">
@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import Times from '../assets/times.svg';
+import CIcon from '@/components/Icon';
 
 
 export default {
-  name: 'ConcreteModal',
-  components: { Times },
+  name: 'CModal',
+  components: { CIcon },
   props: {
     title: {
       type: String,
@@ -44,6 +44,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/variables.scss';
+
+.concrete-modal-background * {
+  box-sizing: border-box;
+}
 
 .concrete-modal-background {
   z-index: 50;

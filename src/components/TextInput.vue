@@ -1,13 +1,13 @@
 <template>
-  <div class="concrete-select-row row">
+  <div class="concrete-select-row concrete">
     <div
       v-if="label !== null"
-      class="concrete-input-label label"
+      class="concrete-input-label concrete"
       :class="{ disabled }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input input" :class="{ focused }">
+    <div class="concrete-input concrete" :class="{ focused }">
       <input
         v-model="localValue"
         type="text"
@@ -24,10 +24,10 @@
 
 <script>
 export default {
-  name: 'ConcreteTextInput',
+  name: 'CTextInput',
   props: {
-    placeholder: { type: String, default: '' },
-    label: { type: String, default: '' },
+    placeholder: { type: String, default: 'Enter a value' },
+    label: { type: String, default: null },
     value: { type: [String, Number], default: '' },
     disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },
@@ -64,7 +64,6 @@ export default {
     },
     handleUpdate() {
       if (this.localValue !== this.value) {
-        this.$emit('update', this.localValue);
         this.$emit('input', this.localValue);
       }
     },

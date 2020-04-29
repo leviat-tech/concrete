@@ -1,7 +1,7 @@
 <template>
-  <div class="concrete-table-container">
+  <div class="concrete-table-container concrete">
     <slot />
-    <table class="concrete-table table">
+    <table class="concrete-table concrete">
       <colgroup>
         <col
           v-for="(column, index) in columns"
@@ -9,7 +9,7 @@
           :class="column.$vnode.data.staticClass"
         >
       </colgroup>
-      <tr class="concrete-table-header-row row">
+      <tr class="concrete-table-header-row concrete">
         <th
           v-for="column in columns"
           :key="column.label"
@@ -17,9 +17,9 @@
           @click="sortable && column.label && clickLabel(column)"
         >
           {{ column.label.toUpperCase() }}
-          <component
-            :is="sortIcon"
+          <c-icon
             v-if="sortable && sortDirection && (column.sortProp || column.prop) === sortProp"
+            :type="sortIcon"
             class="icon"
           />
         </th>
@@ -32,7 +32,10 @@
         <td
           v-for="(column, idx2) in columns"
           :key="'prop' + idx2"
-          @click="$emit('click', datum)"
+          @click="$emit(
+            'click',
+            { row: datum, cell: { prop: column.prop, value: get(datum, column.prop)} },
+          )"
         >
           <table-cell
             v-if="column.$scopedSlots.default"
@@ -55,8 +58,7 @@
 
 <script>
 import get from 'lodash/get';
-import ArrowDown from '../assets/long-arrow-down.svg';
-import ArrowUp from '../assets/long-arrow-up.svg';
+import CIcon from '@/components/Icon';
 
 
 const TableCell = {
@@ -71,6 +73,7 @@ const TableCell = {
 };
 
 const CColumn = {
+  name: 'CColumn',
   render() {
     return (
       <div>
@@ -87,12 +90,13 @@ const CColumn = {
 };
 
 const CTable = {
-  name: 'ConcreteTable',
+  name: 'CTable',
   components: {
     TableCell,
+    CIcon,
   },
   props: {
-    data: { type: Array, required: true },
+    data: { type: Array, default: () => [] },
     emptyText: { type: String, default: 'No data available' },
     initialSort: { type: Object, default: () => ({ direction: 'asc', prop: null }) },
     sortable: { type: Boolean, default: true },
@@ -108,8 +112,8 @@ const CTable = {
   computed: {
     sortIcon() {
       return this.sortDirection === 'asc'
-        ? ArrowUp
-        : ArrowDown;
+        ? 'long-arrow-up'
+        : 'long-arrow-down';
     },
     sortedData() {
       if (!this.sortProp || !this.sortDirection || this.externalSort) return this.data;
@@ -159,7 +163,12 @@ export { CTable, CColumn };
   width: 100%;
 }
 
+.concrete-table-container * {
+  box-sizing: border-box;
+}
+
 .concrete-table {
+  display: table;
   width: 100%;
   margin-bottom: 1rem;
   table-layout: auto;

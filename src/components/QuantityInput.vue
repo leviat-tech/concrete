@@ -1,13 +1,13 @@
 <template>
-  <div class="concrete-select-row row">
+  <div class="concrete-select-row concrete">
     <div
       v-if="label !== null"
-      class="concrete-input-label label"
+      class="concrete-input-label concrete"
       :class="{ disabled }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input input" :class="{ focused }">
+    <div class="concrete-input concrete" :class="{ focused }">
       <input
         v-model="localValue"
         type="number"
@@ -32,11 +32,11 @@
 
 <script>
 export default {
-  name: 'ConcreteQuantityInput',
+  name: 'CQuantityInput',
   props: {
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: 'Enter a value' },
     precision: { type: Number, default: 1 },
-    label: { type: String, default: '' },
+    label: { type: String, default: null },
     value: { type: Number, default: null },
     units: { type: String, default: null },
     maximum: { type: Number, default: null },
@@ -86,10 +86,9 @@ export default {
       this.handleUpdate();
     },
     handleChange(e) {
-      if (e.inputType === 'insertReplacementText'
-          && typeof this.coercedValue === 'number') {
+      const isIncrement = e.inputType !== 'insertText';
+      if (isIncrement && typeof this.coercedValue === 'number') {
         this.localValue = this.coercedValue;
-        this.$emit('update', this.coercedValue);
         this.$emit('input', this.coercedValue);
       } else if (typeof this.coercedValue === 'number') {
         this.$emit('change-value', this.coercedValue);
@@ -98,7 +97,6 @@ export default {
     handleUpdate() {
       if (typeof this.coercedValue === 'number') {
         this.localValue = this.coercedValue;
-        this.$emit('update', this.coercedValue);
         this.$emit('input', this.coercedValue);
       } else {
         this.localValue = this.value;
