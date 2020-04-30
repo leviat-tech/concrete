@@ -12,25 +12,25 @@ To install, add the dependency to your project:
 
 NPM:
 ```
-npm install --save obe-de/concrete#master
+npm install --save @crhio/concrete
 ```
 
 yarn:
 ```
-yarn add obe-de/concrete#master
+yarn add @crhio/concrete
 ```
 
 Add it to your project, either at the project level:
 ```
 import Vue from 'vue';
-import Concrete from '@crh/concrete';
+import Concrete from '@crhio/concrete';
 
 Vue.use(Concrete);
 ```
 
 or at the component level:
 ```
-import { ConcreteButton } from '@crh/concrete';
+import { ConcreteButton } from '@crhio/concrete';
 
 
 export default {
