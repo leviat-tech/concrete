@@ -45,12 +45,27 @@
   },
   "peerDependencies": {},
   "contributors": [
-    {
-      "name": "David Anderson <david@davidcanderson.net>"
-    },
-    {
-      "name": "Lee Araneta <lee.araneta@gmail.com>"
-    }
+    "David Anderson <david@davidcanderson.net>",
+    "Lee Araneta <lee.araneta@gmail.com>"
   ],
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "description": "<h1 align=\"center\">   Concrete Design System </h1>",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obe-de/concrete.git"
+  },
+  "keywords": [
+    "Vue",
+    "Design",
+    "System"
+  ],
+  "author": "David Anderson",
+  "bugs": {
+    "url": "https://github.com/obe-de/concrete/issues"
+  },
+  "homepage": "https://github.com/obe-de/concrete#readme"
 }
