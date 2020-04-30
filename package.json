@@ -1,6 +1,6 @@
 {
-  "name": "@crh/concrete",
-  "version": "0.1.0",
+  "name": "@crhio/concrete",
+  "version": "0.0.1",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
@@ -12,7 +12,7 @@
     "storybook:dev": "vue-cli-service storybook:serve -p 6006 -c .storybook -s ./public/images",
     "storybook:build": "vue-cli-service storybook:build -c .storybook -s ./public/images -o docs/.vuepress/dist/storybook/"
   },
-  "main": "./dist/concrete.common.js",
+  "main": "./dist/concrete.umd.min.js",
   "dependencies": {
     "core-js": "^3.6.4",
     "lodash": "^4.17.15",

@@ -10,9 +10,14 @@ npm install
 npm run serve
 ```
 
-### Run Storybook sandbox
+### Develop the VuePress documentation
 ```
-npm run storybook
+npm run docs:dev
+```
+
+### Develop the Storybook sandbox
+```
+npm run storybook:dev
 ```
 
 ### Compiles and minifies for production
