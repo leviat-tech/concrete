@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-toolbar">
+  <div class="concrete-toolbar concrete">
     <slot />
   </div>
 </template>
@@ -13,7 +13,7 @@ const CToolGroup = {
   name: 'CToolGroup',
   render(h, { scopedSlots }) {
     return (
-      <div class="concrete-toolbar-group">
+      <div class="concrete-toolbar-group concrete">
         { scopedSlots.default() }
       </div>
     );
@@ -27,6 +27,7 @@ const CTool = {
     name: { type: String, default: '' },
     toolId: { type: String, required: true },
     icon: { type: String, default: null },
+    textButton: { type: Boolean, default: false },
   },
   inject: ['concreteSelectedTool'],
   computed: {
@@ -38,18 +39,24 @@ const CTool = {
     click() { this.$parent.click(this.toolId); },
   },
   render() {
+    let iconContent;
+
+    if (this.icon && !this.textButton) {
+      iconContent = <CIcon type={this.icon} class="concrete-toolbar-svg" />;
+    } else if (this.textButton) {
+      iconContent = <span class="concrete-toolbar-text-button">{ this.name }</span>;
+    } else {
+      iconContent = this.$scopedSlots.default();
+    }
+
     return (
       <div
-        class={this.isActive ? 'concrete-toolbar-tool active' : 'concrete-toolbar-tool'}
+        class={this.isActive
+          ? 'concrete-toolbar-tool concrete active'
+          : 'concrete-toolbar-tool concrete'}
         vOn:click={this.click}
       >
-        {this.icon
-          ? <CIcon
-              type={this.icon}
-              class="concrete-toolbar-svg"
-            />
-          : this.$scopedSlots.default()
-        }
+        { iconContent }
       </div>
     );
   },
@@ -123,6 +130,10 @@ export { CToolbar, CToolGroup, CTool };
   margin-left: .25rem;
 }
 
+/deep/ .concrete-toolbar-text-button {
+  font-size: $text-base;
+}
+
 /deep/ .concrete-toolbar-tool {
   min-width: 2rem;
   height: 2rem;
@@ -131,6 +142,7 @@ export { CToolbar, CToolGroup, CTool };
   text-align: center;
   display: flex;
   align-items: center;
+  border: $border-sm solid transparent;
 
   &:hover {
     background-color: $color-gray-01;

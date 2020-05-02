@@ -179,7 +179,6 @@ export default {
 
 .concrete-input-container {
   position: relative;
-  max-width: 28rem;
   width: 100%;
 
   .concrete-input {

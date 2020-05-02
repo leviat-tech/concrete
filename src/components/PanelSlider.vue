@@ -19,10 +19,10 @@ const TitleBar = {
   },
   render() {
     return (
-      <div class="concrete-panel-titlebar">
+      <div class="concrete-panel-titlebar concrete">
         {this.back
           && <div
-            class="concrete-panel-back"
+            class="concrete-panel-back concrete"
             vOn:click={this.goBack}
           >
             <CIcon type="chevron-left" />
@@ -47,7 +47,7 @@ const CPanelLink = {
   render() {
     return (
       <div
-        class="concrete-panel-link"
+        class="concrete-panel-link concrete"
         vOn:click={this.clickLink}
       >
         { this.$scopedSlots.default() }
@@ -74,7 +74,7 @@ const CPanel = {
     const contents = slots.filter((s) => get(s, 'componentOptions.tag') !== 'c-panel');
 
     return (
-      <div class="concrete-panel-content">
+      <div class="concrete-panel-content concrete">
         { contents }
       </div>
     );
@@ -87,7 +87,7 @@ const CPanelSection = {
   render(h, { scopedSlots }) {
     return [
       ...scopedSlots.default(),
-      <div class="concrete-panel-divider" />,
+      <div class="concrete-panel-divider concrete" />,
     ];
   },
 };
@@ -146,20 +146,20 @@ const CPanelSlider = {
     const depth = this.panelState.length;
 
     return (
-      <div class="concrete-panel-container">
-        <div class="concrete-panel-title-wrapper">
+      <div class="concrete-panel-container concrete">
+        <div class="concrete-panel-title-wrapper concrete">
           <TitleBar
             title={panelList.title}
             back={panelList.back}
             vOn:go-back={this.goBack}
           />
         </div>
-        <div class="concrete-panel-content-wrapper">
+        <div class="concrete-panel-content-wrapper concrete">
           <div
-            class="concrete-panel-content-container"
+            class="concrete-panel-content-container concrete"
             style={`transform: translate(-${depth * 100}%, 0)`}
           >
-            <div class="concrete-panel-content">
+            <div class="concrete-panel-content concrete">
               { rootContents }
             </div>
             {
