@@ -15,7 +15,12 @@ import { onMounted, ref, reactive, computed } from '@vue/composition-api';
 import { TweenLite } from 'gsap';
 
 
-const remToPx = (rem) => rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+const remToPx = (rem) => {
+  if (typeof window === 'undefined') {
+    return rem * 16;
+  }
+  return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+};
 
 const svg2dViewportProps = {
   name: { type: String, default: '' },
