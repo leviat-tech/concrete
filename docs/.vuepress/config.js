@@ -46,6 +46,15 @@ const sidebars = {
         '/components/masonry',
       ]
     },
+    {
+      title: 'Drawing',
+      collapsable: false,
+      children: [
+        '/components/viewports',
+        '/components/svg2d',
+        '/components/draggable-point',
+      ]
+    },
   ],
 
 }

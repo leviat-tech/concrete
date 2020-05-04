@@ -15,6 +15,14 @@ import { CTable, CColumn } from '@/components/Table';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
 import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/PanelSlider';
 import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
+import CViewport from '@/components/Viewport';
+import {
+  CSvg2dViewport,
+  svg2dViewportProps,
+  useSvg2d,
+  useSvg2dFit,
+} from '@/components/Svg2dViewport';
+import CDraggablePoint from '@/components/DraggablePoint';
 import CAlert from '@/components/alert';
 
 
@@ -43,6 +51,9 @@ const components = [
   CToolbar,
   CToolGroup,
   CTool,
+  CViewport,
+  CSvg2dViewport,
+  CDraggablePoint,
   CMasonry,
 ];
 
@@ -86,5 +97,11 @@ export {
   CToolGroup,
   CTool,
   CMasonry,
+  CViewport,
+  CSvg2dViewport,
+  svg2dViewportProps,
+  useSvg2d,
+  useSvg2dFit,
+  CDraggablePoint,
   CAlert,
 };

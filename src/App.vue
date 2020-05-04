@@ -1,5 +1,17 @@
 <template>
   <div id="app">
+    <div class="tab-container">
+      <c-viewport>
+        <c-svg-2d-viewport
+          key="section"
+          viewport-id="section"
+          icon="cube"
+          name="Section"
+        >
+          <circle r="100" draggable />
+        </c-svg-2d-viewport>
+      </c-viewport>
+    </div>
     <div class="input-row">
       <c-button>Hello</c-button>
       <c-button><c-icon type="plus" size="lg" /></c-button>
@@ -128,9 +140,11 @@
           <c-tool name="Select" tool-id="select" icon="pointer-outline" default-tool />
           <c-tool name="Pan" tool-id="pan" icon="hand" />
           <c-tool name="Pen" tool-id="pen" icon="pen" />
+          <c-tool name="Polygon" tool-id="polygon" icon="polygon" />
         </c-tool-group>
         <c-tool-group>
           <c-tool name="Run" tool-id="play" icon="play" />
+          <c-tool name="Cool" tool-id="cool" text-button />
           <c-tool name="Pause" tool-id="pause" icon="pause" />
           <c-tool name="Chamfer" tool-id="chamfer">
             <chamfer />
@@ -252,6 +266,8 @@ import { CTable, CColumn } from '@/components/Table';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
 import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/PanelSlider';
 import CMasonry from '@/components/Masonry';
+import CViewport from '@/components/Viewport';
+import CSvg2dViewport from '@/components/Svg2dViewport';
 import Chamfer from '@/assets/icons/chamfer.svg';
 
 
@@ -283,6 +299,8 @@ export default {
     CPanelLink,
     CPanelSection,
     CMasonry,
+    CViewport,
+    CSvg2dViewport,
     Chamfer,
   },
   data() {
@@ -301,6 +319,16 @@ export default {
       switched: true,
       switched2: true,
       currentTool: 'select',
+      points: [
+        { x: 0, y: 0 },
+        { x: 100, y: 0 },
+        { x: 100, y: 60 },
+        { x: 80, y: 60 },
+        { x: 80, y: 45 },
+        { x: 60, y: 45 },
+        { x: 40, y: 60 },
+        { x: 0, y: 60 },
+      ],
     };
   },
   computed: {
@@ -344,6 +372,9 @@ export default {
         { section: 'Washers', image: '/images/sealing-washer.png', label: 'Sealing Washer', value: 12 },
       ];
     },
+    polygon() {
+      return this.points.map(({ x, y }) => `${x},${y}`).join(' ');
+    },
   },
   methods: {
     handleSearch(text) {
@@ -379,6 +410,12 @@ p {
   height: 24rem;
   border: $border-sm solid $color-gray-04;
   margin-bottom: 1.5rem;
+}
+
+.test-box {
+  width: 1rem;
+  height: 1rem;
+  background-color: red;
 }
 
 .tab-interior {
