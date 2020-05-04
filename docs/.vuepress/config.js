@@ -90,6 +90,7 @@ module.exports = {
   themeConfig: {
     repo: 'obe-de/concrete',
     docsDir: 'docs',
+    logo: 'concrete.svg',
     sidebarDepth: 2,
 
     nav: [

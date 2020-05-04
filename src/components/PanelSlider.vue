@@ -71,7 +71,8 @@ const CPanel = {
   render() {
     const slots = this.$scopedSlots.default();
 
-    const contents = slots.filter((s) => get(s, 'componentOptions.tag') !== 'c-panel');
+    // We assume any component with a prop of "panel-id" is a panel.
+    const contents = slots.filter((s) => !get(s, 'componentOptions.propsData.panelId'));
 
     return (
       <div class="concrete-panel-content concrete">
@@ -111,11 +112,12 @@ const CPanelSlider = {
     },
   },
   render(h) {
-    const rootVnodes = this.$slots.default || [];
+    const rootVnodes = this.$scopedSlots.default() || [];
 
+    // We assume any component with a prop of "panel-id" is a panel.
     const [rootPanels, rootContents] = partition(
       rootVnodes,
-      (s) => get(s, 'componentOptions.tag') === 'c-panel',
+      (s) => get(s, 'componentOptions.propsData.panelId'),
     );
 
     const panelList = this.panelState.reduce(({ vnodes, panels }, id) => {
@@ -132,7 +134,7 @@ const CPanelSlider = {
       vnodes.push(clone);
 
       const childPanels = current.componentOptions.children.filter(
-        (s) => get(s, 'componentOptions.tag') === 'c-panel',
+        (s) => get(s, 'componentOptions.propsData.panelId'),
       );
 
       return {

@@ -128,7 +128,7 @@ const CTable = {
     },
   },
   mounted() {
-    this.columns = this.$slots.default
+    this.columns = this.$scopedSlots.default()
       .filter((c) => c.componentInstance)
       .map((c) => c.componentInstance);
   },

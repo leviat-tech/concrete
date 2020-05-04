@@ -110,7 +110,7 @@ export default {
 
     getChildItemsInCols() {
       const columns = [];
-      let childItems = this.$slots.default || [];
+      let childItems = this.$scopedSlots.default() || [];
 
       // This component does not work with a child <transition-group /> ..yet,
       // so for now we think it may be helpful to ignore until we can find a way for support
