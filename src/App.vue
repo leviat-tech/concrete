@@ -3,15 +3,6 @@
     <div class="tab-container">
       <c-viewport>
         <c-svg-2d-viewport
-          key="plan"
-          viewport-id="plan"
-          icon="polygon"
-          name="Plan"
-          fit-to-content
-        >
-          <polygon :points="polygon" />
-        </c-svg-2d-viewport>
-        <c-svg-2d-viewport
           key="section"
           viewport-id="section"
           icon="cube"
@@ -149,6 +140,7 @@
           <c-tool name="Select" tool-id="select" icon="pointer-outline" default-tool />
           <c-tool name="Pan" tool-id="pan" icon="hand" />
           <c-tool name="Pen" tool-id="pen" icon="pen" />
+          <c-tool name="Polygon" tool-id="polygon" icon="polygon" />
         </c-tool-group>
         <c-tool-group>
           <c-tool name="Run" tool-id="play" icon="play" />

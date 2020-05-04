@@ -19,6 +19,41 @@
         </c-toolbar>
         <c-button @click="showModal = true" class="show-modal-button">Click&nbsp;me</c-button>
       </div>
+      <div class="concrete-demo-drawing">
+        <c-viewport>
+          <plan-demo
+            key="plan-a"
+            viewport-id="plan-a"
+            name="Plan A"
+            :fit-margin="3.5"
+            :initial-points="[
+              { x: 0, y: 0 },
+              { x: 100, y: 0 },
+              { x: 65, y: 50 },
+              { x: 100, y: 100 },
+              { x: 0, y: 100 },
+            ]"
+            fit-to-content
+          />
+          <plan-demo
+            key="plan-b"
+            viewport-id="plan-b"
+            name="Plan B"
+            :fit-margin="3.5"
+            :initial-points="[
+              { x: 0, y: 0 },
+              { x: 100, y: 0 },
+              { x: 100, y: 60 },
+              { x: 80, y: 60 },
+              { x: 80, y: 45 },
+              { x: 60, y: 45 },
+              { x: 40, y: 60 },
+              { x: 0, y: 60 },
+            ]"
+            fit-to-content
+          />
+        </c-viewport>
+      </div>
     </div>
     <div
       class="sidebar-container"
@@ -176,8 +211,12 @@
 </template>
 
 <script>
+import PlanDemo from './PlanDemo';
+
+
 export default {
   name: 'ComboDemo',
+  components: { PlanDemo },
   data() {
     return {
       showModal: false,
@@ -204,6 +243,8 @@ export default {
 
 .main-content {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .show-modal-button {
@@ -213,11 +254,18 @@ export default {
 .toolbar-container {
   border-bottom: $border-sm solid $color-gray-04;
   width: 100%;
+  flex-grow: none;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+}
+
+.concrete-demo-drawing {
+  width: 100%;
+  flex: 1 1 0%;
+  overflow: hidden;
 }
 
 .sidebar-container {

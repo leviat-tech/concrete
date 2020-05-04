@@ -15,6 +15,9 @@
   "main": "./dist/concrete.umd.min.js",
   "dependencies": {
     "core-js": "^3.6.4",
+    "d3-drag": "^1.2.5",
+    "d3-selection": "^1.4.1",
+    "gsap": "^3.2.6",
     "lodash": "^4.17.15",
     "vue": "^2.6.11"
   },
@@ -23,6 +26,7 @@
     "@storybook/addon-storysource": "^5.3.17",
     "@storybook/addons": "^5.3.14",
     "@storybook/vue": "^5.3.14",
+    "@vue/composition-api": "^0.5.0",
     "@vue/cli-plugin-babel": "^4.2.0",
     "@vue/cli-plugin-eslint": "^4.2.0",
     "@vue/cli-plugin-unit-jest": "^4.2.0",
@@ -43,7 +47,9 @@
     "vue-template-compiler": "^2.6.11",
     "vuepress": "^1.4.1"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+    "@vue/composition-api": "^0.5.0"
+  },
   "contributors": [
     "David Anderson <david@davidcanderson.net>",
     "Lee Araneta <lee.araneta@gmail.com>"

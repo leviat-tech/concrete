@@ -20,7 +20,9 @@ export default {
     },
   },
   render() {
-    const slots = this.$slots.default || [];
+    const slots = this.$scopedSlots
+      .default()
+      .filter((slot) => slot.componentOptions && slot.componentOptions.propsData.viewportId);
 
     const currentViewport = this.currentViewportId
       ? slots.find((s) => s.componentOptions.propsData.viewportId === this.currentViewportId)
@@ -30,10 +32,11 @@ export default {
       this.currentViewportId = currentViewport.componentOptions.propsData.viewportId;
     }
 
-    const viewports = slots.map((slot) => {
-      const { name, viewportId } = slot.componentOptions.propsData;
-      return <c-tool name={name} text-button tool-id={viewportId} />;
-    });
+    const viewports = slots
+      .map((slot) => {
+        const { name, viewportId } = slot.componentOptions.propsData;
+        return <c-tool name={name} text-button tool-id={viewportId} />;
+      });
 
     return (
       <div class="concrete-viewport">
@@ -47,7 +50,7 @@ export default {
             </c-tool-group>
           </c-toolbar>
         </div>
-      { currentViewport }
+        { currentViewport }
       </div>
     );
   },
@@ -68,4 +71,16 @@ export default {
   border-bottom: $border-sm solid $color-gray-04;
   border-right: $border-sm solid $color-gray-04;
 }
+
+.concrete-viewport /deep/ .concrete-svg-viewport-container {
+  width: 100%;
+  height: 100%;
+}
+
+.concrete-viewport /deep/ .concrete-svg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 </style>
