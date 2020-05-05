@@ -186,7 +186,6 @@ export default {
 
   .concrete-input {
     padding-left: .25rem;
-    padding-right: .25rem;
     padding-top: 0.25rem;
     display: flex;
     min-height: 2.25rem;

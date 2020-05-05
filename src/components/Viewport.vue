@@ -63,6 +63,7 @@ export default {
 .concrete-viewport {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .concrete-viewport-controls {
@@ -70,17 +71,6 @@ export default {
   background-color: $color-white;
   border-bottom: $border-sm solid $color-gray-04;
   border-right: $border-sm solid $color-gray-04;
-}
-
-.concrete-viewport /deep/ .concrete-svg-viewport-container {
-  width: 100%;
-  height: 100%;
-}
-
-.concrete-viewport /deep/ .concrete-svg {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
 }
 
 </style>

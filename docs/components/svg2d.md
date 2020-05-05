@@ -18,7 +18,7 @@ A set of composable functions for building a 2D SVG viewport.
       v-for="(point, index) in state.points"
       :key="index"
       :point="point"
-      :scale="fit.svgScale"
+      :scale="fit.scale"
       @dragging="setPoint(index, $event)"
       @drag-end="dragEnd(index, $event)"
     />

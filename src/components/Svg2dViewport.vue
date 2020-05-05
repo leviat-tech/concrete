@@ -39,7 +39,7 @@ function useSvg2d(svg, props) {
       min: { x: 0, y: 0 },
       max: { x: 100, y: 100 },
     },
-    svgContainer: { width: 100, height: 100 },
+    container: { width: 100, height: 100 },
     width: computed(() => dwg.extents.max.x - dwg.extents.min.x),
     height: computed(() => dwg.extents.max.y - dwg.extents.min.y),
     pxMargin: computed(() => remToPx(props.fitMargin)),
@@ -77,13 +77,13 @@ function useSvg2d(svg, props) {
     return null;
   };
 
-  onMounted(() => {
-    const b = svg.value.getBoundingClientRect();
-    dwg.svgContainer = {
+  dwg.getBoundingBox = function getBoundingBox() {
+    const b = svg.value.parentElement.getBoundingClientRect();
+    dwg.container = {
       width: b.width,
       height: b.height,
     };
-  });
+  };
 
   return { dwg };
 }
@@ -97,24 +97,40 @@ function useSvg2dFit(svg, dwg, context) {
     width: computed(() => fit.extents.max.x - fit.extents.min.x),
     height: computed(() => fit.extents.max.y - fit.extents.min.y),
     region: computed(() => {
-      const w = dwg.svgContainer.width - dwg.pxMargin * 2;
-      const h = dwg.svgContainer.height - dwg.pxMargin * 2;
+      const w = dwg.container.width - dwg.pxMargin * 2;
+      const h = dwg.container.height - dwg.pxMargin * 2;
       return {
         w: w > 0 ? w : 1,
         h: h > 0 ? h : 1,
       };
     }),
     aspectRatio: computed(() => fit.region.w / fit.region.h),
-    svgScale: computed(() => (dwg.aspectRatio > fit.aspectRatio
+    scale: computed(() => (dwg.aspectRatio > fit.aspectRatio
       ? dwg.width / fit.region.w
       : dwg.height / fit.region.h)),
-    margin: computed(() => dwg.pxMargin * fit.svgScale),
+    regionSvg: computed(() => ({
+      w: fit.region.w * fit.scale,
+      h: fit.region.h * fit.scale,
+    })),
+    margin: computed(() => {
+      if (dwg.aspectRatio > fit.aspectRatio) {
+        return {
+          x: dwg.pxMargin * fit.scale,
+          y: dwg.pxMargin * fit.scale + (fit.regionSvg.h - fit.height) / 2,
+        };
+      }
+
+      return {
+        x: dwg.pxMargin * fit.scale + (fit.regionSvg.w - fit.width) / 2,
+        y: dwg.pxMargin * fit.scale,
+      };
+    }),
     viewBox: computed(() => {
-      const x = fit.extents.min.x - fit.margin;
-      const y = fit.extents.min.y - fit.margin;
-      const svgWidth = fit.width + fit.margin * 2;
-      const svgHeight = fit.height + fit.margin * 2;
-      return `${x} ${y} ${svgWidth} ${svgHeight}`;
+      const x = fit.extents.min.x - fit.margin.x;
+      const y = fit.extents.min.y - fit.margin.y;
+      const width = fit.width + fit.margin.x * 2;
+      const height = fit.height + fit.margin.y * 2;
+      return `${x} ${y} ${width} ${height}`;
     }),
   });
 
@@ -133,6 +149,8 @@ function useSvg2dFit(svg, dwg, context) {
   };
 
   onMounted(() => {
+    dwg.getBoundingBox();
+
     context.root.$nextTick(() => {
       dwg.getExtents();
       fit.setFit();

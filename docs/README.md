@@ -7,4 +7,4 @@ and design software.
 
 <combo-demo />
 
-With regards to visual presentation, the system tends to be opinionated rather than flexible (although default styles can be overridden when desired)--the goal is to encourage UI consistency in a variety of different technical applications.
+With regards to visual presentation, the system tends to be opinionated rather than flexible (although default styles can be overridden when desired). The goal is to encourage UI consistency in a variety of different technical applications.

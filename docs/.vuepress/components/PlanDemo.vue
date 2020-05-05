@@ -10,7 +10,7 @@
         v-for="(point, index) in state.points"
         :key="index"
         :point="point"
-        :scale="fit.svgScale"
+        :scale="fit.scale"
         @dragging="setPoint(index, $event)"
         @drag-end="dragEnd(index, $event)"
       />
@@ -65,6 +65,7 @@ export default {
 .concrete-svg-viewport-container {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 .concrete-svg {
