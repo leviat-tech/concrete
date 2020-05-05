@@ -81,7 +81,7 @@
         <template v-slot:content>
           <c-tab>
             <c-panel-slider title="Inputs">
-              <c-text-input label="Text" />
+              <c-text-input label="Text" size="sm" />
               <c-quantity-input
                 label="Quantity"
                 :precision="1"
@@ -89,8 +89,10 @@
                 units="m"
                 :maximum="5"
                 :minimum="0"
+                size="sm"
               />
               <c-select
+                size="sm"
                 label="Select"
                 placeholder="Select one"
                 show-image
@@ -123,6 +125,7 @@
                 ]"
               />
               <c-search-select
+                size="sm"
                 label="Search"
                 :options="[
                   { label: 'hello', value: 1 },
@@ -133,6 +136,7 @@
                 ]"
               />
               <c-multi-select
+                size="sm"
                 :value="[1]"
                 label="Multi Select"
                 :options="[
@@ -143,6 +147,7 @@
                 ]"
               />
               <c-native-select
+                size="sm"
                 label="Native Select"
                 :options="[
                   { label: 'hello', value: 1 },
@@ -153,11 +158,13 @@
                 ]"
               />
               <c-textarea
+                size="sm"
                 label="Textarea"
                 :rows="3"
               />
-              <c-checkbox label="Checkbox" />
+              <c-checkbox label="Checkbox" size="sm" />
               <c-radio
+                size="sm"
                 label="Radio"
                 :options="[
                   { label: 'Yes', value: 'yes' },
@@ -334,7 +341,7 @@ export default {
   width: 6rem;
 }
 
-/deep/ .concrete-select-row {
+/deep/ .concrete-input-row {
   margin-bottom: 0.5rem;
 }
 

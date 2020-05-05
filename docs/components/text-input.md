@@ -22,6 +22,34 @@ When using `:value` and `@input` independently, the value in the parent componen
 
 The component _does not_ emit `@input` on every "input" event from the underlying native text field. Rather, it emits the `@input` on "blur" or "keydown.enter". This is by design: in many cases, changes in this text field are tied to server-side requests. In those cases, it would be undesirable for the request to happen on every keystroke. If it is desired to receive updates on every keystroke (e.g., if client-side validation should be happening as the user types), the `@change-value` event can be used.
 
+### Size and Theme variants
+
+<component-container>
+  <c-text-input
+    label="Size: xs"
+    size="xs"
+  />
+  <c-text-input
+    label="Size: sm"
+    size="sm"
+  />
+  <c-text-input
+    label="Size: base"
+    size="base"
+  />
+  <c-text-input
+    label="Size: lg"
+    size="lg"
+  />
+</component-container>
+
+<component-container theme="dark">
+  <c-text-input
+    label="Theme: dark"
+    theme="dark"
+  />
+</component-container>
+
 ### Props
 
 | Name        | Type    | Default         | Description                               |
@@ -29,6 +57,8 @@ The component _does not_ emit `@input` on every "input" event from the underlyin
 | value       | String  | ''              | The value of the input.                   |
 | placeholder | String  | 'Enter a value' | Input placeholder                         |
 | label       | String  | null            | Adds a text label to left of input.       |
+| size        | String  | 'base'          | xs/sm/base/lg                             |
+| theme       | String  | 'light'         | light/dark                                |
 | disabled    | Boolean | false           |                                           |
 | read-only   | Boolean | false           | Used when input is for text display only. |
 

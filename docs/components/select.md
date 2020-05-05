@@ -31,6 +31,23 @@ A custom select component, allowing images in the selector and items, as well as
 />
 ```
 
+### Size and Theme variants
+
+<component-container>
+  <select-demo label="Size: xs, Image size: md" size="xs" />
+  <select-demo label="sm/md" size="sm" />
+  <select-demo label="base/md" size="base" />
+  <select-demo label="lg/md" size="lg" />
+  <select-demo label="xs/sm" size="xs" image-size="sm" />
+  <select-demo label="sm/sm" size="sm" image-size="sm" />
+  <select-demo label="base/sm" size="base" image-size="sm" />
+  <select-demo label="lg/sm" size="lg" image-size="sm" />
+</component-container>
+
+<component-container theme="dark">
+  <select-demo label="Theme: dark" theme="dark" />
+</component-container>
+
 ### Props
 
 | Name        | Type    | Default             | Description                           |
@@ -43,6 +60,9 @@ A custom select component, allowing images in the selector and items, as well as
 | show-sections | Boolean | false | Toggle to display the "section" property of an option above that group of options |
 | sort-sections | Boolean | false | Toggle to sort the options by section name | 
 | icon        | String  | 'chevron-down'      | Name for the icon shown at right      |
+| size        | String  | 'base'              | xs/sm/base/lg                         |
+| image-size  | String  | 'md'                | sm/md                                 |
+| theme       | String  | 'light'             | light|dark                            |
 | disabled    | Boolean | false               |                                       |
 
 ### Events

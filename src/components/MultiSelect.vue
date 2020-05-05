@@ -1,9 +1,9 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
@@ -11,7 +11,7 @@
     <div class="concrete-input-container">
       <div
         class="concrete-input concrete"
-        :class="{focused}"
+        :class="{ focused, [size]: size, [theme]: theme }"
         @click="handleFocus"
       >
         <div v-if="selected.length > 0" class="concrete-selected-container">
@@ -38,12 +38,13 @@
         </div>
       </div>
 
-      <div v-if="showOptions" class="options-flyout">
-        <div class="input-container">
+      <div v-if="showOptions" class="options-flyout" :class="[size, theme]">
+        <div class="input-container" :class="[size, theme]">
           <input
             ref="input"
             v-model="searchText"
             type="text"
+            :class="[size, theme]"
             :placeholder="localPlaceholder"
             @blur="handleBlur"
             @keydown.down="handleKeyDown"
@@ -53,7 +54,7 @@
           >
         </div>
 
-        <ul class="concrete-select-options">
+        <ul class="concrete-select-options" :class="[size, theme]">
           <li
             v-for="(option, index) in filteredOptions"
             :key="index"
@@ -90,6 +91,8 @@ export default {
     value: { type: Array, default: () => [] },
     label: { type: String, default: null },
     disabled: { type: Boolean, default: false },
+    size: { type: String, default: 'base' },
+    theme: { type: String, default: 'light' },
     icon: { type: String, default: 'plus' },
   },
   data() {
@@ -182,8 +185,26 @@ export default {
   width: 100%;
 
   .concrete-input {
-    padding: 0.25rem;
+    padding-left: .25rem;
+    padding-right: .25rem;
+    padding-top: 0.25rem;
     display: flex;
+    min-height: 2.25rem;
+
+    &.xs {
+      font-size: $text-xs;
+      min-height: 1.50rem;
+    }
+
+    &.sm {
+      font-size: $text-sm;
+      min-height: 1.75rem;
+    }
+
+    &.lg {
+      font-size: $text-lg;
+      min-height: 2.5rem;
+    }
 
     &.focused {
       border-radius: 0.25rem 0.25rem 0px 0px;
@@ -197,14 +218,33 @@ export default {
     border-top-color: transparent;
     box-shadow: 0px 1px 0px 1px $color-blue;
     position: absolute;
+    font-size: $text-base;
+    color: $color-black;
     margin-top: -1px;
     z-index: 10;
     left: 0;
     width: 100%;
 
+    &.xs {
+      font-size: $text-xs;
+    }
+
+    &.sm {
+      font-size: $text-sm;
+    }
+
+    &.lg {
+      font-size: $text-lg;
+    }
+
     .input-container {
       width: 100%;
       background-color: $color-gray-01;
+
+      &.dark {
+        border-color: $color-gray-08;
+        background-color: rgba(255, 255, 255, 0.15);
+      }
 
       input {
         height: 2rem;
@@ -213,6 +253,29 @@ export default {
         width: 100%;
         background-color: transparent;
         border: none;
+
+        &.xs {
+          font-size: $text-xs;
+          height: 1.5rem;
+        }
+
+        &.sm {
+          font-size: $text-sm;
+          height: 1.75rem;
+        }
+
+        &.lg {
+          font-size: $text-lg;
+          height: 2.25rem;
+        }
+
+        &.dark {
+          color: $color-white;
+
+          &::placeholder {
+            color: $color-gray-03;
+          }
+        }
       }
     }
   }
@@ -227,8 +290,27 @@ export default {
 
 .concrete-select-options {
   left: 0;
+
+  &.xs {
+    top: .75rem;
+  }
+
+  &.sm {
+    top: .8rem;
+  }
+
+  &.base {
+    top: .9rem;
+  }
+
+  &.lg {
+    top: 1rem;
+  }
 }
 
+.concrete-placeholder, .concrete-input-icon {
+  margin-top: -.25rem;
+}
 
 .selected {
   display: flex;
@@ -238,8 +320,7 @@ export default {
   border-radius: $radius;
   padding: 0.15rem 0.5rem 0.15rem 0.5rem;
   margin-right: 0.25rem;
-  margin-top: 0.125rem;
-  margin-bottom: 0.125rem;
+  margin-bottom: 0.25rem;
 
   label {
     margin-left: 0.25rem;

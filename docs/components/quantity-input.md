@@ -30,6 +30,34 @@ Like the [text input](/components/text-input.md) component, this component:
 * May be used either with `v-model` or with independent `:value` and `@input` attributes.
 * Emits `@input` on blur/keydown.enter, and `@change-value` on every text input event.
 
+### Size and Theme variants
+
+<component-container>
+  <c-quantity-input
+    label="Size: xs"
+    size="xs"
+  />
+  <c-quantity-input
+    label="Size: sm"
+    size="sm"
+  />
+  <c-quantity-input
+    label="Size: base"
+    size="base"
+  />
+  <c-quantity-input
+    label="Size: lg"
+    size="lg"
+  />
+</component-container>
+
+<component-container theme="dark">
+  <c-quantity-input
+    label="Theme: dark"
+    theme="dark"
+  />
+</component-container>
+
 ### Props
 
 | Name        | Type    | Default         | Description                               |
@@ -41,6 +69,8 @@ Like the [text input](/components/text-input.md) component, this component:
 | units       | String  | null            | Displayed to the right of the input       |
 | maximum     | Number  | null            | If present, will clamp any value that is greater than this value |
 | minimum     | Number  | null            | If present, will clamp any value that is less than this value |
+| size        | String  | 'base'          | xs/sm/base/lg                             |
+| theme       | String  | 'light'         | light/dark                                |
 | disabled    | Boolean | false           |                                           |
 
 

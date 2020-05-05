@@ -1,6 +1,6 @@
 @import './variables.scss';
 
-.concrete-select-row {
+.concrete-input-row {
   text-align: left;
   box-sizing: border-box;
   width: 100%;
@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.concrete-select-row * {
+.concrete-input-row * {
   box-sizing: border-box;
 }
 
@@ -21,6 +21,18 @@
   white-space: nowrap;
   padding-right: 0.5rem;
   flex: none;
+
+  &.xs {
+    font-size: $text-xs;
+  }
+
+  &.sm {
+    font-size: $text-sm;
+  }
+
+  &.lg {
+    font-size: $text-lg;
+  }
 
   &.disabled {
     color: $color-gray-03;
@@ -40,6 +52,26 @@
   display: flex;
   align-items: center;
 
+  &.xs {
+    font-size: $text-xs;
+    min-height: 1.75rem;
+  }
+
+  &.sm {
+    font-size: $text-sm;
+    min-height: 2rem;
+  }
+
+  &.lg {
+    font-size: $text-lg;
+    min-height: 2.5rem;
+  }
+
+  &.dark {
+    border-color: $color-gray-08;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
   &:focus, &.focused {
     color: $color-black;
     border: $border-sm solid $color-blue;
@@ -57,12 +89,39 @@
     border: none;
     flex: 1 1 0%;
 
+    &.xs {
+      font-size: $text-xs;
+      height: 1.5rem;
+    }
+
+    &.sm {
+      font-size: $text-sm;
+      height: 1.75rem;
+    }
+
+    &.lg {
+      font-size: $text-lg;
+      height: 2.25rem;
+    }
+
     &:invalid {
       color: $color-gray-07;
     }
 
     &:focus {
       outline: none;
+    }
+
+    &::placeholder {
+      color: $color-gray-07;
+    }
+
+    &.dark {
+      color: $color-white;
+
+      &::placeholder {
+        color: $color-gray-03;
+      }
     }
   }
 
@@ -75,10 +134,34 @@
     min-width: 100%;
     min-height: 2rem;
     font-family: sans-serif;
-    line-height: 1.25rem;
+    line-height: 1.25em;
+
+    &.xs {
+      font-size: $text-xs;
+    }
+
+    &.sm {
+      font-size: $text-sm;
+    }
+
+    &.lg {
+      font-size: $text-lg;
+    }
 
     &:focus {
       outline: none;
+    }
+
+    &::placeholder {
+      color: $color-gray-07;
+    }
+
+    &.dark {
+      color: $color-white;
+
+      &::placeholder {
+        color: $color-gray-03;
+      }
     }
   }
 }
@@ -140,4 +223,8 @@
 .concrete-placeholder {
   color: $color-gray-07;
   flex: 1 1 0%;
+
+  &.dark {
+    color: $color-gray-03;
+  }
 }

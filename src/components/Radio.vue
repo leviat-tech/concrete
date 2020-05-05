@@ -1,17 +1,21 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size, [theme]: theme }"
     >
       {{ label }}
     </div>
-    <div class="concrete-radio concrete" :class="{ focused }">
+    <div
+      class="concrete-radio concrete"
+      :class="{ focused, [size]: size, [theme]: theme }"
+    >
       <div v-for="option in options" :key="option.value" class="option">
         <input
           :id="option.value"
           v-model="localValue"
+          :class="[theme, size]"
           :value="option.value"
           type="radio"
           :disabled="disabled"
@@ -32,6 +36,8 @@ export default {
     label: { type: String, default: null },
     value: { type: [String, Number, Boolean], default: null },
     options: { type: Array, default: () => [] },
+    size: { type: String, default: 'base' },
+    theme: { type: String, default: 'light' },
     disabled: { type: Boolean, default: false },
   },
   data() {
@@ -65,6 +71,18 @@ export default {
 .concrete-radio {
   width: 100%;
   display: flex;
+
+  &.xs {
+    font-size: $text-xs;
+  }
+
+  &.sm {
+    font-size: $text-sm;
+  }
+
+  &.lg {
+    font-size: $text-lg;
+  }
 
   .option {
     margin-right: 2rem;

@@ -1,17 +1,23 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input concrete" :class="{ focused }">
+    <div
+      class="concrete-input concrete"
+      :class="{ focused, [size]: size, [theme]: theme }"
+    >
       <input
         ref="input"
         v-model="searchText"
         type="text"
+        :class="[
+          size, theme
+        ]"
         :placeholder="localPlaceholder"
         :disabled="disabled"
         @input="handleChange"
@@ -66,6 +72,8 @@ export default {
     label: { type: String, default: null },
     value: { type: [String, Number], default: null },
     externalFilter: { type: Boolean, default: false },
+    size: { type: String, default: 'base' },
+    theme: { type: String, default: 'light' },
     disabled: { type: Boolean, default: false },
     icon: { type: String, default: 'chevron-down' },
   },

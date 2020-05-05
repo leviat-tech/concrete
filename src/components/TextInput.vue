@@ -1,16 +1,23 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input concrete" :class="{ focused }">
+    <div
+      class="concrete-input concrete"
+      :class="{ focused, [size]: size, [theme]: theme }"
+    >
       <input
         v-model="localValue"
         type="text"
+        :class="[
+          size,
+          theme,
+        ]"
         :placeholder="placeholder"
         :disabled="disabled || readOnly"
         @keydown.enter="handleUpdate"
@@ -28,6 +35,8 @@ export default {
   props: {
     placeholder: { type: String, default: 'Enter a value' },
     label: { type: String, default: null },
+    size: { type: String, default: null },
+    theme: { type: String, default: null },
     value: { type: [String, Number], default: '' },
     disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },

@@ -1,16 +1,20 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input concrete" :class="{ focused }">
+    <div
+      class="concrete-input concrete"
+      :class="{ focused, [size]: size, [theme]: theme }"
+    >
       <input
         v-model="localValue"
         type="number"
+        :class="[ size, theme ]"
         :placeholder="placeholder"
         :step="precision"
         :disabled="disabled"
@@ -41,6 +45,8 @@ export default {
     units: { type: String, default: null },
     maximum: { type: Number, default: null },
     minimum: { type: Number, default: null },
+    size: { type: String, default: null },
+    theme: { type: String, default: null },
     disabled: { type: Boolean },
   },
   data() {

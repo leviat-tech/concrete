@@ -1,21 +1,21 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
     <div
       class="concrete-input concrete"
-      :class="{ focused }"
+      :class="{ focused, [size]: size, [theme]: theme }"
       @click="handleFocus"
     >
       <div
         v-if="showImage"
         class="concrete-image-container"
-        :class="imageSize"
+        :class="[imageSize]"
         :style="{ 'background-image': `url('${selected.image}')` }"
       >
         <template v-if="selected.image">
@@ -101,6 +101,8 @@ export default {
     placeholder: { type: String, default: 'Please select one' },
     showImage: { type: Boolean, default: false },
     imageSize: { type: String, default: 'md' },
+    size: { type: String, default: 'base' },
+    theme: { type: String, default: 'light' },
     sortSections: { type: Boolean, default: false },
     showSections: { type: Boolean, default: false },
     label: { type: String, default: null },
@@ -211,16 +213,10 @@ export default {
 .concrete-image-container {
   margin: 0.5rem;
   flex: none;
-  width: 5rem;
-  height: 2rem;
   margin-right: 1rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
-  &.sm {
-    width: 2rem;
-  }
 
   .concrete-image {
     &.generic {
@@ -231,8 +227,57 @@ export default {
   }
 }
 
+.concrete-input.xs {
+ .concrete-image-container {
+    height: 1.5rem;
+    width: 3rem;
+ }
+
+  .sm.concrete-image-container {
+    height: 1.25rem;
+    width: 1.5rem;
+  }
+}
+
+.concrete-input.sm {
+  .concrete-image-container {
+    height: 1.75rem;
+    width: 3.5rem;
+  }
+
+  .sm.concrete-image-container {
+    height: 1.5rem;
+    width: 1.75rem;
+  }
+}
+
+.concrete-input.base {
+  .concrete-image-container {
+    width: 4rem;
+    height: 2rem;
+  }
+
+  .sm.concrete-image-container {
+    height: 2rem;
+    width: 2.25rem;
+  }
+}
+
+.concrete-input.lg {
+  .concrete-image-container {
+    height: 2.25rem;
+    width: 4.5rem;
+  }
+
+  .sm.concrete-image-container {
+    height: 2rem;
+    width: 2.5rem;
+  }
+}
+
 .concrete-select-text, .concrete-option-label {
   overflow: hidden;
+  flex: 1 1 0%;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

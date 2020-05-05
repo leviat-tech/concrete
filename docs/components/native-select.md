@@ -31,6 +31,19 @@ A wrapper for the browser's native `<select>`, styled to match the other Concret
 />
 ```
 
+### Size and theme variants
+
+<component-container>
+  <native-select-demo label="Size: xs" size="xs" />
+  <native-select-demo label="Size: sm" size="sm" />
+  <native-select-demo label="Size: base" size="base" />
+  <native-select-demo label="Size: lg" size="lg" />
+</component-container>
+
+<component-container theme="dark">
+  <native-select-demo label="Theme: dark" theme="dark" />
+</component-container>
+
 ### Props
 | Name        | Type    | Default             | Description                           |
 | ----------- | --------| ------------------- | ------------------------------------- |
@@ -38,6 +51,8 @@ A wrapper for the browser's native `<select>`, styled to match the other Concret
 | options     | Array   | [] | An array of objects. Each object must have a 'label' and 'value' property. |
 | placeholder | String  | 'Please select one' | Input placeholder                     |
 | label       | String  | null                | Adds a text label to left of input.   |
+| size        | String  | 'base'              | xs/sm/base/lg                         |
+| theme       | String  | 'light'             | light|dark                            |
 | icon        | String  | 'chevron-down'      | Name for the icon shown at right      |
 | disabled    | Boolean | false               |                                       |
 

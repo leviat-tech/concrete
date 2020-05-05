@@ -1,6 +1,6 @@
 <template>
   <div class="component-container">
-    <div class="container-interior" :class="{ theme }">
+    <div class="container-interior" :class="{ [theme]: theme }">
       <slot />
     </div>
   </div>
@@ -37,6 +37,7 @@ export default {
   }
 
   &.dark {
+    color: $color-gray-02;
     background-color: $color-gray-10;
   }
 }
@@ -46,9 +47,10 @@ export default {
   margin-top: 1rem;
 }
 
-/deep/ .concrete-select-row {
+/deep/ .concrete-input-row {
   flex-direction: column;
   align-items: flex-start;
+  margin-left: 0;
 
   @media (min-width: 640px) {
     flex-direction: row;

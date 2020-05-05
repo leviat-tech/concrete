@@ -31,6 +31,19 @@ A select component that allows multiple options to be selected at once.
 />
 ```
 
+### Size and theme variants
+
+<component-container>
+  <multi-select-demo label="Size: xs" size="xs" />
+  <multi-select-demo label="Size: sm" size="sm" />
+  <multi-select-demo label="Size: base" size="base" />
+  <multi-select-demo label="Size: lg" size="lg" />
+</component-container>
+
+<component-container theme="dark">
+  <multi-select-demo label="Theme: dark" theme="dark" />
+</component-container>
+
 ### Props
 
 | Name        | Type    | Default             | Description                           |
@@ -40,6 +53,8 @@ A select component that allows multiple options to be selected at once.
 | placeholder | String  | "Select options" | Input placeholder                     |
 | label       | String  | null                | Adds a text label to left of input.   |
 | icon        | String  | "chevron-down"      | Name for the icon shown at right      |
+| size        | String  | 'base'              | xs/sm/base/lg                         |
+| theme       | String  | 'light'             | light/dark                            |
 | disabled    | Boolean | false               |                                       |
 
 ### Events

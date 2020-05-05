@@ -1,16 +1,17 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input concrete" :class="{ focused }">
+    <div class="concrete-input concrete" :class="{ focused, [size]: size, [theme]: theme }">
       <select
         v-model="localValue"
         required
+        :class="[size, theme]"
         :disabled="disabled"
         @focus="focused = true"
         @blur="focused = false"
@@ -49,6 +50,8 @@ export default {
     label: { type: String, default: null },
     value: { type: [String, Number], default: '' },
     disabled: { type: Boolean, default: false },
+    size: { type: String, default: 'base' },
+    theme: { type: String, default: 'light' },
     icon: { type: String, default: 'chevron-down' },
   },
   data() {

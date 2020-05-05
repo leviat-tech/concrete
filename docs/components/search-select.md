@@ -35,6 +35,19 @@ The component will filter the provided options by the search text provided in th
 
 When `externalFilter` is false (the default behavior), the component will perform a case-insensitive search of all of the "label" fields of the provided options. When `externalFilter` is true, the component will not perform any filtering of the provided options. It will instead emit a `search` event, with the payload being the search text. The search text can then be used to filter the list of options and update the `options` prop.
 
+### Size and theme variants
+
+<component-container>
+  <search-select-demo label="Size: xs" size="xs" />
+  <search-select-demo label="Size: sm" size="sm" />
+  <search-select-demo label="Size: base" size="base" />
+  <search-select-demo label="Size: lg" size="lg" />
+</component-container>
+
+<component-container theme="dark">
+  <search-select-demo label="Theme: dark" theme="dark" />
+</component-container>
+
 ### Props
 
 | Name        | Type    | Default             | Description                           |
@@ -43,8 +56,10 @@ When `externalFilter` is false (the default behavior), the component will perfor
 | options     | Array   | [] | An array of objects. Each object must have a "label" and "value" property. |
 | placeholder | String  | "Please select one" | Input placeholder                     |
 | label       | String  | null                | Adds a text label to left of input.   |
-| external-filter | Boolean | false | Toggle the external/internal filter behavior | 
+| external-filter | Boolean | false | Toggle the external/internal filter behavior    |
 | icon        | String  | "chevron-down"      | Name for the icon shown at right      |
+| size        | String  | 'base'              | xs/sm/base/lg                         |
+| theme       | String  | 'light'             | light/dark                            |
 | disabled    | Boolean | false               |                                       |
 
 ### Events

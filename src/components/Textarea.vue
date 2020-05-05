@@ -1,16 +1,17 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
-    <div class="concrete-input concrete" :class="{ focused }">
+    <div class="concrete-input concrete" :class="{ focused, [size]: size, [theme]: theme }">
       <textarea
         v-model="localValue"
         :rows="rows"
+        :class="[size, theme]"
         :placeholder="placeholder"
         :disabled="disabled || readOnly"
         @keydown.enter="handleUpdate"
@@ -31,6 +32,8 @@ export default {
     value: { type: [String, Number], default: '' },
     disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },
+    size: { type: String, default: 'base' },
+    theme: { type: String, default: 'light' },
     rows: { type: Number, default: 10 },
   },
   data() {
@@ -75,7 +78,7 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
 
-.concrete-select-row {
+.concrete-input-row {
   align-items: start;
 }
 </style>

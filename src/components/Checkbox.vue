@@ -1,16 +1,17 @@
 <template>
-  <div class="concrete-select-row concrete">
+  <div class="concrete-input-row concrete">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
-      :class="{ disabled }"
+      :class="{ disabled, [size]: size }"
     >
       {{ label }}
     </div>
-    <div class="concrete-checkbox concrete" :class="{ focused }">
+    <div class="concrete-checkbox concrete" :class="{ focused, [size]: size, [theme]: theme }">
       <input
         v-model="localValue"
         type="checkbox"
+        :class="[size, theme]"
         :disabled="disabled"
         @focus="focused = true"
         @blur="focused = false"
@@ -26,6 +27,8 @@ export default {
   props: {
     label: { type: String, default: '' },
     value: { type: Boolean },
+    size: { type: String, default: 'base' },
+    theme: { type: String, default: 'light' },
     disabled: { type: Boolean, default: false },
   },
   data() {
@@ -60,6 +63,18 @@ export default {
   text-align: left;
   max-width: 28rem;
   width: 100%;
+
+  &.xs {
+    font-size: $text-xs;
+  }
+
+  &.sm {
+    font-size: $text-sm;
+  }
+
+  &.lg {
+    font-size: $text-lg;
+  }
 }
 
 </style>
