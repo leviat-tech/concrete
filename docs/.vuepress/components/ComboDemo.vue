@@ -149,6 +149,7 @@
               <c-native-select
                 size="sm"
                 label="Native Select"
+                :value="1"
                 :options="[
                   { label: 'hello', value: 1 },
                   { label: 'darkness', value: 2 },
