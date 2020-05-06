@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-dist
+dist/*
 !dist/concrete.umd.min.js
 storybook-static
 docs/.vuepress/dist/
