@@ -11,8 +11,8 @@
       </colgroup>
       <tr class="concrete-table-header-row concrete">
         <th
-          v-for="column in columns"
-          :key="column.label"
+          v-for="(column, colindex) in columns"
+          :key="`th_${colindex}_${column.label}`"
           :class="{ clickable: sortable }"
           @click="sortable && column.label && clickLabel(column)"
         >
@@ -26,12 +26,12 @@
       </tr>
       <tr
         v-for="(datum, idx1) in sortedData"
-        :key="idx1"
+        :key="`row_${idx1}`"
         class="concrete-table-row row"
       >
         <td
           v-for="(column, idx2) in columns"
-          :key="'prop' + idx2"
+          :key="`cell_${idx1}_${idx2}`"
           @click="$emit(
             'click',
             { row: datum, cell: { prop: column.prop, value: get(datum, column.prop)} },
