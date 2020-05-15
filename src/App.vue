@@ -131,6 +131,7 @@
         <c-column
           prop="animal"
           label="Animal"
+          :sortable="false"
         />
       </c-table>
     </div>

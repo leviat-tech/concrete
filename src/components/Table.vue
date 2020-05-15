@@ -136,9 +136,8 @@ const CTable = {
     get,
     clickLabel(column) {
       const sortProp = column.sortProp || column.prop;
-      if (this.externalSort) {
-        this.$emit('sort', { prop: sortProp, direction: this.sortDirection });
-      } else {
+      this.$emit('sort', { prop: sortProp, direction: this.sortDirection });
+      if (!this.externalSort) {
         if (sortProp === this.sortProp) {
           this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
         }
