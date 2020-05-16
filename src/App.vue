@@ -115,7 +115,7 @@
     <div class="input-row">
       <c-table
         :data="tableData"
-        :initial-sort="{
+        :order-by="{
           direction: 'asc',
           prop: 'name',
         }"
@@ -131,6 +131,32 @@
         <c-column
           prop="animal"
           label="Animal"
+          :sortable="false"
+        />
+      </c-table>
+    </div>
+    <div class="input-row">
+      <c-table
+        :data="sortedData"
+        :order-by="{
+          direction: sortDirection,
+          prop: sortProp,
+        }"
+        :external-sort="true"
+        @sort="handleSort"
+      >
+        <c-column
+          prop="name"
+          label="Name"
+        />
+        <c-column
+          prop="quantity"
+          label="Quantity"
+        />
+        <c-column
+          prop="animal"
+          label="Animal"
+          :sortable="false"
         />
       </c-table>
     </div>
@@ -249,6 +275,7 @@
 </template>
 
 <script>
+import { get } from 'lodash';
 import CButton from '@/components/Button';
 import CIcon from '@/components/Icon';
 import CNativeSelect from '@/components/NativeSelect';
@@ -319,6 +346,8 @@ export default {
       switched: true,
       switched2: true,
       currentTool: 'select',
+      sortDirection: 'asc',
+      sortProp: 'name',
       points: [
         { x: 0, y: 0 },
         { x: 100, y: 0 },
@@ -355,6 +384,17 @@ export default {
         { name: 'Angie', quantity: 4, animal: 'mink' },
       ];
     },
+    sortedData() {
+      if (!this.sortProp || !this.sortDirection) return this.tableData;
+      return this.tableData.slice().sort((a, b) => {
+        const aValue = get(a, this.sortProp);
+        const bValue = get(b, this.sortProp);
+        const aSort = this.sortDirection === 'asc' ? -1 : 1;
+        if (aValue < bValue) return aSort;
+        if (aValue > bValue) return -1 * aSort;
+        return 0;
+      });
+    },
     customSelectOptions() {
       return [
         { section: 'Screws', image: '/images/socket-head-screw.png', label: 'Socket Head Screw', value: 1 },
@@ -382,6 +422,11 @@ export default {
     },
     showAlertbox() {
       this.$alert('Message content');
+    },
+    handleSort({ direction, prop }) {
+      this.sortDirection = direction;
+      this.sortProp = prop;
+      // console.log('sorted?', JSON.stringify(this.sortedData, null, 2));
     },
   },
 };
