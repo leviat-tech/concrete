@@ -52,7 +52,7 @@ If the `external-sort` prop is set to true, the component itself will not sort t
 | ------------- | --------| ------------------- | --------------------------------- |
 | data          | Array   | [] | The data, formatted as an array of objects. |
 | empty-text    | String  | "No data available" | Text to be displayed when no data is passed to the table. |
-| initial-sort  | Object  | { direction: "asc", prop: null } | The initial sort state of the table. |
+| order-by | Object  | { direction: "asc", prop: null } | The sort state of the table. |
 | sortable      | Boolean | true | Toggle whether the table can sort. |
 | external-sort | Boolean | false | Toggle whether sorting will happen external to the table. |
 
@@ -62,7 +62,7 @@ If the `external-sort` prop is set to true, the component itself will not sort t
 | ------------- | --------| ------------------- | --------------------------------- |
 | label         | String  | '' | The display label of the column |
 | prop          | String  | null | The property to pick out of the data object |
-| sortProp      | String  | null | If present, allows the column to be sorted by a different property than the displayed `prop`. Useful in cases like dates, where the human-readable date format will not sort correctly. |
+| sort-prop     | String  | null | If present, allows the column to be sorted by a different property than the displayed `prop`. Useful in cases like dates, where the human-readable date format will not sort correctly. |
 | sortable | Boolean | true | A flag that allows sorting to be turned off/on per-column |
 
 ### Events

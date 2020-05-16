@@ -98,15 +98,15 @@ const CTable = {
   props: {
     data: { type: Array, default: () => [] },
     emptyText: { type: String, default: 'No data available' },
-    initialSort: { type: Object, default: () => ({ direction: 'asc', prop: null }) },
+    orderBy: { type: Object, default: () => ({ direction: 'asc', prop: null }) },
     sortable: { type: Boolean, default: true },
     externalSort: { type: Boolean, default: false },
   },
   data() {
     return {
       columns: [],
-      sortDirection: this.initialSort.direction,
-      sortProp: this.initialSort.prop,
+      sortDirection: this.orderBy.direction,
+      sortProp: this.orderBy.prop,
     };
   },
   computed: {
@@ -127,6 +127,15 @@ const CTable = {
       });
     },
   },
+  watch: {
+    orderBy: {
+      deep: true,
+      handler({ direction, prop }) {
+        this.sortDirection = direction;
+        this.sortProp = prop;
+      },
+    },
+  },
   mounted() {
     this.columns = this.$scopedSlots.default()
       .filter((c) => c.componentInstance)
@@ -136,15 +145,15 @@ const CTable = {
     get,
     clickLabel(column) {
       const sortProp = column.sortProp || column.prop;
-      this.$emit('sort', { prop: sortProp, direction: this.sortDirection });
-      if (!this.externalSort) {
-        if (sortProp === this.sortProp) {
-          this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-        }
-        if (column.sortable) {
-          this.sortProp = sortProp;
-        }
+      this.sortDirection = this.getSortDirection(sortProp);
+      this.sortProp = sortProp;
+      this.$emit('sort', { prop: this.sortProp, direction: this.sortDirection });
+    },
+    getSortDirection(prop) {
+      if (prop === this.sortProp) {
+        return this.sortDirection === 'asc' ? 'desc' : 'asc';
       }
+      return this.sortDirection;
     },
   },
 };
