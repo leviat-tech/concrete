@@ -25,7 +25,6 @@ import {
 import CDraggablePoint from '@/components/DraggablePoint';
 import CAlert from '@/components/alert';
 import CTooltip, { TooltipOptions } from '@/components/tooltip';
-import '@/components/tooltip-styles.scss';
 
 
 const components = [
@@ -67,7 +66,7 @@ const install = (Vue) => {
   Vue.prototype.$alert = CAlert; // eslint-disable-line
 
   CTooltip.options = TooltipOptions;
-  Vue.directive('c-tooltip', CTooltip);
+  Vue.directive('concrete-tooltip', CTooltip);
 };
 
 export default {

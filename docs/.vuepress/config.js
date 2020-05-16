@@ -16,6 +16,7 @@ const sidebars = {
       children: [
         '/components/button',
         '/components/icons',
+        '/components/tooltip',
         '/components/text-input',
         '/components/quantity-input',
         '/components/select',

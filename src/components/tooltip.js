@@ -1,4 +1,5 @@
 import { VTooltip } from 'v-tooltip';
+import '@/components/tooltip-styles.scss';
 
 
 export const TooltipOptions = {
@@ -65,7 +66,5 @@ export const TooltipOptions = {
     defaultHandleResize: true,
   },
 };
-
-console.log('VT', VTooltip);
 
 export default VTooltip;

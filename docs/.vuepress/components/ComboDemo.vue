@@ -4,7 +4,7 @@
       <div class="toolbar-container">
         <c-toolbar default-tool="select">
           <c-tool-group>
-            <c-tool name="Undo" tool-id="undo" icon="undo" v-c-tooltip="'hi dave'" />
+            <c-tool name="Undo" tool-id="undo" icon="undo" v-concrete-tooltip="'hi dave'" />
             <c-tool name="Redo" tool-id="redo" icon="redo" />
           </c-tool-group>
           <c-tool-group>
