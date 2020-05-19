@@ -11,6 +11,7 @@ import ChevronUp from '@/assets/icons/chevron-up.svg';
 import Compress from '@/assets/icons/compress.svg';
 import Cube from '@/assets/icons/cube.svg';
 import Expand from '@/assets/icons/expand.svg';
+import Grip from '@/assets/icons/grip.svg';
 import Hand from '@/assets/icons/hand.svg';
 import Image from '@/assets/icons/image.svg';
 import LongArrowDown from '@/assets/icons/long-arrow-down.svg';
@@ -50,6 +51,7 @@ export default {
         compress: Compress,
         cube: Cube,
         expand: Expand,
+        grip: Grip,
         hand: Hand,
         image: Image,
         'long-arrow-down': LongArrowDown,

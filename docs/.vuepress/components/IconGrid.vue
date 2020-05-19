@@ -26,6 +26,7 @@ export default {
         'compress',
         'cube',
         'expand',
+        'grip',
         'hand',
         'image',
         'long-arrow-down',

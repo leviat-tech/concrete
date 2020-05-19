@@ -9,7 +9,9 @@
     </div>
     <div class="concrete-input concrete" :class="{ focused, [size]: size, [theme]: theme }">
       <select
+        ref="input"
         v-model="localValue"
+        :placeholder="placeholder"
         required
         :class="[size, theme]"
         :disabled="disabled"
