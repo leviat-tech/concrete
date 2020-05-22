@@ -2,7 +2,13 @@
   <div
     ref="cardref"
     class="concrete-card concrete"
-    :class="{ dragging: drag.dragging }"
+    :class="{
+      dragging: drag.dragging,
+      left: drag.highlight === 'left',
+      right: drag.highlight === 'right',
+      'gray-left': drag.highlight === 'gray-left',
+      'gray-right': drag.highlight === 'gray-right',
+    }"
   >
     <div
       ref="gripref"
@@ -32,9 +38,6 @@ export default {
   props: {
     index: { type: Number, required: true },
   },
-  methods: {
-
-  },
   setup(props, context) {
     const gripref = ref(null);
     const cardref = ref(null);
@@ -45,6 +48,7 @@ export default {
       element: computed(() => context.parent.cardlistref),
       dragging: false,
       selection: null,
+      highlight: null,
     });
 
     const hasTitle = computed(() => !!context.slots.title);
@@ -78,7 +82,33 @@ export default {
       drag.selection.on('.drag', null);
     });
 
-    return { isCard, gripref, cardref, hasTitle, drag };
+    function highlight(dragIndex, slot) {
+      if (dragIndex === props.index) {
+        if (slot === props.index) {
+          drag.highlight = 'gray-left';
+        } else if (slot === props.index + 1) {
+          drag.highlight = 'gray-right';
+        } else {
+          drag.highlight = null;
+        }
+      } else if (slot === 0 && props.index === 0) {
+        drag.highlight = 'left';
+      } else if (slot === dragIndex && props.index === dragIndex - 1) {
+        drag.highlight = null;
+      } else if (slot === props.index + 1) {
+        drag.highlight = 'right';
+      } else {
+        drag.highlight = null;
+      }
+    }
+
+    function endHighlight() {
+      drag.highlight = null;
+    }
+
+    return {
+      isCard, highlight, endHighlight, gripref, cardref, hasTitle, drag,
+    };
   },
 };
 </script>
@@ -95,6 +125,42 @@ export default {
 
   &.dragging {
     background-color: $color-gray-01;
+  }
+
+  &.gray-left::before {
+    position: absolute;
+    display: block;
+    height: 100%;
+    content: ' ';
+    left: -1rem;
+    border-left: $border-sm $color-gray-03 solid;
+  }
+
+  &.left::before {
+    position: absolute;
+    display: block;
+    height: 100%;
+    content: ' ';
+    left: -1rem;
+    border-left: $border-sm $color-blue solid;
+  }
+
+  &.gray-right::before {
+    position: absolute;
+    display: block;
+    height: 100%;
+    content: ' ';
+    right: -1rem;
+    border-right: $border-sm $color-gray-03 solid;
+  }
+
+  &.right::before {
+    position: absolute;
+    display: block;
+    height: 100%;
+    content: ' ';
+    right: -1rem;
+    border-right: $border-sm $color-blue solid;
   }
 }
 

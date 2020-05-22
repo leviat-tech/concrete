@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <div class="card-row">
-      <c-card-list v-model="cardList">
+      <c-card-list
+        v-model="cardList"
+        card-width="16rem"
+      >
         <c-card
           v-for="(card, i) in cardList"
           :key="card.title"
