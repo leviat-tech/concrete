@@ -38,7 +38,8 @@ npm run lint
 ### Roadmap
 
 Components to do:
-  * Tooltip
+  * Card list
+    * Drag-to-reorder
   * Dropdown -- clicking reveals panel which can contain any content.
     - See: download dropdown, checkbox dropdown, documents dropdown, item selector dropdown.
   * Modal textarea

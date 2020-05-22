@@ -15,6 +15,8 @@ import { CTable, CColumn } from '@/components/Table';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
 import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/PanelSlider';
 import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
+import CCardList from '@/components/CardList';
+import CCard from '@/components/Card';
 import CViewport from '@/components/Viewport';
 import {
   CSvg2dViewport,
@@ -52,6 +54,8 @@ const components = [
   CToolbar,
   CToolGroup,
   CTool,
+  CCardList,
+  CCard,
   CViewport,
   CSvg2dViewport,
   CDraggablePoint,
@@ -100,6 +104,8 @@ export {
   CToolbar,
   CToolGroup,
   CTool,
+  CCardList,
+  CCard,
   CMasonry,
   CViewport,
   CSvg2dViewport,
