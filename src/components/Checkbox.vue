@@ -25,7 +25,7 @@
 export default {
   name: 'CCheckbox',
   props: {
-    label: { type: String, default: '' },
+    label: { type: String, default: null },
     value: { type: Boolean },
     size: { type: String, default: 'base' },
     theme: { type: String, default: 'light' },
