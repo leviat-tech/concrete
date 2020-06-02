@@ -10,7 +10,9 @@ import ChevronRight from '@/assets/icons/chevron-right.svg';
 import ChevronUp from '@/assets/icons/chevron-up.svg';
 import Compress from '@/assets/icons/compress.svg';
 import Cube from '@/assets/icons/cube.svg';
+import Download from '@/assets/icons/download.svg';
 import Expand from '@/assets/icons/expand.svg';
+import FolderOpen from '@/assets/icons/folder-open.svg';
 import Grip from '@/assets/icons/grip.svg';
 import Hand from '@/assets/icons/hand.svg';
 import Image from '@/assets/icons/image.svg';
@@ -24,10 +26,12 @@ import PointerOutline from '@/assets/icons/pointer-outline.svg';
 import PointerSolid from '@/assets/icons/pointer-solid.svg';
 import Polygon from '@/assets/icons/polygon.svg';
 import Redo from '@/assets/icons/redo.svg';
+import Save from '@/assets/icons/save.svg';
 import TimesCircle from '@/assets/icons/times-circle.svg';
 import Times from '@/assets/icons/times.svg';
 import Trash from '@/assets/icons/trash.svg';
 import Undo from '@/assets/icons/undo.svg';
+import Upload from '@/assets/icons/upload.svg';
 
 
 export default {
@@ -50,7 +54,9 @@ export default {
         'chevron-up': ChevronUp,
         compress: Compress,
         cube: Cube,
+        download: Download,
         expand: Expand,
+        'folder-open': FolderOpen,
         grip: Grip,
         hand: Hand,
         image: Image,
@@ -64,10 +70,12 @@ export default {
         'pointer-solid': PointerSolid,
         polygon: Polygon,
         redo: Redo,
+        save: Save,
         'times-circle': TimesCircle,
         times: Times,
         trash: Trash,
         undo: Undo,
+        upload: Upload,
       }[this.type];
     },
   },

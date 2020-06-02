@@ -44,7 +44,7 @@ export default {
     color: {
       type: String,
       default: 'primary',
-      validator: (prop) => ['primary', 'danger'].includes(prop),
+      validator: (prop) => ['primary', 'danger', 'standard'].includes(prop),
     },
     fill: {
       type: String,
@@ -151,6 +151,11 @@ export default {
 
   &.danger {
     @include btn-kind($color-red);
+  }
+
+  &.standard {
+    @include btn-kind($color-gray-03);
+    color: $color-black;
   }
 
   &.disabled {
