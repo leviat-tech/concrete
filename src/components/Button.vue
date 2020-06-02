@@ -49,7 +49,7 @@ export default {
     fill: {
       type: String,
       default: 'solid',
-      validator: (prop) => ['solid', 'outline', 'ghost'].includes(prop),
+      validator: (prop) => ['solid', 'outline', 'ghost', 'bare'].includes(prop),
     },
     play: { type: Boolean, default: false },
     progress: { type: Number, default: null },
@@ -133,6 +133,12 @@ export default {
   &.ghost {
     background: $color-white;
     color: $color;
+  }
+
+  &.bare {
+    background: $color-white;
+    color: $color;
+    padding: 0;
   }
 }
 

@@ -40,19 +40,26 @@ const CPanelLink = {
   components: { CIcon },
   props: {
     linkTo: { type: String, required: true },
+    styled: { type: Boolean, default: true },
+    size: { type: String, default: 'base' },
   },
   methods: {
     clickLink() { this.$parent.drillDown(this.linkTo); },
   },
   render() {
+    if (this.styled) {
+      return (
+        <div
+          class={`concrete-panel-link concrete ${this.size}`}
+          vOn:click={this.clickLink}
+        >
+          { this.$scopedSlots.default() }
+          <CIcon type="chevron-right" />
+        </div>
+      );
+    }
     return (
-      <div
-        class="concrete-panel-link concrete"
-        vOn:click={this.clickLink}
-      >
-        { this.$scopedSlots.default() }
-        <CIcon type="chevron-right" />
-      </div>
+      <div vOn:click={this.clickLink}>{ this.$scopedSlots.default() }</div>
     );
   },
 };
@@ -238,6 +245,24 @@ export {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &.xs {
+    font-size: $text-xs;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+  }
+
+  &.sm {
+    font-size: $text-sm;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+
+  &.lg {
+    font-size: $text-lg;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 
   &:hover {
     background-color: $color-gray-01;

@@ -1,6 +1,12 @@
 <template>
   <div id="app">
     <div class="card-row">
+      <c-dropdown>
+        <template v-slot:button>Click to open</template>
+        <template v-slot:content>This is dropdown content</template>
+      </c-dropdown>
+    </div>
+    <div class="card-row">
       <c-card-list
         v-model="cardList"
         card-width="16rem"
@@ -36,6 +42,7 @@
       <c-button :play="true" :progress="50">Hello</c-button>
       <c-button @click="showModal = true">Click for modal</c-button>
       <c-button @click="showAlertbox">Click for alertbox</c-button>
+      <c-button fill="bare">Bare button</c-button>
       <c-modal
         v-if="showModal"
         title="Modal Title"
@@ -260,8 +267,8 @@
         <c-panel-section>
           Content.
           <div v-if="switched">Dynamic content</div>
-          <c-panel-link link-to="a">Drill Down</c-panel-link>
-          <c-panel-link link-to="b">A different menu</c-panel-link>
+          <c-panel-link link-to="a" size="xs">Drill Down</c-panel-link>
+          <c-panel-link link-to="b" size="xs">A different menu</c-panel-link>
         </c-panel-section>
         <c-panel-section>
           Some more content.
@@ -306,6 +313,7 @@
 <script>
 import { get } from 'lodash';
 import CButton from '@/components/Button';
+import CDropdown from '@/components/Dropdown';
 import CIcon from '@/components/Icon';
 import CNativeSelect from '@/components/NativeSelect';
 import CSelect from '@/components/Select';
@@ -335,6 +343,7 @@ export default {
     CCardList,
     CCard,
     CButton,
+    CDropdown,
     CIcon,
     CTextInput,
     CTextarea,
@@ -365,6 +374,7 @@ export default {
   },
   data() {
     return {
+      showDropdown: false,
       textValue: null,
       textareaValue: null,
       quantityValue: 0,
