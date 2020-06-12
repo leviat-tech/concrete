@@ -53,7 +53,9 @@ const CPanelLink = {
           class={`concrete-panel-link concrete ${this.size}`}
           vOn:click={this.clickLink}
         >
-          { this.$scopedSlots.default() }
+          <div class="concrete-panel-link-content">
+            { this.$scopedSlots.default() }
+          </div>
           <CIcon type="chevron-right" />
         </div>
       );
@@ -245,6 +247,12 @@ export {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .concrete-panel-link-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
   &.xs {
     font-size: $text-xs;

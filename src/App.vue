@@ -272,7 +272,9 @@
         <c-panel-section>
           Content.
           <div v-if="switched">Dynamic content</div>
-          <c-panel-link link-to="a" size="xs">Drill Down</c-panel-link>
+          <c-panel-link link-to="a">
+            Drill Down. Lorem ipsum dolor sit amet, consectetur
+          </c-panel-link>
           <c-panel-link link-to="b" size="xs">A different menu</c-panel-link>
         </c-panel-section>
         <c-panel-section>
