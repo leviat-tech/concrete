@@ -28,6 +28,7 @@ const CTool = {
     toolId: { type: String, required: true },
     icon: { type: String, default: null },
     textButton: { type: Boolean, default: false },
+    stateful: { type: Boolean, default: true },
   },
   inject: ['concreteSelectedTool'],
   computed: {
@@ -36,7 +37,7 @@ const CTool = {
     },
   },
   methods: {
-    click() { this.$parent.click(this.toolId); },
+    click() { this.$parent.click(this.toolId, this.stateful); },
   },
   render() {
     let iconContent;
@@ -87,8 +88,10 @@ const CToolbar = {
     },
   },
   methods: {
-    click(toolId) {
-      this.$set(this.selected, 'toolId', toolId);
+    click(toolId, stateful) {
+      if (stateful) {
+        this.$set(this.selected, 'toolId', toolId);
+      }
       this.$emit('input', this.selected.toolId);
     },
   },
@@ -150,7 +153,7 @@ export { CToolbar, CToolGroup, CTool };
     border-radius: $radius;
   }
 
-  &.active {
+  &.active, &:active {
     background-color: $color-gray-03;
     border: $border-sm solid $color-gray-04;
     border-radius: $radius;
