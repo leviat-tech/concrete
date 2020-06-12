@@ -205,7 +205,12 @@
           <c-tool name="Polygon" tool-id="polygon" icon="polygon" />
         </c-tool-group>
         <c-tool-group>
-          <c-tool name="Run" tool-id="play" icon="play" :stateful="false" />
+          <c-tool
+            name="Run"
+            tool-id="play"
+            icon="play"
+            :stateful="false"
+          />
           <c-tool name="Cool" tool-id="cool" text-button />
           <c-tool name="Pause" tool-id="pause" icon="pause" />
           <c-tool name="Chamfer" tool-id="chamfer">

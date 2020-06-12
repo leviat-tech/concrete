@@ -37,7 +37,12 @@ const CTool = {
     },
   },
   methods: {
-    click() { this.$parent.click(this.toolId, this.stateful); },
+    click() {
+      if (this.stateful) {
+        this.$parent.click(this.toolId);
+      }
+      this.$emit('click', this.toolId);
+    },
   },
   render() {
     let iconContent;
@@ -88,10 +93,8 @@ const CToolbar = {
     },
   },
   methods: {
-    click(toolId, stateful) {
-      if (stateful) {
-        this.$set(this.selected, 'toolId', toolId);
-      }
+    click(toolId) {
+      this.$set(this.selected, 'toolId', toolId);
       this.$emit('input', this.selected.toolId);
     },
   },
