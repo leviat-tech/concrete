@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <div class="input-row">
+      <c-draggable-list>
+        <c-draggable-item v-for="(item, i) in draggableItems" :key="`drag_${i}`">
+          <div>{{ item.name }}</div>
+        </c-draggable-item>
+      </c-draggable-list>
+    </div>
     <div class="card-row">
       <c-dropdown>
         <template v-slot:button>Click to open</template>
@@ -319,6 +326,7 @@
 
 <script>
 import { get } from 'lodash';
+import CDraggableList from '@/components/DraggableList';
 import CButton from '@/components/Button';
 import CDropdown from '@/components/Dropdown';
 import CIcon from '@/components/Icon';
@@ -350,6 +358,7 @@ export default {
     CCardList,
     CCard,
     CButton,
+    CDraggableList,
     CDropdown,
     CIcon,
     CTextInput,
@@ -417,6 +426,10 @@ export default {
         { title: 'Card F', content: 'Content F' },
         { title: 'Card G', content: 'Content G' },
         { title: 'Card H', content: 'Content H' },
+      ],
+      draggableItems: [
+        { name: 'Dave' },
+        { name: 'Angie' },
       ],
     };
   },

@@ -14,10 +14,12 @@ import Download from '@/assets/icons/download.svg';
 import Expand from '@/assets/icons/expand.svg';
 import FolderOpen from '@/assets/icons/folder-open.svg';
 import Grip from '@/assets/icons/grip.svg';
+import GripLines from '@/assets/icons/grip-lines.svg';
 import Hand from '@/assets/icons/hand.svg';
 import Image from '@/assets/icons/image.svg';
 import LongArrowDown from '@/assets/icons/long-arrow-down.svg';
 import LongArrowUp from '@/assets/icons/long-arrow-up.svg';
+import MinusCircle from '@/assets/icons/minus-circle.svg';
 import Pause from '@/assets/icons/pause.svg';
 import Pen from '@/assets/icons/pen.svg';
 import Play from '@/assets/icons/play.svg';
@@ -58,10 +60,12 @@ export default {
         expand: Expand,
         'folder-open': FolderOpen,
         grip: Grip,
+        'grip-lines': GripLines,
         hand: Hand,
         image: Image,
         'long-arrow-down': LongArrowDown,
         'long-arrow-up': LongArrowUp,
+        'minus-circle': MinusCircle,
         pause: Pause,
         pen: Pen,
         play: Play,
