@@ -27,6 +27,7 @@ export default {
         'cube',
         'download',
         'expand',
+        'file-export',
         'folder-open',
         'grip',
         'grip-lines',

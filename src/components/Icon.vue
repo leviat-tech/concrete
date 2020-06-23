@@ -12,6 +12,7 @@ import Compress from '@/assets/icons/compress.svg';
 import Cube from '@/assets/icons/cube.svg';
 import Download from '@/assets/icons/download.svg';
 import Expand from '@/assets/icons/expand.svg';
+import FileExport from '@/assets/icons/file-export.svg';
 import FolderOpen from '@/assets/icons/folder-open.svg';
 import Grip from '@/assets/icons/grip.svg';
 import GripLines from '@/assets/icons/grip-lines.svg';
@@ -58,6 +59,7 @@ export default {
         cube: Cube,
         download: Download,
         expand: Expand,
+        'file-export': FileExport,
         'folder-open': FolderOpen,
         grip: Grip,
         'grip-lines': GripLines,
