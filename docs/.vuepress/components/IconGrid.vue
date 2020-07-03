@@ -45,6 +45,7 @@ export default {
         'polygon',
         'redo',
         'save',
+        'sync',
         'times-circle',
         'times',
         'trash',

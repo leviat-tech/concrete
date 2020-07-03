@@ -30,6 +30,7 @@ import PointerSolid from '@/assets/icons/pointer-solid.svg';
 import Polygon from '@/assets/icons/polygon.svg';
 import Redo from '@/assets/icons/redo.svg';
 import Save from '@/assets/icons/save.svg';
+import Sync from '@/assets/icons/sync.svg';
 import TimesCircle from '@/assets/icons/times-circle.svg';
 import Times from '@/assets/icons/times.svg';
 import Trash from '@/assets/icons/trash.svg';
@@ -77,6 +78,7 @@ export default {
         polygon: Polygon,
         redo: Redo,
         save: Save,
+        sync: Sync,
         'times-circle': TimesCircle,
         times: Times,
         trash: Trash,
