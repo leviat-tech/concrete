@@ -31,6 +31,7 @@ import Polygon from '@/assets/icons/polygon.svg';
 import Redo from '@/assets/icons/redo.svg';
 import Save from '@/assets/icons/save.svg';
 import Sync from '@/assets/icons/sync.svg';
+import Table from '@/assets/icons/table.svg';
 import TimesCircle from '@/assets/icons/times-circle.svg';
 import Times from '@/assets/icons/times.svg';
 import Trash from '@/assets/icons/trash.svg';
@@ -79,6 +80,7 @@ export default {
         redo: Redo,
         save: Save,
         sync: Sync,
+        table: Table,
         'times-circle': TimesCircle,
         times: Times,
         trash: Trash,

@@ -46,6 +46,7 @@ export default {
         'redo',
         'save',
         'sync',
+        'table',
         'times-circle',
         'times',
         'trash',
