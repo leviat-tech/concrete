@@ -3,7 +3,10 @@
     class="concrete-modal-background concrete"
     @click.self="$emit('close')"
   >
-    <div class="concrete-modal concrete">
+    <div
+      class="concrete-modal concrete"
+      :class="[size]"
+    >
       <div
         class="header"
         :class="{ title }"
@@ -38,6 +41,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    size: {
+      type: String,
+      default: 'md',
+      validator: (prop) => ['md', 'lg'].includes(prop),
+    },
   },
 };
 </script>
@@ -67,12 +75,20 @@ export default {
 .concrete-modal {
   @include shadow;
   background-color: $color-white;
-  max-width: 24rem;
-  width: 24rem;
   border-radius: $radius;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &.md {
+    max-width: 24rem;
+    width: 24rem;
+  }
+
+  &.lg {
+    max-width: 36rem;
+    width: 36rem;
+  }
 }
 
 .header {
