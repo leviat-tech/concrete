@@ -27,6 +27,7 @@ module.exports = {
     'prefer-destructuring': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/singleline-html-element-content-newline': 'off',
+    'no-multiple-empty-lines': ['error', { max: 2 }],
   },
   parserOptions: {
     parser: 'babel-eslint',
