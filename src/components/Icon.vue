@@ -8,6 +8,7 @@ import ChevronDown from '@/assets/icons/chevron-down.svg';
 import ChevronLeft from '@/assets/icons/chevron-left.svg';
 import ChevronRight from '@/assets/icons/chevron-right.svg';
 import ChevronUp from '@/assets/icons/chevron-up.svg';
+import Code from '@/assets/icons/code.svg';
 import Compress from '@/assets/icons/compress.svg';
 import Cube from '@/assets/icons/cube.svg';
 import Download from '@/assets/icons/download.svg';
@@ -57,6 +58,7 @@ export default {
         'chevron-left': ChevronLeft,
         'chevron-right': ChevronRight,
         'chevron-up': ChevronUp,
+        code: Code,
         compress: Compress,
         cube: Cube,
         download: Download,
