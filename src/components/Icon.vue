@@ -29,9 +29,11 @@ import Plus from '@/assets/icons/plus.svg';
 import PointerOutline from '@/assets/icons/pointer-outline.svg';
 import PointerSolid from '@/assets/icons/pointer-solid.svg';
 import Polygon from '@/assets/icons/polygon.svg';
+import Radio from '@/assets/icons/radio.svg';
 import Redo from '@/assets/icons/redo.svg';
 import Save from '@/assets/icons/save.svg';
 import Sync from '@/assets/icons/sync.svg';
+import Subscript from '@/assets/icons/subscript.svg';
 import Table from '@/assets/icons/table.svg';
 import TimesCircle from '@/assets/icons/times-circle.svg';
 import Times from '@/assets/icons/times.svg';
@@ -79,8 +81,10 @@ export default {
         'pointer-outline': PointerOutline,
         'pointer-solid': PointerSolid,
         polygon: Polygon,
+        radio: Radio,
         redo: Redo,
         save: Save,
+        subscript: Subscript,
         sync: Sync,
         table: Table,
         'times-circle': TimesCircle,
