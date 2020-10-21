@@ -15,6 +15,7 @@ import Download from '@/assets/icons/download.svg';
 import Expand from '@/assets/icons/expand.svg';
 import FileExport from '@/assets/icons/file-export.svg';
 import FolderOpen from '@/assets/icons/folder-open.svg';
+import Func from '@/assets/icons/function.svg';
 import Grip from '@/assets/icons/grip.svg';
 import GripLines from '@/assets/icons/grip-lines.svg';
 import Hand from '@/assets/icons/hand.svg';
@@ -47,7 +48,7 @@ export default {
     size: {
       type: String,
       default: null,
-      validator: (prop) => ['xl', 'lg', 'md', 'sm', 'xs'].includes(prop),
+      validator: (prop) => ['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs'].includes(prop),
     },
   },
   computed: {
@@ -65,6 +66,7 @@ export default {
         expand: Expand,
         'file-export': FileExport,
         'folder-open': FolderOpen,
+        function: Func,
         grip: Grip,
         'grip-lines': GripLines,
         hand: Hand,
@@ -95,14 +97,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/styles/variables.scss';
+  @import '../assets/styles/variables.scss';
 
-.svg-inline {
-  font-size: inherit;
-  overflow: visible;
-  display: inline-block;
-  height: .8em;
-  vertical-align: -0.1em;
+  .svg-inline {
+    font-size: inherit;
+    overflow: visible;
+    display: inline-block;
+    height: .8em;
+    vertical-align: -0.1em;
 
   &.xs {
     font-size: $text-xs;
@@ -123,6 +125,13 @@ export default {
   &.xl {
     font-size: $text-xl;
   }
-}
 
+  &.xxl {
+    font-size: $text-2xl;
+  }
+
+  &.xxxl {
+    font-size: $text-3xl;
+  }
+}
 </style>
