@@ -22,6 +22,7 @@ import Hand from '@/assets/icons/hand.svg';
 import Image from '@/assets/icons/image.svg';
 import LongArrowDown from '@/assets/icons/long-arrow-down.svg';
 import LongArrowUp from '@/assets/icons/long-arrow-up.svg';
+import Minus from '@/assets/icons/minus.svg';
 import MinusCircle from '@/assets/icons/minus-circle.svg';
 import Pause from '@/assets/icons/pause.svg';
 import Pen from '@/assets/icons/pen.svg';
@@ -39,6 +40,7 @@ import Times from '@/assets/icons/times.svg';
 import Trash from '@/assets/icons/trash.svg';
 import Undo from '@/assets/icons/undo.svg';
 import Upload from '@/assets/icons/upload.svg';
+import Warning from '@/assets/icons/warning.svg';
 
 
 export default {
@@ -73,6 +75,7 @@ export default {
         image: Image,
         'long-arrow-down': LongArrowDown,
         'long-arrow-up': LongArrowUp,
+        minus: Minus,
         'minus-circle': MinusCircle,
         pause: Pause,
         pen: Pen,
@@ -90,6 +93,7 @@ export default {
         trash: Trash,
         undo: Undo,
         upload: Upload,
+        warning: Warning,
       }[this.type];
     },
   },
