@@ -85,15 +85,17 @@ export const PanelSlider = () => ({
         </div>
         Some more content.
         <c-panel panel-id="a" title="Secondary">
-          Secondary Content
           <c-panel-link link-to="x">Drill more?</c-panel-link>
-          <c-panel panel-id="x" title="Tertiary">
-            Tertiary Content
-            <c-panel-link link-to="q">Last one</c-panel-link>
-            <c-panel panel-id="q" title="Last one">
-              Some final content
+          <div>
+            Secondary Content
+            <c-panel panel-id="x" title="Tertiary">
+              Tertiary Content
+              <c-panel-link link-to="q">Last one</c-panel-link>
+              <c-panel panel-id="q" title="Last one">
+                Some final content
+              </c-panel>
             </c-panel>
-          </c-panel>
+          </div>
         </c-panel>
         <c-panel panel-id="b" title="Another?">
           A different Secondary Panel

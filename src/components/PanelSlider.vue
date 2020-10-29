@@ -1,6 +1,5 @@
 <script>
 import get from 'lodash/get';
-import partition from 'lodash/partition';
 import CIcon from '@/components/Icon';
 import cloneVnode from '../utils/cloneVnode';
 
@@ -43,8 +42,9 @@ const CPanelLink = {
     styled: { type: Boolean, default: true },
     size: { type: String, default: 'base' },
   },
+  inject: ['drillDown'],
   methods: {
-    clickLink() { this.$parent.drillDown(this.linkTo); },
+    clickLink() { this.drillDown(this.linkTo); },
   },
   render() {
     if (this.styled) {
@@ -71,21 +71,13 @@ const CPanel = {
   props: {
     panelId: { type: String, required: true },
     title: { type: String, default: '' },
-  },
-  methods: {
-    drillDown(id) {
-      this.$parent.drillDown(id);
-    },
+    display: { type: Boolean, default: false },
   },
   render() {
     const slots = this.$scopedSlots.default();
-
-    // We assume any component with a prop of "panel-id" is a panel.
-    const contents = slots.filter((s) => !get(s, 'componentOptions.propsData.panelId'));
-
-    return (
+    return this.display && (
       <div class="concrete-panel-content concrete">
-        { contents }
+        { slots }
       </div>
     );
   },
@@ -120,39 +112,47 @@ const CPanelSlider = {
       this.panelState.pop();
     },
   },
+  provide() {
+    return {
+      drillDown: this.drillDown,
+    };
+  },
   render(h) {
     const rootVnodes = this.$scopedSlots.default() || [];
+    function findPanel(id, nodes = []) {
+      // bfs to find panel
+      let queue = [];
+      nodes.forEach((node) => queue.push(node));
+      let current;
+      while (queue.length > 0) {
+        current = queue.pop();
+        if (id === get(current, 'componentOptions.propsData.panelId')) {
+          return current;
+        }
+        queue = [...(current.children || []), ...queue];
+      }
+      return null;
+    }
 
-    // We assume any component with a prop of "panel-id" is a panel.
-    const [rootPanels, rootContents] = partition(
-      rootVnodes,
-      (s) => get(s, 'componentOptions.propsData.panelId'),
-    );
+    const panelList = this.panelState.reduce(({ vnodes, children }, id) => {
+      const current = findPanel(id, children);
 
-    const panelList = this.panelState.reduce(({ vnodes, panels }, id) => {
-      const current = panels.find(
-        (p) => id === get(p, 'componentOptions.propsData.panelId'),
-      );
-
+      // we get the previous panel to get back button info
       const prevPanel = vnodes[vnodes.length - 1];
       const back = prevPanel
         ? get(prevPanel, 'componentOptions.propsData.title')
         : this.title;
 
       const clone = cloneVnode(h, current);
-      vnodes.push(clone);
-
-      const childPanels = current.componentOptions.children.filter(
-        (s) => get(s, 'componentOptions.propsData.panelId'),
-      );
+      clone.componentOptions.propsData.display = true;
 
       return {
         back,
         title: get(clone, 'componentOptions.propsData.title'),
-        vnodes,
-        panels: childPanels,
+        vnodes: [...vnodes, clone],
+        children: current.componentOptions.children,
       };
-    }, { back: null, title: this.title, vnodes: [], panels: rootPanels });
+    }, { back: null, title: this.title, vnodes: [], children: rootVnodes });
 
     const depth = this.panelState.length;
 
@@ -171,7 +171,7 @@ const CPanelSlider = {
             style={`transform: translate(-${depth * 100}%, 0)`}
           >
             <div class="concrete-panel-content concrete">
-              { rootContents }
+              { rootVnodes }
             </div>
             {
               panelList.vnodes
