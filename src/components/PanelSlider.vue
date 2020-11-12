@@ -33,7 +33,6 @@ const TitleBar = {
     );
   },
 };
-
 const CPanelLink = {
   name: 'CPanelLink',
   components: { CIcon },
@@ -65,7 +64,6 @@ const CPanelLink = {
     );
   },
 };
-
 const CPanel = {
   name: 'CPanel',
   props: {
@@ -82,7 +80,6 @@ const CPanel = {
     );
   },
 };
-
 const CPanelSection = {
   functional: true,
   name: 'CPanelSection',
@@ -93,7 +90,6 @@ const CPanelSection = {
     ];
   },
 };
-
 const CPanelSlider = {
   name: 'CPanelSlider',
   props: {
@@ -111,15 +107,7 @@ const CPanelSlider = {
     goBack() {
       this.panelState.pop();
     },
-  },
-  provide() {
-    return {
-      drillDown: this.drillDown,
-    };
-  },
-  render(h) {
-    const rootVnodes = this.$scopedSlots.default() || [];
-    function findPanel(id, nodes = []) {
+    findPanel(h, id, nodes = []) {
       // bfs to find panel
       let queue = [];
       nodes.forEach((node) => queue.push(node));
@@ -129,33 +117,41 @@ const CPanelSlider = {
         if (id === get(current, 'componentOptions.propsData.panelId')) {
           return current;
         }
-        queue = [...(current.children || []), ...queue];
+        queue = [
+          ...get(current, 'children', []),
+          ...get(current, 'componentOptions.children', []),
+          ...get(current, 'componentInstance.$children', []).map((c) => c.$vnode),
+          ...queue,
+        ];
       }
       return null;
-    }
-
+    },
+  },
+  provide() {
+    return {
+      drillDown: this.drillDown,
+      goBack: this.goBack,
+    };
+  },
+  render(h) {
+    const rootVnodes = this.$scopedSlots.default() || [];
     const panelList = this.panelState.reduce(({ vnodes, children }, id) => {
-      const current = findPanel(id, children);
-
+      const current = this.findPanel(h, id, children);
       // we get the previous panel to get back button info
       const prevPanel = vnodes[vnodes.length - 1];
       const back = prevPanel
         ? get(prevPanel, 'componentOptions.propsData.title')
         : this.title;
-
       const clone = cloneVnode(h, current);
       clone.componentOptions.propsData.display = true;
-
       return {
         back,
         title: get(clone, 'componentOptions.propsData.title'),
         vnodes: [...vnodes, clone],
-        children: current.componentOptions.children,
+        children: clone.componentOptions.children,
       };
     }, { back: null, title: this.title, vnodes: [], children: rootVnodes });
-
     const depth = this.panelState.length;
-
     return (
       <div class="concrete-panel-container concrete">
         <div class="concrete-panel-title-wrapper concrete">
@@ -182,9 +178,7 @@ const CPanelSlider = {
     );
   },
 };
-
 export default CPanelSlider;
-
 export {
   CPanelSlider,
   CPanel,
@@ -195,7 +189,6 @@ export {
 
 <style lang="scss">
 @import '../assets/styles/variables.scss';
-
 .concrete-panel-container {
   width: 100%;
   height: 100%;
@@ -205,20 +198,16 @@ export {
   display: flex;
   flex-direction: column;
 }
-
 .concrete-panel-container * {
   box-sizing: border-box;
 }
-
 .concrete-panel-title-wrapper {
   flex: none;
 }
-
 .concrete-panel-content-wrapper {
   flex: 1 1 0%;
   overflow: auto;
 }
-
 .concrete-panel-titlebar {
   position: relative;
   font-size: $text-base;
@@ -231,11 +220,9 @@ export {
   border-bottom: $border-sm solid $color-gray-04;
   line-height: 3rem;
 }
-
 .concrete-panels-hidden {
   display: none;
 }
-
 .concrete-panel-link {
   cursor: pointer;
   box-sizing: content-box;
@@ -247,37 +234,31 @@ export {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   .concrete-panel-link-content {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-
   &.xs {
     font-size: $text-xs;
     padding-top: .25rem;
     padding-bottom: .25rem;
   }
-
   &.sm {
     font-size: $text-sm;
     padding-top: .5rem;
     padding-bottom: .5rem;
   }
-
   &.lg {
     font-size: $text-lg;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
-
   &:hover {
     background-color: $color-gray-01;
     border-color: $color-gray-04;
   }
 }
-
 .concrete-panel-back {
   position: absolute;
   height: 1rem;
@@ -286,34 +267,28 @@ export {
   font-size: $text-sm;
   font-weight: normal;
   color: $color-blue;
-
   .svg-inline {
     margin-right: 0.5rem;
   }
 }
-
 .concrete-panel-content-container {
   display: flex;
   transition: transform .2s ease;
   padding: 1rem;
 }
-
 .concrete-panel-content {
   width: 100%;
   margin-right: 2rem;
   flex: none;
 }
-
 .concrete-panel-divider {
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: -1rem;
   border-bottom: $border-sm solid $color-gray-04;
   width: calc(100% + 2rem);
-
   &:last-of-type {
     border-bottom: $border-sm solid transparent;
   }
 }
-
 </style>
