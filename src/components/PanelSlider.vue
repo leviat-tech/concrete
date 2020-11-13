@@ -1,7 +1,7 @@
 <script>
 import get from 'lodash/get';
 import CIcon from '@/components/Icon';
-import cloneVnode from '../utils/cloneVnode';
+// import cloneVnode from '../utils/cloneVnode';
 
 
 const TitleBar = {
@@ -19,20 +19,21 @@ const TitleBar = {
   render() {
     return (
       <div class="concrete-panel-titlebar concrete">
-        {this.back
-          && <div
+        {this.back && (
+          <div
             class="concrete-panel-back concrete"
             vOn:click={this.goBack}
           >
             <CIcon type="chevron-left" />
             {this.back}
           </div>
-        }
+        )}
         {this.title}
       </div>
     );
   },
 };
+
 const CPanelLink = {
   name: 'CPanelLink',
   components: { CIcon },
@@ -69,17 +70,28 @@ const CPanel = {
   props: {
     panelId: { type: String, required: true },
     title: { type: String, default: '' },
-    display: { type: Boolean, default: false },
+  },
+  inject: ['updatePanel'],
+  created() {
+    this.updatePanel(this.$vnode);
+  },
+  updated() {
+    this.updatePanel(this.$vnode);
   },
   render() {
-    const slots = this.$scopedSlots.default();
-    return this.display && (
-      <div class="concrete-panel-content concrete">
-        { slots }
-      </div>
-    );
+    return null;
   },
 };
+
+const CPanelContainer = {
+  name: 'CPanelContainer',
+  render() {
+    const panel = this.$slots.default[1];
+    const toRender = panel.componentInstance.$scopedSlots.default();
+    return <div class="concrete-panel-content concrete"> { toRender } </div>;
+  },
+};
+
 const CPanelSection = {
   functional: true,
   name: 'CPanelSection',
@@ -97,9 +109,11 @@ const CPanelSlider = {
   },
   data() {
     return {
+      panels: {},
       panelState: [],
     };
   },
+  components: { CPanelContainer },
   methods: {
     drillDown(id) {
       this.panelState.push(id);
@@ -107,57 +121,38 @@ const CPanelSlider = {
     goBack() {
       this.panelState.pop();
     },
-    findPanel(h, id, nodes = []) {
-      // bfs to find panel
-      let queue = [];
-      nodes.forEach((node) => queue.push(node));
-      let current;
-      while (queue.length > 0) {
-        current = queue.pop();
-        if (id === get(current, 'componentOptions.propsData.panelId')) {
-          return current;
-        }
-        queue = [
-          ...get(current, 'children', []),
-          ...get(current, 'componentOptions.children', []),
-          ...get(current, 'componentInstance.$children', []).map((c) => c.$vnode),
-          ...queue,
-        ];
-      }
-      return null;
+    updatePanel(panel) {
+      const panelId = panel.componentOptions.propsData.panelId;
+      this.$set(this.panels, panelId, panel);
     },
   },
   provide() {
     return {
       drillDown: this.drillDown,
+      updatePanel: this.updatePanel,
       goBack: this.goBack,
     };
   },
-  render(h) {
+  render() {
     const rootVnodes = this.$scopedSlots.default() || [];
-    const panelList = this.panelState.reduce(({ vnodes, children }, id) => {
-      const current = this.findPanel(h, id, children);
-      // we get the previous panel to get back button info
-      const prevPanel = vnodes[vnodes.length - 1];
-      const back = prevPanel
-        ? get(prevPanel, 'componentOptions.propsData.title')
-        : this.title;
-      const clone = cloneVnode(h, current);
-      clone.componentOptions.propsData.display = true;
-      return {
-        back,
-        title: get(clone, 'componentOptions.propsData.title'),
-        vnodes: [...vnodes, clone],
-        children: clone.componentOptions.children,
-      };
-    }, { back: null, title: this.title, vnodes: [], children: rootVnodes });
     const depth = this.panelState.length;
+    const panelList = this.panelState.map((id) => this.panels[id]);
+    const title = get(panelList[panelList.length - 1], 'componentOptions.propsData.title', this.title);
+    let back;
+    if (depth === 0) {
+      back = null;
+    } else if (depth === 1) {
+      back = this.title;
+    } else {
+      back = get(panelList[panelList.length - 2], 'componentOptions.propsData.title', this.title);
+    }
+
     return (
       <div class="concrete-panel-container concrete">
         <div class="concrete-panel-title-wrapper concrete">
           <TitleBar
-            title={panelList.title}
-            back={panelList.back}
+            title={title}
+            back={back}
             vOn:go-back={this.goBack}
           />
         </div>
@@ -169,9 +164,7 @@ const CPanelSlider = {
             <div class="concrete-panel-content concrete">
               { rootVnodes }
             </div>
-            {
-              panelList.vnodes
-            }
+            { panelList.map((panel) => <c-panel-container> { panel } </c-panel-container>) }
           </div>
         </div>
       </div>
