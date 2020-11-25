@@ -321,6 +321,8 @@
         <div class="card">Fourth</div>
       </c-masonry>
     </div>
+
+    <test-component />
   </div>
 </template>
 
@@ -350,6 +352,7 @@ import CCardList from '@/components/CardList';
 import CCard from '@/components/Card';
 import CSvg2dViewport from '@/components/Svg2dViewport';
 import Chamfer from '@/assets/icons/chamfer.svg';
+import TestComponent from './TestComponent.vue';
 
 
 export default {
@@ -387,6 +390,7 @@ export default {
     CViewport,
     CSvg2dViewport,
     Chamfer,
+    TestComponent,
   },
   data() {
     return {
@@ -431,6 +435,7 @@ export default {
         { name: 'Dave' },
         { name: 'Angie' },
       ],
+      counter: 0,
     };
   },
   computed: {

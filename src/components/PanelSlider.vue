@@ -1,7 +1,7 @@
 <script>
 import get from 'lodash/get';
 import CIcon from '@/components/Icon';
-import cloneVnode from '../utils/cloneVnode';
+// import cloneVnode from '../utils/cloneVnode';
 
 
 const TitleBar = {
@@ -19,15 +19,15 @@ const TitleBar = {
   render() {
     return (
       <div class="concrete-panel-titlebar concrete">
-        {this.back
-          && <div
+        {this.back && (
+          <div
             class="concrete-panel-back concrete"
             vOn:click={this.goBack}
           >
             <CIcon type="chevron-left" />
             {this.back}
           </div>
-        }
+        )}
         {this.title}
       </div>
     );
@@ -65,21 +65,30 @@ const CPanelLink = {
     );
   },
 };
-
 const CPanel = {
   name: 'CPanel',
   props: {
     panelId: { type: String, required: true },
     title: { type: String, default: '' },
-    display: { type: Boolean, default: false },
+  },
+  inject: ['updatePanel'],
+  created() {
+    this.updatePanel(this.$vnode);
+  },
+  updated() {
+    this.updatePanel(this.$vnode);
   },
   render() {
-    const slots = this.$scopedSlots.default();
-    return this.display && (
-      <div class="concrete-panel-content concrete">
-        { slots }
-      </div>
-    );
+    return null;
+  },
+};
+
+const CPanelContainer = {
+  name: 'CPanelContainer',
+  render() {
+    const panel = this.$slots.default[1];
+    const toRender = panel.componentInstance.$scopedSlots.default();
+    return <div class="concrete-panel-content concrete"> { toRender } </div>;
   },
 };
 
@@ -93,7 +102,6 @@ const CPanelSection = {
     ];
   },
 };
-
 const CPanelSlider = {
   name: 'CPanelSlider',
   props: {
@@ -101,9 +109,11 @@ const CPanelSlider = {
   },
   data() {
     return {
+      panels: {},
       panelState: [],
     };
   },
+  components: { CPanelContainer },
   methods: {
     drillDown(id) {
       this.panelState.push(id);
@@ -111,57 +121,38 @@ const CPanelSlider = {
     goBack() {
       this.panelState.pop();
     },
+    updatePanel(panel) {
+      const panelId = panel.componentOptions.propsData.panelId;
+      this.$set(this.panels, panelId, panel);
+    },
   },
   provide() {
     return {
       drillDown: this.drillDown,
+      updatePanel: this.updatePanel,
+      goBack: this.goBack,
     };
   },
-  render(h) {
+  render() {
     const rootVnodes = this.$scopedSlots.default() || [];
-    function findPanel(id, nodes = []) {
-      // bfs to find panel
-      let queue = [];
-      nodes.forEach((node) => queue.push(node));
-      let current;
-      while (queue.length > 0) {
-        current = queue.pop();
-        if (id === get(current, 'componentOptions.propsData.panelId')) {
-          return current;
-        }
-        queue = [...(current.children || []), ...queue];
-      }
-      return null;
-    }
-
-    const panelList = this.panelState.reduce(({ vnodes, children }, id) => {
-      const current = findPanel(id, children);
-
-      // we get the previous panel to get back button info
-      const prevPanel = vnodes[vnodes.length - 1];
-      const back = prevPanel
-        ? get(prevPanel, 'componentOptions.propsData.title')
-        : this.title;
-
-      const clone = cloneVnode(h, current);
-      clone.componentOptions.propsData.display = true;
-
-      return {
-        back,
-        title: get(clone, 'componentOptions.propsData.title'),
-        vnodes: [...vnodes, clone],
-        children: current.componentOptions.children,
-      };
-    }, { back: null, title: this.title, vnodes: [], children: rootVnodes });
-
     const depth = this.panelState.length;
+    const panelList = this.panelState.map((id) => this.panels[id]);
+    const title = get(panelList[panelList.length - 1], 'componentOptions.propsData.title', this.title);
+    let back;
+    if (depth === 0) {
+      back = null;
+    } else if (depth === 1) {
+      back = this.title;
+    } else {
+      back = get(panelList[panelList.length - 2], 'componentOptions.propsData.title', this.title);
+    }
 
     return (
       <div class="concrete-panel-container concrete">
         <div class="concrete-panel-title-wrapper concrete">
           <TitleBar
-            title={panelList.title}
-            back={panelList.back}
+            title={title}
+            back={back}
             vOn:go-back={this.goBack}
           />
         </div>
@@ -173,18 +164,14 @@ const CPanelSlider = {
             <div class="concrete-panel-content concrete">
               { rootVnodes }
             </div>
-            {
-              panelList.vnodes
-            }
+            { panelList.map((panel) => <c-panel-container> { panel } </c-panel-container>) }
           </div>
         </div>
       </div>
     );
   },
 };
-
 export default CPanelSlider;
-
 export {
   CPanelSlider,
   CPanel,
@@ -195,7 +182,6 @@ export {
 
 <style lang="scss">
 @import '../assets/styles/variables.scss';
-
 .concrete-panel-container {
   width: 100%;
   height: 100%;
@@ -205,20 +191,16 @@ export {
   display: flex;
   flex-direction: column;
 }
-
 .concrete-panel-container * {
   box-sizing: border-box;
 }
-
 .concrete-panel-title-wrapper {
   flex: none;
 }
-
 .concrete-panel-content-wrapper {
   flex: 1 1 0%;
   overflow: auto;
 }
-
 .concrete-panel-titlebar {
   position: relative;
   font-size: $text-base;
@@ -231,11 +213,9 @@ export {
   border-bottom: $border-sm solid $color-gray-04;
   line-height: 3rem;
 }
-
 .concrete-panels-hidden {
   display: none;
 }
-
 .concrete-panel-link {
   cursor: pointer;
   box-sizing: content-box;
@@ -247,37 +227,31 @@ export {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   .concrete-panel-link-content {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-
   &.xs {
     font-size: $text-xs;
     padding-top: .25rem;
     padding-bottom: .25rem;
   }
-
   &.sm {
     font-size: $text-sm;
     padding-top: .5rem;
     padding-bottom: .5rem;
   }
-
   &.lg {
     font-size: $text-lg;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
-
   &:hover {
     background-color: $color-gray-01;
     border-color: $color-gray-04;
   }
 }
-
 .concrete-panel-back {
   position: absolute;
   height: 1rem;
@@ -286,34 +260,28 @@ export {
   font-size: $text-sm;
   font-weight: normal;
   color: $color-blue;
-
   .svg-inline {
     margin-right: 0.5rem;
   }
 }
-
 .concrete-panel-content-container {
   display: flex;
   transition: transform .2s ease;
   padding: 1rem;
 }
-
 .concrete-panel-content {
   width: 100%;
   margin-right: 2rem;
   flex: none;
 }
-
 .concrete-panel-divider {
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: -1rem;
   border-bottom: $border-sm solid $color-gray-04;
   width: calc(100% + 2rem);
-
   &:last-of-type {
     border-bottom: $border-sm solid transparent;
   }
 }
-
 </style>

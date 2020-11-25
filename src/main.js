@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueCompositionApi from '@vue/composition-api';
-import App from '@/App';
+import App from '@/AppCopy';
 import alert from '@/components/alert';
 
 
