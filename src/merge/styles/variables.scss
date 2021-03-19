@@ -1,0 +1,69 @@
+@import '@crhio/concrete/src/assets/styles/variables.scss';
+
+
+// $color-blue: #4299E1;
+// $color-blue-highlight: #3D95F0;
+// $color-red: #f56565;
+// $color-pink: #FED7D7;
+// $color-black: #000000;
+// $color-white: #FFFFFF;
+// $color-gray-01: #F7FAFC;
+// $color-gray-02: #F3F4F5;
+// $color-gray-03: #E5E7EA;
+// $color-gray-04: #D8DBE1;
+// $color-gray-05: #C0C3CA;
+// $color-gray-06: #A6AAB3;
+// $color-gray-07: #80848E;
+// $color-gray-08: #5F636E;
+// $color-gray-09: #3C404B;
+// $color-gray-10: #161C2C;
+//
+// $border-sm: 1px;
+// $border-lg: 2px;
+// $radius: 0.25rem;
+// $radius-full: 9999px;
+//
+// $text-xs: 0.75rem;
+// $text-sm: 0.875rem;
+// $text-base: 1rem;
+// $text-lg: 1.125rem;
+// $text-xl: 1.25rem;
+// $text-2xl: 1.5rem;
+// $text-3xl: 1.875rem;
+// $text-4xl: 2.25rem;
+// $text-5xl: 3rem;
+// $text-6xl: 4rem;
+
+$color-gray-01: rgba(247,248,250,1);
+$color-gray-02: rgba(243,244,245,1);
+$color-gray-03: rgba(229,231,234,1);
+$color-gray-04: rgba(216,219,225,1);
+$color-gray-05: rgba(192,195,202,1);
+$color-gray-06: rgba(166,170,179,1);
+$color-gray-07: rgba(128,132,142,1);
+$color-gray-08: rgba(95,99,110,1);
+$color-gray-09: rgba(60,64,75,1);
+$color-gray-10: rgba(22,28,44,1);
+
+$primary: $color-blue;
+$secondary: $color-pink;
+// $secondary: $color-red;
+$link: $primary;
+
+$font-system:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+$font-monospace:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    Courier,
+    monospace;

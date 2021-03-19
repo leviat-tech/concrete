@@ -1,0 +1,44 @@
+.h-box {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  min-width:0;
+  min-height:0;
+}
+
+.v-box {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width:0;
+  min-height:0;
+}
+
+.c-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+.flex-limit {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.flex-spacer {
+  flex: 1;
+}
+
+.scroll {
+  overflow: auto;
+}

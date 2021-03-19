@@ -1,0 +1,40 @@
+@import '@/assets/styles/variables.scss';
+
+$height: 32px;
+$padding: 3px 8px;
+$border-radius: 3px;
+$input-background: $color-gray-01;
+
+@mixin input {
+  position: relative;
+  width: 100%;
+  input, select, textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: block;
+    height: $height;
+    width: 100%;
+    padding: $padding;
+    color: $color-gray-10;
+    background: $input-background;
+    border: 1px solid $color-gray-03;
+    border-radius: $border-radius;
+    &:disabled {
+      color: $color-gray-07;
+      background: $color-gray-04;
+      &:hover {
+        border: 1px solid $color-gray-03;
+      }
+    }
+    &:disabled::placeholder {
+      color: $color-gray-05;
+    }
+    &::placeholder {
+      color: $color-gray-04;
+    }
+    &:hover, &:focus {
+      outline: none;
+      border: 1px solid $color-blue;
+    }
+  }
+}
