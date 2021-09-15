@@ -1,12 +1,5 @@
-<template>
-  <div class="c-icon svg-inline" :class="size">
-    <slot>
-      <component :is="icon" @click="$emit('click', $event)" />
-    </slot>
-  </div>
-</template>
-
 <script>
+import set from 'lodash/set';
 import Check from '@/assets/icons/check.svg';
 import ChevronDown from '@/assets/icons/chevron-down.svg';
 import ChevronLeft from '@/assets/icons/chevron-left.svg';
@@ -100,6 +93,14 @@ export default {
         warning: Warning,
       }[this.type];
     },
+  },
+  render(h) {
+    const node = !this.$scopedSlots.default
+      ? h(this.icon)
+      : this.$scopedSlots.default()[0];
+
+    set(node, 'data.on.click', (evt) => this.$emit('click', evt));
+    return node;
   },
 };
 </script>
