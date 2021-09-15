@@ -1,6 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
@@ -16,9 +16,10 @@
   "dependencies": {
     "d3-drag": "^1.2.5",
     "d3-selection": "^1.4.1",
-    "gsap": "^3.2.6",
-    "lodash": "^4.17.15",
-    "v-tooltip": "^2.0.3"
+    "gsap": "^3.7.1",
+    "lodash": "^4.17.21",
+    "v-tooltip": "^2.0.3",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
@@ -26,7 +27,6 @@
     "@storybook/addons": "^5.3.14",
     "@storybook/vue": "^5.3.14",
     "@vue/cli-plugin-babel": "^4.2.0",
-    "@vue/cli-plugin-eslint": "^4.2.0",
     "@vue/cli-plugin-unit-jest": "^4.2.0",
     "@vue/cli-service": "^4.2.0",
     "@vue/composition-api": "^0.5.0",
@@ -36,22 +36,21 @@
     "babel-loader": "^8.0.6",
     "babel-preset-vue": "^2.0.2",
     "core-js": "^3.6.4",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.1.2",
+    "loglevel": "^1.7.1",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
-    "vue": "^2.6.11",
     "vue-cli-plugin-storybook": "~1.2.2",
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.4.1"
+    "vuepress": "^1.8.2"
   },
   "peerDependencies": {
     "@vue/composition-api": "^0.5.0",
-    "core-js": "^3.6.4",
-    "vue": "^2.6.11"
+    "core-js": "^3.6.4"
   },
   "dependenciesMeta": {
     "core-js": {

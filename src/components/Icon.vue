@@ -1,5 +1,9 @@
 <template>
-  <component :is="icon" :class="size" @click="$emit('click', $event)" />
+  <div class="c-icon svg-inline" :class="size">
+    <slot>
+      <component :is="icon" @click="$emit('click', $event)" />
+    </slot>
+  </div>
 </template>
 
 <script>
