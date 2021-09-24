@@ -101,7 +101,7 @@ const CTabSwitcher = {
   },
   mounted() {
     this.$children.forEach((child, index) => {
-      child.tabIndex = index % 2; // eslint-disable-line
+      child.tabIndex = index % (this.$children.length / 2); // eslint-disable-line
     });
   },
 };
