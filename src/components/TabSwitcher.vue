@@ -70,7 +70,7 @@ const CTab = {
   render() {
     return (
       <div class={!this.isActive ? 'concrete-content-box hide' : 'concrete-content-box'}>
-        { this.$scopedSlots.default() }
+        { this.$scopedSlots.default && this.$scopedSlots.default() }
       </div>
     );
   },
