@@ -15,15 +15,13 @@
 <script>
 const CTabLabel = {
   name: 'CTabLabel',
-  data() {
-    return {
-      index: null,
-    };
+  props: {
+    tabId: { type: String, required: true },
   },
   inject: ['concreteActiveTab'],
   computed: {
     isActive() {
-      return this.concreteActiveTab.index === this.index;
+      return this.concreteActiveTab.tabId === this.tabId;
     },
   },
   mounted() {
@@ -33,7 +31,7 @@ const CTabLabel = {
   },
   methods: {
     clickTab() {
-      this.$parent.clickTab(this.index);
+      this.$parent.clickTab(this.tabId);
     },
   },
   render() {
@@ -50,6 +48,9 @@ const CTabLabel = {
 
 const CTab = {
   name: 'CTab',
+  props: {
+    tabId: { type: String, required: true },
+  },
   data() {
     return {
       index: null,
@@ -58,7 +59,7 @@ const CTab = {
   inject: ['concreteActiveTab'],
   computed: {
     isActive() {
-      return this.concreteActiveTab.index === this.index;
+      return this.concreteActiveTab.tabId === this.tabId;
     },
   },
   mounted() {
@@ -78,6 +79,8 @@ const CTab = {
 const CTabSwitcher = {
   name: 'CTabSwitcher',
   props: {
+    value: { type: String, default: null },
+    defaultTab: { type: String, default: null },
     tabPosition: {
       type: String,
       default: 'top',
@@ -86,7 +89,7 @@ const CTabSwitcher = {
   },
   data() {
     return {
-      activeTab: { index: 0 },
+      activeTab: { tabId: 0 },
     };
   },
   provide() {
@@ -94,15 +97,31 @@ const CTabSwitcher = {
       concreteActiveTab: this.activeTab,
     };
   },
+  watch: {
+    value: {
+      handler() {
+        this.$set(this.activeTab, 'tabId', this.value);
+      },
+    },
+  },
   methods: {
-    clickTab(index) {
-      this.$set(this.activeTab, 'index', index);
+    clickTab(tabId) {
+      this.$set(this.activeTab, 'tabId', tabId);
+      this.$emit('input', tabId);
     },
   },
   mounted() {
-    this.$children.forEach((child, index) => {
-      child.tabIndex = index % (this.$children.length / 2); // eslint-disable-line
-    });
+    let tabId;
+    if (this.value) {
+      tabId = this.value;
+    } else if (this.defaultTab) {
+      tabId = this.defaultTab;
+      this.$emit('input', tabId);
+    } else {
+      tabId = this.$children[0].tabId;
+      this.$emit('input', tabId);
+    }
+    this.$set(this.activeTab, 'tabId', tabId);
   },
 };
 

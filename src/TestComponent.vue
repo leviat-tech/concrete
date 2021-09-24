@@ -39,26 +39,26 @@
       </c-panel-slider>
     </div>
     <div class="tab-div">
-      <c-tab-switcher tab-position="bottom">
+      <c-tab-switcher v-model="currentTab" tab-position="bottom">
         <template v-slot:labels>
-          <c-tab-label>Tab Label 1</c-tab-label>
-          <c-tab-label>Tab Label 2</c-tab-label>
-          <c-tab-label>Tab Label 3</c-tab-label>
+          <c-tab-label tab-id="one">Tab Label 1</c-tab-label>
+          <c-tab-label tab-id="two">Tab Label 2</c-tab-label>
+          <c-tab-label tab-id="three">Tab Label 3</c-tab-label>
         </template>
         <template v-slot:content>
-          <c-tab class="tab-interior">
+          <c-tab tab-id="one" class="tab-interior">
             <p>Tab content 1.</p>
             <p>
               Lorem ipsum dolor sit amet...
             </p>
           </c-tab>
-          <c-tab class="tab-interior">
+          <c-tab tab-id="two" class="tab-interior">
             <p>Tab content 2</p>
             <p>
               Sed ut perspiciatis unde omnis...
             </p>
           </c-tab>
-          <c-tab class="tab-interior">
+          <c-tab tab-id="three" class="tab-interior">
             <p>Content 3!</p>
           </c-tab>
         </template>
@@ -97,6 +97,7 @@ export default {
   data() {
     return {
       currentTool: 'select',
+      currentTab: null,
     };
   },
 };
