@@ -4,15 +4,23 @@
       <c-panel-slider title="Primary">
         <c-toolbar v-model="currentTool" default-tool="select">
           <c-tool-group>
-            <c-tool name="Undo" tool-id="undo" icon="undo" />
+            <c-tool name="Undo" tool-id="undo" icon="undo" disabled />
             <c-tool name="Redo" tool-id="redo" icon="redo" />
           </c-tool-group>
           <c-tool-group>
             <c-tool name="Select" tool-id="select" icon="pointer-outline" />
             <c-tool name="Pan" tool-id="pan" icon="hand" />
-            <c-tool name="Pen" tool-id="pen" icon="pen" />
             <c-tool name="Code" tool-id="zoom-to-fit">
               <zoom-to-fit-icon />
+            </c-tool>
+            <c-tool :stateful="false" :hoverable="false">
+              <c-select
+                size="xs"
+                :options="[
+                  { label: 'foo', value: 'foo' },
+                  { label: 'bar', value: 'bar' },
+                ]"
+              />
             </c-tool>
           </c-tool-group>
         </c-toolbar>
@@ -75,6 +83,7 @@ import ZoomToFitIcon from '@/assets/icons/zoom-to-fit.svg';
 import NestedComponent from '@/NestedComponent';
 import CIcon from '@/components/Icon';
 import CCode from '@/assets/icons/code.svg';
+import CSelect from '@/components/Select';
 
 
 export default {
@@ -93,6 +102,7 @@ export default {
     CIcon,
     CPanelLink,
     CCode,
+    CSelect,
   },
   data() {
     return {

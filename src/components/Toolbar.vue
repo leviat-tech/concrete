@@ -29,6 +29,8 @@ const CTool = {
     icon: { type: String, default: null },
     textButton: { type: Boolean, default: false },
     stateful: { type: Boolean, default: true },
+    disabled: { type: Boolean, default: false },
+    hoverable: { type: Boolean, default: true },
   },
   inject: ['concreteSelectedTool'],
   computed: {
@@ -38,6 +40,7 @@ const CTool = {
   },
   methods: {
     click() {
+      if (this.disabled) return;
       if (this.stateful) {
         this.$parent.click(this.toolId);
       }
@@ -55,11 +58,18 @@ const CTool = {
       iconContent = this.$scopedSlots.default();
     }
 
+    let classProp = '';
+    if (this.isActive) {
+      classProp += 'concrete-toolbar-tool concrete active';
+    } else {
+      classProp += 'concrete-toolbar-tool concrete';
+    }
+    if (this.disabled) classProp += ' disabled';
+    if (!this.hoverable) classProp += ' unhoverable';
+
     return (
       <div
-        class={this.isActive
-          ? 'concrete-toolbar-tool concrete active'
-          : 'concrete-toolbar-tool concrete'}
+        class={classProp}
         vOn:click={this.click}
       >
         { iconContent }
@@ -150,13 +160,13 @@ export { CToolbar, CToolGroup, CTool };
   align-items: center;
   border: $border-sm solid transparent;
 
-  &:hover {
+  &:hover:not(.disabled):not(.unhoverable) {
     background-color: $color-gray-01;
     border: $border-sm solid $color-gray-04;
     border-radius: $radius;
   }
 
-  &.active, &:active {
+  &.active:not(.disabled):not(.unhoverable), &:active:not(.disabled):not(.unhoverable) {
     background-color: $color-gray-03;
     border: $border-sm solid $color-gray-04;
     border-radius: $radius;
@@ -165,6 +175,11 @@ export { CToolbar, CToolGroup, CTool };
   .concrete-toolbar-svg, svg {
     height: 1.25rem;
     flex-grow: 1;
+  }
+
+  &.disabled, &:disabled {
+    cursor: not-allowed;
+    color: $color-gray-06;
   }
 }
 
