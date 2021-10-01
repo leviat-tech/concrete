@@ -60,6 +60,10 @@ export default {
       default: null,
       validator: (prop) => ['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs'].includes(prop),
     },
+    spin: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     icon() {
@@ -117,8 +121,20 @@ export default {
     },
   },
   render(h) {
+    const classes = ['svg-inline'];
+
+    if (this.size) {
+      classes.push(this.size);
+    }
+
+    if (this.spin) {
+      classes.push('c-spin');
+    }
+
     const node = !this.$scopedSlots.default
-      ? h(this.icon)
+      ? h(this.icon, {
+        class: classes,
+      })
       : this.$scopedSlots.default()[0];
 
     set(node, 'data.on.click', (evt) => this.$emit('click', evt));
@@ -163,6 +179,22 @@ export default {
 
   &.xxxl {
     font-size: $text-3xl;
+  }
+
+  &.c-spin {
+    animation-name: c-spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes c-spin {
+      from {
+          transform:rotate(0deg);
+      }
+      to {
+          transform:rotate(360deg);
+      }
   }
 }
 </style>
