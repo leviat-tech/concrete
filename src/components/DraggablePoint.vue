@@ -4,12 +4,14 @@
     class="concrete-draggable-point"
     :cx="point.x"
     :cy="point.y"
-    :r="5 * scale"
+    :r="size * scale"
   />
 </template>
 
 <script>
-import { onMounted, onUnmounted, ref, reactive } from '@vue/composition-api';
+import {
+  onMounted, onUnmounted, ref, reactive, inject, computed,
+} from '@vue/composition-api';
 import { drag as d3Drag } from 'd3-drag';
 import { selectAll, mouse } from 'd3-selection';
 
@@ -18,28 +20,29 @@ export default {
   name: 'CDraggablePoint',
   props: {
     point: { type: Object, default: () => ({ x: 0, y: 0 }) },
-    scale: { type: Number, default: 1 },
+    size: { type: Number, default: 5 },
   },
   setup(props, context) {
     const pointref = ref(null);
+    const viewport = inject('viewport');
+    const scale = computed(() => viewport.pxToSvg);
 
     const drag = reactive({
-      svg: null,
       selection: null,
     });
 
     function dragstart() {
-      const [x, y] = mouse(drag.svg);
+      const [x, y] = mouse(this);
       context.emit('drag-start', { x, y });
     }
 
     function dragged() {
-      const [x, y] = mouse(drag.svg);
+      const [x, y] = mouse(this);
       context.emit('dragging', { x, y });
     }
 
     function dragend() {
-      const [x, y] = mouse(drag.svg);
+      const [x, y] = mouse(this);
       context.emit('drag-end', { x, y });
     }
 
@@ -57,7 +60,9 @@ export default {
       drag.selection.on('.drag', null);
     });
 
-    return { pointref, drag };
+    return {
+      pointref, drag, scale, viewport,
+    };
   },
 };
 </script>
