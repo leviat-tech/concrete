@@ -72,6 +72,19 @@
         </template>
       </c-tab-switcher>
     </div>
+    <div class="tab-div">
+      <c-viewport>
+        <c-svg-2d-viewport
+          name="Elevation"
+          viewport-id="elevation"
+          :extents="{ xmin: -10, ymin: -10, xmax: 10, ymax: 10 }"
+        >
+          <c-draggable-point
+            :point="{ x: 5, y: 5 }"
+          />
+        </c-svg-2d-viewport>
+      </c-viewport>
+    </div>
   </div>
 </template>
 
