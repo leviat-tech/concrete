@@ -19,7 +19,7 @@
       />
     </c-tool-group>
   </c-toolbar>
-  <div v-else class="text-base p-2 text-gray-600">
+  <div v-else class="concrete-viewport-label">
     {{ options[0].label }}
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
     options: { type: Array, default: () => [] },
     maximized: { type: Boolean, default: false }, // Is this viewport maximized?
     minbreakpoint: { type: Boolean, default: false }, // Is there only room for one viewport?
-    current: { type: String }, // This viewport's Id
+    current: { type: String, default: null }, // This viewport's Id
   },
   methods: {
     maximize() {
@@ -43,3 +43,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/styles/variables.scss';
+
+.concrete-viewport-label {
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: $color-gray-06
+}
+</style>

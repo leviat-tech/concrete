@@ -31,7 +31,7 @@
         </div>
         Some more content.
         <c-icon>
-          <c-code />
+          <code-icon />
         </c-icon>
         <c-icon>
           <zoom-to-fit-icon />
@@ -76,33 +76,17 @@
 </template>
 
 <script>
-import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
-import { CPanelSlider, CPanel, CPanelLink } from '@/components/PanelSlider';
-import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
-import ZoomToFitIcon from '@/assets/icons/zoom-to-fit.svg';
-import NestedComponent from '@/NestedComponent';
-import CIcon from '@/components/Icon';
-import CCode from '@/assets/icons/code.svg';
-import CSelect from '@/components/Select';
+import ZoomToFitIcon from '../assets/icons/zoom-to-fit.svg';
+import CodeIcon from '../assets/icons/code.svg';
+import NestedComponent from './NestedComponent';
 
 
 export default {
   name: 'TestComponent',
   components: {
-    CTabSwitcher,
-    CTabLabel,
-    CTab,
-    CToolbar,
-    CToolGroup,
-    CTool,
+    CodeIcon,
     ZoomToFitIcon,
     NestedComponent,
-    CPanelSlider,
-    CPanel,
-    CIcon,
-    CPanelLink,
-    CCode,
-    CSelect,
   },
   data() {
     return {

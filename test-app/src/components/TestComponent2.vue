@@ -328,67 +328,13 @@
 
 <script>
 import { get } from 'lodash';
-import CDraggableList from '@/components/DraggableList';
-import CButton from '@/components/Button';
-import CDropdown from '@/components/Dropdown';
-import CIcon from '@/components/Icon';
-import CNativeSelect from '@/components/NativeSelect';
-import CSelect from '@/components/Select';
-import CQuantityInput from '@/components/QuantityInput';
-import CTextInput from '@/components/TextInput';
-import CTextarea from '@/components/Textarea';
-import CCheckbox from '@/components/Checkbox';
-import CRadio from '@/components/Radio';
-import CSearchSelect from '@/components/SearchSelect';
-import CMultiSelect from '@/components/MultiSelect';
-import CModal from '@/components/Modal';
-import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
-import { CTable, CColumn } from '@/components/Table';
-import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
-import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/PanelSlider';
-import CMasonry from '@/components/Masonry';
-import CViewport from '@/components/Viewport';
-import CCardList from '@/components/CardList';
-import CCard from '@/components/Card';
-import CSvg2dViewport from '@/components/Svg2dViewport';
-import Chamfer from '@/assets/icons/chamfer.svg';
+import Chamfer from '../assets/icons/chamfer.svg';
 import TestComponent from './TestComponent.vue';
 
 
 export default {
-  name: 'App',
+  name: 'TestComponent2',
   components: {
-    CCardList,
-    CCard,
-    CButton,
-    CDraggableList,
-    CDropdown,
-    CIcon,
-    CTextInput,
-    CTextarea,
-    CQuantityInput,
-    CNativeSelect,
-    CSearchSelect,
-    CSelect,
-    CMultiSelect,
-    CCheckbox,
-    CRadio,
-    CModal,
-    CToolbar,
-    CToolGroup,
-    CTool,
-    CTable,
-    CColumn,
-    CTabSwitcher,
-    CTabLabel,
-    CTab,
-    CPanelSlider,
-    CPanel,
-    CPanelLink,
-    CPanelSection,
-    CMasonry,
-    CViewport,
-    CSvg2dViewport,
     Chamfer,
     TestComponent,
   },
@@ -509,69 +455,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import './assets/styles/index.scss';
-@import './assets/styles/variables.scss';
-
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin-top: 60px;
-}
-
-p {
-  display: block;
-}
-
-.concrete-button {
-  margin-right: 0.5rem;
-}
-
-.my-native-select.concrete-input-row {
-  width: 18rem;
-}
-
-.card-row {
-  padding: 2rem;
-  width: 100%;
-}
-
-.tab-container {
-  width: 24rem;
-  height: 24rem;
-  border: $border-sm solid $color-gray-04;
-  margin-bottom: 1.5rem;
-}
-
-.test-box {
-  width: 1rem;
-  height: 1rem;
-  background-color: red;
-}
-
-.tab-interior {
-  padding: 1rem;
-}
-
-.xs-font {
-  font-size: $text-xs;
-}
-
-.sm-font {
-  font-size: $text-sm;
-}
-
-.base-font {
-  font-size: $text-base;
-}
-
-.lg-font {
-  font-size: $text-lg;
-}
-
-.xl-font {
-  font-size: $text-xl;
-}
-
-</style>

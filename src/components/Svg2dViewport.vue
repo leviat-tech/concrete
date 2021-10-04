@@ -35,7 +35,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
-import CDrawingTools from './CDrawingTools.vue';
+import CDrawingTools from './DrawingTools.vue';
 
 
 function domToSVGCoords(el, pt) {

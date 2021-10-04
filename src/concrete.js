@@ -17,10 +17,10 @@ import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/Pa
 import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
 import CCardList from '@/components/CardList';
 import CCard from '@/components/Card';
-import CViewport from '@/components/CViewport';
-import CSvg2dViewport from '@/components/CSvg2dViewport';
-import CDraggablePoint from '@/components/CDraggablePoint';
-import CDrawingTools from '@/components/CDrawingTools';
+import CViewport from '@/components/Viewport';
+import CSvg2dViewport from '@/components/Svg2dViewport';
+import CDraggablePoint from '@/components/DraggablePoint';
+import CDrawingTools from '@/components/DrawingTools';
 import CAlert from '@/components/alert';
 import CTooltip, { TooltipOptions } from '@/components/tooltip';
 

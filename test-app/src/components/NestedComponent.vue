@@ -14,17 +14,8 @@
 </template>
 
 <script>
-import { CPanel, CPanelLink } from '@/components/PanelSlider';
-import CButton from '@/components/Button';
-
-
 export default {
   name: 'NestedComponent',
-  components: {
-    CPanel,
-    CPanelLink,
-    CButton,
-  },
   data() {
     return {
       counter: 0,

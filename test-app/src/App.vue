@@ -5,15 +5,14 @@
 </template>
 
 <script>
-import TestComponent from './TestComponent.vue';
-
+import TestComponent from './components/TestComponent.vue'
 
 export default {
   name: 'App',
   components: {
-    TestComponent,
-  },
-};
+    TestComponent
+  }
+}
 </script>
 
 <style lang="scss">
@@ -79,5 +78,4 @@ p {
 .xl-font {
   font-size: $text-xl;
 }
-
 </style>
