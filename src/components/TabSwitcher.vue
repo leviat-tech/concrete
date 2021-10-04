@@ -199,12 +199,19 @@ export {
     width: 100%;
     text-align: center;
     border-right: $border-sm solid $color-gray-04;
+    background-color: $color-gray-02;
+    color: $color-gray-08;
 
     &:last-of-type {
       border-right: none;
     }
 
-    &:hover, &.active {
+    &.active {
+      background-color: $color-white;
+      color: $color-black;
+    }
+
+    &:hover:not(.active) {
       background-color: $color-gray-01;
     }
 
