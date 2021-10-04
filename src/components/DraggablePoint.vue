@@ -10,9 +10,6 @@
 </template>
 
 <script>
-import {
-  onMounted, onUnmounted, ref, reactive, inject, computed,
-} from '@vue/composition-api';
 import { drag as d3Drag } from 'd3-drag';
 import { selectAll, mouse } from 'd3-selection';
 
@@ -24,50 +21,43 @@ export default {
     size: { type: Number, default: 5 },
     disabled: { type: Boolean, default: false },
   },
-  setup(props, context) {
-    const pointref = ref(null);
-    const viewport = inject('viewport');
-    const scale = computed(() => viewport.pxToSvg);
-
-    const drag = reactive({
-      selection: null,
-    });
-
-    function dragstart() {
-      if (props.disabled) return;
-      const [x, y] = mouse(this);
-      context.emit('drag-start', { x, y });
-    }
-
-    function dragged() {
-      if (props.disabled) return;
-      const [x, y] = mouse(this);
-      context.emit('dragging', { x, y });
-    }
-
-    function dragend() {
-      if (props.disabled) return;
-      const [x, y] = mouse(this);
-      context.emit('drag-end', { x, y });
-    }
-
-    onMounted(() => {
-      drag.svg = pointref.value.ownerSVGElement;
-
-      drag.selection = selectAll([pointref.value]);
-      drag.selection.call(d3Drag()
-        .on('start', dragstart)
-        .on('drag', dragged)
-        .on('end', dragend));
-    });
-
-    onUnmounted(() => {
-      drag.selection.on('.drag', null);
-    });
-
+  inject: ['viewport'],
+  data() {
     return {
-      pointref, drag, scale, viewport,
+      selection: null,
     };
+  },
+  computed: {
+    scale() {
+      return this.viewport.pxToSvg;
+    },
+  },
+  mounted() {
+    this.selection = selectAll([this.$refs.pointref]);
+    this.selection.call(d3Drag()
+      .on('start', this.dragstart)
+      .on('drag', this.dragged)
+      .on('end', this.dragend));
+  },
+  destroyed() {
+    this.selection.on('.drag', null);
+  },
+  methods: {
+    dragstart() {
+      if (this.disabled) return;
+      const [x, y] = mouse(this.$refs.pointref);
+      this.$emit('drag-start', { x, y });
+    },
+    dragged() {
+      if (this.disabled) return;
+      const [x, y] = mouse(this.$refs.pointref);
+      this.$emit('dragging', { x, y });
+    },
+    dragend() {
+      if (this.disabled) return;
+      const [x, y] = mouse(this.$refs.pointref);
+      this.$emit('drag-end', { x, y });
+    },
   },
 };
 </script>

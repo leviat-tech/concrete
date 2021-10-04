@@ -80,7 +80,9 @@
           :extents="{ xmin: -10, ymin: -10, xmax: 10, ymax: 10 }"
         >
           <c-draggable-point
-            :point="{ x: 5, y: 5 }"
+            :point="point"
+            @dragging="setPoint"
+            @dragend="setPoint"
           />
         </c-svg-2d-viewport>
       </c-viewport>
@@ -105,7 +107,13 @@ export default {
     return {
       currentTool: 'select',
       currentTab: null,
+      point: { x: 5, y: 5 },
     };
+  },
+  methods: {
+    setPoint(pt) {
+      this.point = pt;
+    },
   },
 };
 </script>
