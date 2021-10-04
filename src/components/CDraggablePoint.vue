@@ -2,6 +2,7 @@
   <circle
     ref="pointref"
     class="concrete-draggable-point"
+    :class="{ disabled }"
     :cx="point.x"
     :cy="point.y"
     :r="size * scale"
@@ -21,6 +22,7 @@ export default {
   props: {
     point: { type: Object, default: () => ({ x: 0, y: 0 }) },
     size: { type: Number, default: 5 },
+    disabled: { type: Boolean, default: false },
   },
   setup(props, context) {
     const pointref = ref(null);
@@ -32,16 +34,19 @@ export default {
     });
 
     function dragstart() {
+      if (props.disabled) return;
       const [x, y] = mouse(this);
       context.emit('drag-start', { x, y });
     }
 
     function dragged() {
+      if (props.disabled) return;
       const [x, y] = mouse(this);
       context.emit('dragging', { x, y });
     }
 
     function dragend() {
+      if (props.disabled) return;
       const [x, y] = mouse(this);
       context.emit('drag-end', { x, y });
     }
@@ -77,9 +82,13 @@ export default {
   stroke: transparent;
   stroke-width: 10;
 
-  &:hover {
+  &:hover:not(.disabled) {
     stroke: rgba(0, 0, 0, 0.1);
     fill: $color-blue;
+  }
+
+  &.disabled {
+    cursor: auto;
   }
 }
 </style>

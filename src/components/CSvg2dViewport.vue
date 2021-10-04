@@ -220,7 +220,7 @@ export default {
       this.viewport.viewBox.minY -= this.dragOffset.y;
       this.dragOffset = { x: 0, y: 0 };
       this.isPanning = false;
-      this.$emit('change-tool', 'pan');
+      this.$emit('change-tool', this.tempTool);
     },
     handleZoom(e) {
       const viewOffset = {

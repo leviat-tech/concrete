@@ -72,19 +72,6 @@
         </template>
       </c-tab-switcher>
     </div>
-    <div class="tab-div">
-      <c-viewport>
-        <c-svg-2d-viewport
-          name="Elevation"
-          viewport-id="elevation"
-          :extents="{ xmin: -10, ymin: -10, xmax: 10, ymax: 10 }"
-        >
-          <c-draggable-point
-            :point="{ x: 5, y: 5 }"
-          />
-        </c-svg-2d-viewport>
-      </c-viewport>
-    </div>
   </div>
 </template>
 
@@ -92,9 +79,6 @@
 import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
 import { CPanelSlider, CPanel, CPanelLink } from '@/components/PanelSlider';
 import { CTabSwitcher, CTabLabel, CTab } from '@/components/TabSwitcher';
-import CViewport from '@/components/CViewport';
-import CSvg2dViewport from '@/components/CSvg2dViewport';
-import CDraggablePoint from '@/components/CDraggablePoint';
 import ZoomToFitIcon from '@/assets/icons/zoom-to-fit.svg';
 import NestedComponent from '@/NestedComponent';
 import CIcon from '@/components/Icon';
@@ -119,9 +103,6 @@ export default {
     CPanelLink,
     CCode,
     CSelect,
-    CViewport,
-    CSvg2dViewport,
-    CDraggablePoint,
   },
   data() {
     return {

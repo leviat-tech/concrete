@@ -17,14 +17,10 @@ import { CPanelSlider, CPanel, CPanelLink, CPanelSection } from '@/components/Pa
 import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
 import CCardList from '@/components/CardList';
 import CCard from '@/components/Card';
-import CViewport from '@/components/Viewport';
-import {
-  CSvg2dViewport,
-  svg2dViewportProps,
-  useSvg2d,
-  useSvg2dFit,
-} from '@/components/Svg2dViewport';
-import CDraggablePoint from '@/components/DraggablePoint';
+import CViewport from '@/components/CViewport';
+import CSvg2dViewport from '@/components/CSvg2dViewport';
+import CDraggablePoint from '@/components/CDraggablePoint';
+import CDrawingTools from '@/components/CDrawingTools';
 import CAlert from '@/components/alert';
 import CTooltip, { TooltipOptions } from '@/components/tooltip';
 
@@ -59,6 +55,7 @@ const components = [
   CViewport,
   CSvg2dViewport,
   CDraggablePoint,
+  CDrawingTools,
   CMasonry,
 ];
 
@@ -109,9 +106,6 @@ export {
   CMasonry,
   CViewport,
   CSvg2dViewport,
-  svg2dViewportProps,
-  useSvg2d,
-  useSvg2dFit,
   CDraggablePoint,
   CAlert,
 };

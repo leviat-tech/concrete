@@ -11,6 +11,10 @@ module.exports = {
     },
   },
   chainWebpack: (config) => {
+    config.externals({
+      '@vue/composition-api': '@vue/composition-api',
+    });
+
     const svgRule = config.module.rule('svg');
 
     svgRule.uses.clear();
