@@ -78,6 +78,7 @@
           name="Elevation"
           viewport-id="elevation"
           :extents="{ xmin: -10, ymin: -10, xmax: 10, ymax: 10 }"
+          v-model="hoverPt"
         >
           <c-draggable-point
             :point="point"
@@ -108,6 +109,7 @@ export default {
       currentTool: 'select',
       currentTab: null,
       point: { x: 5, y: 5 },
+      hoverPt: { x: 0, y: 0 },
     };
   },
   methods: {

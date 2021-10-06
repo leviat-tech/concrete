@@ -59,6 +59,7 @@ export default {
     },
     options: { type: Array, default: () => [] },
     currentTool: { type: String, default: 'select' },
+    value: { type: Object, default: () => ({ x: 0, y: 0 }) },
   },
   data() {
     return {
@@ -77,7 +78,7 @@ export default {
         },
         pxToSvg: 1,
       },
-      currentPoint: { x: 0, y: 0 },
+      currentPoint: this.value,
       hasZoomed: false,
       tempTool: null,
     };
@@ -85,7 +86,6 @@ export default {
   provide() {
     return {
       viewport: this.viewport,
-      pxToSvgUnits: this.pxToSvgUnits,
     };
   },
   computed: {
@@ -172,8 +172,10 @@ export default {
       this.hoverPt.y = e.clientY;
       this.svgP = domToSVGCoords(this.$refs.svg, this.hoverPt);
       this.currentPoint = domToSVGCoords(this.$refs.contents, this.hoverPt);
+      this.$emit('input', this.currentPoint);
     },
     handleMousedown(e) {
+      this.$emit('mousedown', e);
       this.setMousePt(e);
       (e.target || this.$refs.svg).setPointerCapture(e.pointerId);
       if (e.which === 3 || this.currentTool === 'pan') {
@@ -181,12 +183,14 @@ export default {
       }
     },
     handleMousemove(e) {
+      this.$emit('mousemove', e);
       this.setMousePt(e);
       if (this.isPanning) {
         this.pan();
       }
     },
     handleMouseup(e) {
+      this.$emit('mouseup', e);
       this.setMousePt(e);
       this.$refs.svg.releasePointerCapture(e.pointerId);
       if (this.isPanning) {
