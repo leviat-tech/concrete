@@ -1,6 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "scripts": {
     "build": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
     "build-bundle": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
@@ -15,6 +15,7 @@
     "d3-selection": "^1.4.1",
     "gsap": "^3.7.1",
     "lodash": "^4.17.21",
+    "v-dragged": "0.0.5",
     "v-tooltip": "^2.0.3",
     "vue": "^2.6.14"
   },

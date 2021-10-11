@@ -23,7 +23,10 @@ import CDraggablePoint from '@/components/DraggablePoint';
 import CDrawingTools from '@/components/DrawingTools';
 import CAlert from '@/components/alert';
 import CTooltip, { TooltipOptions } from '@/components/tooltip';
-
+import CStatusBar from '@/components/StatusBar';
+import CResizable from '@/components/Resizable';
+import CFormSection from '@/components/FormSection';
+import CAccordion from '@/components/Accordion';
 
 const components = [
   CButton,
@@ -57,6 +60,10 @@ const components = [
   CDraggablePoint,
   CDrawingTools,
   CMasonry,
+  CStatusBar,
+  CResizable,
+  CFormSection,
+  CAccordion,
 ];
 
 const install = (Vue) => {

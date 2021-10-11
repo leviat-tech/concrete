@@ -1,5 +1,82 @@
 <template>
   <div>
+
+    <c-form-section title="Form Section Test">
+
+    </c-form-section>
+    
+    <div class="h-box">
+
+      <div class="flex flex-col flex-grow">
+        <div class="flex-limit v-box scroll project">
+          <c-status-bar class="status-bar">
+            <template slot="icon">
+              <c-icon type="hand" size="xxl"/>
+            </template>
+            default
+          </c-status-bar>
+        </div>
+      </div>
+
+      <!-- preview panel -->
+      <c-resizable
+        class="right flex-limit v-box"
+        :min="350"
+        :max="700"
+      >
+        <c-status-bar class="status-bar">
+          <template slot="icon">
+            <c-icon type="hand" size="xxl"/>
+          </template>
+          default
+        </c-status-bar>
+      </c-resizable>
+
+    </div>
+
+    <c-accordion v-model="accordion1">
+      <template slot="title">
+        <b> Title </b>
+      </template>
+      <template slot="toolbar">
+        <c-icon type="plus" />
+      </template>
+      <template>
+        <hr />
+        <div v-for="item in ['item1','item2','item3','item4']" :key="item">
+          {{item}}
+          <hr />
+        </div>
+      </template>
+    </c-accordion>
+    
+    <c-status-bar class="status-bar">
+      <template slot="icon">
+        <c-icon type="hand" size="xxl"/>
+      </template>
+      default
+    </c-status-bar>
+
+
+    <c-status-bar class="status-bar" type="danger">
+      danger
+    </c-status-bar>
+
+    <c-status-bar class="status-bar" type="info">
+      info
+    </c-status-bar>
+    
+    <c-status-bar class="status-bar" type="warning">
+      warning
+    </c-status-bar>
+
+    <c-status-bar class="status-bar" type="success">
+      <template slot="icon">
+        <c-icon type="check" size="xl"/>
+      </template>
+      success
+    </c-status-bar>
+
     <div class="tab-div">
       <c-panel-slider title="Primary">
         <c-toolbar v-model="currentTool" default-tool="select">
@@ -91,6 +168,58 @@
   </div>
 </template>
 
+<style lang="scss">
+
+
+  @import '../assets/styles/variables.scss';
+
+
+  .status-bar {
+    margin: 1.2rem;
+  }
+
+  
+  .h-box {
+    display: flex;
+    flex-grow: 1;
+    min-width: 0;
+    min-height: 0;
+    align-items: stretch;
+    align-items: center;
+  }
+
+  .v-box {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0;
+    min-height: 0;
+  }
+
+
+
+  .project {
+    flex: none;
+    border-right: 1px solid $color-gray-04;
+  }
+ 
+
+
+  .flex-limit {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .flex-grow {
+    flex-grow: 1;
+  }
+
+  .flex-col {
+    flex-direction: column;
+}
+
+</style>
+
 <script>
 import ZoomToFitIcon from '../assets/icons/zoom-to-fit.svg';
 import CodeIcon from '../assets/icons/code.svg';
@@ -110,6 +239,7 @@ export default {
       currentTab: null,
       point: { x: 5, y: 5 },
       hoverPt: { x: 0, y: 0 },
+      accordion1: false,
     };
   },
   methods: {
