@@ -25,7 +25,7 @@ import CAlert from '@/components/alert';
 import CTooltip, { TooltipOptions } from '@/components/tooltip';
 import CStatusBar from '@/components/StatusBar';
 import CResizable from '@/components/Resizable';
-import CFormSection from '@/components/FormSection';
+import CFormSection, { CFormGroup } from '@/components/FormSection';
 import CAccordion from '@/components/Accordion';
 
 const components = [
@@ -63,6 +63,7 @@ const components = [
   CStatusBar,
   CResizable,
   CFormSection,
+  CFormGroup,
   CAccordion,
 ];
 
