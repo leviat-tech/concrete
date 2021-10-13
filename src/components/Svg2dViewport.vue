@@ -9,8 +9,8 @@
       ref="svg"
       class="concrete-drawing"
       :viewBox="vbString"
-      @mousewheel="handleZoom"
-      @wheel="handleZoom"
+      @mousewheel="handleMousewheel"
+      @wheel="handleMousewheel"
       @pointerdown="handleMousedown"
       @pointermove="handleMousemove"
       @pointerup="handleMouseup"
@@ -68,6 +68,9 @@ export default {
       dragFrom: null,
       dragOffset: { x: 0, y: 0 },
       isPanning: false,
+      isZooming: false,
+      zoomProps: null,
+      screenPt: { x: 0, y: 0 },
       viewport: {
         zoomScale: 1,
         viewBox: {
@@ -168,10 +171,12 @@ export default {
       this.viewport.zoomScale = zoomScale;
     },
     setMousePt(e) {
-      this.hoverPt.x = e.clientX;
+      this.hoverPt.x = e.clientX; // current point in screen units
       this.hoverPt.y = e.clientY;
-      this.svgP = domToSVGCoords(this.$refs.svg, this.hoverPt);
-      this.currentPoint = domToSVGCoords(this.$refs.contents, this.hoverPt);
+      const rect = this.$refs.svg.getBoundingClientRect();
+      this.screenPt = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      this.svgP = domToSVGCoords(this.$refs.svg, this.hoverPt); // point in svg units
+      this.currentPoint = domToSVGCoords(this.$refs.contents, this.hoverPt); // point in flipped y
       this.$emit('input', this.currentPoint);
     },
     handleMousedown(e) {
@@ -180,6 +185,8 @@ export default {
       (e.target || this.$refs.svg).setPointerCapture(e.pointerId);
       if (e.which === 3 || this.currentTool === 'pan') {
         this.panstart();
+      } else if (this.currentTool === 'zoom') {
+        this.zoomstart();
       }
     },
     handleMousemove(e) {
@@ -187,6 +194,8 @@ export default {
       this.setMousePt(e);
       if (this.isPanning) {
         this.pan();
+      } else if (this.isZooming) {
+        this.zoom();
       }
     },
     handleMouseup(e) {
@@ -195,11 +204,16 @@ export default {
       this.$refs.svg.releasePointerCapture(e.pointerId);
       if (this.isPanning) {
         this.panend();
+      } else if (this.isZooming) {
+        this.zoomend();
       }
     },
     documentMouseleave() {
       if (this.isPanning) this.panend();
+      if (this.isZooming) this.zoomend();
     },
+
+
     panstart() {
       this.isPanning = true;
       this.tempTool = this.currentTool;
@@ -226,18 +240,79 @@ export default {
       this.isPanning = false;
       this.$emit('change-tool', this.tempTool);
     },
-    handleZoom(e) {
+
+
+    zoomstart() {
+      this.isZooming = true;
+
+      this.zoomProps = {
+        screenPt: this.screenPt,
+        point: this.currentPoint,
+        scale: this.viewport.zoomScale,
+        viewBox: this.viewport.viewBox,
+      };
+    },
+    zoom() {
+      const { y: screenY } = this.screenPt;
+      const rect = this.$refs.svg.getBoundingClientRect();
+
+      const zoomPct = (this.zoomProps.screenPt.y - screenY) / rect.height;
+
+      // Don't zoom to less than zero scale!
+      const zoomScale = zoomPct > 1
+        ? (1 + zoomPct * 2) * this.zoomProps.scale
+        : (1 + zoomPct) * this.zoomProps.scale;
+
+      // get current mouse x,y coordinates in SVG-space units from dragStart
+      const { x, y } = this.zoomProps.point;
+
+      const viewOffset = {
+        x: (this.zoomProps.viewBox.minX) / this.zoomProps.scale,
+        y: -(this.zoomProps.viewBox.minY) / this.zoomProps.scale,
+      };
+
+      const mouseOffset = {
+        x: x - viewOffset.x,
+        y: y - viewOffset.y,
+      };
+
+      const newMouseOffset = {
+        x: mouseOffset.x / (zoomScale / this.zoomProps.scale),
+        y: mouseOffset.y / (zoomScale / this.zoomProps.scale),
+      };
+      const newViewOffset = {
+        x: x - newMouseOffset.x,
+        y: y - newMouseOffset.y,
+      };
+      const viewBox = {
+        minX: newViewOffset.x * zoomScale,
+        minY: -newViewOffset.y * zoomScale,
+        width: this.zoomProps.viewBox.width,
+        height: this.zoomProps.viewBox.height,
+      };
+      this.viewport.zoomScale = zoomScale;
+      this.viewport.viewBox = viewBox;
+    },
+    zoomend() {
+      this.isZooming = false;
+    },
+
+
+    handleMousewheel(e) {
+      const zoomScale = e.deltaY > 0
+        ? this.viewport.zoomScale * 1.1
+        : this.viewport.zoomScale * (1 / 1.1);
+
       const viewOffset = {
         x: (this.viewport.viewBox.minX) / this.viewport.zoomScale,
         y: -(this.viewport.viewBox.minY) / this.viewport.zoomScale,
       };
+
       const mouseOffset = {
         x: this.currentPoint.x - viewOffset.x,
         y: this.currentPoint.y - viewOffset.y,
       };
-      const zoomScale = e.deltaY > 0
-        ? this.viewport.zoomScale * 1.1
-        : this.viewport.zoomScale * (1 / 1.1);
+
       const newMouseOffset = {
         x: mouseOffset.x / (zoomScale / this.viewport.zoomScale),
         y: mouseOffset.y / (zoomScale / this.viewport.zoomScale),
@@ -255,6 +330,8 @@ export default {
       this.viewport.zoomScale = zoomScale;
       this.viewport.viewBox = viewBox;
     },
+
+
     resizeHandler() {
       this.viewport.el.width = this.$refs.svg.clientWidth;
       this.viewport.el.height = this.$refs.svg.clientHeight;

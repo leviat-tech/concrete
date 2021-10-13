@@ -162,6 +162,16 @@
             @dragging="setPoint"
             @dragend="setPoint"
           />
+          <c-draggable-point
+            :point="{ x: 0, y: 0 }"
+            @dragging="setPoint"
+            @dragend="setPoint"
+          />
+          <c-draggable-point
+            :point="{ x: -5, y: -5 }"
+            @dragging="setPoint"
+            @dragend="setPoint"
+          />
         </c-svg-2d-viewport>
       </c-viewport>
     </div>

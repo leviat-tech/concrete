@@ -28,6 +28,7 @@ import CResizable from '@/components/Resizable';
 import CFormSection, { CFormGroup } from '@/components/FormSection';
 import CAccordion from '@/components/Accordion';
 
+
 const components = [
   CButton,
   CIcon,
