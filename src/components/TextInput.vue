@@ -9,7 +9,7 @@
     </div>
     <div
       class="concrete-input concrete"
-      :class="{ focused, [size]: size, [theme]: theme }"
+      :class="{ focused, [size]: size, [theme]: theme, disabled, readOnly }"
     >
       <div v-if="$slots.prefix" ref="prefix" class="prefix">
         <slot name="prefix"></slot>
@@ -23,7 +23,8 @@
           theme,
         ]"
         :placeholder="placeholder"
-        :disabled="disabled || readOnly"
+        :disabled="disabled"
+        :readonly="readOnly"
         @keydown.enter="$emit('enter')"
         @focus="focused = true"
         @blur="handleBlur"

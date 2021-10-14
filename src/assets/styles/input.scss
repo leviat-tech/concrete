@@ -34,9 +34,6 @@
     font-size: $text-lg;
   }
 
-  &.disabled {
-    color: $color-gray-03;
-  }
 }
 
 .concrete-input {
@@ -72,10 +69,17 @@
     background-color: rgba(255, 255, 255, 0.15);
   }
 
-  &:focus, &.focused {
-    color: $color-black;
-    border: $border-sm solid $color-blue;
-    box-shadow: 0px 0px 0px 1px $color-blue;
+  &:hover, &:focus, &.focused {
+    &:not(.disabled):not(.readOnly) {
+      color: $color-black;
+      border: $border-sm solid $color-blue;
+      box-shadow: 0px 0px 0px 1px $color-blue;
+    }
+  }
+
+  &.disabled {
+    color: $color-gray-07;
+    background: $color-gray-04;
   }
 
   
@@ -137,10 +141,21 @@
 
     &:focus {
       outline: none;
+      border: none;
     }
 
-    &::placeholder {
+    &:disabled {
       color: $color-gray-07;
+      background: $color-gray-04;
+      &:hover {
+        border: none;
+      }
+    }
+    &:disabled::placeholder {
+      color: $color-gray-05;
+    }
+    &::placeholder {
+      color: $color-gray-04;
     }
 
     &.dark {
