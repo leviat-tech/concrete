@@ -45,7 +45,7 @@
   border-color: $color-gray-03;
   border-radius: $radius;
   background-color: $color-gray-01;
-  min-height: 2.25rem;
+  height: 2.25rem;
   flex: 1 1 0%;
   width: 100%;
   position: relative;
@@ -54,17 +54,17 @@
 
   &.xs {
     font-size: $text-xs;
-    min-height: 1.75rem;
+    height: 1.75rem;
   }
 
   &.sm {
     font-size: $text-sm;
-    min-height: 2rem;
+    height: 2rem;
   }
 
   &.lg {
     font-size: $text-lg;
-    min-height: 2.5rem;
+    height: 2.5rem;
   }
 
   &.dark {
@@ -78,30 +78,57 @@
     box-shadow: 0px 0px 0px 1px $color-blue;
   }
 
+  
+  .suffix, .prefix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: none;
+    bottom: 1px; // so we don't cover the border
+    top: 1px;
+    padding: 0.125rem 0.375rem;
+    height: 100%;
+  }
+  .suffix {
+    border-radius: 0px $radius $radius 0px;
+    padding-left: 0.25rem;
+    right: 1px;
+  }
+  .prefix {
+    border-radius: $radius 0px 0px $radius;
+    border-right: 1px solid $color-gray-03;
+    left: 1px;
+    font-size: .625rem;
+  }
+
   select, input {
     min-width: 0;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
-    height: 2rem;
+    padding-top: 0.3rem;
+    height: 100%;
     font-size: $text-base;
     appearance: none;
     background-color: transparent;
     border: none;
     flex: 1 1 0%;
+    
+    &.text-right {
+      text-align: right;
+    }
 
     &.xs {
       font-size: $text-xs;
-      height: 1.5rem;
+      padding-top: 0.2rem;
     }
 
     &.sm {
       font-size: $text-sm;
-      height: 1.75rem;
+      padding-top: 0.2rem;
     }
 
     &.lg {
       font-size: $text-lg;
-      height: 2.25rem;
     }
 
     &:invalid {
