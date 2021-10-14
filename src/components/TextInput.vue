@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-input-row concrete">
+  <div class="concrete-input-row concrete" @focus="$refs.input.focus()">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
@@ -11,25 +11,34 @@
       class="concrete-input concrete"
       :class="{ focused, [size]: size, [theme]: theme }"
     >
+      <div v-if="$slots.prefix" ref="prefix" class="prefix">
+        <slot name="prefix"></slot>
+      </div>
       <input
-        v-model="localValue"
+        v-model="valproxy"
         type="text"
+        ref="input"
         :class="[
           size,
           theme,
         ]"
         :placeholder="placeholder"
         :disabled="disabled || readOnly"
-        @keydown.enter="handleUpdate"
+        @keydown.enter="$emit('enter')"
         @focus="focused = true"
         @blur="handleBlur"
-        @input="handleChange"
       >
+      <div v-if="$slots.suffix" ref="suffix" class="suffix">
+        <slot name="suffix"></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import valproxy from '@/utils/valproxy';
+
+
 export default {
   name: 'CTextInput',
   props: {
@@ -43,38 +52,16 @@ export default {
   },
   data() {
     return {
-      localValue: '',
       focused: null,
     };
   },
-  watch: {
-    // In the event that "value" is changed outside the context of this
-    // component, the localValue here will be set to match.
-    value: {
-      handler() {
-        this.localValue = this.value;
-      },
-    },
-  },
-  created() {
-    if (this.value != null) {
-      this.localValue = this.value;
-    }
+  computed: {
+    valproxy,
   },
   methods: {
-    handleChange() {
-      if (this.localValue !== this.value) {
-        this.$emit('change-value', this.localValue);
-      }
-    },
     handleBlur() {
       this.focused = false;
-      this.handleUpdate();
-    },
-    handleUpdate() {
-      if (this.localValue !== this.value) {
-        this.$emit('input', this.localValue);
-      }
+      this.$emit('blur');
     },
   },
 };
