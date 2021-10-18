@@ -15,13 +15,10 @@
         <slot name="prefix"></slot>
       </div>
       <input
+        ref="input"
         v-model="valproxy"
         type="text"
-        ref="input"
-        :class="[
-          size,
-          theme,
-        ]"
+        :class="[ size, theme ]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"

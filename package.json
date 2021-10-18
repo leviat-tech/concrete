@@ -11,6 +11,7 @@
   },
   "main": "./dist/concrete.umd.min.js",
   "dependencies": {
+    "big.js": "^6.1.1",
     "d3-drag": "^1.2.5",
     "d3-selection": "^1.4.1",
     "gsap": "^3.7.1",

@@ -8,33 +8,48 @@
       {{ label }}
     </div>
     <div
-      class="concrete-input concrete"
-      :class="{ focused, [size]: size, [theme]: theme }"
+      class="concrete-input concrete numeric-input"
+      :class="{ focused, [size]: size, [theme]: theme, disabled, readOnly }"
     >
+      <div v-if="$slots.prefix" ref="prefix" class="prefix">
+        <slot name="prefix"></slot>
+      </div>
       <input
-        v-model="localValue"
-        type="number"
+        ref="input"
+        v-model="valproxy"
         :class="[ size, theme ]"
         :placeholder="placeholder"
-        :step="precision"
         :disabled="disabled"
-        @keydown.enter="handleUpdate"
-        @input="handleChange"
-        @focus="handleFocus"
+        :readonly="readOnly"
+        @keydown.enter="$emit('enter')"
+        @focus="focused = true"
         @blur="handleBlur"
       >
-      <div
-        v-if="units"
-        :class="{ focused }"
-        class="concrete-units"
-      >
-        {{ units }}
+      <div ref="suffix" class="suffix">
+        <slot name="suffix">
+          <!-- unit -->
+          <div v-if="to || unit" class="unit">{{ to || unit }}</div>
+
+          <!-- stepper -->
+          <div v-if="step && !disabled && !readOnly" class="stepper v-box" :class="{ disabled }">
+            <div class="up-icon" @click="up">
+              <c-icon class="icon" type="chevron-up" />
+            </div>
+            <div class="down-icon" @click="down">
+              <c-icon class="icon" type="chevron-down" />
+            </div>
+          </div>
+        </slot>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Big from 'big.js';
+import { convert, convertFromSI, convertToSI } from '@/utils/units';
+
+
 export default {
   name: 'CQuantityInput',
   props: {
@@ -42,76 +57,142 @@ export default {
     precision: { type: Number, default: 1 },
     label: { type: String, default: null },
     value: { type: Number, default: null },
-    units: { type: String, default: null },
+    unit: { type: String, default: null },
     maximum: { type: Number, default: null },
     minimum: { type: Number, default: null },
     size: { type: String, default: null },
     theme: { type: String, default: null },
-    disabled: { type: Boolean },
+    disabled: { type: Boolean, default: false },
+    readOnly: { type: Boolean, default: false },
+    step: { type: Number, default: 1 },
+    to: { type: String, default: null },
+    from: { type: String, default: null },
   },
   data() {
     return {
-      localValue: null,
+      localValue: this.convertToDisplayValue(this.value),
       focused: false,
     };
   },
   computed: {
-    coercedValue() {
-      if (parseFloat(this.localValue) !== parseFloat(this.value)) {
-        const value = this.localValue * 1;
-        if (this.maximum != null && this.maximum < value) return this.maximum;
-        if (this.minimum != null && this.minimum > value) return this.minimum;
-
-        return value;
-      }
-      return this.value;
-    },
-  },
-  watch: {
-    // In the event that "value" is changed outside the context of this
-    // component, the localValue here will be set to match.
-    value: {
-      handler(nv) {
-        if (nv != null) {
-          this.localValue = this.value;
-        }
+    valproxy: {
+      get() {
+        return this.disabled ? this.convertToDisplayValue(this.value) : this.localValue;
+      },
+      set(v) {
+        this.localValue = v;
+        this.$emit('input', this.convertFromDisplayValue(v));
       },
     },
   },
-  created() {
-    if (this.value != null) {
-      this.localValue = this.value;
-    }
+  watch: {
+    value: {
+      handler(v) {
+        this.localValue = this.convertToDisplayValue(v);
+      },
+    },
   },
   methods: {
-    handleFocus() {
-      this.focused = true;
+    convertToDisplayValue(v) {
+      if (!this.isNumber(v)) return v;
+      if (this.unit) return convertFromSI(v, this.unit);
+      if (this.from && this.to) return convert(v, this.from, this.to);
+      return Number(v);
+    },
+    convertFromDisplayValue(v) {
+      if (!this.isNumber(v)) return v;
+      if (this.unit) return convertToSI(Number(v), this.unit);
+      if (this.from && this.to) return convert(Number(v), this.to, this.from);
+      return Number(v);
+    },
+    isNumber(v) {
+      if (v === undefined) return false;
+      try {
+        Big(v);
+        return true;
+      } catch (e) {
+        return false;
+      }
     },
     handleBlur() {
+      this.localValue = this.isNumber(this.localValue)
+        ? Number(this.localValue)
+        : this.localValue;
       this.focused = false;
-      this.handleUpdate();
+      this.$emit('blur');
     },
-    handleChange(e) {
-      const isIncrement = e.inputType !== 'insertText';
-      if (isIncrement && typeof this.coercedValue === 'number') {
-        this.localValue = this.coercedValue;
-        this.$emit('input', this.coercedValue);
-      } else if (typeof this.coercedValue === 'number') {
-        this.$emit('change-value', this.coercedValue);
+    up() {
+      if (this.disabled) return;
+      try {
+        this.valproxy = Big(this.valproxy).plus(Big(this.step));
+      } catch {
+        this.valproxy = 0;
       }
     },
-    handleUpdate() {
-      if (typeof this.coercedValue === 'number') {
-        this.localValue = this.coercedValue;
-        this.$emit('input', this.coercedValue);
-      } else {
-        this.localValue = this.value;
+    down() {
+      if (this.disabled) return;
+      try {
+        this.valproxy = Big(this.valproxy).minus(Big(this.step));
+      } catch {
+        this.valproxy = 0;
       }
     },
+
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
+
+.numeric-input {
+  ::v-deep input {
+    text-align: right;
+    &::placeholder {
+      text-align: left;
+    }
+  }
+  .unit {
+    + .stepper {
+      margin-left: 8px;
+    }
+  }
+  .stepper {
+    &.disabled .up-icon, &.disabled .down-icon {
+      cursor: not-allowed;
+      background: $color-gray-05;
+      &:hover {
+        background: $color-gray-05;
+      }
+    }
+    .up-icon, .down-icon {
+      .icon {
+        height: 0.5rem;
+        width: 11px;
+      }
+      color: $color-black;
+      border: 1px solid $color-gray-04;
+      background: $color-white;
+      user-select: none;
+      line-height: 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      &:hover {
+        background: $color-gray-04;
+      }
+    }
+    .up-icon {
+      margin-top: 3px;
+      border-radius: 5px 5px 0px 0px;
+      border-bottom: none;
+    }
+    .down-icon {
+      border-radius: 0px 0px 5px 5px;
+      border-top: none;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+
 </style>

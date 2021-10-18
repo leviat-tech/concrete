@@ -1,3 +1,5 @@
+import VDragged from 'v-dragged';
+
 import CButton from '@/components/Button';
 import CIcon from '@/components/Icon';
 import CCheckbox from '@/components/Checkbox';
@@ -77,6 +79,7 @@ const install = (Vue) => {
 
   CTooltip.options = TooltipOptions;
   Vue.directive('concrete-tooltip', CTooltip);
+  Vue.use(VDragged);
 };
 
 export default {
