@@ -42,25 +42,31 @@
   border-color: $color-gray-03;
   border-radius: $radius;
   background-color: $color-gray-01;
-  height: 2.25rem;
+  height: 2rem;
   flex: 1 1 0%;
   width: 100%;
+  font-size: $text-base;
   position: relative;
   display: flex;
   align-items: center;
 
   &.xs {
     font-size: $text-xs;
-    height: 1.75rem;
+    height: 1.5rem;
   }
 
   &.sm {
     font-size: $text-sm;
-    height: 2rem;
+    height: 1.75rem;
   }
 
   &.lg {
     font-size: $text-lg;
+    height: 2.25rem;
+  }
+
+  &.xl {
+    font-size: $text-xl;
     height: 2.5rem;
   }
 
@@ -133,6 +139,10 @@
 
     &.lg {
       font-size: $text-lg;
+    }
+
+    &.xl {
+      font-size: $text-xl;
     }
 
     &:invalid {

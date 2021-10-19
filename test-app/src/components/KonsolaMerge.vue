@@ -52,6 +52,15 @@
           <span>test2</span>
         </template>
       </c-text-input>
+      
+      <c-text-input :value="testVal" label="Label xl" size="xl" @input="(val) => testVal = val" >
+        <template slot="prefix">
+          <span>test</span>
+        </template>
+        <template slot="suffix">
+          <span>test2</span>
+        </template>
+      </c-text-input>
     </div>
 
     
@@ -94,15 +103,19 @@
           <span>test2</span>
         </template>
       </c-quantity-input>
+      
+      <c-quantity-input :value="testVal3" label="Label xl" size="xl" @input="(val) => testVal3 = val" >
+        <template slot="prefix">
+          <span>test</span>
+        </template>
+        <template slot="suffix">
+          <span>test2</span>
+        </template>
+      </c-quantity-input>
     </div>
   </div>
  
 </template>
-
-<style lang="scss">
-
-
-</style>
 
 <script>
 export default {
@@ -121,7 +134,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 
 .space-me > * + * {
   --tw-space-y-reverse: 0;

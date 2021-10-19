@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <konsola-merge />
+    <test-component />
   </div>
 </template>
 

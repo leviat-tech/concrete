@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-input-row concrete">
+  <div class="concrete-input-row concrete" @focus="handleFocus">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
@@ -121,6 +121,10 @@ export default {
       this.focused = false;
       this.$emit('blur');
     },
+    handleFocus() {
+      this.$refs.input.focus();
+      this.focused = true;
+    },
     up() {
       if (this.disabled) return;
       try {
@@ -173,6 +177,7 @@ export default {
       color: $color-black;
       border: 1px solid $color-gray-04;
       background: $color-white;
+      font-family: $font-monospace;
       user-select: none;
       line-height: 0.5rem;
       text-align: center;

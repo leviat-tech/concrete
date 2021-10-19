@@ -31,6 +31,16 @@ $text-4xl: 2.25rem;
 $text-5xl: 3rem;
 $text-6xl: 4rem;
 
+
+$font-monospace:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    Courier,
+    monospace;
+
+
 @mixin shadow {
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: $radius;
