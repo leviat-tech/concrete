@@ -72,7 +72,7 @@
       
       <button @click="focusQuantity">focus</button>
 
-      <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" />
+      <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" :error="true" />
 
       <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" >
         <template slot="prefix">

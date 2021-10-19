@@ -81,7 +81,7 @@
   }
 
   &:hover, &:focus, &.focused {
-    &:not(.disabled):not(.readOnly) {
+    &:not(.disabled):not(.readOnly):not(.error) {
       color: $color-black;
       border: $border-sm solid $color-blue;
       box-shadow: 0px 0px 0px 1px $color-blue;
@@ -91,6 +91,10 @@
   &.disabled {
     color: $color-gray-07;
     background: $color-gray-04;
+  }
+
+  &.error {
+    border: 1px solid $color-red;
   }
 
   
@@ -115,6 +119,7 @@
     left: 1px;
     font-size: .625rem;
   }
+
 
   select, input {
     min-width: 0;
