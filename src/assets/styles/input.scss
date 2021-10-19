@@ -50,6 +50,7 @@
   flex: 1 1 0%;
   width: 100%;
   font-size: $text-base;
+  font-family: inherit;
   position: relative;
   display: flex;
   align-items: center;
@@ -119,9 +120,10 @@
     min-width: 0;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
-    padding-top: 0.3rem;
+    padding-top: 0.125rem;
     height: 100%;
     font-size: $text-base;
+    font-family: inherit;
     appearance: none;
     background-color: transparent;
     border: none;
@@ -133,12 +135,10 @@
 
     &.xs {
       font-size: $text-xs;
-      padding-top: 0.2rem;
     }
 
     &.sm {
       font-size: $text-sm;
-      padding-top: 0.2rem;
     }
 
     &.lg {
