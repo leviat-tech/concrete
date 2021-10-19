@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-input-row concrete" @focus="handleFocus">
+  <div class="concrete-input-row concrete" tabindex="-1" @focus="$refs.input.focus()">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
@@ -60,10 +60,6 @@ export default {
     handleBlur() {
       this.focused = false;
       this.$emit('blur');
-    },
-    handleFocus() {
-      this.$refs.input.focus();
-      this.focused = true;
     },
   },
 };

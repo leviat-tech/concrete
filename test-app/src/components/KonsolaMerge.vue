@@ -1,7 +1,11 @@
 <template>
 
+
   <div style="display:flex;">
+
     <div class="space-me" style="width:700px; margin-right:40px;">
+      <button @click="focusText">focus</button>
+
       <c-text-input :value="testVal" @input="(val) => testVal = val" />
 
       <c-text-input :value="testVal" @input="(val) => testVal = val" >
@@ -34,7 +38,7 @@
       </c-text-input>
 
       
-      <c-text-input :value="testVal" label="Label md" size="md" @input="(val) => testVal = val" >
+      <c-text-input :value="testVal" ref="t1" label="Label md" size="md" @input="(val) => testVal = val" >
         <template slot="prefix">
           <span>test</span>
         </template>
@@ -65,6 +69,9 @@
 
     
     <div class="space-me" style="width:700px; margin-left:40px;">
+      
+      <button @click="focusQuantity">focus</button>
+
       <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" />
 
       <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" >
@@ -88,7 +95,7 @@
       </c-quantity-input>
 
       
-      <c-quantity-input :value="testVal3" label="Label md" unit="mm" size="md" @input="(val) => testVal3 = val" >
+      <c-quantity-input :value="testVal3" ref="q1" label="Label md" unit="mm" size="md" @input="(val) => testVal3 = val" >
         <template slot="prefix">
           <span>test</span>
         </template>
@@ -130,6 +137,13 @@ export default {
     };
   },
   methods: {
+    focusText() {
+      this.$refs.t1.$el.focus();
+    },
+    focusQuantity() {
+      console.log('focusing quantity');
+      this.$refs.q1.$el.focus();
+    },
   },
 };
 </script>
