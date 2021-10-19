@@ -64,7 +64,7 @@ export default {
     theme: { type: String, default: null },
     disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },
-    step: { type: Number, default: 1 },
+    step: { type: Number, default: null },
     to: { type: String, default: null },
     from: { type: String, default: null },
   },
