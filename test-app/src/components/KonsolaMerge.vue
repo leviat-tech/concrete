@@ -1,124 +1,167 @@
 <template>
 
 
-  <div style="display:flex;">
+  <div>
+    <div style="display:flex; margin-bottom:80px;">
+      <div class="space-me" style="width:700px; margin-right:40px;">
+        
+        <button @click="focusSelect">focus</button>
 
-    <div class="space-me" style="width:700px; margin-right:40px;">
-      <button @click="focusText">focus</button>
-
-      <c-text-input :value="testVal" @input="(val) => testVal = val" />
-
-      <c-text-input :value="testVal" @input="(val) => testVal = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-text-input>
-
-      
-      <c-text-input :disabled="true" :value="testVal2" label="Disabled" size="xs" @input="(val) => testVal2 = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-text-input>
-
-      
-      <c-text-input :readOnly="true" :value="testVal2" label="Read Only" size="sm" @input="(val) => testVal2 = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-text-input>
-
-      
-      <c-text-input :value="testVal" ref="t1" label="Label md" size="md" @input="(val) => testVal = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-text-input>
-
-      
-      <c-text-input :value="testVal" label="Label lg" size="lg" @input="(val) => testVal = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-text-input>
-      
-      <c-text-input :value="testVal" label="Label xl" size="xl" @input="(val) => testVal = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-text-input>
+        <c-select :value="testVal4" ref="s1" :disabled="true" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="xs">
+          <template slot="prefix">
+            <span>xs</span>
+          </template>
+          <template slot="suffix">
+            <span>xs</span>
+          </template>
+        </c-select>
+        <c-select :value="testVal4" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="sm">
+          <template slot="prefix">
+            <span>sm</span>
+          </template>
+          <template slot="suffix">
+            <span>sm</span>
+          </template>
+        </c-select>
+        <c-select :value="testVal4" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="md" :disabled="true">
+          <template slot="prefix">
+            <span>md</span>
+          </template>
+          <template slot="suffix">
+            <span>md</span>
+          </template>
+        </c-select>
+        <c-select :value="testVal4" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="lg">
+          <template slot="prefix">
+            <span>lg</span>
+          </template>
+          <template slot="suffix">
+            <span>lg</span>
+          </template>
+        </c-select>
+      </div>    
     </div>
 
-    
-    <div class="space-me" style="width:700px; margin-left:40px;">
-      
-      <button @click="focusQuantity">focus</button>
+    <div style="display:flex;">
 
-      <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" :error="true" />
+      <div class="space-me" style="width:700px; margin-right:40px;">
+        <button @click="focusText">focus</button>
 
-      <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-quantity-input>
+        <c-text-input :value="testVal" @input="(val) => testVal = val" />
+
+        <c-text-input :value="testVal" @input="(val) => testVal = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-text-input>
+
+        
+        <c-text-input :disabled="true" :value="testVal2" label="Disabled" size="xs" @input="(val) => testVal2 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-text-input>
+
+        
+        <c-text-input :readOnly="true" :value="testVal2"  label="Read Only" size="sm" @input="(val) => testVal2 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-text-input>
+
+        
+        <c-text-input :value="testVal" ref="t1" label="Label md" size="md" @input="(val) => testVal = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-text-input>
+
+        
+        <c-text-input :value="testVal" label="Label lg" size="lg" @input="(val) => testVal = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-text-input>
+        
+        <c-text-input :value="testVal" label="Label xl" size="xl" @input="(val) => testVal = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-text-input>
+      </div>
 
       
-      <c-quantity-input :disabled="true" :value="testVal3" label="Disabled" unit="m" size="xs" @input="(val) => testVal3 = val" >
-      </c-quantity-input>
+      <div class="space-me" style="width:700px; margin-left:40px;">
+        
+        <button @click="focusQuantity">focus</button>
 
-      
-      <c-quantity-input :readOnly="true" :value="testVal3" label="Read Only"  unit="m" size="sm" @input="(val) => testVal3 = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-      </c-quantity-input>
+        <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" :error="true" />
 
-      
-      <c-quantity-input :value="testVal3" ref="q1" label="Label md" unit="mm" size="md" @input="(val) => testVal3 = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-      </c-quantity-input>
+        <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-quantity-input>
 
-      
-      <c-quantity-input :value="testVal3" label="Label lg" size="lg" @input="(val) => testVal3 = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-quantity-input>
-      
-      <c-quantity-input :value="testVal3" label="Label xl" size="xl" @input="(val) => testVal3 = val" >
-        <template slot="prefix">
-          <span>test</span>
-        </template>
-        <template slot="suffix">
-          <span>test2</span>
-        </template>
-      </c-quantity-input>
+        
+        <c-quantity-input :disabled="true" :value="testVal3" label="Disabled" unit="m" size="xs" @input="(val) => testVal3 = val" >
+        </c-quantity-input>
+
+        
+        <c-quantity-input :readOnly="true" :value="testVal3" label="Read Only"  unit="m" size="sm" @input="(val) => testVal3 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+        </c-quantity-input>
+
+        
+        <c-quantity-input :value="testVal3" ref="q1" label="Label md" unit="mm" size="md" @input="(val) => testVal3 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+        </c-quantity-input>
+
+        
+        <c-quantity-input :value="testVal3" label="Label lg" size="lg" @input="(val) => testVal3 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-quantity-input>
+        
+        <c-quantity-input :value="testVal3" label="Label xl" size="xl" @input="(val) => testVal3 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-quantity-input>
+      </div>
+
     </div>
   </div>
  
@@ -134,14 +177,31 @@ export default {
       testVal: 't',
       testVal2: 'adgf sdfv',
       testVal3: 11,
+      testVal4: 'Option 4',
+      testOptions: [
+        { label: "Option 1", value: "Option 1", },
+        { label: "Option 2", value: "Option 2", },
+        { label: "Option 3", value: "Option 3", },
+        { label: "Option 4", value: "Option 4", },
+        { label: "Option 5", value: "Option 5", },
+      ],
+      testOptions2: [
+        "Option 1",
+        "Option 2",
+        "Option 3",
+        "Option 4",
+        "Option 5",
+      ]
     };
   },
   methods: {
     focusText() {
       this.$refs.t1.$el.focus();
     },
+    focusSelect() {
+      this.$refs.s1.$el.focus();
+    },
     focusQuantity() {
-      console.log('focusing quantity');
       this.$refs.q1.$el.focus();
     },
   },

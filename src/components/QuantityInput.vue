@@ -9,7 +9,7 @@
     </div>
     <div
       class="concrete-input concrete numeric-input"
-      :class="{ focused, [size]: size, [theme]: theme, disabled, readOnly, error }"
+      :class="{ focused, [size]: size, [theme]: theme, disabled, readOnly }"
     >
       <div v-if="$slots.prefix" ref="prefix" class="prefix">
         <slot name="prefix"></slot>
@@ -64,7 +64,6 @@ export default {
     theme: { type: String, default: null },
     disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },
-    error: { type: Boolean, default: false },
     step: { type: Number, default: null },
     to: { type: String, default: null },
     from: { type: String, default: null },

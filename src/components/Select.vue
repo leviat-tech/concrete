@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-input-row concrete">
+  <div class="concrete-input-row concrete" tabindex="-1" @focus="$refs.input.focus()">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
@@ -9,9 +9,12 @@
     </div>
     <div
       class="concrete-input concrete"
-      :class="{ focused, [size]: size, [theme]: theme }"
+      :class="{ focused, [size]: size, [theme]: theme, disabled }"
       @click="handleFocus"
     >
+      <div v-if="$slots.prefix" ref="prefix" class="prefix">
+        <slot name="prefix" />
+      </div>
       <div
         v-if="showImage"
         class="concrete-image-container"
@@ -35,6 +38,7 @@
         class="concrete-hidden-input"
         type="text"
         inputmode="none"
+        @focus="handleFocus"
         @blur="handleBlur"
         @keydown.down="handleKeyDown"
         @keydown.up="handleKeyUp"
@@ -44,6 +48,10 @@
 
       <div class="concrete-input-icon">
         <c-icon :type="icon" />
+      </div>
+
+      <div v-if="$slots.suffix" ref="suffix" class="suffix">
+        <slot name="suffix" />
       </div>
 
       <ul
@@ -109,6 +117,7 @@ export default {
     value: { type: [String, Number], default: '' },
     disabled: { type: Boolean, default: false },
     icon: { type: String, default: 'chevron-down' },
+    formatter: { type: Function, default: null },
   },
   data() {
     return {
@@ -120,12 +129,19 @@ export default {
     };
   },
   computed: {
+    localOptions() { // eslint-disable-line
+      return this.options.map((o) => {
+        const opt = (typeof o === 'string') ? { label: o, value: o } : { ...o };
+        if (this.formatter && opt.label) opt.label = this.formatter(opt.label);
+        return opt;
+      });
+    },
     selected() {
-      return this.options.find((o) => o.value === this.localValue) || {};
+      return this.localOptions.find((o) => o.value === this.localValue) || {};
     },
     filteredOptions() {
-      if (!this.sortSections) return this.options;
-      return this.options.slice().sort((a, b) => {
+      if (!this.sortSections) return this.localOptions;
+      return this.localOptions.slice().sort((a, b) => {
         if (a.section < b.section) return -1;
         if (a.section > b.section) return 1;
         return 0;
@@ -148,6 +164,7 @@ export default {
   },
   methods: {
     handleFocus() {
+      if (this.disabled) return;
       this.showOptions = true;
       this.focused = true;
       this.$refs.input.focus();
@@ -199,7 +216,10 @@ export default {
 @import '../assets/styles/input.scss';
 
 .concrete-input {
-  padding-left: 0.25rem;
+  cursor: pointer;
+  .suffix {
+    border-left: 1px solid $color-gray-03;
+  }
 }
 
 .concrete-hidden-input {
@@ -280,6 +300,7 @@ export default {
   flex: 1 1 0%;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-left: 0.25rem;
 }
 
 .concrete-select-options {
