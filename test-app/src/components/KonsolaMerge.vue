@@ -2,6 +2,40 @@
 
 
   <div>
+
+    <div class="h-box">
+
+      <div class="flex flex-col flex-grow">
+        <div class="flex-limit v-box scroll project">
+           <c-text-input :value="testVal" @input="(val) => testVal = val" >
+              <template slot="prefix">
+                <span>test</span>
+              </template>
+              <template slot="suffix">
+                <span>test2</span>
+              </template>
+            </c-text-input>
+        </div>
+      </div>
+
+      <!-- preview panel -->
+      <c-resizable
+        class="right flex-limit v-box"
+        :min="150"
+        :max="700"
+      >
+        <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" >
+          <template slot="prefix">
+            <span>test</span>
+          </template>
+          <template slot="suffix">
+            <span>test2</span>
+          </template>
+        </c-quantity-input>
+      </c-resizable>
+
+    </div>
+
     <div style="display:flex; margin-bottom:80px;">
       <div class="space-me" style="width:700px; margin-right:40px;">
         
@@ -108,8 +142,8 @@
         </c-text-input>
       </div>
 
-      
       <div class="space-me" style="width:700px; margin-left:40px;">
+        
         
         <button @click="focusQuantity">focus</button>
 

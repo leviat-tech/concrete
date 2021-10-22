@@ -300,7 +300,7 @@ export default {
   flex: 1 1 0%;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
 }
 
 .concrete-select-options {

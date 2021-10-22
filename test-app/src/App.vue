@@ -1,18 +1,15 @@
 <template>
   <div id="app">
     <konsola-merge />
-    <test-component />
   </div>
 </template>
 
 <script>
-import TestComponent from './components/TestComponent.vue'
 import KonsolaMerge from './components/KonsolaMerge.vue'
 
 export default {
   name: 'App',
   components: {
-    TestComponent,
     KonsolaMerge,
   }
 }
