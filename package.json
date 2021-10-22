@@ -1,6 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "scripts": {
     "build": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
     "build-bundle": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
@@ -47,7 +47,7 @@
     "vuepress": "^1.8.2"
   },
   "peerDependencies": {
-    "@vue/composition-api": "~1.2.2",
+    "@vue/composition-api": "1.x",
     "core-js": "^3.6.4"
   },
   "dependenciesMeta": {

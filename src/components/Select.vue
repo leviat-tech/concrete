@@ -57,7 +57,7 @@
       <ul
         v-if="showOptions"
         class="concrete-select-options"
-        :class="{ 'show-image': showImage }"
+        :class="{ 'show-image': showImage, [size]: size }"
       >
         <template
           v-for="(option, index) in filteredOptions"
@@ -313,10 +313,6 @@ export default {
     &:first-of-type {
       margin-top: 0;
     }
-  }
-
-  &.show-image {
-    top: 2rem;
   }
 }
 

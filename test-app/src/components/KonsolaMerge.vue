@@ -7,7 +7,7 @@
         
         <button @click="focusSelect">focus</button>
 
-        <c-select :value="testVal4" ref="s1" :disabled="true" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="xs">
+        <c-select :value="testVal4" ref="s1" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="xs">
           <template slot="prefix">
             <span>xs</span>
           </template>
@@ -23,7 +23,7 @@
             <span>sm</span>
           </template>
         </c-select>
-        <c-select :value="testVal4" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="md" :disabled="true">
+        <c-select :value="testVal4" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="md" >
           <template slot="prefix">
             <span>md</span>
           </template>

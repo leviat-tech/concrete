@@ -257,10 +257,28 @@
   width: 100%;
   position: absolute;
   list-style-type: none;
-  top: 1rem;
+  top: 2rem;
   left: 0;
   padding-left: 0;
   z-index: 20;
+  margin: 0;
+
+  
+  &.xs {
+    top: 1.5rem;
+  }
+  
+  &.sm {
+    top: 1.75rem;
+  }
+  
+  &.lg {
+    top: 2.25rem;
+  }
+  
+  &.xl {
+    top: 2.5rem;
+  }
 
   .option {
     display: flex;
