@@ -3,6 +3,27 @@
 
   <div>
 
+
+    <div style="display:flex;">
+      <div class="space-me" style="width:700px; margin-right:40px; margin-bottom:200px;">
+        
+        <button @click="focusTextArea">focus</button>
+
+        <c-textarea :value="testVal" @input="(v) => testVal = v" ref="a1" :rows="4" size="xs" />
+        <c-textarea :value="testVal" @input="(v) => testVal = v"  :rows="4" size="sm" />
+        <c-textarea :value="testVal" @input="(v) => testVal = v"  :rows="4" size="md" />
+      </div>    
+
+      
+      <div class="space-me" style="width:700px; margin-right:40px; margin-bottom:200px;">
+        
+        <c-textarea :value="testVal" @input="(v) => testVal = v"  :rows="4" size="lg" readOnly />
+        <c-textarea :value="testVal" @input="(v) => testVal = v"  :rows="4" size="xl" disabled />
+      </div>    
+
+    </div>  
+
+
     <div class="h-box">
 
       <div class="flex flex-col flex-grow">
@@ -237,6 +258,9 @@ export default {
     },
     focusQuantity() {
       this.$refs.q1.$el.focus();
+    },
+    focusTextArea() {
+      this.$refs.a1.$el.focus();
     },
   },
 };

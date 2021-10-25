@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-input-row concrete">
+  <div class="concrete-input-row concrete" tabindex="-1" @focus="$refs.input.focus()">
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
@@ -7,23 +7,30 @@
     >
       {{ label }}
     </div>
-    <div class="concrete-input concrete" :class="{ focused, [size]: size, [theme]: theme }">
+    <div
+      class="concrete-input concrete"
+      :class="{ focused, [size]: size, [theme]: theme, disabled, readOnly }"
+    >
       <textarea
-        v-model="localValue"
+        ref="input"
+        v-model="valproxy"
         :rows="rows"
         :class="[size, theme]"
         :placeholder="placeholder"
-        :disabled="disabled || readOnly"
-        @keydown.enter="handleUpdate"
+        :disabled="disabled"
+        :readonly="readOnly"
+        @keydown.enter="$emit('enter')"
         @focus="focused = true"
         @blur="handleBlur"
-        @input="handleChange"
       />
     </div>
   </div>
 </template>
 
 <script>
+import valproxy from '@/utils/valproxy';
+
+
 export default {
   name: 'CTextarea',
   props: {
@@ -38,38 +45,16 @@ export default {
   },
   data() {
     return {
-      localValue: '',
       focused: null,
     };
   },
-  watch: {
-    // In the event that "value" is changed outside the context of this
-    // component, the localValue here will be set to match.
-    value: {
-      handler() {
-        this.localValue = this.value;
-      },
-    },
-  },
-  created() {
-    if (this.value != null) {
-      this.localValue = this.value;
-    }
+  computed: {
+    valproxy,
   },
   methods: {
-    handleChange() {
-      if (this.localValue !== this.value) {
-        this.$emit('change-value', this.localValue);
-      }
-    },
     handleBlur() {
       this.focused = false;
-      this.handleUpdate();
-    },
-    handleUpdate() {
-      if (this.localValue !== this.value) {
-        this.$emit('input', this.localValue);
-      }
+      this.$emit('blur');
     },
   },
 };
@@ -77,6 +62,31 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/styles/input.scss';
+
+.concrete-input {
+  height: 100%;
+
+  &.xs {
+    font-size: $text-xs;
+    height: 100%;
+  }
+
+  &.sm {
+    font-size: $text-sm;
+    height: 100%;
+  }
+
+  &.lg {
+    font-size: $text-lg;
+    height: 100%;
+  }
+
+  &.xl {
+    font-size: $text-xl;
+    height: 100%;
+  }
+
+}
 
 .concrete-input-row {
   align-items: start;

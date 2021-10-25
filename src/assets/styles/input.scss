@@ -210,12 +210,27 @@
       font-size: $text-lg;
     }
 
+    &.xl {
+      font-size: $text-xl;
+    }
+    
     &:focus {
       outline: none;
+      border: none;
     }
 
-    &::placeholder {
+    &:disabled {
       color: $color-gray-07;
+      background: $color-gray-04;
+      &:hover {
+        border: none;
+      }
+    }
+    &:disabled::placeholder {
+      color: $color-gray-05;
+    }
+    &::placeholder {
+      color: $color-gray-04;
     }
 
     &.dark {
