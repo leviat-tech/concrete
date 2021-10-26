@@ -14,8 +14,8 @@
 
 .concrete-input-label {
   width: 10rem;
-  height: 1.75rem;
-  line-height: 1.75rem;
+  height: 2.25rem;
+  line-height: 2.25rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -46,7 +46,7 @@
   border-color: $color-gray-03;
   border-radius: $radius;
   background-color: $color-gray-01;
-  height: 1.75rem;
+  height: 2.25rem;
   flex: 1 1 0%;
   width: 100%;
   font-size: $text-base;
@@ -57,22 +57,22 @@
 
   &.xs {
     font-size: $text-xs;
-    height: 1.25rem;
+    height: 1.75rem;
   }
 
   &.sm {
     font-size: $text-sm;
-    height: 1.5rem;
+    height: 2.0rem;
   }
 
   &.lg {
     font-size: $text-lg;
-    height: 2rem;
+    height: 2.5rem;
   }
 
   &.xl {
     font-size: $text-xl;
-    height: 2.25rem;
+    height: 2.75rem;
   }
 
   &.dark {

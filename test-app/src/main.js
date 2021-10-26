@@ -5,7 +5,7 @@ import App from './App.vue';
 
 
 Vue.use(VueCompositionApi);
-Vue.use(Concrete);
+Vue.use(Concrete, { size: 'sm' });
 Vue.config.productionTip = false
 
 new Vue({

@@ -70,9 +70,24 @@ const components = [
   CAccordion,
 ];
 
-const install = (Vue) => {
+// Allow setting of default size + theme at install time
+const install = (Vue, { size = null, theme = null } = {}) => {
   components.forEach((component) => {
-    Vue.component(component.name, component);
+    if (component.props
+      && ((component.props.size && size) || (component.props.theme && theme))) {
+      const props = {
+        ...component.props,
+        ...(size && { size: { type: String, default: size } }),
+        ...(theme && { theme: { type: String, default: theme } }),
+      };
+
+      Vue.component(component.name, {
+        ...component,
+        props,
+      });
+    } else {
+      Vue.component(component.name, component);
+    }
   });
 
   Vue.prototype.$alert = CAlert; // eslint-disable-line

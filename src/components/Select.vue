@@ -249,7 +249,7 @@ export default {
 
 .concrete-input.xs {
  .concrete-image-container {
-    height: 1.25rem;
+    height: 1.75rem;
     width: 3rem;
  }
 
@@ -261,36 +261,36 @@ export default {
 
 .concrete-input.sm {
   .concrete-image-container {
-    height: 1.5rem;
+    height: 2rem;
     width: 3.5rem;
   }
 
   .sm.concrete-image-container {
-    height: 1.25rem;
+    height: 1.75rem;
     width: 1.75rem;
   }
 }
 
 .concrete-input.base {
   .concrete-image-container {
+    height: 2.25rem;
     width: 4rem;
-    height: 1.75rem;
   }
 
   .sm.concrete-image-container {
-    height: 1.5rem;
+    height: 2rem;
     width: 2.25rem;
   }
 }
 
 .concrete-input.lg {
   .concrete-image-container {
-    height: 2rem;
+    height: 2.5rem;
     width: 4.5rem;
   }
 
   .sm.concrete-image-container {
-    height: 1.75rem;
+    height: 2.25rem;
     width: 2.5rem;
   }
 }
