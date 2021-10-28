@@ -54,7 +54,7 @@ export default {
   name: 'CQuantityInput',
   props: {
     placeholder: { type: String, default: 'Enter a value' },
-    precision: { type: Number, default: 2 },
+    precision: { type: Number, default: null },
     label: { type: String, default: null },
     value: { type: Number, default: null },
     unit: { type: String, default: null },
@@ -92,7 +92,7 @@ export default {
       if (this.unit) value = convertFromSI(v, this.unit);
       if (this.from && this.to) value = convert(v, this.from, this.to);
       if (value === null) value = Number(v);
-      return parseFloat(value.toFixed(this.precision), 10);
+      return (this.precision === null) ? value : parseFloat(value.toFixed(this.precision), 10);
     },
     convertFromDisplayValue(v) {
       let value = null;
