@@ -54,7 +54,7 @@ export default {
   name: 'CQuantityInput',
   props: {
     placeholder: { type: String, default: 'Enter a value' },
-    precision: { type: Number, default: 1 },
+    precision: { type: Number, default: 2 },
     label: { type: String, default: null },
     value: { type: Number, default: null },
     unit: { type: String, default: null },
@@ -85,25 +85,22 @@ export default {
       },
     },
   },
-  watch: {
-    value: {
-      handler(v) {
-        this.localValue = this.convertToDisplayValue(v);
-      },
-    },
-  },
   methods: {
     convertToDisplayValue(v) {
-      if (!this.isNumber(v)) return v;
-      if (this.unit) return convertFromSI(v, this.unit);
-      if (this.from && this.to) return convert(v, this.from, this.to);
-      return Number(v);
+      let value = null;
+      if (!this.isNumber(v)) value = v;
+      if (this.unit) value = convertFromSI(v, this.unit);
+      if (this.from && this.to) value = convert(v, this.from, this.to);
+      if (value === null) value = Number(v);
+      return parseFloat(value.toFixed(this.precision), 10);
     },
     convertFromDisplayValue(v) {
+      let value = null;
       if (!this.isNumber(v)) return v;
-      if (this.unit) return convertToSI(Number(v), this.unit);
-      if (this.from && this.to) return convert(Number(v), this.to, this.from);
-      return Number(v);
+      if (this.unit) value = convertToSI(Number(v), this.unit);
+      if (this.from && this.to) value = convert(Number(v), this.to, this.from);
+      if (value === null) value = Number(v);
+      return value;
     },
     isNumber(v) {
       if (v === undefined) return false;

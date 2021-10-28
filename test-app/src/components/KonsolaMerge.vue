@@ -168,7 +168,7 @@
         
         <button @click="focusQuantity">focus</button>
 
-        <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" :error="true" />
+        <c-quantity-input :value="testVal5" @input="(val) => testVal5 = val" unit="deg" />
 
         <c-quantity-input :value="testVal3" @input="(val) => testVal3 = val" >
           <template slot="prefix">
@@ -233,6 +233,7 @@ export default {
       testVal2: 'adgf sdfv',
       testVal3: 11,
       testVal4: 'Option 4',
+      testVal5: 0.4,
       testOptions: [
         { label: "Option 1", value: "Option 1", },
         { label: "Option 2", value: "Option 2", },
