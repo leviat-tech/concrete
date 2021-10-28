@@ -64,7 +64,7 @@
         >
           <li
             v-if="showSections && isNewSection(option, index)"
-            :key="'section_' + option.section"
+            :key="'section_' + (option.section || index)"
             class="section-header"
           >
             {{ option.section }}
@@ -114,7 +114,7 @@ export default {
     sortSections: { type: Boolean, default: false },
     showSections: { type: Boolean, default: false },
     label: { type: String, default: null },
-    value: { type: [String, Number], default: '' },
+    value: { type: [String, Number, Object], default: '' },
     disabled: { type: Boolean, default: false },
     icon: { type: String, default: 'chevron-down' },
     formatter: { type: Function, default: null },
@@ -167,7 +167,6 @@ export default {
       if (this.disabled) return;
       this.showOptions = true;
       this.focused = true;
-      this.$refs.input.focus();
     },
     handleBlur() {
       this.focused = false;
@@ -204,6 +203,7 @@ export default {
       this.$refs.input.blur();
     },
     isNewSection(option, index) {
+      if (option.section === null) return false;
       if (index === 0) return true;
       const prevSection = this.filteredOptions[index - 1];
       return prevSection.section !== option.section;
@@ -307,8 +307,10 @@ export default {
   z-index: 30;
 
   .section-header {
-    margin-top: 1.5rem;
-    padding: 0.5rem;
+    margin-top: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-weight: 700;
 
     &:first-of-type {
       margin-top: 0;

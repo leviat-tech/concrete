@@ -62,7 +62,7 @@
         
         <button @click="focusSelect">focus</button>
 
-        <c-select :value="testVal4" ref="s1" :options="testOptions" placeholder="Please Select One" @input="(v) => testVal4 = v" size="xs">
+        <c-select :value="testVal4" ref="s1" :options="testOptions" :show-sections="true" placeholder="Please Select One" @input="(v) => testVal4 = v" size="xs">
           <template slot="prefix">
             <span>xs</span>
           </template>
@@ -235,10 +235,10 @@ export default {
       testVal4: 'Option 4',
       testVal5: 0.4,
       testOptions: [
-        { label: "Option 1", value: "Option 1", },
-        { label: "Option 2", value: "Option 2", },
-        { label: "Option 3", value: "Option 3", },
-        { label: "Option 4", value: "Option 4", },
+        { label: "Option 1", value: { test: 2, val: 'yo'}, },
+        { label: "Option 2", value: "Option 2", section: 'A1' },
+        { label: "Option 3", value: "Option 3", section: 'A1' },
+        { label: "Option 4", value: "Option 4", section: 'A2' },
         { label: "Option 5", value: "Option 5", },
       ],
       testOptions2: [
