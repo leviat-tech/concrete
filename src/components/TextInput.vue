@@ -12,7 +12,7 @@
       :class="{ focused, [size]: size, [theme]: theme, disabled, readOnly }"
     >
       <div v-if="$slots.prefix" ref="prefix" class="prefix">
-        <slot name="prefix"></slot>
+        <slot name="prefix" />
       </div>
       <input
         ref="input"
@@ -27,7 +27,7 @@
         @blur="handleBlur"
       >
       <div v-if="$slots.suffix" ref="suffix" class="suffix">
-        <slot name="suffix"></slot>
+        <slot name="suffix" />
       </div>
     </div>
   </div>

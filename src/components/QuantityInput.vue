@@ -12,7 +12,7 @@
       :class="{ focused, [size]: size, [theme]: theme, disabled, readOnly }"
     >
       <div v-if="$slots.prefix" ref="prefix" class="prefix">
-        <slot name="prefix"></slot>
+        <slot name="prefix" />
       </div>
       <input
         ref="input"
@@ -85,6 +85,11 @@ export default {
       },
     },
   },
+  watch: {
+    value() {
+      this.localValue = this.convertToDisplayValue(this.value);
+    },
+  },
   methods: {
     convertToDisplayValue(v) {
       let value = null;
@@ -134,7 +139,6 @@ export default {
         this.valproxy = 0;
       }
     },
-
   },
 };
 </script>
