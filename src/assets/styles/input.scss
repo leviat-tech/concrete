@@ -84,7 +84,6 @@
     &:not(.disabled):not(.readOnly):not(.error) {
       color: $color-black;
       border: $border-sm solid $color-blue;
-      box-shadow: 0px 0px 0px 1px $color-blue;
     }
   }
 
@@ -109,7 +108,7 @@
   }
   .suffix {
     border-radius: 0px $radius $radius 0px;
-    padding-left: 0.25rem;
+    padding-left: 0rem;
     right: 1px;
   }
   .prefix {
@@ -271,27 +270,26 @@
   width: 100%;
   position: absolute;
   list-style-type: none;
-  top: 2rem;
+  top: 2.25rem;
   left: 0;
   padding-left: 0;
   z-index: 20;
   margin: 0;
-
   
   &.xs {
-    top: 1.5rem;
-  }
-  
-  &.sm {
     top: 1.75rem;
   }
   
+  &.sm {
+    top: 2.0rem;
+  }
+  
   &.lg {
-    top: 2.25rem;
+    top: 2.5rem;
   }
   
   &.xl {
-    top: 2.5rem;
+    top: 2.75rem;
   }
 
   .option {
