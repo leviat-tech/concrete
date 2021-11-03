@@ -27,6 +27,18 @@ export default {
       return { width: `${this.current}px` };
     },
   },
+  watch: {
+    min(newMin) {
+      if (newMin > this.current) this.resize(newMin);
+    },
+    max(newMax) {
+      if (newMax < this.current) this.resize(newMax);
+    },
+  },
+  mounted() {
+    this.initial = Number(localStorage.getItem(this.name || 'c-resizable')) || this.$refs.el.offsetWidth;
+    this.resize(this.initial);
+  },
   methods: {
     dragged(e) {
       if (e.first) {
@@ -55,10 +67,6 @@ export default {
         this.current = Math.min(this.current, this.max);
       }
     },
-  },
-  mounted() {
-    this.initial = Number(localStorage.getItem(this.name || 'c-resizable')) || this.$refs.el.offsetWidth;
-    this.resize(this.initial);
   },
 };
 </script>
