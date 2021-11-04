@@ -125,18 +125,25 @@ export default {
   }
 
   &.outline {
-    background: $color-white;
+    background: none;
     color: $color;
     border: $border-sm solid $color;
+    &:hover {
+      background: $color;
+    }
+
+    &:active {
+      background: scale-color($color, $lightness: -25%);
+    }
   }
 
   &.ghost {
-    background: $color-white;
+    background: none;
     color: $color;
   }
 
   &.bare {
-    background: $color-white;
+    background: none;
     color: $color;
     padding: 0;
   }
