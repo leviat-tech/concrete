@@ -130,10 +130,12 @@ export default {
     border: $border-sm solid $color;
     &:hover {
       background: $color;
+      color: $color-white;
     }
 
     &:active {
       background: scale-color($color, $lightness: -25%);
+      color: $color-white;
     }
   }
 
