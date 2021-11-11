@@ -20,6 +20,7 @@ import { CToolbar, CToolGroup, CTool } from '@/components/Toolbar';
 import CCardList from '@/components/CardList';
 import CCard from '@/components/Card';
 import CViewport from '@/components/Viewport';
+import CViewportContainer from '@/components/ViewportContainer';
 import CSvg2dViewport from '@/components/Svg2dViewport';
 import CDraggablePoint from '@/components/DraggablePoint';
 import CDrawingTools from '@/components/DrawingTools';
@@ -59,6 +60,7 @@ const components = [
   CCardList,
   CCard,
   CViewport,
+  CViewportContainer,
   CSvg2dViewport,
   CDraggablePoint,
   CDrawingTools,
@@ -132,6 +134,7 @@ export {
   CCard,
   CMasonry,
   CViewport,
+  CViewportContainer,
   CSvg2dViewport,
   CDraggablePoint,
   CAlert,

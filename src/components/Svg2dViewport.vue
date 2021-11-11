@@ -1,10 +1,5 @@
 <template>
   <div class="concrete-viewport">
-    <c-drawing-tools
-      class="concrete-header"
-      :maximized="true"
-      :options="options"
-    />
     <svg
       ref="svg"
       class="concrete-drawing"
@@ -35,7 +30,6 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
-import CDrawingTools from './DrawingTools.vue';
 
 
 function domToSVGCoords(el, pt) {
@@ -45,19 +39,14 @@ function domToSVGCoords(el, pt) {
 
 export default {
   name: 'CSvg2dViewport',
-  components: {
-    CDrawingTools,
-  },
   props: {
     name: { type: String, required: true },
-    viewportId: { type: String, required: true },
     extents: {
       type: Object,
       default: () => ({
         xmin: -10, ymin: -10, xmax: 10, ymax: 10,
       }),
     },
-    options: { type: Array, default: () => [] },
     currentTool: { type: String, default: 'select' },
     value: { type: Object, default: () => ({ x: 0, y: 0 }) },
   },
@@ -84,6 +73,7 @@ export default {
       currentPoint: this.value,
       hasZoomed: false,
       tempTool: null,
+      resizeObserver: null,
     };
   },
   provide() {
@@ -131,11 +121,14 @@ export default {
     document.addEventListener('pointerleave', this.documentMouseleave);
     // monitor svg screen size
     this.resizeHandler();
-    window.addEventListener('resize', this.resizeHandler);
+    this.resizeObserver = new ResizeObserver(async (entries) => {
+      const svg = entries[0].target;
+      console.log('width', svg.clientWidth);
+      console.log('heigiht', svg.clientHeight);
+    }).observe(this.$refs.svg);
   },
-  unmounted() {
+  destroyed() {
     document.removeEventListener('pointerleave', this.documentMouseleave);
-    window.removeEventListener('resize', this.resizeHandler);
   },
   methods: {
     isEmpty,
@@ -356,7 +349,7 @@ export default {
 
 .concrete-toolbar {
   position: absolute;
-  right: 0.5rem;
+  left: 0.5rem;
   top: 0.5rem;
   background-color: white;
   opacity: 0.95;

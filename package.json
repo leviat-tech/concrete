@@ -2,6 +2,7 @@
   "name": "@crhio/concrete",
   "version": "0.0.66",
   "scripts": {
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
     "build-bundle": "vue-cli-service build --target lib --name concrete ./src/concrete.js",
     "test:unit": "vue-cli-service test:unit",

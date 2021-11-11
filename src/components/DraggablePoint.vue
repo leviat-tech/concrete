@@ -5,7 +5,7 @@
     :class="{ disabled }"
     :cx="point.x"
     :cy="point.y"
-    :r="size * scale"
+    :r="radius * scale"
   />
 </template>
 
@@ -18,7 +18,7 @@ export default {
   name: 'CDraggablePoint',
   props: {
     point: { type: Object, default: () => ({ x: 0, y: 0 }) },
-    size: { type: Number, default: 5 },
+    radius: { type: Number, default: 5 },
     disabled: { type: Boolean, default: false },
   },
   inject: ['viewport'],

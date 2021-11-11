@@ -1,32 +1,75 @@
+<template>
+  <div v-if="visible" class="concrete-viewport">
+    <slot />
+    <c-drawing-tools
+      class="concrete-header"
+      :viewport-id="viewportId"
+      :options="options"
+      :current-option="currentOption"
+      :maximized="maximized === viewportId"
+    />
+  </div>
+</template>
+
 <script>
+import CDrawingTools from './DrawingTools.vue';
+
+
 export default {
   name: 'CViewport',
-  render() {
-    const slots = this.$scopedSlots.default();
-
-    const slotOptions = slots.map((slot) => ({
-      label: slot.componentOptions.propsData.name,
-      value: slot.componentOptions.propsData.viewportId,
-    }));
-
-    slots.forEach((slot) => {
-      slot.componentOptions.propsData.options = slotOptions;
-    });
-
-    return (
-      <div class="concrete-viewport">
-        { slots }
-      </div>
-    );
+  components: {
+    CDrawingTools,
+  },
+  props: {
+    viewportId: { type: [String, Number], required: true },
+    value: { type: [String, Number], required: true },
+    options: { type: Array, default: () => [] },
+    maximized: { type: [String, Number], default: null },
+  },
+  data() {
+    return {
+      currentOption: this.value,
+    };
+  },
+  computed: {
+    current() {
+      return this.options.find((v) => v.value === this.currentOption);
+    },
+    visible() {
+      return !this.maximized || this.maximized === this.viewportId;
+    },
+  },
+  watch: {
+    value: {
+      handler(nv) {
+        this.currentOption = nv;
+      },
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variables.scss';
+
+@import '@/assets/styles/variables.scss';
 .concrete-viewport {
-  width: 100%;
+  display: flex;
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  position: relative;
 }
 
+.concrete-header, .concrete-footer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  opacity: 0.98;
+}
+
+.concrete-header > *, .concrete-footer > * {
+  margin-left: 0.5rem;
+}
 </style>
