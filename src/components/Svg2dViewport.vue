@@ -73,7 +73,6 @@ export default {
       currentPoint: this.value,
       hasZoomed: false,
       tempTool: null,
-      resizeObserver: null,
     };
   },
   provide() {
@@ -81,6 +80,7 @@ export default {
       viewport: this.viewport,
     };
   },
+  inject: ['viewportContainer'],
   computed: {
     vbString() {
       const { minX, minY, width, height } = this.viewport.viewBox; // eslint-disable-line
@@ -95,6 +95,10 @@ export default {
       return viewAspectRatio > elAspectRatio
         ? (this.viewport.viewBox.width / this.viewport.el.width) / this.viewport.zoomScale
         : (this.viewport.viewBox.height / this.viewport.el.height) / this.viewport.zoomScale;
+    },
+
+    maximized() {
+      return this.viewportContainer.maximized;
     },
   },
   watch: {
@@ -112,6 +116,12 @@ export default {
         this.viewport.pxToSvg = this.pxToSvgUnits;
       },
     },
+    maximized: {
+      async handler() {
+        await this.$nextTick;
+        this.resizeHandler();
+      },
+    },
   },
   async mounted() {
     await this.$nextTick();
@@ -121,14 +131,11 @@ export default {
     document.addEventListener('pointerleave', this.documentMouseleave);
     // monitor svg screen size
     this.resizeHandler();
-    this.resizeObserver = new ResizeObserver(async (entries) => {
-      const svg = entries[0].target;
-      console.log('width', svg.clientWidth);
-      console.log('heigiht', svg.clientHeight);
-    }).observe(this.$refs.svg);
+    window.addEventListener('resize', this.resizeHandler);
   },
   destroyed() {
     document.removeEventListener('pointerleave', this.documentMouseleave);
+    window.removeEventListener('resize', this.resizeHandler);
   },
   methods: {
     isEmpty,

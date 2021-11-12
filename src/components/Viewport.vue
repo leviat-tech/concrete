@@ -52,13 +52,13 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/variables.scss';
 
-@import '@/assets/styles/variables.scss';
 .concrete-viewport {
   display: flex;
   height: 100%;
   width: 100%;
   overflow: hidden;
   position: relative;
+  background-color: white;
 }
 
 .concrete-header, .concrete-footer {

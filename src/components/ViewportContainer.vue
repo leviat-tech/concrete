@@ -16,18 +16,20 @@ export default {
   },
   data() {
     return {
-      maximized: this.value,
+      reactive: {
+        maximized: this.value,
+      },
     };
   },
   computed: {
     fullWidth() {
-      return this.maximized || this.options.length < 2;
+      return this.reactive.maximized || this.options.length < 2;
     },
   },
   watch: {
     value: {
       handler(nv) {
-        this.maximized = nv;
+        this.reactive.maximized = nv;
       },
     },
   },
@@ -36,16 +38,17 @@ export default {
       minimize: this.minimize,
       maximize: this.maximize,
       containerOptions: this.options,
+      viewportContainer: this.reactive,
     };
   },
   methods: {
     minimize() {
-      this.maximized = null;
-      this.$emit('input', this.maximized);
+      this.reactive.maximized = null;
+      this.$emit('input', this.reactive.maximized);
     },
     maximize(id) {
-      this.maximized = id;
-      this.$emit('input', this.maximized);
+      this.reactive.maximized = id;
+      this.$emit('input', this.reactive.maximized);
     },
   },
 };
