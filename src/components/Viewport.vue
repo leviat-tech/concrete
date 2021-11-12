@@ -24,8 +24,8 @@ export default {
     viewportId: { type: [String, Number], required: true },
     value: { type: [String, Number], required: true },
     options: { type: Array, default: () => [] },
-    maximized: { type: [String, Number], default: null },
   },
+  inject: ['viewportContainer'],
   data() {
     return {
       currentOption: this.value,
@@ -37,6 +37,9 @@ export default {
     },
     visible() {
       return !this.maximized || this.maximized === this.viewportId;
+    },
+    maximized() {
+      return this.viewportContainer.maximized;
     },
   },
   watch: {

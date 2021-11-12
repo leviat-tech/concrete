@@ -8,7 +8,6 @@
         <c-viewport
           v-model="aviewport"
           viewport-id="a"
-          :maximized="maximized"
           :options="[
             { label: 'Elevation', value: 'elevation' },
           ]"
@@ -18,7 +17,6 @@
         <c-viewport
           v-model="bviewport"
           viewport-id="b"
-          :maximized="maximized"
           :options="[
             { label: 'Section', value: 'section' },
           ]"
