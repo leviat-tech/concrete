@@ -1,50 +1,26 @@
 <template>
   <div id="app">
-    <div class="tab-div">
-      <c-viewport-container
-        v-model="maximized"
-        :options="[ 'a', 'b' ]"
-      >
-        <c-viewport
-          v-model="aviewport"
-          viewport-id="a"
-          :options="[
-            { label: 'Elevation', value: 'elevation' },
-          ]"
-        >
-          <elevation-drawing />
-        </c-viewport>
-        <c-viewport
-          v-model="bviewport"
-          viewport-id="b"
-          :options="[
-            { label: 'Section', value: 'section' },
-          ]"
-        >
-          <section-drawing />
-        </c-viewport>
-      </c-viewport-container>
-    </div>
+    <div class="tallboi" />
+    <c-select :value="1" :options="options" :formatter="formatter" />
   </div>
 </template>
 
 <script>
-import ElevationDrawing from './test-components/ElevationDrawing.vue';
-import SectionDrawing from './test-components/SectionDrawing.vue';
+import Select from './components/Select.vue';
 
 
 export default {
   name: 'App',
   components: {
-    ElevationDrawing,
-    SectionDrawing,
+    CSelect: Select,
   },
-  data() {
-    return {
-      maximized: null,
-      aviewport: 'elevation',
-      bviewport: 'section',
-    };
+  computed: {
+    options() {
+      return [1, 2111111111111111111111, 3];
+    },
+    formatter() {
+      return (val) => `${val} mm`;
+    },
   },
 };
 </script>
@@ -71,6 +47,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 60px;
+  width: 5vw;
 }
 
 p {
@@ -82,4 +59,5 @@ p {
   height: 24rem;
   border: 1px solid #D8DBE1;
 }
+
 </style>

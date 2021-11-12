@@ -1,5 +1,10 @@
 <template>
-  <div class="concrete-input-row concrete" tabindex="-1" @focus="$refs.input.focus()">
+  <div
+    slot="reference"
+    class="concrete-input-row concrete"
+    tabindex="-1"
+    @focus="$refs.input.focus()"
+  >
     <div
       v-if="label !== null"
       class="concrete-input-label concrete"
@@ -8,6 +13,7 @@
       {{ label }}
     </div>
     <div
+      ref="reference"
       class="concrete-input concrete"
       :class="{ focused, [size]: size, [theme]: theme, disabled }"
       @click="handleFocus"
@@ -34,6 +40,7 @@
       </label>
       <input
         ref="input"
+        slot="reference"
         v-model="searchText"
         class="concrete-hidden-input"
         type="text"
@@ -53,51 +60,53 @@
       <div v-if="$slots.suffix" ref="suffix" class="suffix">
         <slot name="suffix" />
       </div>
-
-      <ul
-        v-if="showOptions"
-        class="concrete-select-options"
-        :class="{ 'show-image': showImage, [size]: size }"
-      >
-        <template
-          v-for="(option, index) in filteredOptions"
-        >
-          <li
-            v-if="showSections && isNewSection(option, index)"
-            :key="'section_' + (option.section || index)"
-            class="section-header"
-          >
-            {{ option.section }}
-          </li>
-          <li
-            :key="index"
-            class="option"
-            :class="{ keyed: index === arrowCounter }"
-            @mousedown="handleSelect(option)"
-          >
-            <div class="option-check">
-              <c-icon v-if="localValue === option.value" type="check" />
-              <div v-else>&nbsp;</div>
-            </div>
-            <div
-              v-if="showImage"
-              class="concrete-image-container"
-              :class="imageSize"
-              :style="{ 'background-image': `url('${option.image}')` }"
-            >
-              &nbsp;
-            </div>
-            <div class="concrete-option-label">
-              {{ option.label }}
-            </div>
-          </li>
-        </template>
-      </ul>
     </div>
+    <ul
+      v-show="showOptions"
+      ref="popper"
+      class="concrete-select-options"
+      :class="{ 'show-image': showImage, [size]: size }"
+      :style="{ width: `${optionsWidth}px` }"
+    >
+      <template
+        v-for="(option, index) in filteredOptions"
+      >
+        <li
+          v-if="showSections && isNewSection(option, index)"
+          :key="'section_' + (option.section || index)"
+          class="section-header"
+        >
+          {{ option.section }}
+        </li>
+        <li
+          :key="index"
+          class="option"
+          :class="{ keyed: index === arrowCounter }"
+          @mousedown="handleSelect(option)"
+        >
+          <div class="option-check">
+            <c-icon v-if="localValue === option.value" type="check" />
+            <div v-else>&nbsp;</div>
+          </div>
+          <div
+            v-if="showImage"
+            class="concrete-image-container"
+            :class="imageSize"
+            :style="{ 'background-image': `url('${option.image}')` }"
+          >
+              &nbsp;
+          </div>
+          <div class="concrete-option-label">
+            {{ option.label }}
+          </div>
+        </li>
+      </template>
+    </ul>
   </div>
 </template>
 
 <script>
+import { createPopper } from '@popperjs/core';
 import CIcon from '@/components/Icon';
 
 
@@ -126,13 +135,15 @@ export default {
       arrowCounter: -1,
       searchText: '',
       showOptions: false,
+      optionsWidth: '0px',
     };
   },
   computed: {
     localOptions() { // eslint-disable-line
       return this.options.map((o) => {
-        const opt = (typeof o === 'string') ? { label: o, value: o } : { ...o };
-        if (this.formatter && opt.label) opt.label = this.formatter(opt.label);
+        const opt = (typeof o === 'string' || typeof o === 'number') ? { label: o, value: o } : { ...o };
+        if (this.formatter) opt.label = this.formatter(opt.value);
+        console.log(opt);
         return opt;
       });
     },
@@ -157,10 +168,26 @@ export default {
       },
     },
   },
+  mounted() {
+    createPopper(this.$refs.reference, this.$refs.popper, {
+      placement: 'bottom-start',
+      modifiers: [
+        { name: 'offset', options: { offset: [0, 10] } },
+      ],
+    });
+    this.observer = new ResizeObserver((entries) => {
+      const input = entries[0];
+      this.optionsWidth = input.target.clientWidth;
+    });
+    this.observer.observe(this.$refs.reference);
+  },
   created() {
     if (this.value != null) {
       this.localValue = this.value;
     }
+  },
+  destroyed() {
+    this.observer.disconnect();
   },
   methods: {
     handleFocus() {
