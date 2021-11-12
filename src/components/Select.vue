@@ -169,7 +169,7 @@ export default {
     },
   },
   mounted() {
-    createPopper(this.$refs.reference, this.$refs.popper, {
+    this.popper = createPopper(this.$refs.reference, this.$refs.popper, {
       placement: 'bottom-start',
       modifiers: [
         { name: 'offset', options: { offset: [0, 10] } },
@@ -194,6 +194,7 @@ export default {
       if (this.disabled) return;
       this.showOptions = true;
       this.focused = true;
+      this.popper.update();
     },
     handleBlur() {
       this.focused = false;
