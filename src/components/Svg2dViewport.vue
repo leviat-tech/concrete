@@ -4,6 +4,7 @@
       ref="svg"
       class="concrete-drawing"
       :viewBox="vbString"
+      @click="handleClick"
       @mousewheel="handleMousewheel"
       @wheel="handleMousewheel"
       @pointerdown="handleMousedown"
@@ -178,6 +179,9 @@ export default {
       this.svgP = domToSVGCoords(this.$refs.svg, this.hoverPt); // point in svg units
       this.currentPoint = domToSVGCoords(this.$refs.contents, this.hoverPt); // point in flipped y
       this.$emit('input', this.currentPoint);
+    },
+    handleClick(e) {
+      this.$emit('click', e);
     },
     handleMousedown(e) {
       this.$emit('mousedown', e);
