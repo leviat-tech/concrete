@@ -23,6 +23,7 @@ import CViewport from '@/components/Viewport';
 import CViewportContainer from '@/components/ViewportContainer';
 import CSvg2dViewport from '@/components/Svg2dViewport';
 import CDraggablePoint from '@/components/DraggablePoint';
+import CDraggablePath from '@/components/DraggablePath';
 import CDrawingTools from '@/components/DrawingTools';
 import CAlert from '@/components/alert';
 import CTooltip, { TooltipOptions } from '@/components/tooltip';
@@ -63,6 +64,7 @@ const components = [
   CViewportContainer,
   CSvg2dViewport,
   CDraggablePoint,
+  CDraggablePath,
   CDrawingTools,
   CMasonry,
   CStatusBar,
@@ -137,5 +139,6 @@ export {
   CViewportContainer,
   CSvg2dViewport,
   CDraggablePoint,
+  CDraggablePath,
   CAlert,
 };

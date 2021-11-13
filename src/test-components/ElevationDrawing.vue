@@ -20,6 +20,12 @@
       @dragging="setPoint"
       @dragend="setPoint"
     />
+    <c-draggable-path
+      :path="path"
+      @drag-start="startPathDrag"
+      @dragging="dragPath"
+      @drag-end="dragPath"
+    />
   </c-svg-2d-viewport>
 </template>
 
@@ -30,11 +36,44 @@ export default {
     return {
       point: { x: 5, y: 5 },
       hoverPt: { x: 0, y: 0 },
+      dragPt: { x: 0, y: 0 },
+      startDrag: null,
     };
+  },
+  computed: {
+    path() {
+      const d = this.dragPt;
+      return `M${0 + d.x},${0 + d.y} L${2 + d.x},${0 + d.y} L${8 + d.x},${8 + d.y} L${5 + d.x},${8 + d.y}`;
+    },
   },
   methods: {
     setPoint(pt) {
       this.point = pt;
+    },
+    startPathDrag(pt) {
+      this.startDrag = pt;
+    },
+    dragPath(pt) {
+      const diff = {
+        x: pt.x - this.startDrag.x,
+        y: pt.y - this.startDrag.y,
+      };
+      this.dragPt = {
+        x: this.dragPt.x + diff.x,
+        y: this.dragPt.y + diff.y,
+      };
+      this.startDrag = pt;
+    },
+    endPathDrag(pt) {
+      const diff = {
+        x: pt.x - this.startDrag.x,
+        y: pt.y - this.startDrag.y,
+      };
+      this.dragPt = {
+        x: this.dragPt.x + diff.x,
+        y: this.dragPt.y + diff.y,
+      };
+      this.startDrag = null;
     },
   },
 };

@@ -1,19 +1,36 @@
 <template>
   <div id="app">
-    <div class="tallboi" />
-    <c-select :value="1" :options="options" :formatter="formatter" />
+    <div class="tab-div">
+      <c-viewport-container
+        v-model="maximized"
+        :options="[ 'a' ]"
+      >
+        <c-viewport
+          v-model="aviewport"
+          viewport-id="a"
+          :options="[
+            { label: 'Elevation', value: 'elevation' },
+          ]"
+        >
+          <elevation-drawing />
+        </c-viewport>
+        <!-- <c-viewport
+          v-model="bviewport"
+          viewport-id="b"
+          :options="[
+            { label: 'Section', value: 'section' },
+          ]"
+        >
+          <section-drawing />
+        </c-viewport> -->
+      </c-viewport-container>
+    </div>
   </div>
 </template>
 
 <script>
-import Select from './components/Select.vue';
-
-
 export default {
   name: 'App',
-  components: {
-    CSelect: Select,
-  },
   computed: {
     options() {
       return [1, 2111111111111111111111, 3];
