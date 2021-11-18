@@ -143,7 +143,6 @@ export default {
       return this.options.map((o) => {
         const opt = (typeof o === 'string' || typeof o === 'number') ? { label: o, value: o } : { ...o };
         if (this.formatter) opt.label = this.formatter(opt.value);
-        console.log(opt);
         return opt;
       });
     },
