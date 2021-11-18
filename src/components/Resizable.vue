@@ -1,9 +1,9 @@
 <template>
   <div ref="el" :style="style">
-    <div class="container-column">
-      <div class="handle" v-dragged.prevent="dragged" draggable="false" />
-      <div class="content">
-        <slot></slot>
+    <div class="concrete-resizable-column">
+      <div v-dragged.prevent="dragged" class="handle" draggable="false" />
+      <div class="concrete-resizable-content">
+        <slot />
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@ export default {
 
 <style scoped lang="scss">
 
-  .container-column {
+  .concrete-resizable-column {
     position: relative;
     overflow: visible;
     display: flex;
@@ -99,9 +99,7 @@ export default {
     }
   }
 
-  .content {
-    padding-left: 5px;
-    padding-right: 5px;
+  .concrete-resizable-content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
