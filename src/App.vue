@@ -3,7 +3,8 @@
     <div class="tab-div">
       <c-viewport-container
         v-model="maximized"
-        :options="[ 'a' ]"
+        :aspect-ratio="2"
+        :options="[ 'a', 'b' ]"
       >
         <c-viewport
           v-model="aviewport"
@@ -14,7 +15,7 @@
         >
           <elevation-drawing />
         </c-viewport>
-        <!-- <c-viewport
+        <c-viewport
           v-model="bviewport"
           viewport-id="b"
           :options="[
@@ -22,22 +23,29 @@
           ]"
         >
           <section-drawing />
-        </c-viewport> -->
+        </c-viewport>
       </c-viewport-container>
     </div>
   </div>
 </template>
 
 <script>
+import ElevationDrawing from './test-components/ElevationDrawing.vue';
+import SectionDrawing from './test-components/SectionDrawing.vue';
+
+
 export default {
   name: 'App',
-  computed: {
-    options() {
-      return [1, 2111111111111111111111, 3];
-    },
-    formatter() {
-      return (val) => `${val} mm`;
-    },
+  components: {
+    ElevationDrawing,
+    SectionDrawing,
+  },
+  data() {
+    return {
+      maximized: null,
+      aviewport: 'elevation',
+      bviewport: 'section',
+    };
   },
 };
 </script>
@@ -73,7 +81,7 @@ p {
 
 .tab-div {
   width: 24rem;
-  height: 24rem;
+  height: 26rem;
   border: 1px solid #D8DBE1;
 }
 
