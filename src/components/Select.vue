@@ -82,7 +82,7 @@
           :key="index"
           class="option"
           :class="{ keyed: index === arrowCounter }"
-          @mousedown="handleSelect(option)"
+          @mousedown.prevent="handleSelect(option)"
         >
           <div class="option-check">
             <c-icon v-if="localValue === option.value" type="check" />
