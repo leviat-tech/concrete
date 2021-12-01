@@ -1,17 +1,23 @@
 <template>
   <g>
     <path
+      v-show="!disabled"
       ref="path"
       class="concrete-draggable-path-hover"
-      :class="{ disabled, hovered }"
+      :class="{ hovered, draggable }"
       :d="path"
-      :stroke-width="hoverStrokeWidth"
+      :stroke-width="hitboxWidth"
+      :stroke="hovered ? hitboxStroke : 'transparent'"
+      :stroke-opacity="hovered ? hitboxOpacity : hitboxStroke"
+      @click="$emit('click', $event)"
       @mouseover="hoverPath"
       @mouseout="unhoverPath"
     />
     <path
       class="concrete-draggable-path"
       :class="{ disabled, hovered }"
+      :stroke="hovered ? hoverStroke : stroke"
+      :stroke-opacity="hovered ? hoverStrokeOpacity : strokeOpacity"
       :stroke-width="strokeWidth"
       :d="path"
     />
@@ -28,8 +34,15 @@ export default {
   props: {
     path: { type: String, required: true },
     disabled: { type: Boolean, default: false },
+    draggable: { type: Boolean, default: true },
     strokeWidth: { type: Number, default: 3 },
-    hoverStrokeWidth: { type: Number, default: 14 },
+    hitboxWidth: { type: Number, default: 14 },
+    stroke: { type: String, default: 'black' },
+    strokeOpacity: { type: Number, default: 0.6 },
+    hoverStroke: { type: String, default: '#3D95F0' },
+    hoverStrokeOpacity: { type: Number, default: 1 },
+    hitboxStroke: { type: String, default: 'black' },
+    hitboxOpacity: { type: Number, default: 0.1 },
   },
   data() {
     return {
@@ -38,11 +51,13 @@ export default {
     };
   },
   mounted() {
-    this.selection = selectAll([this.$refs.path]);
-    this.selection.call(d3Drag()
-      .on('start', this.dragstart)
-      .on('drag', this.dragged)
-      .on('end', this.dragend));
+    if (this.draggable) {
+      this.selection = selectAll([this.$refs.path]);
+      this.selection.call(d3Drag()
+        .on('start', this.dragstart)
+        .on('drag', this.dragged)
+        .on('end', this.dragend));
+    }
   },
   destroyed() {
     this.selection.on('.drag', null);
@@ -78,26 +93,16 @@ export default {
 
 .concrete-draggable-path {
   vector-effect: non-scaling-stroke !important;
-  stroke: lighten(black, 40%);
   fill: none;
   pointer-events: none;
-
-  &:hover:not(.disabled), &.hovered:not(.disabled) {
-    stroke: $color-blue-highlight;
-  }
 }
 
 .concrete-draggable-path-hover {
   vector-effect: non-scaling-stroke !important;
   fill: none;
-  stroke: transparent;
 
-  &:not(.disabled) {
+  &.draggable {
     cursor: move;
-  }
-
-  &.hover:not(.disabled), &.hovered:not(.disabled) {
-    stroke: rgba(0, 0, 0, 0.1);
   }
 }
 </style>
