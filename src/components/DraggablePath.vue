@@ -16,7 +16,7 @@
     <path
       class="concrete-draggable-path"
       :class="{ disabled, hovered }"
-      :stroke="hovered ? hoverStroke : stroke"
+      :stroke="strokeColor"
       :stroke-opacity="hovered ? hoverStrokeOpacity : strokeOpacity"
       :stroke-width="strokeWidth"
       :d="path"
@@ -35,6 +35,7 @@ export default {
     path: { type: String, required: true },
     disabled: { type: Boolean, default: false },
     draggable: { type: Boolean, default: true },
+    active: { type: Boolean, default: false },
     strokeWidth: { type: Number, default: 3 },
     hitboxWidth: { type: Number, default: 14 },
     stroke: { type: String, default: 'black' },
@@ -43,12 +44,20 @@ export default {
     hoverStrokeOpacity: { type: Number, default: 1 },
     hitboxStroke: { type: String, default: 'black' },
     hitboxOpacity: { type: Number, default: 0.1 },
+    activeStroke: { type: String, default: '#3D95F0' },
   },
   data() {
     return {
       selection: null,
       hovered: false,
     };
+  },
+  computed: {
+    strokeColor() {
+      if (this.active) return this.activeStroke;
+      if (this.hovered) return this.hoverStroke;
+      return this.stroke;
+    },
   },
   mounted() {
     if (this.draggable) {
