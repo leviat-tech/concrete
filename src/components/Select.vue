@@ -143,7 +143,7 @@ export default {
     localOptions() { // eslint-disable-line
       return this.options.map((o) => {
         const opt = isPlainObject(o) ? o : { label: o, value: o };
-        return this.formatter ? { ...opt, label: this.formatter(o.value) } : opt;
+        return this.formatter ? { ...opt, label: this.formatter(opt.value) } : opt;
       });
     },
     selected() {
