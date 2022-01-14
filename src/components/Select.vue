@@ -107,6 +107,7 @@
 
 <script>
 import { createPopper } from '@popperjs/core';
+import isPlainObject from 'lodash/isPlainObject';
 import CIcon from '@/components/Icon';
 
 
@@ -141,9 +142,8 @@ export default {
   computed: {
     localOptions() { // eslint-disable-line
       return this.options.map((o) => {
-        const opt = (typeof o === 'string' || typeof o === 'number') ? { label: o, value: o } : { ...o };
-        if (this.formatter) opt.label = this.formatter(opt.value);
-        return opt;
+        const opt = isPlainObject(o) ? o : { label: o, value: o };
+        return this.formatter ? { ...opt, label: this.formatter(o.value) } : opt;
       });
     },
     selected() {
