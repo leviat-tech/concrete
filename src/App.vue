@@ -1,88 +1,65 @@
+
+
 <template>
-  <div id="app">
-    <div class="tab-div">
-      <c-viewport-container
-        v-model="maximized"
-        :aspect-ratio="2"
-        :options="[ 'a', 'b' ]"
-      >
-        <c-viewport
-          v-model="aviewport"
-          viewport-id="a"
-          :options="[
-            { label: 'Elevation', value: 'elevation' },
-          ]"
-        >
-          <elevation-drawing />
-        </c-viewport>
-        <c-viewport
-          v-model="bviewport"
-          viewport-id="b"
-          :options="[
-            { label: 'Section', value: 'section' },
-          ]"
-        >
-          <section-drawing />
-        </c-viewport>
-      </c-viewport-container>
+  <div class="flex">
+    
+    <div class="w-96 bg-gray-200 h-full flex-col">
+      <div class="p-8 font-bold">Concrete 2</div>
+      <div class="px-8">
+        <div class="">
+          <div class="font-semibold pb-2">General</div>
+          <div class="">
+            <div class="cursor-pointer" @click="setPage('generalColours')">Colours</div>
+          </div>
+        </div>
+      </div> 
+      <div class="px-8 py-4">
+        <div class="">
+          <div class="font-semibold pb-2">Components</div>
+          <div class="">
+            <div class="cursor-pointer" @click="setPage('componentsButton')">Button</div>
+          </div>
+        </div>
+      </div> 
     </div>
+    
+    <div class="bg-gray-100 h-full w-full">
+      
+      <div class="">
+        <div v-if="page !== null">
+          <component :is="pageComponent"></component>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
+
 <script>
-import ElevationDrawing from './test-components/ElevationDrawing.vue';
-import SectionDrawing from './test-components/SectionDrawing.vue';
+import generalColoursPage from './pages/General/Colours.vue';
+import componentsButtonPage from './pages/Components/Button.vue';
 
 
 export default {
-  name: 'App',
-  components: {
-    ElevationDrawing,
-    SectionDrawing,
-  },
   data() {
     return {
-      maximized: null,
-      aviewport: 'elevation',
-      bviewport: 'section',
-    };
+      page: null,
+    }
   },
-};
+  computed: {
+    pageComponent() {
+      return {
+        generalColours: generalColoursPage,
+        componentsButton: componentsButtonPage,
+      }[this.page];
+    },
+  },
+  methods: {
+    setPage(page) {
+      console.log(page);
+      this.page = page;
+    }
+  }
+}
 </script>
-
-<style lang="scss">
-html {
-  height: 100%;
-  font-family: "system-ui",
-    "BlinkMacSystemFont",
-    "-apple-system",
-    "Segoe UI",
-    "Roboto",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Fira Sans",
-    "Droid Sans",
-    "Helvetica Neue",
-    "sans-serif";
-  -webkit-font-smoothing: antialiased;
-}
-
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin-top: 60px;
-  width: 5vw;
-}
-
-p {
-  display: block;
-}
-
-.tab-div {
-  width: 24rem;
-  height: 26rem;
-  border: 1px solid #D8DBE1;
-}
-
-</style>

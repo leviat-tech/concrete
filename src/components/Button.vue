@@ -1,233 +1,130 @@
 <template>
   <button
-    :class="[
-      'concrete-button',
-      'concrete',
-      size,
-      (!disabled && color),
-      (!disabled && fill),
-      (disabled && 'disabled'),
-      (inProgress && 'in-progress'),
-    ]"
+    :class="[sizeClass, colourClass, contentClass, disabledClass, padding]"
     :disabled="disabled"
-    @click="click"
+    @click.self="click"
   >
-    <div
-      :style="progressStyle"
-      class="progress-bar"
-    >
-      &nbsp;
-    </div>
-    <div class="button-content">
-      <c-icon v-if="play && !inProgress" type="play" class="icon" />
-      <c-icon v-if="inProgress && cancelable" type="times-circle" class="icon" @click="cancel" />
+    <div class="">
       <slot />
     </div>
   </button>
 </template>
 
 <script>
-import CIcon from '@/components/Icon';
-
-
 export default {
   name: 'CButton',
   components: {
-    CIcon,
   },
   props: {
     size: {
       type: String,
-      default: 'sm',
-      validator: (prop) => ['lg', 'md', 'sm', 'xs'].includes(prop),
+      default: 'md',
+      validator: (prop) => ['lg', 'md', 'sm'].includes(prop),
     },
     color: {
       type: String,
-      default: 'primary',
-      validator: (prop) => ['primary', 'danger', 'standard'].includes(prop),
+      default: 'indigo',
+      validator: (prop) => ['indigo', 'sky', 'steel', 'success', 'warning', 'danger'].includes(prop),
     },
     fill: {
       type: String,
       default: 'solid',
-      validator: (prop) => ['solid', 'outline', 'ghost', 'bare'].includes(prop),
+      validator: (prop) => ['solid', 'outline', 'ghost'].includes(prop),
     },
-    play: { type: Boolean, default: false },
-    progress: { type: Number, default: null },
-    fake: { type: Boolean, default: false },
+    width: {
+      type: String,
+      default: 'full',
+      validator: (prop) => ['full', 'auto'].includes(prop),
+    },
+    content: {
+      type: String,
+      default: 'center',
+      validator: (prop) => ['center', 'left', 'right'].includes(prop),
+    },
     disabled: { type: Boolean, default: false },
-    cancelable: { type: Boolean, default: true },
+    active: { type: Boolean, default: false },
+    padding: { type: String, default: 'px-2' },
   },
   data() {
     return {
-      fakeProgress: 20,
-      intervalId: null,
     };
   },
   computed: {
-    inProgress() {
-      return this.progress && this.progress < 100;
-    },
-    progressStyle() {
-      if (!this.progress || this.progress >= 100) {
-        return { display: 'none' };
-      }
-
-      if (this.fake) {
-        return { width: `${this.fakeProgress}%` };
-      }
-
-      return { width: `${this.progress}%` };
-    },
-  },
-  watch: {
-    progress: {
-      handler(nv) {
-        if (this.fake) {
-          this.fakeProgress = nv;
-          if (nv >= 100) {
-            clearInterval(this.intervalId);
+    colourClass() {
+      let className = '';
+      if(this.fill === 'solid') {
+        className += 'border';
+        if(this.disabled) {
+          className += ` border-${this.color}-light bg-${this.color}-light text-${this.color}-lightest`;
+        }
+        else {
+          className += ` text-white hover:border-${this.color}-dark hover:bg-${this.color}-dark`;
+          if (this.active) { 
+            className += ` border-${this.color}-darkest bg-${this.color}-darkest `;
+          }
+          else {
+            className += ` border-${this.color} bg-${this.color} `;
           }
         }
-      },
+      } else if (this.fill === 'outline') {
+        className += 'border';
+        if(this.disabled) {
+          className += ` border-${this.color}-lightest text-${this.color}-lightest`;
+        }
+        else {
+          className += ` hover:text-white hover:bg-${this.color}`;
+          if (this.active) { 
+            className += `  bg-${this.color}-darkest border-${this.color}-darkest text-white`;
+          }
+          else {
+            className += ` border-${this.color} text-${this.color}`;
+          }
+        }
+      } else {
+        if(this.disabled) {
+          className += `text-${this.color}-lightest`;
+        }
+        else {
+          className += `text-${this.color} hover:text-${this.color}-dark`;
+          if (this.active) { 
+            className += `  text-${this.color}-darkest `;
+          }
+          else {
+            className += ` text-${this.color}`;
+          }
+        }
+      }
+      return className;
     },
+    sizeClass() {
+      switch(this.size) {
+        case 'sm':
+          return 'h-8 text-sm';
+        case 'md':
+          return 'h-10';
+        case 'lg':
+          return 'h-12 text-lg';
+      }
+    },
+    contentClass() {
+      
+      switch(this.content) {
+        case 'center':
+          return 'text-center';
+        case 'left':
+          return 'text-left';
+        case 'right':
+          return 'text-right';
+      }
+    },
+    disabledClass() {
+      return (this.disabled) ? 'cursor-not-allowed' : 'cursor-pointer';
+    }
   },
   methods: {
     click() {
       this.$emit('click');
-      if (this.fake) {
-        this.fakeProgress = 20;
-        this.intervalId = setInterval(() => {
-          const diff = 90 - this.fakeProgress;
-          if (diff > 0 && diff < 90) this.fakeProgress += diff / 20;
-        }, 100);
-      }
-    },
-    cancel(e) {
-      e.stopPropagation();
-      this.$emit('cancel');
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '../assets/styles/variables.scss';
-
-@mixin btn-kind($color) {
-  background: $color;
-
-  &:hover {
-    background: scale-color($color, $lightness: -15%);
-  }
-
-  &:active {
-    background: scale-color($color, $lightness: -25%);
-  }
-
-  &.outline {
-    background: none;
-    color: $color;
-    border: $border-sm solid $color;
-    &:hover {
-      background: $color;
-      color: $color-white;
-    }
-
-    &:active {
-      background: scale-color($color, $lightness: -25%);
-      color: $color-white;
-    }
-  }
-
-  &.ghost {
-    background: none;
-    color: $color;
-  }
-
-  &.bare {
-    background: none;
-    color: $color;
-    padding: 0;
-  }
-}
-
-.concrete-button {
-  cursor: pointer;
-  border: none;
-  color: $color-white;
-  border-radius: $radius;
-  position: relative;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  &.primary {
-    @include btn-kind($color-blue);
-  }
-
-  &.danger {
-    @include btn-kind($color-red);
-  }
-
-  &.standard {
-    @include btn-kind($color-gray-03);
-    color: $color-black;
-  }
-
-  &.disabled {
-    cursor: not-allowed;
-    background: $color-gray-02;
-    color: $color-gray-04;
-  }
-
-  &.in-progress {
-    cursor: not-allowed;
-    background: $color-gray-02;
-    color: $color-gray-04;
-
-    &:hover {
-      background: $color-gray-02;
-      color: $color-black;
-    }
-  }
-
-  .progress-bar {
-    position: absolute;
-    border-radius: $radius;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background: linear-gradient(#209cef, #1985dd);
-    opacity: 1;
-  }
-
-  .button-content {
-    position: relative;
-  }
-
-  &.xs {
-    height: 1.5rem;
-    font-size: $text-xs;
-  }
-
-  &.sm {
-    height: 2rem;
-    font-size: $text-sm;
-  }
-
-  &.md {
-    height: 2.5rem;
-    font-size: $text-base;
-  }
-
-  &.lg {
-    height: 3rem;
-    font-size: $text-lg;
-  }
-
-  .icon {
-    margin-right: 0.5rem;
-    cursor: pointer;
-  }
-}
-
-</style>
