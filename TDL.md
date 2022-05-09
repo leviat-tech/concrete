@@ -47,9 +47,6 @@ Headless UI
 
 
 
-Move to Concrete Repo
-Install VuePress
-Install StoryBook
 Write Readme
 -
 Create Monday tasks

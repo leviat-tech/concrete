@@ -6,17 +6,30 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@crhio/leviat-tailwind-configuration": "^1.0.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/vue3": "^6.4.22",
     "@vitejs/plugin-vue": "^2.3.1",
     "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
     "postcss": "^8.4.13",
     "tailwindcss": "^3.0.24",
-    "vite": "^2.9.7"
+    "vite": "^2.9.7",
+    "vitepress": "^0.22.4",
+    "vue-loader": "^16.8.3"
   }
 }
