@@ -31,16 +31,6 @@ export default {
       default: 'solid',
       validator: (prop) => ['solid', 'outline', 'ghost'].includes(prop),
     },
-    width: {
-      type: String,
-      default: 'full',
-      validator: (prop) => ['full', 'auto'].includes(prop),
-    },
-    content: {
-      type: String,
-      default: 'center',
-      validator: (prop) => ['center', 'left', 'right'].includes(prop),
-    },
     disabled: { type: Boolean, default: false },
     active: { type: Boolean, default: false },
     padding: { type: String, default: 'px-2' },
@@ -82,7 +72,7 @@ export default {
         }
       } else {
         if(this.disabled) {
-          className += `text-${this.color}-lightest`;
+          className += `text-${this.color}-light`;
         }
         else {
           className += `text-${this.color} hover:text-${this.color}-dark`;
@@ -101,20 +91,9 @@ export default {
         case 'sm':
           return 'h-8 text-sm';
         case 'md':
-          return 'h-10';
+          return 'h-10 text-base';
         case 'lg':
           return 'h-12 text-lg';
-      }
-    },
-    contentClass() {
-      
-      switch(this.content) {
-        case 'center':
-          return 'text-center';
-        case 'left':
-          return 'text-left';
-        case 'right':
-          return 'text-right';
       }
     },
     disabledClass() {

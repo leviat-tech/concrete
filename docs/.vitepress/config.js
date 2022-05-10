@@ -23,10 +23,10 @@ export default {
 
 function getSidebar() {
   return [
+    { text: 'Introduction', link: '/' },
     {
       text: 'General',
       children: [
-        { text: 'Introduction', link: '/' },
         { text: 'Colors', link: '/general/colors' },
       ]
     },
