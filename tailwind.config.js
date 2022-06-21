@@ -4,8 +4,9 @@ module.exports = {
   ],
   content: [
     "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-    './docs/.vitepress/**/*.{js,ts,vue}',
-		'./docs/**/*.md',
+    "./src/**/*.{vue,js,ts,jsx,tsx,mdx}",
+  ],
+  plugins: [
+    require('@headlessui/tailwindcss')({ prefix: 'ui' })
   ],
 };

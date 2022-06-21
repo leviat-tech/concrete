@@ -11,6 +11,7 @@ Concrete
     Multi-select
     Native Select - remove
     Textarea
+
     Checkbox
     Radio
 
@@ -47,14 +48,17 @@ Headless UI
 
 
 
-Write Readme
--
-Create Monday tasks
 
-  Select UI Component
-    Create Figma Drawing
-    Create Vue Component
-    Create Storybook Story
-    Create VuePress Page
 
-Create 'Layout Examples' in VuePress
+Crete styled versions of these headless ui components:
+
+  CMenu
+  CListbox
+  CCombobox
+  CSwitch
+  CDisclosure
+  CDialog
+  CPopover
+  CRadio Group
+  CTabs
+  CTransition

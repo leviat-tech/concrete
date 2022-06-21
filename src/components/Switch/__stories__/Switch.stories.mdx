@@ -1,0 +1,61 @@
+import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import CSwitch from '../Switch.vue';
+
+<Meta
+  title="Components/Switch"
+  component={CSwitch}
+  argTypes={{
+    size: {
+      options: ['lg', 'md', 'sm', 'xs'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: ['indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      control: { type: 'select' },
+    },
+    displayIcons: {
+      control:'boolean',
+    },
+    srLabel: {
+      control:'text',
+    },
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CSwitch },
+  setup() {
+    return { args };
+  },
+  template: '<CSwitch v-bind="args"></CSwitch>',
+});
+
+<!--- Component documentation -->
+
+# Switch
+
+<Canvas withSource='none'>
+  <Story name="Overview"
+        args={{
+          size: 'md',
+          color: 'indigo',
+          displayIcons: false,
+          srLabel: 'Switch',
+          modelValue: true,
+        }}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+<ArgsTable story="Overview" />
+
+## Usage
+<Source
+  language='html'
+  dark
+  format={false}
+  code={`<CSwitch v-model="modelValue" />`}
+/>

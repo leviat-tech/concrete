@@ -1,3 +1,7 @@
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const tailwindcss = require('tailwindcss');
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -5,7 +9,35 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        vueDocgenOptions: {
+          alias: {
+            '@': path.resolve(__dirname, '../'),
+          },
+        },
+      },
+    },
+    {
+      name: "@storybook/addon-postcss",
+      options: {
+        postcssLoaderOptions: {
+          implementation: require("postcss"),
+					postcssOptions: {
+						plugins: [tailwindcss(), autoprefixer()],
+					},
+        }
+      }
+    },
   ],
-  "framework": "@storybook/vue3"
+  "framework": "@storybook/vue3",
+  "core": {
+    "builder": "@storybook/builder-vite"
+  },
+  "features": {
+    "storyStoreV7": true
+  }
 }

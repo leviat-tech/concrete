@@ -1,10 +1,11 @@
-import CButton from './components/Button.vue';
+import CButton from './components/Button/Button.vue';
+import CSwitch from './components/Switch/Switch.vue';
 
 const list = [
   CButton,
+  CSwitch,
 ];
 
-// Allow setting of default size + theme at install time
 const install = (Vue, { components = [] } = {}) => {
   const all = components.length === 0;
   list.forEach((component) => {
@@ -20,6 +21,7 @@ export default {
 
 export {
   CButton,
+  CSwitch,
 }
 
 

@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="[sizeClass, colourClass, contentClass, disabledClass, padding]"
+    :class="[sizeClass, colourClass, disabledClass, paddingClass]"
     :disabled="disabled"
     @click.self="click"
   >
@@ -13,13 +13,11 @@
 <script>
 export default {
   name: 'CButton',
-  components: {
-  },
   props: {
     size: {
       type: String,
       default: 'md',
-      validator: (prop) => ['lg', 'md', 'sm'].includes(prop),
+      validator: (prop) => ['lg', 'md', 'sm', 'xs'].includes(prop),
     },
     color: {
       type: String,
@@ -33,13 +31,16 @@ export default {
     },
     disabled: { type: Boolean, default: false },
     active: { type: Boolean, default: false },
-    padding: { type: String, default: 'px-2' },
+    customPadding: { type: Boolean, default: false },
   },
   data() {
     return {
     };
   },
   computed: {
+    paddingClass() {
+      return (this.customPadding) ? '' : 'px-2';
+    },
     colourClass() {
       let className = '';
       if(this.fill === 'solid') {
@@ -88,6 +89,8 @@ export default {
     },
     sizeClass() {
       switch(this.size) {
+        case 'xs':
+          return 'h-6 text-xs';
         case 'sm':
           return 'h-8 text-sm';
         case 'md':
