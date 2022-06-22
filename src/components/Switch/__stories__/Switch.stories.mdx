@@ -29,7 +29,10 @@ export const componentTemplate = (args) => ({
   setup() {
     return { args };
   },
-  template: '<CSwitch v-bind="args"></CSwitch>',
+  data() {
+    return { value: true }
+  },
+  template: '<CSwitch v-bind="args" v-model="value"></CSwitch>',
 });
 
 <!--- Component documentation -->
@@ -43,7 +46,6 @@ export const componentTemplate = (args) => ({
           color: 'indigo',
           displayIcons: false,
           srLabel: 'Switch',
-          modelValue: true,
         }}>
     {componentTemplate.bind({})}
   </Story>
