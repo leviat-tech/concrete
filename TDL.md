@@ -52,10 +52,12 @@ Headless UI
 
 Crete styled versions of these headless ui components:
 
+  CSwitch
+
+  
   CMenu
   CListbox
   CCombobox
-  CSwitch
   CDisclosure
   CDialog
   CPopover
