@@ -36,7 +36,7 @@
       </div>
       
       <div class="m-8 w-64 bg-white">
-        <CListbox v-model="value2" :options="options2" ></CListbox>
+        <CListbox v-model="value3" :options="options" multiple ></CListbox>
       </div>
       
       <div class="m-8 w-64 bg-white">
@@ -102,6 +102,7 @@ export default {
         { value:'luke', label: 'Luke' },
       ],
       value2: 'matt',
+      value3: [],
     }
   },
   computed: {

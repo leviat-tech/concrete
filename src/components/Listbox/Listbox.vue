@@ -3,6 +3,7 @@
     as="div"
     v-model="selectedValue"
     :disabled="disabled" 
+    :multiple="multiple"
     v-slot="{ open }"
   >
     <div :class="['relative', disabledClass]">
@@ -12,7 +13,7 @@
           <ListboxButton
             ref="buttonRef"
             :class="['relative truncate z-20 w-full border pl-3 pr-10 py-2 text-left cursor-default sm:text-sm focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light',
-            bgClass,
+            bgColor,
             colorClass
             ]"
           >
@@ -67,7 +68,7 @@
   import isPlainObject from 'lodash/isPlainObject';
 
   const props = defineProps({
-    modelValue: [String, Object],
+    modelValue: [String, Object, Array],
     color: {
       type: String,
       default: 'default',
@@ -85,6 +86,7 @@
       default(rawProps) { return [] },
     },
     disabled: { type: Boolean, default: false },
+    multiple: { type: Boolean, default: false },
     formatter: { type: Function, default: null },
     placeholder: { type: String, default: 'Select option' },
     transparent: { type: Boolean, default: false },
@@ -116,7 +118,13 @@
   });
 
   const selectedLabel = computed(() => {
-    return localOptions.value.find((o) => o.value === selectedValue.value)?.label || props.placeholder;
+    let sv = selectedValue.value
+    if(!props.multiple) {
+      sv = [selectedValue.value];
+    }
+    const labels = sv.filter((s) => s != null).map((s) => localOptions.value.find((o) => o.value === s)?.label);
+    const label = labels.join(', ');
+    return (label.length > 0) ? label : props.placeholder;
   });
 
 
