@@ -64,3 +64,9 @@ Crete styled versions of these headless ui components:
   CRadio Group
   CTabs
   CTransition
+
+
+  CListbox - compare functionality to select
+
+  -- make a c-input-affix, defaults to match input styling but can be made to have 'color'
+          -- needs to have a size too

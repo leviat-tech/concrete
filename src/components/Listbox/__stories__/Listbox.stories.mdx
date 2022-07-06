@@ -1,0 +1,53 @@
+import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import CListbox from '../Listbox.vue';
+
+<Meta
+  title="Components/Listbox"
+  component={CListbox}
+  argTypes={{
+    size: {
+      options: ['lg', 'md', 'sm', 'xs'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: ['indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      control: { type: 'select' },
+    },
+    disabled: {
+      control:'boolean',
+    },
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CListbox },
+  setup() {
+    return { args };
+  },
+  template: '<CListbox v-bind="args"></CListbox>',
+});
+
+<!--- Component documentation -->
+
+# Button
+
+<Canvas withSource='none'>
+  <Story name="Overview"
+        args={{
+        }}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+<ArgsTable story="Overview" />
+
+## Usage
+<Source
+  language='html'
+  dark
+  format={false}
+  code={`<CListbox></CListbox>`}
+/>
