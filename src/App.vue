@@ -23,12 +23,12 @@
       <div class="m-8 w-64 bg-white">
         <CListbox v-model="value" :options="options" ref="testid">
           <template v-slot:prefix>
-            <div class="relative inline-flex items-center bg-gray-300 py-2 pl-3 pr-4 border border-transparent  text-white">
+            <div class="relative inline-flex items-center bg-gray-300 pl-3 pr-4  text-white">
               yo
             </div>
           </template>
           <template v-slot:suffix>
-            <div class="relative inline-flex items-center bg-gray-300 py-2 pl-3 pr-4 border border-transparent whitespace-nowrap  text-white">
+            <div class="relative inline-flex items-center bg-gray-300 pl-3 pr-4 border border-transparent whitespace-nowrap  text-white">
               big up
             </div>
           </template>
@@ -71,8 +71,11 @@
       </div>
 
       
-      <div class="m-8 w-48 bg-white">
-        <CListbox v-model="value" :options="options"></CListbox>
+      <div class="m-8 bg-white flex space-x-8">
+        <div class="w-36"><CListbox v-model="value" :options="options" size="xs"></CListbox></div>
+        <div class="w-36"><CListbox v-model="value" :options="options" size="sm"></CListbox></div>
+        <div class="w-36"><CListbox v-model="value" :options="options" size="md"></CListbox></div>
+        <div class="w-36"><CListbox v-model="value" :options="options" size="lg"></CListbox></div>
       </div>
       
       <div class="m-8 w-48 bg-white">

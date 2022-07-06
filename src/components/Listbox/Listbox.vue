@@ -12,14 +12,16 @@
           <slot name="prefix" class="z-10"/>
           <ListboxButton
             ref="buttonRef"
-            :class="['relative truncate z-20 w-full border pl-3 pr-10 py-2 text-left cursor-default sm:text-sm focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light',
+            :class="['relative truncate z-20 w-full border text-left focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light',
             bgColor,
-            colorClass
+            colorClass,
+            sizeClass,
+            cursorClass,
             ]"
           >
             <span class="block truncate">{{ selectedLabel }}</span>
             <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <SelectorIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+              <SelectorIcon :class="['text-gray-400', iconSizeClass]" aria-hidden="true" />
             </span>
           </ListboxButton>
           <slot name="suffix" class="z-10" />
@@ -127,13 +129,21 @@
     return (label.length > 0) ? label : props.placeholder;
   });
 
-
-  const sized = {
-    xs: 6,
-    sm: 8,
-    md: 10,
-    lg: 12,
+  const sizeClass = {
+    xs: 'h-6 text-xs pl-3 pr-6 py-0.5',
+    sm: 'h-8 text-sm pl-3 pr-8 py-1',
+    md: 'h-10 text-base pl-3 pr-10 py-2',
+    lg: 'h-12 text-lg pl-3 pr-12 py-2',
   }[props.size || 'md'];
+
+  const iconSizeClass = {
+    xs: 'h-3 w-3',
+    sm: 'h-4 w-4',
+    md: 'h-5 w-5',
+    lg: 'h-6 w-6',
+  }[props.size || 'md'];
+
+  const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-default';
 
   const maxOptionsHeightClass = {
     auto: '',
