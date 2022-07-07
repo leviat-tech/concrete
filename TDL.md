@@ -53,10 +53,9 @@ Headless UI
 Crete styled versions of these headless ui components:
 
   CSwitch
-
-  
-  CMenu
   CListbox
+
+  CMenu
   CCombobox
   CDisclosure
   CDialog
@@ -66,7 +65,5 @@ Crete styled versions of these headless ui components:
   CTransition
 
 
-  CListbox - compare functionality to select
-
   -- make a c-input-affix, defaults to match input styling but can be made to have 'color'
-          -- needs to have a size too
+    -- needs to have a size too
