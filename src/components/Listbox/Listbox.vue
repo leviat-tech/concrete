@@ -62,8 +62,8 @@
   </Listbox>
 </template>
 
-
 <script setup>
+
   import { Listbox, ListboxButton, ListboxOptions, ListboxOption, } from '@headlessui/vue';
   import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
   import { computed, ref, reactive } from 'vue';
@@ -171,7 +171,7 @@
     return (props.disabled) && 'opacity-60';
   });
 
-  const buttonRef = ref(null)
+  const buttonRef = ref(null);
 
   const focus = () => {
     buttonRef.value.$el.focus();
@@ -179,6 +179,6 @@
 
   defineExpose({
     focus,
-  })
+  });
 
 </script>
