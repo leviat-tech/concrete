@@ -3,8 +3,8 @@ module.exports = {
     require('@crhio/leviat-tailwind-configuration'),
   ],
   content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx,mdx}",
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx,mdx}',
   ],
   plugins: [
     require('@headlessui/tailwindcss')({ prefix: 'ui' })
