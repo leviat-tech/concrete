@@ -35,6 +35,30 @@
         </CListbox>
       </div>
       
+      <div class="p-8 bg-indigo-dark w-96">
+        <div class="m-8 w-64">
+          <CListbox v-model="value" :options="options" color="sky" :transparent="true">
+            <template v-slot:prefix>
+              <c-input-affix :transparent="true"  color="sky">yo</c-input-affix>
+            </template>
+            <template v-slot:suffix>
+              <c-input-affix type="suffix" :transparent="true"  color="sky"><CheckIcon class="h-5 w-5" /></c-input-affix>
+            </template>
+          </CListbox>
+        </div>
+      </div>
+      
+      <div class="m-8 bg-white w-64" v-for="color in ['indigo', 'sky', 'steel', 'success', 'warning', 'danger']">
+        <CListbox v-model="value" :options="options" :color="color">
+          <template v-slot:prefix>
+            <c-input-affix  :color="color">yo</c-input-affix>
+          </template>
+          <template v-slot:suffix>
+            <c-input-affix type="suffix"  :color="color"><CheckIcon class="h-5 w-5" /></c-input-affix>
+          </template>
+        </CListbox>
+      </div>
+      
       <div class="m-8 w-64 bg-white">
         <CListbox v-model="value3" :options="options" multiple ></CListbox>
       </div>
@@ -90,10 +114,17 @@
 <script>
 import CListbox from './components/Listbox/Listbox.vue';
 import CButton from './components/Button/Button.vue';
+import CInputAffix from './components/InputAffix/InputAffix.vue';
+
+import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
+
 export default {
   components: {
     CListbox,
     CButton,
+    CInputAffix,
+    CheckIcon,
+    SelectorIcon
   },
   data() {
     return {
