@@ -10,6 +10,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  docs: {
+    inlineStories: true,
+  },
 }
 
 export const decorators = [

@@ -13,8 +13,30 @@ import CListbox from '../Listbox.vue';
       options: ['indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
       control: { type: 'select' },
     },
+    placeholder: {
+      control:'text',
+    },
     disabled: {
       control:'boolean',
+    },
+    transparent: {
+      control:'boolean',
+    },
+    optionListSize: {
+      options: ['lg', 'md', 'sm', 'xs', 'auto'],
+      control: { type: 'select' },
+    },
+    options: {
+      table: { disable: true },
+    },
+    modelValue: {
+      table: { disable: true },
+    },
+    formatter: {
+      table: { disable: true },
+    },
+    multiple: {
+      table: { disable: true },
     },
   }}
 />
@@ -26,16 +48,35 @@ export const componentTemplate = (args) => ({
   setup() {
     return { args };
   },
-  template: '<CListbox v-bind="args"></CListbox>',
+  data() {
+    return { 
+      value: null,
+    }
+  },
+  template: '<CListbox class="w-64" v-bind="args" v-model="value"></CListbox>',
+});
+
+export const componentTemplateMultiple = (args) => ({
+  components: { CListbox },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { 
+      value: [],
+    }
+  },
+  template: '<CListbox class="w-64" v-bind="args" v-model="value"></CListbox>',
 });
 
 <!--- Component documentation -->
 
-# Button
+# Listbox
 
 <Canvas withSource='none'>
-  <Story name="Overview"
+  <Story name="Overview" height="200px"
         args={{
+          options: ['Listbox', 'Test', 'Values', 'Storybook'],
         }}>
     {componentTemplate.bind({})}
   </Story>
@@ -49,5 +90,57 @@ export const componentTemplate = (args) => ({
   language='html'
   dark
   format={false}
-  code={`<CListbox></CListbox>`}
+  code={`
+const value = null;
+const options = ['Listbox', 'Test', 'Values', 'Storybook'];
+<CListbox v-model="value" :options="options"></CListbox>
+`}
+/>
+
+# Variants
+
+## Multiple Select
+<Canvas withSource='none'>
+  <Story name="Multiple" height="200px"
+        args={{
+          options: ['Listbox', 'Test', 'Values', 'Storybook'],
+          multiple: true,
+        }}>
+    {componentTemplateMultiple.bind({})}
+  </Story>
+</Canvas>
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={`
+const value = [];
+const options = ['Listbox', 'Test', 'Values', 'Storybook'];
+<CListbox v-model="value" :options="options" :multiple="true"></CListbox>
+`}
+/>
+
+
+## Formatted Labels
+<Canvas withSource='none'>
+  <Story name="Formatted" height="200px"
+        args={{
+          options: ['Listbox', 'Test', 'Values', 'Storybook'],
+          formatter: (l) => l.toUpperCase(),
+        }}>
+    {componentTemplateMultiple.bind({})}
+  </Story>
+</Canvas>
+
+<Source
+  language='html'
+  dark
+  format={false}
+  code={`
+const value = null;
+const options = ['Listbox', 'Test', 'Values', 'Storybook'];
+const formatter = (l) => l.toUpperCase();
+<CListbox v-model="value" :options="options" :formatter="formatter"></CListbox>
+`}
 />

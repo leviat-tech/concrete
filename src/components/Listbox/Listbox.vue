@@ -21,7 +21,7 @@
           >
             <span class="block truncate">{{ selectedLabel }}</span>
             <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-              <SelectorIcon :class="['text-gray-400', iconSizeClass]" aria-hidden="true" />
+              <SelectorIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
             </span>
           </ListboxButton>
           <slot name="suffix" class="z-10" />
@@ -62,8 +62,8 @@
   </Listbox>
 </template>
 
-
 <script setup>
+
   import { Listbox, ListboxButton, ListboxOptions, ListboxOption, } from '@headlessui/vue';
   import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
   import { computed, ref, reactive } from 'vue';
@@ -167,11 +167,24 @@
     }[props.color];
   });
 
+  const iconColorClass = computed(() => {
+    return {
+      default: 'text-gray-400',
+      indigo: 'text-indigo-light',
+      sky: 'text-sky-light',
+      steel: 'text-steel-light',
+      success: 'text-success-light',
+      warning: 'text-warning-light',
+      danger: 'text-danger-light',
+    }[props.color];
+  });
+
+
   const disabledClass = computed(() => {
     return (props.disabled) && 'opacity-60';
   });
 
-  const buttonRef = ref(null)
+  const buttonRef = ref(null);
 
   const focus = () => {
     buttonRef.value.$el.focus();
@@ -179,6 +192,6 @@
 
   defineExpose({
     focus,
-  })
+  });
 
 </script>
