@@ -13,8 +13,9 @@ export const parameters = {
   docs: {
     inlineStories: true,
   },
+  layout: 'centered',
 }
 
 export const decorators = [
-  withSource
+  withSource,
 ]
