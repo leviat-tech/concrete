@@ -48,7 +48,6 @@ const CTool = {
     let iconContent;
 
     if (this.icon && !this.textButton) {
-      // iconContent = <CIcon type={this.icon} class="concrete-toolbar-svg" />;
       iconContent = h(CIcon, { type: this.icon });
     } else if (this.textButton) {
       iconContent = h('button', {}, this.name);
@@ -110,27 +109,3 @@ export default CToolbar;
 
 export { CToolbar, CToolGroup, CTool };
 </script>
-
-<style lang="scss" scoped>
-
-.concrete-toolbar > * + * {
-  margin-left: .25rem;
-  padding-left: .25rem;
-  //border-left: $border-sm solid $color-gray-04;
-}
-
-:deep(.concrete-toolbar-tool) {
-
-  .concrete-toolbar-svg {
-    //height: 1.25rem;
-    //flex-grow: 1;
-  }
-
-  &.disabled, &:disabled {
-    cursor: not-allowed;
-    //color: $color-gray-06;
-  }
-}
-
-
-</style>

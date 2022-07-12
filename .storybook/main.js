@@ -10,7 +10,6 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
     {
       name: '@storybook/addon-docs',
       options: {
@@ -18,6 +17,9 @@ module.exports = {
           alias: {
             '@': path.resolve(__dirname, '../'),
           },
+        },
+        sourceLoaderOptions: {
+          injectStoryParameters: true,
         },
       },
     },

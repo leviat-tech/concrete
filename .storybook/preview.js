@@ -1,3 +1,4 @@
+import { withSource } from './withSource'
 import '../src/index.css';
 
 export const parameters = {
@@ -10,3 +11,7 @@ export const parameters = {
     },
   },
 }
+
+export const decorators = [
+  withSource
+]
