@@ -1,0 +1,62 @@
+import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { CToolbar, CToolGroup, CTool } from '..';
+
+<Meta
+  title="Components/Toolbar"
+  component={CToolbar}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CToolbar, CToolGroup, CTool },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      value: 'arrow-up',
+      lastClicked: null
+    }
+  },
+  methods: {
+    onClick(toolId) {
+      this.lastClicked = toolId;
+      setTimeout(() => this.lastClicked = null, 1000);
+    }
+  },
+  template: `<CToolbar v-bind="args" v-model="value">
+  <CToolGroup>
+    <CTool name="Grid" tool-id="grid" icon="grid" :stateful="true" />
+    <CTool name="List" tool-id="list" icon="list" :stateful="true" />
+  </CToolGroup>
+  <CToolGroup divider-left>
+    <CTool name="Undo" tool-id="arrow-left" icon="arrow-left" :stateful="false" @click="onClick" />
+    <CTool name="Redo" tool-id="arrow-right" icon="arrow-right" :stateful="false" @click="onClick" />
+  </CToolGroup>
+  <CToolGroup divider-left divider-right>
+    <CTool name="Disabled icon" tool-id="image" icon="image" disabled />
+    <CTool name="Not hoverable" tool-id="play" icon="play" :hoverable="false" />
+    <CTool name="Text button" tool-id="text" textButton @click="onClick" />
+  </CToolGroup>
+  <div class="text-sm ml-12">
+    <div>Current: <b>{{ value }}</b></div>
+    <div>Clicked: <b>{{ lastClicked }}</b></div>
+  </div>
+</CToolbar>`,
+});
+
+<!--- Component documentation -->
+
+# Toolbar
+
+<Canvas withSource='open'>
+  <Story name="Overview"
+        args={{
+        }}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+<ArgsTable story="Overview" />

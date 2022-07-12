@@ -133,14 +133,14 @@ export default {
   },
   render() {
     const sizeClasses = {
-      sm: 'h-[18px]',
-      md: 'h-[24px]',
-      lg: 'h-[30px]',
-      xl: 'h-[36px]',
-      '2xl': 'h-[48px]',
-      '3xl': 'h-[64px]'
+      sm: 'w-[18px] h-[18px]',
+      md: 'w-[24px] h-[24px]',
+      lg: 'w-[30px] h-[30px]',
+      xl: 'w-[36px] h-[36px]',
+      '2xl': 'w-[48px] h-[48px]',
+      '3xl': 'w-[64px] h-[64px]'
     }
-    const classes = [sizeClasses[this.size]];
+    const classes = ['flex-none', sizeClasses[this.size]];
 
     if (this.spin) {
       classes.push('c-spin');
