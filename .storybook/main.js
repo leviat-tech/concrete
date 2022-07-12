@@ -18,9 +18,6 @@ module.exports = {
             '@': path.resolve(__dirname, '../'),
           },
         },
-        sourceLoaderOptions: {
-          injectStoryParameters: true,
-        },
       },
     },
     {

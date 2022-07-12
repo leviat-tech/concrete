@@ -22,6 +22,8 @@ function templateSourceCode(
   }
 
   const propToSource = (key, val) => {
+    if (key === 'model-value') return '';
+
     const type = typeof val
     switch (type) {
       case 'boolean':
