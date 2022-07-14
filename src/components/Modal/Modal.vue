@@ -52,7 +52,7 @@ const onClose = () => {
 }
 </script>
 
-<style lang="scss">
+<style>
 .modal-enter-from, .modal-leave-to {
   opacity: 0;
 }
