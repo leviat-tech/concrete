@@ -37,7 +37,7 @@
     },
     disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },
-    placeholder: { type: String, default: 'Select option' },
+    placeholder: { type: String, default: '' },
     transparent: { type: Boolean, default: false },
   });
 
@@ -59,7 +59,7 @@
     lg: 'h-12 text-lg pl-3 pr-12 py-2',
   }[props.size || 'md'];
 
-  const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-default';
+  const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
   
   const bgColor =  (props.transparent) ? 'bg-transparent' : 'bg-white';
 
