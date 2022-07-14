@@ -3,6 +3,7 @@ import CSwitch from './components/Switch/Switch.vue';
 import CIcon from './components/Icon/Icon.vue';
 import CModal from './components/Modal/Modal.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar/Toolbar.vue';
+import CTextInput from './components/TextInput/TextInput.vue';
 
 const list = [
   CButton,
@@ -12,6 +13,7 @@ const list = [
   CToolGroup,
   CTool,
   CModal,
+  CTextInput,
 ];
 
 const install = (Vue, { components = [] } = {}) => {
@@ -34,6 +36,7 @@ export {
   CToolbar,
   CToolGroup,
   CModal,
+  CTextInput,
 }
 
 
