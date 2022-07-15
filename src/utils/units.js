@@ -66,12 +66,13 @@ const aliases = {
 };
 
 export function convert(quantity, _from, _to) {
+  if (quantity === null) return quantity;
   const from = aliases[_from] || _from; // eslint-disable-line
   const to = aliases[_to] || _to; // eslint-disable-line
   if (!conversions[to] || !conversions[to][from]) {
     throw new Error(`Units unable to convert ${from} to ${to}.`);
   }
-  return conversions[to][from](Big(quantity)).toNumber();
+  return Number(conversions[to][from](Big(quantity)));
 }
 
 export function convertFromSI(quantity, _unit) {
@@ -90,6 +91,16 @@ export function convertToSI(quantity, _unit) {
   }
   if (SI[unit] === unit) return quantity;
   return convert(quantity, unit, SI[unit]);
+}
+
+export function isNumber(value) {
+  if (value === undefined) return false;
+  try {
+    Big(value);
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
 
 export default convert;

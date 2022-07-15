@@ -1,0 +1,61 @@
+import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import CNumericInput from '../NumericInput.vue';
+
+<Meta
+  title="Components/NumericInput"
+  component={CNumericInput}
+  argTypes={{
+    size: {
+      options: ['lg', 'md', 'sm', 'xs'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      control: { type: 'select' },
+    },
+    disabled: {
+      control:'boolean',
+    },
+    readOnly: {
+      control:'boolean',
+    },
+    transparent: {
+      control:'boolean',
+    },
+    placeholder: {
+      control:'text',
+    },
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CNumericInput },
+  setup() {
+    return { args };
+  },
+  template: '<CNumericInput v-bind="args"></CNumericInput>',
+});
+
+<!--- Component documentation -->
+
+# Numeric Input
+
+<Canvas withSource='open'>
+  <Story name="Overview"
+        args={{
+          size: 'md',
+          color: 'default',
+          disabled: false,
+          readOnly: false,
+          transparent: false,
+          placeholder: '',
+        }}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+<ArgsTable story="Overview" />
+
