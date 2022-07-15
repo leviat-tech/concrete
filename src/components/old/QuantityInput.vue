@@ -87,7 +87,7 @@ export default {
   },
   watch: {
     value() {
-      this.localValue = this.convertToDisplayValue(this.value);
+      this. localValue= this.convertToDisplayValue(this.value);
     },
   },
   methods: {
