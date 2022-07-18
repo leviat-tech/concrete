@@ -27,7 +27,7 @@ export const componentTemplate = (args) => ({
   },
   template: `
 <CAccordion v-bind="args" class='border'>
-  {{args.content}}
+  <div class="p-4">{{args.content}}</div>
 </CAccordion>
   `,
 });
@@ -49,3 +49,37 @@ export const componentTemplate = (args) => ({
 
 ## Props
 <ArgsTable story="Overview" />
+
+## Variants
+
+### Using the Title slot
+
+export const componentTitleSlotTemplate = (args) => ({
+  components: { CAccordion },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { show: args.show }
+  },
+  template: `
+<CAccordion v-bind="args">
+  <template #title>
+    <div class="p-3 bg-sky hover:bg-sky-dark transition-color duration-100 text-white">This uses the title slot</div>
+  </template>
+  <div class="p-3 bg-sky-lightest">{{args.content}}</div>
+</CAccordion>
+  `,
+});
+
+<Canvas withSource='open'>
+  <Story name="TitleSlot"
+         args={{
+           content: 'Accordion content',
+           show: false,
+         }}>
+    {componentTitleSlotTemplate.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="TitleSlot" />
