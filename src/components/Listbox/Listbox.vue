@@ -1,6 +1,7 @@
 <template>
   <Listbox
     as="div"
+    :id="id"
     v-model="selectedValue"
     :disabled="disabled" 
     :multiple="multiple"
@@ -70,6 +71,10 @@
   import isPlainObject from 'lodash/isPlainObject';
 
   const props = defineProps({
+    id: {
+      type: String,
+      default: null,
+    },
     modelValue: [String, Object, Array],
     color: {
       type: String,

@@ -1,5 +1,7 @@
 <template>
   <Switch
+  
+    :id="id"
     v-model="enabled" 
     :class="[ enabled ? `bg-${color}` : `bg-gray-200`,
     `relative inline-flex flex-shrink-0 border-2 border-transparent rounded-full cursor-pointer`,
@@ -29,6 +31,10 @@
   import { computed } from 'vue';
 
   const props = defineProps({
+    id: {
+      type: String,
+      default: null,
+    },
     'modelValue': Boolean,
     'color': {
       type: String,
