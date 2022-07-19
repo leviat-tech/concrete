@@ -3,9 +3,9 @@
 
   <transition-group
       enter-from-class="opacity-0 translate-y-8"
-      enter-active-class="transition duration-500"
-      move-class="transition duration-500"
-      leave-active-class="transition duration-5000 absolute w-full -z-0"
+      enter-active-class="transition-all duration-500"
+      move-class="transition-all duration-500"
+      leave-active-class="transition-all duration-500 absolute w-full -z-0"
       leave-to-class="opacity-0"
   >
 
