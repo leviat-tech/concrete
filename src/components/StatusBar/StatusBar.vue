@@ -1,5 +1,5 @@
 <template>
-<div class="absolute w-full bottom-0 flex flex-col" :class="`text-${size}`">
+<div class="absolute w-full bottom-0 flex flex-col z-20" :class="`text-${size}`">
 
   <transition-group
       enter-from-class="opacity-0 translate-y-8"
@@ -9,15 +9,18 @@
       leave-to-class="opacity-0"
   >
 
-    <div v-for="item, i in items" class="flex items-center justify-between p-4 pr-6 mt-4 shadow-lg z-0" :class="item.classes" :key="item.id">
-      <div class="flex items-center">
+    <div v-for="item, i in items"
+         class="flex items-center justify-between mt-4 shadow-lg z-0 cursor-pointer"
+         :class="item.classes"
+         :key="item.id">
+      <div class="flex items-center p-3 flex-1" @click="$emit('click', item.id)">
         <component :is="item.icon" class="flex-none mr-2" :style="{ width: 24, height: 24 }"/>
         <div>
           {{ item.text }}
         </div>
       </div>
-      <button class="ml-8 uppercase" @click="$emit('dismiss', i)">
-        <CIcon type="times" />
+      <button class="ml-8 uppercase p-3" @click="$emit('dismiss', i)">
+        <CIcon type="times" size="sm"/>
       </button>
     </div>
 
@@ -33,13 +36,14 @@
 <script setup>
 
 import { computed } from 'vue';
+import logger from '../../utils/logger';
 import { InformationCircleIcon, ExclamationIcon, ExclamationCircleIcon } from '@heroicons/vue/outline';
 import CIcon from '../Icon/Icon.vue';
 
 const types = {
   info: {
     icon: InformationCircleIcon,
-    color: 'sky',
+    color: 'blue-500', // TODO: add info to leviat tailwind config
   },
   warning: {
     icon: ExclamationIcon,
@@ -60,13 +64,19 @@ const props = defineProps({
   }
 })
 
+defineEmits(['click', 'dismiss'])
+
 const items = computed(() => {
   return props.messages.map(item => {
+    if (item.id === undefined) {
+      logger.warn('StatusBar messages must have an id property', item)
+    }
+
     const { icon, color } = (types[item.type] || types.info);
     return {
       ...item,
       icon,
-      classes: `bg-${color}-lightest text-${color}-dark`
+      classes: `bg-${color} text-white`
     }
   })
 })
