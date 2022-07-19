@@ -3,7 +3,7 @@ import StatusBar from '../StatusBar.vue';
 import Listbox from '../../Listbox/Listbox.vue';
 
 <Meta
-  title="Components/StatsBar"
+  title="Components/StatusBar"
   component={StatusBar}
   argTypes={{
     size: {
@@ -48,7 +48,10 @@ export const componentTemplate = (args) => ({
       this.messages.push({ id: this.id ++, type, text });
       this.text = '';
     },
-    dismissItem(index) {
+    onClick(id) {
+      this.messages.push({ id: this.id ++, type: 'info', text: `You clicked item with id ${id}`})
+    },
+    onDismiss(index) {
       this.messages.splice(index, 1);
     }
   },
@@ -57,7 +60,7 @@ export const componentTemplate = (args) => ({
   <input v-model="text" @keydown.enter="addMessage" placeholder="New item text..." class="flex-1 px-4 mr-2"/>
   <Listbox :options="['info', 'warning', 'error']"  v-model="type" class="w-32"/>
 </div>
-<StatusBar v-bind="args" :messages="messages" @dismiss="dismissItem"/>
+<StatusBar v-bind="args" :messages="messages" @click="onClick" @dismiss="onDismiss"/>
 `,
 });
 
