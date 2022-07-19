@@ -10,7 +10,7 @@
   >
 
     <div v-for="item, i in items"
-         class="flex items-center justify-between mt-4 shadow-lg z-0 cursor-pointer"
+         class="flex items-center justify-between mt-4 shadow-lg z-0 cursor-pointer text-white"
          :class="item.classes"
          :key="item.id">
       <div class="flex items-center p-3 flex-1" @click="$emit('click', item.id)">
@@ -43,15 +43,15 @@ import CIcon from '../Icon/Icon.vue';
 const types = {
   info: {
     icon: InformationCircleIcon,
-    color: 'blue-500', // TODO: add info to leviat tailwind config
+    classes: 'bg-blue-500', // TODO: add info to leviat tailwind config
   },
   warning: {
     icon: ExclamationIcon,
-    color: 'warning',
+    classes: 'bg-warning',
   },
   error: {
     icon: ExclamationCircleIcon,
-    color: 'danger',
+    classes: 'bg-danger',
   },
 }
 
@@ -72,11 +72,11 @@ const items = computed(() => {
       logger.warn('StatusBar messages must have an id property', item)
     }
 
-    const { icon, color } = (types[item.type] || types.info);
+    const { icon, classes } = (types[item.type] || types.info);
     return {
       ...item,
       icon,
-      classes: `bg-${color} text-white`
+      classes
     }
   })
 })
