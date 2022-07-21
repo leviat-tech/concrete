@@ -5,7 +5,7 @@ import CModal from './components/Modal/Modal.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import CTextInput from './components/TextInput/TextInput.vue';
 
-const list = {
+const allComponents = {
   CButton,
   CSwitch,
   CIcon,
@@ -16,12 +16,25 @@ const list = {
   CTextInput,
 };
 
-const install = (app, { components = [] } = {}) => {
-  const all = components.length === 0;
-  Object.entries(list).forEach(([name, component]) => {
-    if(all || components.indexOf(name) > -1) {
-      app.component(name, component);
-    }
+const defaultOptions = {
+  size: 'sm',
+  components: null,
+  labelFormatter: null,
+  inputHandler: null
+}
+
+const install = (app, userOptions = {}) => {
+
+  const options = { ...defaultOptions, ...userOptions };
+  const { size, components, inputHandler, labelFormatter } = options;
+
+  app.provide('concrete', { size, inputHandler, labelFormatter });
+
+  const componentsToInclude = components || Object.keys(allComponents);
+
+  componentsToInclude.forEach((componentName) => {
+    const component = allComponents[componentName];
+      app.component(componentName, component);
   });
 };
 
