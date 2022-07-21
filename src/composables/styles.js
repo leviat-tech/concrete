@@ -1,4 +1,4 @@
-import { computed, inject } from 'vue/dist/vue';
+import { computed, inject } from 'vue';
 
 export const useSizeValue = (sizeProp) => {
   const options = inject('concrete', { size: 'md'});
