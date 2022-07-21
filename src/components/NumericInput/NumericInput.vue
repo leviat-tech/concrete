@@ -38,12 +38,8 @@
   import Big from 'big.js';
   import { convert, convertFromSI, convertToSI, isNumber } from '../..//utils/units';
   import { computed, inject, ref } from 'vue';
-  import {
-    colorProp,
-    useInputColorClassValue,
-    useSizeProp,
-    useSizeValue
-  } from '../../composables.js';
+  import { colorProp, useSizeProp } from '../../composables/props';
+  import { useSizeValue, useInputColorClassValue } from '../../composables/styles';
 
   const concrete = inject('concrete');
   const globalHandler = concrete.inputHandler;
