@@ -1,0 +1,85 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from "@storybook/addon-docs";
+import CAccordion from '../Accordion.vue';
+
+
+<Meta
+  title="Components/Accordion"
+  component={CAccordion}
+  decorators={[
+    (storyFn, ctx) => ({
+      components: { Story: storyFn(ctx) },
+      template: `<div style="min-height: 10rem"><Story /></div>`
+    })
+  ]}
+  argTypes={{
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CAccordion },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { show: args.show }
+  },
+  template: `
+<CAccordion v-bind="args" class='border'>
+  <div class="p-4">{{args.content}}</div>
+</CAccordion>
+  `,
+});
+
+<!--- Component documentation -->
+
+# Accordion
+
+<Canvas withSource='open'>
+  <Story name="Overview"
+        args={{
+          title: 'Accordion title',
+          content: 'Accordion content',
+          show: false,
+        }}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+<ArgsTable story="Overview" />
+
+## Variants
+
+### Using the Title slot
+
+export const componentTitleSlotTemplate = (args) => ({
+  components: { CAccordion },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { show: args.show }
+  },
+  template: `
+<CAccordion v-bind="args">
+  <template #title>
+    <div class="p-3 bg-sky hover:bg-sky-dark transition-color duration-100 text-white">This uses the title slot</div>
+  </template>
+  <div class="p-3 bg-sky-lightest">{{args.content}}</div>
+</CAccordion>
+  `,
+});
+
+<Canvas withSource='open'>
+  <Story name="TitleSlot"
+         args={{
+           content: 'Accordion content',
+           show: false,
+         }}>
+    {componentTitleSlotTemplate.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="TitleSlot" />

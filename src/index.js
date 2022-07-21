@@ -2,10 +2,10 @@ import CButton from './components/Button/Button.vue';
 import CSwitch from './components/Switch/Switch.vue';
 import CIcon from './components/Icon/Icon.vue';
 import CModal from './components/Modal/Modal.vue';
-import { CToolbar, CToolGroup, CTool } from './components/Toolbar/Toolbar.vue';
+import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import CTextInput from './components/TextInput/TextInput.vue';
 
-const list = [
+const list = {
   CButton,
   CSwitch,
   CIcon,
@@ -14,13 +14,13 @@ const list = [
   CTool,
   CModal,
   CTextInput,
-];
+};
 
-const install = (Vue, { components = [] } = {}) => {
+const install = (app, { components = [] } = {}) => {
   const all = components.length === 0;
-  list.forEach((component) => {
-    if(all || components.indexOf(component.name) > -1) {
-      Vue.component(component.name, component);
+  Object.entries(list).forEach(([name, component]) => {
+    if(all || components.indexOf(name) > -1) {
+      app.component(name, component);
     }
   });
 };
