@@ -16,3 +16,12 @@ export const useSizeProp = (maxSize = 'lg') => {
     }
   }
 }
+
+export const formElementProps = {
+  id: { type: String, default: null },
+  disabled: { type: Boolean, default: false },
+  isFormElement: { type: Boolean, default: false },
+  label: String,
+  labelFormatter: Function,
+  message: String,
+}

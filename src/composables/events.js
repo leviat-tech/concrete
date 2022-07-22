@@ -1,7 +1,7 @@
 import { inject } from 'vue';
 
 export const useEventHandler = (eventName, props, emit, valueRef, dirtyRef) => {
-  const concrete = inject('concrete');
+  const concrete = inject('concrete', {});
   const globalHandler = concrete.inputHandler;
 
   // Convert the raw event name to its corresponding prop name e.g. blur -> onBlur
