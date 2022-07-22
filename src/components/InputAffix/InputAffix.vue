@@ -6,7 +6,10 @@
 
 <script setup>
 
-  import { computed } from 'vue';
+
+  import { computed, inject } from 'vue';
+  
+  const { elementSize, elementColor } = inject('form-element', { elementSize: null, elementColor: null });
 
   const props = defineProps({
     color: {
@@ -34,7 +37,7 @@
     sm: 'text-sm',
     md: 'text-base',
     lg: 'text-lg',
-  }[props.size || 'md'];
+  }[elementSize?.value ?? props.size];
 
   const typeClass = {
     prefix: 'border-r-0',
@@ -53,7 +56,7 @@
       success: 'border-success-light text-success-darkest',
       warning: 'border-warning-light text-warning-darkest',
       danger: 'border-danger-light text-danger-darkest',
-    }[props.color];
+    }[elementColor?.value ?? props.color];
   });
 
 
