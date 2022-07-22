@@ -2,10 +2,10 @@ import CButton from './components/Button/Button.vue';
 import CSwitch from './components/Switch/Switch.vue';
 import CIcon from './components/Icon/Icon.vue';
 import CModal from './components/Modal/Modal.vue';
-import { CToolbar, CToolGroup, CTool } from './components/Toolbar/Toolbar.vue';
+import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import CTextInput from './components/TextInput/TextInput.vue';
 
-const list = [
+const allComponents = {
   CButton,
   CSwitch,
   CIcon,
@@ -14,14 +14,27 @@ const list = [
   CTool,
   CModal,
   CTextInput,
-];
+};
 
-const install = (Vue, { components = [] } = {}) => {
-  const all = components.length === 0;
-  list.forEach((component) => {
-    if(all || components.indexOf(component.name) > -1) {
-      Vue.component(component.name, component);
-    }
+const defaultOptions = {
+  size: 'sm',
+  components: null,
+  labelFormatter: null,
+  inputHandler: null
+}
+
+const install = (app, userOptions = {}) => {
+
+  const options = { ...defaultOptions, ...userOptions };
+  const { size, components, inputHandler, labelFormatter } = options;
+
+  app.provide('concrete', { size, inputHandler, labelFormatter });
+
+  const componentsToInclude = components || Object.keys(allComponents);
+
+  componentsToInclude.forEach((componentName) => {
+    const component = allComponents[componentName];
+      app.component(componentName, component);
   });
 };
 
