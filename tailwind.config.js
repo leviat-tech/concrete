@@ -7,6 +7,7 @@ module.exports = {
     './src/**/*.{vue,js,ts,jsx,tsx,mdx}',
   ],
   plugins: [
-    require('@headlessui/tailwindcss')({ prefix: 'ui' })
+    require('@headlessui/tailwindcss')({ prefix: 'ui' }),
+    require('@tailwindcss/line-clamp'),
   ],
 };

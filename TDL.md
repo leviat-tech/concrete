@@ -1,69 +1,53 @@
 Concrete
 
-  Simple Components
-    Button
-    Icons
-    Tooltip
-    Text Input
-    Quantity Input
-    Select
-    Search Select
-    Multi-select
-    Native Select - remove
-    Textarea
+== done ==
 
-    Checkbox
-    Radio
+    Button - Button
+    Icon - Icon
+    TextInput - TextInput
+    QuantityInput - NumericInput
+    Modal - Modal
+    StatusBar - StatusBar
+    Toolbar - Toolbar
+    
+    Select - (Listbox)
+    Multi-select - (Listbox)
+    Accordion - (Disclosure)
+    N/A - (Switch)
+    N/A - InputAffix
 
-  Notification
-    Modal
-    Alert
+== to do ==
 
-  Layout
-    Table
-    Tabs
-    Panel Slider
-    Toolbar
-    Masonry
+  - konsola ui components to look at integrating
 
-  Drawing
-    Viewports
-    2D SVG Viewport
-  Draggable Point
+    k-label
+    k-parameter
+    generic-input
 
 
+  - redesign
 
-Headless UI
-
-  Menu (Dropdown)
-  Listbox (Select)
-  Combobox (Autocomplete)
-  Switch (Toggle)
-  Disclosure
-  Dialog (Modal)
-  Popover
-  Radio Group
-  Tabs
-  Transition
+    FormSection - FormSection
+    Checkbox - Checkbox
+    Textarea - TextArea
+    Table - Table
 
 
+  - use headless ui
+
+    Search Select - (Autocomplete)
+    Radio - (RadioGroup)
+    Tab Switcher - (Tabs)
 
 
+  - remove custom colours (use tw) and write story
 
-Crete styled versions of these headless ui components:
+    Viewport - Viewport
+    Svg2dViewport - Svg2dViewport
+    DraggablePoint - DraggablePoint
+    DraggableList - DraggableList
+    DraggablePath - DraggablePath
+    DrawingTools - DrawingTools
+    Resizable - Resizable
+    ViewportContainer - ViewportContainer
 
-  CSwitch
-  CListbox
-
-  CMenu
-  CCombobox
-  CDisclosure
-  CDialog
-  CPopover
-  CRadio Group
-  CTabs
-  CTransition
-
-
-  -- make a c-input-affix, defaults to match input styling but can be made to have 'color'
-    -- needs to have a size too

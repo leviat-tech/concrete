@@ -7,8 +7,12 @@
 
 <script setup>
 
+
+  import { computed, inject } from 'vue';
   import { colorProp, useSizeProp } from '../../composables/props.js';
   import { useInputColorClassValue, useSizeValue } from '../../composables/styles.js';
+
+  const { elementSize, elementColor } = inject('form-element', { elementSize: null, elementColor: null });
 
   const props = defineProps({
     color: colorProp,
@@ -39,5 +43,5 @@
 
   const colorClass = useInputColorClassValue(props.color);
 
-
 </script>
+

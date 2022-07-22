@@ -1,43 +1,43 @@
 <template>
-  <div class="flex w-full relative">
-    <slot name="prefix" class="z-10"/>
-    <input
-      ref="inputRef"
+  <component :is="formElement ? CFormElement : CFragment" v-bind="{ label, size, color, labelFormatter, message }">
+    <div class="flex w-full relative">
+      <slot name="prefix" class="z-10"/>
+      <input
+        ref="inputRef"
 
-      :id="id"
-      v-model="value"
-      v-bind="$attrs"
-      type="number"
-      :class="[
-        'block truncate z-20 w-full border text-left px-3 focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light',
-        sizeClass, colorClass, disabledClass, cursorClass, bgColor
-      ]"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :readonly="readOnly"
-      :step="step"
-      :min="minimum"
-      :max="maximum"
+        :id="id"
+        v-model="value"
+        v-bind="$attrs"type="number"
+        :class="[
+          'block truncate z-20 w-full border text-left px-3 focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light',
+          sizeClass, colorClass, disabledClass, cursorClass, bgColor
+        ]"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readOnly"
+        :step="step"
+        :min="minimum"
+        :max="maximum"
 
-      @keydown.enter="onEnter"
-      @blur="onBlur"
-    >
-    <div :class="['absolute inset-y-0 z-30 right-0 flex items-center pointer-events-none', paddingClass]">
-      <!-- unit -->
-      <div v-if="to || unit" class="unit">{{ to || unit }}</div>
+        @keydown.enter="onEnter"
+        @blur="onBlur"
+      >
+      <div :class="['absolute inset-y-0 z-30 right-0 flex items-center pointer-events-none', paddingClass]">
+        <!-- unit -->
+        <div v-if="to || unit" class="unit">{{ to || unit }}</div>
+      </div>
+      <slot name="suffix" class="z-10">
+      </slot>
     </div>
-    <slot name="suffix" class="z-10">
-    </slot>
-
-
-
-  </div>
+  </component>
 </template>
 
 <script setup>
   import Big from 'big.js';
   import { convert, convertFromSI, convertToSI, isNumber } from '../..//utils/units';
-  import { computed, inject, ref } from 'vue';
+  import { computed, inject, ref, provide } from 'vue';
+  import CFormElement from '../FormElement/FormElement.vue';
+  import CFragment from '../Fragment/Fragment.vue';
   import { colorProp, useSizeProp } from '../../composables/props';
   import { useSizeValue, useInputColorClassValue } from '../../composables/styles';
   import { useEventHandler } from '../../composables/events.js';
@@ -59,6 +59,11 @@
     step: { type: Number, default: null },
     to: { type: String, default: null },
     from: { type: String, default: null },
+
+    isFormElement: { type: Boolean, default: false },
+    label: String,
+    labelFormatter: Function,
+    message: String,
 
     onEnter: { type: Function, default: null },
     onBlur: { type: Function, default: null },
@@ -102,6 +107,8 @@
     return value;
   };
 
+  const formElement = props.isFormElement || (props.label != null && props.label != '');
+
   const size = useSizeValue(props.size);
   const sizeClass = {
     xs: 'h-6 text-xs py-0.5',
@@ -129,5 +136,11 @@
     focus,
     blur,
   });
+
+
+  provide('form-element',  {
+    elementSize: computed(() => props.size),
+    elementColor: computed(() => props.color),
+  })
 
 </script>
