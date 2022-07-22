@@ -38,16 +38,16 @@
   import { computed, inject, ref, provide } from 'vue';
   import CFormElement from '../FormElement/FormElement.vue';
   import CFragment from '../Fragment/Fragment.vue';
-  import { colorProp, useSizeProp } from '../../composables/props';
+  import { colorProp, formElementProps, useSizeProp } from '../../composables/props';
   import { useSizeValue, useInputColorClassValue } from '../../composables/styles';
   import { useEventHandler } from '../../composables/events.js';
 
   const props = defineProps({
-    id: { type: String, default: null },
+    ...formElementProps,
+
     modelValue: Number,
     color: colorProp,
     size: useSizeProp(),
-    disabled: { type: Boolean, default: false },
     readOnly: { type: Boolean, default: false },
     placeholder: { type: String, default: '' },
     transparent: { type: Boolean, default: false },
@@ -59,12 +59,7 @@
     step: { type: Number, default: null },
     to: { type: String, default: null },
     from: { type: String, default: null },
-
-    isFormElement: { type: Boolean, default: false },
-    label: String,
-    labelFormatter: Function,
-    message: String,
-
+    
     onEnter: { type: Function, default: null },
     onBlur: { type: Function, default: null },
   });
@@ -136,7 +131,6 @@
     focus,
     blur,
   });
-
 
   provide('form-element',  {
     elementSize: computed(() => props.size),

@@ -24,7 +24,95 @@
         <c-numeric-input v-model="value" unit="m"  />
       </div>
 
-      
+      <div class="m-8">   
+        <c-form-section title="Heading">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">            
+            <c-numeric-input  label="Elementy 1" color="success"></c-numeric-input>
+            <c-numeric-input  label="Elementy 3: the thirdy element"></c-numeric-input>
+            <c-numeric-input label="Element 4" color="warning" message="Warning Message Here"></c-numeric-input>
+            <c-form-element label="Element 6" size="md">
+              <div class="w-full flex space-x-4">
+                <c-numeric-input class="" :isFormElement="true" size="md">
+                  <template v-slot:prefix>
+                    <c-input-affix>Min</c-input-affix>
+                  </template>
+                </c-numeric-input>
+                <c-numeric-input class="" :isFormElement="true" size="md" color="warning" message="warning message here">
+                  <template v-slot:prefix>
+                    <c-input-affix>Max</c-input-affix>
+                  </template>
+                </c-numeric-input>
+              </div>
+            </c-form-element>
+          </div>
+        </c-form-section>
+      </div>
+
+      <div class="m-8">   
+        <c-form-section title="Heading" :underline="true" size="xs">
+          <template #toolbar>
+            <span class="cursor-pointer mr-2 mt-1" @click="addLayer">
+              <SelectorIcon class="h-3 w-3" />
+            </span>
+          </template>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 my-4">            
+            <c-numeric-input  label="Elementy 1" color="success"></c-numeric-input>
+            <c-numeric-input  label="Elementy 3: the thirdy element"></c-numeric-input>
+            <c-numeric-input label="Element 4" color="warning" message="Warning Message Here"></c-numeric-input>
+            <c-form-element label="Element 6" size="md">
+              <div class="w-full flex space-x-4">
+                <c-numeric-input class="" :isFormElement="true" size="md">
+                  <template v-slot:prefix>
+                    <c-input-affix>Min</c-input-affix>
+                  </template>
+                </c-numeric-input>
+                <c-numeric-input class="" :isFormElement="true" size="md" color="warning" message="warning message here">
+                  <template v-slot:prefix>
+                    <c-input-affix>Max</c-input-affix>
+                  </template>
+                </c-numeric-input>
+              </div>
+            </c-form-element>
+          </div>
+        </c-form-section>
+      </div>
+
+      <div class="m-8">   
+        <c-form-section title="Heading">
+          <template #title>
+            <div class="flex justify-between bg-indigo-light text-yellow-300 px-4 py-2">
+              <div class="w-full">
+                <span class="font-bold">Heading</span>  
+              </div>
+              <span class="cursor-pointer" @click="addLayer">
+                <SelectorIcon class="h-6 w-6" />
+              </span>
+            </div>
+          </template>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4 px-4 bg-indigo-lightest">            
+            <c-numeric-input  label="Elementy 1" color="success"></c-numeric-input>
+            <c-numeric-input  label="Elementy 3: the thirdy element"></c-numeric-input>
+            <c-numeric-input label="Element 4" color="warning" message="Warning Message Here"></c-numeric-input>
+            <c-form-element label="Element 6" size="md">
+              <div class="w-full flex space-x-4">
+                <c-numeric-input class="" :isFormElement="true" size="md">
+                  <template v-slot:prefix>
+                    <c-input-affix>Min</c-input-affix>
+                  </template>
+                </c-numeric-input>
+                <c-numeric-input class="" :isFormElement="true" size="md" color="warning" message="warning message here">
+                  <template v-slot:prefix>
+                    <c-input-affix>Max</c-input-affix>
+                  </template>
+                </c-numeric-input>
+              </div>
+            </c-form-element>
+          </div>
+        </c-form-section>
+      </div>
+
+
+
       <div class="m-8">      
         <div class="mb-4">
           Heading
@@ -167,7 +255,7 @@
           <c-form-element label="test" :labelFormatter="(l) => l.toUpperCase()" size="xs">
             <c-numeric-input class=""></c-numeric-input>
           </c-form-element>
-          <c-form-element :label="true" field="mrblobby.length" color="indigo">
+          <c-form-element field="mrblobby.length" color="indigo">
             <c-numeric-input class="" :value="value2" @input="(v) => value2 = v"></c-numeric-input>
           </c-form-element>
           <c-form-element label="Element 6">
@@ -199,6 +287,7 @@ import CListbox from './components/Listbox/Listbox.vue';
 import CButton from './components/Button/Button.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
+import CFormSection from './components/FormSection/FormSection.vue';
 
 import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
 
@@ -210,6 +299,7 @@ export default {
     CButton,
     CInputAffix,
     CFormElement,
+    CFormSection,
     CheckIcon,
     SelectorIcon
   },

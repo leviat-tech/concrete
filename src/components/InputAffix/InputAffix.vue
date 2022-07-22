@@ -25,7 +25,7 @@
     },
   });
 
-  const size = useSizeValue(props.size);
+  const size = elementSize?.value || useSizeValue(props.size);
   const sizeClass = {
     xs: 'text-xs',
     sm: 'text-sm',
@@ -41,7 +41,7 @@
 
   const transparentClass =  (props.transparent) ? 'bg-transparent' : ' bg-gray-50';
 
-  const colorClass = useInputColorClassValue(props.color);
+  const colorClass = useInputColorClassValue( elementColor?.value || props.color);
 
 </script>
 
