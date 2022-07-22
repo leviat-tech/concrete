@@ -7,7 +7,7 @@
 
         :id="id"
         v-model="value"
-        v-bind="$attrs"type="number"
+        v-bind="$attrs" type="number"
         :class="[
           'block truncate z-20 w-full border text-left px-3 focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light',
           sizeClass, colorClass, disabledClass, cursorClass, bgColor
