@@ -110,8 +110,7 @@
     return value;
   };
 
-  const formElement = computed(() => props.isFormElement || (props.label != null && props.label != ''));
-
+  const formElement = props.isFormElement || (props.label != null && props.label != '');
 
   const sizeClass = {
     xs: 'h-6 text-xs py-0.5',
