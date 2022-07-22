@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-row justify-between">
-    <div :class="['basis-1/2 flex flex-col justify-center pr-8',sizeClass]" v-if="computedLabel">
-      <span :class="['leading-none py-0.5', lineClampClass]">
+  <div :class="{ 'flex flex-row justify-between w-full' : !stacked }">
+    <div :class="[stackedClass, sizeClass, textSizeClass]" v-if="computedLabel">
+      <span class="leading-5" :class="[lineClampClass]">
         {{ computedLabel }}
       </span>
     </div>
@@ -35,6 +35,10 @@
     label: String,
     labelFormatter: Function,
     message: String,
+    stacked: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   const computedLabel = computed(() => {
@@ -44,21 +48,33 @@
     return null;
   });
 
+  const sizeCheck = (props.stacked) ? 'stacked' : props.size;
   const lineClampClass = computed(() => {
     return {
       xs: 'line-clamp-1',
       sm: 'line-clamp-2',
       md: 'line-clamp-2',
       lg: 'line-clamp-2',
-    }[props.size];
+      stacked: 'py-0.5 align-baseline'
+    }[sizeCheck];
   });
 
   const sizeClass = computed(() => {
     return {
-      xs: 'text-xs h-6',
-      sm: 'text-sm h-8',
-      md: 'text-base h-10',
-      lg: 'text-lg h-12',
+      xs: 'h-6',
+      sm: 'h-8',
+      md: 'h-10',
+      lg: 'h-12',
+      stacked: ''
+    }[sizeCheck];
+  });
+
+  const textSizeClass = computed(() => {
+    return {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      md: 'text-base',
+      lg: 'text-lg',
     }[props.size];
   });
 
@@ -73,6 +89,8 @@
       danger: 'text-danger',
     }[props.color];
   });
+
+  const stackedClass = props.stacked ? 'mb-1 truncate' : 'basis-1/2 flex flex-col justify-center pr-8';
 
 
 </script>

@@ -50,16 +50,8 @@
               <c-text-input class=""></c-text-input>
             </div>
           </div>
-          <div class="flex flex-row justify-between">
-            <div class="basis-1/2 pr-8  h-10 flex flex-col justify-center">
-              <span class="line-clamp-2 leading-none">
-                Elementy 3: the thirdy element
-              </span>
-            </div>
-            <div class="w-full">
-              <c-text-input class=""></c-text-input>
-            </div>
-          </div>
+          
+          <c-numeric-input :isFormElement="true" label="Elementy 3: the thirdy element"></c-numeric-input>
           <div class="flex flex-row justify-between">
             <div class="basis-1/2 pr-8  h-10 flex flex-col justify-center">
               <span class="line-clamp-2 leading-none">
@@ -92,18 +84,11 @@
 
       
       <div class="m-8">      
-        <div class="mb-4">
-          Heading
+        <div class="mb-4 font-semibold pb-2 border-b border-gray-600">
+          Heading 2
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
-          <div class="">
-            <div class=" mb-1 truncate">
-              <span class="leading-none">
-                Elementy 1
-              </span>
-            </div>
-            <c-text-input class=""></c-text-input>
-          </div>
+          <c-numeric-input class="" label="Elementy 1" :stacked="true"></c-numeric-input>
           <div class="">
             <div class=" mb-1 truncate">
               <span class="leading-none">

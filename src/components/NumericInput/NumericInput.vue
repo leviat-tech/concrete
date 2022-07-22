@@ -1,5 +1,5 @@
 <template>
-  <component :is="isFormElement ? CFormElement : CFragment" v-bind="{ label, size, color, labelFormatter, message }">
+  <component :is="formElement ? CFormElement : CFragment" v-bind="{ label, size, color, labelFormatter, message }">
     <div class="flex w-full relative">
       <slot name="prefix" class="z-10"/>
       <input
@@ -110,6 +110,7 @@
     return value;
   };
 
+  const formElement = computed(() => props.isFormElement || (props.label != null && props.label != ''));
 
 
   const sizeClass = {
