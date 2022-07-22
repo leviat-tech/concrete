@@ -40,9 +40,7 @@
   import { computed, inject, ref } from 'vue';
   import { colorProp, useSizeProp } from '../../composables/props';
   import { useSizeValue, useInputColorClassValue } from '../../composables/styles';
-
-  const concrete = inject('concrete');
-  const globalHandler = concrete.inputHandler;
+  import { useEventHandler } from '../../composables/events.js';
 
   const props = defineProps({
     id: { type: String, default: null },
@@ -68,6 +66,7 @@
 
   const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
+  const isDirty = ref(false);
   const localValue = ref(null);
 
   const value = computed({
@@ -75,7 +74,10 @@
       return convertToDisplayValue(props.modelValue);
     },
     set(value) {
-      localValue.value = convertToDisplayValue(value);
+      const newValue = convertToDisplayValue(value);
+      if (localValue.value === newValue) return;
+      localValue.value = newValue;
+      isDirty.value = true;
       emit('update:modelValue', convertFromDisplayValue(value))
     }
   });
@@ -116,26 +118,11 @@
     return (props.disabled) && 'opacity-60';
   });
 
+  const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
+  const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
+
   const inputRef = ref(null);
-
-  const onEnter = () => {
-    if (props.onEnter || !globalHandler) {
-      return emit('enter', localValue.value)
-    }
-
-    globalHandler(props.id, localValue.value);
-  }
-
-  const onBlur = () => {
-    if (props.onBlur || !globalHandler) {
-      return emit('blur', localValue.value)
-    }
-
-    globalHandler(props.id, localValue.value);
-  }
-
   const focus = () => inputRef.value.focus();
-
   const blur = () => inputRef.value.blur();
 
   defineExpose({
