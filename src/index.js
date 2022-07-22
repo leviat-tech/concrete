@@ -16,10 +16,10 @@ const allComponents = {
   CTextInput,
 };
 
-const defaultOptions = {
+export const defaultOptions = {
   size: 'sm',
   components: null,
-  labelFormatter: null,
+  labelFormatter: (label) => label,
   inputHandler: null
 }
 
