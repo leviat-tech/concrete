@@ -8,10 +8,16 @@ import CTextInput from '../TextInput.vue';
     size: {
       options: ['lg', 'md', 'sm', 'xs'],
       control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+      },
     },
     color: {
       options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
       control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+      },
     },
     disabled: {
       control:'boolean',
@@ -25,6 +31,24 @@ import CTextInput from '../TextInput.vue';
     placeholder: {
       control:'text',
     },
+    onEnter: {
+      table: { disable: true },
+    },
+    onBlur: {
+      table: { disable: true },
+    },
+    prefix: {
+      control: false,
+      table: {
+        type: { summary: 'slot' },
+      },
+    },
+    suffix: {
+      control: false,
+      table: {
+        type: { summary: 'slot' },
+      },
+    }
   }}
 />
 
@@ -35,7 +59,8 @@ export const componentTemplate = (args) => ({
   setup() {
     return { args };
   },
-  template: '<CTextInput v-bind="args"></CTextInput>',
+  data: () => ({ value: '' }),
+  template: '<CTextInput v-bind="args" id="text-input" v-model="value"/>',
 });
 
 <!--- Component documentation -->
@@ -51,6 +76,8 @@ export const componentTemplate = (args) => ({
           readOnly: false,
           transparent: false,
           placeholder: '',
+          onEnter: undefined,
+          onBlur: undefined,
         }}>
     {componentTemplate.bind({})}
   </Story>

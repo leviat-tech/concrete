@@ -3,7 +3,7 @@
     as="div"
     :id="id"
     v-model="selectedValue"
-    :disabled="disabled" 
+    :disabled="disabled"
     :multiple="multiple"
     v-slot="{ open }"
   >
@@ -32,7 +32,7 @@
       <div v-show="open">
         <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
           <ListboxOptions
-            static 
+            static
             :class="[
               'absolute z-10 mt-1 w-full bg-white shadow-lg py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm',
               maxOptionsHeightClass
@@ -69,25 +69,15 @@
   import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
   import { computed, ref, reactive } from 'vue';
   import isPlainObject from 'lodash/isPlainObject';
+  import { colorProp, useSizeProp } from '../../composables/props';
+  import { useInputColorClassValue, useSizeValue } from '../../composables/styles.js';
+  import { useEventHandler } from '../../composables/events.js';
 
   const props = defineProps({
-    id: {
-      type: String,
-      default: null,
-    },
+    id: { type: String, default: null },
     modelValue: [String, Object, Array],
-    color: {
-      type: String,
-      default: 'default',
-      validator: (prop) => ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'].includes(prop),
-    },
-    size: {
-      type: String,
-      default: 'md',
-      validator(value) {
-        return ['xs', 'sm', 'md', 'lg'].includes(value)
-      }
-    },
+    color: colorProp,
+    size: useSizeProp(),
     options: {
       type: Array,
       default(rawProps) { return [] },
@@ -104,18 +94,28 @@
         return ['auto', 'xs', 'sm', 'md', 'lg'].includes(value)
       }
     },
+
+    onChange: { type: Function, default: null },
   });
 
-  const emit = defineEmits(['update:modelValue']);
+  const emit = defineEmits(['update:modelValue', 'change']);
+
+  const isDirty = ref(false);
+  const localValue = ref(null);
 
   const selectedValue = computed({
     get() {
       return props.modelValue
     },
     set(value) {
-      emit('update:modelValue', value)
+      isDirty.value = true;
+      localValue.value = value;
+      emit('update:modelValue', value);
+      onChange();
     }
   });
+
+  const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
   const localOptions = computed(() => {
     return props.options.map((o) => {
@@ -134,12 +134,13 @@
     return (label.length > 0) ? label : props.placeholder;
   });
 
+  const size = useSizeValue(props.size);
   const sizeClass = {
     xs: 'h-6 text-xs pl-3 pr-6 py-0.5',
     sm: 'h-8 text-sm pl-3 pr-8 py-1',
     md: 'h-10 text-base pl-3 pr-10 py-2',
     lg: 'h-12 text-lg pl-3 pr-12 py-2',
-  }[props.size || 'md'];
+  }[size];
 
   const iconSizeClass = {
     xs: 'h-3 w-3',
@@ -157,20 +158,10 @@
     md: 'max-h-60',
     lg: 'max-h-96',
   }[props.optionListSize || 'md'];
-  
+
   const bgColor =  (props.transparent) ? 'bg-transparent' : 'bg-white';
 
-  const colorClass = computed(() => {
-    return {
-      default: 'border-gray-300 text-black',
-      indigo: 'border-indigo-light text-indigo-darkest',
-      sky: 'border-sky-light text-sky-darkest',
-      steel: 'border-steel-light text-steel-darkest',
-      success: 'border-success-light text-success-darkest',
-      warning: 'border-warning-light text-warning-darkest',
-      danger: 'border-danger-light text-danger-darkest',
-    }[props.color];
-  });
+  const colorClass = useInputColorClassValue(props.color);
 
   const iconColorClass = computed(() => {
     return {

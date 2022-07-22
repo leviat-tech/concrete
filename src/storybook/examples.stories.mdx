@@ -26,16 +26,19 @@ Now this handler will be fired everytime one of Concrete's input components is b
 <Canvas withSource='open'>
   <Story name="Global Input Handler"
          args={{
-           onEnter: null,
+           onEnter: undefined,
          }}>
     {(args) => ({
       components: { CNumericInput },
+      setup() {
+        return { args };
+      },
       data() {
         return {
           value: 1
         }
       },
-      template: `<CNumericInput v-model="value" id="globalHandler" />`,
+      template: `<CNumericInput v-bind="args" v-model="value" id="globalHandler" />`,
     })}
   </Story>
 </Canvas>

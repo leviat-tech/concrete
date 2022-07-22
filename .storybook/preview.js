@@ -23,7 +23,7 @@ export const parameters = {
   layout: 'centered',
   options: {
     storySort: {
-      order: ['Concrete', 'Components', 'Foundations'],
+      order: ['Concrete', ['Getting Started', 'Examples'], 'Components', 'Foundations'],
     },
   },
 }

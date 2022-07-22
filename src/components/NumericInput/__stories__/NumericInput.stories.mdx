@@ -25,6 +25,12 @@ import CNumericInput from '../NumericInput.vue';
     placeholder: {
       control:'text',
     },
+    onEnter: {
+      table: { disable: true },
+    },
+    onBlur: {
+      table: { disable: true },
+    },
   }}
 />
 
@@ -35,7 +41,7 @@ export const componentTemplate = (args) => ({
   setup() {
     return { args };
   },
-  template: '<CNumericInput v-bind="args"></CNumericInput>',
+  template: '<CNumericInput v-bind="args" id="numeric-input" />',
 });
 
 <!--- Component documentation -->
@@ -47,6 +53,8 @@ export const componentTemplate = (args) => ({
         args={{
           size: 'md',
           color: 'default',
+          onEnter: undefined,
+          onBlur: undefined,
           disabled: false,
           readOnly: false,
           transparent: false,

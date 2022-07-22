@@ -38,6 +38,9 @@ import CListbox from '../Listbox.vue';
     multiple: {
       table: { disable: true },
     },
+    onChange: {
+      table: { disable: true },
+    },
   }}
 />
 
@@ -49,11 +52,11 @@ export const componentTemplate = (args) => ({
     return { args };
   },
   data() {
-    return { 
+    return {
       value: null,
     }
   },
-  template: '<CListbox class="w-64" v-bind="args" v-model="value"></CListbox>',
+  template: '<CListbox class="w-64" id="listbox-single" v-bind="args" v-model="value"></CListbox>',
 });
 
 export const componentTemplateMultiple = (args) => ({
@@ -62,11 +65,11 @@ export const componentTemplateMultiple = (args) => ({
     return { args };
   },
   data() {
-    return { 
+    return {
       value: [],
     }
   },
-  template: '<CListbox class="w-64" v-bind="args" v-model="value"></CListbox>',
+  template: '<CListbox class="w-64" id="listbox-multiple" v-bind="args" v-model="value"></CListbox>',
 });
 
 <!--- Component documentation -->
@@ -93,7 +96,7 @@ export const componentTemplateMultiple = (args) => ({
   code={`
 const value = null;
 const options = ['Listbox', 'Test', 'Values', 'Storybook'];
-<CListbox v-model="value" :options="options"></CListbox>
+<CListbox v-model="value" id="listbox-single" :options="options"></CListbox>
 `}
 />
 
@@ -117,7 +120,7 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
   code={`
 const value = [];
 const options = ['Listbox', 'Test', 'Values', 'Storybook'];
-<CListbox v-model="value" :options="options" :multiple="true"></CListbox>
+<CListbox v-model="value" id="listbox-multiple" :options="options" :multiple="true"></CListbox>
 `}
 />
 
@@ -141,6 +144,6 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 const value = null;
 const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 const formatter = (l) => l.toUpperCase();
-<CListbox v-model="value" :options="options" :formatter="formatter"></CListbox>
+<CListbox v-model="value" id="listbox-multiple" :options="options" :formatter="formatter"></CListbox>
 `}
 />

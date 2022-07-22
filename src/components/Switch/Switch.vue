@@ -1,8 +1,7 @@
 <template>
   <Switch
-  
     :id="id"
-    v-model="enabled" 
+    v-model="enabled"
     :class="[ enabled ? `bg-${color}` : `bg-gray-200`,
     `relative inline-flex flex-shrink-0 border-2 border-transparent rounded-full cursor-pointer`,
     `transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${color}-light`,
@@ -28,7 +27,8 @@
 <script setup>
   import { Switch } from '@headlessui/vue';
   import { CheckIcon, XIcon } from '@heroicons/vue/solid';
-  import { computed } from 'vue';
+  import { computed, ref } from 'vue';
+  import { useEventHandler } from '../../composables/events.js';
 
   const props = defineProps({
     id: {
@@ -56,19 +56,28 @@
       type: Boolean,
       default: false,
     },
+
+    onChange: { type: Function, default: null },
   });
 
-  const emit = defineEmits(['update:modelValue']);
+  const emit = defineEmits(['update:modelValue', 'change']);
+
+  const isDirty = ref(false);
+  const localValue = ref(null);
 
   const enabled = computed({
     get() {
       return props.modelValue
     },
     set(value) {
-      console.log(value);
-      emit('update:modelValue', value)
+      isDirty.value = true;
+      localValue.value = value;
+      emit('update:modelValue', value);
+      onChange();
     }
   });
+
+  const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
   const sized = {
     xs: 6,
