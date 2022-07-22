@@ -80,7 +80,7 @@
 
   const messageClass = computed(() => {
     return {
-      default: 'text-gray-300',
+      default: 'text-gray-400',
       indigo: 'text-indigo',
       sky: 'text-sky',
       steel: 'text-steel',

@@ -88,7 +88,7 @@
           Heading 2
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
-          <c-numeric-input class="" label="Elementy 1" :stacked="true"></c-numeric-input>
+          <c-numeric-input class="" label="Elementy 1" :stacked="true" message="Tip here"></c-numeric-input>
           <div class="">
             <div class=" mb-1 truncate">
               <span class="leading-none">
