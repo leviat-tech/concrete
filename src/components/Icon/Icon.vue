@@ -45,7 +45,12 @@ import { UploadIcon } from '@heroicons/vue/outline';
 import { ExclamationIcon } from '@heroicons/vue/outline';
 import { ExclamationCircleIcon } from '@heroicons/vue/outline';
 
+<<<<<<< HEAD
+import { colorProp } from '../../composables/props';
+
+=======
 // TODO: add these missing icons
+>>>>>>> origin/v2
 // import Compress from '../../assets/icons/compress.svg';
 // import FileExport from '../../assets/icons/file-export.svg';
 // import Func from '../../assets/icons/function.svg';
@@ -117,6 +122,7 @@ export default {
       default: null,
       validator: (prop) => Object.keys(icons).includes(prop)
     },
+    color: colorProp,
     size: {
       type: String,
       default: 'md',
@@ -133,46 +139,32 @@ export default {
     },
   },
   render() {
-    const sizeClasses = {
-      sm: 'w-[18px] h-[18px]',
-      md: 'w-[24px] h-[24px]',
-      lg: 'w-[30px] h-[30px]',
-      xl: 'w-[36px] h-[36px]',
-      '2xl': 'w-[48px] h-[48px]',
-      '3xl': 'w-[64px] h-[64px]'
+    const sizes = {
+      sm: 18,
+      md: 24,
+      lg: 30,
+      xl: 36,
+      '2xl': 48,
+      '3xl': 64
     }
-    const classes = ['flex-none', sizeClasses[this.size]];
+    const size = sizes[this.size];
+
+    const colorClass = `text-${this.color}`;
+    const classes = ['flex-none', colorClass];
 
     if (this.spin) {
-      classes.push('c-spin');
+      classes.push('animate-spin');
     }
 
-    const node = !this.$slots.default
-        ? h(this.icon, {
+    return this.$slots.default
+        ? this.$slots.default()[0]
+        : h(this.icon, {
           class: classes,
-        })
-        : this.$slots.default()[0];
-
-    // set(node, 'data.on.click', (evt) => this.$emit('click', evt));
-    return node;
+          style: {
+            width: size,
+            height: size
+          }
+        });
   },
 };
 </script>
-
-<style scoped>
-.c-spin {
-  animation-name: c-spin;
-  animation-duration: 2000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-
-@keyframes c-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-</style>
