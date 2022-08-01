@@ -45,12 +45,9 @@ import { UploadIcon } from '@heroicons/vue/outline';
 import { ExclamationIcon } from '@heroicons/vue/outline';
 import { ExclamationCircleIcon } from '@heroicons/vue/outline';
 
-<<<<<<< HEAD
 import { colorProp } from '../../composables/props';
 
-=======
 // TODO: add these missing icons
->>>>>>> origin/v2
 // import Compress from '../../assets/icons/compress.svg';
 // import FileExport from '../../assets/icons/file-export.svg';
 // import Func from '../../assets/icons/function.svg';
