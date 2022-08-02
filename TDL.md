@@ -45,7 +45,6 @@ Concrete
     Viewport - Viewport
     Svg2dViewport - Svg2dViewport
     DraggablePoint - DraggablePoint
-    DraggableList - DraggableList
     DraggablePath - DraggablePath
     DrawingTools - DrawingTools
     Resizable - Resizable

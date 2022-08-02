@@ -15,6 +15,8 @@
     "@headlessui/tailwindcss": "^0.1.0",
     "@headlessui/vue": "^1.6.4",
     "@heroicons/vue": "^1.0.6",
+    "d3-drag": "^3.0.0",
+    "d3-selection": "^3.0.0",
     "lodash": "^4.17.21",
     "vue": "^3.2.25"
   },
@@ -28,8 +30,8 @@
     "@storybook/builder-vite": "^0.1.36",
     "@storybook/testing-library": "^0.0.13",
     "@storybook/vue3": "^6.5.9",
-    "@vitejs/plugin-vue": "^2.3.1",
     "@tailwindcss/line-clamp": "^0.4.0",
+    "@vitejs/plugin-vue": "^2.3.1",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "postcss": "^8.4.13",
