@@ -2,35 +2,32 @@ Concrete
 
 == done ==
 
-    Button - Button
-    Icon - Icon
-    TextInput - TextInput
+    Button
+    Icon
+    TextInput
     QuantityInput - NumericInput
-    Modal - Modal
-    StatusBar - StatusBar
-    Toolbar - Toolbar
+    Modal
+    StatusBar
+    Toolbar
+    FormSection
     
     Select - (Listbox)
     Multi-select - (Listbox)
     Accordion - (Disclosure)
     N/A - (Switch)
     N/A - InputAffix
+    N/A - FormElement
+    
+    DraggablePoint 
+    DraggablePath
 
 == to do ==
 
-  - konsola ui components to look at integrating
-
-    k-label
-    k-parameter
-    generic-input
-
-
   - redesign
 
-    FormSection - FormSection
-    Checkbox - Checkbox
-    Textarea - TextArea
-    Table - Table
+    Checkbox
+    Textarea
+    Table
 
 
   - use headless ui
@@ -40,14 +37,14 @@ Concrete
     Tab Switcher - (Tabs)
 
 
-  - remove custom colours (use tw) and write story
+  - write story
 
-    Viewport - Viewport
-    Svg2dViewport - Svg2dViewport
-    DraggablePoint - DraggablePoint
-    DraggableList - DraggableList
-    DraggablePath - DraggablePath
-    DrawingTools - DrawingTools
-    Resizable - Resizable
-    ViewportContainer - ViewportContainer
+    ViewportContainer
+    Viewport
+    DrawingTools
+    Svg2dViewport
+
+  - remove custom colours (use tw) and write story
+    
+    Resizable
 
