@@ -55,8 +55,6 @@ import {
 import { colorProp } from '../../composables/props';
 import logger from '../../utils/logger';
 
-import { colorProp } from '../../composables/props';
-
 // TODO: add these missing icons
 // import Polygon from '../../assets/icons/polygon.svg';
 // import Pen from '../../assets/icons/pen.svg';
