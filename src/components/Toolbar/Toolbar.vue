@@ -13,7 +13,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const selectedTool = ref(props.value);
+const selectedTool = ref(props.modelValue);
 
 const toolId = computed({
   get: () => selectedTool.value,
