@@ -25,10 +25,4 @@ const toolId = computed({
 
 provide('concreteSelectedTool', toolId);
 
-if (props.modelValue) {
-  watch(props.modelValue, (val) => {
-    selectedTool.value = val;
-  })
-}
-
 </script>
