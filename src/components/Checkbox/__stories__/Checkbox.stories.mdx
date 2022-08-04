@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source  } from '@storybook/addon-docs';
 import CCheckbox from '../Checkbox.vue';
 
 <Meta
-  title="Components/Checkbox"
+  title='Components/Checkbox'
   component={CCheckbox}
   argTypes={{
     size: {
@@ -11,9 +11,6 @@ import CCheckbox from '../Checkbox.vue';
     },
     srLabel: {
       control:'text',
-    },
-    onChange: {
-      table: { disable: true },
     },
   }}
 />
@@ -35,23 +32,18 @@ export const componentTemplate = (args) => ({
 
 # Checkbox
 
-<Canvas withSource='none'>
-  <Story name="Overview"
+<Canvas withSource='open'>
+  <Story name='Overview'
         args={{
+          id: 'checktest',
           size: 'md',
           srLabel: 'Checkbox',
+          onChange: undefined,
+          disabled: false,
         }}>
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
-<ArgsTable story="Overview" />
-
-## Usage
-<Source
-  language='html'
-  dark
-  format={false}
-  code={`<CCheckbox v-model="modelValue" />`}
-/>
+<ArgsTable story='Overview' />

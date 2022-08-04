@@ -1,15 +1,18 @@
 <template>
-  <SwitchGroup>
+  <div  :class="[cursorClass, disabledClass]">
+  <SwitchGroup  :disabled="disabled">
     <div class="flex items-center">
-      <SwitchLabel class="mr-4">{{ srLabel }}</SwitchLabel>
-      <Switch :id="id" v-model="enabled" :class="[`absolute right-4 items-center border-2`, `h-${sized} w-${sized}`]">
-          <CheckIcon
-            v-if="modelValue"
-            class="object-scale-down justify-center"
-          />
+      <SwitchLabel :class="[`mr-4`, cursorClass]">{{ srLabel }}</SwitchLabel>
+      <Switch 
+        :disabled="disabled" 
+        :id="id" 
+        v-model="enabled" 
+        :class="[`absolute right-4 items-center border-2`, `h-${sized} w-${sized}`, cursorClass]">
+          <CheckIcon v-if="modelValue" class="object-scale-down justify-center" />
       </Switch>
     </div>
   </SwitchGroup>
+  </div >
 </template>
 
 
@@ -36,7 +39,7 @@ const props = defineProps({
     type: String,
     default: "Checkbox",
   },
-
+  disabled: { type: Boolean, default: false },
   onChange: { type: Function, default: null },
 });
 
@@ -56,7 +59,10 @@ const enabled = computed({
     onChange();
   },
 });
-
+const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor';
+const disabledClass = computed(() => {
+  return (props.disabled) && 'opacity-60';
+});
 const onChange = useEventHandler("change", props, emit, localValue, isDirty);
 
 const sized = {
