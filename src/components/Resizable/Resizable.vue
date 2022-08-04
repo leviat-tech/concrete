@@ -11,16 +11,10 @@
     -ms-user-select: none;
     user-select: none;
 
-    &.vertical {
-      cursor: col-resize;
-      width: 10px;
-      height: 100%;
-    }
-    &.horizontal {
-      cursor: row-resize;
-      height: 10px;
-      width: 100%;
-    }
+    cursor: col-resize;
+    width: 10px;
+    height: 100%;
+    z-index: 69;
 
 }
 
@@ -30,26 +24,17 @@
   <div ref="containerRef" @mousemove="drag" @mouseup="endDrag" draggable="false" class="relative" :class="{ 'cursor-col-resize' : dragging }" >
     <slot/>
     
-    <div class="separator absolute" :class="seperatorClass" :style="seperatorStyle" @mousedown="startDrag" @mousemove="drag" @mouseup="endDrag"></div>
+    <div class="separator absolute" :style="`left: ${(panes[0]?.size-5)}px`" @mousedown="startDrag" @mousemove="drag" @mouseup="endDrag"></div>
   </div>
 </template>
 
 <script setup>
   import { computed, ref, provide, onMounted  } from 'vue';
 
-  const props = defineProps({
-    horizontal: { type: Boolean, default: true },
-  });
-
-  const seperatorStyle = computed(() => {
-    return (props.horizontal) ? `left: ${(panes.value[0]?.size-5)}px` :  `top: ${(panes[0]?.size-5)}px` 
-  });
-  const seperatorClass = computed(() => {
-    return (props.horizontal) ? 'vertical' : 'horizontal';
-  });
-
+  const emit = defineEmits(['resize']);
 
   let dragging = false;
+  const activeProp = 'x';
 
   const startDrag = () => {
     dragging = true;
@@ -60,13 +45,15 @@
 
   const drag = (e) => {
     if(dragging) {
-      const activeProp = (props.horizontal) ? 'x' : 'y';
       const currDrag = getCurrentMouseDrag(e)[activeProp];
       resizePanes(currDrag);
     }
   };
 
   const resizeObserver = new ResizeObserver(() => {
+
+    panes.value[0].el.setAttribute('style', '');
+    panes.value[1].el.setAttribute('style', '');
     resizePanes(dragPos);
   });
 
@@ -80,7 +67,7 @@
   })
   
   const resizePanes = (currDrag) => {
-    const elementWidth = (props.horizontal) ? containerRef.value?.offsetWidth : containerRef.value?.offsetHeight;
+    const elementWidth = containerRef.value?.offsetWidth;
     if(!elementWidth) return;
     if(elementWidth > panes.value.reduce((a, b) => a+b.max )) {
       // too much space for max values;
@@ -120,14 +107,13 @@
       updatePane(0, newDragPos)
       updatePane(1, elementWidth-newDragPos)
       dragPos = newDragPos;
-      
+      emit('resize', [panes.value[0].size, panes.value[1].size])
     }
   };
 
-  const sizeProp = (props.horizontal) ? 'width' : 'height';
   const updatePane = (index, value) => {
     panes.value[index].size = value;
-    panes.value[index].el.setAttribute('style', `${sizeProp}: ${panes.value[index].size}px`);
+    panes.value[index].el.setAttribute('style', `width: ${panes.value[index].size}px`);
   }
 
   const getCurrentMouseDrag = (e) => {

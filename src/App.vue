@@ -263,44 +263,64 @@
           </c-form-element>
           <c-form-element label="Element 6">
             <div class="w-full flex space-x-4">
-            <c-numeric-input class="" v-model="value2" @blur="handleBlur">
-              <template v-slot:prefix>
-                <c-input-affix>Min</c-input-affix>
-              </template>
-            </c-numeric-input>
-            <c-numeric-input class="">
-              <template v-slot:prefix>
-                <c-input-affix>Max</c-input-affix>
-              </template>
-            </c-numeric-input>
-        </div>
+              <c-numeric-input class="" v-model="value2" @blur="handleBlur">
+                <template v-slot:prefix>
+                  <c-input-affix>Min</c-input-affix>
+                </template>
+              </c-numeric-input>
+              <c-numeric-input class="">
+                <template v-slot:prefix>
+                  <c-input-affix>Max</c-input-affix>
+                </template>
+              </c-numeric-input>
+            </div>
           </c-form-element>
         </div>
       </div>
 
-      
         
-        <c-resizable  class="mb-64 mt-32 bg-sky-light h-96 flex ">
-          <c-pane class="" :min="350">
-            <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
-          </c-pane>
-          <c-pane class="" :min="200">
-            <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
-          </c-pane>
-        </c-resizable>
-
-        
-        <c-resizable  class="mb-64 mt-32 bg-sky-light h-96" :horizontal="false">
-          <c-pane class="" :min="350">
-            <div class="text-2xl bg-success-lightest text-success font-bold text-center h-full w-full">1</div>
-          </c-pane>
-          <c-pane class="" :min="200">
-            <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-full w-full">2</div>
-          </c-pane>
-        </c-resizable>
+      <c-resizable  class="mb-64 mt-32 bg-sky-light h-96 flex ">
+        <c-pane class="" :min="350">
+          <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+        </c-pane>
+        <c-pane class="" :min="200">
+          <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+        </c-pane>
+      </c-resizable>
 
 
-
+      <c-resizable  class="mb-64 mt-32 h-96 flex" @resize="resizePanes">
+        <c-pane class="p-4 grid" :class="leftPaneClass" :min="350">
+          <div class="h-20 w-full bg-indigo"></div>
+          <div class="h-20 w-full bg-sky"></div>
+          <div class="h-20 w-full bg-steel"></div>
+          <div class="h-20 w-full bg-success"></div>
+          <div class="h-20 w-full bg-warning"></div>
+          <div class="h-20 w-full bg-danger"></div>
+        </c-pane>
+        <c-pane class="p-4 space-y-4" :min="200">
+          <c-form-element label="Elementy 3: the thirdy element" size="lg">
+            <c-numeric-input class=""></c-numeric-input>
+          </c-form-element>
+          <c-form-element label="test" :labelFormatter="(l) => l.toUpperCase()" size="xs">
+            <c-numeric-input class=""></c-numeric-input>
+          </c-form-element>
+          <c-form-element label="Element 6">
+            <div class="w-full flex space-x-4">
+              <c-numeric-input class="" v-model="value2" @blur="handleBlur">
+                <template v-slot:prefix>
+                  <c-input-affix>Min</c-input-affix>
+                </template>
+              </c-numeric-input>
+              <c-numeric-input class="">
+                <template v-slot:prefix>
+                  <c-input-affix>Max</c-input-affix>
+                </template>
+              </c-numeric-input>
+            </div>
+          </c-form-element>
+        </c-pane>
+      </c-resizable>
     </div>
   </div>
 </template>
@@ -336,11 +356,18 @@ export default {
     return {
       value: null,
       value2: 2,
+      leftPaneSize: null,
     }
   },
   computed: {
+    leftPaneClass() {
+      return (this.leftPaneSize > 500) ? 'grid-cols-2' : 'grid-cols-1'
+    }
   },
   methods: {
+    resizePanes(data) {
+      this.leftPaneSize = data[0];
+    },
     takeFocus() {
       this.$refs.testid.focus();
     },
