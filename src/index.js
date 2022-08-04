@@ -1,22 +1,29 @@
-
-import CIcon from './components/Icon/Icon.vue';
-
-// Inputs
+// Inputs and Form Components
 import CButton from './components/Button/Button.vue';
 import CSwitch from './components/Switch/Switch.vue';
-import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CTextInput from './components/TextInput/TextInput.vue';
+import CNumericInput from './components/NumericInput/NumericInput.vue';
+
+// Low Level Components
+import CIcon from './components/Icon/Icon.vue';
+import CFormSection from './components/FormSection/FormSection.vue';
+import CFormElement from './components/FormElement/FormElement.vue';
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
+import { CViewportContainer, CViewport } from './components/Viewport';
+
+import { defaultOptions } from './composables/concrete';
 
 const allComponents = {
   CButton,
   CSwitch,
   CNumericInput,
+  CFormSection,
+  CFormElement,
   CIcon,
   CToolbar,
   CToolGroup,
@@ -25,14 +32,11 @@ const allComponents = {
   CModal,
   CTextInput,
   CStatusBar,
+  CViewport,
+  CViewportContainer
 };
 
-export const defaultOptions = {
-  size: 'sm',
-  components: null,
-  labelFormatter: (label) => label,
-  inputHandler: null
-}
+
 
 const install = (app, userOptions = {}) => {
 
@@ -57,12 +61,18 @@ export {
   CButton,
   CSwitch,
   CNumericInput,
+  CFormSection,
+  CFormElement,
   CIcon,
   CToolbar,
   CToolGroup,
+  CTool,
+  CAccordion,
   CModal,
-  CStatusBar,
   CTextInput,
+  CStatusBar,
+  CViewport,
+  CViewportContainer
 }
 
 
