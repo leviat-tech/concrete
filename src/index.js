@@ -1,19 +1,30 @@
+
+import CIcon from './components/Icon/Icon.vue';
+
+// Inputs
 import CButton from './components/Button/Button.vue';
 import CSwitch from './components/Switch/Switch.vue';
-import CIcon from './components/Icon/Icon.vue';
-import CModal from './components/Modal/Modal.vue';
-import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
+import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CTextInput from './components/TextInput/TextInput.vue';
+
+// High Level Components
+import CModal from './components/Modal/Modal.vue';
+import CAccordion from './components/Accordion/Accordion.vue';
+import CStatusBar from './components/StatusBar/StatusBar.vue';
+import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 
 const allComponents = {
   CButton,
   CSwitch,
+  CNumericInput,
   CIcon,
   CToolbar,
   CToolGroup,
   CTool,
+  CAccordion,
   CModal,
   CTextInput,
+  CStatusBar,
 };
 
 export const defaultOptions = {
@@ -45,10 +56,12 @@ export default {
 export {
   CButton,
   CSwitch,
+  CNumericInput,
   CIcon,
   CToolbar,
   CToolGroup,
   CModal,
+  CStatusBar,
   CTextInput,
 }
 

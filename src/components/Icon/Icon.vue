@@ -1,6 +1,6 @@
 <script>
 import { h } from 'vue'
-import set from 'lodash/set';
+
 import { ArrowDownIcon } from '@heroicons/vue/outline';
 import { ArrowUpIcon } from '@heroicons/vue/outline';
 import { ArrowLeftIcon } from '@heroicons/vue/outline';
@@ -15,6 +15,7 @@ import { CodeIcon } from '@heroicons/vue/outline';
 import { CubeIcon } from '@heroicons/vue/outline';
 import { DuplicateIcon } from '@heroicons/vue/outline';
 import { DocumentDownloadIcon } from '@heroicons/vue/outline';
+import { DownloadIcon } from '@heroicons/vue/outline';
 import { PencilAltIcon } from '@heroicons/vue/outline';
 import { PencilIcon } from '@heroicons/vue/outline';
 import { ArrowsExpandIcon } from '@heroicons/vue/outline';
@@ -46,17 +47,17 @@ import { ExclamationIcon } from '@heroicons/vue/outline';
 import { ExclamationCircleIcon } from '@heroicons/vue/outline';
 
 import { colorProp } from '../../composables/props';
+import logger from '../../utils/logger';
 
 // TODO: add these missing icons
 // import Compress from '../../assets/icons/compress.svg';
-// import FileExport from '../../assets/icons/file-export.svg';
-// import Func from '../../assets/icons/function.svg';
-// import Pen from '../../assets/icons/pen.svg';
 // import PointerOutline from '../../assets/icons/pointer-outline.svg';
 // import PointerSolid from '../../assets/icons/pointer-solid.svg';
 // import Polygon from '../../assets/icons/polygon.svg';
-// import Redo from '../../assets/icons/redo.svg';
-// import Undo from '../../assets/icons/undo.svg';
+// import Pen from '../../assets/icons/pen.svg';
+import Function from '../../assets/icons/function.svg';
+import Redo from '../../assets/icons/redo.svg';
+import Undo from '../../assets/icons/undo.svg';
 
 export const icons = {
   'arrow-down': ArrowDownIcon,
@@ -73,12 +74,12 @@ export const icons = {
   // compress: Compress,
   copy: DuplicateIcon,
   cube: CubeIcon,
-  download: DocumentDownloadIcon,
+  documentDownload: DocumentDownloadIcon,
+  download: DownloadIcon,
   edit: PencilAltIcon,
   expand: ArrowsExpandIcon,
-  // 'file-export': FileExport,
   'folder-open': FolderOpenIcon,
-  // function: Func,
+  function: Function,
   grid: ViewGridIcon,
   list: ViewListIcon,
   hand: HandIcon,
@@ -97,14 +98,14 @@ export const icons = {
   // 'pointer-outline': PointerOutline,
   // 'pointer-solid': PointerSolid,
   // polygon: Polygon,
-  // redo: Redo,
+  redo: Redo,
   save: SaveIcon,
   sync: RefreshIcon,
   table: TableIcon,
   'times-circle': XCircleIcon,
   times: XIcon,
   trash: TrashIcon,
-  // undo: Undo,
+  undo: Undo,
   unlock: LockOpenIcon,
   upload: UploadIcon,
   warning: ExclamationIcon,
@@ -114,11 +115,7 @@ export const icons = {
 export default {
   name: 'CIcon',
   props: {
-    type: {
-      type: String,
-      default: null,
-      validator: (prop) => Object.keys(icons).includes(prop)
-    },
+    type: String,
     color: colorProp,
     size: {
       type: String,
@@ -130,12 +127,14 @@ export default {
       default: false,
     },
   },
-  computed: {
-    icon() {
-      return icons[this.type];
-    },
-  },
   render() {
+    const icon = icons[this.type];
+
+    if (!icon) {
+      logger.warn(`CIcon - invalid icon type (${this.type})`);
+      return null;
+    }
+
     const sizes = {
       sm: 18,
       md: 24,
@@ -155,7 +154,7 @@ export default {
 
     return this.$slots.default
         ? this.$slots.default()[0]
-        : h(this.icon, {
+        : h(icon, {
           class: classes,
           style: {
             width: size,
