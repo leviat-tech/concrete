@@ -14,8 +14,11 @@
       </div> 
     </div>
     
+    
     <div class="bg-gray-100 h-full w-full">
       
+      
+
       <div class="m-8 w-64 space-x-4 flex bg-white">
         <c-button>Take Focus</c-button> 
       </div>      
@@ -273,8 +276,31 @@
         </div>
           </c-form-element>
         </div>
-
       </div>
+
+      
+        
+        <c-resizable  class="mb-64 mt-32 bg-sky-light h-96 flex ">
+          <c-pane class="" :min="350">
+            <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+          </c-pane>
+          <c-pane class="" :min="200">
+            <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+          </c-pane>
+        </c-resizable>
+
+        
+        <c-resizable  class="mb-64 mt-32 bg-sky-light h-96" :horizontal="false">
+          <c-pane class="" :min="350">
+            <div class="text-2xl bg-success-lightest text-success font-bold text-center h-full w-full">1</div>
+          </c-pane>
+          <c-pane class="" :min="200">
+            <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-full w-full">2</div>
+          </c-pane>
+        </c-resizable>
+
+
+
     </div>
   </div>
 </template>
@@ -288,6 +314,7 @@ import CButton from './components/Button/Button.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
+import { CResizable, CPane } from './components/Resizable';
 
 import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
 
@@ -300,8 +327,10 @@ export default {
     CInputAffix,
     CFormElement,
     CFormSection,
+    CResizable,
+    CPane,
     CheckIcon,
-    SelectorIcon
+    SelectorIcon,
   },
   data() {
     return {
@@ -325,3 +354,16 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.splitpanes--vertical > .splitpanes__splitter {
+  min-width: 6px;
+  background: linear-gradient(90deg, #ccc, #111);
+}
+
+.splitpanes--horizontal > .splitpanes__splitter {
+  min-height: 6px;
+  background: linear-gradient(0deg, #ccc, #111);
+}
+</style>

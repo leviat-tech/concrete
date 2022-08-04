@@ -39,7 +39,6 @@ function domToSVGCoords(el, pt) {
 }
 
 export default {
-  name: 'CSvg2dViewport',
   props: {
     extents: {
       type: Object,

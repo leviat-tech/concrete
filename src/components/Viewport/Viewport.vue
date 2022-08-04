@@ -16,7 +16,6 @@ import CDrawingTools from './DrawingTools.vue';
 
 
 export default {
-  name: 'CViewport',
   components: {
     CDrawingTools,
   },

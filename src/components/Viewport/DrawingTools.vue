@@ -31,7 +31,6 @@ import { CToolbar, CToolGroup, CTool } from '../Toolbar';
 
 
 export default {
-  name: 'CDrawingTools',
   components: {
     CToolbar,
     CToolGroup,

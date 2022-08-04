@@ -45,7 +45,6 @@ function columns(ar, aspectRatio, options) {
 
 
 export default {
-  name: 'CViewportContainer',
   props: {
     options: { type: Array, default: () => [] },
     value: { type: [String, Number], default: null },

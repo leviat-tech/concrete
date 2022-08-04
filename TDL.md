@@ -10,6 +10,7 @@ Concrete
     StatusBar
     Toolbar
     FormSection
+    Checkbox
     
     Select - (Listbox)
     Multi-select - (Listbox)
@@ -25,14 +26,13 @@ Concrete
 
   - redesign
 
-    Checkbox
     Textarea
     Table
 
 
   - use headless ui
 
-    Search Select - (Autocomplete)
+    Search Select - (Autocomplete) 
     Radio - (RadioGroup)
     Tab Switcher - (Tabs)
 
@@ -44,7 +44,19 @@ Concrete
     DrawingTools
     Svg2dViewport
 
+
   - remove custom colours (use tw) and write story
     
     Resizable
 
+
+
+  - implement form system in inputs
+
+    TextInput
+    Switch
+    Checkbox
+    Listbox
+    Autocomplete
+    Textarea
+    Radio
