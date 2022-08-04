@@ -9,14 +9,14 @@
         />
       </div>
 
-      <slot v-else name="title"/>
+      <slot v-else name="title" :open="open"/>
 
   </DisclosureButton>
 
   <DisclosurePanel static>
     <div class="overflow-hidden transition-all duration-200" :style="{ height }">
       <div ref="content">
-        <slot/>
+        <slot :open="open"/>
       </div>
     </div>
   </DisclosurePanel>

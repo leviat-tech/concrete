@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'flex flex-row justify-between w-full' : !stacked }">
+  <div class="concrete__form-element" :class="{ 'flex flex-row justify-between w-full' : !stacked }">
     <div :class="[stackedClass, sizeClass, textSizeClass]" v-if="label">
       <span class="leading-5" :class="[lineClampClass]">
         {{ label }}
