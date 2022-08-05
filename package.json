@@ -1,7 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0-beta.0",
   "main": "src/index.js",
   "scripts": {
     "dev": "vite",
@@ -13,8 +12,10 @@
   "dependencies": {
     "@crhio/leviat-tailwind-configuration": "^1.0.0",
     "@headlessui/tailwindcss": "^0.1.0",
-    "@headlessui/vue": "^1.6.4",
+    "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
+    "d3-drag": "^3.0.0",
+    "d3-selection": "^3.0.0",
     "lodash": "^4.17.21",
     "vue": "^3.2.25"
   },
