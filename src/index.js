@@ -14,9 +14,13 @@ import CModal from './components/Modal/Modal.vue';
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
+
+import CTextInput from './components/TextInput/TextInput.vue';
+import CCheckbox from './components/Checkbox/Checkbox.vue';
 import { CViewportContainer, CViewport } from './components/Viewport';
 
 import { defaultOptions } from './composables/concrete';
+
 
 const allComponents = {
   CButton,
@@ -31,6 +35,7 @@ const allComponents = {
   CAccordion,
   CModal,
   CTextInput,
+  CCheckbox,
   CStatusBar,
   CViewport,
   CViewportContainer
@@ -70,6 +75,7 @@ export {
   CAccordion,
   CModal,
   CTextInput,
+  CCheckbox,
   CStatusBar,
   CViewport,
   CViewportContainer
