@@ -275,6 +275,22 @@
         </div>
 
       </div>
+      
+      <svg
+        class="bg-gray-300"
+        viewBox="0 0 100 100"
+        width="500"
+        height="300"
+      >
+        <c-draggable-path
+          :path="path"
+          color="default"
+          :active="false"
+          @drag-start="startDraggingSection"
+          @dragging="dragSection"
+          @drag-end="endDraggingSection"
+        />
+      </svg>
     </div>
   </div>
 </template>
@@ -287,6 +303,7 @@ import CListbox from './components/Listbox/Listbox.vue';
 import CButton from './components/Button/Button.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
+import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 
 import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
@@ -301,17 +318,51 @@ export default {
     CFormElement,
     CFormSection,
     CheckIcon,
-    SelectorIcon
+    SelectorIcon,
+    CDraggablePath,
   },
   data() {
     return {
       value: null,
       value2: 2,
+      point: { x: 10, y: 10 },
+      point2: { x: 30, y: 30 },
+      point3: { x: 10, y: 50 },
+      point4: { x: 40, y: 40 },
+      point5: { x: 50, y: 50 },
+      point6: { x: 60, y: 60 },
+      points: [
+        { x: 10, y: 10 },
+        { x: 30, y: 30 },
+        { x: 10, y: 50 },
+      ],
+      tempPoint: {},
     }
   },
   computed: {
+    path() {
+      return this.points.map((pt, i) => (i === 0) ? `M${pt.x} ${pt.y} ` : `L${pt.x} ${pt.y} `).join();
+    },
   },
   methods: {
+    startDraggingSection(pt) {
+      this.tempPoint = pt;
+    },
+    dragSection(pt) {
+      const x = this.tempPoint.x - pt.x;
+      const y = this.tempPoint.y - pt.y;
+      this.points.forEach((point) => {
+        point.x -= x;
+        point.y -= y;
+      });
+      this.tempPoint = pt;
+    },
+    endDraggingSection(pt) {
+      this.tempPoint = {};
+    },
+    setPoint(pt) {
+      this.point = pt;
+    },
     takeFocus() {
       this.$refs.testid.focus();
     },
