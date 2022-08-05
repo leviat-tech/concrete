@@ -2,51 +2,56 @@ Concrete
 
 == done ==
 
-    Button - Button
-    Icon - Icon
-    TextInput - TextInput
+    Button
+    Icon
+    TextInput
     QuantityInput - NumericInput
-    Modal - Modal
-    StatusBar - StatusBar
-    Toolbar - Toolbar
+    Modal
+    StatusBar
+    Toolbar
+    FormSection
+    Checkbox
     
     Select - (Listbox)
     Multi-select - (Listbox)
     Accordion - (Disclosure)
     N/A - (Switch)
     N/A - InputAffix
+    N/A - FormElement
+    
+    DraggablePoint 
+    DraggablePath
 
 == to do ==
 
-  - konsola ui components to look at integrating
-
-    k-label
-    k-parameter
-    generic-input
-
-
   - redesign
 
-    FormSection - FormSection
-    Checkbox - Checkbox
-    Textarea - TextArea
-    Table - Table
+    Textarea
+    Table
 
 
   - use headless ui
 
-    Search Select - (Autocomplete)
+    Search Select - (Autocomplete) 
     Radio - (RadioGroup)
     Tab Switcher - (Tabs)
 
 
-  - remove custom colours (use tw) and write story
+  - write story
 
-    Viewport - Viewport
-    Svg2dViewport - Svg2dViewport
-    DraggablePoint - DraggablePoint
-    DraggablePath - DraggablePath
-    DrawingTools - DrawingTools
-    Resizable - Resizable
-    ViewportContainer - ViewportContainer
+    ViewportContainer
+    Viewport
+    DrawingTools
+    Svg2dViewport
+    Resizable
 
+
+  - implement form system in inputs
+
+    TextInput
+    Switch
+    Checkbox
+    Listbox
+    Autocomplete
+    Textarea
+    Radio

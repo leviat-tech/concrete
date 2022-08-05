@@ -63,6 +63,7 @@ const install = (app, userOptions = {}) => {
     const component = allComponents[componentName];
       app.component(componentName, component);
   });
+
 };
 
 export default {
@@ -91,5 +92,3 @@ export {
   CViewport,
   CViewportContainer
 }
-
-

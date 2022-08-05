@@ -14,8 +14,11 @@
       </div> 
     </div>
     
+    
     <div class="bg-gray-100 h-full w-full">
       
+      
+
       <div class="m-8 w-64 space-x-4 flex bg-white">
         <c-button>Take Focus</c-button> 
       </div>      
@@ -260,37 +263,82 @@
           </c-form-element>
           <c-form-element label="Element 6">
             <div class="w-full flex space-x-4">
-            <c-numeric-input class="" v-model="value2" @blur="handleBlur">
-              <template v-slot:prefix>
-                <c-input-affix>Min</c-input-affix>
-              </template>
-            </c-numeric-input>
-            <c-numeric-input class="">
-              <template v-slot:prefix>
-                <c-input-affix>Max</c-input-affix>
-              </template>
-            </c-numeric-input>
-        </div>
+              <c-numeric-input class="" v-model="value2" @blur="handleBlur">
+                <template v-slot:prefix>
+                  <c-input-affix>Min</c-input-affix>
+                </template>
+              </c-numeric-input>
+              <c-numeric-input class="">
+                <template v-slot:prefix>
+                  <c-input-affix>Max</c-input-affix>
+                </template>
+              </c-numeric-input>
+            </div>
           </c-form-element>
         </div>
-
       </div>
+
+        
+      <c-resizable  class="my-8 bg-sky-light h-96 flex ">
+        <c-pane class="border-r-2 border-indigo" :min="350">
+          <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+        </c-pane>
+        <c-pane class="" :min="200">
+          <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+        </c-pane>
+      </c-resizable>
       
-      <svg
-        class="bg-gray-300"
-        viewBox="0 0 100 100"
-        width="500"
-        height="300"
-      >
-        <c-draggable-path
-          :path="path"
-          color="default"
-          :active="false"
-          @drag-start="startDraggingSection"
-          @dragging="dragSection"
-          @drag-end="endDraggingSection"
-        />
-      </svg>
+      <c-resizable  class="my-8 bg-sky-light h-96 flex " splitter="thick">
+        <c-pane class="" :min="350">
+          <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+        </c-pane>
+        <c-pane class="" :min="200">
+          <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+        </c-pane>
+      </c-resizable>
+      
+      <c-resizable  class="my-8 bg-sky-light h-96 flex " splitter="thin">
+        <c-pane class="" :min="350">
+          <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+        </c-pane>
+        <c-pane class="" :min="200">
+          <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+        </c-pane>
+      </c-resizable>
+
+
+      <c-resizable  class="mb-64 mt-32 h-96 flex" @resize="resizePanes">
+        <c-pane class="p-4 grid overflow-y-auto" :class="leftPaneClass" :min="350">
+          <div class="h-20 w-full bg-indigo"></div>
+          <div class="h-20 w-full bg-sky"></div>
+          <div class="h-20 w-full bg-steel"></div>
+          <div class="h-20 w-full bg-success"></div>
+          <div class="h-20 w-full bg-warning"></div>
+          <div class="h-20 w-full bg-danger"></div>
+        </c-pane>
+        <c-pane class="p-4 space-y-4" :min="200">
+          <c-form-element label="Elementy 3: the thirdy element" size="lg">
+            <c-numeric-input class=""></c-numeric-input>
+          </c-form-element>
+          <c-form-element label="test" :labelFormatter="(l) => l.toUpperCase()" size="xs">
+            <c-numeric-input class=""></c-numeric-input>
+          </c-form-element>
+          <c-form-element label="Element 6">
+            <div class="w-full flex space-x-4">
+              <c-numeric-input class="" v-model="value2" @blur="handleBlur">
+                <template v-slot:prefix>
+                  <c-input-affix>Min</c-input-affix>
+                </template>
+              </c-numeric-input>
+              <c-numeric-input class="">
+                <template v-slot:prefix>
+                  <c-input-affix>Max</c-input-affix>
+                </template>
+              </c-numeric-input>
+            </div>
+          </c-form-element>
+        </c-pane>
+      </c-resizable>
     </div>
   </div>
 </template>
@@ -303,8 +351,8 @@ import CListbox from './components/Listbox/Listbox.vue';
 import CButton from './components/Button/Button.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
-import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
+import { CResizable, CPane } from './components/Resizable';
 
 import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
 
@@ -317,51 +365,26 @@ export default {
     CInputAffix,
     CFormElement,
     CFormSection,
+    CResizable,
+    CPane,
     CheckIcon,
     SelectorIcon,
-    CDraggablePath,
   },
   data() {
     return {
       value: null,
       value2: 2,
-      point: { x: 10, y: 10 },
-      point2: { x: 30, y: 30 },
-      point3: { x: 10, y: 50 },
-      point4: { x: 40, y: 40 },
-      point5: { x: 50, y: 50 },
-      point6: { x: 60, y: 60 },
-      points: [
-        { x: 10, y: 10 },
-        { x: 30, y: 30 },
-        { x: 10, y: 50 },
-      ],
-      tempPoint: {},
+      leftPaneSize: null,
     }
   },
   computed: {
-    path() {
-      return this.points.map((pt, i) => (i === 0) ? `M${pt.x} ${pt.y} ` : `L${pt.x} ${pt.y} `).join();
-    },
+    leftPaneClass() {
+      return (this.leftPaneSize > 500) ? 'grid-cols-2' : 'grid-cols-1'
+    }
   },
   methods: {
-    startDraggingSection(pt) {
-      this.tempPoint = pt;
-    },
-    dragSection(pt) {
-      const x = this.tempPoint.x - pt.x;
-      const y = this.tempPoint.y - pt.y;
-      this.points.forEach((point) => {
-        point.x -= x;
-        point.y -= y;
-      });
-      this.tempPoint = pt;
-    },
-    endDraggingSection(pt) {
-      this.tempPoint = {};
-    },
-    setPoint(pt) {
-      this.point = pt;
+    resizePanes(data) {
+      this.leftPaneSize = data[0];
     },
     takeFocus() {
       this.$refs.testid.focus();
@@ -376,3 +399,16 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.splitpanes--vertical > .splitpanes__splitter {
+  min-width: 6px;
+  background: linear-gradient(90deg, #ccc, #111);
+}
+
+.splitpanes--horizontal > .splitpanes__splitter {
+  min-height: 6px;
+  background: linear-gradient(0deg, #ccc, #111);
+}
+</style>
