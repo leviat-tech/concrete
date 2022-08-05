@@ -1,8 +1,8 @@
 <template>
-  <div :class="{ 'flex flex-row justify-between w-full' : !stacked }">
-    <div :class="[stackedClass, sizeClass, textSizeClass]" v-if="computedLabel">
+  <div class="concrete__form-element" :class="{ 'flex flex-row justify-between w-full' : !stacked }">
+    <div :class="[stackedClass, sizeClass, textSizeClass]" v-if="label">
       <span class="leading-5" :class="[lineClampClass]">
-        {{ computedLabel }}
+        {{ label }}
       </span>
     </div>
     <div class="w-full">
@@ -16,9 +16,11 @@
 <script setup>
 
   import { computed } from 'vue';
-  
+  import { useFormLabel } from '../../composables/forms.js';
+
 
   const props = defineProps({
+    id: String,
     color: {
       type: String,
       default: 'default',
@@ -41,12 +43,7 @@
     },
   });
 
-  const computedLabel = computed(() => {
-    if (props.label != null && props.label !== '') {
-      return (typeof props.labelFormatter === 'function') ? props.labelFormatter(props.label) : props.label;
-    }
-    return null;
-  });
+  const label = useFormLabel(props);
 
   const sizeCheck = (props.stacked) ? 'stacked' : props.size;
   const lineClampClass = computed(() => {

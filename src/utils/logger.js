@@ -1,4 +1,4 @@
-const log = (msg, data, level = 'log') => {
+const log = (msg, data = '', level = 'log') => {
   console[level](`[CONCRETE]: ${msg}`, data);
 }
 
