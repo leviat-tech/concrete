@@ -15,7 +15,6 @@ import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 
-import CTextInput from './components/TextInput/TextInput.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
 import { CViewportContainer, CViewport } from './components/Viewport';
 
