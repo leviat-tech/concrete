@@ -279,7 +279,25 @@
       </div>
 
         
-      <c-resizable  class="mb-64 mt-32 bg-sky-light h-96 flex ">
+      <c-resizable  class="my-8 bg-sky-light h-96 flex ">
+        <c-pane class="border-r-2 border-indigo" :min="350">
+          <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+        </c-pane>
+        <c-pane class="" :min="200">
+          <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+        </c-pane>
+      </c-resizable>
+      
+      <c-resizable  class="my-8 bg-sky-light h-96 flex " splitter="thick">
+        <c-pane class="" :min="350">
+          <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+        </c-pane>
+        <c-pane class="" :min="200">
+          <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+        </c-pane>
+      </c-resizable>
+      
+      <c-resizable  class="my-8 bg-sky-light h-96 flex " splitter="thin">
         <c-pane class="" :min="350">
           <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
         </c-pane>
@@ -290,7 +308,7 @@
 
 
       <c-resizable  class="mb-64 mt-32 h-96 flex" @resize="resizePanes">
-        <c-pane class="p-4 grid" :class="leftPaneClass" :min="350">
+        <c-pane class="p-4 grid overflow-y-auto" :class="leftPaneClass" :min="350">
           <div class="h-20 w-full bg-indigo"></div>
           <div class="h-20 w-full bg-sky"></div>
           <div class="h-20 w-full bg-steel"></div>

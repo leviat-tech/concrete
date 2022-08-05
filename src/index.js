@@ -5,8 +5,6 @@ import CModal from './components/Modal/Modal.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import CTextInput from './components/TextInput/TextInput.vue';
 
-import drag from 'v-drag';
-
 const allComponents = {
   CButton,
   CSwitch,
@@ -39,7 +37,6 @@ const install = (app, userOptions = {}) => {
       app.component(componentName, component);
   });
 
-  app.use(drag);
 };
 
 export default {

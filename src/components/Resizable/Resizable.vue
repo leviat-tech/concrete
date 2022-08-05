@@ -1,21 +1,19 @@
 
 <style scoped lang="scss">
 .separator {
-    background-color: #aaa;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='30'><path d='M2 0 v30 M5 0 v30 M8 0 v30' fill='none' stroke='black'/></svg>");
-    background-repeat: no-repeat;
-    background-position: center;
-
     /* Prevent the browser's built-in drag from interfering */
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
     cursor: col-resize;
-    width: 10px;
-    height: 100%;
     z-index: 69;
+    height: 100%;
+}
 
+.seperator-img {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='30'><path d='M2 0 v30 M5 0 v30 M8 0 v30' fill='none' stroke='black'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 </style>
@@ -24,12 +22,50 @@
   <div ref="containerRef" @mousemove="drag" @mouseup="endDrag" draggable="false" class="relative" :class="{ 'cursor-col-resize' : dragging }" >
     <slot/>
     
-    <div class="separator absolute" :style="`left: ${(panes[0]?.size-5)}px`" @mousedown="startDrag" @mousemove="drag" @mouseup="endDrag"></div>
+    <div
+      class="separator absolute"
+      :class="splitterClass"
+      :style="splitterStyle"
+      @mousedown="startDrag"
+      @mousemove="drag"
+      @mouseup="endDrag"
+      @touchstart="startDrag"
+      @touchmove="drag"
+      @touchend="endDrag"
+      
+    ></div>
   </div>
 </template>
 
 <script setup>
   import { computed, ref, provide, onMounted  } from 'vue';
+
+
+  const props = defineProps({
+    splitter: {
+      type: String,
+      default: 'default',
+      validator: (prop) => ['default', 'thick', 'thin'].includes(prop),
+    },
+  });
+
+  const splitterClass = computed(() => {
+    return {
+      'thin': 'w-1 bg-gray-300',
+      'thick': 'seperator-img w-3 bg-gray-300',
+      'default': 'w-3 bg-transparent hover:bg-gray-300 hover:opacity-40',
+    }[props.splitter];
+  });
+
+  const splitterStyle = computed(() => {
+    const pos = panes.value[0]?.size;
+    const width = {
+      'thin': 4,
+      'thick': 12,
+      'default': 12,
+    }[props.splitter];
+    return`left: ${(pos-(width/2))}px`;
+  })
 
   const emit = defineEmits(['resize']);
 
