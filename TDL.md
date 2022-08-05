@@ -43,12 +43,7 @@ Concrete
     Viewport
     DrawingTools
     Svg2dViewport
-
-
-  - remove custom colours (use tw) and write story
-    
     Resizable
-
 
 
   - implement form system in inputs
@@ -60,10 +55,3 @@ Concrete
     Autocomplete
     Textarea
     Radio
-
-
-
-    - remove v-drag reference
-    - splitter styling options
-    - test scroll overflow
-    - remove viewport stuff
