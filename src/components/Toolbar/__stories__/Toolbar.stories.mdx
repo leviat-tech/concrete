@@ -27,17 +27,17 @@ export const componentTemplate = (args) => ({
   },
   template: `<CToolbar v-bind="args" v-model="value">
   <CToolGroup>
-    <CTool name="Grid" tool-id="grid" icon="grid" :stateful="true" />
-    <CTool name="List" tool-id="list" icon="list" :stateful="true" />
+    <CTool name="Grid" tool-id="grid" icon="grid" stateful />
+    <CTool name="List" tool-id="list" icon="list" stateful />
   </CToolGroup>
   <CToolGroup divider-left>
-    <CTool name="Undo" tool-id="arrow-left" icon="arrow-left" :stateful="false" @click="onClick" />
-    <CTool name="Redo" tool-id="arrow-right" icon="arrow-right" :stateful="false" @click="onClick" />
+    <CTool name="Undo" tool-id="arrow-left" icon="arrow-left" @click="onClick" />
+    <CTool name="Redo" tool-id="arrow-right" icon="arrow-right" @click="onClick" />
   </CToolGroup>
   <CToolGroup divider-left divider-right>
     <CTool name="Disabled icon" tool-id="image" icon="image" disabled />
     <CTool name="Not hoverable" tool-id="play" icon="play" :hoverable="false" />
-    <CTool name="Text button" tool-id="text" textButton @click="onClick" />
+    <CTool name="Text button" tool-id="text" textButton @click="onClick" stateful />
   </CToolGroup>
   <div class="text-sm ml-12">
     <div>Current: <b>{{ value }}</b></div>
