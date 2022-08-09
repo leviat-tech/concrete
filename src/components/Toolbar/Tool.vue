@@ -27,10 +27,10 @@ import CIcon from '../Icon/Icon.vue';
 
 const props = defineProps({
   name: { type: String, default: '' },
-  toolId: { type: String, required: true },
+  toolId: { type: String },
   icon: { type: String, default: null },
   textButton: { type: Boolean, default: false },
-  stateful: { type: Boolean, default: true },
+  stateful: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
   hoverable: { type: Boolean, default: true },
 });
@@ -38,7 +38,7 @@ const props = defineProps({
 const emit = defineEmits(['click']);
 
 const selectedTool = inject('concreteSelectedTool');
-const isActive = computed(() => selectedTool.value === props.toolId);
+const isActive = props.stateful ? computed(() => selectedTool.value === props.toolId) : false;
 const mousedown = ref(false);
 
 const onClick = () => {
