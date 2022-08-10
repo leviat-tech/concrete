@@ -30,6 +30,7 @@
         :readonly="readOnly"
         @keydown.enter="onEnter"
         @blur="onBlur"
+        :rows="rows"
       />
       <slot name="suffix" class="z-10" />
     </div>
@@ -65,6 +66,7 @@ const props = defineProps({
 
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
+  rows: { type: Number, default: 10 },
 });
 
 const emit = defineEmits(["update:modelValue", "enter", "blur"]);
