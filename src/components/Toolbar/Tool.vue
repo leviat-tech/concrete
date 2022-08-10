@@ -1,21 +1,19 @@
 <template>
   <button :title="name"
-          class="flex items-center justify-center h-8 p-1 border border-transparent rounded"
-          :class="[
-            !disabled && hoverable && !isActive && 'hover:border-gray-300',
-            (isActive || mousedown) && !disabled && 'border-gray-400 bg-gray-500 bg-opacity-5',
-            disabled && 'text-gray-400 cursor-default',
-            textButton && 'px-2' || 'w-8',
-          ]"
-          @mousedown="mousedown = true"
-          @mouseup="mousedown = false"
-          @mouseleave="mousedown = false"
-          @click="onClick"
+    class="flex items-center justify-center h-8 p-1 border border-transparent rounded concrete__tool"
+    :class="[
+      !disabled && hoverable && !isActive && 'hover:border-gray-300',
+      (isActive || mousedown) && !disabled && 'border-gray-400 bg-gray-500 bg-opacity-5',
+      disabled && 'text-gray-400 cursor-default',
+      textButton && 'px-2' || 'w-8',
+    ]"
+    @mousedown="mousedown = true"
+    @mouseup="mousedown = false"
+    @mouseleave="mousedown = false"
+    @click="onClick"
   >
     <template v-if="textButton">{{ name }}</template>
-
     <CIcon v-else-if="icon" :type="icon"/>
-
     <slot v-else/>
   </button>
 

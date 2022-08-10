@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete__drawing-tools absolute top-1 left-0 flex items-center">
+  <div class="concrete__viewport-tools absolute top-1 left-0 flex items-center">
     <c-toolbar v-if="!minbreakpoint && maximizable" class="drawing-tools">
       <c-tool-group>
         <c-tool

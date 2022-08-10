@@ -1,7 +1,7 @@
 <template>
   <circle
     ref="pointref"
-    class="cursor-move stroke-transparent fill-black/60 stroke-[10px]  concrete-draggable-point"
+    class="cursor-move stroke-transparent fill-black/60 stroke-[10px]  concrete__draggable-point"
     style="vector-effect: non-scaling-stroke !important; paint-order: stroke fill markers;"
     :class="styleClass"
     :cx="point.x"

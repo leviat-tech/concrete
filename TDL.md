@@ -48,10 +48,6 @@ Concrete
 
   - implement form system in inputs
 
-    TextInput
-    Switch
-    Checkbox
-    Listbox
     Autocomplete
     Textarea
     Radio
