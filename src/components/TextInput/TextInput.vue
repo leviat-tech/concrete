@@ -1,10 +1,9 @@
 <template>
-  <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message }">
-    <div class="flex w-full">
+  <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message, stacked }">
+    <div class="flex w-full concrete__text-input">
       <slot name="prefix" class="z-10"/>
       <input
           ref="inputRef"
-
           :id="id"
           v-model="value"
           type="text"
@@ -23,10 +22,10 @@
 </template>
 
 <script setup>
-
-import { computed, ref, } from 'vue';
-import { colorProp, formElementProps, useSizeProp } from '../../composables/props.js';
-import { useInputColorClassValue, useSizeValue } from '../../composables/styles.js';
+import { computed, ref, inject } from 'vue';
+import { formElementProps } from '../../composables/props.js';
+import { useInputColorClassValue } from '../../composables/styles';
+import { useSizeValue, useStackedValue, useFormElementValue } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -34,24 +33,22 @@ import CFragment from '../Fragment/Fragment.vue';
 
 const props = defineProps({
   ...formElementProps,
-
-  id: { type: String, default: null },
   modelValue: String,
-  color: colorProp,
-  size: useSizeProp(),
-  disabled: { type: Boolean, default: false },
   readOnly: { type: Boolean, default: false },
   placeholder: { type: String, default: '' },
   transparent: { type: Boolean, default: false },
-
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
-const formElement = props.isFormElement || !!props.label;
+const size = useSizeValue(props.size);
+const stacked = useStackedValue(props.stacked);
+const formElement = useFormElementValue(props.label);
+
 const isDirty = ref(false);
+const inputRef = ref(null);
 
 const value = computed({
   get() {
@@ -63,7 +60,14 @@ const value = computed({
   }
 });
 
-const size = useSizeValue(props.size);
+const onEnter = useEventHandler('enter', props, emit, value, isDirty);
+const onBlur = useEventHandler('blur', props, emit, value, isDirty);
+const focus = () => inputRef.value.focus();
+const blur = () => inputRef.value.blur();
+defineExpose({ focus, blur });
+
+
+
 const sizeClass = {
   xs: 'h-6 text-xs py-0.5',
   sm: 'h-8 text-sm py-1',
@@ -76,18 +80,6 @@ const bgColor = (props.transparent) ? 'bg-transparent' : 'bg-white';
 const colorClass = useInputColorClassValue(props.color)
 const disabledClass = computed(() => {
   return (props.disabled) && 'opacity-60';
-});
-
-const onEnter = useEventHandler('enter', props, emit, value, isDirty);
-const onBlur = useEventHandler('blur', props, emit, value, isDirty);
-
-const inputRef = ref(null);
-const focus = () => inputRef.value.focus();
-const blur = () => inputRef.value.blur();
-
-defineExpose({
-  focus,
-  blur,
 });
 
 </script>

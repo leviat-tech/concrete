@@ -1,7 +1,7 @@
 <template>
-  <div v-if="visible" class="relative flex items-center justify-center w-full h-full overflow-hidden bg-white">
+  <div v-if="visible" class="concrete__viewport relative flex items-center justify-center w-full h-full overflow-hidden bg-white">
     <slot />
-    <c-viewport-tools
+    <CViewportTools
       :viewport-id="viewportId"
       :options="options"
       :current-option="currentOption"
@@ -12,7 +12,6 @@
 
 <script>
 import CViewportTools from './ViewportTools.vue';
-
 
 export default {
   name: 'CViewport',

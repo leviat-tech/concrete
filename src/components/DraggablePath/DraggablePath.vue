@@ -1,5 +1,5 @@
 <template>
-  <g>
+  <g class="concrete__draggable-path">
     <path
       style="fill:none; vector-effect: non-scaling-stroke !important; paint-order: stroke fill markers;"
       v-show="!disabled"

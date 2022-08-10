@@ -1,8 +1,10 @@
 <template>
   <button
-    :class="[sizeClass, colourClass, disabledClass, paddingClass]"
+    :id="id"
+    :class="[sizeClass, colorClass, cursorClass, paddingClass]"
     :disabled="disabled"
     @click.self="click"
+    class="concrete__button"
   >
     <div class="">
       <slot />
@@ -10,103 +12,84 @@
   </button>
 </template>
 
-<script>
-export default {
-  name: 'CButton',
-  props: {
-    size: {
-      type: String,
-      default: 'md',
-      validator: (prop) => ['lg', 'md', 'sm', 'xs'].includes(prop),
-    },
-    color: {
-      type: String,
-      default: 'indigo',
-      validator: (prop) => ['indigo', 'sky', 'steel', 'success', 'warning', 'danger'].includes(prop),
-    },
-    fill: {
-      type: String,
-      default: 'solid',
-      validator: (prop) => ['solid', 'outline', 'ghost'].includes(prop),
-    },
-    disabled: { type: Boolean, default: false },
-    active: { type: Boolean, default: false },
-    customPadding: { type: Boolean, default: false },
+
+<script setup>
+import { computed } from 'vue';
+import { useSizeProp, colorProp } from '../../composables/props.js';
+import { useSizeValue } from '../../composables/forms';
+
+const props = defineProps({
+  id: { type: String, default: null },
+  color: colorProp,
+  size: useSizeProp(),
+  fill: {
+    type: String,
+    default: 'solid',
+    validator: (prop) => ['solid', 'outline', 'ghost'].includes(prop),
   },
-  data() {
-    return {
-    };
-  },
-  computed: {
-    paddingClass() {
-      return (this.customPadding) ? '' : 'px-2';
-    },
-    colourClass() {
-      let className = '';
-      if(this.fill === 'solid') {
-        className += 'border';
-        if(this.disabled) {
-          className += ` border-${this.color}-light bg-${this.color}-light text-${this.color}-lightest`;
-        }
-        else {
-          className += ` text-white hover:border-${this.color}-dark hover:bg-${this.color}-dark`;
-          if (this.active) { 
-            className += ` border-${this.color}-darkest bg-${this.color}-darkest `;
-          }
-          else {
-            className += ` border-${this.color} bg-${this.color} `;
-          }
-        }
-      } else if (this.fill === 'outline') {
-        className += 'border';
-        if(this.disabled) {
-          className += ` border-${this.color}-lightest text-${this.color}-lightest`;
-        }
-        else {
-          className += ` hover:text-white hover:bg-${this.color}`;
-          if (this.active) { 
-            className += `  bg-${this.color}-darkest border-${this.color}-darkest text-white`;
-          }
-          else {
-            className += ` border-${this.color} text-${this.color}`;
-          }
-        }
-      } else {
-        if(this.disabled) {
-          className += `text-${this.color}-light`;
-        }
-        else {
-          className += `text-${this.color} hover:text-${this.color}-dark`;
-          if (this.active) { 
-            className += `  text-${this.color}-darkest `;
-          }
-          else {
-            className += ` text-${this.color}`;
-          }
-        }
-      }
-      return className;
-    },
-    sizeClass() {
-      switch(this.size) {
-        case 'xs':
-          return 'h-6 text-xs';
-        case 'sm':
-          return 'h-8 text-sm';
-        case 'md':
-          return 'h-10 text-base';
-        case 'lg':
-          return 'h-12 text-lg';
-      }
-    },
-    disabledClass() {
-      return (this.disabled) ? 'cursor-not-allowed' : 'cursor-pointer';
+  disabled: { type: Boolean, default: false },
+  active: { type: Boolean, default: false },
+  customPadding: { type: Boolean, default: false },
+});
+
+const emit = defineEmits(['click']);
+const size = useSizeValue(props.size);
+
+const sizeClass = {
+  xs: 'h-6 text-xs py-0.5',
+  sm: 'h-8 text-sm py-1',
+  md: 'h-10 text-base py-2',
+  lg: 'h-12 text-lg py-2',
+}[size];
+
+const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-pointer';
+const paddingClass = (props.customPadding) ? '' : 'px-2';
+
+const color = (props.color === 'default') ? 'indigo' : props.color; 
+const colorClass = computed(() => {
+  let className = '';
+  if(props.fill === 'solid') {
+    className += 'border';
+    if(props.disabled) {
+      className += ` border-${color}-light bg-${color}-light text-${color}-lightest`;
     }
-  },
-  methods: {
-    click() {
-      this.$emit('click');
-    },
-  },
-};
+    else {
+      className += ` text-white hover:border-${color}-dark hover:bg-${color}-dark`;
+      if (props.active) { 
+        className += ` border-${color}-darkest bg-${color}-darkest `;
+      }
+      else {
+        className += ` border-${color} bg-${color} `;
+      }
+    }
+  } else if (props.fill === 'outline') {
+    className += 'border';
+    if(props.disabled) {
+      className += ` border-${color}-lightest text-${color}-lightest`;
+    }
+    else {
+      className += ` hover:text-white hover:bg-${color}`;
+      if (props.active) { 
+        className += `  bg-${color}-darkest border-${color}-darkest text-white`;
+      }
+      else {
+        className += ` border-${color} text-${color}`;
+      }
+    }
+  } else {
+    if(props.disabled) {
+      className += `text-${color}-light`;
+    }
+    else {
+      className += `text-${color} hover:text-${color}-dark`;
+      if (props.active) { 
+        className += `  text-${color}-darkest `;
+      }
+      else {
+        className += ` text-${color}`;
+      }
+    }
+  }
+  return className;
+})
 </script>
