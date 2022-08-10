@@ -8,6 +8,7 @@
       <textarea
         ref="inputRef"
         :id="id"
+        :rows="rows"
         v-model="value"
         type="text"
         class="
@@ -15,6 +16,7 @@
           truncate
           z-20
           w-full
+          h-auto
           border
           text-left
           pl-3
@@ -30,7 +32,6 @@
         :readonly="readOnly"
         @keydown.enter="onEnter"
         @blur="onBlur"
-        :rows="rows"
       />
       <slot name="suffix" class="z-10" />
     </div>
