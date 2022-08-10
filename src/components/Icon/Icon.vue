@@ -38,6 +38,7 @@ import {
   PlusIcon,
   PlusCircleIcon,
   SaveIcon,
+  SearchIcon,
   RefreshIcon,
   TableIcon,
   XCircleIcon,
@@ -58,12 +59,12 @@ import logger from '../../utils/logger';
 // TODO: add these missing icons
 // import Polygon from '../../assets/icons/polygon.svg';
 // import Pen from '../../assets/icons/pen.svg';
-import PointerOutline from '../../assets/icons/pointer-outline.svg';
-import PointerSolid from '../../assets/icons/pointer-solid.svg';
-import Compress from '../../assets/icons/compress.svg';
-import Function from '../../assets/icons/function.svg';
-import Redo from '../../assets/icons/redo.svg';
-import Undo from '../../assets/icons/undo.svg';
+import PointerOutlineIcon from './icons/PointerOutlineIcon.vue';
+import PointerSolidIcon from './icons/PointerSolidIcon.vue';
+import CompressIcon from './icons/CompressIcon.vue';
+import FunctionIcon from './icons/FunctionIcon.vue';
+import RedoIcon from './icons/RedoIcon.vue';
+import UndoIcon from './icons/UndoIcon.vue';
 
 export const icons = {
   'arrow-down': ArrowDownIcon,
@@ -78,15 +79,15 @@ export const icons = {
   'chevron-up': ChevronUpIcon,
   code: CodeIcon,
   cog: CogIcon,
-  compress: Compress,
+  compress: CompressIcon,
   copy: DuplicateIcon,
   cube: CubeIcon,
-  documentDownload: DocumentDownloadIcon,
+  'document-download': DocumentDownloadIcon,
   download: DownloadIcon,
   edit: PencilAltIcon,
   expand: ArrowsExpandIcon,
   'folder-open': FolderOpenIcon,
-  function: Function,
+  function: FunctionIcon,
   grid: ViewGridIcon,
   list: ViewListIcon,
   hand: HandIcon,
@@ -102,17 +103,19 @@ export const icons = {
   pencil: PencilIcon,
   play: PlayIcon,
   plus: PlusIcon,
-  'pointer-outline': PointerOutline,
-  'pointer-solid': PointerSolid,
+  'plus-circle': PlusCircleIcon,
+  'pointer-outline': PointerOutlineIcon,
+  'pointer-solid': PointerSolidIcon,
   // polygon: Polygon,
-  redo: Redo,
+  redo: RedoIcon,
   save: SaveIcon,
+  search: SearchIcon,
   sync: RefreshIcon,
   table: TableIcon,
   'times-circle': XCircleIcon,
   times: XIcon,
   trash: TrashIcon,
-  undo: Undo,
+  undo: UndoIcon,
   unlock: LockOpenIcon,
   upload: UploadIcon,
   warning: ExclamationIcon,
