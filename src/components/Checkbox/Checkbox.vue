@@ -10,9 +10,7 @@
         :class='[`h-${sized} w-${sized}`, cursorClass, bgColor]'>
         <span class="flex items-center justify-center transition-opacity" >
           <slot v-if="modelValue === true">
-            <CheckIcon
-              :class="[``, checkIconClass]"
-            />
+            <CheckIcon :class="checkIconClass" />
           </slot>
         </span>
       </Switch>
