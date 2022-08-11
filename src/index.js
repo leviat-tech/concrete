@@ -4,6 +4,7 @@ import CIcon from './components/Icon/Icon.vue';
 import CModal from './components/Modal/Modal.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import CTextInput from './components/TextInput/TextInput.vue';
+import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
 
 const allComponents = {
   CButton,
@@ -14,6 +15,7 @@ const allComponents = {
   CTool,
   CModal,
   CTextInput,
+  CAutoComplete,
 };
 
 const defaultOptions = {
@@ -50,6 +52,7 @@ export {
   CToolGroup,
   CModal,
   CTextInput,
+  CAutoComplete,
 }
 
 
