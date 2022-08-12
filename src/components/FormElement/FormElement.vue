@@ -1,9 +1,9 @@
 <template>
   <div class="concrete__form-element" :class="{ 'flex flex-row justify-between w-full' : !stacked }">
     <div :class="[stackedClass, sizeClass, textSizeClass]" v-if="label">
-      <span class="leading-5" :class="[lineClampClass]">
+      <label class="leading-5" :class="[lineClampClass]" :for="id">
         {{ label }}
-      </span>
+      </label>
     </div>
     <div :class="{ 'w-full' : expandInput }">
       <slot></slot>
