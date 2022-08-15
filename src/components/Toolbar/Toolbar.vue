@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-toolbar flex items-center h-8 p-1 min-h-12">
+  <div class="concrete__toolbar flex items-center h-8 p-1 min-h-12">
     <slot />
   </div>
 </template>
@@ -13,7 +13,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const selectedTool = ref(props.value);
+const selectedTool = ref(props.modelValue);
 
 const toolId = computed({
   get: () => selectedTool.value,
@@ -24,9 +24,5 @@ const toolId = computed({
 });
 
 provide('concreteSelectedTool', toolId);
-
-watch(props.modelValue, (val) => {
-  selectedTool.value = val;
-})
 
 </script>

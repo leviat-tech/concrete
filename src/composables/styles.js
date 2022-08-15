@@ -1,10 +1,4 @@
-import { computed, inject } from 'vue';
-
-export const useSizeValue = (sizeProp) => {
-  const options = inject('concrete', { size: 'md'});
-
-  return sizeProp || options.size;
-}
+import { computed } from 'vue';
 
 export const useInputColorClassValue = (colorProp) => computed(() => {
   const colorClassMap = {

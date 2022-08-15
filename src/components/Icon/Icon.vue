@@ -1,60 +1,70 @@
 <script>
 import { h } from 'vue'
-import set from 'lodash/set';
-import { ArrowDownIcon } from '@heroicons/vue/outline';
-import { ArrowUpIcon } from '@heroicons/vue/outline';
-import { ArrowLeftIcon } from '@heroicons/vue/outline';
-import { ArrowRightIcon } from '@heroicons/vue/outline';
-import { CheckIcon } from '@heroicons/vue/outline';
-import { CheckCircleIcon } from '@heroicons/vue/outline';
-import { ChevronDownIcon } from '@heroicons/vue/outline';
-import { ChevronUpIcon } from '@heroicons/vue/outline';
-import { ChevronLeftIcon } from '@heroicons/vue/outline';
-import { ChevronRightIcon } from '@heroicons/vue/outline';
-import { CodeIcon } from '@heroicons/vue/outline';
-import { CubeIcon } from '@heroicons/vue/outline';
-import { DuplicateIcon } from '@heroicons/vue/outline';
-import { DocumentDownloadIcon } from '@heroicons/vue/outline';
-import { PencilAltIcon } from '@heroicons/vue/outline';
-import { PencilIcon } from '@heroicons/vue/outline';
-import { ArrowsExpandIcon } from '@heroicons/vue/outline';
-import { FolderOpenIcon } from '@heroicons/vue/outline';
-import { ViewGridIcon } from '@heroicons/vue/outline';
-import { ViewListIcon } from '@heroicons/vue/outline';
-import { HandIcon } from '@heroicons/vue/outline';
-import { LockClosedIcon } from '@heroicons/vue/outline';
-import { ArrowNarrowDownIcon } from '@heroicons/vue/outline';
-import { ArrowNarrowUpIcon } from '@heroicons/vue/outline';
-import { ArrowNarrowLeftIcon } from '@heroicons/vue/outline';
-import { ArrowNarrowRightIcon } from '@heroicons/vue/outline';
-import { MinusIcon } from '@heroicons/vue/outline';
-import { MinusCircleIcon } from '@heroicons/vue/outline';
-import { PhotographIcon } from '@heroicons/vue/outline';
-import { PauseIcon } from '@heroicons/vue/outline';
-import { PlayIcon } from '@heroicons/vue/outline';
-import { PlusIcon } from '@heroicons/vue/outline';
-import { PlusCircleIcon } from '@heroicons/vue/outline';
-import { SaveIcon } from '@heroicons/vue/outline';
-import { RefreshIcon } from '@heroicons/vue/outline';
-import { TableIcon } from '@heroicons/vue/outline';
-import { XCircleIcon } from '@heroicons/vue/outline';
-import { XIcon } from '@heroicons/vue/outline';
-import { TrashIcon } from '@heroicons/vue/outline';
-import { LockOpenIcon } from '@heroicons/vue/outline';
-import { UploadIcon } from '@heroicons/vue/outline';
-import { ExclamationIcon } from '@heroicons/vue/outline';
-import { ExclamationCircleIcon } from '@heroicons/vue/outline';
+
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  CheckCircleIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CogIcon,
+  CodeIcon,
+  CubeIcon,
+  DuplicateIcon,
+  DocumentDownloadIcon,
+  DownloadIcon,
+  PencilAltIcon,
+  PencilIcon,
+  ArrowsExpandIcon,
+  FolderOpenIcon,
+  ViewGridIcon,
+  ViewListIcon,
+  HandIcon,
+  LockClosedIcon,
+  ArrowNarrowDownIcon,
+  ArrowNarrowUpIcon,
+  ArrowNarrowLeftIcon,
+  ArrowNarrowRightIcon,
+  MinusIcon,
+  MinusCircleIcon,
+  PhotographIcon,
+  PauseIcon,
+  PlayIcon,
+  PlusIcon,
+  PlusCircleIcon,
+  SaveIcon,
+  SearchIcon,
+  RefreshIcon,
+  TableIcon,
+  XCircleIcon,
+  XIcon,
+  TrashIcon,
+  LockOpenIcon,
+  UploadIcon,
+  ExclamationIcon,
+  ExclamationCircleIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+} from '@heroicons/vue/outline';
+
+
+import { colorProp } from '../../composables/props';
+import logger from '../../utils/logger';
 
 // TODO: add these missing icons
-// import Compress from '../../assets/icons/compress.svg';
-// import FileExport from '../../assets/icons/file-export.svg';
-// import Func from '../../assets/icons/function.svg';
-// import Pen from '../../assets/icons/pen.svg';
-// import PointerOutline from '../../assets/icons/pointer-outline.svg';
-// import PointerSolid from '../../assets/icons/pointer-solid.svg';
 // import Polygon from '../../assets/icons/polygon.svg';
-// import Redo from '../../assets/icons/redo.svg';
-// import Undo from '../../assets/icons/undo.svg';
+// import Pen from '../../assets/icons/pen.svg';
+import PointerOutlineIcon from './icons/PointerOutlineIcon.vue';
+import PointerSolidIcon from './icons/PointerSolidIcon.vue';
+import CompressIcon from './icons/CompressIcon.vue';
+import FunctionIcon from './icons/FunctionIcon.vue';
+import RedoIcon from './icons/RedoIcon.vue';
+import UndoIcon from './icons/UndoIcon.vue';
 
 export const icons = {
   'arrow-down': ArrowDownIcon,
@@ -68,15 +78,16 @@ export const icons = {
   'chevron-right': ChevronRightIcon,
   'chevron-up': ChevronUpIcon,
   code: CodeIcon,
-  // compress: Compress,
+  cog: CogIcon,
+  compress: CompressIcon,
   copy: DuplicateIcon,
   cube: CubeIcon,
-  download: DocumentDownloadIcon,
+  'document-download': DocumentDownloadIcon,
+  download: DownloadIcon,
   edit: PencilAltIcon,
   expand: ArrowsExpandIcon,
-  // 'file-export': FileExport,
   'folder-open': FolderOpenIcon,
-  // function: Func,
+  function: FunctionIcon,
   grid: ViewGridIcon,
   list: ViewListIcon,
   hand: HandIcon,
@@ -92,31 +103,32 @@ export const icons = {
   pencil: PencilIcon,
   play: PlayIcon,
   plus: PlusIcon,
-  // 'pointer-outline': PointerOutline,
-  // 'pointer-solid': PointerSolid,
+  'plus-circle': PlusCircleIcon,
+  'pointer-outline': PointerOutlineIcon,
+  'pointer-solid': PointerSolidIcon,
   // polygon: Polygon,
-  // redo: Redo,
+  redo: RedoIcon,
   save: SaveIcon,
+  search: SearchIcon,
   sync: RefreshIcon,
   table: TableIcon,
   'times-circle': XCircleIcon,
   times: XIcon,
   trash: TrashIcon,
-  // undo: Undo,
+  undo: UndoIcon,
   unlock: LockOpenIcon,
   upload: UploadIcon,
   warning: ExclamationIcon,
   error: ExclamationCircleIcon,
+  'zoom-in': ZoomInIcon,
+  'zoom-out': ZoomOutIcon,
 }
 
 export default {
   name: 'CIcon',
   props: {
-    type: {
-      type: String,
-      default: null,
-      validator: (prop) => Object.keys(icons).includes(prop)
-    },
+    type: String,
+    color: colorProp,
     size: {
       type: String,
       default: 'md',
@@ -127,52 +139,40 @@ export default {
       default: false,
     },
   },
-  computed: {
-    icon() {
-      return icons[this.type];
-    },
-  },
   render() {
-    const sizeClasses = {
-      sm: 'w-[18px] h-[18px]',
-      md: 'w-[24px] h-[24px]',
-      lg: 'w-[30px] h-[30px]',
-      xl: 'w-[36px] h-[36px]',
-      '2xl': 'w-[48px] h-[48px]',
-      '3xl': 'w-[64px] h-[64px]'
+    const icon = icons[this.type];
+
+    if (!icon) {
+      logger.warn(`CIcon - invalid icon type (${this.type})`);
+      return null;
     }
-    const classes = ['flex-none', sizeClasses[this.size]];
+
+    const sizes = {
+      sm: 18,
+      md: 24,
+      lg: 30,
+      xl: 36,
+      '2xl': 48,
+      '3xl': 64
+    }
+    const size = sizes[this.size];
+
+    const colorClass = `text-${this.color}`;
+    const classes = ['flex-none', colorClass];
 
     if (this.spin) {
-      classes.push('c-spin');
+      classes.push('animate-spin');
     }
 
-    const node = !this.$slots.default
-        ? h(this.icon, {
+    return this.$slots.default
+        ? this.$slots.default()[0]
+        : h(icon, {
           class: classes,
-        })
-        : this.$slots.default()[0];
-
-    // set(node, 'data.on.click', (evt) => this.$emit('click', evt));
-    return node;
+          style: {
+            width: size,
+            height: size
+          }
+        });
   },
 };
 </script>
-
-<style scoped>
-.c-spin {
-  animation-name: c-spin;
-  animation-duration: 2000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-
-@keyframes c-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-</style>

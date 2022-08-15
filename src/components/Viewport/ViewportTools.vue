@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete-drawing-tools">
+  <div class="concrete__viewport-tools absolute top-1 left-0 flex items-center">
     <c-toolbar v-if="!minbreakpoint && maximizable" class="drawing-tools">
       <c-tool-group>
         <c-tool
@@ -7,7 +7,6 @@
           name="Minimize"
           tool-id="minimize"
           icon="compress"
-          :stateful="false"
           @click="minimizeViewport"
         />
         <c-tool
@@ -15,12 +14,11 @@
           name="Maximize"
           tool-id="maximize"
           icon="expand"
-          :stateful="false"
           @click="maximizeViewport"
         />
       </c-tool-group>
     </c-toolbar>
-    <div v-if="options.length === 1" class="concrete-viewport-label">
+    <div v-if="options.length === 1" class="concrete-viewport-label text-gray-600 px-2">
       {{ options[0].label }}
     </div>
   </div>
@@ -28,7 +26,7 @@
 
 <script>
 export default {
-  name: 'CDrawingTools',
+  name: 'CViewportTools',
   props: {
     options: { type: Array, default: () => [] },
     currentOption: { type: [String, Number], default: null },
@@ -56,17 +54,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '../assets/styles/variables.scss';
-
-.concrete-drawing-tools {
-  display: flex;
-}
-
-.concrete-viewport-label {
-  font-size: 1rem;
-  padding: 0.5rem;
-  color: $color-gray-06
-}
-</style>

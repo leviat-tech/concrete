@@ -1,26 +1,26 @@
 <template>
-<Disclosure as="div" v-slot="{ open }">
-  <DisclosureButton class="w-full text-left" @click="onClick(!open)">
-     <div v-if="title" class="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100">
-        {{ title }}
-        <ChevronUpIcon
-            :class="[open && 'rotate-180 transform']"
-            class="flex-none h-5 w-5 ml-2 transition-all"
-        />
+  <Disclosure as="div" v-slot="{ open }" class="concrete__accordion">
+    <DisclosureButton class="w-full text-left" @click="onClick(!open)">
+      <div v-if="title" class="flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100">
+          {{ title }}
+          <ChevronUpIcon
+              :class="[open && 'rotate-180 transform']"
+              class="flex-none h-5 w-5 ml-2 transition-all"
+          />
+        </div>
+
+        <slot v-else name="title" :open="open"/>
+
+    </DisclosureButton>
+
+    <DisclosurePanel static>
+      <div class="overflow-hidden transition-all duration-200" :style="{ height }">
+        <div ref="content">
+          <slot :open="open"/>
+        </div>
       </div>
-
-      <slot v-else name="title"/>
-
-  </DisclosureButton>
-
-  <DisclosurePanel static>
-    <div class="overflow-hidden transition-all duration-200" :style="{ height }">
-      <div ref="content">
-        <slot/>
-      </div>
-    </div>
-  </DisclosurePanel>
-</Disclosure>
+    </DisclosurePanel>
+  </Disclosure>
 </template>
 
 <script setup>

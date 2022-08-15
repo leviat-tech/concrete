@@ -1,22 +1,21 @@
 <template>
-  <g>
+  <g class="concrete__draggable-path">
     <path
+      style="fill:none; vector-effect: non-scaling-stroke !important; paint-order: stroke fill markers;"
       v-show="!disabled"
       ref="path"
-      class="concrete-draggable-path-hover"
-      :class="{ hovered, draggable }"
+      :class="[cursorClass, strokeColor]"
       :d="path"
       :stroke-width="hitboxWidth"
-      :stroke="hovered ? hitboxStroke : 'transparent'"
-      :stroke-opacity="hovered ? hitboxOpacity : hitboxStroke"
+      :stroke-opacity="hovered ? hitboxOpacity : 0"      
       @click="$emit('click', $event)"
       @mouseover="hoverPath"
       @mouseout="unhoverPath"
     />
     <path
-      class="concrete-draggable-path"
-      :class="{ disabled, hovered }"
-      :stroke="strokeColor"
+      style="fill:none; vector-effect: non-scaling-stroke !important; paint-order: stroke fill markers;"
+      class="pointer-events-none"
+      :class="hoveredStrokeColor"
       :stroke-opacity="computedStrokeOpacity"
       :stroke-width="strokeWidth"
       :d="path"
@@ -26,25 +25,22 @@
 
 <script>
 import { drag as d3Drag } from 'd3-drag';
-import { selectAll, mouse } from 'd3-selection';
-
+import { selectAll } from 'd3-selection';
+import { colorProp } from '../../composables/props';
 
 export default {
   name: 'CDraggablePath',
   props: {
     path: { type: String, required: true },
+    color: colorProp,
     disabled: { type: Boolean, default: false },
     draggable: { type: Boolean, default: true },
     active: { type: Boolean, default: false },
     strokeWidth: { type: Number, default: 3 },
     hitboxWidth: { type: Number, default: 14 },
-    stroke: { type: String, default: 'black' },
     strokeOpacity: { type: Number, default: 0.6 },
-    hoverStroke: { type: String, default: '#3D95F0' },
     hoverStrokeOpacity: { type: Number, default: 1 },
-    hitboxStroke: { type: String, default: 'black' },
     hitboxOpacity: { type: Number, default: 0.1 },
-    activeStroke: { type: String, default: '#3D95F0' },
     activeStrokeOpacity: { type: Number, default: 1 },
   },
   data() {
@@ -55,15 +51,39 @@ export default {
   },
   computed: {
     strokeColor() {
-      if (this.active) return this.activeStroke;
-      if (this.hovered) return this.hoverStroke;
-      return this.stroke;
+      return {
+        default: 'stroke-black',
+        indigo: 'stroke-indigo',
+        sky: 'stroke-sky',
+        steel: 'stroke-steel',
+        success: 'stroke-success',
+        warning: 'stroke-warning',
+        danger: 'stroke-danger',
+      }[this.color];
+    },
+    hoveredStrokeColor() {
+      if(!this.hovered && !this.active) return 'stroke-black'
+      return {
+        default: 'stroke-black',
+        indigo: 'stroke-indigo',
+        sky: 'stroke-sky',
+        steel: 'stroke-steel',
+        success: 'stroke-success',
+        warning: 'stroke-warning',
+        danger: 'stroke-danger',
+      }[this.color];
     },
     computedStrokeOpacity() {
       if (this.active) return this.activeStrokeOpacity;
       if (this.hovered) return this.hoverStrokeOpacity;
       return this.strokeOpacity;
     },
+    cursorClass() {
+      if(this.disabled) {
+        return 'cursor-auto';
+      }
+      return 'cursor-move';
+    }
   },
   mounted() {
     if (this.draggable) {
@@ -78,20 +98,17 @@ export default {
     this.selection.on('.drag', null);
   },
   methods: {
-    dragstart() {
+    dragstart(e) {
       if (this.disabled) return;
-      const [x, y] = mouse(this.$refs.path);
-      this.$emit('drag-start', { x, y });
+      this.$emit('drag-start', { x: e.x, y: e.y });
     },
-    dragged() {
+    dragged(e) {
       if (this.disabled) return;
-      const [x, y] = mouse(this.$refs.path);
-      this.$emit('dragging', { x, y });
+      this.$emit('dragging', { x: e.x, y: e.y });
     },
-    dragend() {
+    dragend(e) {
       if (this.disabled) return;
-      const [x, y] = mouse(this.$refs.path);
-      this.$emit('drag-end', { x, y });
+      this.$emit('drag-end', { x: e.x, y: e.y });
     },
     hoverPath() {
       this.hovered = true;
@@ -102,22 +119,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/styles/variables.scss';
-
-.concrete-draggable-path {
-  vector-effect: non-scaling-stroke !important;
-  fill: none;
-  pointer-events: none;
-}
-
-.concrete-draggable-path-hover {
-  vector-effect: non-scaling-stroke !important;
-  fill: none;
-
-  &.draggable {
-    cursor: move;
-  }
-}
-</style>

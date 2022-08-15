@@ -1,192 +1,116 @@
-
-
 <template>
   <div class="flex">
-    
-    <div class="w-96 bg-gray-200 h-full flex-col">
-      <div class="p-8 font-bold">Concrete 2</div>
-      <div class="px-8 py-4">
-        <div class="">
-          <div class="font-semibold pb-2">Components</div>
-          <div class="">
-          </div>
-        </div>
-      </div> 
-    </div>
-    
-    <div class="bg-gray-100 h-full w-full">
-      
-      <div class="m-8 w-64 space-x-4 flex bg-white">
-        <c-button>Take Focus</c-button> 
-      </div>      
-
-      <div class="m-8 w-64 bg-white">
-        <c-numeric-input v-model="value" unit="m"  />
-      </div>
-
-      
-      <div class="m-8">      
-        <div class="mb-4">
-          Heading
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4">
-          <div class="flex flex-row justify-between">
-            <div class="basis-1/2 pr-8  h-10 flex flex-col justify-center">
-              <span class="line-clamp-2 leading-none">
-                Elementy 1
-              </span>
-            </div>
-            <div class="w-full">
-              <c-text-input  color="success"></c-text-input>
-            </div>
-          </div>
-          <div class="flex flex-row justify-between">
-            <div class="basis-1/2 pr-8  h-10 flex flex-col justify-center">
-              <span class="line-clamp-2 leading-none">
-                Element 2
-              </span>
-            </div>
-            <div class="w-full">
-              <c-text-input class=""></c-text-input>
-            </div>
-          </div>
-          
-          <c-numeric-input :isFormElement="true" label="Elementy 3: the thirdy element"></c-numeric-input>
-          <div class="flex flex-row justify-between">
-            <div class="basis-1/2 pr-8  h-10 flex flex-col justify-center">
-              <span class="line-clamp-2 leading-none">
-                Element 4
-              </span>
-            </div>
-            <div class="w-full">
-              <c-text-input  color="warning"></c-text-input>
-              <div class="text-xs text-warning">Warning Message Here</div>
-            </div> 
-          </div>
-          <c-numeric-input :isFormElement="true" size="lg" :label="'Element 5'"></c-numeric-input>
-          <c-form-element label="Element 6" size="sm">
-            <div class="w-full flex space-x-4">
-              <c-numeric-input class="" :isFormElement="true" size="sm">
+    <div class="bg-gray-100 h-full w-full grid grid-cols-2 py-2 divide-x divide-gray-300">
+      <div class="divide-y divide-gray-300">
+        <div class="px-4">   
+          <CFormSection title="Registration Form 1 - (xs)" size="xs">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">          
+              <CTextInput label="First Name" v-model="form1.firstName" :message="errors.firstName" :color="errors.firstName && 'danger'"/>
+              <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" :color="errors.lastName && 'danger'"/>
+              <CTextInput label="Email Address" v-model="form1.emailAddress" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"/>
+              <CListbox label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" v-model="form1.country"/>
+              <CNumericInput label="Phone Number" v-model="form1.phoneNo">
                 <template v-slot:prefix>
-                  <c-input-affix>Min</c-input-affix>
+                  <CInputAffix>+44</CInputAffix>
                 </template>
-              </c-numeric-input>
-              <c-numeric-input class="" :isFormElement="true" size="sm" color="warning" message="warning message here">
+              </CNumericInput>
+              <CFormElement label="Date of Birth">
+                <div class="w-full flex space-x-4">
+                  <CNumericInput class="w-20" :isFormElement="true" placeholder="Day"/>
+                  <CListbox  class="w-full"  :isFormElement="true" :options="birthMonthOptions" placeholder="Month" v-model="form1.birthMonth"/>
+                  <CNumericInput class="w-24" :isFormElement="true" placeholder="Year"/>
+                </div>
+              </CFormElement>
+              <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications"/>
+              <CCheckbox label="Is Admin" v-model="form1.isAdmin" size="md"/>
+              <CButton class="col-span-2">Submit</CButton>
+            </div>
+          </CFormSection>
+        </div>
+
+        <div class="px-4">   
+          <CFormSection title="Registration Form 2 - (lg)" size="lg">
+            <div class="space-y-4">          
+              <CTextInput label="First Name" v-model="form1.firstName" :message="errors.firstName" :color="errors.firstName && 'danger'"/>
+              <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" :color="errors.lastName && 'danger'"/>
+              <CTextInput label="Email Address" v-model="form1.emailAddress" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"/>
+              <CListbox label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" v-model="form1.country"/>
+              <CNumericInput label="Phone Number" v-model="form1.phoneNo" color="success">
                 <template v-slot:prefix>
-                  <c-input-affix>Max</c-input-affix>
+                  <CInputAffix>+44</CInputAffix>
                 </template>
-              </c-numeric-input>
+              </CNumericInput>
+              <CFormElement label="Date of Birth">
+                <div class="w-full flex space-x-4">
+                  <CNumericInput class="w-20" :isFormElement="true" placeholder="Day"/>
+                  <CListbox  class="w-full" :isFormElement="true" :options="birthMonthOptions" placeholder="Month" v-model="form1.birthMonth"/>
+                  <CNumericInput class="w-24" :isFormElement="true" placeholder="Year"/>
+                </div>
+              </CFormElement>
+              <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications"/>
+              <CCheckbox label="Is Admin" v-model="form1.isAdmin"/>
+              <CButton class="w-full">Submit</CButton>
             </div>
-          </c-form-element>
+          </CFormSection>
         </div>
-
       </div>
 
+      <div class="divide-y divide-gray-300">
+        <div class="px-4">   
+          <CFormSection title="Registration Form 3 - (sm)" size="sm" >
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">          
+              <CTextInput label="First Name" v-model="form1.firstName" :message="errors.firstName" :color="errors.firstName && 'danger'">
+              </CTextInput>
+              <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" :color="errors.lastName && 'danger'" ></CTextInput>
+              <CTextInput label="Email Address" v-model="form1.emailAddress" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"></CTextInput>
+              <CListbox label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" v-model="form1.country"></CListbox>
+              <CNumericInput label="Phone Number" v-model="form1.phoneNo" color="success">
+                <template v-slot:prefix>
+                  <CInputAffix>+44</CInputAffix>
+                </template>
+              </CNumericInput>
+              <CFormElement label="Date of Birth">
+                <div class="w-full flex space-x-2">
+                  <CNumericInput class="w-20" :isFormElement="true" placeholder="Day"></CNumericInput>
+                  <CListbox  class="w-full" :isFormElement="true" :options="birthMonthOptions" placeholder="Month" v-model="form1.birthMonth" ></CListbox>
+                  <CNumericInput class="w-20" :isFormElement="true" placeholder="Year"></CNumericInput>
+                </div>
+              </CFormElement>
+              <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications" :displayIcons="true"></CSwitch>
+              <CCheckbox label="Is Admin" v-model="form1.isAdmin"></CCheckbox>
+              <CButton class="col-span-2">Submit</CButton>
+            </div>
+          </CFormSection>
+        </div>
+
+        <div class="">   
+          <CFormSection title="Registration Form 4 - (md)" :stacked="true" class="bg-indigo-dark px-4 text-sky-dark" color="sky">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">       
+              <CTextInput label="First Name" v-model="form1.firstName" color="sky" :transparent="true"/>
+              <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" color="sky" :transparent="true"/>
+              <CTextInput label="Email Address" v-model="form1.emailAddress" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'" :transparent="true"/>
+              <CListbox label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" v-model="form1.country" :transparent="true" color="sky"/>
+              <CNumericInput label="Phone Number" v-model="form1.phoneNo" color="sky" :transparent="true">
+                <template v-slot:prefix>
+                  <CInputAffix :transparent="true">+44</CInputAffix>
+                </template>
+              </CNumericInput>
+              <CFormElement label="Date of Birth" color="sky">
+                <div class="w-full flex space-x-4">
+                  <CNumericInput class="w-20" :isFormElement="true" placeholder="Day" :transparent="true"  color="sky"/>
+                  <CListbox  class="w-full" :isFormElement="true" :options="birthMonthOptions" placeholder="Month" v-model="form1.birthMonth" :transparent="true"  color="sky"/>
+                  <CNumericInput class="w-24" :isFormElement="true" placeholder="Year" :transparent="true"  color="sky"/>
+                </div>
+              </CFormElement>
+              <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications" color="sky" :transparent="true" />
+              <CCheckbox label="Is Admin" v-model="form1.isAdmin" color="sky" :transparent="true" />
+              <CButton class="col-span-2" color="sky" fill="outline">Submit</CButton>
+            </div>
+          </CFormSection>
+        </div>
+      </div>
       
-      <div class="m-8">      
-        <div class="mb-4 font-semibold pb-2 border-b border-gray-600">
-          Heading 2
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
-          <c-numeric-input class="" label="Elementy 1" :stacked="true" message="Tip here"></c-numeric-input>
-          <div class="">
-            <div class=" mb-1 truncate">
-              <span class="leading-none">
-                Element 2
-              </span>
-            </div>
-            <c-text-input color="danger"></c-text-input>
-            <div class="text-xs text-danger">Error Message Here</div>
-          </div>
-          <div class="">
-            <div class=" mb-1 truncate">
-              <span class="leading-none">
-                Elementy 3: the thirdy element ershrthg sdg ers ht
-              </span>
-            </div>
-            <c-text-input class=""></c-text-input>
-          </div>
-          <div class="">
-            <div class=" mb-1 truncate">
-              <span class="leading-none">
-                Element 4
-              </span>
-            </div>
-            <c-text-input class=""></c-text-input>
-            <div class="text-xs text-gray-400">Helpful Tip Here</div>
-          </div>
-          <div class="">
-            <div class=" mb-1 truncate">
-              <span class="leading-none">
-                Element 5
-              </span>
-            </div>
-            <c-text-input class=""></c-text-input>
-          </div>
-          <div class="">
-            <div class=" mb-1 truncate">
-              <span class="leading-none">
-                Element 6
-              </span>
-            </div>
-            <c-text-input class=""></c-text-input>
-          </div>
-        </div>
-
-      </div>
-
       
-      <div class="m-8">      
-        <div class="mb-4">
-          Heading
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4">
-          <div class="flex flex-row justify-between">
-            <div class="basis-1/2 pr-8  h-10 flex flex-col justify-center">
-              <span class="line-clamp-2 leading-none">
-                Elementy 1
-              </span>
-            </div>
-            <div class="w-full">
-              <c-text-input  color="success"></c-text-input>
-            </div>
-          </div>
-          <div class="flex flex-row justify-between">
-            <div class="basis-1/2 pr-8  h-10 flex flex-col justify-center">
-              <span class="line-clamp-2 leading-none">
-                Element 2
-              </span>
-            </div>
-            <div class="w-full">
-              <c-text-input class=""></c-text-input>
-            </div>
-          </div>
-          <c-form-element label="Elementy 3: the thirdy element" size="lg">
-            <c-numeric-input class=""></c-numeric-input>
-          </c-form-element>
-          <c-form-element label="test" :labelFormatter="(l) => l.toUpperCase()" size="xs">
-            <c-numeric-input class=""></c-numeric-input>
-          </c-form-element>
-          <c-form-element :label="true" field="mrblobby.length" color="indigo">
-            <c-numeric-input class="" :value="value2" @input="(v) => value2 = v"></c-numeric-input>
-          </c-form-element>
-          <c-form-element label="Element 6">
-            <div class="w-full flex space-x-4">
-            <c-numeric-input class="" v-model="value2" @blur="handleBlur">
-              <template v-slot:prefix>
-                <c-input-affix>Min</c-input-affix>
-              </template>
-            </c-numeric-input>
-            <c-numeric-input class="">
-              <template v-slot:prefix>
-                <c-input-affix>Max</c-input-affix>
-              </template>
-            </c-numeric-input>
-        </div>
-          </c-form-element>
-        </div>
-
-      </div>
     </div>
   </div>
 </template>
@@ -196,32 +120,64 @@
 import CTextInput from './components/TextInput/TextInput.vue';
 import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CListbox from './components/Listbox/Listbox.vue';
+import CSwitch from './components/Switch/Switch.vue';
+import CCheckbox from './components/Checkbox/Checkbox.vue';
 import CButton from './components/Button/Button.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
-
-import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
+import CFormSection from './components/FormSection/FormSection.vue';
+import { CResizable, CPane } from './components/Resizable';
+import { XIcon } from '@heroicons/vue/solid';
 
 export default {
   components: {
     CNumericInput,
     CTextInput,
     CListbox,
+    CSwitch,
+    CCheckbox,
     CButton,
     CInputAffix,
     CFormElement,
-    CheckIcon,
-    SelectorIcon
+    CFormSection,
+    CResizable,
+    CPane,
+    XIcon,
   },
   data() {
     return {
+      form1: {
+        firstName: null,
+        lastName: null,
+        emailAddress: null,
+        country: 'United Kingdom',
+        phoneNo: null,
+        birthDay: null,
+        birthMonth: null,
+        birthYear: null,
+        isAdmin: false,
+        recieveNotifications: false,
+      },
       value: null,
-      value2: 2,
+      value2: 'Male',
+      leftPaneSize: null,
+      birthMonthOptions: [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+      ],
+      errors: {
+        emailAddress: 'Not a valid email address'
+      }
     }
   },
   computed: {
+    leftPaneClass() {
+      return (this.leftPaneSize > 500) ? 'grid-cols-2' : 'grid-cols-1'
+    },
   },
   methods: {
+    resizePanes(data) {
+      this.leftPaneSize = data[0];
+    },
     takeFocus() {
       this.$refs.testid.focus();
     },
@@ -231,7 +187,23 @@ export default {
     handleBlur(value) {
       console.log('rerender if necessary');
       alert('This is a custom handler for the localHandler input. Value: ' + value);
+    },
+    getInputColor(ref) {
+      return (ref) ? 'danger' : 'default';
     }
   }
 }
 </script>
+
+<style>
+
+.splitpanes--vertical > .splitpanes__splitter {
+  min-width: 6px;
+  background: linear-gradient(90deg, #ccc, #111);
+}
+
+.splitpanes--horizontal > .splitpanes__splitter {
+  min-height: 6px;
+  background: linear-gradient(0deg, #ccc, #111);
+}
+</style>
