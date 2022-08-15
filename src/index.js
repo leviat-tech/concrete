@@ -6,6 +6,7 @@ import CTextArea from './components/TextArea/TextArea.vue';
 import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CListbox from './components/Listbox/Listbox.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
+import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -18,7 +19,6 @@ import CModal from './components/Modal/Modal.vue';
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
-
 import { CViewportContainer, CViewport } from './components/Viewport';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
@@ -41,6 +41,7 @@ const allComponents = {
   CStatusBar,
   CSwitch,
   CTextInput,
+  CAutoComplete,
   CTextArea,
   CTool,
   CToolbar,
@@ -83,6 +84,7 @@ export {
   CStatusBar,
   CSwitch,
   CTextInput,
+  CAutoComplete,
   CTextArea,
   CTool,
   CToolbar,
