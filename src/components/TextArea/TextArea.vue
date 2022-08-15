@@ -45,10 +45,8 @@ import {
   formElementProps,
   useSizeProp,
 } from '../../composables/props.js';
-import {
-  useInputColorClassValue,
-  useSizeValue,
-} from '../../composables/styles.js';
+import { useInputColorClassValue } from '../../composables/styles.js';
+import { useSizeValue } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
