@@ -5,7 +5,8 @@ export const defaultOptions = {
   stacked: false,
   components: null,
   labelFormatter: (label) => label,
-  inputHandler: null
+  inputHandler: null,
+  inputIdToValue: null,
 }
 
 export const useConcrete = () => {

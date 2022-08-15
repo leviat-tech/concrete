@@ -54,11 +54,10 @@ const allComponents = {
 const install = (app, userOptions = {}) => {
 
   const options = { ...defaultOptions, ...userOptions };
-  const { size, stacked, components, inputHandler, labelFormatter } = options;
 
-  app.provide('concrete', { size, stacked, inputHandler, labelFormatter });
+  app.provide('concrete', options);
 
-  const componentsToInclude = components || Object.keys(allComponents);
+  const componentsToInclude = options.components || Object.keys(allComponents);
 
   componentsToInclude.forEach((componentName) => {
     const component = allComponents[componentName];

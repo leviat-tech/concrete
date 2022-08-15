@@ -25,3 +25,11 @@ export const useFormElementValue = (labelProp) => {
   const formElement = inject('form-element', { isFormElement: null });
   return formElement.isFormElement || !!labelProp;
 }
+
+export const useInputValue = (props) => {
+  const { inputIdToValue } = useConcrete();
+
+  if (props.modelValue !== undefined || !props.id || !inputIdToValue) return props.modelValue;
+
+  return inputIdToValue(props.id)
+}

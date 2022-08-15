@@ -72,7 +72,7 @@ import { computed, ref, inject } from 'vue';
 import isPlainObject from 'lodash/isPlainObject';
 import { formElementProps } from '../../composables/props.js';
 import { useInputColorClassValue } from '../../composables/styles.js';
-import { useFormElementValue, useSizeValue, useStackedValue } from '../../composables/forms.js';
+import { useFormElementValue, useSizeValue, useStackedValue, useInputValue } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -110,7 +110,7 @@ const buttonRef = ref(null);
 
 const selectedValue = computed({
   get() {
-    return props.modelValue
+    return useInputValue(props);
   },
   set(value) {
     isDirty.value = true;
