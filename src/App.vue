@@ -5,24 +5,24 @@
         <div class="px-4">   
           <CFormSection title="Registration Form 1 - (xs)" size="xs">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">          
-              <CTextInput label="First Name" v-model="form1.firstName" :message="errors.firstName" :color="errors.firstName && 'danger'"/>
-              <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" :color="errors.lastName && 'danger'"/>
-              <CTextInput label="Email Address" v-model="form1.emailAddress" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"/>
-              <CListbox label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" v-model="form1.country"/>
-              <CNumericInput label="Phone Number" v-model="form1.phoneNo">
+              <CTextInput id="firstname" label="First Name" :message="errors.firstName" :color="errors.firstName && 'danger'"/>
+              <CTextInput id="lastname" label="Last Name"  :message="errors.lastName" :color="errors.lastName && 'danger'"/>
+              <CTextInput id="email" label="Email Address" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"/>
+              <CListbox id="nationality" label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" />
+              <CNumericInput id="phone" label="Phone Number">
                 <template v-slot:prefix>
                   <CInputAffix>+44</CInputAffix>
                 </template>
               </CNumericInput>
               <CFormElement label="Date of Birth">
                 <div class="w-full flex space-x-4">
-                  <CNumericInput class="w-20" :isFormElement="true" placeholder="Day"/>
-                  <CListbox  class="w-full"  :isFormElement="true" :options="birthMonthOptions" placeholder="Month" v-model="form1.birthMonth"/>
-                  <CNumericInput class="w-24" :isFormElement="true" placeholder="Year"/>
+                  <CNumericInput id="date" class="w-20" :isFormElement="true" placeholder="Day"/>
+                  <CListbox  id="month" class="w-full"  :isFormElement="true" :options="birthMonthOptions" placeholder="Month" />
+                  <CNumericInput id="year" class="w-24" :isFormElement="true" placeholder="Year"/>
                 </div>
               </CFormElement>
-              <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications"/>
-              <CCheckbox label="Is Admin" v-model="form1.isAdmin" size="md"/>
+              <CSwitch id="enableNotifications" label="Recieve Notifications" />
+              <CCheckbox id="isAdmin" label="Is Admin" size="md"/>
               <CButton class="col-span-2">Submit</CButton>
             </div>
           </CFormSection>
