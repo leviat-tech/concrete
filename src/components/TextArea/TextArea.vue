@@ -71,6 +71,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
+const stacked = useStackedValue(props.stacked);
 const formElement = useFormElementValue(props.label);
 const isDirty = ref(false);
 
