@@ -70,7 +70,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
-const formElement = props.isFormElement || !!props.label;
+const formElement = useFormElementValue(props.label);
 const isDirty = ref(false);
 
 const value = computed({
