@@ -1,5 +1,5 @@
 <template>
-  <Combobox as="div" v-model="displayValue" :disabled="disabled">
+  <Combobox as="div" class="concrete__autocomplete" v-model="displayValue" :disabled="disabled">
     <div :class="['relative', disabledClass]">
       <div
         class="
@@ -23,11 +23,7 @@
           :class="[ sizeClass, bgColor]"
         />
       </div>
-      <ComboboxOptions
-        :class="[
-          'absolute z-10 mt-1 w-full bg-white shadow-lg py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm',
-        ]"
-      >
+      <ComboboxOptions class="absolute z-10 mt-1 w-full bg-white shadow-lg py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
         <div
           v-if="filteredOptions.length === 0 && searchValue !== ''"
           class="cursor-default select-none relative py-2 pl-3 pr-9"
