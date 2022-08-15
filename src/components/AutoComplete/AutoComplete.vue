@@ -59,10 +59,7 @@ import {
 } from "@headlessui/vue";
 import { computed, ref, reactive } from "vue";
 import { colorProp, useSizeProp } from "../../composables/props";
-import {
-  useInputColorClassValue,
-  useSizeValue,
-} from "../../composables/styles.js";
+import { useSizeValue } from "../../composables/forms.js";
 import { useEventHandler } from "../../composables/events.js";
 import isPlainObject from "lodash/isPlainObject";
 
