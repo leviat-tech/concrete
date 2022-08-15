@@ -39,19 +39,19 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref } from 'vue';
 import {
   colorProp,
   formElementProps,
   useSizeProp,
-} from "../../composables/props.js";
+} from '../../composables/props.js';
 import {
   useInputColorClassValue,
   useSizeValue,
-} from "../../composables/styles.js";
-import { useEventHandler } from "../../composables/events.js";
-import CFormElement from "../FormElement/FormElement.vue";
-import CFragment from "../Fragment/Fragment.vue";
+} from '../../composables/styles.js';
+import { useEventHandler } from '../../composables/events.js';
+import CFormElement from '../FormElement/FormElement.vue';
+import CFragment from '../Fragment/Fragment.vue';
 
 const props = defineProps({
   ...formElementProps,
@@ -62,7 +62,7 @@ const props = defineProps({
   size: useSizeProp(),
   disabled: { type: Boolean, default: false },
   readOnly: { type: Boolean, default: false },
-  placeholder: { type: String, default: "" },
+  placeholder: { type: String, default: '' },
   transparent: { type: Boolean, default: false },
 
   onEnter: { type: Function, default: null },
@@ -70,7 +70,7 @@ const props = defineProps({
   rows: { type: Number, default: 10 },
 });
 
-const emit = defineEmits(["update:modelValue", "enter", "blur"]);
+const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
 const formElement = props.isFormElement || !!props.label;
 const isDirty = ref(false);
@@ -81,27 +81,27 @@ const value = computed({
   },
   set(value) {
     isDirty.value = true;
-    emit("update:modelValue", value);
+    emit('update:modelValue', value);
   },
 });
 
 const size = useSizeValue(props.size);
 const sizeClass = {
-  xs: "h-6 text-xs py-0.5",
-  sm: "h-8 text-sm py-1",
-  md: "h-10 text-base py-2",
-  lg: "h-12 text-lg py-2",
+  xs: 'h-6 text-xs py-0.5',
+  sm: 'h-8 text-sm py-1',
+  md: 'h-10 text-base py-2',
+  lg: 'h-12 text-lg py-2',
 }[size];
 
-const cursorClass = props.disabled ? "cursor-not-allowed" : "cursor-text";
-const bgColor = props.transparent ? "bg-transparent" : "bg-white";
+const cursorClass = props.disabled ? 'cursor-not-allowed' : 'cursor-text';
+const bgColor = props.transparent ? 'bg-transparent' : 'bg-white';
 const colorClass = useInputColorClassValue(props.color);
 const disabledClass = computed(() => {
-  return props.disabled && "opacity-60";
+  return props.disabled && 'opacity-60';
 });
 
-const onEnter = useEventHandler("enter", props, emit, value, isDirty);
-const onBlur = useEventHandler("blur", props, emit, value, isDirty);
+const onEnter = useEventHandler('enter', props, emit, value, isDirty);
+const onBlur = useEventHandler('blur', props, emit, value, isDirty);
 
 const inputRef = ref(null);
 const focus = () => inputRef.value.focus();
