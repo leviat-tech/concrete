@@ -1,7 +1,7 @@
 <template>
   <component
     :is="formElement ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message }"
+    v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
   >
     <div class="flex w-full">
       <slot name="prefix" class="z-10" />
