@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-full w-full overflow-hidden relative">
+  <div class="flex h-full w-full overflow-hidden relative concrete__svg-2d-viewport">
     <svg
       ref="svg"
       class="flex-1"

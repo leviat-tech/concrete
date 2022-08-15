@@ -1,13 +1,20 @@
 <template>
   <div
     ref="viewportContainer"
-    class="concrete-viewport w-full h-full flex items-center justify-center overflow-hidden"
+    class="concrete__viewport-container w-full h-full flex items-center justify-center overflow-hidden"
     :class="{ 'grid bg-gray-200': !fullWidth }"
     :style="{ 'grid-template-columns': colStyle }"
   >
     <slot />
   </div>
 </template>
+
+
+<style lang="scss" scoped>
+.concrete__viewport-container {
+  gap: 1px;
+}
+</style>
 
 <script>
 function columns(ar, aspectRatio, options) {
@@ -112,11 +119,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-
-.concrete-viewport {
-  gap: 1px;
-}
-
-</style>
