@@ -84,7 +84,7 @@ const value = computed({
   },
 });
 
-const size = useFormElementValue(props.size);
+const size = useSizeValue(props.size);
 const sizeClass = {
   xs: 'h-6 text-xs py-0.5',
   sm: 'h-8 text-sm py-1',
