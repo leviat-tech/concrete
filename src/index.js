@@ -4,9 +4,11 @@ import { reactive } from 'vue';
 import CButton from './components/Button/Button.vue';
 import CSwitch from './components/Switch/Switch.vue';
 import CTextInput from './components/TextInput/TextInput.vue';
+import CTextArea from './components/TextArea/TextArea.vue';
 import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CListbox from './components/Listbox/Listbox.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
+import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -19,13 +21,11 @@ import CModal from './components/Modal/Modal.vue';
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
-
 import { CViewportContainer, CViewport } from './components/Viewport';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
 
 import { defaultOptions } from './composables/concrete';
-
 
 const allComponents = {
   CAccordion,
@@ -43,14 +43,14 @@ const allComponents = {
   CStatusBar,
   CSwitch,
   CTextInput,
+  CAutoComplete,
+  CTextArea,
   CTool,
   CToolbar,
   CToolGroup,
   CViewport,
-  CViewportContainer
+  CViewportContainer,
 };
-
-
 
 const install = (app, userOptions = {}) => {
 
@@ -70,9 +70,8 @@ const install = (app, userOptions = {}) => {
 
   componentsToInclude.forEach((componentName) => {
     const component = allComponents[componentName];
-      app.component(componentName, component);
+    app.component(componentName, component);
   });
-
 };
 
 export default {
@@ -95,9 +94,11 @@ export {
   CStatusBar,
   CSwitch,
   CTextInput,
+  CAutoComplete,
+  CTextArea,
   CTool,
   CToolbar,
   CToolGroup,
   CViewport,
-  CViewportContainer
-}
+  CViewportContainer,
+};
