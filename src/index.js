@@ -1,3 +1,5 @@
+import { reactive } from 'vue';
+
 // Inputs and Form Components
 import CButton from './components/Button/Button.vue';
 import CSwitch from './components/Switch/Switch.vue';
@@ -52,7 +54,11 @@ const allComponents = {
 
 const install = (app, userOptions = {}) => {
 
-  const options = { ...defaultOptions, ...userOptions };
+  const options = {
+    ...defaultOptions,
+    ...userOptions,
+    registeredInputs: reactive({})
+  };
 
   app.provide('concrete', options);
 

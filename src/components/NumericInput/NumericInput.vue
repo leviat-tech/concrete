@@ -40,7 +40,13 @@ import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { formElementProps } from '../../composables/props.js';
 import { useInputColorClassValue } from '../../composables/styles';
-import { useSizeValue, useStackedValue, useFormElementValue, useInputValue } from '../../composables/forms';
+import {
+  useSizeValue,
+  useStackedValue,
+  useFormElementValue,
+  useInputValue,
+  useRegisterInput
+} from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
 
 const props = defineProps({
@@ -125,5 +131,7 @@ const colorClass = useInputColorClassValue(props.color);
 const disabledClass = computed(() => {
   return (props.disabled) && 'opacity-60';
 });
+
+useRegisterInput(props.id, inputRef);
 
 </script>

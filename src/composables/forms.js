@@ -1,5 +1,6 @@
-import { useConcrete } from './concrete.js';
-import { inject } from 'vue';
+import { useConcrete } from './concrete';
+import { inject, onMounted, onUnmounted } from 'vue';
+import logger from '../utils/logger.js';
 
 export const useFormLabel = (props) => {
   const concrete = useConcrete();
@@ -32,4 +33,24 @@ export const useInputValue = (props) => {
   if (props.modelValue !== undefined || !props.id || !inputIdToValue) return props.modelValue;
 
   return inputIdToValue(props.id)
+}
+
+export const useRegisterInput = (id, inputRef) => {
+  const { registerInputs, registeredInputs } = useConcrete();
+
+  if (!id || !inputRef || !registerInputs) return;
+
+  onMounted(() => {
+    const input = inputRef.value;
+    const el = (input instanceof HTMLElement) ? input : input.el;
+    if (!(el instanceof HTMLElement)) logger.warn(`Could not register input with id '${id}'`);
+    registeredInputs[id] = el;
+    if (typeof registerInputs === 'function') {
+      registerInputs(id, el);
+    }
+  });
+
+  onUnmounted(() => {
+    delete registeredInputs[id];
+  });
 }

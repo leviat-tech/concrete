@@ -26,7 +26,8 @@ concrete.install(app, {
     if (!Object.hasOwn(store, id)) return;
 
     store[id] = value;
-  }
+  },
+  registerInputs: true
 });
 app.mount('#app');
 
