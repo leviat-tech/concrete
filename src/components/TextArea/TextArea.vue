@@ -45,7 +45,13 @@ import {
   formElementProps,
   useSizeProp,
 } from '../../composables/props.js';
-import { useSizeValue, useStackedValue, useFormElementValue, useRegisterInput } from '../../composables/forms';
+import {
+  useSizeValue,
+  useStackedValue,
+  useFormElementValue,
+  useRegisterInput,
+  useInputValue
+} from '../../composables/forms';
 
 import { useInputColorClassValue } from '../../composables/styles.js';
 import { useEventHandler } from '../../composables/events.js';
