@@ -40,17 +40,32 @@ export const useRegisterInput = (id, inputRef) => {
 
   if (!id || !inputRef || !registerInputs) return;
 
+  const isCustomHandler = (typeof registerInputs === 'function');
+  let unregisterInput;
+
   onMounted(() => {
     const input = inputRef.value;
     const el = (input instanceof HTMLElement) ? input : input.el;
-    if (!(el instanceof HTMLElement)) logger.warn(`Could not register input with id '${id}'`);
-    registeredInputs[id] = el;
-    if (typeof registerInputs === 'function') {
-      registerInputs(id, el);
+    if (!(el instanceof HTMLElement)) {
+      return logger.warn(`Could not register input with id '${id}'`);
+    }
+
+    if (!isCustomHandler) {
+      registeredInputs[id] = el;
+      return;
+    }
+
+    unregisterInput = registerInputs(id, el);
+    if (typeof unregisterInput !== 'function') {
+      logger.warn(`Input id '${id}' registered without returning an unregister function`);
     }
   });
 
   onUnmounted(() => {
-    delete registeredInputs[id];
+    if (isCustomHandler) {
+      unregisterInput();
+    } else {
+      delete registeredInputs[id];
+    }
   });
 }
