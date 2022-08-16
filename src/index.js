@@ -57,8 +57,12 @@ const install = (app, userOptions = {}) => {
   const options = {
     ...defaultOptions,
     ...userOptions,
-    registeredInputs: reactive({})
   };
+
+  // Create an internal input registry if the option is set
+  if (userOptions.registerInputs === true) {
+    options.registeredInputs = reactive({});
+  }
 
   app.provide('concrete', options);
 
