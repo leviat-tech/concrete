@@ -72,7 +72,13 @@ import { computed, ref, inject } from 'vue';
 import isPlainObject from 'lodash/isPlainObject';
 import { formElementProps } from '../../composables/props.js';
 import { useInputColorClassValue } from '../../composables/styles.js';
-import { useFormElementValue, useSizeValue, useStackedValue, useInputValue } from '../../composables/forms.js';
+import {
+  useFormElementValue,
+  useSizeValue,
+  useStackedValue,
+  useInputValue,
+  useRegisterInput
+} from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -201,5 +207,7 @@ const iconColorClass = computed(() => {
 const disabledClass = computed(() => {
   return (props.disabled) && 'opacity-60';
 });
+
+useRegisterInput(props.id, buttonRef);
 
 </script>

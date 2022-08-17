@@ -2,6 +2,7 @@
   <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message, stacked, expandInput: false, }">
     <div class="concrete__switch">
       <Switch
+        ref="switchRef"
         :id="id"
         v-model="enabled"
         class="inline-flex flex-shrink-0 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
@@ -35,7 +36,13 @@ import { Switch } from '@headlessui/vue';
 import { CheckIcon, XIcon } from '@heroicons/vue/solid';
 import { computed, ref, inject } from 'vue';
 import { formElementProps } from '../../composables/props.js';
-import { useSizeValue, useStackedValue, useFormElementValue, useInputValue } from '../../composables/forms';
+import {
+  useSizeValue,
+  useStackedValue,
+  useFormElementValue,
+  useInputValue,
+  useRegisterInput
+} from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -54,6 +61,7 @@ const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 const formElement = useFormElementValue(props.label);
 
+const switchRef = ref(null);
 const isDirty = ref(false);
 const localValue = ref(null);
 
@@ -102,5 +110,7 @@ const checkIconClass = computed(() => {
     danger: 'text-danger',
   }[props.color];
 });
+
+useRegisterInput(props.id, switchRef);
 
 </script>

@@ -2,10 +2,11 @@
   <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message, stacked, expandInput: false, }">
     <div class="concrete__checkbox flex">
       <span class="sr-only">{{srLabel}}</span>
-      <Switch 
-        :disabled='disabled' 
-        :id='id' 
-        v-model='enabled' 
+      <Switch
+        ref="el"
+        :disabled='disabled'
+        :id='id'
+        v-model='enabled'
         class="items-center border border-gray-300"
         :class='[`h-${sized} w-${sized}`, cursorClass, bgColor]'>
         <span class="flex items-center justify-center transition-opacity" >
@@ -20,10 +21,16 @@
 <script setup>
 import { Switch } from '@headlessui/vue';
 import { CheckIcon } from '@heroicons/vue/solid';
-import { computed, ref, inject } from 'vue';
+import { computed, ref } from 'vue';
 import { useEventHandler } from '../../composables/events.js';
 import { formElementProps } from '../../composables/props.js';
-import { useSizeValue, useStackedValue, useFormElementValue, useInputValue } from '../../composables/forms';
+import {
+  useFormElementValue,
+  useInputValue,
+  useRegisterInput,
+  useSizeValue,
+  useStackedValue
+} from '../../composables/forms';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 
@@ -41,6 +48,7 @@ const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 const formElement = useFormElementValue(props.label);
 
+const el = ref(null);
 const isDirty = ref(false);
 const localValue = ref(null);
 
@@ -74,4 +82,7 @@ const checkIconClass = computed(() => {
     danger: 'text-danger',
   }[props.color];
 });
+
+useRegisterInput(props.id, el);
+
 </script>

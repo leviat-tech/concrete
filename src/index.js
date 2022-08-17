@@ -1,3 +1,5 @@
+import { reactive } from 'vue';
+
 // Inputs and Form Components
 import CButton from './components/Button/Button.vue';
 import CSwitch from './components/Switch/Switch.vue';
@@ -51,7 +53,16 @@ const allComponents = {
 };
 
 const install = (app, userOptions = {}) => {
-  const options = { ...defaultOptions, ...userOptions };
+
+  const options = {
+    ...defaultOptions,
+    ...userOptions,
+  };
+
+  // Create an internal input registry if the option is set
+  if (userOptions.registerInputs === true) {
+    options.registeredInputs = reactive({});
+  }
 
   app.provide('concrete', options);
 

@@ -26,6 +26,13 @@ concrete.install(app, {
     if (!Object.hasOwn(store, id)) return;
 
     store[id] = value;
+  },
+  registerInputs: (id, el) => {
+    console.log(`Registered input with id '${id}'`, el);
+
+    return () => {
+      console.log(`Deregistered input with id '${id}'`);
+    }
   }
 });
 app.mount('#app');
