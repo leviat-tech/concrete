@@ -1,6 +1,6 @@
 <template>
   <TabGroup>
-    <TabList>
+    <TabList v-if="tabPosition === 'top'">
       <Tab>Tab 1</Tab>
       <Tab>Tab 2</Tab>
       <Tab>Tab 3</Tab>
@@ -10,6 +10,11 @@
       <TabPanel>Content 2</TabPanel>
       <TabPanel>Content 3</TabPanel>
     </TabPanels>
+    <TabList v-if="tabPosition === 'bottom'">
+      <Tab>Tab 1</Tab>
+      <Tab>Tab 2</Tab>
+      <Tab>Tab 3</Tab>
+    </TabList>
   </TabGroup>
 </template>
 
@@ -30,11 +35,13 @@ import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
 const props = defineProps({
   ...formElementProps,
   modelValue: String,
-  readOnly: { type: Boolean, default: false },
-  placeholder: { type: String, default: '' },
-  transparent: { type: Boolean, default: false },
-  onEnter: { type: Function, default: null },
-  onBlur: { type: Function, default: null },
+  tabPosition: {
+    default: 'top',
+    validator(value) {
+      // The value must match one of these strings
+      return ['top', 'bottom'].includes(value);
+    },
+  },
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
