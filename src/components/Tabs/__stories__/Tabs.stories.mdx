@@ -1,5 +1,6 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CTabs from '../Tabs.vue';
+import CTabPanel from '../CTabPanel.vue';
 
 <Meta
   title="Components/Tabs"
@@ -18,12 +19,19 @@ import CTabs from '../Tabs.vue';
 <!--- Component template -->
 
 export const componentTemplate = (args) => ({
-  components: { CTabs },
+  components: { CTabs, CTabPanel },
   setup() {
     return { args };
   },
   data: () => ({ value: '' }),
-  template: '<CTabs v-bind="args" />',
+  template: `
+  <CTabs v-bind="args"> 
+    <template #panels> 
+      <CTabPanel>Hello 1</CTabPanel/> 
+      <CTabPanel>Hello 2</CTabPanel/> 
+      <CTabPanel>Hello 3</CTabPanel/> 
+    </template>
+  </CTabs>`,
 });
 
 <!--- Component documentation -->
