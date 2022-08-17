@@ -30,7 +30,7 @@ import {
   useStackedValue,
   useFormElementValue,
   useInputValue,
-  useRegisterInput
+  useRegisterInput, useInputStatus
 } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
@@ -52,6 +52,7 @@ const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 const formElement = useFormElementValue(props.label);
+const status = useInputStatus(props);
 
 const isDirty = ref(false);
 const inputRef = ref(null);

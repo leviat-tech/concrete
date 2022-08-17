@@ -2,10 +2,10 @@
   <div class="flex">
     <div class="bg-gray-100 h-full w-full grid grid-cols-2 py-2 divide-x divide-gray-300">
       <div class="divide-y divide-gray-300">
-        <div class="px-4">   
+        <div class="px-4">
           <CFormSection title="Registration Form 1 - (xs)" size="xs">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">          
-              <CTextInput id="firstname" label="First Name" :message="errors.firstName" :color="errors.firstName && 'danger'"/>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
+              <CTextInput id="firstname" label="First Name" />
               <CTextInput id="lastname" label="Last Name"  :message="errors.lastName" :color="errors.lastName && 'danger'"/>
               <CTextInput id="email" label="Email Address" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"/>
               <CListbox id="nationality" label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" />
@@ -28,9 +28,9 @@
           </CFormSection>
         </div>
 
-        <div class="px-4">   
+        <div class="px-4">
           <CFormSection title="Registration Form 2 - (lg)" size="lg">
-            <div class="space-y-4">          
+            <div class="space-y-4">
               <CTextInput label="First Name" v-model="form1.firstName" :message="errors.firstName" :color="errors.firstName && 'danger'"/>
               <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" :color="errors.lastName && 'danger'"/>
               <CTextInput label="Email Address" v-model="form1.emailAddress" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"/>
@@ -56,9 +56,9 @@
       </div>
 
       <div class="divide-y divide-gray-300">
-        <div class="px-4">   
+        <div class="px-4">
           <CFormSection title="Registration Form 3 - (sm)" size="sm" >
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">          
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
               <CTextInput label="First Name" v-model="form1.firstName" :message="errors.firstName" :color="errors.firstName && 'danger'">
               </CTextInput>
               <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" :color="errors.lastName && 'danger'" ></CTextInput>
@@ -83,9 +83,9 @@
           </CFormSection>
         </div>
 
-        <div class="">   
+        <div class="">
           <CFormSection title="Registration Form 4 - (md)" :stacked="true" class="bg-indigo-dark px-4 text-sky-dark" color="sky">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">       
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
               <CTextInput label="First Name" v-model="form1.firstName" color="sky" :transparent="true"/>
               <CTextInput label="Last Name"  v-model="form1.lastName" :message="errors.lastName" color="sky" :transparent="true"/>
               <CTextInput label="Email Address" v-model="form1.emailAddress" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'" :transparent="true"/>
@@ -109,8 +109,8 @@
           </CFormSection>
         </div>
       </div>
-      
-      
+
+
     </div>
   </div>
 </template>

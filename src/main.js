@@ -16,6 +16,13 @@ const store = reactive({
   isAdmin: false,
 });
 
+const statusStore = reactive({
+  firstname: {
+    type: 'warning',
+    message: 'Users called John are not allowed here'
+  }
+});
+
 const app = createApp(App);
 concrete.install(app, {
   size: 'md',
@@ -33,7 +40,10 @@ concrete.install(app, {
     return () => {
       console.log(`Deregistered input with id '${id}'`);
     }
-  }
+  },
+  inputGetStatus(id) {
+    return statusStore[id];
+  },
 });
 app.mount('#app');
 

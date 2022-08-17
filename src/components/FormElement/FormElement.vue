@@ -7,7 +7,7 @@
     </div>
     <div :class="{ 'w-full' : expandInput }">
       <slot></slot>
-      <div :class="['text-xs', messageClass]" v-if="message">{{message}}</div>
+      <div :class="['text-xs', messageClass]" v-if="status">{{status.message}}</div>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@
 import { computed, provide, inject } from 'vue';
 import { useFormLabel } from '../../composables/forms.js';
 import { colorProp, useSizeProp } from '../../composables/props';
-import { useSizeValue, useStackedValue } from '../../composables/forms.js';
+import { useSizeValue, useStackedValue, useInputStatus } from '../../composables/forms.js';
 
 
 const props = defineProps({
@@ -35,6 +35,9 @@ const props = defineProps({
 const label = useFormLabel(props);
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
+const status = useInputStatus(props);
+const statusType = status?.type;
+
 provide('form-section',  { stacked, size });
 provide('form-element',  { size, color: props.color, isFormElement: true })
 
@@ -76,11 +79,10 @@ const messageClass = computed(() => {
     steel: 'text-steel',
     success: 'text-success',
     warning: 'text-warning',
-    danger: 'text-danger',
-  }[props.color];
+    error: 'text-danger',
+  }[status?.type || props.color];
 });
 
 const stackedClass = stacked ? 'mb-1 truncate' : 'basis-1/2 flex flex-col justify-center pr-8';
-
 
 </script>

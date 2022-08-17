@@ -69,3 +69,23 @@ export const useRegisterInput = (id, inputRef) => {
     }
   });
 }
+
+export const useInputStatus = (props) => {
+  const { inputGetStatus } = useConcrete();
+
+  if (!inputGetStatus) return;
+
+  const status = inputGetStatus(props.id);
+
+  if (!status) return;
+
+  if (typeof status === 'string') {
+    return { type: 'error', message: status };
+  }
+
+  if (typeof status === 'object') {
+    const { message, type } = status;
+    if (!message) return;
+    return { message, type: type || 'error' };
+  }
+}
