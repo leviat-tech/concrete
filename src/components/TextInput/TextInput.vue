@@ -82,4 +82,6 @@ const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
 
 useRegisterInput(props.id, inputRef);
 
+useRegisterInput(props.id, inputRef);
+
 </script>

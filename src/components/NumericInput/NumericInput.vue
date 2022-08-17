@@ -126,4 +126,6 @@ const paddingClass = (props.readOnly || props.disabled) ? 'pr-3' : 'pr-8';
 
 useRegisterInput(props.id, inputRef);
 
+useRegisterInput(props.id, inputRef);
+
 </script>
