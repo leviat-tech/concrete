@@ -25,7 +25,7 @@
 import { computed, ref, inject } from 'vue';
 import { formElementProps } from '../../composables/props.js';
 import { useInputColorClassValue } from '../../composables/styles';
-import { useSizeValue, useStackedValue, useFormElementValue } from '../../composables/forms';
+import { useSizeValue, useStackedValue, useFormElementValue, useInputValue } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -52,7 +52,7 @@ const inputRef = ref(null);
 
 const value = computed({
   get() {
-    return props.modelValue
+    return useInputValue(props);
   },
   set(value) {
     isDirty.value = true;

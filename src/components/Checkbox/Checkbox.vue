@@ -9,9 +9,7 @@
         class="items-center border border-gray-300"
         :class='[`h-${sized} w-${sized}`, cursorClass, bgColor]'>
         <span class="flex items-center justify-center transition-opacity" >
-          <slot v-if="modelValue === true">
-            <CheckIcon :class="checkIconClass" />
-          </slot>
+          <CheckIcon v-if="enabled" :class="checkIconClass" />
         </span>
       </Switch>
     </div>
@@ -25,13 +23,13 @@ import { CheckIcon } from '@heroicons/vue/solid';
 import { computed, ref, inject } from 'vue';
 import { useEventHandler } from '../../composables/events.js';
 import { formElementProps } from '../../composables/props.js';
-import { useSizeValue, useStackedValue, useFormElementValue } from '../../composables/forms';
+import { useSizeValue, useStackedValue, useFormElementValue, useInputValue } from '../../composables/forms';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 
 const props = defineProps({
   ...formElementProps,
-  modelValue: Boolean,
+  modelValue: { type: Boolean, default: undefined },
   transparent: { type: Boolean, default: false },
   srLabel: { type: String, default: 'Switch' },
   onChange: { type: Function, default: null },
@@ -48,7 +46,7 @@ const localValue = ref(null);
 
 const enabled = computed({
   get() {
-    return props.modelValue;
+    return useInputValue(props);
   },
   set(value) {
     isDirty.value = true;
