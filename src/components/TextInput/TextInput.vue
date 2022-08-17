@@ -7,8 +7,7 @@
           :id="id"
           v-model="value"
           type="text"
-          class="relative truncate z-20 w-full border text-left pl-3 pr-3 focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light"
-          :class="[sizeClass, colorClass, disabledClass, cursorClass, bgColor ]"
+          :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass ]"
           :placeholder="placeholder"
           :disabled="disabled"
           :readonly="readOnly"
@@ -24,13 +23,13 @@
 <script setup>
 import { computed, ref, inject } from 'vue';
 import { formElementProps } from '../../composables/props.js';
-import { useInputColorClassValue } from '../../composables/styles';
+import { inputStaticClasses, useInputClasses } from '../../composables/styles';
 import {
   useSizeValue,
   useStackedValue,
   useFormElementValue,
   useInputValue,
-  useRegisterInput, useInputStatus
+  useRegisterInput,
 } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
@@ -49,10 +48,16 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
+const {
+  mergedSizeClass,
+  inputColorClass,
+  bgColorClass,
+  disabledClass,
+} = useInputClasses(props);
+
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 const formElement = useFormElementValue(props.label);
-const status = useInputStatus(props);
 
 const isDirty = ref(false);
 const inputRef = ref(null);
@@ -73,19 +78,7 @@ const focus = () => inputRef.value.focus();
 const blur = () => inputRef.value.blur();
 defineExpose({ focus, blur });
 
-const sizeClass = {
-  xs: 'h-6 text-xs py-0.5',
-  sm: 'h-8 text-sm py-1',
-  md: 'h-10 text-base py-2',
-  lg: 'h-12 text-lg py-2',
-}[size];
-
 const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
-const bgColor = (props.transparent) ? 'bg-transparent' : 'bg-white';
-const colorClass = useInputColorClassValue(props.color)
-const disabledClass = computed(() => {
-  return (props.disabled) && 'opacity-60';
-});
 
 useRegisterInput(props.id, inputRef);
 

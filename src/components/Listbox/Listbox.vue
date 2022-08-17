@@ -13,15 +13,7 @@
         <div class="inline-flex  w-full">
           <div class="relative z-0 inline-flex w-full">
             <slot name="prefix" class="z-10"/>
-            <ListboxButton
-              ref="buttonRef"
-              :class="['relative truncate z-20 w-full border text-left focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light',
-              bgColor,
-              colorClass,
-              sizeClass,
-              cursorClass,
-              ]"
-            >
+            <ListboxButton ref="buttonRef" :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
               <span :class="selectedLabelClass">{{ selectedLabel }}</span>
               <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <SelectorIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
@@ -71,7 +63,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
 import { computed, ref, inject } from 'vue';
 import isPlainObject from 'lodash/isPlainObject';
 import { formElementProps } from '../../composables/props.js';
-import { useInputColorClassValue } from '../../composables/styles.js';
+import { useInputColorClassValue, inputStaticClasses, useInputClasses } from '../../composables/styles.js';
 import {
   useFormElementValue,
   useSizeValue,
@@ -105,6 +97,13 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);
+
+const {
+  mergedSizeClass,
+  inputColorClass,
+  bgColorClass,
+  disabledClass,
+} = useInputClasses(props);
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
@@ -157,11 +156,11 @@ const selectedLabelClass = computed(() => {
   return (label.length > 0) ? 'block truncate' : 'block truncate text-gray-400';
 });
 
-const sizeClass = {
-  xs: 'h-6 text-xs pl-3 pr-6 py-0.5',
-  sm: 'h-8 text-sm pl-3 pr-8 py-1',
-  md: 'h-10 text-base pl-3 pr-10 py-2',
-  lg: 'h-12 text-lg pl-3 pr-12 py-2',
+const hPaddingClass = {
+  xs: 'pl-3 pr-6',
+  sm: 'pl-3 pr-8',
+  md: 'pl-3 pr-10',
+  lg: 'pl-3 pr-12',
 }[size];
 
 const optionsSizeClass = {
@@ -188,10 +187,6 @@ const maxOptionsHeightClass = {
   lg: 'max-h-96',
 }[props.optionListSize || 'md'];
 
-const bgColor =  (props.transparent) ? 'bg-transparent' : 'bg-white';
-
-const colorClass = useInputColorClassValue(props.color);
-
 const iconColorClass = computed(() => {
   return {
     default: 'text-gray-400',
@@ -202,10 +197,6 @@ const iconColorClass = computed(() => {
     warning: 'text-warning-light',
     danger: 'text-danger-light',
   }[props.color];
-});
-
-const disabledClass = computed(() => {
-  return (props.disabled) && 'opacity-60';
 });
 
 useRegisterInput(props.id, buttonRef);

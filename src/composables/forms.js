@@ -1,5 +1,5 @@
 import { useConcrete } from './concrete';
-import { inject, onMounted, onUnmounted } from 'vue';
+import { computed, inject, onMounted, onUnmounted } from 'vue';
 import logger from '../utils/logger.js';
 
 export const useFormLabel = (props) => {
@@ -72,20 +72,40 @@ export const useRegisterInput = (id, inputRef) => {
 
 export const useInputStatus = (props) => {
   const { inputGetStatus } = useConcrete();
-
-  if (!inputGetStatus) return;
-
-  const status = inputGetStatus(props.id);
-
-  if (!status) return;
-
-  if (typeof status === 'string') {
-    return { type: 'error', message: status };
+  const colorTypeMap = {
+    info: 'default',
+    warning: 'warning',
+    error: 'danger',
   }
 
-  if (typeof status === 'object') {
-    const { message, type } = status;
-    if (!message) return;
-    return { message, type: type || 'error' };
-  }
+  return computed(() => {
+    const defaultStatus = { color: props.color || 'default' };
+
+    // Local props take precedence over global getters
+    if (props.message) {
+      return { message: props.message, color: props.color };
+    }
+
+    if (!inputGetStatus) return defaultStatus;
+
+    const status = inputGetStatus(props.id);
+
+    if (!status) return defaultStatus;
+
+    if (typeof status === 'string') {
+      return { message: status, color: props.color || colorTypeMap.error };
+    }
+
+    if (typeof status === 'object') {
+      const { message, type } = status;
+
+      if (!message) return defaultStatus;
+
+      console.log(props.color);
+
+
+      const color = type ? colorTypeMap[type] : colorTypeMap.error;
+      return { message, color: props.color || color };
+    }
+  })
 }

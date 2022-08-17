@@ -2,7 +2,7 @@
   <div class="w-full concrete__form-section">
 
     <slot name="title">
-      <div class="flex justify-between w-full" :class="[underlineClass, colorClass, sizeClass]" >
+      <div class="flex justify-between w-full" :class="[underlineClass, inputColorClass, mergedSizeClass]" >
           <h2 v-if="title" class="font-bold">{{ title }}</h2>
         <slot name="toolbar"></slot>
       </div>
@@ -16,9 +16,10 @@
 
 <script setup>
 
-import { provide, computed } from 'vue';
+import { provide } from 'vue';
 import { colorProp, useSizeProp } from '../../composables/props';
 import { useSizeValue, useStackedValue } from '../../composables/forms';
+import { useInputClasses, useInputColorClassValue } from '../../composables/styles';
 
 
 const props = defineProps({
@@ -29,26 +30,14 @@ const props = defineProps({
   stacked: { type: Boolean },
 });
 
+const {
+  inputColorClass,
+  mergedSizeClass
+} = useInputClasses(props);
+
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 provide('form-section',  { stacked, size });
-
-const sizeClass = {
-  xs: 'h-6 text-xs py-0.5',
-  sm: 'h-8 text-sm py-1',
-  md: 'h-10 text-base py-2',
-  lg: 'h-12 text-lg py-2',
-}[size];
-
-const colorClass = {
-  default: 'border-gray-300 text-black',
-  indigo: 'border-indigo-light text-indigo-darkest',
-  sky: 'border-sky-light text-sky-darkest',
-  steel: 'border-steel-light text-steel-darkest',
-  success: 'border-success-light text-success-darkest',
-  warning: 'border-warning-light text-warning-darkest',
-  danger: 'border-danger-light text-danger-darkest',
-}[props.color];
 
 const underlineClass = (props.underline) ? 'border-b' : '';
 

@@ -11,22 +11,8 @@
         :rows="rows"
         v-model="value"
         type="text"
-        class="
-          relative
-          truncate
-          z-20
-          w-full
-          h-auto
-          border
-          text-left
-          pl-3
-          pr-3
-          focus:outline-none
-          focus:ring-1
-          focus:border-indigo-light
-          focus:ring-indigo-light
-        "
-        :class="[sizeClass, colorClass, disabledClass, cursorClass, bgColor]"
+        class="h-auto"
+        :class="[inputStaticClasses, sizeClass, colorClass, disabledClass, cursorClass, bgColor]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"
@@ -53,7 +39,7 @@ import {
   useInputValue
 } from '../../composables/forms';
 
-import { useInputColorClassValue } from '../../composables/styles.js';
+import { useInputColorClassValue, inputStaticClasses } from '../../composables/styles.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -101,7 +87,7 @@ const sizeClass = {
 
 const cursorClass = props.disabled ? 'cursor-not-allowed' : 'cursor-text';
 const bgColor = props.transparent ? 'bg-transparent' : 'bg-white';
-const colorClass = useInputColorClassValue(props.color);
+const colorClass = useInputColorClassValue(props);
 const disabledClass = computed(() => {
   return props.disabled && 'opacity-60';
 });

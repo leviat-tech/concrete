@@ -6,10 +6,10 @@
           <CFormSection title="Registration Form 1 - (xs)" size="xs">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
               <CTextInput id="firstname" label="First Name" />
-              <CTextInput id="lastname" label="Last Name"  :message="errors.lastName" :color="errors.lastName && 'danger'"/>
+              <CTextInput id="lastname" label="Last Name"  />
               <CTextInput id="email" label="Email Address" :message="errors.emailAddress" :color="errors.emailAddress && 'danger'"/>
-              <CListbox id="nationality" label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" />
-              <CNumericInput id="phone" label="Phone Number">
+              <CAutoComplete id="nationality" label="Nationality" :options="['United Kingdom', 'Germany', 'Netherlands']" />
+              <CNumericInput id="phone" label="Phone Number" color="success">
                 <template v-slot:prefix>
                   <CInputAffix>+44</CInputAffix>
                 </template>
@@ -22,7 +22,7 @@
                 </div>
               </CFormElement>
               <CSwitch id="enableNotifications" label="Recieve Notifications" />
-              <CCheckbox id="isAdmin" label="Is Admin" size="md"/>
+              <CCheckbox id="isAdmin" label="Is Admin" disabled />
               <CButton class="col-span-2">Submit</CButton>
             </div>
           </CFormSection>
