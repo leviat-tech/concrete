@@ -14,5 +14,6 @@ const props = defineProps({});
 button[aria-selected='true'] {
   font-weight: bold;
   background-color: #f7fafc;
+  z-index: 2;
 }
 </style>
