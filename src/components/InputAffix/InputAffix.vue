@@ -27,7 +27,7 @@ const props = defineProps({
 const size = useSizeValue(props.size);
 
 const transparentClass =  (props.transparent) ? 'bg-transparent' : ' bg-gray-50';
-const colorClass = useInputColorClassValue( color || props.color);
+const colorClass = useInputColorClassValue(props);
 
 const sizeClass = {
   xs: 'text-xs',
