@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full border">
     <TabGroup>
-      <CTabList v-if="tabPosition === 'top'">
+      <CTabList v-if="tabPosition === 'top'" class="border-b">
         <template #labels>
           <CTabLabel>Tab 1</CTabLabel>
           <CTabLabel>Tab 2</CTabLabel>
@@ -13,7 +13,11 @@
         <TabPanel class="p-4">Content 2</TabPanel>
         <TabPanel class="p-4">Content 3</TabPanel>
       </TabPanels>
-      <CTabList v-if="tabPosition === 'bottom'" :labels="labels" />
+      <CTabList
+        v-if="tabPosition === 'bottom'"
+        :labels="labels"
+        class="border-t"
+      />
     </TabGroup>
   </div>
 </template>

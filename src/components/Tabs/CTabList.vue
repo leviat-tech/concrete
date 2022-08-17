@@ -1,5 +1,5 @@
 <template>
-  <TabList class="w-full border-b flex CTabsList">
+  <TabList class="w-full flex CTabsList">
     <CTabLabel v-for="label in labels">
       {{ label }}
     </CTabLabel>
@@ -18,8 +18,11 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-// Global style to target template labels that are not inside the scope of this template, but the parent
+// Global style to target slot labels from parent
 .CTabsList {
+  button {
+    border-right-width: 1px;
+  }
   button:last-of-type {
     border-right: none;
   }
