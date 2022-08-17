@@ -1,5 +1,5 @@
 const log = (msg, data = '', level = 'log') => {
-  console[level](`[CONCRETE]: ${msg}`, data);
+  console[level](`[CONCRETE ${level}]: ${msg}`, data);
 }
 
 export default {
