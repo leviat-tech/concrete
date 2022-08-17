@@ -1,21 +1,56 @@
 <template>
-  <TabGroup>
-    <TabList v-if="tabPosition === 'top'">
-      <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
-      <Tab>Tab 3</Tab>
-    </TabList>
-    <TabPanels>
-      <TabPanel>Content 1</TabPanel>
-      <TabPanel>Content 2</TabPanel>
-      <TabPanel>Content 3</TabPanel>
-    </TabPanels>
-    <TabList v-if="tabPosition === 'bottom'">
-      <Tab>Tab 1</Tab>
-      <Tab>Tab 2</Tab>
-      <Tab>Tab 3</Tab>
-    </TabList>
-  </TabGroup>
+  <div class="w-full h-full border">
+    <TabGroup>
+      <TabList v-if="tabPosition === 'top'" class="w-full border-b flex">
+        <Tab
+          class="
+            w-full
+            items-center
+            justify-around
+            p-4
+            bg-gray-50
+            hover:bg-gray-100
+            border-r
+          "
+          >Tab 1</Tab
+        >
+        <Tab
+          class="
+            w-full
+            items-center
+            justify-around
+            p-4
+            bg-gray-50
+            hover:bg-gray-100
+            border-r
+          "
+          >Tab 2</Tab
+        >
+        <Tab
+          class="
+            w-full
+            items-center
+            justify-around
+            p-4
+            bg-gray-50
+            hover:bg-gray-100
+            border-r
+          "
+          >Tab 3</Tab
+        >
+      </TabList>
+      <TabPanels>
+        <TabPanel class="p-4">Content 1</TabPanel>
+        <TabPanel class="p-4">Content 2</TabPanel>
+        <TabPanel class="p-4">Content 3</TabPanel>
+      </TabPanels>
+      <TabList v-if="tabPosition === 'bottom'">
+        <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+        <Tab>Tab 3</Tab>
+      </TabList>
+    </TabGroup>
+  </div>
 </template>
 
 <script setup>
