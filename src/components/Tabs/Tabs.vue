@@ -1,14 +1,16 @@
 <template>
   <div class="w-full h-full border">
     <TabGroup>
-      <TabList v-if="tabPosition === 'top'" class="w-full border-b flex">
+      <TabList
+        v-if="tabPosition === 'top'"
+        class="w-full border-b flex CTabsList"
+      >
         <Tab
           class="
             w-full
             items-center
             justify-around
             p-4
-            bg-gray-50
             hover:bg-gray-100
             border-r
           "
@@ -20,7 +22,6 @@
             items-center
             justify-around
             p-4
-            bg-gray-50
             hover:bg-gray-100
             border-r
           "
@@ -32,7 +33,6 @@
             items-center
             justify-around
             p-4
-            bg-gray-50
             hover:bg-gray-100
             border-r
           "
@@ -66,3 +66,15 @@ const props = defineProps({
   },
 });
 </script>
+<style lang="scss" scoped>
+.CTabsList {
+  // Styling active tab and removing border-right on last tab
+  button[aria-selected='true'] {
+    font-weight: bold;
+    background-color: #f7fafc;
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+}
+</style>
