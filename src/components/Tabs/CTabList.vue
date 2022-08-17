@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 
 <style lang="scss">
-// Global style to target slot labels from parent
+// Global style to target slot labels from parent, outside the scope of this component
 .CTabsList {
   button {
     border-right-width: 1px;
