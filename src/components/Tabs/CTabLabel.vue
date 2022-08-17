@@ -11,3 +11,10 @@ import { Tab } from '@headlessui/vue';
 
 const props = defineProps({});
 </script>
+<style lang="scss" scoped>
+// Styling active tab
+button[aria-selected='true'] {
+  font-weight: bold;
+  background-color: #f7fafc;
+}
+</style>

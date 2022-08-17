@@ -34,15 +34,3 @@ const props = defineProps({
   },
 });
 </script>
-<style lang="scss" scoped>
-.CTabsList {
-  // Styling active tab and removing border-right on last tab
-  button[aria-selected='true'] {
-    font-weight: bold;
-    background-color: #f7fafc;
-    &:last-of-type {
-      border-right: none;
-    }
-  }
-}
-</style>

@@ -16,15 +16,12 @@ const props = defineProps({
   labels: { type: Array, default: () => [] },
 });
 </script>
-<style lang="scss" scoped>
+
+<style lang="scss">
+// Global style to target template labels that are not inside the scope of this template, but the parent
 .CTabsList {
-  // Styling active tab and removing border-right on last tab
-  button[aria-selected='true'] {
-    font-weight: bold;
-    background-color: #f7fafc;
-    &:last-of-type {
-      border-right: none;
-    }
+  button:last-of-type {
+    border-right: none;
   }
 }
 </style>
