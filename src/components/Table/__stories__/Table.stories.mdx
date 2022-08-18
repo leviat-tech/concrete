@@ -65,18 +65,18 @@ export const componentTemplate = (args) => ({
     },
   },
   template: `
-    <c-table
+    <CTable
       v-bind="args"
       :rows="rows" :columns="columns" 
       @add="add" @edit="edit" @delete="delete team[$event.id]"
     >
       <template #name="props">
-        <c-input-cell v-bind="props" />
+        <CInputCell v-bind="props" />
       </template>
       <template #role="props">
-        <c-input-cell v-bind="props" />
+        <CInputCell v-bind="props" />
       </template>
-    </c-table>
+    </CTable>
   `,
 });
 

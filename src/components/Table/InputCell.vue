@@ -1,32 +1,21 @@
 <script setup>
-import { computed, defineEmits } from 'vue';
-import TextInput from '../TextInput/TextInput.vue'
-
-const emit = defineEmits(['edit'])
-
-const props = defineProps({
+defineProps({
   value: String,
   isEditing: Boolean,
   row: Object,
   error: String,
 });
 
-const color = computed(() => {
-  if (props.error) return 'danger';
-  if (props.isEditing) return 'sky';
-  return 'default';
-})
-
+const emit = defineEmits(['edit'])
 </script>
 
 <template>
-  <text-input
+  <input
+    class="border-b border-blue-500 bg-transparent text-blue-500 outline-none"
+    :class="{ 'text-red-500 border-red-500': error }"
     v-if="isEditing"
-    :modelValue="value"
-    @update:modelValue="emit('edit', $event)"
-    size="sm"
-    :color="color"
-    :transparent="true"
+    :value="value"
+    @input="(e) => emit('edit', e.target.value)"
   />
-  <span v-else> {{ value }} </span>
+  <span v-else :class="{ 'text-red-500': error }"> {{ value }} </span>
 </template>

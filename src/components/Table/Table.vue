@@ -1,99 +1,3 @@
-<script setup>
-import _ from "lodash";
-import { ref, computed, watch, useAttrs } from "vue";
-import CIcon from '../Icon/Icon.vue';
-import Pagination from "./Pagination.vue";
-
-const props = defineProps({
-  rows: Array,
-  columns: Array,
-  resultCount: Number, // only needed for server side
-  pageLimit: Number,
-});
-
-const emit = defineEmits(["change"]);
-const attrs = useAttrs();
-
-const editingRow = ref(null);
-const addingRow = ref(null);
-const errors = ref({});
-
-function beginAddingRow() {
-  addingRow.value = {};
-  editingRow.value = null;
-}
-
-function beginEditingRow(row, index) {
-  editingRow.value = { ...row, _index: index };
-  addingRow.value = null;
-}
-
-function saveEdit() {
-  const data = _.omit(editingRow.value, "_index");
-  const success = () => (editingRow.value = null);
-  const error = (_errors) => {
-    errors.value = _errors;
-  };
-  emit("edit", { data, success, error });
-}
-
-function saveAdd() {
-  const data = addingRow.value;
-  const success = () => (addingRow.value = null);
-  const error = (_errors) => (errors.value = _errors);
-  emit("add", { data, success, error });
-}
-
-const sort = ref(
-  props.columns.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }))
-);
-
-function toggleSort(colId) {
-  const currentSort = sort.value[colId];
-  if (currentSort === "asc") {
-    sort.value[colId] = "desc";
-  } else if (currentSort === "desc") {
-    sort.value[colId] = null;
-  } else {
-    sort.value[colId] = "asc";
-  }
-  emit("change", { sort: sort.value, pageNumber: pageNumber.value });
-}
-
-const pageNumber = ref(1);
-function selectPageNumber(newPageNumber) {
-  pageNumber.value = newPageNumber;
-  emit("change", { sort: sort.value, pageNumber: pageNumber.value });
-}
-
-const _rows = computed(() => {
-  // if server side, just return rows
-  const sortColIds = props.columns
-    .filter((col) => sort.value[col.id])
-    .map((col) => col.id);
-
-  const sortOrders = sortColIds.map((colId) => sort.value[colId]);
-  const sorted = _.orderBy(props.rows, sortColIds, sortOrders);
-
-  if (props.pageLimit) {
-    const offset = (pageNumber.value - 1) * props.pageLimit;
-    return sorted.slice(offset, offset + props.pageLimit);
-  } else {
-    return sorted;
-  }
-});
-
-watch(
-  () => _rows.value,
-  () => (editingRow.value = null)
-);
-
-watch(
-  () => [editingRow.value, addingRow.value],
-  () => (errors.value = {})
-);
-</script>
-
 <template>
   <div class="flex flex-col">
     <table class="table-fixed">
@@ -197,7 +101,7 @@ watch(
     >
       &#43; Add Row
     </div>
-    <pagination
+    <CPagination
       class="pt-3"
       v-if="pageLimit"
       @clickPrevious="selectPageNumber(pageNumber - 1)"
@@ -209,5 +113,101 @@ watch(
     />
   </div>
 </template>
+
+<script setup>
+import _ from "lodash";
+import { ref, computed, watch, useAttrs } from "vue";
+import CIcon from '../Icon/Icon.vue';
+import CPagination from "./Pagination.vue";
+
+const props = defineProps({
+  rows: Array,
+  columns: Array,
+  resultCount: Number, // only needed for server side
+  pageLimit: Number,
+});
+
+const emit = defineEmits(["change"]);
+const attrs = useAttrs();
+
+const editingRow = ref(null);
+const addingRow = ref(null);
+const errors = ref({});
+
+function beginAddingRow() {
+  addingRow.value = {};
+  editingRow.value = null;
+}
+
+function beginEditingRow(row, index) {
+  editingRow.value = { ...row, _index: index };
+  addingRow.value = null;
+}
+
+function saveEdit() {
+  const data = _.omit(editingRow.value, "_index");
+  const success = () => (editingRow.value = null);
+  const error = (_errors) => {
+    errors.value = _errors;
+  };
+  emit("edit", { data, success, error });
+}
+
+function saveAdd() {
+  const data = addingRow.value;
+  const success = () => (addingRow.value = null);
+  const error = (_errors) => (errors.value = _errors);
+  emit("add", { data, success, error });
+}
+
+const sort = ref(
+  props.columns.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }))
+);
+
+function toggleSort(colId) {
+  const currentSort = sort.value[colId];
+  if (currentSort === "asc") {
+    sort.value[colId] = "desc";
+  } else if (currentSort === "desc") {
+    sort.value[colId] = null;
+  } else {
+    sort.value[colId] = "asc";
+  }
+  emit("change", { sort: sort.value, pageNumber: pageNumber.value });
+}
+
+const pageNumber = ref(1);
+function selectPageNumber(newPageNumber) {
+  pageNumber.value = newPageNumber;
+  emit("change", { sort: sort.value, pageNumber: pageNumber.value });
+}
+
+const _rows = computed(() => {
+  // if server side, just return rows
+  const sortColIds = props.columns
+    .filter((col) => sort.value[col.id])
+    .map((col) => col.id);
+
+  const sortOrders = sortColIds.map((colId) => sort.value[colId]);
+  const sorted = _.orderBy(props.rows, sortColIds, sortOrders);
+
+  if (props.pageLimit) {
+    const offset = (pageNumber.value - 1) * props.pageLimit;
+    return sorted.slice(offset, offset + props.pageLimit);
+  } else {
+    return sorted;
+  }
+});
+
+watch(
+  () => _rows.value,
+  () => (editingRow.value = null)
+);
+
+watch(
+  () => [editingRow.value, addingRow.value],
+  () => (errors.value = {})
+);
+</script>
 
 <style scoped></style>
