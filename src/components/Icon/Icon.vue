@@ -6,6 +6,7 @@ import {
   ArrowUpIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  BanIcon,
   CheckIcon,
   CheckCircleIcon,
   ChevronDownIcon,
@@ -53,7 +54,7 @@ import {
 } from '@heroicons/vue/outline';
 
 
-import { colorProp } from '../../composables/props';
+import { colorProp, useSizeProp } from '../../composables/props';
 import logger from '../../utils/logger';
 
 // TODO: add these missing icons
@@ -71,6 +72,7 @@ export const icons = {
   'arrow-left': ArrowLeftIcon,
   'arrow-right': ArrowRightIcon,
   'arrow-up': ArrowUpIcon,
+  cancel: BanIcon,
   check: CheckIcon,
   'check-circle': CheckCircleIcon,
   'chevron-down': ChevronDownIcon,
@@ -129,11 +131,7 @@ export default {
   props: {
     type: String,
     color: colorProp,
-    size: {
-      type: String,
-      default: 'md',
-      validator: (prop) => ['3xl', '2xl', 'xl', 'lg', 'md', 'sm'].includes(prop),
-    },
+    size: useSizeProp('3xl'),
     spin: {
       type: Boolean,
       default: false,
@@ -158,7 +156,7 @@ export default {
     const size = sizes[this.size];
 
     const colorClass = `text-${this.color}`;
-    const classes = ['flex-none', colorClass];
+    const classes = ['flex-none', colorClass, 'text-sm'];
 
     if (this.spin) {
       classes.push('animate-spin');
@@ -169,8 +167,8 @@ export default {
         : h(icon, {
           class: classes,
           style: {
-            width: size,
-            height: size
+            width: size + 'px',
+            height: size + 'px',
           }
         });
   },
