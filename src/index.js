@@ -24,6 +24,7 @@ import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
+import { CTable, CInputCell } from './components/Table';
 
 import { defaultOptions } from './composables/concrete';
 
@@ -44,6 +45,8 @@ const allComponents = {
   CSwitch,
   CTextInput,
   CAutoComplete,
+  CTable,
+  CInputCell,
   CTextArea,
   CTool,
   CToolbar,
@@ -95,6 +98,8 @@ export {
   CSwitch,
   CTextInput,
   CAutoComplete,
+  CTable,
+  CInputCell,
   CTextArea,
   CTool,
   CToolbar,

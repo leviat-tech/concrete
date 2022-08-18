@@ -3,17 +3,17 @@
     <div class="flex w-full concrete__text-input">
       <slot name="prefix" class="z-10"/>
       <input
-          ref="inputRef"
-          :id="id"
-          v-model="value"
-          type="text"
-          :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass ]"
-          :placeholder="placeholder"
-          :disabled="disabled"
-          :readonly="readOnly"
+        ref="inputRef"
+        :id="id"
+        v-model="value"
+        type="text"
+        :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass ]"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :readonly="readOnly"
 
-          @keydown.enter="onEnter"
-          @blur="onBlur"
+        @keydown.enter="onEnter"
+        @blur="onBlur"
       >
       <slot name="suffix" class="z-10"/>
     </div>
