@@ -1,5 +1,5 @@
 <template>
-  <TabPanel class="p-4 h-full overflow-auto"><slot /></TabPanel>
+  <TabPanel class=""><slot /></TabPanel>
 </template>
 
 <script setup>
