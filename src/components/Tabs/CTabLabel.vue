@@ -12,8 +12,6 @@ const props = defineProps({});
 <style lang="scss" scoped>
 // Styling active tab
 button[aria-selected='true'] {
-  font-weight: bold;
-  background-color: #f7fafc;
-  z-index: 2;
+  @apply bg-gray-50 font-bold z-[2];
 }
 </style>
