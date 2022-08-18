@@ -86,7 +86,7 @@ export const useInputStatus = (props) => {
       return { message: props.message, color: props.color };
     }
 
-    if (!inputGetStatus) return defaultStatus;
+    if (!inputGetStatus || !props.id) return defaultStatus;
 
     const status = inputGetStatus(props.id);
 
@@ -100,9 +100,6 @@ export const useInputStatus = (props) => {
       const { message, type } = status;
 
       if (!message) return defaultStatus;
-
-      console.log(props.color);
-
 
       const color = type ? colorTypeMap[type] : colorTypeMap.error;
       return { message, color: props.color || color };
