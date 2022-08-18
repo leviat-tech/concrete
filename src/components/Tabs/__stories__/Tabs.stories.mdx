@@ -38,6 +38,22 @@ export const componentTemplate = (args) => ({
 
 # Tabs
 
+## Overview
+
+Tabs component provides a way to view tabbed/paned content.
+
+### Labels
+
+You can either provide labels as an array of strings using the prop :labels , or as a slot #labels  
+When using the slot, be sure to use only CTabLabel component
+
+### Content
+
+You can provide using the slot #panels  
+When using the slot, be sure to only use CTabPanel component
+
+Making sure to add relevant classes and style accordingly for height, padding overflow etc on CTabPanel
+
 <Canvas withSource="open">
   <Story
     name="Overview"
