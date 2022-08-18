@@ -1,5 +1,5 @@
 <template>
-  <TabList class="w-full flex CTabsList">
+  <TabList class="w-full flex divide-x">
     <CTabLabel v-for="label in labels">
       {{ label }}
     </CTabLabel>
@@ -16,15 +16,3 @@ const props = defineProps({
   labels: { type: Array, default: () => [] },
 });
 </script>
-
-<style lang="scss">
-// Global style to target slot labels from parent, outside the scope of this component
-.CTabsList {
-  button {
-    border-right-width: 1px;
-  }
-  button:last-of-type {
-    border-right: none;
-  }
-}
-</style>
