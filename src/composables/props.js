@@ -1,6 +1,5 @@
 export const colorProp = {
   type: String,
-  default: 'default',
   validator: (prop) => ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'].includes(prop),
 }
 

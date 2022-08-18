@@ -109,4 +109,44 @@ app.use(Concrete, {
 
     return () => delete inputStore[storePath];
   }
+<<<<<<< HEAD
 });
+```
+
+### **inputGetStatus: function(id: string)**
+
+Specifies a function for setting the message and color of the input based on the input's id. This function should return either a string, which will infer a `type: 'error'`, or an object in the following format: `{ message: string, type?: 'error' | 'warning' | 'info' }`
+
+**entry.js**
+
+```javascript dark
+const errorStore = reactive({});
+
+app.use(Concrete, {
+  inputGetStatus: (id) => {
+    return errorStore[id];
+  }
+});
+
+const callApi = (data) => {
+  const res = await api.fetch(data);
+
+  if (res.errors) {
+    errors.forEach(e => {
+      errorStore[e.location] = {
+        type: 'error',
+        message: e.message,
+      }
+    })
+  }
+}
+```
+
+**Component.vue**
+```javascript dark
+<template>
+  <CNumericInput id="cavity.width" label="Width" />
+</template>
+```
+
+Now the input will turn red and display error text every time the `cavity.width` property with `type: 'error'` is set on the errorStore

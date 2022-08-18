@@ -7,7 +7,7 @@
     </div>
     <div :class="{ 'w-full' : expandInput }">
       <slot></slot>
-      <div :class="['text-xs', messageClass]" v-if="message">{{message}}</div>
+      <div :class="['text-xs', messageClass]" v-if="status.message">{{ status.message }}</div>
     </div>
   </div>
 </template>
@@ -15,11 +15,10 @@
 
 <script setup>
 
-import { computed, provide, inject } from 'vue';
-import { useFormLabel } from '../../composables/forms.js';
+import { computed, provide } from 'vue';
 import { colorProp, useSizeProp } from '../../composables/props';
-import { useSizeValue, useStackedValue } from '../../composables/forms.js';
-
+import { useFormLabel, useSizeValue, useStackedValue, useInputStatus } from '../../composables/forms';
+import { useInputClasses } from '../../composables/styles';
 
 const props = defineProps({
   id: String,
@@ -32,41 +31,30 @@ const props = defineProps({
   size: useSizeProp(),
 });
 
+const {
+  textSizeClass,
+  heightClass,
+  disabledClass,
+} = useInputClasses(props);
+
 const label = useFormLabel(props);
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
-provide('form-section',  { stacked, size });
-provide('form-element',  { size, color: props.color, isFormElement: true })
+const status = useInputStatus(props);
 
-const sizeCheck = (stacked) ? 'stacked' :size;
-const lineClampClass = computed(() => {
-  return {
-    xs: 'line-clamp-1',
-    sm: 'line-clamp-2',
-    md: 'line-clamp-2',
-    lg: 'line-clamp-2',
-    stacked: 'py-0.5 align-baseline'
-  }[sizeCheck];
-});
+provide('form-section', { stacked, size });
+provide('form-element', { size, color: props.color, isFormElement: true })
 
-const sizeClass = computed(() => {
-  return {
-    xs: 'h-6',
-    sm: 'h-8',
-    md: 'h-10',
-    lg: 'h-12',
-    stacked: ''
-  }[sizeCheck];
-});
+const sizeCheck = (stacked) ? 'stacked' : size;
+const lineClampClass = {
+  xs: 'line-clamp-1',
+  sm: 'line-clamp-2',
+  md: 'line-clamp-2',
+  lg: 'line-clamp-2',
+  stacked: 'py-0.5 align-baseline'
+}[sizeCheck];
 
-const textSizeClass = computed(() => {
-  return {
-    xs: 'text-xs',
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg',
-  }[size];
-});
+const sizeClass = stacked ? '' : heightClass;
 
 const messageClass = computed(() => {
   return {
@@ -77,10 +65,9 @@ const messageClass = computed(() => {
     success: 'text-success',
     warning: 'text-warning',
     danger: 'text-danger',
-  }[props.color];
+  }[status.value.color];
 });
 
 const stackedClass = stacked ? 'mb-1 truncate' : 'basis-1/2 flex flex-col justify-center pr-8';
-
 
 </script>

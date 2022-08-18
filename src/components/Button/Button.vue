@@ -43,9 +43,9 @@ const sizeClass = {
 }[size];
 
 const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-pointer';
-const paddingClass = (props.customPadding) ? '' : 'px-2';
+const paddingClass = (props.customPadding) ? '' : 'px-4';
 
-const color = (props.color === 'default') ? 'indigo' : props.color; 
+const color = (!props.color || props.color === 'default') ? 'indigo' : props.color;
 const colorClass = computed(() => {
   let className = '';
   if(props.fill === 'solid') {

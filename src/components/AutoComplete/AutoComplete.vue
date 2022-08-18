@@ -19,8 +19,7 @@
             @change="searchValue = $event.target.value"
             @click="$event.target.select()"
             autocomplete="off"
-            class="w-full border outline-none focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light"
-            :class="[ sizeClass, bgColor]"
+            :class="[inputStaticClasses, mergedSizeClass, hPaddingClass, bgColorClass, inputColorClass]"
           />
         </div>
         <ComboboxOptions class="absolute z-10 mt-1 w-full bg-white shadow-lg py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
@@ -63,6 +62,7 @@ import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { computed, ref, reactive } from 'vue';
 import { colorProp, formElementProps, useSizeProp } from '../../composables/props';
+import { inputStaticClasses, useInputClasses } from '../../composables/styles';
 import {
   useFormElementValue,
   useInputValue,
@@ -101,6 +101,13 @@ const isDirty = ref(false);
 const localValue = ref('');
 const searchValue = ref('');
 
+const {
+  mergedSizeClass,
+  inputColorClass,
+  bgColorClass,
+  disabledClass,
+} = useInputClasses(props);
+
 const displayValue = computed({
   get() {
     const val = useInputValue(props);
@@ -127,11 +134,11 @@ const localOptions = computed(() => {
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
 const size = useSizeValue(props.size);
-const sizeClass = {
-  xs: 'h-6 text-xs pl-3 pr-6 py-0.5',
-  sm: 'h-8 text-sm pl-3 pr-8 py-1',
-  md: 'h-10 text-base pl-3 pr-10 py-2',
-  lg: 'h-12 text-lg pl-3 pr-12 py-2',
+const hPaddingClass = {
+  xs: 'pl-3 pr-6',
+  sm: 'pl-3 pr-8',
+  md: 'pl-3 pr-10',
+  lg: 'pl-3 pr-12',
 }[size];
 
 const iconColorClass = computed(() => {
@@ -144,12 +151,6 @@ const iconColorClass = computed(() => {
     warning: 'text-warning-light',
     danger: 'text-danger-light',
   }[props.color];
-});
-
-const bgColor =  (props.transparent) ? 'bg-transparent' : 'bg-white';
-
-const disabledClass = computed(() => {
-  return props.disabled && 'opacity-60';
 });
 
 const filteredOptions = computed(() => {

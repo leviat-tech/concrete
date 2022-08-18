@@ -16,6 +16,23 @@ const store = reactive({
   isAdmin: false,
 });
 
+const statusStore = reactive({
+  firstname: {
+    type: 'error',
+    message: 'Users called John are not allowed here'
+  },
+  lastname: {
+    type: 'warning',
+    message: 'The surname Smith is permitted, but frowned upon'
+  },
+  nationality: {
+    type: 'info',
+    message: 'where are you from?'
+  }
+});
+
+window.statusStore = statusStore;
+
 const app = createApp(App);
 concrete.install(app, {
   size: 'md',
@@ -28,12 +45,15 @@ concrete.install(app, {
     store[id] = value;
   },
   registerInputs: (id, el) => {
-    console.log(`Registered input with id '${id}'`, el);
+    console.log(`Registered input with id '${id}'`);
 
     return () => {
       console.log(`Deregistered input with id '${id}'`);
     }
-  }
+  },
+  inputGetStatus(id) {
+    return statusStore[id];
+  },
 });
 app.mount('#app');
 
