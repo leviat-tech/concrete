@@ -4,7 +4,7 @@
       {{ label }}
     </CTabLabel>
     <!-- CTabLabel must be used in the template labels slot -->
-    <slot name="labels" />
+    <slot />
   </TabList>
 </template>
 
