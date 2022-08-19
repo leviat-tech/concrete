@@ -9,7 +9,6 @@ import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CListbox from './components/Listbox/Listbox.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
 import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
-import CTabs from './components/Tabs/Tabs.vue';
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -21,6 +20,7 @@ import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CModal from './components/Modal/Modal.vue';
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
+import CTabs from './components/Tabs/Tabs.vue';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
