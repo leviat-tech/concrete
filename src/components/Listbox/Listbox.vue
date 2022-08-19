@@ -201,6 +201,4 @@ const iconColorClass = computed(() => {
 
 useRegisterInput(props.id, buttonRef);
 
-useRegisterInput(props.id, buttonRef);
-
 </script>
