@@ -111,6 +111,6 @@ const checkIconClass = computed(() => {
   }[props.color];
 });
 
-useRegisterInput(props.id, switchRef);
+useRegisterInput(props, switchRef);
 
 </script>

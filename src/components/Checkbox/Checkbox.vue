@@ -83,6 +83,6 @@ const checkIconClass = computed(() => {
   }[props.color];
 });
 
-useRegisterInput(props.id, el);
+useRegisterInput(props, el);
 
 </script>
