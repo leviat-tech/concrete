@@ -9,6 +9,7 @@ import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CListbox from './components/Listbox/Listbox.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
 import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
+import CTabs from './components/Tabs/Tabs.vue';
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -45,6 +46,7 @@ const allComponents = {
   CTextInput,
   CAutoComplete,
   CTextArea,
+  CTabs,
   CTool,
   CToolbar,
   CToolGroup,
@@ -53,7 +55,6 @@ const allComponents = {
 };
 
 const install = (app, userOptions = {}) => {
-
   const options = {
     ...defaultOptions,
     ...userOptions,
@@ -96,6 +97,7 @@ export {
   CTextInput,
   CAutoComplete,
   CTextArea,
+  CTabs,
   CTool,
   CToolbar,
   CToolGroup,
