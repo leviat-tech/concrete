@@ -20,7 +20,7 @@ import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CModal from './components/Modal/Modal.vue';
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
-import CTabs from './components/Tabs/Tabs.vue';
+import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
