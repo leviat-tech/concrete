@@ -16,9 +16,8 @@
 </template>
 
 <script setup>
-import { TabGroup, TabPanels, TabPanel } from '@headlessui/vue';
+import { TabGroup, TabPanels } from '@headlessui/vue';
 import CTabList from './CTabList.vue';
-import CTabPanel from './CTabPanel.vue';
 
 const props = defineProps({
   labels: { type: Array, default: () => [] },
