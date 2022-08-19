@@ -25,7 +25,7 @@ export const componentTemplate = (args) => ({
   },
   data: () => ({ value: '' }),
   template: `
-  <CTabs v-bind="args"> 
+  <CTabs v-bind="args" class="border"> 
     <template #panels> 
       <CTabPanel>Hello 1</CTabPanel/> 
       <CTabPanel>Hello 2</CTabPanel/> 
