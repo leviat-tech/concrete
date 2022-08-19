@@ -163,5 +163,5 @@ const filteredOptions = computed(() => {
       }).slice(0,props.listSize);
 });
 
-useRegisterInput(props.id, inputRef);
+useRegisterInput(props, inputRef);
 </script>

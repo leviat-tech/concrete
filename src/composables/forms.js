@@ -1,5 +1,5 @@
 import { useConcrete } from './concrete';
-import { computed, inject, onMounted, onUnmounted } from 'vue';
+import { computed, inject, onMounted, onUnmounted, watch } from 'vue';
 import logger from '../utils/logger.js';
 
 export const useFormLabel = (props) => {
@@ -35,7 +35,18 @@ export const useInputValue = (props) => {
   return inputIdToValue(props.id)
 }
 
-export const useRegisterInput = (id, inputRef) => {
+function getInputElementFromRef(inputRef) {
+  const input = inputRef.value;
+  const el = (input instanceof HTMLElement) ? input : input.el;
+  if (!(el instanceof HTMLElement)) {
+    logger.warn(`Could not register input with id '${id}'`);
+  }
+  return el;
+}
+
+export const useRegisterInput = (props, inputRef) => {
+  const { id } = props;
+
   const { registerInputs, registeredInputs } = useConcrete();
 
   if (!id || !inputRef || !registerInputs) return;
@@ -44,11 +55,7 @@ export const useRegisterInput = (id, inputRef) => {
   let unregisterInput;
 
   onMounted(() => {
-    const input = inputRef.value;
-    const el = (input instanceof HTMLElement) ? input : input.el;
-    if (!(el instanceof HTMLElement)) {
-      return logger.warn(`Could not register input with id '${id}'`);
-    }
+    const el = getInputElementFromRef(inputRef);
 
     if (!isCustomHandler) {
       registeredInputs[id] = el;
@@ -60,6 +67,22 @@ export const useRegisterInput = (id, inputRef) => {
       logger.warn(`Input id '${id}' registered without returning an unregister function`);
     }
   });
+
+  // Re-register the input if the id changes
+  watch(
+    () => props.id,
+    (nextId, prevId) => {
+      const el = getInputElementFromRef(inputRef);
+      if (isCustomHandler) {
+        unregisterInput();
+        unregisterInput = registerInputs(nextId, el);
+        return;
+      }
+
+      delete registeredInputs[prevId];
+      registeredInputs[nextId] = el
+    }
+  )
 
   onUnmounted(() => {
     if (isCustomHandler) {
