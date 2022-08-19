@@ -13,6 +13,6 @@ import { TabList } from '@headlessui/vue';
 import CTabLabel from './CTabLabel.vue';
 
 const props = defineProps({
-  labels: { type: Array, default: () => [] },
+  labels: Array,
 });
 </script>
