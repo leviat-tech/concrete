@@ -26,7 +26,7 @@
           <div
             v-if="filteredOptions.length === 0 && searchValue !== ''"
             class="cursor-default select-none relative py-2 pl-3 pr-9"
-            :class="sizeClass"
+            :class="mergedSizeClass"
           >
             {{ props.searchFailedMessage }}
           </div>
@@ -38,7 +38,7 @@
             v-slot="{ active }"
           >
             <li
-              :class="[active ? 'text-white bg-indigo' : 'text-gray-900', sizeClass]"
+              :class="[active ? 'text-white bg-indigo' : 'text-gray-900', mergedSizeClass]"
               class="cursor-default select-none relative py-2 pl-3 pr-9"
             >
               {{ option.key }}
@@ -90,6 +90,7 @@ const props = defineProps({
   searchFailedMessage: { type: String, default: 'No Options match the search' },
   transparent: { type: Boolean, default: false },
   listSize: { type: Number, default:5 },
+  onChange: { type: Function, default: null },
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);
