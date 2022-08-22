@@ -3,10 +3,10 @@
     :id="id"
     :class="[sizeClass, colorClass, cursorClass, paddingClass]"
     :disabled="disabled"
-    @click.self="click"
+    @click="$emit('click')"
     class="concrete__button"
   >
-    <div class="">
+    <div>
       <slot />
     </div>
   </button>
