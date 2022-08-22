@@ -1,4 +1,5 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import { userEvent, screen, within } from '@storybook/testing-library';
 import CTabs from '../Tabs.vue';
 import CTabPanel from '../CTabPanel.vue';
 
@@ -44,6 +45,13 @@ export const componentTemplate = (args) => ({
     args={{
       tabPosition: 'top',
       labels: ['Tab 1', 'Tab 2', 'Tab 3'],
+    }}
+    play={async ({ canvasElement }) => {
+      const canvas = within(canvasElement);
+      await screen.findByText('Tab 1');
+      await screen.findByText('Tab 2');
+      await screen.findByText('Tab 3');
+      await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
     }}
   >
     {componentTemplate.bind({})}
