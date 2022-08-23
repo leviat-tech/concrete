@@ -57,10 +57,15 @@ export const componentTemplate = (args) => ({
       await screen.findByText('Tab 1');
       await screen.findByText('Tab 2');
       await screen.findByText('Tab 3');
-      await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
       // Click on the second tab and assert that panel is displayed
       await userEvent.click(canvas.getByRole('tab', { name: 'Tab 2' }));
       await screen.findByText('Hello 2');
+      // Click on the third tab and assert that panel is displayed
+      await userEvent.click(canvas.getByRole('tab', { name: 'Tab 3' }));
+      await screen.findByText('Hello 3');
+      // Click on the first tab and assert that panel is displayed
+      await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
+      await screen.findByText('Hello 1');
     }}
   >
     {componentTemplate.bind({})}
