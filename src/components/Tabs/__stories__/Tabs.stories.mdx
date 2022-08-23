@@ -1,5 +1,6 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import { userEvent, screen, within } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 import CTabs from '../Tabs.vue';
 import CTabPanel from '../CTabPanel.vue';
 
@@ -48,6 +49,10 @@ export const componentTemplate = (args) => ({
     }}
     play={async ({ canvasElement }) => {
       const canvas = within(canvasElement);
+      // Check that 3 tabs are displayed
+      const tabs = await screen.findByRole('tablist');
+      const numberOfTabs = Object.values(tabs.children).length;
+      expect(numberOfTabs).toBe(3);
       // All tabs are visible
       await screen.findByText('Tab 1');
       await screen.findByText('Tab 2');
