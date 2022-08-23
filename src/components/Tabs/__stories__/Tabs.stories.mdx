@@ -51,7 +51,7 @@ export const componentTemplate = (args) => ({
       const canvas = within(canvasElement);
       // Check that 3 tabs are displayed
       const tabs = await screen.findByRole('tablist');
-      const numberOfTabs = Object.values(tabs.children).length;
+      const numberOfTabs = tabs.children.length;
       expect(numberOfTabs).toBe(3);
       // All tabs are visible
       await screen.findByText('Tab 1');
