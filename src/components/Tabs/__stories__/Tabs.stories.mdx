@@ -29,9 +29,9 @@ export const componentTemplate = (args) => ({
   template: `
   <CTabs v-bind="args" class="border"> 
     <template #panels> 
-      <CTabPanel>Hello 1</CTabPanel> 
-      <CTabPanel>Hello 2</CTabPanel> 
-      <CTabPanel>Hello 3</CTabPanel> 
+      <CTabPanel>Panel 1</CTabPanel> 
+      <CTabPanel>Panel 2</CTabPanel> 
+      <CTabPanel>Panel 3</CTabPanel> 
     </template>
   </CTabs>`,
 });
@@ -59,13 +59,13 @@ export const componentTemplate = (args) => ({
       await screen.findByText('Tab 3');
       // Click on the second tab and assert that panel is displayed
       await userEvent.click(canvas.getByRole('tab', { name: 'Tab 2' }));
-      await screen.findByText('Hello 2');
+      await screen.findByText('Panel 2');
       // Click on the third tab and assert that panel is displayed
       await userEvent.click(canvas.getByRole('tab', { name: 'Tab 3' }));
-      await screen.findByText('Hello 3');
+      await screen.findByText('Panel 3');
       // Click on the first tab and assert that panel is displayed
       await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
-      await screen.findByText('Hello 1');
+      await screen.findByText('Panel 1');
     }}
   >
     {componentTemplate.bind({})}
