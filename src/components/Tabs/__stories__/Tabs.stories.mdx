@@ -48,12 +48,13 @@ export const componentTemplate = (args) => ({
       labels: ['Tab 1', 'Tab 2', 'Tab 3'],
     }}
     // Play function is responsible for interaction testing
-    play={async ({ canvasElement }) => {
+    play={async ({ args, canvasElement }) => {
       const canvas = within(canvasElement);
-      // Check that 3 tabs are displayed
+      // Check that labels array is the same length as the number of visible tabs
       const tabs = await screen.findByRole('tablist');
       const numberOfTabs = tabs.children.length;
-      expect(numberOfTabs).toBe(3);
+      const numberOfLabelsArg = args.label.length;
+      expect(numberOfTabs).toBe(numberOfLabelsArg);
       // All tabs are visible
       await screen.findByText('Tab 1');
       await screen.findByText('Tab 2');
