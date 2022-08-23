@@ -71,7 +71,7 @@ import {
   useStackedValue
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
-import isPlainObject from 'lodash/isPlainObject';
+import { isPlainObject } from 'lodash-es';
 
 const props = defineProps({
   ...formElementProps,
