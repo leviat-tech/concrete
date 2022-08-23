@@ -47,6 +47,7 @@ export const componentTemplate = (args) => ({
       tabPosition: 'top',
       labels: ['Tab 1', 'Tab 2', 'Tab 3'],
     }}
+    // Play function is responsible for interaction testing
     play={async ({ canvasElement }) => {
       const canvas = within(canvasElement);
       // Check that 3 tabs are displayed
