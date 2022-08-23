@@ -1,7 +1,7 @@
 // taken from https://stackoverflow.com/questions/66529241/storybook-is-displaying-everything-in-show-code
 
 import { addons, makeDecorator } from '@storybook/addons';
-import kebabCase from 'lodash/kebabCase'
+import { kebabCase } from 'lodash-es'
 import { h, onMounted } from 'vue';
 
 // this value doesn't seem to be exported by addons-docs
