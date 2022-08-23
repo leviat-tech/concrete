@@ -115,7 +115,7 @@
 </template>
 
 <script setup>
-import _ from "lodash";
+import { omit, orderBy } from "lodash-es";
 import { ref, computed, watch, useAttrs } from "vue";
 import CIcon from '../Icon/Icon.vue';
 import CPagination from "./Pagination.vue";
@@ -145,7 +145,7 @@ function beginEditingRow(row, index) {
 }
 
 function saveEdit() {
-  const data = _.omit(editingRow.value, "_index");
+  const data = omit(editingRow.value, "_index");
   const success = () => (editingRow.value = null);
   const error = (_errors) => {
     errors.value = _errors;
@@ -189,7 +189,7 @@ const _rows = computed(() => {
     .map((col) => col.id);
 
   const sortOrders = sortColIds.map((colId) => sort.value[colId]);
-  const sorted = _.orderBy(props.rows, sortColIds, sortOrders);
+  const sorted = orderBy(props.rows, sortColIds, sortOrders);
 
   if (props.pageLimit) {
     const offset = (pageNumber.value - 1) * props.pageLimit;
