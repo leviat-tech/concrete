@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import isEmpty from 'lodash/isEmpty';
+import { isEmpty } from 'lodash-es';
 
 
 function domToSVGCoords(el, pt) {

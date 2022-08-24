@@ -104,5 +104,5 @@ defineExpose({
   blur,
 });
 
-useRegisterInput(props.id, inputRef);
+useRegisterInput(props, inputRef);
 </script>
