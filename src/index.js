@@ -21,10 +21,12 @@ import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CModal from './components/Modal/Modal.vue';
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
+import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
+import { CTable, CInputCell } from './components/Table';
 
 import { defaultOptions } from './composables/concrete';
 
@@ -46,7 +48,12 @@ const allComponents = {
   CTextInput,
   CAutoComplete,
   CRadioGroup,
+  CTable,
+  CInputCell,
   CTextArea,
+  CTabs,
+  CTabPanel,
+  CTabLabel,
   CTool,
   CToolbar,
   CToolGroup,
@@ -55,7 +62,6 @@ const allComponents = {
 };
 
 const install = (app, userOptions = {}) => {
-
   const options = {
     ...defaultOptions,
     ...userOptions,
@@ -98,7 +104,12 @@ export {
   CTextInput,
   CAutoComplete,
   CRadioGroup,
+  CTable,
+  CInputCell,
   CTextArea,
+  CTabs,
+  CTabPanel,
+  CTabLabel,
   CTool,
   CToolbar,
   CToolGroup,

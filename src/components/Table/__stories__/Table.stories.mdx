@@ -1,0 +1,94 @@
+import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import CTable from '../Table.vue';
+import CInputCell from '../InputCell.vue';
+
+<Meta
+  title="Components/Table"
+  component={CTable}
+  argTypes={{
+    pageLimit: {
+      control: ''
+    }
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CTable, CInputCell },
+  setup() {
+    return { args };
+  },
+  data() {
+    const team = {
+      1: { id: 1, name: "lee", role: "developer" },
+      2: { id: 2, name: "matt", role: "developer" },
+      3: { id: 3, name: "dan", role: "developer" },
+      4: { id: 4, name: "yaming", role: "developer" },
+      5: { id: 5, name: "pete", role: "developer" },
+      6: { id: 6, name: "calum", role: "developer" },
+      7: { id: 7, name: "robi", role: "developer" },
+    }
+    return { team }
+  },
+  methods: {
+    add({ data, success, error }) {
+      if (data.name && data.role) {
+        const id = Date.now();
+        this.team[id] = { ...data, id };
+        success();
+      } else {
+        error({
+          name: !data.name && "name is required",
+          role: !data.role && "role is required",
+        });
+      }
+    },
+    edit({ data, success, error }) {
+      if (data.name && data.role) {
+        this.team[data.id] = data;
+        success();
+      } else {
+        error({
+          name: !data.name && "name is required",
+          role: !data.role && "role is required",
+        });
+      }
+    },
+  },
+  computed: {
+    rows() {
+      return Object.values(this.team);
+    },
+    columns() {
+      return [{ id: "name", sortable: true }, { id: "role" }];
+    },
+  },
+  template: `
+    <CTable
+      v-bind="args"
+      :rows="rows" :columns="columns" 
+      @add="add" @edit="edit" @delete="delete team[$event.id]"
+    >
+      <template #name="props">
+        <CInputCell v-bind="props" />
+      </template>
+      <template #role="props">
+        <CInputCell v-bind="props" />
+      </template>
+    </CTable>
+  `,
+});
+
+<!--- Component documentation -->
+
+# Table
+
+<Canvas withSource='open'>
+  <Story name="Overview" args={{ pageLimit: 5 }}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+<ArgsTable story="Overview" />

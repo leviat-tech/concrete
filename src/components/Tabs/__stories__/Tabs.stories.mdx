@@ -1,0 +1,71 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CTabs from '../Tabs.vue';
+import CTabPanel from '../CTabPanel.vue';
+
+<Meta
+  title="Components/Tabs"
+  component={CTabs}
+  argTypes={{
+    tabPosition: {
+      options: ['top', 'bottom'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CTabs, CTabPanel },
+  setup() {
+    return { args };
+  },
+  data: () => ({ value: '' }),
+  template: `
+  <CTabs v-bind="args" class="border"> 
+    <template #panels> 
+      <CTabPanel>Hello 1</CTabPanel/> 
+      <CTabPanel>Hello 2</CTabPanel/> 
+      <CTabPanel>Hello 3</CTabPanel/> 
+    </template>
+  </CTabs>`,
+});
+
+<!--- Component documentation -->
+
+# Tabs
+
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      tabPosition: 'top',
+      labels: ['Tab 1', 'Tab 2', 'Tab 3'],
+    }}
+  >
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Overview
+
+Tabs component provides a way to view tabbed/paned content.
+
+### Labels
+
+You can either provide labels as an array of strings using the prop :labels , or as a slot #labels  
+When using the slot, be sure to use only CTabLabel component
+
+### Content
+
+You can provide using the slot #panels  
+When using the slot, be sure to only use CTabPanel component
+
+Making sure to add relevant classes and style accordingly for height, padding overflow etc on CTabPanel
+
+## Props
+
+<ArgsTable story="Overview" />

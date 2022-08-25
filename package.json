@@ -1,6 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.3",
   "main": "src/index.js",
   "scripts": {
     "dev": "vite",
@@ -16,7 +16,7 @@
     "@heroicons/vue": "^1.0.6",
     "d3-drag": "^3.0.0",
     "d3-selection": "^3.0.0",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "vue": "^3.2.25"
   },
   "devDependencies": {

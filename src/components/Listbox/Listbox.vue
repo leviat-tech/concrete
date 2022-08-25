@@ -61,7 +61,7 @@
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption, } from '@headlessui/vue';
 import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
 import { computed, ref, inject } from 'vue';
-import isPlainObject from 'lodash/isPlainObject';
+import { isPlainObject } from 'lodash-es';
 import { formElementProps } from '../../composables/props.js';
 import { useInputColorClassValue, inputStaticClasses, useInputClasses } from '../../composables/styles.js';
 import {
@@ -199,8 +199,6 @@ const iconColorClass = computed(() => {
   }[props.color];
 });
 
-useRegisterInput(props.id, buttonRef);
-
-useRegisterInput(props.id, buttonRef);
+useRegisterInput(props, buttonRef);
 
 </script>

@@ -124,8 +124,6 @@ const convertFromDisplayValue = (v) => {
 const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
 const paddingClass = (props.readOnly || props.disabled) ? 'pr-3' : 'pr-8';
 
-useRegisterInput(props.id, inputRef);
-
-useRegisterInput(props.id, inputRef);
+useRegisterInput(props, inputRef);
 
 </script>
