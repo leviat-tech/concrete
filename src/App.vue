@@ -23,6 +23,7 @@
               </CFormElement>
               <CSwitch id="enableNotifications" label="Recieve Notifications" />
               <CCheckbox id="isAdmin" label="Is Admin" disabled />
+              <CRadioGroup class="col-span-2" label="Service Level" id="serviceLevel" :options="['Bronze Cobra', 'Silver Lion', 'Gold Eagle']" :message="errors.serviceLevel" :color="errors.serviceLevel && 'danger'"/>
               <CButton class="col-span-2">Submit</CButton>
             </div>
           </CFormSection>
@@ -49,6 +50,7 @@
               </CFormElement>
               <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications"/>
               <CCheckbox label="Is Admin" v-model="form1.isAdmin"/>
+              <CRadioGroup label="Service Level" :columns="3" :options="['Bronze Cobra', 'Silver Lion', 'Gold Eagle', 'a','b','c']"/>
               <CButton class="w-full">Submit</CButton>
             </div>
           </CFormSection>
@@ -78,6 +80,7 @@
               </CFormElement>
               <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications" :displayIcons="true"></CSwitch>
               <CCheckbox label="Is Admin" v-model="form1.isAdmin"></CCheckbox>
+              <CRadioGroup label="Service Level"  :options="['Bronze Cobra', 'Silver Lion', 'Gold Eagle']"/>
               <CButton class="col-span-2">Submit</CButton>
             </div>
           </CFormSection>
@@ -104,6 +107,7 @@
               </CFormElement>
               <CSwitch label="Recieve Notifications" v-model="form1.recieveNotifications" color="sky" :transparent="true" />
               <CCheckbox label="Is Admin" v-model="form1.isAdmin" color="sky" :transparent="true" />
+              <CRadioGroup color="sky" class="col-span-2" label="Service Level"  :options="['Bronze Cobra', 'Silver Lion', 'Gold Eagle']"/>
               <CButton class="col-span-2" color="sky" fill="outline">Submit</CButton>
             </div>
           </CFormSection>
@@ -122,6 +126,7 @@ import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CListbox from './components/Listbox/Listbox.vue';
 import CSwitch from './components/Switch/Switch.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
+import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
 import CButton from './components/Button/Button.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
@@ -136,6 +141,7 @@ export default {
     CListbox,
     CSwitch,
     CCheckbox,
+    CRadioGroup,
     CButton,
     CInputAffix,
     CFormElement,
@@ -165,7 +171,8 @@ export default {
         'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
       ],
       errors: {
-        emailAddress: 'Not a valid email address'
+        emailAddress: 'Not a valid email address',
+        serviceLevel: 'You cant afford it'
       }
     }
   },

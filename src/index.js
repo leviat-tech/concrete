@@ -9,6 +9,7 @@ import CNumericInput from './components/NumericInput/NumericInput.vue';
 import CListbox from './components/Listbox/Listbox.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
 import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
+import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -46,6 +47,7 @@ const allComponents = {
   CSwitch,
   CTextInput,
   CAutoComplete,
+  CRadioGroup,
   CTable,
   CInputCell,
   CTextArea,
@@ -101,6 +103,7 @@ export {
   CSwitch,
   CTextInput,
   CAutoComplete,
+  CRadioGroup,
   CTable,
   CInputCell,
   CTextArea,
