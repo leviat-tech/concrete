@@ -4,8 +4,10 @@
     :is="formElement ? CFormElement : CFragment"
     v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
   >
+  
     <Combobox as="div" class="concrete__autocomplete" v-model="displayValue" :disabled="disabled">
       <div :class="['relative', disabledClass]">
+        
         <div
           class="
             inline-flex
@@ -14,6 +16,7 @@
             text-left
           "
         >
+          <slot name="prefix" class="z-10"/>
           <ComboboxInput
             ref="inputRef"
             @change="searchValue = $event.target.value"
@@ -21,6 +24,7 @@
             autocomplete="off"
             :class="[inputStaticClasses, mergedSizeClass, hPaddingClass, bgColorClass, inputColorClass]"
           />
+          <slot name="suffix" class="z-10"/>
         </div>
         <ComboboxOptions class="absolute z-10 mt-1 w-full bg-white shadow-lg py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
           <div
