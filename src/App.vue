@@ -23,7 +23,7 @@
               </CFormElement>
               <CSwitch id="enableNotifications" label="Recieve Notifications" />
               <CCheckbox id="isAdmin" label="Is Admin" disabled />
-              <CRadioGroup class="col-span-2" label="Service Level"  :options="['Bronze Cobra', 'Silver Lion', 'Gold Eagle']" :message="errors.serviceLevel" :color="errors.serviceLevel && 'danger'"/>
+              <CRadioGroup class="col-span-2" label="Service Level" id="serviceLevel" :options="['Bronze Cobra', 'Silver Lion', 'Gold Eagle']" :message="errors.serviceLevel" :color="errors.serviceLevel && 'danger'"/>
               <CButton class="col-span-2">Submit</CButton>
             </div>
           </CFormSection>

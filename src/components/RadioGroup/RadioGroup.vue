@@ -71,7 +71,7 @@ const el = ref(null);
 
 const emit = defineEmits(['update:modelValue', 'change']);
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
-useRegisterInput(props.id, el);
+useRegisterInput(props, el);
 
 const stacked = useStackedValue(props.stacked);
 
