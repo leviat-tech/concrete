@@ -29,6 +29,7 @@ const props = defineProps({
   expandInput: { type: Boolean, default: true },
   color: colorProp,
   size: useSizeProp(),
+  noLabel: { type: Boolean },
 });
 
 const {
@@ -43,7 +44,7 @@ const stacked = useStackedValue(props.stacked);
 const status = useInputStatus(props);
 
 provide('form-section', { stacked, size });
-provide('form-element', { size, color: props.color, isFormElement: true })
+provide('form-element', { size, color: props.color })
 
 const sizeCheck = (stacked) ? 'stacked' : size;
 const lineClampClass = {

@@ -4,9 +4,10 @@ export const defaultOptions = {
   size: 'sm',
   stacked: false,
   components: null,
-  labelFormatter: (label) => label,
+  labelFormatter: (props) => props.label || props.id,
   inputHandler: null,
   inputIdToValue: null,
+  wrapFormInputs: true,
 }
 
 export const useConcrete = () => {
