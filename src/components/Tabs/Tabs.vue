@@ -20,7 +20,7 @@ import { TabGroup, TabPanels } from '@headlessui/vue';
 import CTabList from './CTabList.vue';
 
 const props = defineProps({
-  labels: { type: Array, default: () => [] },
+  labels: { type: Array },
   tabPosition: {
     default: 'top',
     validator(value) {
