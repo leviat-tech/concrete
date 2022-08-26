@@ -1,5 +1,8 @@
 <template>
-  <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message, stacked, expandInput: false, }">
+  <component
+    :is="wrap ? CFormElement : CFragment"
+    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel, expandInput: false, }"
+  >
     <div class="concrete__switch">
       <Switch
         ref="switchRef"
@@ -39,7 +42,7 @@ import { formElementProps } from '../../composables/props.js';
 import {
   useSizeValue,
   useStackedValue,
-  useFormElementValue,
+  useNoWrapValue,
   useInputValue,
   useRegisterInput
 } from '../../composables/forms';
@@ -59,7 +62,7 @@ const emit = defineEmits(['update:modelValue', 'change']);
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
-const formElement = useFormElementValue(props.label);
+const wrap = !useNoWrapValue(props);
 
 const switchRef = ref(null);
 const isDirty = ref(false);

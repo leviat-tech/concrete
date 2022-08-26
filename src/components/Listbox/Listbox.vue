@@ -1,5 +1,8 @@
 <template>
-  <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message, stacked }">
+  <component
+    :is="wrap ? CFormElement : CFragment"
+    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
+  >
     <Listbox
       as="div"
       :id="id"
@@ -65,7 +68,7 @@ import { isPlainObject } from 'lodash-es';
 import { formElementProps } from '../../composables/props.js';
 import { useInputColorClassValue, inputStaticClasses, useInputClasses } from '../../composables/styles.js';
 import {
-  useFormElementValue,
+  useNoWrapValue,
   useSizeValue,
   useStackedValue,
   useInputValue,
@@ -107,7 +110,7 @@ const {
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
-const formElement = useFormElementValue(props.label);
+const wrap = !useNoWrapValue(props);
 
 const isDirty = ref(false);
 const localValue = ref(null);

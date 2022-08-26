@@ -4,34 +4,34 @@ import logger from '../utils/logger.js';
 
 export const useFormLabel = (props) => {
   const concrete = useConcrete();
-  const formatter = props.labelFormatter || concrete.labelFormatter;
-  return (!!props.label) ? formatter(props.label, props.id) : null;
+  const noLabel = ( props.noLabel || (!props.id && !props.label) );
+  const formSection = inject('form-section', { size: null });
+  const formatter = props.labelFormatter || formSection.labelFormatter || concrete.labelFormatter;
+  return (!noLabel) ? formatter(props) : null;
+}
+
+export const useNoWrapValue = (props) => {
+  const concrete = useConcrete();
+  return (props.noWrap || !concrete.wrapFormInputs);
 }
 
 export const useSizeValue = (sizeProp) => {
-  const concrete = inject('concrete', { size: null });
+  const concrete = useConcrete();
   const formSection = inject('form-section', { size: null });
   const formElement = inject('form-element', { size: null });
   return sizeProp || formElement.size || formSection.size || concrete.size || 'md';
 }
 
 export const useStackedValue = (stackedProp) => {
-  const concrete = inject('concrete', { stacked: null });
+  const concrete = useConcrete();
   const formSection = inject('form-section', { stacked: null });
   const formElement = inject('form-element', { stacked: null });
   return stackedProp || formElement.stacked || formSection.stacked || concrete.stacked || false;
 }
 
-export const useFormElementValue = (labelProp) => {
-  const formElement = inject('form-element', { isFormElement: null });
-  return formElement.isFormElement || !!labelProp;
-}
-
 export const useInputValue = (props) => {
   const { inputIdToValue } = useConcrete();
-
   if (props.modelValue !== undefined || !props.id || !inputIdToValue) return props.modelValue;
-
   return inputIdToValue(props.id)
 }
 
@@ -46,17 +46,13 @@ function getInputElementFromRef(inputRef) {
 
 export const useRegisterInput = (props, inputRef) => {
   const { id } = props;
-
   const { registerInputs, registeredInputs } = useConcrete();
-
   if (!id || !inputRef || !registerInputs) return;
-
   const isCustomHandler = (typeof registerInputs === 'function');
   let unregisterInput;
 
   onMounted(() => {
     const el = getInputElementFromRef(inputRef);
-
     if (!isCustomHandler) {
       registeredInputs[id] = el;
       return;

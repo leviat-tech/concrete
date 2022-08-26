@@ -1,5 +1,8 @@
 <template>
-  <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message, stacked }">
+  <component
+    :is="wrap ? CFormElement : CFragment"
+    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
+  >
     <div class="flex w-full concrete__text-input">
       <slot name="prefix" class="z-10"/>
       <input
@@ -27,7 +30,7 @@ import { inputStaticClasses, useInputClasses } from '../../composables/styles';
 import {
   useSizeValue,
   useStackedValue,
-  useFormElementValue,
+  useNoWrapValue,
   useInputValue,
   useRegisterInput,
 } from '../../composables/forms';
@@ -57,7 +60,7 @@ const {
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
-const formElement = useFormElementValue(props.label);
+const wrap = !useNoWrapValue(props);
 
 const isDirty = ref(false);
 const inputRef = ref(null);

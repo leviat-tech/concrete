@@ -1,7 +1,7 @@
 <template>
   <component
-    :is="formElement ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
+    :is="wrap ? CFormElement : CFragment"
+    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
   >
     <div class="flex w-full">
       <slot name="prefix" class="z-10" />
@@ -34,7 +34,7 @@ import {
 import {
   useSizeValue,
   useStackedValue,
-  useFormElementValue,
+  useNoWrapValue,
   useRegisterInput,
   useInputValue
 } from '../../composables/forms';
@@ -64,7 +64,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
 const stacked = useStackedValue(props.stacked);
-const formElement = useFormElementValue(props.label);
+const wrap = !useNoWrapValue(props);
 const isDirty = ref(false);
 
 const value = computed({

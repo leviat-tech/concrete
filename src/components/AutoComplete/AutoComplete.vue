@@ -1,8 +1,8 @@
 <template>
   <component
     class="relative z-50"
-    :is="formElement ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
+    :is="wrap ? CFormElement : CFragment"
+    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
   >
     <Combobox as="div" class="concrete__autocomplete" v-model="displayValue" :disabled="disabled">
       <div :class="['relative', disabledClass]">
@@ -64,7 +64,7 @@ import { computed, ref, reactive } from 'vue';
 import { colorProp, formElementProps, useSizeProp } from '../../composables/props';
 import { inputStaticClasses, useInputClasses } from '../../composables/styles';
 import {
-  useFormElementValue,
+  useNoWrapValue,
   useInputValue,
   useRegisterInput,
   useSizeValue,
@@ -97,7 +97,7 @@ const emit = defineEmits(['update:modelValue', 'change']);
 
 const inputRef = ref(null);
 const stacked = useStackedValue(props.stacked);
-const formElement = useFormElementValue(props.label);
+const wrap = !useNoWrapValue(props);
 const isDirty = ref(false);
 const localValue = ref('');
 const searchValue = ref('');

@@ -25,6 +25,7 @@ import { useInputClasses, useInputColorClassValue } from '../../composables/styl
 const props = defineProps({
   color: colorProp,
   size: useSizeProp(),
+  labelFormatter: Function,
   title: { type: String, default: '' },
   underline: { type: Boolean, default: false },
   stacked: { type: Boolean },
