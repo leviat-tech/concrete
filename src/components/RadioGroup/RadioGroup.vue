@@ -1,6 +1,6 @@
 <template>
   <component
-    class="relative z-50"
+    class="relative"
     :is="formElement ? CFormElement : CFragment"
     v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
   >
