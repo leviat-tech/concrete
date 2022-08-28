@@ -142,8 +142,6 @@ const localOptions = computed(() => {
 });
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
-const onFocus = useEventHandler('focus', props, emit, localValue, isDirty);
-const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
 
 const size = useSizeValue(props.size);
 const hPaddingClass = {
