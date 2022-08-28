@@ -21,8 +21,8 @@
             ref="inputRef"
             @change="searchValue = $event.target.value"
             @click="$event.target.select()"
-            @blur="onBlur"
-            @focus="onFocus"
+            @blur="$emit('blur')"
+            @focus="$emit('focus')"
             autocomplete="off"
             :class="[inputStaticClasses, mergedSizeClass, hPaddingClass, bgColorClass, inputColorClass]"
           />
