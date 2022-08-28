@@ -4,8 +4,10 @@
     :is="formElement ? CFormElement : CFragment"
     v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
   >
+  
     <Combobox as="div" class="concrete__autocomplete" v-model="displayValue" :disabled="disabled">
       <div :class="['relative', disabledClass]">
+        
         <div
           class="
             inline-flex
@@ -14,19 +16,23 @@
             text-left
           "
         >
+          <slot name="prefix" class="z-10"/>
           <ComboboxInput
             ref="inputRef"
             @change="searchValue = $event.target.value"
             @click="$event.target.select()"
+            @blur="$emit('blur')"
+            @focus="$emit('focus')"
             autocomplete="off"
             :class="[inputStaticClasses, mergedSizeClass, hPaddingClass, bgColorClass, inputColorClass]"
           />
+          <slot name="suffix" class="z-10"/>
         </div>
         <ComboboxOptions class="absolute z-10 mt-1 w-full bg-white shadow-lg py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
           <div
             v-if="filteredOptions.length === 0 && searchValue !== ''"
-            class="cursor-default select-none relative py-2 pl-3 pr-9"
-            :class="mergedSizeClass"
+            class="cursor-default select-none relative py-2 pl-3 pr-9 z-20"
+            :class="textSizeClass"
           >
             {{ props.searchFailedMessage }}
           </div>
@@ -38,8 +44,8 @@
             v-slot="{ active }"
           >
             <li
-              :class="[active ? 'text-white bg-indigo' : 'text-gray-900', mergedSizeClass]"
-              class="cursor-default select-none relative py-2 pl-3 pr-9"
+              :class="[active ? 'text-white bg-indigo' : 'text-gray-900', textSizeClass]"
+              class="cursor-default select-none relative py-2 pl-3 pr-9 z-20"
             >
               {{ option.key }}
             </li>
@@ -91,9 +97,11 @@ const props = defineProps({
   transparent: { type: Boolean, default: false },
   listSize: { type: Number, default:5 },
   onChange: { type: Function, default: null },
+  onFocus: { type: Function, default: null },
+  onBlur: { type: Function, default: null },
 });
 
-const emit = defineEmits(['update:modelValue', 'change']);
+const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur']);
 
 const inputRef = ref(null);
 const stacked = useStackedValue(props.stacked);
@@ -107,6 +115,7 @@ const {
   inputColorClass,
   bgColorClass,
   disabledClass,
+  textSizeClass,
 } = useInputClasses(props);
 
 const displayValue = computed({
