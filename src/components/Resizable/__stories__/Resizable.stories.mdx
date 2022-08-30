@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import { CResizable, CPane } from '..';
 
 <Meta
-  title="Components/Resizable"
+  title="Components/High level/Resizable"
   component={CResizable}
   argTypes={{
     splitter: {
@@ -21,11 +21,10 @@ export const componentTemplate = (args) => ({
   },
   data() {
     return {
-      point: { x: 50, y: 50 }
-    }
+      point: { x: 50, y: 50 },
+    };
   },
-  methods: {
-  },
+  methods: {},
   template: `<CResizable v-bind="args" class="my-8 bg-sky-light h-96 flex ">
   <CPane class="border-r-2 border-indigo" :min="350">
     <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
@@ -41,13 +40,12 @@ export const componentTemplate = (args) => ({
 
 # Resizable
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-        }}>
+<Canvas withSource="open">
+  <Story name="Overview" args={{}}>
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />

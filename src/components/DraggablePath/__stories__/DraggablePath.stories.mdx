@@ -1,12 +1,20 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CDraggablePath from '../DraggablePath.vue';
 
 <Meta
-  title="Components/DraggablePath"
+  title="Components/High level/DraggablePath"
   component={CDraggablePath}
   argTypes={{
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
   }}
@@ -27,15 +35,16 @@ export const componentTemplate = (args) => ({
         { x: 10, y: 50 },
       ],
       offset: {},
-    }
+    };
   },
   computed: {
     path() {
-      return this.points.map((pt, i) => (i === 0) ? `M${pt.x} ${pt.y} ` : `L${pt.x} ${pt.y} `).join();
+      return this.points
+        .map((pt, i) => (i === 0 ? `M${pt.x} ${pt.y} ` : `L${pt.x} ${pt.y} `))
+        .join();
     },
   },
-  methods: {
-  },
+  methods: {},
   template: `<svg class="bg-gray-200" viewBox="0 0 100 100" width="200" height="200">
   <CDraggablePath
     :path="path"
@@ -59,13 +68,12 @@ export const componentTemplate = (args) => ({
 
 # Draggable Path
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-        }}>
+<Canvas withSource="open">
+  <Story name="Overview" args={{}}>
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />

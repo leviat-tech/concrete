@@ -1,10 +1,7 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import { CViewportContainer, CViewport, CViewportTools } from '..';
 
-<Meta
-  title="Components/Viewport"
-  component={CViewport}
-/>
+<Meta title="Components/High level/Viewport" component={CViewport} />
 
 <!--- Component template -->
 
@@ -18,16 +15,18 @@ export const componentTemplate = (args) => ({
       extents: {
         type: Object,
         default: () => ({
-          xmin: 0, ymin: 0, xmax: 400, ymax: 400,
+          xmin: 0,
+          ymin: 0,
+          xmax: 400,
+          ymax: 400,
         }),
       },
       currentTool: 'select',
       value: { x: 50, y: 50 },
       viewport: 'default',
-    }
+    };
   },
-  methods: {
-  },
+  methods: {},
   template: `<CViewportContainer :options="['test3', 'test4']">
     <CViewport viewportId="test" modelValue="test">
       <div class="bg-indigo w-12 h-12 text-sky-lightest">Test</div> 
@@ -42,13 +41,12 @@ export const componentTemplate = (args) => ({
 
 # Viewport
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-        }}>
+<Canvas withSource="open">
+  <Story name="Overview" args={{}}>
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />
