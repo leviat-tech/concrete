@@ -16,6 +16,7 @@ import CIcon from './components/Icon/Icon.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
+import CFragment from './components/Fragment/Fragment.vue';
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
@@ -40,6 +41,7 @@ const allComponents = {
   CFormSection,
   CIcon,
   CInputAffix,
+  CFragment,
   CListbox,
   CModal,
   CNumericInput,
@@ -96,6 +98,7 @@ export {
   CFormSection,
   CIcon,
   CInputAffix,
+  CFragment,
   CListbox,
   CModal,
   CNumericInput,

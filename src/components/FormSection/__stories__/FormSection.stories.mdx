@@ -1,0 +1,40 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CFormSection from '../FormSection.vue';
+
+<Meta title="Components/FormSection" component={CFormSection} />
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CFormSection },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template: '<CFormSection v-bind="args"></CFormSection>',
+});
+
+<!--- Component documentation -->
+
+# Checkbox
+
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      title: 'Form Section',
+    }}
+  >
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Overview
+
+Internal FormSection component to wrap form layouts.
+
+## Props
+
+<ArgsTable story="Overview" />
