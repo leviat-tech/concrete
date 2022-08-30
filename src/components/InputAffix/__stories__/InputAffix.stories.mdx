@@ -1,26 +1,30 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CInputAffix from '../InputAffix.vue';
-import CCheckbox from '../../Checkbox/Checkbox.vue';
+import CTextInput from '../../TextInput/TextInput.vue';
 
 <Meta title="Components/Low level/InputAffix" component={CInputAffix} />
 
 <!--- Component template -->
 
 export const componentTemplate = (args) => ({
-  components: { CInputAffix, CCheckbox },
+  components: { CInputAffix, CTextInput },
   setup() {
     return { args };
   },
   data() {
     return { value: true };
   },
-  template:
-    '<CInputAffix v-bind="args">TEST AFFIX<CCheckbox v-bind="args" v-model="value"></CCheckbox></CInputAffix>',
+  template: `
+<CTextInput class="" size="md">
+    <template v-slot:prefix>
+      <CInputAffix>+44</CInputAffix>
+    </template>
+  </CTextInput>`,
 });
 
 <!--- Component documentation -->
 
-# Checkbox
+# Input Affix
 
 <Canvas withSource="open">
   <Story name="Overview">{componentTemplate.bind({})}</Story>
