@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CTextInput from '../TextInput.vue';
 
 <Meta
-  title="Components/TextInput"
+  title="Components/Input/TextInput"
   component={CTextInput}
   argTypes={{
     size: {
@@ -13,23 +13,31 @@ import CTextInput from '../TextInput.vue';
       },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
       table: {
         type: { summary: 'string' },
       },
     },
     disabled: {
-      control:'boolean',
+      control: 'boolean',
     },
     readOnly: {
-      control:'boolean',
+      control: 'boolean',
     },
     transparent: {
-      control:'boolean',
+      control: 'boolean',
     },
     placeholder: {
-      control:'text',
+      control: 'text',
     },
     onEnter: {
       table: { disable: true },
@@ -48,7 +56,7 @@ import CTextInput from '../TextInput.vue';
       table: {
         type: { summary: 'slot' },
       },
-    }
+    },
   }}
 />
 
@@ -67,22 +75,24 @@ export const componentTemplate = (args) => ({
 
 # Text Input
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-          size: 'md',
-          color: 'default',
-          disabled: false,
-          readOnly: false,
-          transparent: false,
-          placeholder: '',
-          onEnter: undefined,
-          onBlur: undefined,
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      size: 'md',
+      color: 'default',
+      disabled: false,
+      readOnly: false,
+      transparent: false,
+      placeholder: '',
+      onEnter: undefined,
+      onBlur: undefined,
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
-<ArgsTable story="Overview" />
 
+<ArgsTable story="Overview" />

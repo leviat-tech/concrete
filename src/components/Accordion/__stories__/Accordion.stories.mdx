@@ -1,18 +1,16 @@
-import { ArgsTable, Story, Canvas, Meta, Source } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CAccordion from '../Accordion.vue';
 
-
 <Meta
-  title="Components/Accordion"
+  title="Components/High level/Accordion"
   component={CAccordion}
   decorators={[
     (storyFn, ctx) => ({
       components: { Story: storyFn(ctx) },
-      template: `<div style="min-height: 10rem"><Story /></div>`
-    })
+      template: `<div style="min-height: 10rem"><Story /></div>`,
+    }),
   ]}
-  argTypes={{
-  }}
+  argTypes={{}}
 />
 
 <!--- Component template -->
@@ -23,7 +21,7 @@ export const componentTemplate = (args) => ({
     return { args };
   },
   data() {
-    return { show: args.show }
+    return { show: args.show };
   },
   template: `
 <CAccordion v-bind="args" class='border'>
@@ -36,18 +34,21 @@ export const componentTemplate = (args) => ({
 
 # Accordion
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-          title: 'Accordion title',
-          content: 'Accordion content',
-          show: false,
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      title: 'Accordion title',
+      content: 'Accordion content',
+      show: false,
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />
 
 ## Variants
@@ -60,7 +61,7 @@ export const componentTitleSlotTemplate = (args) => ({
     return { args };
   },
   data() {
-    return { show: args.show }
+    return { show: args.show };
   },
   template: `
 <CAccordion v-bind="args">
@@ -72,12 +73,14 @@ export const componentTitleSlotTemplate = (args) => ({
   `,
 });
 
-<Canvas withSource='open'>
-  <Story name="TitleSlot"
-         args={{
-           content: 'Accordion content',
-           show: false,
-         }}>
+<Canvas withSource="open">
+  <Story
+    name="TitleSlot"
+    args={{
+      content: 'Accordion content',
+      show: false,
+    }}
+  >
     {componentTitleSlotTemplate.bind({})}
   </Story>
 </Canvas>

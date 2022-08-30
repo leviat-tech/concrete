@@ -1,10 +1,9 @@
-import { ArgsTable, Story, Canvas, Meta, Source } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CModal from '../Modal.vue';
 import CButton from '../../Button/Button.vue';
 
-
 <Meta
-  title="Components/Modal"
+  title="Components/High level/Modal"
   component={CModal}
   argTypes={{
     size: {
@@ -12,11 +11,11 @@ import CButton from '../../Button/Button.vue';
       control: { type: 'select' },
     },
     show: {
-      control: 'boolean'
+      control: 'boolean',
     },
     closeable: {
-      control: 'boolean'
-    }
+      control: 'boolean',
+    },
   }}
 />
 
@@ -28,7 +27,7 @@ export const componentTemplate = (args) => ({
     return { args };
   },
   data() {
-    return { show: args.show }
+    return { show: args.show };
   },
   template: `
 <CButton @click="show = true">Click to open modal</CButton>
@@ -42,18 +41,21 @@ export const componentTemplate = (args) => ({
 
 # Modal
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-          size: 'md',
-          title: 'Modal title',
-          content: 'Modal content',
-          show: false,
-          closeable: true
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      size: 'md',
+      title: 'Modal title',
+      content: 'Modal content',
+      show: false,
+      closeable: true,
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />

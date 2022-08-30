@@ -1,12 +1,20 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CDraggablePoint from '../DraggablePoint.vue';
 
 <Meta
-  title="Components/DraggablePoint"
+  title="Components/High level/DraggablePoint"
   component={CDraggablePoint}
   argTypes={{
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
   }}
@@ -21,11 +29,10 @@ export const componentTemplate = (args) => ({
   },
   data() {
     return {
-      point: { x: 50, y: 50 }
-    }
+      point: { x: 50, y: 50 },
+    };
   },
-  methods: {
-  },
+  methods: {},
   template: `<svg class="bg-gray-200" viewBox="0 0 100 100" width="200" height="200">
   <CDraggablePoint
     :point="point"
@@ -40,13 +47,12 @@ export const componentTemplate = (args) => ({
 
 # Draggable Point
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-        }}>
+<Canvas withSource="open">
+  <Story name="Overview" args={{}}>
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />

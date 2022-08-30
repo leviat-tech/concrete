@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CAutocomplete from '../AutoComplete.vue';
 
 <Meta
-  title="Components/AutoComplete"
+  title="Components/Input/AutoComplete"
   component={CAutocomplete}
   argTypes={{
     size: {
@@ -10,15 +10,23 @@ import CAutocomplete from '../AutoComplete.vue';
       control: { type: 'select' },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     placeholder: {
-      control:'text',
+      control: 'text',
     },
     disabled: {
-      control:'boolean',
-    }
+      control: 'boolean',
+    },
   }}
 />
 
@@ -32,38 +40,58 @@ export const componentTemplate = (args) => ({
   data() {
     return {
       value: null,
-    }
+    };
   },
-  template: '<CAutocomplete class="w-64" id="Autocomplete" v-bind="args" v-model="value"></CAutocomplete>',
+  template:
+    '<CAutocomplete class="w-64" id="Autocomplete" v-bind="args" v-model="value"></CAutocomplete>',
 });
 
 # AutoComplete
 
-<Canvas withSource='open'>
-  <Story name="Overview" height="200px"
-        args={{
-          id: 'Autocomplete',
-          options: [ 'Pugh', 'Barney', 'McGrew', 'Cuthbert', 'Diddle', 'Gruff' ],
-          onChange: null,
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    height="200px"
+    args={{
+      id: 'Autocomplete',
+      options: ['Pugh', 'Barney', 'McGrew', 'Cuthbert', 'Diddle', 'Gruff'],
+      onChange: null,
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
-<ArgsTable story="Overview" />
 
+<ArgsTable story="Overview" />
 
 ## With Formatter
 
-<Canvas withSource='open'>
-  <Story name="Formatter" height="200px"
-        args={{
-          id: 'FormattedAutocomplete',
-          options: [ '10', '20', '30', '40', '50', '60', '70', '32' , '33' , '36', '45', '55' ],
-          onChange: null,
-          formatter: (l) => l + String.fromCharCode(32, 99, 109) ,
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Formatter"
+    height="200px"
+    args={{
+      id: 'FormattedAutocomplete',
+      options: [
+        '10',
+        '20',
+        '30',
+        '40',
+        '50',
+        '60',
+        '70',
+        '32',
+        '33',
+        '36',
+        '45',
+        '55',
+      ],
+      onChange: null,
+      formatter: (l) => l + String.fromCharCode(32, 99, 109),
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>

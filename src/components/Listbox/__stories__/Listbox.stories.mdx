@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CListbox from '../Listbox.vue';
 
 <Meta
-  title="Components/Listbox"
+  title="Components/Input/Listbox"
   component={CListbox}
   argTypes={{
     size: {
@@ -10,17 +10,25 @@ import CListbox from '../Listbox.vue';
       control: { type: 'select' },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     placeholder: {
-      control:'text',
+      control: 'text',
     },
     disabled: {
-      control:'boolean',
+      control: 'boolean',
     },
     transparent: {
-      control:'boolean',
+      control: 'boolean',
     },
     optionListSize: {
       options: ['lg', 'md', 'sm', 'xs', 'auto'],
@@ -54,9 +62,10 @@ export const componentTemplate = (args) => ({
   data() {
     return {
       value: null,
-    }
+    };
   },
-  template: '<CListbox class="w-64" id="listbox-single" v-bind="args" v-model="value"></CListbox>',
+  template:
+    '<CListbox class="w-64" id="listbox-single" v-bind="args" v-model="value"></CListbox>',
 });
 
 export const componentTemplateMultiple = (args) => ({
@@ -67,30 +76,36 @@ export const componentTemplateMultiple = (args) => ({
   data() {
     return {
       value: [],
-    }
+    };
   },
-  template: '<CListbox class="w-64" id="listbox-multiple" v-bind="args" v-model="value"></CListbox>',
+  template:
+    '<CListbox class="w-64" id="listbox-multiple" v-bind="args" v-model="value"></CListbox>',
 });
 
 <!--- Component documentation -->
 
 # Listbox
 
-<Canvas withSource='none'>
-  <Story name="Overview" height="200px"
-        args={{
-          options: ['Listbox', 'Test', 'Values', 'Storybook'],
-        }}>
+<Canvas withSource="none">
+  <Story
+    name="Overview"
+    height="200px"
+    args={{
+      options: ['Listbox', 'Test', 'Values', 'Storybook'],
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />
 
 ## Usage
+
 <Source
-  language='html'
+  language="html"
   dark
   format={false}
   code={`
@@ -103,18 +118,22 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 # Variants
 
 ## Multiple Select
-<Canvas withSource='none'>
-  <Story name="Multiple" height="200px"
-        args={{
-          options: ['Listbox', 'Test', 'Values', 'Storybook'],
-          multiple: true,
-        }}>
+
+<Canvas withSource="none">
+  <Story
+    name="Multiple"
+    height="200px"
+    args={{
+      options: ['Listbox', 'Test', 'Values', 'Storybook'],
+      multiple: true,
+    }}
+  >
     {componentTemplateMultiple.bind({})}
   </Story>
 </Canvas>
 
 <Source
-  language='html'
+  language="html"
   dark
   format={false}
   code={`
@@ -124,20 +143,23 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 `}
 />
 
-
 ## Formatted Labels
-<Canvas withSource='none'>
-  <Story name="Formatted" height="200px"
-        args={{
-          options: ['Listbox', 'Test', 'Values', 'Storybook'],
-          formatter: (l) => l.toUpperCase(),
-        }}>
+
+<Canvas withSource="none">
+  <Story
+    name="Formatted"
+    height="200px"
+    args={{
+      options: ['Listbox', 'Test', 'Values', 'Storybook'],
+      formatter: (l) => l.toUpperCase(),
+    }}
+  >
     {componentTemplateMultiple.bind({})}
   </Story>
 </Canvas>
 
 <Source
-  language='html'
+  language="html"
   dark
   format={false}
   code={`
