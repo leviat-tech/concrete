@@ -1,11 +1,12 @@
-import { withSource } from './withSource'
+import { withSource } from './withSource';
 import '../src/index.css';
 import Concrete from '../src';
 
 import { app } from '@storybook/vue3';
 app.use(Concrete, {
   size: 'lg',
-  inputHandler: (id, value) => alert(`Input with id '${id}' was changed to ${value}`),
+  inputHandler: (id, value) =>
+    alert(`Input with id '${id}' was changed to ${value}`),
 });
 
 export const parameters = {
@@ -23,11 +24,15 @@ export const parameters = {
   layout: 'centered',
   options: {
     storySort: {
-      order: ['Concrete', ['Getting Started', 'Examples'], 'Components', 'Foundations'],
+      order: [
+        'Concrete',
+        ['Getting Started', 'Examples'],
+        'Components',
+        ['High level', 'Low level', 'Input'],
+        'Foundations',
+      ],
     },
   },
-}
+};
 
-export const decorators = [
-  withSource,
-]
+export const decorators = [withSource];
