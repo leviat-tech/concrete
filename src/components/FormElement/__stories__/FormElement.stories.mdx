@@ -1,13 +1,13 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CFormElement from '../FormElement.vue';
-import CCheckbox from '../../Checkbox/Checkbox.vue';
+import CTextInput from '../../TextInput/TextInput.vue';
 
 <Meta title="Components/Low level/FormElement" component={CFormElement} />
 
 <!--- Component template -->
 
 export const componentTemplate = (args) => ({
-  components: { CFormElement, CCheckbox },
+  components: { CFormElement, CTextInput },
   setup() {
     return { args };
   },
@@ -15,20 +15,19 @@ export const componentTemplate = (args) => ({
     return { value: true };
   },
   template:
-    '<CFormElement v-bind="args"><CCheckbox v-bind="args" v-model="value"></CCheckbox></CFormElement>',
+    '<CFormElement label="Full name"><div class="flex space-x-2"><CTextInput v-bind="args" no-label ></CTextInput><CTextInput v-bind="args" no-label></CTextInput></div></CFormElement>',
 });
 
 <!--- Component documentation -->
 
-# Checkbox
+# Form Element
 
 <Canvas withSource="open">
   <Story
     name="Overview"
     args={{
-      id: 'formelement',
+      id: 'formelementtest',
       size: 'md',
-      label: 'Form Element',
     }}
   >
     {componentTemplate.bind({})}
