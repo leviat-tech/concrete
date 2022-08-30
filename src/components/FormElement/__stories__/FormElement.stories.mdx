@@ -1,0 +1,46 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CFormElement from '../FormElement.vue';
+import CCheckbox from '../../Checkbox/Checkbox.vue';
+
+<Meta title="Components/FormElement" component={CFormElement} />
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CFormElement, CCheckbox },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template:
+    '<CFormElement v-bind="args"><CCheckbox v-bind="args" v-model="value"></CCheckbox></CFormElement>',
+});
+
+<!--- Component documentation -->
+
+# Checkbox
+
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      id: 'formelement',
+      size: 'md',
+      label: 'Form Element',
+    }}
+  >
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Overview
+
+Internal FormElement component to wrap CInputs.
+
+(Using CCheckbox as example component to show how it works)
+
+## Props
+
+<ArgsTable story="Overview" />

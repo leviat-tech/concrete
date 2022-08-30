@@ -1,0 +1,37 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CInputAffix from '../InputAffix.vue';
+import CCheckbox from '../../Checkbox/Checkbox.vue';
+
+<Meta title="Components/CInputAffix" component={CInputAffix} />
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CInputAffix, CCheckbox },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template:
+    '<CInputAffix v-bind="args">TEST AFFIX<CCheckbox v-bind="args" v-model="value"></CCheckbox></CInputAffix>',
+});
+
+<!--- Component documentation -->
+
+# Checkbox
+
+<Canvas withSource="open">
+  <Story name="Overview">{componentTemplate.bind({})}</Story>
+</Canvas>
+
+## Overview
+
+Internal Affix component to append before the start of inputs
+
+(Using checkbox to show the affix))
+
+## Props
+
+<ArgsTable story="Overview" />
