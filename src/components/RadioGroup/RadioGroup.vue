@@ -1,8 +1,8 @@
 <template>
   <component
-    class="relative z-50"
+    class="relative"
     :is="formElement ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
+    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
   >
   <div :class="[ textSizeClass, disabledClass]">
     <RadioGroup 
@@ -34,14 +34,14 @@ import { computed, ref } from "vue";
 import { formElementProps } from '../../composables/props';
 import { useInputClasses } from '../../composables/styles';
 import {
-  useFormElementValue,
+  useNoWrapValue,
   useInputValue,
   useRegisterInput,
   useStackedValue
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 
-const formElement = useFormElementValue(props.label);
+const wrap = !useNoWrapValue(props);
 
 const props = defineProps({
   ...formElementProps,
