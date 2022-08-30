@@ -1,5 +1,6 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CFormSection from '../FormSection.vue';
+import CTextInput from '../../TextInput/TextInput.vue';
 
 <Meta title="Components/Low level/FormSection" component={CFormSection} />
 
@@ -13,7 +14,19 @@ export const componentTemplate = (args) => ({
   data() {
     return { value: true };
   },
-  template: '<CFormSection v-bind="args"></CFormSection>',
+  template: `
+  <CFormSection  title="Registration Form 1 - (xs)" size="xs">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">          
+                <CTextInput label="First Name" />
+                <CTextInput label="Last Name" />
+                <CTextInput label="Email Address">
+      </div>
+    <template #toolbar>
+              <span class="cursor-pointer mr-2 mt-1" @click="addLayer">
+                <button class="border">add me</button>
+              </span>
+    </template>
+  </CFormSection>`,
 });
 
 <!--- Component documentation -->
@@ -21,14 +34,7 @@ export const componentTemplate = (args) => ({
 # Checkbox
 
 <Canvas withSource="open">
-  <Story
-    name="Overview"
-    args={{
-      title: 'Form Section',
-    }}
-  >
-    {componentTemplate.bind({})}
-  </Story>
+  <Story name="Overview">{componentTemplate.bind({})}</Story>
 </Canvas>
 
 ## Overview
