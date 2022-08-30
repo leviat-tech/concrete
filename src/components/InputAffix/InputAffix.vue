@@ -1,17 +1,13 @@
 <template>
-  <div class="concrete__input-affix relative inline-flex items-center px-3 border whitespace-nowrap"
-       :class="[sizeClass, typeClass, colorClass, transparentClass]">
+  <div class="concrete__input-affix relative inline-flex items-center px-3 border border-inherit whitespace-nowrap bg-transparent"
+       :class="[sizeClass, typeClass]">
     <slot />
   </div>
 </template>
 
 <script setup>
-import { computed, inject } from 'vue';
 import { colorProp, useSizeProp } from '../../composables/props.js';
-import { useInputColorClassValue } from '../../composables/styles.js';
 import { useSizeValue } from '../../composables/forms.js';
-
-const { color } = inject('form-element', { color: null });
 
 const props = defineProps({
   color: colorProp,
@@ -25,9 +21,6 @@ const props = defineProps({
 });
 
 const size = useSizeValue(props.size);
-
-const transparentClass =  (props.transparent) ? 'bg-transparent' : ' bg-gray-50';
-const colorClass = useInputColorClassValue(props);
 
 const sizeClass = {
   xs: 'text-xs',

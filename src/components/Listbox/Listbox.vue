@@ -11,7 +11,7 @@
     >
       <div :class="['relative', disabledClass]">
         <div class="inline-flex  w-full">
-          <div class="relative z-0 inline-flex w-full">
+          <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
             <slot name="prefix" class="z-10"/>
             <ListboxButton ref="buttonRef" :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
               <span :class="selectedLabelClass">{{ selectedLabel }}</span>

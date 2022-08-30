@@ -1,6 +1,6 @@
 <template>
   <component :is="formElement ? CFormElement : CFragment" v-bind="{ id, label, size, color, labelFormatter, message, stacked }">
-    <div class="flex w-full concrete__text-input">
+    <div class="flex w-full concrete__text-input" :class="inputColorClass">
       <slot name="prefix" class="z-10"/>
       <input
         ref="inputRef"

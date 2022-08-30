@@ -3,7 +3,7 @@
     :is="formElement ? CFormElement : CFragment"
     v-bind="{ id, label, size, color, labelFormatter, message, stacked }"
   >
-    <div class="flex w-full">
+    <div class="flex w-full" :class="colorClass">
       <slot name="prefix" class="z-10" />
       <textarea
         ref="inputRef"
