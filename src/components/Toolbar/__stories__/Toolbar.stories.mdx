@@ -1,10 +1,7 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import { CToolbar, CToolGroup, CTool } from '..';
 
-<Meta
-  title="Components/Toolbar"
-  component={CToolbar}
-/>
+<Meta title="Components/High level/Toolbar" component={CToolbar} />
 
 <!--- Component template -->
 
@@ -16,14 +13,14 @@ export const componentTemplate = (args) => ({
   data() {
     return {
       value: 'arrow-up',
-      lastClicked: null
-    }
+      lastClicked: null,
+    };
   },
   methods: {
     onClick(toolId) {
       this.lastClicked = toolId;
-      setTimeout(() => this.lastClicked = null, 1000);
-    }
+      setTimeout(() => (this.lastClicked = null), 1000);
+    },
   },
   template: `<CToolbar v-bind="args" v-model="value">
   <CToolGroup>
@@ -50,13 +47,12 @@ export const componentTemplate = (args) => ({
 
 # Toolbar
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-        }}>
+<Canvas withSource="open">
+  <Story name="Overview" args={{}}>
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />

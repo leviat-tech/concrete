@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CListbox from '../Listbox.vue';
 
 <Meta
-  title="Components/Listbox"
+  title="Components/Input/Listbox"
   component={CListbox}
   argTypes={{
     size: {
@@ -10,17 +10,25 @@ import CListbox from '../Listbox.vue';
       control: { type: 'select' },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     placeholder: {
-      control:'text',
+      control: 'text',
     },
     disabled: {
-      control:'boolean',
+      control: 'boolean',
     },
     transparent: {
-      control:'boolean',
+      control: 'boolean',
     },
     optionListSize: {
       options: ['lg', 'md', 'sm', 'xs', 'auto'],
@@ -54,7 +62,7 @@ export const componentTemplate = (args) => ({
   data() {
     return {
       value: null,
-    }
+    };
   },
   template: '<CListbox v-bind="args" v-model="value"></CListbox>',
 });
@@ -67,7 +75,7 @@ export const componentTemplateMultiple = (args) => ({
   data() {
     return {
       value: [],
-    }
+    };
   },
   template: '<CListbox v-bind="args" v-model="value"></CListbox>',
 });
@@ -86,11 +94,13 @@ export const componentTemplateMultiple = (args) => ({
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />
 
 ## Usage
+
 <Source
-  language='html'
+  language="html"
   dark
   format={false}
   code={`
@@ -114,7 +124,7 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 </Canvas>
 
 <Source
-  language='html'
+  language="html"
   dark
   format={false}
   code={`
@@ -123,7 +133,6 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 <CListbox v-model="value" id="listbox-multiple" :options="options" :multiple="true"></CListbox>
 `}
 />
-
 
 ## Formatted Labels
 <Canvas withSource='none'>
@@ -137,7 +146,7 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 </Canvas>
 
 <Source
-  language='html'
+  language="html"
   dark
   format={false}
   code={`

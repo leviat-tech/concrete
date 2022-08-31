@@ -1,4 +1,4 @@
-import { withSource } from './withSource'
+import { withSource } from './withSource';
 import '../src/index.css';
 import Concrete from '../src';
 
@@ -20,10 +20,16 @@ export const parameters = {
   layout: 'centered',
   options: {
     storySort: {
-      order: ['Concrete', ['Getting Started', 'Examples'], 'Components', 'Foundations'],
+      order: [
+        'Concrete',
+        ['Getting Started', 'Examples'],
+        'Components',
+        ['High level', 'Low level', 'Input'],
+        'Foundations',
+      ],
     },
   },
-}
+};
 
 const marginDecorator = (story) => ({
   components: { story },

@@ -1,9 +1,9 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import StatusBar from '../StatusBar.vue';
 import Listbox from '../../Listbox/Listbox.vue';
 
 <Meta
-  title="Components/StatusBar"
+  title="Components/High level/StatusBar"
   component={StatusBar}
   argTypes={{
     size: {
@@ -18,8 +18,8 @@ import Listbox from '../../Listbox/Listbox.vue';
  <div style="min-width: 640px; max-width: 100%;" class=" relative h-64">
  <Story />
 </div>
-    `
-    })
+    `,
+    }),
   ]}
 />
 
@@ -39,21 +39,25 @@ export const componentTemplate = (args) => ({
       ],
       id: 0,
       type: 'info',
-      text: ''
-    }
+      text: '',
+    };
   },
   methods: {
     addMessage() {
       const { type, text } = this;
-      this.messages.push({ id: this.id ++, type, text });
+      this.messages.push({ id: this.id++, type, text });
       this.text = '';
     },
     onClick(id) {
-      this.messages.push({ id: this.id ++, type: 'info', text: `You clicked item with id ${id}`})
+      this.messages.push({
+        id: this.id++,
+        type: 'info',
+        text: `You clicked item with id ${id}`,
+      });
     },
     onDismiss(index) {
       this.messages.splice(index, 1);
-    }
+    },
   },
   template: `
 <div class="relative flex z-10">
@@ -68,14 +72,17 @@ export const componentTemplate = (args) => ({
 
 # StatusBar
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-          size: 'sm'
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      size: 'sm',
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />

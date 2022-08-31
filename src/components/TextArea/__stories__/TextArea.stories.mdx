@@ -1,46 +1,46 @@
-import { ArgsTable, Story, Canvas, Meta, Source } from "@storybook/addon-docs";
-import CTextArea from "../TextArea.vue";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CTextArea from '../TextArea.vue';
 
 <Meta
-  title="Components/TextArea"
+  title="Components/Input/TextArea"
   component={CTextArea}
   argTypes={{
     size: {
-      options: ["lg", "md", "sm", "xs"],
-      control: { type: "select" },
+      options: ['lg', 'md', 'sm', 'xs'],
+      control: { type: 'select' },
       table: {
-        type: { summary: "string" },
+        type: { summary: 'string' },
       },
     },
     rows: {
-      control: "range",
+      control: 'range',
     },
     color: {
       options: [
-        "default",
-        "indigo",
-        "sky",
-        "steel",
-        "success",
-        "warning",
-        "danger",
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
       ],
-      control: { type: "select" },
+      control: { type: 'select' },
       table: {
-        type: { summary: "string" },
+        type: { summary: 'string' },
       },
     },
     disabled: {
-      control: "boolean",
+      control: 'boolean',
     },
     readOnly: {
-      control: "boolean",
+      control: 'boolean',
     },
     transparent: {
-      control: "boolean",
+      control: 'boolean',
     },
     placeholder: {
-      control: "text",
+      control: 'text',
     },
     onEnter: {
       table: { disable: true },
@@ -51,13 +51,13 @@ import CTextArea from "../TextArea.vue";
     prefix: {
       control: false,
       table: {
-        type: { summary: "slot" },
+        type: { summary: 'slot' },
       },
     },
     suffix: {
       control: false,
       table: {
-        type: { summary: "slot" },
+        type: { summary: 'slot' },
       },
     },
   }}
@@ -70,7 +70,7 @@ export const componentTemplate = (args) => ({
   setup() {
     return { args };
   },
-  data: () => ({ value: "" }),
+  data: () => ({ value: '' }),
   template: '<CTextArea v-bind="args" id="text-area" v-model="value"/>',
 });
 
@@ -82,13 +82,13 @@ export const componentTemplate = (args) => ({
   <Story
     name="Overview"
     args={{
-      size: "md",
+      size: 'md',
       rows: 6,
-      color: "default",
+      color: 'default',
       disabled: false,
       readOnly: false,
       transparent: false,
-      placeholder: "",
+      placeholder: '',
       onEnter: undefined,
       onBlur: undefined,
     }}

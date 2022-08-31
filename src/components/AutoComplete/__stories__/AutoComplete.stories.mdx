@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CAutocomplete from '../AutoComplete.vue';
 
 <Meta
-  title="Components/AutoComplete"
+  title="Components/Input/AutoComplete"
   component={CAutocomplete}
   argTypes={{
     size: {
@@ -10,15 +10,23 @@ import CAutocomplete from '../AutoComplete.vue';
       control: { type: 'select' },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     placeholder: {
-      control:'text',
+      control: 'text',
     },
     disabled: {
-      control:'boolean',
-    }
+      control: 'boolean',
+    },
   }}
 />
 
@@ -32,7 +40,7 @@ export const componentTemplate = (args) => ({
   data() {
     return {
       value: null,
-    }
+    };
   },
   template: '<CAutocomplete v-bind="args" v-model="value"></CAutocomplete>',
 });
@@ -50,8 +58,8 @@ export const componentTemplate = (args) => ({
 </Canvas>
 
 ## Props
-<ArgsTable story="Overview" />
 
+<ArgsTable story="Overview" />
 
 ## With Formatter
 

@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CSwitch from '../Switch.vue';
 
 <Meta
-  title="Components/Switch"
+  title="Components/Input/Switch"
   component={CSwitch}
   argTypes={{
     size: {
@@ -14,10 +14,10 @@ import CSwitch from '../Switch.vue';
       control: { type: 'select' },
     },
     displayIcons: {
-      control:'boolean',
+      control: 'boolean',
     },
     srLabel: {
-      control:'text',
+      control: 'text',
     },
     onChange: {
       table: { disable: true },
@@ -33,7 +33,7 @@ export const componentTemplate = (args) => ({
     return { args };
   },
   data() {
-    return { value: true }
+    return { value: true };
   },
   template: '<CSwitch v-bind="args" v-model="value"></CSwitch>',
 });
@@ -42,24 +42,28 @@ export const componentTemplate = (args) => ({
 
 # Switch
 
-<Canvas withSource='none'>
-  <Story name="Overview"
-        args={{
-          size: 'md',
-          color: 'indigo',
-          displayIcons: false,
-          srLabel: 'Switch',
-        }}>
+<Canvas withSource="none">
+  <Story
+    name="Overview"
+    args={{
+      size: 'md',
+      color: 'indigo',
+      displayIcons: false,
+      srLabel: 'Switch',
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />
 
 ## Usage
+
 <Source
-  language='html'
+  language="html"
   dark
   format={false}
   code={`<CSwitch v-model="modelValue" />`}

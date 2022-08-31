@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CRadioGroup from '../RadioGroup.vue';
 
 <Meta
-  title="Components/RadioGroup"
+  title="Components/Input/RadioGroup"
   component={CRadioGroup}
   argTypes={{
     size: {
@@ -10,15 +10,23 @@ import CRadioGroup from '../RadioGroup.vue';
       control: { type: 'select' },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     disabled: {
-      control:'boolean',
+      control: 'boolean',
     },
     columns: {
-      control:'number',
-    }
+      control: 'number',
+    },
   }}
 />
 
@@ -32,27 +40,32 @@ export const componentTemplate = (args) => ({
   data() {
     return {
       value: null,
-    }
+    };
   },
-  template: '<CRadioGroup class="w-64" id="RadioGroup" v-bind="args" v-model="value"></CRadioGroup>',
+  template:
+    '<CRadioGroup class="w-64" id="RadioGroup" v-bind="args" v-model="value"></CRadioGroup>',
 });
 
 # RadioGroup
 
-<Canvas withSource='open'>
-  <Story name="Overview" height="200px"
-        args={{
-          id: 'RadioGroup',
-          options: [ 'Pugh', 'Barney', 'McGrew', 'Cuthbert', 'Diddle', 'Gruff' ],
-          onChange: null,
-          colour: 'sky',
-          formatter: (l) => l.toUpperCase()
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    height="200px"
+    args={{
+      id: 'RadioGroup',
+      options: ['Pugh', 'Barney', 'McGrew', 'Cuthbert', 'Diddle', 'Gruff'],
+      onChange: null,
+      colour: 'sky',
+      formatter: (l) => l.toUpperCase(),
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />
 
 ## Columns
