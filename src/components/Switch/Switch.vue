@@ -9,23 +9,23 @@
         :id="id"
         v-model="enabled"
         class="inline-flex flex-shrink-0 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
-        :class="[bgColorClass, `h-${sized} w-${sized*2}`]">
+        :class="[bgColorClass, switchSizeClass]">
         <span class="sr-only">{{srLabel}}</span>
         <span aria-hidden="true"
           class="pointer-events-none inline-block rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-          :class="[ enabled ? `translate-x-${sized}` : 'translate-x-0', `h-${sized-1} w-${sized-1}` ]"
+          :class="[ dotSizeClass, dotTranslateClass ]"
         >
           <span v-if="displayIcons"
             class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
             :class="[enabled ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200']" aria-hidden="true"
           >
-            <XIcon :class="[`h-${sized/2} w-${sized/2} text-gray-400`]" />
+            <XIcon class="text-gray-400" :class="iconSizeClass" />
           </span>
           <span v-if="displayIcons"
             class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
             :class="[enabled ? 'opacity-100 ease-in duration-200' : 'opacity-0 ease-out duration-100']" aria-hidden="true"
           >
-            <CheckIcon :class="[`h-${sized/2} w-${sized/2}`, checkIconClass]" />
+            <CheckIcon :class="[iconSizeClass, checkIconClass]" />
           </span>
         </span>
       </Switch>
@@ -82,12 +82,36 @@ const enabled = computed({
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
-const sized = {
-  xs: 6,
-  sm: 8,
-  md: 10,
-  lg: 12,
+const switchSizeClass = {
+  xs: 'h-6 w-12',
+  sm: 'h-8 w-16',
+  md: 'h-10 w-20',
+  lg: 'h-12 w-24',
 }[size];
+
+const dotSizeClass = {
+  xs: 'h-5 w-5',
+  sm: 'h-7 w-7',
+  md: 'h-9 w-9',
+  lg: 'h-11 w-11',
+}[size];
+
+const iconSizeClass = {
+  xs: 'h-3 w-3',
+  sm: 'h-4 w-4',
+  md: 'h-5 w-5',
+  lg: 'h-6 w-6',
+}[size];
+
+const dotTranslateClass = computed(() => {
+  if(!enabled.value) return 'translate-x-0';
+  return {
+    xs: 'translate-x-6',
+    sm: 'translate-x-8',
+    md: 'translate-x-10',
+    lg: 'translate-x-12',
+  }[size];
+});
 
 const bgColorClass = computed(() => {
   if(!enabled.value) return 'bg-gray-300';

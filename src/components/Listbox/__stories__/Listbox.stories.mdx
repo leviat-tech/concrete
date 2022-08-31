@@ -64,8 +64,7 @@ export const componentTemplate = (args) => ({
       value: null,
     };
   },
-  template:
-    '<CListbox class="w-64" id="listbox-single" v-bind="args" v-model="value"></CListbox>',
+  template: '<CListbox v-bind="args" v-model="value"></CListbox>',
 });
 
 export const componentTemplateMultiple = (args) => ({
@@ -78,22 +77,18 @@ export const componentTemplateMultiple = (args) => ({
       value: [],
     };
   },
-  template:
-    '<CListbox class="w-64" id="listbox-multiple" v-bind="args" v-model="value"></CListbox>',
+  template: '<CListbox v-bind="args" v-model="value"></CListbox>',
 });
 
 <!--- Component documentation -->
 
 # Listbox
 
-<Canvas withSource="none">
-  <Story
-    name="Overview"
-    height="200px"
-    args={{
-      options: ['Listbox', 'Test', 'Values', 'Storybook'],
-    }}
-  >
+<Canvas withSource='none'>
+  <Story name="Overview" height="250px"
+        args={{
+          options: ['Listbox', 'Test', 'Values', 'Storybook'],
+        }}>
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
@@ -118,16 +113,12 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 # Variants
 
 ## Multiple Select
-
-<Canvas withSource="none">
-  <Story
-    name="Multiple"
-    height="200px"
-    args={{
-      options: ['Listbox', 'Test', 'Values', 'Storybook'],
-      multiple: true,
-    }}
-  >
+<Canvas withSource='none'>
+  <Story name="Multiple" height="250px"
+        args={{
+          options: ['Listbox', 'Test', 'Values', 'Storybook'],
+          multiple: true,
+        }}>
     {componentTemplateMultiple.bind({})}
   </Story>
 </Canvas>
@@ -144,16 +135,12 @@ const options = ['Listbox', 'Test', 'Values', 'Storybook'];
 />
 
 ## Formatted Labels
-
-<Canvas withSource="none">
-  <Story
-    name="Formatted"
-    height="200px"
-    args={{
-      options: ['Listbox', 'Test', 'Values', 'Storybook'],
-      formatter: (l) => l.toUpperCase(),
-    }}
-  >
+<Canvas withSource='none'>
+  <Story name="Formatted" height="250px"
+        args={{
+          options: ['Listbox', 'Test', 'Values', 'Storybook'],
+          formatter: (l) => l.toUpperCase(),
+        }}>
     {componentTemplateMultiple.bind({})}
   </Story>
 </Canvas>
