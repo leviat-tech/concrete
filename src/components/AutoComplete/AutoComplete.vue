@@ -24,6 +24,7 @@
             @blur="$emit('blur')"
             @focus="$emit('focus')"
             autocomplete="off"
+            :placeholder="placeholder"
             :class="[inputStaticClasses, mergedSizeClass, hPaddingClass, bgColorClass, inputColorClass]"
           />
           <slot name="suffix" class="z-10"/>
@@ -121,9 +122,6 @@ const {
 const displayValue = computed({
   get() {
     const val = useInputValue(props);
-
-    if (!val) return props.placeholder;
-
     return props.formatter ? props.formatter(val) : val;
   },
   set(value) {

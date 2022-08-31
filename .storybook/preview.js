@@ -3,10 +3,7 @@ import '../src/index.css';
 import Concrete from '../src';
 
 import { app } from '@storybook/vue3';
-app.use(Concrete, {
-  size: 'lg',
-  inputHandler: (id, value) => alert(`Input with id '${id}' was changed to ${value}`),
-});
+app.use(Concrete);
 
 export const parameters = {
   viewMode: 'docs',
@@ -28,6 +25,12 @@ export const parameters = {
   },
 }
 
+const marginDecorator = (story) => ({
+  components: { story },
+  template: '<div style="margin: 0.5em;"><story /></div>'
+});
+
 export const decorators = [
   withSource,
+  marginDecorator,
 ]
