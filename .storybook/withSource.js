@@ -55,7 +55,6 @@ export const withSource = makeDecorator({
       components: {
         Story: story,
       },
-
       setup() {
         onMounted(() => {
           try {

@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CNumericInput from '../NumericInput.vue';
 
 <Meta
-  title="Components/NumericInput"
+  title="Components/Input/NumericInput"
   component={CNumericInput}
   argTypes={{
     size: {
@@ -10,20 +10,28 @@ import CNumericInput from '../NumericInput.vue';
       control: { type: 'select' },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     disabled: {
-      control:'boolean',
+      control: 'boolean',
     },
     readOnly: {
-      control:'boolean',
+      control: 'boolean',
     },
     transparent: {
-      control:'boolean',
+      control: 'boolean',
     },
     placeholder: {
-      control:'text',
+      control: 'text',
     },
     onEnter: {
       table: { disable: true },
@@ -48,22 +56,24 @@ export const componentTemplate = (args) => ({
 
 # Numeric Input
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-          size: 'md',
-          color: 'default',
-          onEnter: undefined,
-          onBlur: undefined,
-          disabled: false,
-          readOnly: false,
-          transparent: false,
-          placeholder: '',
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      size: 'md',
+      color: 'default',
+      onEnter: undefined,
+      onBlur: undefined,
+      disabled: false,
+      readOnly: false,
+      transparent: false,
+      placeholder: '',
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
-<ArgsTable story="Overview" />
 
+<ArgsTable story="Overview" />

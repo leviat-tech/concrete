@@ -1,7 +1,7 @@
 import { inject } from 'vue';
 
 export const defaultOptions = {
-  size: 'sm',
+  size: 'md',
   stacked: false,
   components: null,
   labelFormatter: (props) => props.label || props.id,

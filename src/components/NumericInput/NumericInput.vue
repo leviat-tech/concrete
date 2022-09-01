@@ -2,6 +2,7 @@
   <component
     :is="wrap ? CFormElement : CFragment"
     v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
+    :class="inputColorClass"
   >
     <div class="flex w-full relative concrete__numeric-input">
       <slot name="prefix" class="z-10"/>

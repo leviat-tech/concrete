@@ -1,9 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CIcon, { icons } from '../Icon.vue';
 
-
 <Meta
-  title="Components/Icon"
+  title="Components/Low Level/Icon"
   component={CIcon}
   argTypes={{
     size: {
@@ -15,12 +14,20 @@ import CIcon, { icons } from '../Icon.vue';
       control: { type: 'select' },
     },
     color: {
-      options: ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'],
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
       control: { type: 'select' },
     },
     spin: {
-      control: 'boolean'
-    }
+      control: 'boolean',
+    },
   }}
 />
 
@@ -47,30 +54,32 @@ export const interactiveIconTemplate = (args) => ({
   setup() {
     return { args, icons };
   },
-  template: `<CIcon v-bind="args" />`
+  template: `<CIcon v-bind="args" />`,
 });
 
 <!--- Component documentation -->
 
 # Icon
+
 <Canvas withSource="open">
-  <Story name="Overview"
-        args={{
-          size: 'md',
-          type: 'hand',
-          spin: false
-        }}>
+  <Story
+    name="Overview"
+    args={{
+      size: 'md',
+      type: 'hand',
+      spin: false,
+    }}
+  >
     {interactiveIconTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
+
 <ArgsTable story="Overview" />
 
 ## Icons Reference
 
 <Canvas>
-  <Story name="Icons Reference">
-    {allIconsTemplate.bind({})}
-  </Story>
+  <Story name="Icons Reference">{allIconsTemplate.bind({})}</Story>
 </Canvas>

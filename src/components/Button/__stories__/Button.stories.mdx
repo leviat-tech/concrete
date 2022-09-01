@@ -1,8 +1,8 @@
-import { ArgsTable, Story, Canvas, Meta, Source  } from "@storybook/addon-docs";
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CButton from '../Button.vue';
 
 <Meta
-  title="Components/Button"
+  title="Components/Input/Button"
   component={CButton}
   argTypes={{
     size: {
@@ -18,13 +18,13 @@ import CButton from '../Button.vue';
       control: { type: 'select' },
     },
     disabled: {
-      control:'boolean',
+      control: 'boolean',
     },
     active: {
-      control:'boolean',
+      control: 'boolean',
     },
     customPadding: {
-      control:'boolean',
+      control: 'boolean',
     },
   }}
 />
@@ -43,21 +43,23 @@ export const componentTemplate = (args) => ({
 
 # Button
 
-<Canvas withSource='open'>
-  <Story name="Overview"
-        args={{
-          content: 'Button',
-          size: 'md',
-          color: 'indigo',
-          fill: 'solid',
-          disabled: false,
-          active: false,
-          customPadding: false,
-        }}>
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      content: 'Button',
+      size: 'md',
+      color: 'indigo',
+      fill: 'solid',
+      disabled: false,
+      active: false,
+      customPadding: false,
+    }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>
 
 ## Props
-<ArgsTable story="Overview" />
 
+<ArgsTable story="Overview" />
