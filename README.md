@@ -1,8 +1,6 @@
-<h1 align="center">
-  Concrete Design System
-</h1>
+# Concrete Design System
 
-> Concrete is a Vue UI toolkit designed and built by the team at [Leviat](https://www.leviat.com).
+> Concrete is a Vue UI toolkit designed and built by the Software Engineering team at [Leviat](https://www.leviat.com).
 > It is intended for technical interfaces, with components specifically tailored
 > for engineering and design software.
 
@@ -17,13 +15,14 @@ npm install --save @crhio/concrete
 
 Add it to your project, either at the project level:
 ```
-import Vue from 'vue';
+import { createApp } from 'vue';
 import Concrete from '@crhio/concrete';
 
-Vue.use(Concrete);
+const app = createApp();
+app.use(Concrete, options);
 ```
 
-or at the component level:
+Or import individual components directly:
 ```
 import { CButton } from '@crhio/concrete';
 
@@ -39,7 +38,7 @@ export default {
 
 Styling:
 
-To enable styling based on tailwind classes, add the following to your projects tailwind.config.js:
+To enable styling based on tailwind classes, run `@crhio/leviat-tailwind-configuration` and add the following to your projects tailwind.config.js:
 
 ```
 preset: require('@crhio/leviat-tailwind-configuration'),
@@ -48,9 +47,4 @@ content: ['./node_modules/@crhio/concrete/src/**/*.{js,ts,vue}'],
 
 ## Documentation
 
-Documentation for all components can be found at [concrete.crh.io](https://concrete.crh.io).
-
-
-## Contributing
-
-Contributors should follow the [Guide for Contributors](/CONTRIBUTORS.md) for instructions on setting up the development environment.
+Full documentation can be found at [leviat-concrete.netlify.app](https://leviat-concrete.netlify.app/).
