@@ -1,13 +1,59 @@
-import Vue from 'vue';
-import VueCompositionApi from '@vue/composition-api';
-import Concrete from './concrete';
+import { createApp, reactive } from 'vue';
 import App from './App.vue';
+import './index.css';
+import concrete from './index.js';
 
+const store = reactive({
+  firstname: 'John',
+  lastname: 'Smith',
+  phone: null,
+  email: null,
+  month: 'January',
+  date: 1,
+  year: 1980,
+  nationality: 'United Kingdom',
+  enableNotifications: false,
+  isAdmin: false,
+});
 
-Vue.use(VueCompositionApi);
-Vue.use(Concrete, { size: 'sm' });
-Vue.config.productionTip = false;
+const statusStore = reactive({
+  firstname: {
+    type: 'error',
+    message: 'Users called John are not allowed here'
+  },
+  lastname: {
+    type: 'warning',
+    message: 'The surname Smith is permitted, but frowned upon'
+  },
+  nationality: {
+    type: 'info',
+    message: 'where are you from?'
+  }
+});
 
-new Vue({
-  render: (h) => h(App),
-}).$mount('#app');
+window.statusStore = statusStore;
+
+const app = createApp(App);
+concrete.install(app, {
+  size: 'md',
+  inputIdToValue: (id) => {
+    return store[id]
+  },
+  inputHandler: (id, value) => {
+    if (!Object.hasOwn(store, id)) return;
+
+    store[id] = value;
+  },
+  registerInputs: (id, el) => {
+    console.log(`Registered input with id '${id}'`);
+
+    return () => {
+      console.log(`Deregistered input with id '${id}'`);
+    }
+  },
+  inputGetStatus(id) {
+    return statusStore[id];
+  },
+});
+app.mount('#app');
+

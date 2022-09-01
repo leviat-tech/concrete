@@ -1,0 +1,119 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta
+  title="Concrete/Getting Started"
+/>
+
+# Installation
+Install Concrete in your project by running
+
+```terminal dark
+npm install --save @crhio/concrete
+```
+
+# Basic Usage
+
+Concrete components can be imported individually in your project
+
+```jsx dark
+<template>
+  <CIcon size="sm" type="trash" />
+</template>
+
+<script setup>
+  import { CIcon } from '@crhio/concrete';
+</script>
+```
+
+# Vue Plugin
+
+However, the best way to use the components and take advantage of Concrete's other features is to install the Concrete
+Vue plugin:
+
+```javascript dark
+import { createApp } from 'vue';
+import Concrete from '@crhio/concrete';
+import App from './App';
+
+const app = createApp(App);
+
+app.use(Concrete, options);
+```
+
+# Plugin Options
+
+## Overview
+
+The Concrete Vue plugin accepts the following options
+
+| Option         | Type                                               | Default |
+|--------        |---------------                                     |---------|
+| size           | string: <code>'xs' \|'sm'\|'md'\|'lg'\|'xl'</code> | `'sm'`  |
+| components     | array                                              | `null`  |
+| labelFormatter | function(label: string)                            | `null`  |
+| inputHandler   | function(id: string, value: any)                   | `null`  |
+| inputIdToValue | function(id: string)                               | `null`  |
+| registerInputs | function(id: string, el: HTMLElement) \| boolean   | `null`  |
+| inputGetStatus | function(id: string)                               | `null`  |
+
+## Options
+
+**components**
+
+Specifies which components should be made globally available within the application.
+If the property is falsy then all components will be loaded.
+To prevent any components from being registered, pass an empty array.
+
+```javascript dark
+app.use(Concrete, {
+  components: ['CIcon', 'CTextInput', 'CModal']
+});
+```
+
+**size**
+
+Specifies the default size for all components with a `size` prop.
+
+```javascript dark
+app.use(Concrete, { size: 'lg' });
+```
+
+**labelFormatter**
+
+default `null`
+
+Specifies a function for formatting labels in form input groups
+
+```javascript dark
+app.use(Concrete, {
+  labelFormatter: (label) => translate(label)
+});
+```
+
+**inputHandler**
+
+Specifies a function for globally handling changes in input values.
+The handler is called with the `id` of the input and the updated value.
+This feature allows you to standardise the behaviour of all inputs in your application
+e.g. connecting them to store functionality
+
+```javascript dark
+const store = useStore();
+
+app.use(Concrete, {
+  inputHandler: (id, value) => store.updateEntity(id, value);
+});
+```
+
+## Accessing options globally
+
+The options, with the exception of `components`, will be available throughout all the Vue components in your application
+by injecting the `concrete` property
+
+```javascript dark
+<script setup>
+import { inject } from 'vue';
+
+const { size, labelFormatter, inputHandler } = inject('concrete');
+</setup>
+```

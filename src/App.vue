@@ -1,88 +1,176 @@
 <template>
-  <div id="app">
-    <div class="tab-div">
-      <c-viewport-container
-        v-model="maximized"
-        :aspect-ratio="2"
-        :options="[ 'a', 'b' ]"
-      >
-        <c-viewport
-          v-model="aviewport"
-          viewport-id="a"
-          :options="[
-            { label: 'Elevation', value: 'elevation' },
-          ]"
-        >
-          <elevation-drawing />
-        </c-viewport>
-        <c-viewport
-          v-model="bviewport"
-          viewport-id="b"
-          :options="[
-            { label: 'Section', value: 'section' },
-          ]"
-        >
-          <section-drawing />
-        </c-viewport>
-      </c-viewport-container>
+  <div class="flex">
+    <div class="bg-gray-100 h-full w-full py-2 divide-x divide-gray-300">
+      <div class="divide-y divide-gray-300">
+        <div class="px-4">
+          <CFormSection title="Form Element Test">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
+              
+              <div class="space-y-4">
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input</div>
+                  <CTextInput />
+                </div>
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with label</div>
+                  <CTextInput label="Test Label" />
+                </div>
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with no-wrap</div>
+                  <CTextInput no-wrap />
+                </div>
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with no-wrap and label</div>
+                  <CTextInput no-wrap label="Test Label" />
+                </div>
+                <hr>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with formElement - no label</div>
+                  <CTextInput />
+                </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with formElement - label</div>
+                  <CTextInput label="Test Label" />
+                </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with label and no label</div>
+                  <CTextInput label="Test Label" no-label />
+                </div>
+              </div>
+              <div class="space-y-4">
+                
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with id</div>
+                  <CTextInput id="firstname" />
+                </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with id and no wrap</div>
+                  <CTextInput id="firstname" no-wrap />
+                </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with id and no label</div>
+                  <CTextInput id="firstname" no-label />
+                </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with id and label</div>
+                  <CTextInput id="firstname" label="First Name" />
+                </div>
+                
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with id and labelFormatter</div>
+                  <CTextInput id="firstname" :labelFormatter="(props) => props.id.toUpperCase()" />
+                </div>
+                
+                
+              </div>
+
+
+            </div>
+          </CFormSection>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-import ElevationDrawing from './test-components/ElevationDrawing.vue';
-import SectionDrawing from './test-components/SectionDrawing.vue';
 
+<script>
+import CTextInput from './components/TextInput/TextInput.vue';
+import CNumericInput from './components/NumericInput/NumericInput.vue';
+import CListbox from './components/Listbox/Listbox.vue';
+import CSwitch from './components/Switch/Switch.vue';
+import CCheckbox from './components/Checkbox/Checkbox.vue';
+import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
+import CButton from './components/Button/Button.vue';
+import CInputAffix from './components/InputAffix/InputAffix.vue';
+import CFormElement from './components/FormElement/FormElement.vue';
+import CFormSection from './components/FormSection/FormSection.vue';
+import { CResizable, CPane } from './components/Resizable';
+import { XIcon } from '@heroicons/vue/solid';
 
 export default {
-  name: 'App',
   components: {
-    ElevationDrawing,
-    SectionDrawing,
+    CNumericInput,
+    CTextInput,
+    CListbox,
+    CSwitch,
+    CCheckbox,
+    CRadioGroup,
+    CButton,
+    CInputAffix,
+    CFormElement,
+    CFormSection,
+    CResizable,
+    CPane,
+    XIcon,
   },
   data() {
     return {
-      maximized: null,
-      aviewport: 'elevation',
-      bviewport: 'section',
-    };
+      form1: {
+        firstName: null,
+        lastName: null,
+        emailAddress: null,
+        country: 'United Kingdom',
+        phoneNo: null,
+        birthDay: null,
+        birthMonth: null,
+        birthYear: null,
+        isAdmin: false,
+        recieveNotifications: false,
+      },
+      value: null,
+      value2: 'Male',
+      leftPaneSize: null,
+      birthMonthOptions: [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+      ],
+      errors: {
+        emailAddress: 'Not a valid email address',
+        serviceLevel: 'You cant afford it'
+      }
+    }
   },
-};
+  computed: {
+    leftPaneClass() {
+      return (this.leftPaneSize > 500) ? 'grid-cols-2' : 'grid-cols-1'
+    },
+  },
+  methods: {
+    resizePanes(data) {
+      this.leftPaneSize = data[0];
+    },
+    takeFocus() {
+      this.$refs.testid.focus();
+    },
+    blurFocus() {
+      this.$refs.testid.blur();
+    },
+    handleBlur(value) {
+      console.log('rerender if necessary');
+      alert('This is a custom handler for the localHandler input. Value: ' + value);
+    },
+    getInputColor(ref) {
+      return (ref) ? 'danger' : 'default';
+    }
+  }
+}
 </script>
 
-<style lang="scss">
-html {
-  height: 100%;
-  font-family: "system-ui",
-    "BlinkMacSystemFont",
-    "-apple-system",
-    "Segoe UI",
-    "Roboto",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Fira Sans",
-    "Droid Sans",
-    "Helvetica Neue",
-    "sans-serif";
-  -webkit-font-smoothing: antialiased;
+<style>
+
+.splitpanes--vertical > .splitpanes__splitter {
+  min-width: 6px;
+  background: linear-gradient(90deg, #ccc, #111);
 }
 
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin-top: 60px;
-  width: 5vw;
+.splitpanes--horizontal > .splitpanes__splitter {
+  min-height: 6px;
+  background: linear-gradient(0deg, #ccc, #111);
 }
-
-p {
-  display: block;
-}
-
-.tab-div {
-  width: 24rem;
-  height: 26rem;
-  border: 1px solid #D8DBE1;
-}
-
 </style>

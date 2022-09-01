@@ -1,0 +1,50 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CSvg2dViewport from '../Svg2dViewport.vue';
+import { CViewportContainer } from '../../Viewport';
+
+<Meta title="Components/High level/Svg2dViewport" component={CSvg2dViewport} />
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CSvg2dViewport },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      extents: {
+        type: Object,
+        default: () => ({
+          xmin: 0,
+          ymin: 0,
+          xmax: 400,
+          ymax: 400,
+        }),
+      },
+      currentTool: 'select',
+      value: { x: 50, y: 50 },
+      viewport: 'default',
+    };
+  },
+  methods: {},
+  template: `<CViewportContainer>
+  <CSvg2dViewport :extents="extents" :currentTool="currentTool" :value="value">
+     <circle r="20" :cx="value.x" :cy="value.y" />
+  </CSvg2dViewport>
+  </CViewportContainer>`,
+});
+
+<!--- Component documentation -->
+
+# SVG 2d Viewport
+
+<Canvas withSource="open">
+  <Story name="Overview" args={{}}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable story="Overview" />

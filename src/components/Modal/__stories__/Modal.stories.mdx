@@ -1,0 +1,61 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CModal from '../Modal.vue';
+import CButton from '../../Button/Button.vue';
+
+<Meta
+  title="Components/High level/Modal"
+  component={CModal}
+  argTypes={{
+    size: {
+      options: ['lg', 'md'],
+      control: { type: 'select' },
+    },
+    show: {
+      control: 'boolean',
+    },
+    closeable: {
+      control: 'boolean',
+    },
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CModal, CButton },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { show: args.show };
+  },
+  template: `
+<CButton @click="show = true">Click to open modal</CButton>
+<CModal v-bind="args" :show="show" @close="show = false" :title="args.title">
+  <div class="flex items-center">{{ args.content }}</div>
+</CModal>
+  `,
+});
+
+<!--- Component documentation -->
+
+# Modal
+
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    args={{
+      size: 'md',
+      title: 'Modal title',
+      content: 'Modal content',
+      show: false,
+      closeable: true,
+    }}
+  >
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable story="Overview" />

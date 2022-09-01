@@ -1,0 +1,152 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Concrete/Form Inputs" />
+
+# Form Inputs
+
+Concrete contains the following input types:
+- TextInput
+- TextArea
+- Numeric Input
+- Listbox
+- Autocomplete
+- Switch
+- Checkbox
+- Radio
+
+Whilst each input accepts a `v-model` prop in the usual way, Concrete provides some additional global config parameters,
+which affect the way each input operates, ultimately resulting in much less code being required.
+
+These parameters are explained in detail below but in essence they allow you to use `id` of the input component to automatically:
+- get the value
+- handle changes to the value
+- get errors and warnings
+- register the input's DOM element
+
+## Use case
+Consider the following:
+
+```html dark
+<CTextInput
+  label="First Name"
+  :message="errors.firstName"
+  :color="errors.firstName && 'danger'"
+  v-model="store.firstname"/>
+```
+
+Maybe this doesn't look too bad, but imagine a form with twenty inputs. Considering that most of the time we want our inputs to be handled in a similar way, it's much more effective to configure the global options and simply use the following:
+``` html dark
+<CTextInput id="firstname" label="First Name" />
+```
+
+## Config Parameters
+
+### **inputHandler: function(id: string, value: any)**
+
+Specifies a function for globally handling changes in input values.
+The handler is called with the `id` of the input and the updated value.
+This feature allows you to standardise the behaviour of all inputs in your application
+e.g. connecting them to store functionality
+
+```javascript dark
+const store = useStore();
+
+app.use(Concrete, {
+  inputHandler: (id, value) => store.updateEntity(id, value);
+});
+```
+
+### **inputIdToValue: function(id: string)**
+
+Specifies a function for retrieving a value based on the given id.
+
+```javascript dark
+import { get } from 'lodash-es';
+
+const rootStore = useRootStore();
+
+app.use(Concrete, {
+  inputIdToValue: (id) => {
+    const [storeId, path] = id.split('_');
+    const store = rootStore[storeId];
+    return get(store, path);
+  }
+});
+```
+
+### **registerInputs: function(id: string, el: HTMLElement) | boolean**
+
+Registers form inputs in the internal registry if a boolean value of `true` is passed, or specifies a handler for rolling
+your own input registration functionality.
+
+**Using the internal registry**
+
+When using the internal registry the property `registeredInputs` is provided on the `concrete` object to all components in the app instance. This property is reactive, allowing you to do all the usual Vue-y stuff with it. Inputs are deregistered when unmounted.
+
+```javascript dark
+// entry.js
+app.use(Concrete, {
+  registerInputs: true
+});
+
+// Component.vue
+const { registeredInputs } = provide('concrete');
+const registeredIds = computed(() => Object.keys(registeredInputs));
+```
+
+**Using a custom handler**
+
+The internal registry and the `registeredInput` property is disabled if a custom handler is specified. The custom handler should return a `deregister` function in order to handle deregistering inputs when they are unmounted. If a function is not returned then a warning will appear in the console.
+
+```javascript dark
+// entry.js
+const inputStore = reactive({});
+
+app.use(Concrete, {
+  registerInputs: (id, el) => {
+    const storePath = id.split('_')[1];
+    inputStore[storePath] = () => el;
+
+    return () => delete inputStore[storePath];
+  }
+<<<<<<< HEAD
+});
+```
+
+### **inputGetStatus: function(id: string)**
+
+Specifies a function for setting the message and color of the input based on the input's id. This function should return either a string, which will infer a `type: 'error'`, or an object in the following format: `{ message: string, type?: 'error' | 'warning' | 'info' }`
+
+**entry.js**
+
+```javascript dark
+const errorStore = reactive({});
+
+app.use(Concrete, {
+  inputGetStatus: (id) => {
+    return errorStore[id];
+  }
+});
+
+const callApi = (data) => {
+  const res = await api.fetch(data);
+
+  if (res.errors) {
+    errors.forEach(e => {
+      errorStore[e.location] = {
+        type: 'error',
+        message: e.message,
+      }
+    })
+  }
+}
+```
+
+**Component.vue**
+```javascript dark
+<template>
+  <CNumericInput id="cavity.width" label="Width" />
+</template>
+```
+
+Now the input will turn red and display error text every time the `cavity.width` property with `type: 'error'` is set on the errorStore
