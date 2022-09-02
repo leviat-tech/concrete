@@ -1,0 +1,53 @@
+import CTabs from '../Tabs.vue';
+import CTabPanel from '../CTabPanel.vue';
+
+export const Overview = () => ({
+  components: { CTabs, CTabPanel },
+  template: `
+  <CTabs :labels="['a','b','c']" class="border"> 
+    <template #panels> 
+      <CTabPanel>Panel 1</CTabPanel> 
+      <CTabPanel>Panel 2</CTabPanel> 
+      <CTabPanel>Panel 3</CTabPanel> 
+    </template>
+  </CTabs>`,
+  play: async (args, canvasElement) => {
+    const canvas = within(canvasElement);
+    // Check that labels array is the same length as the number of visible tabs
+    const tabs = await screen.findByRole('tablist');
+    const numberOfTabs = tabs.children.length;
+    const numberOfLabelsArg = args.labels.length;
+    expect(numberOfTabs).toBe(numberOfLabelsArg);
+    // Check that the all tabs are visible and match the labels prop supplied
+    for (const tab of tabs.children) {
+      const label = tab.innerText;
+      // Check that the tab on screen is visible
+      const htmlTab = await screen.findByText(label);
+      expect(htmlTab).toBe(tab);
+    }
+    // Click on the second tab and assert that panel is displayed
+    await userEvent.click(canvas.getByRole('tab', { name: 'Tab 2' }));
+    await screen.findByText('Panel 2');
+    // Click on the third tab and assert that panel is displayed
+    await userEvent.click(canvas.getByRole('tab', { name: 'Tab 3' }));
+    await screen.findByText('Panel 3');
+    // Click on the first tab and assert that panel is displayed
+    await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
+    await screen.findByText('Panel 1');
+  },
+});
+Overview.parameters = {
+  docs: {
+    source: {
+      code: `
+      CTabs :labels="['a','b','c']" class="border"> 
+        <template #panels> 
+          <CTabPanel>Panel 1</CTabPanel> 
+          <CTabPanel>Panel 2</CTabPanel> 
+          <CTabPanel>Panel 3</CTabPanel> 
+        </template>
+      </CTabs>`,
+      language: 'js',
+    },
+  },
+};
