@@ -3,6 +3,11 @@ import CTabPanel from '../CTabPanel.vue';
 import { userEvent, screen, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
 
+// REVIEW: Setting default export enables test-runner to find the play function
+export default {
+  component: CTabs,
+};
+
 export const Overview = (args) => ({
   components: { CTabs, CTabPanel },
   setup() {
