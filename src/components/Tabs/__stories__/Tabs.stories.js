@@ -3,8 +3,8 @@ import CTabPanel from '../CTabPanel.vue';
 
 export const Overview = () => ({
   components: { CTabs, CTabPanel },
-  template: `
-  <CTabs :labels="['a','b','c']" class="border"> 
+  template: /*html*/ `
+  <CTabs :labels="['Tab 1','Tab 2','Tab 3']" class="border"> 
     <template #panels> 
       <CTabPanel>Panel 1</CTabPanel> 
       <CTabPanel>Panel 2</CTabPanel> 
@@ -39,15 +39,30 @@ export const Overview = () => ({
 Overview.parameters = {
   docs: {
     source: {
-      code: `
-      CTabs :labels="['a','b','c']" class="border"> 
-        <template #panels> 
-          <CTabPanel>Panel 1</CTabPanel> 
-          <CTabPanel>Panel 2</CTabPanel> 
-          <CTabPanel>Panel 3</CTabPanel> 
+      code: /*html*/ ` 
+//prop labels
+      <CTabs :labels="['Tab 1','Tab 2','Tab 3']" class="border">
+        <template #panels>
+          <CTabPanel>Panel 1</CTabPanel>
+          <CTabPanel>Panel 2</CTabPanel>
+          <CTabPanel>Panel 3</CTabPanel>
+        </template>
+      </CTabs>
+      
+//slot labels
+      <CTabs class="border">
+        <template #panels>
+          <CTabLabel>Tab 1</CTabLabel>
+          <CTabLabel>Tab 2</CTabLabel>
+          <CTabLabel>Tab 3</CTabLabel>
+        </template>
+        <template #panels>
+          <CTabPanel>Panel 1</CTabPanel>
+          <CTabPanel>Panel 2</CTabPanel>
+          <CTabPanel>Panel 3</CTabPanel>
         </template>
       </CTabs>`,
-      language: 'js',
+      language: 'html',
     },
   },
 };
