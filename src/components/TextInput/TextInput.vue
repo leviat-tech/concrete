@@ -78,8 +78,8 @@ const value = computed({
   }
 });
 
-const onEnter = useEventHandler('enter', props, emit, value, isDirty);
-const onBlur = useEventHandler('blur', props, emit, value, isDirty);
+const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
+const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
 const focus = () => inputRef.value.focus();
 const blur = () => inputRef.value.blur();
 defineExpose({ focus, blur });
