@@ -11,10 +11,10 @@ export default {
 export const Overview = (args) => ({
   components: { CTabs, CTabPanel },
   setup() {
-    return args;
+    return { args };
   },
   template: /*html*/ `
-  <CTabs :labels="['Tab 1','Tab 2','Tab 3']" class="border"> 
+  <CTabs :labels="['Tab 1','Tab 2','Tab 3']" v-bind="args" class="border"> 
     <template #panels> 
       <CTabPanel>Panel 1</CTabPanel> 
       <CTabPanel>Panel 2</CTabPanel> 
@@ -49,6 +49,7 @@ Overview.play = async ({ args, canvasElement }) => {
   await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
   await screen.findByText('Panel 1');
 };
+// Source code
 Overview.parameters = {
   docs: {
     source: {
