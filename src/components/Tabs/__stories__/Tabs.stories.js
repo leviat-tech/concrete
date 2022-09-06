@@ -14,7 +14,7 @@ export const Overview = (args) => ({
     return { args };
   },
   template: /*html*/ `
-  <CTabs :labels="['Tab 1','Tab 2','Tab 3']" v-bind="args" class="border"> 
+  <CTabs v-bind="args" class="border"> 
     <template #panels> 
       <CTabPanel>Panel 1</CTabPanel> 
       <CTabPanel>Panel 2</CTabPanel> 
