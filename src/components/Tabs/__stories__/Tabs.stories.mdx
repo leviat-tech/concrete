@@ -4,11 +4,23 @@ import CTabPanel from '../CTabPanel.vue';
 
 import * as stories from './Tabs.stories.js';
 
-<Meta title="Components/High level/Tabs" component={CTabs} />
+<Meta
+  title="Components/High level/Tabs"
+  component={CTabs}
+  argTypes={{
+    tabPosition: {
+      options: ['top', 'bottom'],
+      control: { type: 'radio' },
+    },
+    labels: {
+      control: { type: 'object' },
+    },
+  }}
+/>
 
 <!--- Component documentation -->
 
-# Tabs (with label props)
+# Tabs
 
 <Canvas withSource="open">
   <Story story={stories.Overview} />
@@ -32,4 +44,4 @@ Making sure to add relevant classes and style accordingly for height, padding ov
 
 ## Props
 
-<ArgsTable />
+<ArgsTable of={CTabs} />
