@@ -6,6 +6,7 @@ import { expect } from '@storybook/jest';
 
 // REVIEW: Setting default export enables test-runner to find the play function
 export default {
+  title: 'Components/High level/Tabs',
   component: CTabs,
 };
 
