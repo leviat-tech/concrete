@@ -1,4 +1,5 @@
 import CTabs from '../Tabs.vue';
+import CTabLabel from '../CTabLabel.vue';
 import CTabPanel from '../CTabPanel.vue';
 import { userEvent, screen, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
@@ -49,34 +50,23 @@ Overview.play = async ({ args, canvasElement }) => {
   await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
   await screen.findByText('Panel 1');
 };
-// Source code
-Overview.parameters = {
-  docs: {
-    source: {
-      code: /*html*/ ` 
-//prop labels
-      <CTabs :labels="['Tab 1','Tab 2','Tab 3']" class="border">
-        <template #panels>
-          <CTabPanel>Panel 1</CTabPanel>
-          <CTabPanel>Panel 2</CTabPanel>
-          <CTabPanel>Panel 3</CTabPanel>
-        </template>
-      </CTabs>
-      
-//slot labels
-      <CTabs class="border">
-        <template #panels>
-          <CTabLabel>Tab 1</CTabLabel>
-          <CTabLabel>Tab 2</CTabLabel>
-          <CTabLabel>Tab 3</CTabLabel>
-        </template>
-        <template #panels>
-          <CTabPanel>Panel 1</CTabPanel>
-          <CTabPanel>Panel 2</CTabPanel>
-          <CTabPanel>Panel 3</CTabPanel>
-        </template>
-      </CTabs>`,
-      language: 'html',
-    },
+
+export const OverviewSlots = (args) => ({
+  components: { CTabs, CTabLabel, CTabPanel },
+  setup() {
+    return { args };
   },
-};
+  template: /*html*/ `
+  <CTabs v-bind="args" class="border"> 
+    <template #labels>
+      <CTabLabel>Tab 1</CTabLabel>
+      <CTabLabel>Tab 2</CTabLabel>
+      <CTabLabel>Tab 3</CTabLabel>
+    </template>
+    <template #panels> 
+      <CTabPanel>Panel 1</CTabPanel> 
+      <CTabPanel>Panel 2</CTabPanel> 
+      <CTabPanel>Panel 3</CTabPanel> 
+    </template>
+  </CTabs>`,
+});
