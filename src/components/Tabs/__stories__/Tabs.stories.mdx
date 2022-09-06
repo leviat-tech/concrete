@@ -22,6 +22,8 @@ import * as stories from './Tabs.stories.js';
 
 # Tabs
 
+### with label prop
+
 <Canvas withSource="open">
   <Story name="Overview" story={stories.Overview} />
 </Canvas>
@@ -34,6 +36,12 @@ Tabs component provides a way to view tabbed/paned content.
 
 You can either provide labels as an array of strings using the prop :labels , or as a slot #labels  
 When using the slot, be sure to use only CTabLabel component
+
+### with label slot
+
+<Canvas withSource="open">
+  <Story name="OverviewSlots" story={stories.OverviewSlots} />
+</Canvas>
 
 ### Content
 
