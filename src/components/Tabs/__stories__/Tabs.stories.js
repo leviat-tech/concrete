@@ -51,7 +51,7 @@ Overview.play = async ({ args, canvasElement }) => {
   await screen.findByText('Panel 1');
 };
 
-export const OverviewSlots = (args) => ({
+export const LabelSlots = (args) => ({
   components: { CTabs, CTabLabel, CTabPanel },
   setup() {
     return { args };
