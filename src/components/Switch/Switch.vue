@@ -6,7 +6,6 @@
     <div class="concrete__switch">
       <Switch
         ref="switchRef"
-        :id="id"
         v-model="enabled"
         class="inline-flex flex-shrink-0 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
         :class="[bgColorClass, switchSizeClass]">
@@ -37,7 +36,7 @@
 <script setup>
 import { Switch } from '@headlessui/vue';
 import { CheckIcon, XIcon } from '@heroicons/vue/solid';
-import { computed, ref, inject } from 'vue';
+import { computed, ref, inject, onMounted } from 'vue';
 import { formElementProps } from '../../composables/props.js';
 import {
   useSizeValue,
@@ -139,5 +138,12 @@ const checkIconClass = computed(() => {
 });
 
 useRegisterInput(props, switchRef);
+
+// The Switch component does not accept an id prop
+// so we need to override headless UI's default id
+// after the component is mounted
+onMounted(() => {
+  switchRef.value.el.id = props.id;
+})
 
 </script>

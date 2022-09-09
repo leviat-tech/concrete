@@ -18,6 +18,7 @@
         >
           <slot name="prefix" class="z-10"/>
           <ComboboxInput
+            :id="id"
             ref="inputRef"
             @change="searchValue = $event.target.value"
             @click="$event.target.select()"

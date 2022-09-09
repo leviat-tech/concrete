@@ -23,7 +23,7 @@
 <script setup>
 import { Switch } from '@headlessui/vue';
 import { CheckIcon } from '@heroicons/vue/solid';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useEventHandler } from '../../composables/events.js';
 import { formElementProps } from '../../composables/props.js';
 import {
@@ -87,4 +87,10 @@ const checkIconClass = computed(() => {
 
 useRegisterInput(props, el);
 
+// The Switch component does not accept an id prop
+// so we need to override headless UI's default id
+// after the component is mounted
+onMounted(() => {
+  switchRef.value.el.id = props.id;
+})
 </script>
