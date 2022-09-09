@@ -5,7 +5,6 @@
   >
     <Listbox
       as="div"
-      :id="id"
       v-model="selectedValue"
       :disabled="disabled"
       :multiple="multiple"
@@ -16,7 +15,8 @@
         <div class="inline-flex  w-full">
           <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
             <slot name="prefix" class="z-10"/>
-            <ListboxButton ref="buttonRef" :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
+            <ListboxButton ref="buttonRef" :id="id"
+              :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
               <span :class="selectedLabelClass">{{ selectedLabel }}</span>
               <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <SelectorIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
