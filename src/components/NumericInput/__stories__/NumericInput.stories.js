@@ -1,6 +1,7 @@
 import CNumericInput from '../NumericInput.vue';
 import { userEvent, screen, within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { expect, jest } from '@storybook/jest';
+import { useArgs } from '@storybook/client-api';
 
 // REVIEW: Setting default export enables test-runner to find the play function
 export default {
@@ -16,35 +17,36 @@ export const Overview = (args) => ({
   template: /*html*/ `<CNumericInput v-bind="args" id="numeric-input" />`,
 });
 
-Overview.args = {
-  size: 'md',
-  color: 'default',
-  onEnter: undefined,
-  onBlur: undefined,
-  disabled: false,
-  readOnly: false,
-  transparent: false,
-  placeholder: '',
-};
-
 Overview.play = async ({ args, canvasElement }) => {
   const canvas = within(canvasElement);
-  // Check that labels array is the same length as the number of visible tabs
-  const tabs = await screen.findByRole('tablist');
-  // Check that the all tabs are visible and match the labels prop supplied
-  for (const tab of tabs.children) {
-    const label = tab.innerText;
-    // Check that the tab on screen is visible
-    const htmlTab = await screen.findByText(label);
-    expect(htmlTab).toBe(tab);
-  }
-  // Click on the second tab and assert that panel is displayed
-  await userEvent.click(canvas.getByRole('tab', { name: 'Tab 2' }));
-  await screen.findByText('Panel 2');
-  // Click on the third tab and assert that panel is displayed
-  await userEvent.click(canvas.getByRole('tab', { name: 'Tab 3' }));
-  await screen.findByText('Panel 3');
-  // Click on the first tab and assert that panel is displayed
-  await userEvent.click(canvas.getByRole('tab', { name: 'Tab 1' }));
-  await screen.findByText('Panel 1');
+  const input = document.getElementById('numeric-input');
+
+  // testing that blank input is not allowed
+  await userEvent.type(input, ' ');
+  await expect(input.value).toBe('');
+
+  // testing non-numeric input results in only numeric input being allowed
+  await userEvent.clear(input);
+  await userEvent.type(input, '!>a4');
+  await expect(input.value).toBe('4');
+
+  // test that positive input special characters are discarded and only numeric input is kept
+  await userEvent.clear(input);
+  await userEvent.type(input, '+8');
+  await expect(input.value).toBe('8');
+
+  // test that blank characters before input is discarded and only numeric input is kept
+  await userEvent.clear(input);
+  await userEvent.type(input, '    9');
+  await expect(input.value).toBe('9');
+
+  // test that blank characters after input is discarded and only numeric input is kept
+  await userEvent.clear(input);
+  await userEvent.type(input, '9    ');
+  await expect(input.value).toBe('9');
+
+  // test that negative input is allowed
+  await userEvent.clear(input);
+  await userEvent.type(input, '-8');
+  await expect(input.value).toBe('-8');
 };
