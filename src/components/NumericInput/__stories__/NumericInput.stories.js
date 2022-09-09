@@ -7,17 +7,103 @@ import { useArgs } from '@storybook/client-api';
 export default {
   title: 'Components/Input/NumericInput',
   component: CNumericInput,
+  argTypes: {
+    size: {
+      options: ['lg', 'md', 'sm', 'xs'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
+      control: { type: 'select' },
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    readOnly: {
+      control: 'boolean',
+    },
+    transparent: {
+      control: 'boolean',
+    },
+    placeholder: {
+      control: 'text',
+    },
+    onEnter: {
+      table: { disable: true },
+    },
+    onBlur: {
+      table: { disable: true },
+    },
+  },
 };
+
+const baseTemplate = /*html*/ `<CNumericInput v-bind="args" id="numeric-input" />`;
 
 export const Overview = (args) => ({
   components: { CNumericInput },
   setup() {
     return { args };
   },
-  template: /*html*/ `<CNumericInput v-bind="args" id="numeric-input" />`,
+  template: baseTemplate,
 });
 
-Overview.play = async ({ args, canvasElement }) => {
+export const Disabled = (args) => ({
+  components: { CNumericInput },
+  setup() {
+    return { args };
+  },
+  template: baseTemplate,
+});
+
+export const Placeholder = (args) => ({
+  components: { CNumericInput },
+  setup() {
+    return { args };
+  },
+  template: baseTemplate,
+});
+
+export const ReadOnly = (args) => ({
+  components: { CNumericInput },
+  setup() {
+    return { args };
+  },
+  template: baseTemplate,
+});
+
+Overview.args = {
+  size: 'md',
+  color: 'default',
+  onEnter: undefined,
+  onBlur: undefined,
+  disabled: false,
+  readOnly: false,
+  transparent: false,
+  placeholder: '',
+};
+
+Placeholder.args = {
+  placeholder: 'Numeric input placeholder',
+};
+
+Disabled.args = {
+  disabled: true,
+};
+
+ReadOnly.args = {
+  modelValue: 10,
+  readOnly: true,
+};
+
+Overview.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const input = document.getElementById('numeric-input');
 
@@ -50,3 +136,32 @@ Overview.play = async ({ args, canvasElement }) => {
   await userEvent.type(input, '-8');
   await expect(input.value).toBe('-8');
 };
+
+Disabled.play = async () => {
+  const input = document.getElementById('numeric-input');
+
+  // testing that input is not allowed
+  await userEvent.type(input, '215151');
+  await expect(input.value).toBe('');
+};
+
+Placeholder.play = async ({ canvasElement }) => {
+  const canvas = within(canvasElement);
+  // 👇 Assert DOM structure
+  await expect(
+    canvas.getByPlaceholderText('Numeric input placeholder')
+  ).toBeInTheDocument();
+};
+
+ReadOnly.play = async () => {
+  const input = document.getElementById('numeric-input');
+
+  // testing that input does not change
+  await userEvent.type(input, '4');
+  await expect(input.value).toBe('10');
+};
+
+// TODO:
+// Testing Min, Max and Step will not work with the current testing library
+// as it cannot access native html input increment/decrement buttons
+// and the component does not support correcting incorrect values on input change
