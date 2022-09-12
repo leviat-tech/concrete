@@ -7,7 +7,7 @@
         <div class="flex items-center justify-between border-b text-lg text-gray-500" :class="{ title }">
           <div class="py-4 px-6">{{ title }}</div>
           <button v-if="closeable" class="p-4 mr-2" @click="onClose">
-            <CIcon type="times" />
+            <CIcon type="times" size="sm"/>
           </button>
         </div>
 

@@ -146,17 +146,16 @@ export default {
     }
 
     const sizes = {
-      sm: 18,
-      md: 24,
-      lg: 30,
-      xl: 36,
-      '2xl': 48,
-      '3xl': 64
+      sm: 'w-4',
+      md: 'w-6',
+      lg: 'w-8',
+      xl: 'w-10',
+      '2xl': 'w-12',
+      '3xl': 'w-16'
     }
-    const size = sizes[this.size];
-
-    const colorClass = `text-${this.color}`;
-    const classes = ['flex-none', colorClass, 'text-sm'];
+    const sizeClass = sizes[this.size || 'md'];
+    const colorClass = this.color && `text-${this.color}`;
+    const classes = ['flex-none', colorClass, sizeClass, 'text-sm'];
 
     if (this.spin) {
       classes.push('animate-spin');
@@ -166,10 +165,6 @@ export default {
         ? this.$slots.default()[0]
         : h(icon, {
           class: classes,
-          style: {
-            width: size + 'px',
-            height: size + 'px',
-          }
         });
   },
 };
