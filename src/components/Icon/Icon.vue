@@ -66,6 +66,7 @@ import CompressIcon from './icons/CompressIcon.vue';
 import FunctionIcon from './icons/FunctionIcon.vue';
 import RedoIcon from './icons/RedoIcon.vue';
 import UndoIcon from './icons/UndoIcon.vue';
+import { useSizeValue } from '../../composables/forms';
 
 export const icons = {
   'arrow-down': ArrowDownIcon,
@@ -153,7 +154,8 @@ export default {
       '2xl': 'w-12',
       '3xl': 'w-16'
     }
-    const sizeClass = sizes[this.size || 'md'];
+    const size = useSizeValue(this.props.size);
+    const sizeClass = sizes[size];
     const colorClass = this.color && `text-${this.color}`;
     const classes = ['flex-none', colorClass, sizeClass, 'text-sm'];
 
