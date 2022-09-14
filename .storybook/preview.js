@@ -1,4 +1,5 @@
 import { withSource } from './withSource';
+import { useArgs } from '@storybook/client-api';
 import '../src/index.css';
 import Concrete from '../src';
 
@@ -33,10 +34,14 @@ export const parameters = {
 
 const marginDecorator = (story) => ({
   components: { story },
-  template: '<div style="margin: 0.5em;"><story /></div>'
+  template: '<div style="margin: 0.5em;"><story /></div>',
 });
 
 export const decorators = [
   withSource,
   marginDecorator,
-]
+  (story, context) => {
+    const [_, updateArgs] = useArgs();
+    return story({ ...context, updateArgs });
+  },
+];
