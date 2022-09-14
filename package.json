@@ -1,6 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "main": "src/index.js",
   "scripts": {
     "dev": "vite",
