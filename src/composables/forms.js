@@ -49,6 +49,7 @@ export const useRegisterInput = (props, inputRef) => {
   const { registerInputs, registeredInputs } = useConcrete();
   if (!id || !inputRef || !registerInputs) return;
   const isCustomHandler = (typeof registerInputs === 'function');
+  let currentId = id;
   let unregisterInput;
 
   onMounted(() => {
@@ -68,6 +69,8 @@ export const useRegisterInput = (props, inputRef) => {
   watch(
     () => props.id,
     (nextId, prevId) => {
+      currentId = nextId;
+
       const el = getInputElementFromRef(inputRef);
       if (isCustomHandler) {
         unregisterInput();
@@ -84,7 +87,7 @@ export const useRegisterInput = (props, inputRef) => {
     if (isCustomHandler) {
       unregisterInput();
     } else {
-      delete registeredInputs[id];
+      delete registeredInputs[currentId];
     }
   });
 }
