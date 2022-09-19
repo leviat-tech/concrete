@@ -91,11 +91,11 @@ const value = computed({
     return convertToDisplayValue(val);
   },
   set(value) {
-    const newValue = convertToDisplayValue(value);
+    const newValue = convertFromDisplayValue(value);
     if (localValue.value === newValue) return;
     localValue.value = newValue;
     isDirty.value = true;
-    emit('update:modelValue', convertFromDisplayValue(value))
+    emit('update:modelValue', newValue)
   }
 });
 
