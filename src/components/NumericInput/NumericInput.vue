@@ -106,7 +106,7 @@ const blur = () => inputRef.value.blur();
 defineExpose({ focus, blur });
 
 const convertToDisplayValue = (v) => {
-  if (v === null || v === '') return null;
+  if (v === undefined || v === null || v === '') return null;
   let value = null;
   if (!isNumber(v)) value = v;
   if (props.unit) value = convertFromSI(v, props.unit);
@@ -116,7 +116,7 @@ const convertToDisplayValue = (v) => {
 };
 
 const convertFromDisplayValue = (v) => {
-  if (v === null || v === '') return null;
+  if (v === undefined || v === null || v === '') return null;
   let value = null;
   if (!isNumber(v)) return v;
   if (props.unit) value = convertToSI(Number(v), props.unit);

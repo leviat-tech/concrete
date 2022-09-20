@@ -16,7 +16,7 @@
           <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
             <slot name="prefix" class="z-10"/>
             <ListboxButton ref="buttonRef" :id="id"
-              :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
+                           :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
               <span :class="selectedLabelClass">{{ selectedLabel }}</span>
               <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <SelectorIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
@@ -141,12 +141,21 @@ const localOptions = computed(() => {
 
 const selectedLabel = computed(() => {
   let sv = selectedValue.value
+
   if(!props.multiple) {
+    if (typeof sv === 'object') {
+      return props.formatter ? props.formatter(sv) : sv;
+    }
     sv = [selectedValue.value];
   }
   const labels = sv.filter((s) => s != null).map((s) => localOptions.value.find((o) => o.value === s)?.label);
   const label = labels.join(', ');
-  return (label.length > 0) ? label : props.placeholder;
+
+  if (label.length === 0) {
+    return props.placeholder
+  }
+
+  return props.formatter ? props.formatter(label) : label;
 });
 
 const selectedLabelClass = computed(() => {
