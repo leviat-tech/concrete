@@ -66,7 +66,7 @@ const messageClass = computed(() => {
     success: 'text-success',
     warning: 'text-warning',
     danger: 'text-danger',
-  }[status.value.color];
+  }[status.value.color || 'default'];
 });
 
 const stackedClass = stacked ? 'mb-1 truncate' : 'basis-1/2 flex flex-col justify-center pr-8';
