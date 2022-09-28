@@ -55,6 +55,7 @@ const SI = {
   'kN/m': 'N/m',
   N: 'N',
   kN: 'N',
+  'N/m³': 'N/m³',
   'kN/m³': 'N/m³',
   'kN/m²': 'N/m²',
   K: 'K',
