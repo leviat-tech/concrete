@@ -43,7 +43,7 @@ const emit = defineEmits(['update:modelValue'])
 
 const useVModel = props.modelValue !== undefined;
 
-const selectedIndex = (useVModel) ? props.modelValue : ref(0);
+const selectedIndex = (useVModel) ? props.modelValue : ref(props.defaultIndex);
 
 function onChange(index) {
   if (useVModel) {
