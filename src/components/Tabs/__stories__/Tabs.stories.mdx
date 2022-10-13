@@ -1,6 +1,5 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CTabs from '../Tabs.vue';
-import CTabPanel from '../CTabPanel.vue';
 
 import * as stories from './Tabs.stories.js';
 
@@ -34,7 +33,7 @@ Tabs component provides a way to view tabbed/paned content.
 
 ### Labels
 
-You can either provide labels as an array of strings using the prop :labels , or as a slot #labels  
+You can either provide labels as an array of strings using the prop :labels , or as a slot #labels
 When using the slot, be sure to use only CTabLabel component
 
 ### with label slot
@@ -43,9 +42,17 @@ When using the slot, be sure to use only CTabLabel component
   <Story name="LabelSlots" story={stories.LabelSlots} />
 </Canvas>
 
+### Using `v-model`
+
+The Tabs component can be controlled by passing in `v-model`
+
+<Canvas withSource="open">
+  <Story name="VModel" story={stories.VModel} />
+</Canvas>
+
 ### Content
 
-You can provide using the slot #panels  
+You can provide using the slot #panels
 When using the slot, be sure to only use CTabPanel component
 
 Making sure to add relevant classes and style accordingly for height, padding overflow etc on CTabPanel

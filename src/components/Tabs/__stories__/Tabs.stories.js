@@ -1,8 +1,9 @@
 import CTabs from '../Tabs.vue';
 import CTabLabel from '../CTabLabel.vue';
 import CTabPanel from '../CTabPanel.vue';
-import { userEvent, screen, within } from '@storybook/testing-library';
+import { screen, userEvent, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import { computed, ref } from 'vue';
 
 // REVIEW: Setting default export enables test-runner to find the play function
 export default {
@@ -16,12 +17,12 @@ export const Overview = (args) => ({
     return { args };
   },
   template: /*html*/ `
-  <CTabs v-bind="args" class="border"> 
-    <template #panels> 
-      <CTabPanel>Panel 1</CTabPanel> 
-      <CTabPanel>Panel 2</CTabPanel> 
-      <CTabPanel>Panel 3</CTabPanel> 
-    </template>
+  <CTabs v-bind="args" class="border w-96">
+    <div class="p-4">
+      <CTabPanel>Panel 1</CTabPanel>
+      <CTabPanel>Panel 2</CTabPanel>
+      <CTabPanel>Panel 3</CTabPanel>
+    </div>  
   </CTabs>`,
 });
 
@@ -31,17 +32,50 @@ export const LabelSlots = (args) => ({
     return { args };
   },
   template: /*html*/ `
-  <CTabs v-bind="args" class="border"> 
+  <CTabs v-bind="args" class="border w-96">
     <template #labels>
       <CTabLabel>Tab 1</CTabLabel>
       <CTabLabel>Tab 2</CTabLabel>
       <CTabLabel>Tab 3</CTabLabel>
     </template>
-    <template #panels> 
-      <CTabPanel>Panel 1</CTabPanel> 
-      <CTabPanel>Panel 2</CTabPanel> 
-      <CTabPanel>Panel 3</CTabPanel> 
+
+    <div class="p-4">
+      <CTabPanel>Panel 1</CTabPanel>
+      <CTabPanel>Panel 2</CTabPanel>
+      <CTabPanel>Panel 3</CTabPanel>
+    </div>
+  </CTabs>`,
+});
+
+export const VModel = (args) => ({
+  components: { CTabs, CTabLabel, CTabPanel },
+  setup() {
+    const index = ref(1);
+
+    return {
+      args,
+      selectedIndex: computed({
+        get: () => index.value,
+        set: (val) => index.value = val,
+      })
+    };
+  },
+  template: /*html*/ `
+    <label>Change index: </label>
+    <input v-model="selectedIndex" type="number" min="0" max="2" class="border mb-4 p-1.5"/>
+
+    <CTabs v-bind="args" v-model="selectedIndex" class="border w-96"> 
+    <template #labels>
+      <CTabLabel>Tab 1</CTabLabel>
+      <CTabLabel>Tab 2</CTabLabel>
+      <CTabLabel>Tab 3</CTabLabel>
     </template>
+
+    <div class="p-4">
+      <CTabPanel>Panel 1 - Selected index: {{ selectedIndex }}</CTabPanel>
+      <CTabPanel>Panel 2 - Selected index: {{ selectedIndex }}</CTabPanel>
+      <CTabPanel>Panel 3 - Selected index: {{ selectedIndex }}</CTabPanel>
+    </div>
   </CTabs>`,
 });
 
