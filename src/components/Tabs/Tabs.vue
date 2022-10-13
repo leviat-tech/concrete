@@ -41,12 +41,12 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const useVModel = props.modelValue !== undefined;
+const isVModelActive = props.modelValue !== undefined;
 
-const selectedIndex = (useVModel) ? props.modelValue : ref(props.defaultIndex);
+const selectedIndex = (isVModelActive) ? props.modelValue : ref(props.defaultIndex);
 
 function onChange(index) {
-  if (useVModel) {
+  if (isVModelActive) {
     emit('update:modelValue', index);
   } else {
     selectedIndex.value = index;
