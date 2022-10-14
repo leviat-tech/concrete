@@ -46,9 +46,7 @@ const modal = ref(null)
 
 watch(() => props.show, (showValue) => {
   if (showValue) {
-    nextTick(() => {
-      focusModal();
-    });
+    nextTick(focusModal);
   }
 });
 
