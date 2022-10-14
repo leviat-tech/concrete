@@ -2,7 +2,7 @@
   <transition name="modal" aria-modal="true">
     <div v-if="show"
       class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500 p-4"
-      @click.self="onClose" @keydown.esc="onClose" ref="modal">
+      @click.self="onClose" @keydown.esc="onClose" ref="modal" aria-model="true" role="dialog">
       <div class="concrete-modal max-w-full bg-white rounded shadow duration-300 ellipsis overflow-auto max-h-full"
         :class="widthClass">
 
