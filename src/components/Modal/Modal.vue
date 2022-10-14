@@ -1,15 +1,16 @@
 <template>
-  <transition name="modal" aria-modal="true">
+  <transition name="modal">
     <div v-if="show"
       class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500 p-4"
-      @click.self="onClose" @keydown.esc="onClose" ref="modal" aria-modal="true" role="dialog">
+      @click.self="onClose" @keydown.esc="onClose" aria-modal="true" role="dialog">
       <div class="concrete-modal max-w-full bg-white rounded shadow duration-300 ellipsis overflow-auto max-h-full"
         :class="widthClass">
 
         <!-- header -->
         <div class="flex items-center justify-between border-b text-lg text-gray-500" :class="{ title }">
           <div class="py-4 px-6">{{ title }}</div>
-          <button v-if="closeable" class="p-4 mr-2" @click="onClose" tabindex="0" @focus="focusModal">
+          <button v-if="closeable" class="p-4 mr-2" @click="onClose" @focus="focusModal"
+            @keydown.tab.prevent="focusModal" ref="modal" @keydown.esc="onClose">
             <CIcon type="times" size="sm" />
           </button>
         </div>
@@ -43,13 +44,15 @@ const emit = defineEmits(['close']);
 
 const modal = ref(null)
 
-watch(() => props.show, (showValue) => {
-  if (showValue) {
-    focusModal();
+onUpdated(() => {
+  if (props.show) {
+    focusModal()
   }
 });
 
-const focusModal = () => modal.value.focus();
+const focusModal = () => {
+  modal.value.focus()
+};
 
 const widthClasses = {
   md: 'w-[24rem]',
