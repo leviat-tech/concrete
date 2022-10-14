@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onUpdated } from 'vue';
+import { ref, computed, watch, nextTick } from 'vue';
 import CIcon from '../Icon/Icon.vue';
 
 const props = defineProps({
@@ -44,11 +44,14 @@ const emit = defineEmits(['close']);
 
 const modal = ref(null)
 
-onUpdated(() => {
-  if (props.show) {
-    focusModal()
+watch(() => props.show, (showValue) => {
+  if (showValue) {
+    nextTick(() => {
+      focusModal();
+    });
   }
 });
+
 
 const focusModal = () => {
   modal.value.focus()
