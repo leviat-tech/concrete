@@ -1,9 +1,10 @@
 <template>
   <transition name="modal" aria-modal="true">
     <div v-if="show"
-      class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500"
+      class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500 p-4"
       @click.self="onClose" @keydown.esc="onClose" ref="modal">
-      <div class="concrete-modal max-w-full bg-white rounded shadow duration-300" :class="widthClass">
+      <div class="concrete-modal max-w-full bg-white rounded shadow duration-300 ellipsis overflow-auto max-h-full"
+        :class="widthClass">
 
         <!-- header -->
         <div class="flex items-center justify-between border-b text-lg text-gray-500" :class="{ title }">
