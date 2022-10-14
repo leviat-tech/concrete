@@ -2,13 +2,13 @@
   <transition name="modal" aria-modal="true">
     <div v-if="show"
       class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500"
-      @click.self="onClose" @keydown.esc="onClose" tabindex="0" ref="modal">
+      @click.self="onClose" @keydown.esc="onClose" ref="modal">
       <div class="concrete-modal max-w-full bg-white rounded shadow duration-300" :class="widthClass">
 
         <!-- header -->
         <div class="flex items-center justify-between border-b text-lg text-gray-500" :class="{ title }">
           <div class="py-4 px-6">{{ title }}</div>
-          <button v-if="closeable" class="p-4 mr-2" @click="onClose">
+          <button v-if="closeable" class="p-4 mr-2" @click="onClose" tabindex="0" @focus="focusModal">
             <CIcon type="times" size="sm" />
           </button>
         </div>
@@ -44,9 +44,11 @@ const modal = ref(null)
 
 onUpdated(() => {
   if (props.show) {
-    modal.value.focus();
+    focusModal();
   }
 });
+
+const focusModal = () => modal.value.focus();
 
 const widthClasses = {
   md: 'w-[24rem]',
