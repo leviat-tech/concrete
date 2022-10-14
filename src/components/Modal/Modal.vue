@@ -43,8 +43,8 @@ const emit = defineEmits(['close']);
 
 const modal = ref(null)
 
-onUpdated(() => {
-  if (props.show) {
+watch(() => props.show, (showValue) => {
+  if (showValue) {
     focusModal();
   }
 });
