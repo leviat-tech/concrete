@@ -1,19 +1,21 @@
 <template>
-  <transition name="modal">
-    <div v-if="show" class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500" @click.self="onClose">
+  <transition name="modal" aria-modal="true">
+    <div v-if="show"
+      class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500"
+      @click.self="onClose" @keydown.esc="onClose" tabindex="0" ref="modal">
       <div class="concrete-modal max-w-full bg-white rounded shadow duration-300" :class="widthClass">
 
         <!-- header -->
         <div class="flex items-center justify-between border-b text-lg text-gray-500" :class="{ title }">
           <div class="py-4 px-6">{{ title }}</div>
           <button v-if="closeable" class="p-4 mr-2" @click="onClose">
-            <CIcon type="times" size="sm"/>
+            <CIcon type="times" size="sm" />
           </button>
         </div>
 
         <!-- content -->
         <div class="p-6">
-          <slot/>
+          <slot />
         </div>
 
       </div>
@@ -22,7 +24,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { ref, computed, onUpdated } from 'vue';
 import CIcon from '../Icon/Icon.vue';
 
 const props = defineProps({
@@ -37,6 +39,14 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['close']);
+
+const modal = ref(null)
+
+onUpdated(() => {
+  if (props.show) {
+    modal.value.focus();
+  }
+});
 
 const widthClasses = {
   md: 'w-[24rem]',
@@ -53,7 +63,8 @@ const onClose = () => {
 </script>
 
 <style>
-.modal-enter-from, .modal-leave-to {
+.modal-enter-from,
+.modal-leave-to {
   opacity: 0;
 }
 
