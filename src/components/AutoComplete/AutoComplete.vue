@@ -16,6 +16,7 @@
             text-left
           "
         >
+          <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
           <slot name="prefix" class="z-10"/>
           <ComboboxInput
             :id="id"
@@ -28,6 +29,7 @@
             :placeholder="placeholder"
             :class="[inputStaticClasses, mergedSizeClass, hPaddingClass, bgColorClass, inputColorClass]"
           />
+          <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
           <slot name="suffix" class="z-10"/>
         </div>
         <ComboboxOptions class="absolute z-10 mt-1 w-full bg-white shadow-lg py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
@@ -59,6 +61,7 @@
 </template>
 
 <script setup>
+import { computed, ref, reactive } from 'vue';
 import {
   Combobox,
   ComboboxInput,
@@ -68,7 +71,7 @@ import {
 } from '@headlessui/vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
-import { computed, ref, reactive } from 'vue';
+import CInputAffix from '../InputAffix/InputAffix.vue';
 import { colorProp, formElementProps, useSizeProp } from '../../composables/props';
 import { inputStaticClasses, useInputClasses } from '../../composables/styles';
 import {

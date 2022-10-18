@@ -4,7 +4,8 @@
     v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
   >
     <div class="flex w-full" :class="colorClass">
-      <slot name="prefix" class="z-10" />
+      <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
+      <slot name="prefix" class="z-10"/>
       <textarea
         ref="inputRef"
         :id="id"
@@ -19,7 +20,8 @@
         @keydown.enter="onEnter"
         @blur="onBlur"
       />
-      <slot name="suffix" class="z-10" />
+      <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
+      <slot name="suffix" class="z-10"/>
     </div>
   </component>
 </template>
@@ -43,6 +45,7 @@ import { useInputColorClassValue, inputStaticClasses } from '../../composables/s
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
+import CInputAffix from '../InputAffix/InputAffix.vue';
 
 const props = defineProps({
   ...formElementProps,

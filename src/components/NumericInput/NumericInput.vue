@@ -5,6 +5,7 @@
     :class="inputColorClass"
   >
     <div class="flex w-full relative concrete__numeric-input">
+      <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
       <slot name="prefix" class="z-10"/>
       <input
         ref="inputRef"
@@ -27,8 +28,8 @@
         <!-- unit -->
         <div v-if="to || unit" class="unit">{{ to || unit }}</div>
       </div>
-      <slot name="suffix" class="z-10">
-      </slot>
+      <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
+      <slot name="suffix" class="z-10"/>
     </div>
   </component>
 </template>
@@ -39,6 +40,7 @@ import { convert, convertFromSI, convertToSI, isNumber } from '../..//utils/unit
 import { computed, inject, ref } from 'vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
+import CInputAffix from '../InputAffix/InputAffix.vue';
 import { formElementProps } from '../../composables/props.js';
 import { useInputClasses, inputStaticClasses } from '../../composables/styles';
 import {
