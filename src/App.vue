@@ -66,6 +66,11 @@
                   <div class="bg-blue-300 p-1 mb-1">Input with id and labelFormatter</div>
                   <CTextInput id="firstname" :labelFormatter="(props) => props.id.toUpperCase()" />
                 </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Input with prefix and suffix</div>
+                  <CTextInput id="Width" prefix="w" suffix="mm" />
+                </div>
                 
                 
               </div>

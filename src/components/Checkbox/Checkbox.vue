@@ -5,7 +5,7 @@
     <div class="concrete__checkbox flex">
       <span class="sr-only">{{srLabel}}</span>
       <Switch
-        ref="el"
+        ref="switchRef"
         :disabled='disabled'
         :id='id'
         v-model='enabled'
@@ -50,7 +50,7 @@ const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 
-const el = ref(null);
+const switchRef = ref(null);
 const isDirty = ref(false);
 const localValue = ref(null);
 

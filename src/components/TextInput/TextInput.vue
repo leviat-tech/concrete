@@ -5,7 +5,9 @@
     :class="inputColorClass"
   >
     <div class="flex w-full concrete__text-input">
+      <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
       <slot name="prefix" class="z-10"/>
+
       <input
         ref="inputRef"
         :id="id"
@@ -19,13 +21,14 @@
         @keydown.enter="onEnter"
         @blur="onBlur"
       >
+      <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
       <slot name="suffix" class="z-10"/>
     </div>
   </component>
 </template>
 
 <script setup>
-import { computed, ref, inject } from 'vue';
+import { computed, ref, inject, useSlots } from 'vue';
 import { formElementProps } from '../../composables/props.js';
 import { inputStaticClasses, useInputClasses } from '../../composables/styles';
 import {
@@ -38,7 +41,7 @@ import {
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
-
+import CInputAffix from '../InputAffix/InputAffix.vue';
 
 const props = defineProps({
   ...formElementProps,

@@ -27,4 +27,6 @@ export const formElementProps = {
   message: [String, Object],
   color: colorProp,
   size: useSizeProp(),
+  prefix: String,
+  suffix: String,
 }

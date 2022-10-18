@@ -14,6 +14,7 @@
       <div :class="['relative', disabledClass]">
         <div class="inline-flex  w-full">
           <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
+            <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
             <slot name="prefix" class="z-10"/>
             <ListboxButton ref="buttonRef" :id="id"
                            :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
@@ -22,7 +23,8 @@
                 <SelectorIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
               </span>
             </ListboxButton>
-            <slot name="suffix" class="z-10" />
+            <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
+            <slot name="suffix" class="z-10"/>
           </div>
         </div>
 
@@ -77,6 +79,7 @@ import {
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
+import CInputAffix from '../InputAffix/InputAffix.vue';
 
 const props = defineProps({
   ...formElementProps,
