@@ -35,8 +35,7 @@ const props = defineProps({
   closeable: { type: Boolean, default: true, },
   size: {
     type: String,
-    default: 'md',
-    validator: (prop) => ['md', 'lg', ''].includes(prop),
+    validator: (prop) => ['md', 'lg', undefined].includes(prop),
   },
 });
 
