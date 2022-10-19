@@ -85,7 +85,7 @@ const checkIconClass = computed(() => {
   }[props.color];
 });
 
-useRegisterInput(props, el);
+useRegisterInput(props, switchRef);
 
 // The Switch component does not accept an id prop
 // so we need to override headless UI's default id
