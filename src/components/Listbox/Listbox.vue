@@ -155,7 +155,7 @@ const selectedLabel = computed(() => {
     return props.placeholder
   }
 
-  return props.formatter ? props.formatter(label) : label;
+  return label;
 });
 
 const selectedLabelClass = computed(() => {
