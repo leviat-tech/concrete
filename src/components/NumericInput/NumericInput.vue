@@ -24,7 +24,7 @@
         @keydown.enter="onEnter"
         @blur="onBlur"
       >
-      <div :class="['absolute inset-y-0 z-30 right-0 flex items-center pointer-events-none', paddingClass]">
+      <div :class="['absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none', paddingClass]">
         <!-- unit -->
         <div v-if="to || unit" class="unit">{{ to || unit }}</div>
       </div>

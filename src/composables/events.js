@@ -13,6 +13,8 @@ export const useEventHandler = (eventName, props, emit, valueRef, dirtyRef) => {
 
     dirtyRef.value = false;
 
+    // Don't use the global handler if an event handler has been specified
+    // or if v-model is being used
     if (props[propName] || !globalHandler) {
       return emit(eventName, valueRef.value)
     }
