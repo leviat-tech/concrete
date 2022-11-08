@@ -1,10 +1,10 @@
 <template>
   <component
     class="relative"
-    :is="formElement ? CFormElement : CFragment"
+    :is="wrap ? CFormElement : CFragment"
     v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
   >
-  <div :class="[ textSizeClass, disabledClass]">
+  <div class="flex" :class="[ textSizeClass, disabledClass]">
     <RadioGroup 
     class="concrete__radiogroup"
     :class="layoutClass"
@@ -13,12 +13,14 @@
     :disabled='disabled'
     >
       <RadioGroupOption v-for="option in options" :key="option" :value="option" v-slot="{ checked }">
-        <div class="flex" >
-          <span class="mr-0.5 self-center grow text-right" :class="inputColorClass"> {{ props.formatter ? props.formatter(option) : option }}</span>
-              <svg :class="[heightClass,svgColour]" class="self-center" viewBox="0 0 20 20" >
-                  <circle cx="10" cy="10" r="7" fill="none" />
-                  <circle cx="10" cy="10" r="5.5" stroke="none" v-if="checked"  />
-              </svg>
+        <div class="flex cursor-pointer" >
+          <span class="ml-2 self-center grow text-right" :class="inputColorClass"> {{ props.formatter ? props.formatter(option) : option }}</span>
+            <svg :class="[heightClass,svgColour]" class="self-center" viewBox="0 0 20 20" >
+              <circle cx="10" cy="10" r="5" stroke-width="0.75" fill="none" />
+              <transition enter-from-class="scale-0" leave-to-class="scale-0">
+                <circle class="transition origin-center" cx="10" cy="10" r="3.5" stroke="none" v-if="checked"  />
+              </transition>
+            </svg>
         </div>
       </RadioGroupOption>
     </RadioGroup>
@@ -41,7 +43,6 @@ import {
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 
-const wrap = !useNoWrapValue(props);
 
 const props = defineProps({
   ...formElementProps,
@@ -74,6 +75,7 @@ const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 useRegisterInput(props, el);
 
 const stacked = useStackedValue(props.stacked);
+const wrap = !useNoWrapValue(props);
 
 const {
   inputColorClass,
@@ -83,7 +85,9 @@ const {
 } = useInputClasses(props);
 
 const layoutClass = computed(() => {
-  return (props.columns > 0) ? "grid grid-flow-row grid-cols-"+props.columns : "flex flex-wrap justify-end";
+  if (props.columns > 0) return `grid grid-flow-row grid-cols-${props.columns}`;
+
+  return 'flex flex-wrap justify-end';
 })
 
 const svgColour = computed(() => {
