@@ -125,7 +125,6 @@
       :result-count="resultCount || rows.length"
     />
   </div>
-  {{ rows }}
 </template>
 
 <script setup>
