@@ -69,6 +69,7 @@ export const componentTemplate = (args) => ({
       v-bind="args"
       :rows="rows" :columns="columns" 
       @add="add" @edit="edit" @delete="delete team[$event.id]"
+      is-editable
     >
       <template #name="props">
         <CInputCell v-bind="props" />
