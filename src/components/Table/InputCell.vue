@@ -6,20 +6,17 @@ defineProps({
   error: String,
 });
 
-const emit = defineEmits(['edit', 'update'])
+const emit = defineEmits(['edit'])
 </script>
 
 <template>
-  <slot v-if="$slots.default" />
   <input
-    v-else-if="isEditing"
-    class="border-x-0 bg-transparent outline-none"
+    class="border-b border-blue-500 bg-transparent text-blue-500 outline-none"
     :class="{ 'text-red-500 border-red-500': error }"
+    v-if="isEditing"
     :value="value"
     :type="typeof value === 'number' ? 'number' : 'text'"
     @input="(e) => emit('edit', e.target.value)"
-    @blur="$emit('update')"
-    @keydown.enter="$emit('update')"
   />
-  <div v-else :class="{ 'text-red-500': error }" class="border-b border-transparent"> {{ value }} </div>
+  <span v-else :class="{ 'text-red-500': error }"> {{ value }} </span>
 </template>
