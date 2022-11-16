@@ -36,9 +36,7 @@
           <slot name="prepend" v-bind="row"/>
         </td>
 
-        <td v-for="(col, j) in columns" :class="cellClass || 'py-3 px-2'" :key="`col${j}`"
-            @click="onClickCell(row, i, $event)"
-        >
+        <td v-for="(col, j) in columns" :class="cellClass || 'py-3 px-2'" :key="`col${j}`">
           <slot
             :name="col.id"
             :value="editingRow?._index === i ? editingRow[col.id] : row[col.id]"
