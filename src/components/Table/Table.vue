@@ -4,21 +4,21 @@
 
       <tr class="text-left border-b text-xs text-gray-600">
         <th v-if="$slots.prepend" />
-        <th v-for="col in columns" :key="col.id" class="pb-3 pl-1">
+        <th v-for="col in columns" :key="col.id" :class="headerClass || 'pb-3 pl-1'">
           <span
             :class="{ 'cursor-pointer': col.sortable }"
             @click="() => col.sortable && toggleSort(col.id)"
           >
             <slot :name="`${col.id}.header`">
-              <span class="uppercase"> {{ col.label || col.id }} </span>
+              <span :class="col.label || 'uppercase'"> {{ col.label || col.id }} </span>
             </slot>
           </span>
           <span v-if="sort[col.id] === 'asc'"> &#8593; </span>
           <span v-else-if="sort[col.id] === 'desc'"> &#8595; </span>
           <span v-else-if="col.sortable" class="text-gray-400"> &#8645; </span>
         </th>
-        <th v-if="attrs.onEdit || attrs.onAdd"/>
-        <th v-if="attrs.onEdit || attrs.onAdd || attrs.onDelete"/>
+        <th v-if="attrs.onEdit || attrs.onAdd" class="w-12"/>
+        <th v-if="attrs.onEdit || attrs.onAdd || attrs.onDelete" class="w-12"/>
         <th v-if="$slots.append" />
       </tr>
 
@@ -36,15 +36,14 @@
           <slot name="prepend" v-bind="row"/>
         </td>
 
-        <td v-for="(col, j) in columns" class="pt-3 pb-3 pl-2 pr-2" :key="`col${j}`"
+        <td v-for="(col, j) in columns" :class="cellClass || 'py-3 px-2'" :key="`col${j}`"
             @click="onClickCell(row, i, $event)"
         >
           <slot
             :name="col.id"
             :value="editingRow?._index === i ? editingRow[col.id] : row[col.id]"
             @edit="editingRow[col.id] = $event"
-            @update="saveEdit"
-            :is-editing="isEditable || editingRow?._index === i"
+            :is-editing="editingRow?._index === i"
             :error="(editingRow?._index === i && errors[col.id]) || undefined"
             :row="row"
           >
@@ -52,26 +51,24 @@
           </slot>
         </td>
 
-        <template v-if="!isEditable">
-          <td v-if="editingRow?._index === i">
+        <td v-if="editingRow?._index === i">
           <span class="cursor-pointer" @click.stop="saveEdit">
             <c-icon type="save" size="sm"/>
           </span>
-          </td>
-          <td v-else-if="attrs.onEdit && editingRow?.index !== i">
+        </td>
+        <td v-else-if="attrs.onEdit && editingRow?.index !== i">
           <span class="cursor-pointer" @click.stop="beginEditingRow(row, i)">
             <c-icon type="edit" size="sm"/>
           </span>
-          </td>
+        </td>
 
-          <td v-if="!isEditable && editingRow?._index === i">
+        <td v-if="editingRow?._index === i">
           <span class="cursor-pointer" @click.stop="editingRow = null">
             <c-icon type="cancel" size="sm"/>
           </span>
-          </td>
-        </template>
+        </td>
 
-        <td v-else-if="attrs.onDelete">
+        <td v-if="attrs.onDelete">
           <div class="flex items-center">
             <span class="cursor-pointer" @click.stop="emit('delete', row)">
               <c-icon type="trash" size="sm"/>
@@ -85,7 +82,7 @@
       </tr>
 
       <tr v-if="addingRow" class="border-b bg-gray-100">
-        <td v-for="(col, j) in columns" :key="`col${j}`" class="pt-3 pb-3 pl-1">
+        <td v-for="(col, j) in columns" :key="`col${j}`" class="py-3 pl-1">
           <slot
             :name="col.id"
             :value="addingRow[col.id]"
@@ -138,7 +135,8 @@ const props = defineProps({
   columns: Array,
   resultCount: Number, // only needed for server side
   pageLimit: Number,
-  isEditable: Boolean,
+  cellClass: String,
+  headerClass: String,
 });
 
 const emit = defineEmits(['click', 'change']);
@@ -147,22 +145,6 @@ const attrs = useAttrs();
 const editingRow = ref(null);
 const addingRow = ref(null);
 const errors = ref({});
-
-async function onClickCell(row, index, e) {
-
-  if (!props.isEditable) return;
-
-  beginEditingRow(row, index);
-  await nextTick();
-
-  const input = e.currentTarget.querySelector('input');
-
-  if (input) {
-    input.focus();
-    input.select();
-  }
-
-}
 
 function beginAddingRow() {
   addingRow.value = {};

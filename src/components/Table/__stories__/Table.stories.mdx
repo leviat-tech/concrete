@@ -71,6 +71,9 @@ export const componentTemplate = (args) => ({
       @add="add" @edit="edit" @delete="delete team[$event.id]"
       is-editable
     >
+<template #prepend>
+<input type="checkbox" class="w-12">
+</template>
       <template #name="props">
         <CInputCell v-bind="props" />
       </template>
