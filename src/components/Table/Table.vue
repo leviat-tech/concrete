@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col">
-    <table class="table-fixed">
+    <table class="table-fixed w-full">
 
       <tr class="text-left border-b text-xs text-gray-600">
-        <th v-if="$slots.prepend" />
+        <th v-if="$slots.prepend" :class="prependClass"/>
         <th v-for="col in columns" :key="col.id" :class="headerClass || 'pb-3 pl-1'">
           <span
             :class="{ 'cursor-pointer': col.sortable }"
@@ -19,17 +19,17 @@
         </th>
         <th v-if="attrs.onEdit || attrs.onAdd" class="w-12"/>
         <th v-if="attrs.onEdit || attrs.onAdd || attrs.onDelete" class="w-12"/>
-        <th v-if="$slots.append" />
+        <th v-if="$slots.append" :class="appendClass"/>
       </tr>
 
       <tr
         v-for="(row, i) in _rows"
         :key="`row${i}`"
-        class="border-b"
-        :class="{
-          'cursor-pointer': attrs.onClick && editingRow?._index !== i,
-          'bg-gray-100': editingRow?._index === i,
-        }"
+        :class="[
+          attrs.onClick && editingRow?._index !== i && 'cursor-pointer',
+          editingRow?._index === i && 'bg-gray-100',
+          rowClass || 'border-b'
+        ]"
         @click="editingRow?._index !== i && emit('click', row)"
       >
         <td v-if="$slots.prepend">
@@ -68,7 +68,7 @@
           </span>
         </td>
 
-        <td v-if="attrs.onDelete">
+        <td v-else-if="attrs.onDelete">
           <div class="flex items-center">
             <span class="cursor-pointer" @click.stop="emit('delete', row)">
               <c-icon type="trash" size="sm"/>
@@ -82,6 +82,8 @@
       </tr>
 
       <tr v-if="addingRow" class="border-b bg-gray-100">
+        <td v-if="$slots.prepend" />
+
         <td v-for="(col, j) in columns" :key="`col${j}`" class="py-3 pl-1">
           <slot
             :name="col.id"
@@ -107,7 +109,7 @@
     <div
       v-if="attrs.onAdd && !addingRow"
       @click="beginAddingRow"
-      class="pt-3 pb-3 pl-1 border-b cursor-pointer"
+      class="py-3 pl-1 border-b cursor-pointer"
     >
       &#43; Add Row
     </div>
@@ -135,6 +137,9 @@ const props = defineProps({
   columns: Array,
   resultCount: Number, // only needed for server side
   pageLimit: Number,
+  prependClass: String,
+  appendClass: String,
+  rowClass: String,
   cellClass: String,
   headerClass: String,
 });
