@@ -128,7 +128,7 @@
 
 <script setup>
 import { omit, orderBy } from 'lodash-es';
-import { ref, computed, watch, useAttrs, nextTick } from 'vue';
+import { ref, computed, watch, useAttrs } from 'vue';
 import CIcon from '../Icon/Icon.vue';
 import CPagination from './Pagination.vue';
 
