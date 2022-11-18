@@ -138,7 +138,7 @@ defineExpose({ focus });
 const localOptions = computed(() => {
   return props.options.map((o) => {
     const opt = isPlainObject(o) ? o : { label: o, value: o };
-    return props.formatter ? { ...opt, label: props.formatter(opt.value) } : opt;
+    return props.formatter ? { ...opt, label: props.formatter(opt.label) } : opt;
   });
 });
 
