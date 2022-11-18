@@ -33,6 +33,7 @@ export const componentTemplate = (args) => ({
 <CButton @click="show = true">Click to open modal</CButton>
 <CModal v-bind="args" :show="show" @close="show = false" :title="args.title">
   <div class="flex items-center">{{ args.content }}</div>
+  <CButton v-if="!args.closeable" class="mt-4" @click="show = false">Dismiss</CButton>
 </CModal>
   `,
 });
