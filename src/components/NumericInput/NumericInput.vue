@@ -130,7 +130,7 @@ const convertFromDisplayValue = (v) => {
 };
 
 const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
-const paddingClass = (props.readOnly || props.disabled) ? 'mr-0' : 'mr-5';
+const paddingClass = (props.readOnly || props.disabled) ? '' : 'mr-5';
 
 useRegisterInput(props, inputRef);
 
