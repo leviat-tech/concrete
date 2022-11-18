@@ -26,7 +26,7 @@
       >
       <div :class="['absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none', paddingClass]">
         <!-- unit -->
-        <div v-if="to || unit" class="unit">{{ to || unit }}</div>
+        <div v-if="to || unit" class="unit" :class="[textSizeClass, hPaddingClass]">{{ to || unit }}</div>
       </div>
       <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
       <slot name="suffix" class="z-10"/>
@@ -73,9 +73,11 @@ const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
 const {
   mergedSizeClass,
+  hPaddingClass,
   inputColorClass,
   bgColorClass,
   disabledClass,
+  textSizeClass
 } = useInputClasses(props);
 
 const size = useSizeValue(props.size);
@@ -128,7 +130,7 @@ const convertFromDisplayValue = (v) => {
 };
 
 const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
-const paddingClass = (props.readOnly || props.disabled) ? 'pr-3' : 'pr-8';
+const paddingClass = (props.readOnly || props.disabled) ? 'mr-0' : 'mr-5';
 
 useRegisterInput(props, inputRef);
 
