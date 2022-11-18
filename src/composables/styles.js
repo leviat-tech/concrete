@@ -15,11 +15,11 @@ const textSizeClassMap = {
   lg: 'text-lg',
 };
 
-const vPaddingClassMap = {
-  xs: 'py-0.5',
-  sm: 'py-1',
-  md: 'py-2',
-  lg: 'py-2',
+const hPaddingClassMap = {
+  xs: 'px-1',
+  sm: 'px-2',
+  md: 'px-3',
+  lg: 'px-2',
 };
 
 const colorClassMap = {
@@ -32,7 +32,7 @@ const colorClassMap = {
   danger: 'border-danger-light text-danger-darkest',
 };
 
-const layoutClasses = 'block truncate z-20 w-full border text-left px-3'
+const layoutClasses = 'block truncate z-20 w-full border text-left'
 const focusClasses = 'focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light';
 export const inputStaticClasses = [layoutClasses, focusClasses].join(' ' +
   '');
@@ -49,13 +49,13 @@ export const useInputClasses = (props) => {
   const size = useSizeValue(props.size);
   const heightClass = heightClassMap[size];
   const textSizeClass = textSizeClassMap[size];
-  const vPaddingClass = heightClassMap[size];
-  const mergedSizeClass = [heightClass, textSizeClass, vPaddingClass].join(' ');
+  const hPaddingClass = hPaddingClassMap[size];
+  const mergedSizeClass = [heightClass, textSizeClass, hPaddingClass].join(' ');
 
   return {
     heightClass,
     textSizeClass,
-    vPaddingClass,
+    hPaddingClass,
     mergedSizeClass,
     inputColorClass: useInputColorClassValue(props),
     bgColorClass: (props.transparent) ? 'bg-transparent' : 'bg-white',
