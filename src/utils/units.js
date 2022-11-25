@@ -1,6 +1,5 @@
 import Big from 'big.js';
 
-
 const conversions = {
   m: {
     mm: (mm) => mm.div(1000.0),
@@ -42,8 +41,22 @@ const conversions = {
   'N/m²': {
     'kN/m²': (knm2) => knm2.times(1000),
   },
+  MN: {
+    N: (n) => n.times(1000000),
+  },
+  kNm: {
+    Nm: (nm) => nm.times(1000),
+  },
+  MNm: {
+    Nm: (nm) => nm.times(1000000),
+  },
+  'N/mm²': {
+    'N/m²': (nm2) => nm2.times(1000000),
+  },
+  MPa: {
+    'N/m²': (nm2) => nm2.times(1000000),
+  },
 };
-
 
 const SI = {
   m: 'm',
@@ -59,6 +72,11 @@ const SI = {
   'kN/m²': 'N/m²',
   K: 'K',
   'W/m*K': 'W/m*K',
+  MN: 'N',
+  kNm: 'Nm',
+  MNm: 'Nm',
+  'N/mm²': 'N/m²',
+  MPa: 'N/m²',
 };
 
 const aliases = {
