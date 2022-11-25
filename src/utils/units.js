@@ -50,7 +50,7 @@ const conversions = {
   MNm: {
     Nm: (Nm) => Nm.times(1000000),
   },
-  'N/mm2': {
+  'N/mm²': {
     'N/m': (nm) => nm.times(1000000),
   },
   MPa: {
@@ -75,8 +75,8 @@ const SI = {
   MN: 'N',
   kNm: 'Nm',
   MNm: 'Nm',
-  'N/mm2': 'N/mm2',
-  MPa: 'N/mm2',
+  'N/mm²': 'N/m',
+  MPa: 'N/m',
 };
 
 const aliases = {
