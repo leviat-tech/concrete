@@ -42,13 +42,13 @@ const conversions = {
     'kN/m²': (knm2) => knm2.times(1000),
   },
   MN: {
-    N: (N) => N.times(1000000),
+    N: (n) => n.times(1000000),
   },
   kNm: {
-    Nm: (Nm) => Nm.times(1000),
+    Nm: (nm) => nm.times(1000),
   },
   MNm: {
-    Nm: (Nm) => Nm.times(1000000),
+    Nm: (nm) => nm.times(1000000),
   },
   'N/mm²': {
     'N/m²': (nm2) => nm2.times(1000000),
