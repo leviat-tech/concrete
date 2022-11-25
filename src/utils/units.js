@@ -75,7 +75,7 @@ const SI = {
   MN: 'N',
   kNm: 'Nm',
   MNm: 'Nm',
-  'N/mm²': 'N/m',
+  'N/mm²': 'N/m²',
   MPa: 'N/m',
 };
 
