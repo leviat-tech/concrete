@@ -76,7 +76,7 @@ const SI = {
   kNm: 'Nm',
   MNm: 'Nm',
   'N/mm²': 'N/m²',
-  MPa: 'N/m',
+  MPa: 'N/m²',
 };
 
 const aliases = {
