@@ -54,7 +54,7 @@ const conversions = {
     'N/m²': (nm2) => nm2.times(1000000),
   },
   MPa: {
-    'N/m': (nm) => nm.times(1000000),
+    'N/m²': (nm2) => nm2.times(1000000),
   },
 };
 
