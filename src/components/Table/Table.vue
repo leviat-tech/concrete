@@ -10,7 +10,7 @@
             @click="() => col.sortable && toggleSort(col.id)"
           >
             <slot :name="`${col.id}.header`">
-              <span :class="col.label || 'uppercase'"> {{ col.label || col.id }} </span>
+              <span :class="col.label || 'uppercase'"> {{ col.label || startCase(col.id) }} </span>
             </slot>
           </span>
           <span v-if="localSort[col.id] === 'asc'"> &#8593; </span>
@@ -45,7 +45,7 @@
             :error="(editingRow?._index === i && errors[col.id]) || undefined"
             :row="row"
           >
-            {{ row[col.id] }}
+            {{ col?.formatter?.(row[col.id], row) || get(row, col.id) }}
           </slot>
         </td>
 
@@ -125,7 +125,7 @@
 </template>
 
 <script setup>
-import { omit, orderBy } from 'lodash-es';
+import { omit, orderBy, get, startCase } from 'lodash-es';
 import { ref, computed, watch, useAttrs } from 'vue';
 import CIcon from '../Icon/Icon.vue';
 import CPagination from './Pagination.vue';
@@ -178,9 +178,14 @@ function saveAdd() {
   emit('add', { data, success, error });
 }
 
+const _columns = computed(() => {
+  return props.columns.map(col => typeof col === 'string' ? ({ id: col }) : col)
+})
+
+
 const localSort = ref(
   props.sort
-  || props.columns.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }))
+  || _columns.value.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }), {})
 );
 
 function toggleSort(colId) {
@@ -203,10 +208,10 @@ function selectPageNumber(newPageNumber) {
 }
 
 const _rows = computed(() => {
-  if (server) {
+  if (props.server) {
     return props.rows
   }
-  const sortColIds = props.columns
+  const sortColIds = _columns.value
     .filter((col) => localSort.value[col.id])
     .map((col) => col.id);
 
