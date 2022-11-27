@@ -13,8 +13,8 @@
               <span :class="col.label || 'uppercase'"> {{ col.label || col.id }} </span>
             </slot>
           </span>
-          <span v-if="sort[col.id] === 'asc'"> &#8593; </span>
-          <span v-else-if="sort[col.id] === 'desc'"> &#8595; </span>
+          <span v-if="localSort[col.id] === 'asc'"> &#8593; </span>
+          <span v-else-if="localSort[col.id] === 'desc'"> &#8595; </span>
           <span v-else-if="col.sortable" class="text-gray-400"> &#8645; </span>
         </th>
         <th v-if="attrs.onEdit || attrs.onAdd" class="w-12"/>
@@ -114,12 +114,12 @@
     <CPagination
       class="pt-3"
       v-if="pageLimit"
-      @clickPrevious="selectPageNumber(pageNumber - 1)"
-      @clickNext="selectPageNumber(pageNumber + 1)"
+      @clickPrevious="selectPageNumber(localPageNumber - 1)"
+      @clickNext="selectPageNumber(localPageNumber + 1)"
       @clickPageNumber="selectPageNumber"
-      :page-number="pageNumber"
+      :page-number="localPageNumber"
       :page-limit="pageLimit"
-      :result-count="resultCount || rows.length"
+      :result-count="server ? resultCount : rows.length"
     />
   </div>
 </template>
@@ -133,7 +133,10 @@ import CPagination from './Pagination.vue';
 const props = defineProps({
   rows: Array,
   columns: Array,
+  server: Boolean,
   resultCount: Number, // only needed for server side
+  pageNumber: Number, // only needed for server side
+  sort: Object, // only needed for server side
   pageLimit: Number,
   prependClass: String,
   appendClass: String,
@@ -175,40 +178,43 @@ function saveAdd() {
   emit('add', { data, success, error });
 }
 
-const sort = ref(
-  props.columns.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }))
+const localSort = ref(
+  props.sort
+  || props.columns.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }))
 );
 
 function toggleSort(colId) {
-  const currentSort = sort.value[colId];
+  const currentSort = localSort.value[colId];
   if (currentSort === 'asc') {
-    sort.value[colId] = 'desc';
+    localSort.value[colId] = 'desc';
   } else if (currentSort === 'desc') {
-    sort.value[colId] = null;
+    localSort.value[colId] = null;
   } else {
-    sort.value[colId] = 'asc';
+    localSort.value[colId] = 'asc';
   }
-  emit('change', { sort: sort.value, pageNumber: pageNumber.value });
+  emit('change', { sort: localSort.value, pageNumber: localPageNumber.value });
 }
 
-const pageNumber = ref(1);
+const localPageNumber = ref(props.pageNumber || 1);
 
 function selectPageNumber(newPageNumber) {
-  pageNumber.value = newPageNumber;
-  emit('change', { sort: sort.value, pageNumber: pageNumber.value });
+  localPageNumber.value = newPageNumber;
+  emit('change', { sort: localSort.value, pageNumber: localPageNumber.value });
 }
 
 const _rows = computed(() => {
-  // if server side, just return rows
+  if (server) {
+    return props.rows
+  }
   const sortColIds = props.columns
-    .filter((col) => sort.value[col.id])
+    .filter((col) => localSort.value[col.id])
     .map((col) => col.id);
 
-  const sortOrders = sortColIds.map((colId) => sort.value[colId]);
+  const sortOrders = sortColIds.map((colId) => localSort.value[colId]);
   const sorted = orderBy(props.rows, sortColIds, sortOrders);
 
   if (props.pageLimit) {
-    const offset = (pageNumber.value - 1) * props.pageLimit;
+    const offset = (localPageNumber.value - 1) * props.pageLimit;
     return sorted.slice(offset, offset + props.pageLimit);
   } else {
     return sorted;
