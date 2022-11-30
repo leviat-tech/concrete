@@ -3,35 +3,20 @@
     as="div"
     v-slot="{ open }"
     class="concrete__accordion"
+    :class="textClass"
     :defaultOpen="defaultOpen"
   >
     <DisclosureButton class="w-full text-left" @click="onClick(!open)">
-      <div
-        v-if="title"
-        class="
-          flex
-          items-center
-          justify-between
-          p-4
-          bg-gray-50
-          hover:bg-gray-100
-        "
-      >
-        {{ title }}
-        <ChevronUpIcon
-          :class="[open && 'rotate-180 transform']"
-          class="flex-none h-5 w-5 ml-2 transition-all"
-        />
+      <div v-if="title" class="flex items-center font-bold">
+        <TriangleIcon :class="[iconClass, transitionClass, open ? 'rotate-180' : 'rotate-90']" class="flex-none mr-2"/>
+        <span>{{ title }}</span>
       </div>
 
       <slot v-else name="title" :open="open" />
     </DisclosureButton>
 
     <DisclosurePanel static>
-      <div
-        class="overflow-hidden transition-all duration-200"
-        :style="{ height }"
-      >
+      <div class="overflow-hidden" :class="transition && transitionClass" :style="{ height }">
         <div ref="content">
           <slot :open="open" />
         </div>
@@ -45,16 +30,34 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
 import { ChevronUpIcon } from '@heroicons/vue/solid';
 import { ref } from 'vue';
+import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
+import { useSizeProp } from '../../composables/props.js';
+import { useSizeValue } from '../../composables/forms.js';
+import { textSizeClassMap } from '../../composables/styles.js';
 
 const props = defineProps({
   defaultOpen: { type: Boolean, default: false },
+  transition: Boolean,
+  size: useSizeProp('lg'),
   title: String,
 });
 
 const initialHeight = props.defaultOpen ? 'auto' : 0;
 const height = ref(initialHeight);
 const content = ref(null);
-const TRANSITION_TIME = 300;
+const TRANSITION_TIME = props.transition ? 400 : 0;
+
+const size = useSizeValue(props.size);
+
+const textClass = textSizeClassMap[size];
+const transitionClass = props.transition ? 'transition-all' : '';
+
+const iconClass = {
+  xs: 'w-2 h-2',
+  sm: 'w-2.5 h-2.5',
+  md: 'w-3 h-3',
+  lg: 'w-4 h-4',
+}[size]
 
 const onClick = (open) => {
   const contentHeight = content.value.getBoundingClientRect().height;

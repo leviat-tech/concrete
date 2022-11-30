@@ -7,10 +7,18 @@ import CAccordion from '../Accordion.vue';
   decorators={[
     (storyFn, ctx) => ({
       components: { Story: storyFn(ctx) },
-      template: `<div style="min-height: 10rem"><Story /></div>`,
+      template: `<div style="min-height: 10rem; min-width: 360px;"><Story /></div>`,
     }),
   ]}
-  argTypes={{}}
+  argTypes={{
+    size: {
+      options: ['xs', 'sm', 'md', 'lg'],
+      control: { type: 'select' },
+      table: {
+        type: { summary: 'size' },
+      },
+    },
+  }}
 />
 
 <!--- Component template -->
@@ -24,8 +32,8 @@ export const componentTemplate = (args) => ({
     return { show: args.show };
   },
   template: `
-<CAccordion v-bind="args" class='border'>
-  <div class="p-4">{{args.content}}</div>
+<CAccordion v-bind="args">
+  <div class="py-2 px-6">{{args.content}}</div>
 </CAccordion>
   `,
 });

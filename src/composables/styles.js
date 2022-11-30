@@ -8,7 +8,7 @@ const heightClassMap = {
   lg: 'h-12',
 };
 
-const textSizeClassMap = {
+export const textSizeClassMap = {
   xs: 'text-xs',
   sm: 'text-sm',
   md: 'text-md',
