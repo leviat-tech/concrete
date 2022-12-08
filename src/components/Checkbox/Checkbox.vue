@@ -1,24 +1,35 @@
 <template>
   <component
     :is="wrap ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel, expandInput: false, }">
+    v-bind="{
+      id,
+      label,
+      size,
+      color,
+      labelFormatter,
+      message,
+      stacked,
+      noLabel,
+      expandInput: false,
+    }"
+  >
     <div class="concrete__checkbox flex">
-      <span class="sr-only">{{srLabel}}</span>
+      <span class="sr-only">{{ srLabel }}</span>
       <Switch
         ref="switchRef"
-        :disabled='disabled'
-        :id='id'
-        v-model='enabled'
+        :disabled="disabled"
+        :id="id"
+        v-model="enabled"
         class="items-center border border-gray-300"
-        :class='[`h-${sized} w-${sized}`, cursorClass, bgColor]'>
-        <span class="flex items-center justify-center transition-opacity" >
+        :class="[`h-${sized} w-${sized}`, cursorClass, bgColor]"
+      >
+        <span class="flex items-center justify-center transition-opacity">
           <CheckIcon v-if="enabled" :class="checkIconClass" />
         </span>
       </Switch>
     </div>
   </component>
 </template>
-
 
 <script setup>
 import { Switch } from '@headlessui/vue';
@@ -31,7 +42,7 @@ import {
   useInputValue,
   useRegisterInput,
   useSizeValue,
-  useStackedValue
+  useStackedValue,
 } from '../../composables/forms';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -68,10 +79,10 @@ const enabled = computed({
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
-const bgColor =  (props.transparent) ? 'bg-transparent' : 'bg-white';
-const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor';
-const disabledClass = computed(() => (props.disabled) && 'opacity-60');
-const sized = { xs: 6, sm: 8, md: 10, lg: 12 }[size];
+const bgColor = props.transparent ? 'bg-transparent' : 'bg-white';
+const cursorClass = props.disabled ? 'cursor-not-allowed' : 'cursor';
+const disabledClass = computed(() => props.disabled && 'opacity-60');
+const sized = { xs: 4, sm: 6, md: 8, lg: 10 }[size];
 
 const checkIconClass = computed(() => {
   return {
@@ -92,5 +103,5 @@ useRegisterInput(props, switchRef);
 // after the component is mounted
 onMounted(() => {
   switchRef.value.el.id = props.id;
-})
+});
 </script>
