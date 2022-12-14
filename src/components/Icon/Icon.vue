@@ -51,6 +51,7 @@ import {
   ExclamationCircleIcon,
   ZoomInIcon,
   ZoomOutIcon,
+  InformationCircleIcon
 } from '@heroicons/vue/outline';
 
 
@@ -125,6 +126,7 @@ export const icons = {
   error: ExclamationCircleIcon,
   'zoom-in': ZoomInIcon,
   'zoom-out': ZoomOutIcon,
+  'information-circle': InformationCircleIcon
 }
 
 export default {
