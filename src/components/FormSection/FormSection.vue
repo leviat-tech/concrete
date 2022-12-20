@@ -2,7 +2,7 @@
   <div class="w-full concrete__form-section">
 
     <slot name="title">
-      <div class="flex justify-between w-full" :class="[underlineClass, inputColorClass, mergedSizeClass]" >
+      <div class="flex justify-between w-full" :class="[underlineClass, inputColorClass, textSizeClass, heightClass]" >
           <h2 v-if="title" class="font-bold">{{ title }}</h2>
         <slot name="toolbar"></slot>
       </div>
@@ -33,7 +33,8 @@ const props = defineProps({
 
 const {
   inputColorClass,
-  mergedSizeClass
+  textSizeClass,
+  heightClass
 } = useInputClasses(props);
 
 const size = useSizeValue(props.size);
