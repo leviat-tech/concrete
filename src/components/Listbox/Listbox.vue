@@ -17,12 +17,13 @@
             <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
             <slot name="prefix" class="z-10"/>
             <ListboxButton ref="buttonRef" :id="id"
-                           :class="[inputStaticClasses, bgColorClass, inputColorClass, hPaddingClass, mergedSizeClass, cursorClass ]">
-              <span :class="selectedLabelClass">{{ selectedLabel }}</span>
+                           :class="[inputStaticClasses, bgColorClass, inputColorClass, mergedSizeClass, cursorClass ]">
+              <span class="block-truncate" :class="selectedLabel || 'text-gray-400'">{{ selectedLabel || placeholder }}</span>
               <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <SelectorIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
               </span>
             </ListboxButton>
+            <input type="hidden" :value="selectedLabel" data-selected>
             <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
             <slot name="suffix" class="z-10"/>
           </div>
@@ -65,10 +66,15 @@
 
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption, } from '@headlessui/vue';
 import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
-import { computed, ref, inject } from 'vue';
-import { isPlainObject } from 'lodash-es';
+import { computed, ref } from 'vue';
+import { isPlainObject, isEqual } from 'lodash-es';
 import { formElementProps } from '../../composables/props.js';
-import { useInputColorClassValue, inputStaticClasses, useInputClasses } from '../../composables/styles.js';
+import {
+  useInputColorClassValue,
+  inputStaticClasses,
+  useInputClasses,
+  useCursorClass
+} from '../../composables/styles.js';
 import {
   useNoWrapValue,
   useSizeValue,
@@ -110,6 +116,7 @@ const {
   bgColorClass,
   disabledClass,
 } = useInputClasses(props);
+const cursorClass = useCursorClass(props);
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
@@ -136,9 +143,9 @@ const focus = () => {  buttonRef.value.$el.focus(); }
 defineExpose({ focus });
 
 const localOptions = computed(() => {
-  return props.options.map((o) => {
-    const opt = isPlainObject(o) ? o : { label: o, value: o };
-    return props.formatter ? { ...opt, label: props.formatter(opt.label) } : opt;
+  return props.options.map((option) => {
+    const opt = isPlainObject(option) ? option : { label: option, value: option };
+    return props.formatter ? { ...opt, label: props.formatter(opt.label || opt.value) } : opt;
   });
 });
 
@@ -146,37 +153,21 @@ const selectedLabel = computed(() => {
   let sv = selectedValue.value
 
   if(!props.multiple) {
-    if (typeof sv === 'object') {
+    if (isPlainObject(sv)) {
       return props.formatter ? props.formatter(sv) : sv;
     }
     sv = [selectedValue.value];
   }
-  const labels = sv.filter((s) => s != null).map((s) => localOptions.value.find((o) => o.value === s)?.label);
-  const label = labels.join(', ');
+  const labels = sv
+    .filter(selectedItem => selectedItem != null)
+    .map((selectedItem) => {
+      return localOptions.value.find((option) => {
+        return isEqual(option.value, selectedItem)
+      })?.label;
+    });
 
-  if (label.length === 0) {
-    return props.placeholder
-  }
-
-  return label;
+  return labels.join(', ');
 });
-
-const selectedLabelClass = computed(() => {
-  let sv = selectedValue.value
-  if(!props.multiple) {
-    sv = [selectedValue.value];
-  }
-  const labels = sv.filter((s) => s != null).map((s) => localOptions.value.find((o) => o.value === s)?.label);
-  const label = labels.join(', ');
-  return (label.length > 0) ? 'block truncate' : 'block truncate text-gray-400';
-});
-
-const hPaddingClass = {
-  xs: 'pl-3 pr-6',
-  sm: 'pl-3 pr-8',
-  md: 'pl-3 pr-10',
-  lg: 'pl-3 pr-12',
-}[size];
 
 const optionsSizeClass = {
   xs: 'text-xs',
@@ -191,8 +182,6 @@ const iconSizeClass = {
   md: 'h-5 w-5',
   lg: 'h-6 w-6',
 }[size];
-
-const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-default';
 
 const maxOptionsHeightClass = {
   auto: '',

@@ -27,7 +27,7 @@
             @focus="$emit('focus')"
             autocomplete="off"
             :placeholder="placeholder"
-            :class="[inputStaticClasses, mergedSizeClass, hPaddingClass, bgColorClass, inputColorClass]"
+            :class="[inputStaticClasses, mergedSizeClass, bgColorClass, inputColorClass]"
           />
           <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
           <slot name="suffix" class="z-10"/>

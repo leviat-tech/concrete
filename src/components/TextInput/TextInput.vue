@@ -30,7 +30,7 @@
 <script setup>
 import { computed, ref, inject, useSlots } from 'vue';
 import { formElementProps } from '../../composables/props.js';
-import { inputStaticClasses, useInputClasses } from '../../composables/styles';
+import { inputStaticClasses, useInputClasses, useCursorClass } from '../../composables/styles';
 import {
   useSizeValue,
   useStackedValue,
@@ -61,6 +61,8 @@ const {
   bgColorClass,
   disabledClass,
 } = useInputClasses(props);
+const cursorClass = useCursorClass(props);
+
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
@@ -86,8 +88,6 @@ const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
 const focus = () => inputRef.value.focus();
 const blur = () => inputRef.value.blur();
 defineExpose({ focus, blur });
-
-const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
 
 useRegisterInput(props, inputRef);
 

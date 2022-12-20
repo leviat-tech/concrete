@@ -16,7 +16,7 @@ export const textSizeClassMap = {
 };
 
 const hPaddingClassMap = {
-  xs: 'px-1',
+  xs: 'px-1.5',
   sm: 'px-2',
   md: 'px-3',
   lg: 'px-2',
@@ -43,6 +43,10 @@ export const useInputColorClassValue = (props) => {
   return computed(() => {
     return colorClassMap[status.value?.color]
   });
+}
+
+export const useCursorClass = (props, enabledCursorClass) => {
+  return computed(() => props.disabled ? 'cursor-not-allowed' : enabledCursorClass);
 }
 
 export const useInputClasses = (props) => {

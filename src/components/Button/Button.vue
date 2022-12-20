@@ -17,6 +17,7 @@
 import { computed } from 'vue';
 import { useSizeProp, colorProp } from '../../composables/props.js';
 import { useSizeValue } from '../../composables/forms';
+import { useCursorClass } from '../../composables/styles.js';
 
 const props = defineProps({
   id: { type: String, default: null },
@@ -42,7 +43,7 @@ const sizeClass = {
   lg: 'h-12 text-lg py-2',
 }[size];
 
-const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-pointer';
+const cursorClass = useCursorClass(props);
 const paddingClass = (props.customPadding) ? '' : 'px-4';
 
 const color = (!props.color || props.color === 'default') ? 'indigo' : props.color;

@@ -13,7 +13,7 @@
         v-model="value"
         type="text"
         class="h-auto"
-        :class="[inputStaticClasses, sizeClass, colorClass, disabledClass, cursorClass, bgColor]"
+        :class="[inputStaticClasses, mergedSizeClass, paddingYClass, inputColorClass, disabledClass, cursorClass, bgColorClass]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"
@@ -34,14 +34,18 @@ import {
   useSizeProp,
 } from '../../composables/props.js';
 import {
-  useSizeValue,
   useStackedValue,
   useNoWrapValue,
   useRegisterInput,
-  useInputValue
+  useInputValue, useSizeValue
 } from '../../composables/forms';
 
-import { useInputColorClassValue, inputStaticClasses } from '../../composables/styles.js';
+import {
+  useInputColorClassValue,
+  inputStaticClasses,
+  useInputClasses,
+  useCursorClass
+} from '../../composables/styles.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -70,6 +74,14 @@ const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 const isDirty = ref(false);
 
+const {
+  mergedSizeClass,
+  inputColorClass,
+  bgColorClass,
+  disabledClass,
+} = useInputClasses(props);
+const cursorClass = useCursorClass(props);
+
 const value = computed({
   get() {
     return useInputValue(props);
@@ -81,19 +93,12 @@ const value = computed({
 });
 
 const size = useSizeValue(props.size);
-const sizeClass = {
-  xs: 'h-6 text-xs py-0.5',
-  sm: 'h-8 text-sm py-1',
-  md: 'h-10 text-base py-2',
-  lg: 'h-12 text-lg py-2',
+const paddingYClass = {
+  xs: 'py-0.5',
+  sm: 'py-1',
+  md: 'py-2',
+  lg: 'py-2',
 }[size];
-
-const cursorClass = props.disabled ? 'cursor-not-allowed' : 'cursor-text';
-const bgColor = props.transparent ? 'bg-transparent' : 'bg-white';
-const colorClass = useInputColorClassValue(props);
-const disabledClass = computed(() => {
-  return props.disabled && 'opacity-60';
-});
 
 const onEnter = useEventHandler('enter', props, emit, value, isDirty);
 const onBlur = useEventHandler('blur', props, emit, value, isDirty);

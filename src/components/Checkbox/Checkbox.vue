@@ -46,6 +46,7 @@ import {
 } from '../../composables/forms';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
+import { useCursorClass } from '../../composables/styles.js';
 
 const props = defineProps({
   ...formElementProps,
@@ -80,7 +81,7 @@ const enabled = computed({
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
 const bgColor = props.transparent ? 'bg-transparent' : 'bg-white';
-const cursorClass = props.disabled ? 'cursor-not-allowed' : 'cursor';
+const cursorClass = useCursorClass(props, 'cursor-pointer');
 const disabledClass = computed(() => props.disabled && 'opacity-60');
 const sized = { xs: 4, sm: 6, md: 8, lg: 10 }[size];
 
