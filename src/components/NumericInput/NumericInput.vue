@@ -42,7 +42,7 @@ import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
 import { formElementProps } from '../../composables/props.js';
-import { useInputClasses, inputStaticClasses } from '../../composables/styles';
+import { useInputClasses, inputStaticClasses, useCursorClass } from '../../composables/styles';
 import {
   useSizeValue,
   useStackedValue,
@@ -129,7 +129,7 @@ const convertFromDisplayValue = (v) => {
   return value;
 };
 
-const cursorClass = (props.disabled) ? 'cursor-not-allowed' : 'cursor-text';
+const cursorClass = useCursorClass(props);
 const paddingClass = (props.readOnly || props.disabled) ? '' : 'mr-5';
 
 useRegisterInput(props, inputRef);
