@@ -81,6 +81,7 @@ const {
   disabledClass,
 } = useInputClasses(props);
 const cursorClass = useCursorClass(props);
+const colorClass = useInputColorClassValue(props);
 
 const value = computed({
   get() {
