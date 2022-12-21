@@ -105,13 +105,11 @@ const onEnter = useEventHandler('enter', props, emit, value, isDirty);
 const onBlur = useEventHandler('blur', props, emit, value, isDirty);
 
 const inputRef = ref(null);
-const focus = () => inputRef.value.focus();
 const blur = () => inputRef.value.blur();
+const focus = () => inputRef.value.focus();
+const select = () => inputRef.value.select();
 
-defineExpose({
-  focus,
-  blur,
-});
+defineExpose({ focus, blur, select});
 
 useRegisterInput(props, inputRef);
 </script>

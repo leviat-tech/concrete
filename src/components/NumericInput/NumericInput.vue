@@ -105,9 +105,11 @@ const value = computed({
 
 const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
 const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
-const focus = () => inputRef.value.focus();
+
 const blur = () => inputRef.value.blur();
-defineExpose({ focus, blur });
+const focus = () => inputRef.value.focus();
+const select = () => inputRef.value.select();
+defineExpose({ focus, blur, select });
 
 const convertToDisplayValue = (v) => {
   if (v === undefined || v === null || v === '') return null;
