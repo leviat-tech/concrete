@@ -5,7 +5,6 @@
         <div class="px-4">
           <CFormSection title="Form Element Test">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
-              
               <div class="space-y-4">
                 <div>
                   <div class="bg-blue-300 p-1 mb-1">Input</div>
@@ -41,7 +40,6 @@
                 </div>
               </div>
               <div class="space-y-4">
-                
                 <div>
                   <div class="bg-blue-300 p-1 mb-1">Input with id</div>
                   <CTextInput id="firstname" />
@@ -61,7 +59,6 @@
                   <div class="bg-blue-300 p-1 mb-1">Input with id and label</div>
                   <CTextInput id="firstname" label="First Name" />
                 </div>
-                
                 <div>
                   <div class="bg-blue-300 p-1 mb-1">Input with id and labelFormatter</div>
                   <CTextInput id="firstname" :labelFormatter="(props) => props.id.toUpperCase()" />
@@ -71,8 +68,11 @@
                   <div class="bg-blue-300 p-1 mb-1">Input with prefix and suffix</div>
                   <CTextInput id="Width" prefix="w" suffix="mm" />
                 </div>
-                
-                
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Listbox with no options (disabled)</div>
+                  <CListbox :options="[]"></CListbox>
+                </div>
               </div>
 
 

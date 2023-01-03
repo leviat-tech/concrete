@@ -6,7 +6,7 @@
     <Listbox
       as="div"
       v-model="selectedValue"
-      :disabled="disabled"
+      :disabled="isDisabled"
       :multiple="multiple"
       v-slot="{ open }"
       class="concrete__listbox"
@@ -114,9 +114,10 @@ const {
   mergedSizeClass,
   inputColorClass,
   bgColorClass,
-  disabledClass,
 } = useInputClasses(props);
-const cursorClass = useCursorClass(props);
+const disabledClass = computed(() => isDisabled.value && 'opacity-60')
+const cursorClass = computed(() => isDisabled.value? 'cursor-not-allowed' : 'cursor-pointer');
+
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
@@ -137,6 +138,10 @@ const selectedValue = computed({
     onChange();
   }
 });
+
+const isDisabled = computed(() => {
+  return props.disabled || !localOptions.value.length;
+})
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 const focus = () => {  buttonRef.value.$el.focus(); }
