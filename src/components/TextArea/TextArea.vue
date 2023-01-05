@@ -73,6 +73,7 @@ const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 const isDirty = ref(false);
+const localValue = ref('');
 
 const {
   mergedSizeClass,
@@ -88,6 +89,7 @@ const value = computed({
     return useInputValue(props);
   },
   set(value) {
+    localValue.value = val;
     isDirty.value = true;
     emit('update:modelValue', value);
   },
@@ -101,8 +103,8 @@ const paddingYClass = {
   lg: 'py-2',
 }[size];
 
-const onEnter = useEventHandler('enter', props, emit, value, isDirty);
-const onBlur = useEventHandler('blur', props, emit, value, isDirty);
+const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
+const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
 
 const inputRef = ref(null);
 const blur = () => inputRef.value.blur();
