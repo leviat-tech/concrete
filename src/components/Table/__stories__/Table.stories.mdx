@@ -70,7 +70,6 @@ export const componentTemplate = (args) => ({
       :rows="rows" :columns="columns" 
       @add="add" @edit="edit" @delete="delete team[$event.id]"
       prepend-class="w-12"
-      is-editable
     >
       <template #prepend="row">
         <input type="checkbox" v-model="row.isSelected">
