@@ -130,6 +130,7 @@ import { ref, computed, watch, useAttrs } from 'vue';
 import CIcon from '../Icon/Icon.vue';
 import CPagination from './Pagination.vue';
 
+// TODO: add priority when sorting w/ multiple columns
 const props = defineProps({
   rows: Array,
   columns: Array,
@@ -145,7 +146,7 @@ const props = defineProps({
   headerClass: String,
 });
 
-const emit = defineEmits(['click', 'change']);
+const emit = defineEmits(['change']);
 const attrs = useAttrs();
 
 const editingRow = ref(null);
@@ -182,11 +183,15 @@ const _columns = computed(() => {
   return props.columns.map(col => typeof col === 'string' ? ({ id: col }) : col)
 })
 
-
 const localSort = ref(
   props.sort
   || _columns.value.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }), {})
 );
+
+watch(
+  () => props.sort,
+  () => localSort.value = props.sort
+)
 
 function toggleSort(colId) {
   const currentSort = localSort.value[colId];
@@ -201,6 +206,10 @@ function toggleSort(colId) {
 }
 
 const localPageNumber = ref(props.pageNumber || 1);
+watch(
+  () => props.pageNumber,
+  () => localPageNumber.value = props.pageNumber
+)
 
 function selectPageNumber(newPageNumber) {
   localPageNumber.value = newPageNumber;
