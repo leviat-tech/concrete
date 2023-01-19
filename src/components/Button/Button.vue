@@ -3,7 +3,7 @@
     :id="id"
     :class="[sizeClass, colorClass, cursorClass, paddingClass]"
     :disabled="disabled"
-    @click="$emit('click')"
+    @click="$emit('click', $event)"
     class="concrete__button"
   >
     <div>
