@@ -24,7 +24,7 @@
         @keydown.enter="onEnter"
         @blur="onBlur"
       >
-      <div :class="['absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none', paddingClass]">
+      <div v-if="!noUnits" :class="['absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none', paddingClass]">
         <!-- unit -->
         <div v-if="to || unit" class="unit" :class="[textSizeClass, hPaddingClass]">{{ to || unit }}</div>
       </div>
@@ -60,6 +60,7 @@ const props = defineProps({
   transparent: { type: Boolean, default: false },
   precision: { type: Number, default: null },
   unit: { type: String, default: null },
+  noUnits: { type: Boolean, default: false },
   maximum: { type: Number, default: null },
   minimum: { type: Number, default: null },
   step: { type: Number, default: null },
