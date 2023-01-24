@@ -29,7 +29,7 @@
 <script setup>
 import { computed } from 'vue';
 import logger from '../../utils/logger';
-import { InformationCircleIcon, ExclamationIcon, ExclamationCircleIcon } from '@heroicons/vue/outline';
+import { InformationCircleIcon, ExclamationTriangleIcon, ExclamationCircleIcon } from '@heroicons/vue/24/outline';
 import CIcon from '../Icon/Icon.vue';
 
 const types = {
@@ -38,7 +38,7 @@ const types = {
     classes: 'bg-blue-500', // TODO: add info to leviat tailwind config
   },
   warning: {
-    icon: ExclamationIcon,
+    icon: ExclamationTriangleIcon,
     classes: 'bg-warning',
   },
   error: {

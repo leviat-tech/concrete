@@ -20,7 +20,7 @@
                            :class="[inputStaticClasses, bgColorClass, inputColorClass, mergedSizeClass, cursorClass ]">
               <span class="block-truncate" :class="selectedLabel || 'text-gray-400'">{{ selectedLabel || placeholder }}</span>
               <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <SelectorIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
+                <ChevronUpDownIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
               </span>
             </ListboxButton>
             <input type="hidden" :value="selectedLabel" data-selected>
@@ -65,7 +65,7 @@
 <script setup>
 
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption, } from '@headlessui/vue';
-import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
 import { formElementProps } from '../../composables/props.js';

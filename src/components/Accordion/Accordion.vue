@@ -28,7 +28,6 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
-import { ChevronUpIcon } from '@heroicons/vue/solid';
 import { ref } from 'vue';
 import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
 import { useSizeProp } from '../../composables/props.js';

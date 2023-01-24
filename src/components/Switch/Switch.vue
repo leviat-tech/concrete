@@ -18,7 +18,7 @@
             class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
             :class="[enabled ? 'opacity-0 ease-out duration-100' : 'opacity-100 ease-in duration-200']" aria-hidden="true"
           >
-            <XIcon class="text-gray-400" :class="iconSizeClass" />
+            <XMarkIcon class="text-gray-400" :class="iconSizeClass" />
           </span>
           <span v-if="displayIcons"
             class="absolute inset-0 h-full w-full flex items-center justify-center transition-opacity"
@@ -35,7 +35,7 @@
 
 <script setup>
 import { Switch } from '@headlessui/vue';
-import { CheckIcon, XIcon } from '@heroicons/vue/solid';
+import { CheckIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { computed, ref, inject, onMounted } from 'vue';
 import { formElementProps } from '../../composables/props.js';
 import {

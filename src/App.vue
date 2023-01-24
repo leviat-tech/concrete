@@ -19,23 +19,31 @@
                   <CTextInput no-wrap />
                 </div>
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with no-wrap and label</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with no-wrap and label
+                  </div>
                   <CTextInput no-wrap label="Test Label" />
                 </div>
-                <hr>
+                <hr />
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with formElement - no label</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with formElement - no label
+                  </div>
                   <CTextInput />
                 </div>
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with formElement - label</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with formElement - label
+                  </div>
                   <CTextInput label="Test Label" />
                 </div>
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with label and no label</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with label and no label
+                  </div>
                   <CTextInput label="Test Label" no-label />
                 </div>
               </div>
@@ -46,36 +54,49 @@
                 </div>
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with id and no wrap</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with id and no wrap
+                  </div>
                   <CTextInput id="firstname" no-wrap />
                 </div>
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with id and no label</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with id and no label
+                  </div>
                   <CTextInput id="firstname" no-label />
                 </div>
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with id and label</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with id and label
+                  </div>
                   <CTextInput id="firstname" label="First Name" />
                 </div>
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with id and labelFormatter</div>
-                  <CTextInput id="firstname" :labelFormatter="(props) => props.id.toUpperCase()" />
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with id and labelFormatter
+                  </div>
+                  <CTextInput
+                    id="firstname"
+                    :labelFormatter="(props) => props.id.toUpperCase()"
+                  />
                 </div>
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with prefix and suffix</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Input with prefix and suffix
+                  </div>
                   <CTextInput id="Width" prefix="w" suffix="mm" />
                 </div>
 
                 <div>
-                  <div class="bg-blue-300 p-1 mb-1">Listbox with no options (disabled)</div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Listbox with no options (disabled)
+                  </div>
                   <CListbox :options="[]"></CListbox>
                 </div>
               </div>
-
-
             </div>
           </CFormSection>
         </div>
@@ -83,7 +104,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import CTextInput from './components/TextInput/TextInput.vue';
@@ -97,7 +117,7 @@ import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 import { CResizable, CPane } from './components/Resizable';
-import { XIcon } from '@heroicons/vue/solid';
+import { XMarkIcon } from '@heroicons/vue//24/solid';
 
 export default {
   components: {
@@ -113,7 +133,7 @@ export default {
     CFormSection,
     CResizable,
     CPane,
-    XIcon,
+    XMarkIcon,
   },
   data() {
     return {
@@ -133,17 +153,28 @@ export default {
       value2: 'Male',
       leftPaneSize: null,
       birthMonthOptions: [
-        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
       ],
       errors: {
         emailAddress: 'Not a valid email address',
-        serviceLevel: 'You cant afford it'
-      }
-    }
+        serviceLevel: 'You cant afford it',
+      },
+    };
   },
   computed: {
     leftPaneClass() {
-      return (this.leftPaneSize > 500) ? 'grid-cols-2' : 'grid-cols-1'
+      return this.leftPaneSize > 500 ? 'grid-cols-2' : 'grid-cols-1';
     },
   },
   methods: {
@@ -158,17 +189,18 @@ export default {
     },
     handleBlur(value) {
       console.log('rerender if necessary');
-      alert('This is a custom handler for the localHandler input. Value: ' + value);
+      alert(
+        'This is a custom handler for the localHandler input. Value: ' + value
+      );
     },
     getInputColor(ref) {
-      return (ref) ? 'danger' : 'default';
-    }
-  }
-}
+      return ref ? 'danger' : 'default';
+    },
+  },
+};
 </script>
 
 <style>
-
 .splitpanes--vertical > .splitpanes__splitter {
   min-width: 6px;
   background: linear-gradient(90deg, #ccc, #111);
