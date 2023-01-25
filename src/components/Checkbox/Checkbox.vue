@@ -33,7 +33,7 @@
 
 <script setup>
 import { Switch } from '@headlessui/vue';
-import { CheckIcon } from '@heroicons/vue/solid';
+import { CheckIcon } from '@heroicons/vue/24/solid';
 import { computed, onMounted, ref } from 'vue';
 import { useEventHandler } from '../../composables/events.js';
 import { formElementProps } from '../../composables/props.js';

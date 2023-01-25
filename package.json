@@ -4,6 +4,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "vite",
+    "dev:clean": "vite --force",
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
@@ -14,7 +15,7 @@
     "@crhio/leviat-tailwind-configuration": "^1.0.0",
     "@headlessui/tailwindcss": "^0.1.0",
     "@headlessui/vue": "^1.6.7",
-    "@heroicons/vue": "^1.0.6",
+    "@heroicons/vue": "^2.0.13",
     "d3-drag": "^3.0.0",
     "d3-selection": "^3.0.0",
     "lodash-es": "^4.17.21",
