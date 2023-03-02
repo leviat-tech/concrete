@@ -52,7 +52,7 @@ import {
   MagnifyingGlassPlusIcon,
   MagnifyingGlassMinusIcon,
   InformationCircleIcon,
-} from '@heroicons/vue//24/outline';
+} from '@heroicons/vue/24/outline';
 
 import { colorProp, useSizeProp } from '../../composables/props';
 import logger from '../../utils/logger';
