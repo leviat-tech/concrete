@@ -88,10 +88,10 @@ const value = computed({
   get() {
     return useInputValue(props);
   },
-  set(value) {
+  set(val) {
     localValue.value = val;
     isDirty.value = true;
-    emit('update:modelValue', value);
+    emit('update:modelValue', val);
   },
 });
 
