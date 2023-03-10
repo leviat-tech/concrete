@@ -97,7 +97,7 @@ export default {
     this.observer = new ResizeObserver(this.setCols);
     this.observer.observe(this.$refs.viewportContainer);
   },
-  destroyed() {
+  beforeUnmount() {
     this.observer.disconnect();
   },
   methods: {

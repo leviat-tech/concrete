@@ -25,6 +25,7 @@ import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
+import CSvg2dViewport from './components/Svg2dViewport/Svg2dViewport.vue';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
 import { CTable, CInputCell } from './components/Table';
@@ -52,6 +53,7 @@ const allComponents = {
   CRadioGroup,
   CTable,
   CInputCell,
+  CSvg2dViewport,
   CTextArea,
   CTabs,
   CTabPanel,
@@ -107,6 +109,7 @@ export {
   CTextInput,
   CAutoComplete,
   CRadioGroup,
+  CSvg2dViewport,
   CTable,
   CInputCell,
   CTextArea,

@@ -56,7 +56,7 @@ export default {
       .on('drag', this.dragged)
       .on('end', this.dragend));
   },
-  destroyed() {
+  beforeUnmount() {
     this.selection.on('.drag', null);
   },
   methods: {

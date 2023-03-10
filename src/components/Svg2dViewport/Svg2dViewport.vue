@@ -97,7 +97,7 @@ export default {
     },
 
     maximized() {
-      return this.viewportContainer.maximized;
+      return this.viewportContainer?.maximized;
     },
   },
   watch: {
@@ -132,7 +132,7 @@ export default {
     this.resizeHandler();
     window.addEventListener('resize', this.resizeHandler);
   },
-  destroyed() {
+  beforeUnmount() {
     document.removeEventListener('pointerleave', this.documentMouseleave);
     window.removeEventListener('resize', this.resizeHandler);
   },
@@ -301,6 +301,9 @@ export default {
 
 
     handleMousewheel(e) {
+      console.log(this.viewport.zoomScale);
+
+
       const zoomScale = e.deltaY > 0
         ? this.viewport.zoomScale * 1.1
         : this.viewport.zoomScale * (1 / 1.1);
@@ -331,6 +334,8 @@ export default {
       };
       this.viewport.zoomScale = zoomScale;
       this.viewport.viewBox = viewBox;
+
+      console.log(this.viewport.zoomScale);
     },
 
 
