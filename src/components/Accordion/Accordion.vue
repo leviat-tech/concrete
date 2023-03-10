@@ -8,15 +8,27 @@
   >
     <DisclosureButton class="w-full text-left" @click="onClick(!open)">
       <div v-if="title" class="flex items-center font-bold">
-        <TriangleIcon :class="[iconClass, transitionClass, open ? 'rotate-180' : 'rotate-90']" class="flex-none mr-2"/>
-        <span>{{ title }}</span>
+        <TriangleIcon
+          :class="[
+            iconClass,
+            transitionClass,
+            open ? 'rotate-180' : 'rotate-90',
+          ]"
+          class="flex-none mr-2"
+        />
+        <slot name="customTitle" v-if="$slots.customTitle" />
+        <span v-else>{{ title }}</span>
       </div>
 
       <slot v-else name="title" :open="open" />
     </DisclosureButton>
 
     <DisclosurePanel static>
-      <div class="overflow-hidden" :class="transition && transitionClass" :style="{ height }">
+      <div
+        class="overflow-hidden"
+        :class="transition && transitionClass"
+        :style="{ height }"
+      >
         <div ref="content">
           <slot :open="open" />
         </div>
@@ -56,7 +68,7 @@ const iconClass = {
   sm: 'w-2.5 h-2.5',
   md: 'w-3 h-3',
   lg: 'w-4 h-4',
-}[size]
+}[size];
 
 const onClick = (open) => {
   const contentHeight = content.value.getBoundingClientRect().height;
