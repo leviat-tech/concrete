@@ -1,9 +1,13 @@
 <template>
   <div class="w-full concrete__form-section">
-
     <slot name="title">
-      <div class="flex justify-between w-full" :class="[underlineClass, inputColorClass, textSizeClass, heightClass]" >
-          <h2 v-if="title" class="font-bold">{{ title }}</h2>
+      <div
+        class="flex justify-between w-full mb-2"
+        :class="[underlineClass, inputColorClass, textSizeClass]"
+      >
+        <h2 v-if="title" class="text-lg text-sky-dark font-bold">
+          {{ title }}
+        </h2>
         <slot name="toolbar"></slot>
       </div>
     </slot>
@@ -15,12 +19,10 @@
 </template>
 
 <script setup>
-
 import { provide } from 'vue';
 import { colorProp, useSizeProp } from '../../composables/props';
 import { useSizeValue, useStackedValue } from '../../composables/forms';
-import { useInputClasses, useInputColorClassValue } from '../../composables/styles';
-
+import { useInputClasses } from '../../composables/styles';
 
 const props = defineProps({
   color: colorProp,
@@ -31,16 +33,11 @@ const props = defineProps({
   stacked: { type: Boolean },
 });
 
-const {
-  inputColorClass,
-  textSizeClass,
-  heightClass
-} = useInputClasses(props);
+const { inputColorClass, textSizeClass } = useInputClasses(props);
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
-provide('form-section',  { stacked, size });
+provide('form-section', { stacked, size });
 
-const underlineClass = (props.underline) ? 'border-b' : '';
-
+const underlineClass = props.underline ? 'border-b' : '';
 </script>
