@@ -41,7 +41,7 @@
               :class="[
                 heightClass,
                 svgColour,
-                reverseLabelOrder ? 'order-1' : '',
+                reverseLabels ? 'order-1' : '',
               ]"
               class="self-center"
               viewBox="0 0 20 20"
@@ -88,7 +88,7 @@ const props = defineProps({
   transparent: { type: Boolean, default: false },
   columns: { type: Number, default: 0 },
   onChange: { type: Function, default: null },
-  reverseLabelOrder: { type: Boolean, default: false },
+  reverseLabels: { type: Boolean, default: false },
 });
 
 const value = computed({
@@ -130,7 +130,7 @@ const svgColour = computed(() => {
 });
 
 const labelClasses = computed(() => {
-  if (!props.reverseLabelOrder) return;
+  if (!props.reverseLabels) return;
   return 'order-2 !ml-0 mr-2';
 });
 </script>

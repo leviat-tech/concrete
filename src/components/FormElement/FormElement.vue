@@ -7,7 +7,11 @@
       :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass]"
       v-if="label"
     >
-      <label class="leading-4 whitespace-nowrap" :class="[lineClampClass]" :for="id">
+      <label
+        class="leading-4 whitespace-nowrap"
+        :class="[lineClampClass]"
+        :for="id"
+      >
         {{ label }}
       </label>
     </div>
@@ -43,6 +47,11 @@ const props = defineProps({
   noLabel: { type: Boolean },
   labelOrder: { type: Number },
 });
+
+const LABEL_ORDER_CLASSES = {
+  [0]: 'order-0 !basis-auto',
+  [1]: 'order-1 !basis-auto',
+};
 
 const { textSizeClass, heightClass, disabledClass } = useInputClasses(props);
 
@@ -81,6 +90,7 @@ const stackedClass = stacked
   ? 'mb-1 truncate'
   : 'flex basis-1/2 flex-col justify-center pr-6';
 
-const labelOrderClass =
-  props.labelOrder && `order-${props.labelOrder} !basis-auto`;
+const labelOrderClass = computed(() => {
+  return props.labelOrder ? LABEL_ORDER_CLASSES[props.labelOrder] : '';
+});
 </script>

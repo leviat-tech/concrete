@@ -40,7 +40,7 @@
           />
           <ComboboxButton
             class="absolute inset-y-0 right-0 flex items-center z-30 pr-2"
-            v-if="showUpDownChevrons"
+            v-if="showButtons"
           >
             <ChevronUpDownIcon class="w-5" :class="inputColorClass" />
           </ComboboxButton>
@@ -126,7 +126,7 @@ import { isPlainObject } from 'lodash-es';
 
 const props = defineProps({
   ...formElementProps,
-  showUpDownChevrons: { type: Boolean, default: false },
+  showButtons: { type: Boolean, default: false },
   id: { type: String, default: null },
   modelValue: [String, Object, Array],
   color: colorProp,
