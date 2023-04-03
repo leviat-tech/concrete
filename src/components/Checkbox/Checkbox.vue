@@ -11,9 +11,14 @@
       stacked,
       noLabel,
       expandInput: false,
+      labelOrder: reverseLabels ? 1 : 0,
     }"
+    :class="{ '!justify-start': reverseLabels }"
   >
-    <div class="concrete__checkbox flex">
+    <div
+      class="concrete__checkbox flex pt-1 mr-2"
+      :class="[reverseLabels && 'order-1']"
+    >
       <span class="sr-only">{{ srLabel }}</span>
       <Switch
         ref="switchRef"
@@ -23,7 +28,7 @@
         class="items-center border border-gray-300"
         :class="[`h-${sized} w-${sized}`, cursorClass, bgColor]"
       >
-        <span class="flex items-center justify-center transition-opacity">
+        <span class="flex justify-center transition-opacity">
           <CheckIcon v-if="enabled" :class="checkIconClass" />
         </span>
       </Switch>
@@ -54,6 +59,7 @@ const props = defineProps({
   transparent: { type: Boolean, default: false },
   srLabel: { type: String, default: 'Switch' },
   onChange: { type: Function, default: null },
+  reverseLabels: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);

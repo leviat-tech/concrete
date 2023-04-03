@@ -1,25 +1,30 @@
 <template>
-  <div class="flex flex-col">
-    <table class="table-fixed w-full">
-
+  <div class="flex flex-col w-full overflow-x-auto">
+    <table class="table-auto" :class="tableClass">
       <tr class="text-left border-b text-xs text-gray-600">
-        <th v-if="$slots.prepend" :class="prependClass"/>
-        <th v-for="col in columns" :key="col.id" :class="headerClass || 'pb-3 pl-1'">
+        <th v-if="$slots.prepend" :class="prependClass" />
+        <th
+          v-for="col in columns"
+          :key="col.id"
+          :class="headerClass || 'pb-3 pl-1'"
+        >
           <span
             :class="{ 'cursor-pointer': col.sortable }"
             @click="() => col.sortable && toggleSort(col.id)"
           >
             <slot :name="`${col.id}.header`">
-              <span :class="col.label || 'uppercase'"> {{ col.label || startCase(col.id) }} </span>
+              <span :class="col.label || 'uppercase'">
+                {{ col.label || startCase(col.id) }}
+              </span>
             </slot>
           </span>
           <span v-if="localSort[col.id] === 'asc'"> &#8593; </span>
           <span v-else-if="localSort[col.id] === 'desc'"> &#8595; </span>
           <span v-else-if="col.sortable" class="text-gray-400"> &#8645; </span>
         </th>
-        <th v-if="attrs.onEdit || attrs.onAdd" class="w-12"/>
-        <th v-if="attrs.onEdit || attrs.onAdd || attrs.onDelete" class="w-12"/>
-        <th v-if="$slots.append" :class="appendClass"/>
+        <th v-if="attrs.onEdit || attrs.onAdd" class="w-12" />
+        <th v-if="attrs.onEdit || attrs.onAdd || attrs.onDelete" class="w-12" />
+        <th v-if="$slots.append" :class="appendClass" />
       </tr>
 
       <tr
@@ -28,15 +33,19 @@
         :class="[
           attrs.onClick && editingRow?._index !== i && 'cursor-pointer',
           editingRow?._index === i && 'bg-gray-100',
-          rowClass || 'border-b'
+          rowClass || 'border-b',
         ]"
         @click="editingRow?._index !== i && emit('click', row)"
       >
         <td v-if="$slots.prepend">
-          <slot name="prepend" v-bind="row"/>
+          <slot name="prepend" v-bind="row" />
         </td>
 
-        <td v-for="(col, j) in columns" :class="cellClass || 'py-3 px-2'" :key="`col${j}`">
+        <td
+          v-for="(col, j) in columns"
+          :class="cellClass || 'py-3 px-2'"
+          :key="`col${j}`"
+        >
           <slot
             :name="col.id"
             :value="editingRow?._index === i ? editingRow[col.id] : row[col.id]"
@@ -51,31 +60,31 @@
 
         <td v-if="editingRow?._index === i">
           <span class="cursor-pointer" @click.stop="saveEdit">
-            <c-icon type="save" size="sm"/>
+            <c-icon type="save" size="sm" />
           </span>
         </td>
         <td v-else-if="attrs.onEdit && editingRow?.index !== i">
           <span class="cursor-pointer" @click.stop="beginEditingRow(row, i)">
-            <c-icon type="edit" size="sm"/>
+            <c-icon type="edit" size="sm" />
           </span>
         </td>
 
         <td v-if="editingRow?._index === i">
           <span class="cursor-pointer" @click.stop="editingRow = null">
-            <c-icon type="cancel" size="sm"/>
+            <c-icon type="cancel" size="sm" />
           </span>
         </td>
 
         <td v-else-if="attrs.onDelete">
           <div class="flex items-center">
             <span class="cursor-pointer" @click.stop="emit('delete', row)">
-              <c-icon type="trash" size="sm"/>
+              <c-icon type="trash" size="sm" />
             </span>
           </div>
         </td>
 
         <td v-if="$slots.append">
-          <slot name="append" v-bind="row"/>
+          <slot name="append" v-bind="row" />
         </td>
       </tr>
 
@@ -94,12 +103,12 @@
         </td>
         <td>
           <span @click="saveAdd" class="cursor-pointer">
-            <c-icon type="save" size="sm"/>
+            <c-icon type="save" size="sm" />
           </span>
         </td>
         <td>
           <span @click="addingRow = null" class="cursor-pointer">
-            <c-icon type="cancel" size="sm"/>
+            <c-icon type="cancel" size="sm" />
           </span>
         </td>
       </tr>
@@ -144,6 +153,7 @@ const props = defineProps({
   rowClass: String,
   cellClass: String,
   headerClass: String,
+  tableClass: String,
 });
 
 const emit = defineEmits(['change']);
@@ -180,18 +190,23 @@ function saveAdd() {
 }
 
 const _columns = computed(() => {
-  return props.columns.map(col => typeof col === 'string' ? ({ id: col }) : col)
-})
+  return props.columns.map((col) =>
+    typeof col === 'string' ? { id: col } : col
+  );
+});
 
 const localSort = ref(
-  props.sort
-  || _columns.value.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }), {})
+  props.sort ||
+    _columns.value.reduce(
+      (acc, col) => ({ ...acc, [col.id]: col.defaultSort }),
+      {}
+    )
 );
 
 watch(
   () => props.sort,
-  () => localSort.value = props.sort
-)
+  () => (localSort.value = props.sort)
+);
 
 function toggleSort(colId) {
   const currentSort = localSort.value[colId];
@@ -208,8 +223,8 @@ function toggleSort(colId) {
 const localPageNumber = ref(props.pageNumber || 1);
 watch(
   () => props.pageNumber,
-  () => localPageNumber.value = props.pageNumber
-)
+  () => (localPageNumber.value = props.pageNumber)
+);
 
 function selectPageNumber(newPageNumber) {
   localPageNumber.value = newPageNumber;
@@ -218,7 +233,7 @@ function selectPageNumber(newPageNumber) {
 
 const _rows = computed(() => {
   if (props.server) {
-    return props.rows
+    return props.rows;
   }
   const sortColIds = _columns.value
     .filter((col) => localSort.value[col.id])
@@ -245,5 +260,3 @@ watch(
   () => (errors.value = {})
 );
 </script>
-
-<style scoped></style>

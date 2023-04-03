@@ -38,7 +38,10 @@
               inputColorClass,
             ]"
           />
-          <ComboboxButton class="absolute inset-y-0 right-0 flex items-center z-30 pr-2">
+          <ComboboxButton
+            class="absolute inset-y-0 right-0 flex items-center z-30 pr-2"
+            v-if="showButtons"
+          >
             <ChevronUpDownIcon class="w-5" :class="inputColorClass" />
           </ComboboxButton>
           <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
@@ -91,7 +94,7 @@
 </template>
 
 <script setup>
-import { ChevronUpDownIcon } from '@heroicons/vue/20/solid'
+import { ChevronUpDownIcon } from '@heroicons/vue/20/solid';
 
 import { computed, ref } from 'vue';
 import {
@@ -123,7 +126,7 @@ import { isPlainObject } from 'lodash-es';
 
 const props = defineProps({
   ...formElementProps,
-
+  showButtons: { type: Boolean, default: false },
   id: { type: String, default: null },
   modelValue: [String, Object, Array],
   color: colorProp,
