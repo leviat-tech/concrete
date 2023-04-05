@@ -24,7 +24,7 @@ const conversions = {
     N: (N) => N.div(1000),
   },
   MN: {
-    N: (n) => n.times(1000000),
+    N: (n) => n.div(1000000),
   },
   'N/m': {
     'kN/m': (knm) => knm.times(1000),
