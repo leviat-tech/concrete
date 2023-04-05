@@ -52,7 +52,7 @@ const conversions = {
     MNm: (mnm) => mnm.times(1000000),
   },
   MNm: {
-    Nm: (nm) => nm.times(1000000),
+    Nm: (nm) => nm.div(1000000),
   },
   'N/mm²': {
     'N/m²': (nm2) => nm2.times(1000000),
