@@ -29,6 +29,9 @@ const conversions = {
   kN: {
     N: (N) => N.div(1000),
   },
+  MN: {
+    N: (n) => n.times(1000000),
+  },
   'N/m³': {
     'kN/m³': (knm3) => knm3.times(1000),
   },
@@ -40,9 +43,6 @@ const conversions = {
   },
   'N/m²': {
     'kN/m²': (knm2) => knm2.times(1000),
-  },
-  MN: {
-    N: (n) => n.times(1000000),
   },
   kNm: {
     Nm: (nm) => nm.times(1000),
@@ -56,6 +56,10 @@ const conversions = {
   MPa: {
     'N/m²': (nm2) => nm2.times(1000000),
   },
+  Nm:{
+    kNm: (knm) => knm.div(1000),
+    MNm: (mnm) => mnm.div(1000000),
+  }
 };
 
 const SI = {
