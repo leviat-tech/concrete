@@ -25,12 +25,13 @@ const conversions = {
   },
   N: {
     kN: (kN) => kN.times(1000),
+    MN: (mn) => mn.times(1000000),
   },
   kN: {
     N: (N) => N.div(1000),
   },
   MN: {
-    N: (n) => n.times(1000000),
+    N: (n) => n.div(1000000),
   },
   'N/m³': {
     'kN/m³': (knm3) => knm3.times(1000),
