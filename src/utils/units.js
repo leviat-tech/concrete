@@ -17,27 +17,20 @@ const conversions = {
   deg: {
     rad: (rad) => rad.times(180.0).div(Math.PI),
   },
-  'N/m': {
-    'kN/m': (knm) => knm.times(1000),
-  },
-  'kN/m': {
-    'N/m': (nm) => nm.div(1000),
-  },
   N: {
     kN: (kN) => kN.times(1000),
-    MN: (mn) => mn.times(1000000),
   },
   kN: {
     N: (N) => N.div(1000),
   },
   MN: {
-    N: (n) => n.div(1000000),
+    N: (n) => n.times(1000000),
   },
-  'N/m³': {
-    'kN/m³': (knm3) => knm3.times(1000),
+  'N/m': {
+    'kN/m': (knm) => knm.times(1000),
   },
-  'kN/m³': {
-    'N/m³': (nm3) => nm3.div(1000),
+  'kN/m': {
+    'N/m': (nm) => nm.div(1000),
   },
   'kN/m²': {
     'N/m²': (nm2) => nm2.div(1000),
@@ -45,8 +38,18 @@ const conversions = {
   'N/m²': {
     'kN/m²': (knm2) => knm2.times(1000),
   },
+  'N/m³': {
+    'kN/m³': (knm3) => knm3.times(1000),
+  },
+  'kN/m³': {
+    'N/m³': (nm3) => nm3.div(1000),
+  },
   kNm: {
-    Nm: (nm) => nm.times(1000),
+    Nm: (nm) => nm.div(1000),
+  },
+  Nm: {
+    kNm: (knm) => knm.times(1000),
+    MNm: (mnm) => mnm.times(1000000),
   },
   MNm: {
     Nm: (nm) => nm.times(1000000),
@@ -57,10 +60,6 @@ const conversions = {
   MPa: {
     'N/m²': (nm2) => nm2.times(1000000),
   },
-  Nm:{
-    kNm: (knm) => knm.div(1000),
-    MNm: (mnm) => mnm.div(1000000),
-  }
 };
 
 const SI = {
