@@ -1,54 +1,90 @@
 <template>
   <component
     :is="wrap ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
+    v-bind="{
+      id,
+      label,
+      size,
+      color,
+      labelFormatter,
+      message,
+      stacked,
+      noLabel,
+    }"
     :class="inputColorClass"
   >
     <div class="flex w-full relative concrete__numeric-input">
       <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
-      <slot name="prefix" class="z-10"/>
+      <slot name="prefix" class="z-10" />
       <input
         ref="inputRef"
-
         :id="id"
         v-model="value"
-        v-bind="$attrs" type="number"
-        :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass]"
+        v-bind="$attrs"
+        type="number"
+        :class="[
+          inputStaticClasses,
+          mergedSizeClass,
+          inputColorClass,
+          disabledClass,
+          cursorClass,
+          bgColorClass,
+          inputSpinnerClass,
+        ]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"
         :step="step"
         :min="minimum"
         :max="maximum"
-
         @keydown.enter="onEnter"
         @blur="onBlur"
+      />
+      <div
+        v-if="!noUnits"
+        :class="[
+          'absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none',
+          paddingClass,
+        ]"
       >
-      <div v-if="!noUnits" :class="['absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none', paddingClass]">
         <!-- unit -->
-        <div v-if="to || unit" class="unit" :class="[textSizeClass, hPaddingClass]">{{ to || unit }}</div>
+        <div
+          v-if="to || unit"
+          class="unit"
+          :class="[textSizeClass, hPaddingClass]"
+        >
+          {{ to || unit }}
+        </div>
       </div>
       <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
-      <slot name="suffix" class="z-10"/>
+      <slot name="suffix" class="z-10" />
     </div>
   </component>
 </template>
 
 <script setup>
-import Big from 'big.js';
-import { convert, convertFromSI, convertToSI, isNumber } from '../..//utils/units';
+import {
+  convert,
+  convertFromSI,
+  convertToSI,
+  isNumber,
+} from '../..//utils/units';
 import { computed, inject, ref } from 'vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
 import { formElementProps } from '../../composables/props.js';
-import { useInputClasses, inputStaticClasses, useCursorClass } from '../../composables/styles';
+import {
+  useInputClasses,
+  inputStaticClasses,
+  useCursorClass,
+} from '../../composables/styles';
 import {
   useSizeValue,
   useStackedValue,
   useNoWrapValue,
   useInputValue,
-  useRegisterInput
+  useRegisterInput,
 } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
 
@@ -68,6 +104,7 @@ const props = defineProps({
   from: { type: String, default: null },
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
+  noSpinner: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
@@ -78,7 +115,7 @@ const {
   inputColorClass,
   bgColorClass,
   disabledClass,
-  textSizeClass
+  textSizeClass,
 } = useInputClasses(props);
 
 const size = useSizeValue(props.size);
@@ -100,8 +137,8 @@ const value = computed({
     if (localValue.value === newValue) return;
     localValue.value = newValue;
     isDirty.value = true;
-    emit('update:modelValue', newValue)
-  }
+    emit('update:modelValue', newValue);
+  },
 });
 
 const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
@@ -119,7 +156,9 @@ const convertToDisplayValue = (v) => {
   if (props.unit) value = convertFromSI(v, props.unit);
   if (props.from && props.to) value = convert(v, props.from, props.to);
   if (value === null) value = Number(v);
-  return (props.precision === null) ? value : parseFloat(value.toFixed(props.precision), 10);
+  return props.precision === null
+    ? value
+    : parseFloat(value.toFixed(props.precision), 10);
 };
 
 const convertFromDisplayValue = (v) => {
@@ -132,9 +171,13 @@ const convertFromDisplayValue = (v) => {
   return value;
 };
 
+const inputSpinnerClass = props.noSpinner
+  ? '[-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none'
+  : '';
+
 const cursorClass = useCursorClass(props);
-const paddingClass = (props.readOnly || props.disabled) ? '' : 'mr-5';
+const paddingClass =
+  props.readOnly || props.disabled || props.noSpinner ? '' : 'mr-5';
 
 useRegisterInput(props, inputRef);
-
 </script>

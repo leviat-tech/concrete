@@ -5,9 +5,9 @@
         class="flex justify-between w-full mb-2"
         :class="[underlineClass, inputColorClass, textSizeClass]"
       >
-        <h2 v-if="title" class="text-lg text-sky-dark font-bold">
+        <h4 v-if="title" class="text-sm text-sky-dark font-bold">
           {{ title }}
-        </h2>
+        </h4>
         <slot name="toolbar"></slot>
       </div>
     </slot>
