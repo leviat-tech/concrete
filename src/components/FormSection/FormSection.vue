@@ -8,6 +8,7 @@
         <h4 v-if="title" class="text-[1rem] text-sky-dark font-bold">
           {{ title }}
         </h4>
+        </h4>
         <slot name="toolbar"></slot>
       </div>
     </slot>
