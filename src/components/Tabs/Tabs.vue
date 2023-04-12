@@ -4,7 +4,7 @@
             :defaultIndex="defaultIndex"
             @change="onChange">
 
-    <CTabList v-if="tabPosition === 'top'" class="border-b" :labels="labels">
+    <CTabList v-if="tabPosition === 'top'" :labels="labels">
       <!-- CTabLabel must be used in the template labels slot -->
       <slot name="labels" />
     </CTabList>

@@ -1,12 +1,8 @@
 <template>
-  <!-- <Tab class="w-full items-center justify-around p-4 hover:bg-gray-100">
-
-  </Tab> -->
-
   <Tab v-slot="{ selected }" as="template">
     <button
-      class="w-full items-center justify-around p-4 hover:bg-gray-100"
-      :class="{ 'bg-gray-50 font-bold z-[2]': selected }"
+      class="w-full items-center justify-around p-4 bg-gray-100 hover:bg-gray-50 border-b text-default-light"
+      :class="{ 'bg-white font-bold z-[2] border-b-0': selected }"
     >
       <slot />
     </button>
