@@ -12,6 +12,7 @@
       noLabel,
       expandInput: false,
       labelOrder: reverseLabels ? 1 : 0,
+      labelClass
     }"
     :class="{ '!justify-start': reverseLabels }"
   >
@@ -60,6 +61,7 @@ const props = defineProps({
   srLabel: { type: String, default: 'Switch' },
   onChange: { type: Function, default: null },
   reverseLabels: { type: Boolean, default: false },
+  labelClass: String ,
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);
