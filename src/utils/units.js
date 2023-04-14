@@ -32,6 +32,9 @@ const conversions = {
   'kN/m': {
     'N/m': (nm) => nm.div(1000),
   },
+  't/m': {
+    'N/m': (nm) => nm.div(10000),
+  },
   'kN/m²': {
     'N/m²': (nm2) => nm2.div(1000),
   },
@@ -70,6 +73,7 @@ const SI = {
   deg: 'rad',
   'N/m': 'N/m',
   'kN/m': 'N/m',
+  't/m': 'N/m',
   N: 'N',
   kN: 'N',
   'kN/m³': 'N/m³',
