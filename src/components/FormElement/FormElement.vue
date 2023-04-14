@@ -9,7 +9,7 @@
     >
       <label
         class="leading-4 whitespace-nowrap"
-        :class="[lineClampClass]"
+        :class="[lineClampClass, labelClass]"
         :for="id"
       >
         {{ label }}
@@ -46,6 +46,7 @@ const props = defineProps({
   size: useSizeProp(),
   noLabel: { type: Boolean },
   labelOrder: { type: Number },
+  labelClass: String,
 });
 
 const LABEL_ORDER_CLASSES = {
