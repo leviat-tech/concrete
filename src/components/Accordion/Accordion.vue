@@ -17,7 +17,7 @@
           class="flex-none mr-2"
         />
         <slot name="customTitle" v-if="$slots.customTitle" />
-        <span v-else>{{ title }}</span>
+        <span v-else :class="titleClass">{{ title }}</span>
       </div>
 
       <slot v-else name="title" :open="open" />
@@ -51,6 +51,7 @@ const props = defineProps({
   transition: Boolean,
   size: useSizeProp('lg'),
   title: String,
+  titleClass: String,
 });
 
 const initialHeight = props.defaultOpen ? 'auto' : 0;
