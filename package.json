@@ -32,7 +32,7 @@
     "@storybook/jest": "^0.0.10",
     "@storybook/test-runner": "^0.5.0",
     "@storybook/testing-library": "^0.0.13",
-    "@storybook/vue3": "^6.5.9",
+    "@storybook/vue3": "^7.0.6",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "autoprefixer": "^10.4.7",
