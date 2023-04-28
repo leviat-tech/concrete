@@ -25,7 +25,7 @@
 
     <DisclosurePanel static>
       <div
-        class="overflow-hidden"
+        class="overflow-x-hidden overflow-y-auto"
         :class="transition && transitionClass"
         :style="{ height }"
       >
