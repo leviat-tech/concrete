@@ -54,7 +54,7 @@ const props = defineProps({
   titleClass: String,
 });
 
-const emit = defineEmits(['toggled']);
+const emit = defineEmits(['opened', 'closed']);
 
 const initialHeight = props.defaultOpen ? 'auto' : 0;
 const height = ref(initialHeight);
@@ -79,9 +79,11 @@ const onClick = (open) => {
 
   if (open) {
     setTimeout(() => (height.value = 'auto'), TRANSITION_TIME);
+    emit('opened');
   } else {
     setTimeout(() => (height.value = '0'));
+    emit('closed');
   }
-  emit('toggled');
+    
 };
 </script>
