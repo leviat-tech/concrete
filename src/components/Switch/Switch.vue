@@ -1,7 +1,7 @@
 <template>
   <component
     :is="wrap ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel, expandInput: false, }"
+    v-bind="{ id, label, size, color, disabled, labelFormatter, message, stacked, noLabel, expandInput: false, }"
   >
     <div class="concrete__switch">
       <Switch

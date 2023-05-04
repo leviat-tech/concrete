@@ -99,6 +99,41 @@
               </div>
             </div>
           </CFormSection>
+          <CFormSection class="">
+            <div class="flex space-x-16">
+              <div class="grid grid-cols-2 w-80 gap-x-8">
+                <CCheckbox v-model="checkValue" label="Default 1" />
+                <CCheckbox v-model="checkValue2" label="Default 2" />
+                <CCheckbox v-model="checkValue3" label="Default 3" :disabled="true" />
+                <CCheckbox v-model="checkValue4" label="Default 4" :disabled="true" />
+              </div>
+              <div class="grid grid-cols-2 w-80 gap-x-8">
+                <CCheckbox v-model="checkValue" label="Indigo 1" color="indigo" />
+                <CCheckbox v-model="checkValue2" label="Indigo 2" color="indigo" />
+                <CCheckbox v-model="checkValue3" label="Indigo 3" color="indigo" :disabled="true" />
+                <CCheckbox v-model="checkValue4" label="Indigo 4" color="indigo" :disabled="true" />
+              </div>
+              <div class="grid grid-cols-2 w-80 gap-x-8">
+                <CCheckbox v-model="checkValue" label="Sky 1" color="sky" />
+                <CCheckbox v-model="checkValue2" label="Sky 2" color="sky" />
+                <CCheckbox v-model="checkValue3" label="Sky 3" color="sky" :disabled="true" />
+                <CCheckbox v-model="checkValue4" label="Sky 4" color="sky" :disabled="true" />
+              </div>
+              <div class="grid grid-cols-2 w-80 gap-x-8">
+                <CCheckbox v-model="checkValue" label="Steel 1" color="steel" />
+                <CCheckbox v-model="checkValue2" label="Steel 2" color="steel" />
+                <CCheckbox v-model="checkValue3" label="Steel 3" color="steel" :disabled="true" />
+                <CCheckbox v-model="checkValue4" label="Steel 4" color="steel" :disabled="true" />
+              </div>
+              <div class="grid grid-cols-2 w-80 gap-x-8">
+                <CCheckbox v-model="checkValue" label="Transparent 1" :transparent="true" />
+                <CCheckbox v-model="checkValue2" label="Transparent 2" :transparent="true" />
+                <CCheckbox v-model="checkValue3" label="Transparent 3" :transparent="true" :disabled="true" />
+                <CCheckbox v-model="checkValue4" label="Transparent 4" :transparent="true" :disabled="true" />
+              </div>
+
+            </div>
+          </CFormSection>
         </div>
       </div>
     </div>
@@ -117,7 +152,7 @@ import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 import { CResizable, CPane } from './components/Resizable';
-import { XMarkIcon } from '@heroicons/vue//24/solid';
+import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 export default {
   components: {
@@ -150,6 +185,10 @@ export default {
         recieveNotifications: false,
       },
       value: null,
+      checkValue: false,
+      checkValue2: true,
+      checkValue3: false,
+      checkValue4: true,
       value2: 'Male',
       leftPaneSize: null,
       birthMonthOptions: [

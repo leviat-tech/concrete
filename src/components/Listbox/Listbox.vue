@@ -1,7 +1,7 @@
 <template>
   <component
     :is="wrap ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, labelFormatter, message, stacked, noLabel }"
+    v-bind="{ id, label, size, color, disabled, labelFormatter, message, stacked, noLabel }"
   >
     <Listbox
       as="div"

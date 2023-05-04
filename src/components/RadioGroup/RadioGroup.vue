@@ -7,6 +7,7 @@
       label,
       size,
       color,
+      disabled,
       labelFormatter,
       message,
       stacked,
