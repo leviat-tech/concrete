@@ -179,7 +179,11 @@ export default {
       this.$emit('input', this.currentPoint);
     },
     handleClick(e) {
-      this.$emit('click', e);
+      if(e.button === 1) {
+        this.zoomToExtents();
+      } else {
+        this.$emit('click', e);
+      }
     },
     handleMousedown(e) {
       this.$emit('mousedown', e);
@@ -339,5 +343,6 @@ export default {
       this.viewport.el.height = this.$refs.svg.clientHeight;
     },
   },
+  expose: ['zoomToExtents'],
 };
 </script>

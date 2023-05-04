@@ -4,11 +4,11 @@
     :class="{ 'flex flex-row justify-between w-full': !stacked }"
   >
     <div
-      :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass]"
+      :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, disabledClass]"
       v-if="label"
     >
       <label
-        class="leading-4 whitespace-nowrap"
+        class="leading-5 whitespace-nowrap"
         :class="[lineClampClass, labelClass]"
         :for="id"
       >
@@ -43,6 +43,7 @@ const props = defineProps({
   stacked: { type: Boolean },
   expandInput: { type: Boolean, default: true },
   color: colorProp,
+  disabled: { type: Boolean, default: false },
   size: useSizeProp(),
   noLabel: { type: Boolean },
   labelOrder: { type: Number },
