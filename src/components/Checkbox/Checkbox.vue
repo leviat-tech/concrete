@@ -6,6 +6,7 @@
       label,
       size,
       color,
+      disabled,
       labelFormatter,
       message,
       stacked,
@@ -26,10 +27,10 @@
         :disabled="disabled"
         :id="id"
         v-model="enabled"
-        class="items-center border border-gray-300"
-        :class="[`h-${sized} w-${sized}`, cursorClass, bgColor]"
+        class="items-center border border-gray-300 focus:ring focus:outline-none"
+        :class="[`h-${sized} w-${sized}`, cursorClass, styleClass]"
       >
-        <span class="flex justify-center transition-opacity">
+        <span class="flex justify-center transition-opacity p-1">
           <CheckIcon v-if="enabled" :class="checkIconClass" />
         </span>
       </Switch>
@@ -39,7 +40,7 @@
 
 <script setup>
 import { Switch } from '@headlessui/vue';
-import { CheckIcon } from '@heroicons/vue/24/solid';
+import { CheckIcon } from '@heroicons/vue/20/solid';
 import { computed, onMounted, ref } from 'vue';
 import { useEventHandler } from '../../composables/events.js';
 import { formElementProps } from '../../composables/props.js';
@@ -54,6 +55,7 @@ import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { useCursorClass } from '../../composables/styles.js';
 
+
 const props = defineProps({
   ...formElementProps,
   modelValue: { type: Boolean, default: undefined },
@@ -61,7 +63,7 @@ const props = defineProps({
   srLabel: { type: String, default: 'Switch' },
   onChange: { type: Function, default: null },
   reverseLabels: { type: Boolean, default: false },
-  labelClass: String ,
+  labelClass: String,
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);
@@ -70,7 +72,7 @@ const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 
-const switchRef = ref(null);
+const switchRef = ref(null);  
 const isDirty = ref(false);
 const localValue = ref(null);
 
@@ -88,12 +90,41 @@ const enabled = computed({
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
-const bgColor = props.transparent ? 'bg-transparent' : 'bg-white';
 const cursorClass = useCursorClass(props, 'cursor-pointer');
-const disabledClass = computed(() => props.disabled && 'opacity-60');
 const sized = { xs: 4, sm: 6, md: 8, lg: 10 }[size];
 
+const styleClass = computed(() => {
+  const colour = (props.color) ? props.color : 'default';  
+  const style = (props.transparent) ? 'transparent' : colour;  
+  if (props.disabled) {
+    return 'bg-gray-200 text-gray-400';
+  }
+  else if (enabled.value) {
+    return {
+      default: 'bg-indigo text-white focus:ring-indigo-light',
+      indigo: 'bg-indigo text-white focus:ring-indigo-light',
+      sky: 'bg-sky text-white focus:ring-sky-light',
+      steel: 'bg-steel text-white focus:ring-steel-light',
+      success: 'bg-success text-white focus:ring-success-light',
+      warning: 'bg-warning text-white focus:ring-warning-light',
+      danger: 'bg-danger text-white focus:ring-danger-light',
+    }[colour];
+  } else {
+    return {
+      transparent: 'bg-transparent focus:ring-indigo-light',
+      default: 'bg-white  focus:ring-indigo-light',
+      indigo: 'bg-white  focus:ring-indigo-light',
+      sky: 'bg-white  focus:ring-sky-light',
+      steel: 'bg-white  focus:ring-steel-light',
+      success: 'bg-white  focus:ring-success-light',
+      warning: 'bg-white  focus:ring-warning-light',
+      danger: 'bg-white  focus:ring-danger-light',
+    }[style];
+  }
+});
+
 const checkIconClass = computed(() => {
+  return '';
   return {
     default: 'text-indigo',
     indigo: 'text-indigo',
