@@ -179,18 +179,16 @@ export default {
       this.$emit('input', this.currentPoint);
     },
     handleClick(e) {
-      if(e.button === 1) {
-        this.zoomToExtents();
-      } else {
-        this.$emit('click', e);
-      }
+      this.$emit('click', e);
     },
     handleMousedown(e) {
       this.$emit('mousedown', e);
       this.setMousePt(e);
       (e.target || this.$refs.svg).setPointerCapture(e.pointerId);
-      if (e.which === 3 || this.currentTool === 'pan') {
+      if (e.button === 2 || this.currentTool === 'pan') {
         this.panstart();
+      } else if (e.button === 1) {
+        this.zoomToExtents();
       } else if (this.currentTool === 'zoom') {
         this.zoomstart();
       }
