@@ -7,10 +7,9 @@
 <script setup>
 import { inject, ref, onMounted } from 'vue';
 
-
 const props = defineProps({
-  max: { type: Number, default: null },
   min: { type: Number, default: null },
+  primary: { type: Boolean, default: false },
 });
 
 const paneRef = ref(null);
@@ -20,7 +19,7 @@ onMounted(() => {
   resizablePane.registerPane({
     el: paneRef.value,
     min: props.min,
-    max: props.max,
+    primary: props.primary,
   });
 });
 </script>

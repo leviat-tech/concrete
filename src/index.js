@@ -29,6 +29,7 @@ import CSvg2dViewport from './components/Svg2dViewport/Svg2dViewport.vue';
 import CDraggablePath from './components/DraggablePath/DraggablePath.vue';
 import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
 import { CTable, CInputCell } from './components/Table';
+import { CResizable, CPane } from './components/Resizable';
 
 import { defaultOptions } from './composables/concrete';
 
@@ -63,6 +64,8 @@ const allComponents = {
   CToolGroup,
   CViewport,
   CViewportContainer,
+  CResizable,
+  CPane,
 };
 
 const install = (app, userOptions = {}) => {
