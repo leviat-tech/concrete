@@ -56,6 +56,7 @@ const splitter = ref(null);
 const panes = ref([]);
 const containerRef = ref(null);
 let primaryPaneIndex;
+let secondaryPaneIndex;
 let currDrag;
 let dragging = false;
 
@@ -88,7 +89,7 @@ const endDrag = () => {
     leftPane.value.el.style.width = `${currDrag}px`;
   } else {
     rightPane.value.el.style.width = `${
-      containerRef.value.getBoundingClientRect().width - currDrag
+      containerClientRect.value.width - currDrag
     }px`;
   }
 };
@@ -99,38 +100,41 @@ const drag = (e) => {
 
     if (primaryPaneIndex === 0) {
       splitter.value.style.left =
-        currDrag < panes.value[primaryPaneIndex].min
-          ? `${panes.value[primaryPaneIndex].min}px`
+        currDrag < getPrimaryPaneWidth.value
+          ? getPrimaryPaneWidth.value
           : `${currDrag}px`;
       return;
     }
 
     splitter.value.style.right =
-      currDrag >
-      containerRef.value.getBoundingClientRect().width -
-        panes.value[primaryPaneIndex].min
-        ? `${panes.value[primaryPaneIndex].min}px`
+      currDrag > containerClientRect.value.width - getPrimaryPaneWidth.value
+        ? getPrimaryPaneWidth.value
         : `${currDrag}px`;
   }
 };
 
 onMounted(() => {
+  if (!panes.value[0].min && panes.value[1].min) {
+    rightPane.value.el.classList.add('flex-1');
+    leftPane.value.el.classList.add('flex-1');
+  }
+
   primaryPaneIndex = panes.value.findIndex((p) => p.primary) ?? 0;
+  secondaryPaneIndex = panes.value.findIndex((p) => !p.primary) ?? 1;
+
+  if (primaryPaneIndex < 0) primaryPaneIndex = 0; //handle no primary set
+  if (secondaryPaneIndex < 0) primaryPaneIndex = 1;
 
   if (panes.value[primaryPaneIndex].min)
-    panes.value[
-      primaryPaneIndex
-    ].el.style.minWidth = `${panes.value[primaryPaneIndex].min}px`;
+    panes.value[primaryPaneIndex].el.style.minWidth = getPrimaryPaneWidth.value;
 
   if (primaryPaneIndex === 0) {
     leftPane.value.el.classList.remove('flex-1');
-    rightPane.value.el.classList.add('flex-1');
     splitter.value.style.left = `${splitterElementLeftPosition.value}px`;
     return;
   }
 
   rightPane.value.el.classList.remove('flex-1');
-  leftPane.value.el.classList.add('flex-1');
   splitter.value.style.left = `${splitterElementLeftPosition.value}px`;
 });
 
@@ -139,12 +143,22 @@ const splitterElementLeftPosition = computed(
 );
 
 const getCurrentMouseDrag = (e) => {
-  const rect = containerRef.value.getBoundingClientRect();
   const { clientX } = 'ontouchstart' in window && e.touches ? e.touches[0] : e;
   return {
-    x: clientX - rect.left,
+    x: clientX - containerClientRect.value.left,
   };
 };
+
+const containerClientRect = computed(() =>
+  containerRef.value.getBoundingClientRect()
+);
+
+const getPrimaryPaneWidth = computed(
+  () =>
+    `${
+      panes.value[primaryPaneIndex].min ?? containerClientRect.value.width / 2
+    }px`
+);
 
 const registerPane = (pane) => {
   panes.value.push(pane);

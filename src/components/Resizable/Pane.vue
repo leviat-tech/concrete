@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete__pane" ref="paneRef">
+  <div class="concrete__pane flex-1" ref="paneRef">
     <slot />
   </div>
 </template>
