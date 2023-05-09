@@ -56,7 +56,6 @@ const splitter = ref(null);
 const panes = ref([]);
 const containerRef = ref(null);
 let primaryPaneIndex;
-let secondaryPaneIndex;
 let currDrag;
 let dragging = false;
 
@@ -120,10 +119,8 @@ onMounted(() => {
   }
 
   primaryPaneIndex = panes.value.findIndex((p) => p.primary) ?? 0;
-  secondaryPaneIndex = panes.value.findIndex((p) => !p.primary) ?? 1;
 
   if (primaryPaneIndex < 0) primaryPaneIndex = 0; //handle no primary set
-  if (secondaryPaneIndex < 0) primaryPaneIndex = 1;
 
   if (panes.value[primaryPaneIndex].min)
     panes.value[primaryPaneIndex].el.style.minWidth = getPrimaryPaneWidth.value;
