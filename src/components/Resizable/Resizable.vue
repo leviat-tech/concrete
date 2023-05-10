@@ -51,21 +51,20 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['resize']);
-
 const splitter = ref(null);
 const panes = ref([]);
 const containerRef = ref(null);
 let leftMinWidth;
 let rightMinWidth;
 let currDrag;
+let primaryPaneIndex;
+let leftIsPrimary = true;
 let dragging = false;
 
 const leftPane = computed(() => panes.value[0]);
 const rightPane = computed(() => panes.value[1]);
 
 const resizeObserver = new ResizeObserver((entries) => {
-  console.warn('observe');
   handleResize();
 });
 
@@ -103,24 +102,20 @@ const drag = (e) => {
 
 const handleResize = () => {
   if (currDrag) {
-    rightPane.value.el.classList.add('flex-1');
-    leftPane.value.el.classList.remove('flex-1');
-
     if (currDrag < leftMinWidth) {
+      setLeftPrimary();
       leftPane.value.el.style.width = `${leftMinWidth}px`;
     } else {
+      setLeftPrimary();
       leftPane.value.el.style.width = `${currDrag}px`;
     }
 
-    //ensure right min not breached
     const rightOffset = containerClientRect.value.width - rightMinWidth;
     if (currDrag > rightOffset) {
-      rightPane.value.el.classList.remove('flex-1');
-      leftPane.value.el.classList.add('flex-1');
-      leftPane.value.el.style.width = null;
+      setRightPrimary();
       rightPane.value.el.style.width = `${rightMinWidth}px`;
     } else {
-      rightPane.value.el.style.width = `${currDrag}px`;
+      setLeftPrimary();
     }
   }
 
@@ -144,9 +139,23 @@ const registerPane = (pane) => {
   panes.value.push(pane);
 };
 
+const setLeftPrimary = () => {
+  rightPane.value.el.style = '';
+  rightPane.value.el.classList.add('flex-1');
+  leftPane.value.el.classList.remove('flex-1');
+};
+
+const setRightPrimary = () => {
+  leftPane.value.el.style = '';
+  leftPane.value.el.classList.add('flex-1');
+  rightPane.value.el.classList.remove('flex-1');
+};
+
 const initialSetup = () => {
-  leftMinWidth = panes.value[0].min || 200; //sensible min
-  rightMinWidth = panes.value[1].min || 200; //sensible min
+  if (primaryPaneIndex !== 0) leftIsPrimary = false;
+
+  leftMinWidth = panes.value[0].min || 200;
+  rightMinWidth = panes.value[1].min || 200;
 
   splitter.value.style.left = `${
     leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
@@ -154,7 +163,12 @@ const initialSetup = () => {
 };
 
 onMounted(() => {
-  panes.value.map((p) => p.el).forEach((p) => resizeObserver.observe(p));
+  panes.value
+    .map((p) => p.el)
+    .forEach((p, index) => {
+      if (!primaryPaneIndex && p.primary) primaryPaneIndex = index;
+      resizeObserver.observe(p);
+    });
 
   initialSetup();
   handleResize();
