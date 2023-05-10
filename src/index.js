@@ -124,4 +124,6 @@ export {
   CToolGroup,
   CViewport,
   CViewportContainer,
+  CResizable,
+  CPane,
 };
