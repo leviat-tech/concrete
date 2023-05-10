@@ -2,6 +2,7 @@
   <div class="concrete__viewport-tools absolute top-1 left-0 flex items-center">
     <c-toolbar v-if="!minbreakpoint && maximizable" class="drawing-tools">
       <c-tool-group>
+        
         <c-tool
           v-if="maximized"
           name="Minimize"
@@ -16,6 +17,7 @@
           icon="expand"
           @click="maximizeViewport"
         />
+        <slot />
       </c-tool-group>
     </c-toolbar>
     <div v-if="options.length === 1" class="concrete-viewport-label text-gray-600 px-2">

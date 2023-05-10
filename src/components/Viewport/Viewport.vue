@@ -6,7 +6,9 @@
       :options="options"
       :current-option="currentOption"
       :maximized="maximized === viewportId"
-    />
+    >
+      <slot name="tools" />
+    </CViewportTools>
   </div>
 </template>
 
