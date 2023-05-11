@@ -8,7 +8,7 @@
 import { inject, ref, onMounted } from 'vue';
 
 const props = defineProps({
-  min: { type: Number, default: null },
+  min: { type: Number, default: null, validator: (prop) => prop <= 90 },
   primary: { type: Boolean, default: false },
 });
 

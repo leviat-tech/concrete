@@ -153,13 +153,28 @@ const setRightPrimary = () => {
 
 const initialSetup = () => {
   if (primaryPaneIndex !== 0) leftIsPrimary = false;
-
-  leftMinWidth = panes.value[0].min || 200;
-  rightMinWidth = panes.value[1].min || 200;
-
+  validateMinProps();
   splitter.value.style.left = `${
     leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
   }px`;
+};
+
+const validateMinProps = () => {
+  const containerWidth = containerClientRect.value.width;
+
+  //calculate pixels from percentages
+  if (panes.value[0].min + panes.value[1].min > 100) {
+    leftMinWidth = containerWidth / 2;
+    rightMinWidth = containerWidth / 2;
+    console.warn(
+      'prop "min" values provided breach 100%. Both now set to 50%.'
+    );
+  } else {
+    const leftMin = panes.value[0].min || 50;
+    const rightMin = panes.value[1].min || 10;
+    leftMinWidth = containerWidth * (leftMin / 100);
+    rightMinWidth = containerWidth * (rightMin / 100);
+  }
 };
 
 onMounted(() => {
@@ -170,6 +185,7 @@ onMounted(() => {
       resizeObserver.observe(p);
     });
 
+  validateMinProps();
   initialSetup();
   handleResize();
 
