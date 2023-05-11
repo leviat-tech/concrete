@@ -156,7 +156,7 @@ const props = defineProps({
   tableClass: String,
 });
 
-const emit = defineEmits(['change']);
+const emit = defineEmits(['change', 'click']);
 const attrs = useAttrs();
 
 const editingRow = ref(null);
