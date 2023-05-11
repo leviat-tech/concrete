@@ -1,31 +1,36 @@
 <template>
-  <div ref="containerRef" @mousemove="drag" @mouseup="endDrag" draggable="false" class="concrete__resizable relative" :class="{ 'cursor-col-resize' : dragging }" >
-    <slot/>
-    
+  <div
+    ref="containerRef"
+    class="concrete__resizable relative overflow-hidden"
+    draggable="false"
+    @mousemove="drag"
+    @mouseup="endDrag"
+    :class="{ 'cursor-col-resize': dragging }"
+  >
+    <slot />
     <div
       class="separator absolute"
       :class="splitterClass"
-      :style="splitterStyle"
       @mousedown="startDrag"
       @mousemove="drag"
       @mouseup="endDrag"
       @touchstart="startDrag"
       @touchmove="drag"
       @touchend="endDrag"
-      
+      ref="splitter"
     ></div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .separator {
-    /* Prevent the browser's built-in drag from interfering */
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: col-resize;
-    z-index: 69;
-    height: 100%;
+  /* Prevent the browser's built-in drag from interfering */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: col-resize;
+  z-index: 69;
+  height: 100%;
 }
 
 .seperator-img {
@@ -36,7 +41,7 @@
 </style>
 
 <script setup>
-import { computed, ref, provide, onMounted  } from 'vue';
+import { computed, ref, provide, onMounted } from 'vue';
 
 const props = defineProps({
   splitter: {
@@ -46,129 +51,152 @@ const props = defineProps({
   },
 });
 
+const splitter = ref(null);
+const panes = ref([]);
+const containerRef = ref(null);
+let leftMinWidth;
+let rightMinWidth;
+let currDrag;
+let primaryPaneIndex;
+let leftIsPrimary = true;
+let dragging = false;
+
+const leftPane = computed(() => panes.value[0]);
+const rightPane = computed(() => panes.value[1]);
+
+const resizeObserver = new ResizeObserver((entries) => {
+  handleResize();
+});
+
 const splitterClass = computed(() => {
   return {
-    'thin': 'w-1 bg-gray-300',
-    'thick': 'seperator-img w-3 bg-gray-300',
-    'default': 'w-3 bg-transparent hover:bg-gray-300 hover:opacity-40',
+    thin: 'w-1 bg-gray-300',
+    thick: 'seperator-img w-3 bg-gray-300',
+    default: 'w-3 bg-transparent hover:bg-gray-300 hover:opacity-40',
   }[props.splitter];
 });
 
-const splitterStyle = computed(() => {
-  const pos = panes.value[0]?.size;
-  const width = {
-    'thin': 4,
-    'thick': 12,
-    'default': 12,
+const splitterWidth = computed(() => {
+  return {
+    thin: 2,
+    thick: 6,
+    default: 6,
   }[props.splitter];
-  return`left: ${(pos-(width/2))}px`;
-})
-
-const emit = defineEmits(['resize']);
-
-let dragging = false;
-const activeProp = 'x';
+});
 
 const startDrag = () => {
   dragging = true;
-}
+};
+
 const endDrag = () => {
   dragging = false;
-}
+  handleResize();
+  window.dispatchEvent(new Event('resize'));
+};
 
 const drag = (e) => {
-  if(dragging) {
-    const currDrag = getCurrentMouseDrag(e)[activeProp];
-    resizePanes(currDrag);
+  if (dragging) {
+    currDrag = getCurrentMouseDrag(e).x;
+    splitter.value.style.left = `${currDrag - splitterWidth.value}px`;
   }
 };
 
-const resizeObserver = new ResizeObserver(() => {
-
-  panes.value[0].el.setAttribute('style', '');
-  panes.value[1].el.setAttribute('style', '');
-  resizePanes(dragPos);
-});
-
-const panes = ref([]);
-const containerRef = ref(null);
-let dragPos = null;
-
-onMounted(() => {
-  resizePanes();
-  resizeObserver.observe(containerRef.value);
-})
-
-const resizePanes = (currDrag) => {
-  const elementWidth = containerRef.value?.offsetWidth;
-  if(!elementWidth) return;
-  if(elementWidth > panes.value.reduce((a, b) => a+b.max )) {
-    // too much space for max values;
-    console.error('resizable: too much space for pane max values')
-  } else if(elementWidth < panes.value.reduce((a, b) => a+b.min )) {
-    // not enough space for min values;
-    console.error('resizable: not enough space for pane min values')
-  } else if(panes.value[0] && panes.value[1]){
-    
-    let newDragPos = null;
-    if(currDrag) {
-      if(panes.value[0]?.max && (currDrag > panes.value[0].max)) {
-        newDragPos = panes.value[0].max;
-      } else if(panes.value[1]?.max && ((elementWidth-currDrag) > panes.value[1].max)) {
-        newDragPos = elementWidth-panes.value[1].max;
-      } else if(panes.value[0]?.min && (currDrag < panes.value[0].min)) {
-        newDragPos = panes.value[0].min;
-      } else if(panes.value[1]?.min && ((elementWidth-currDrag) < panes.value[1].min)) {
-        newDragPos = elementWidth-panes.value[1].min;
-      } else {
-        newDragPos = currDrag;
-      }
+const handleResize = () => {
+  if (currDrag) {
+    if (currDrag < leftMinWidth) {
+      setLeftPrimary();
+      leftPane.value.el.style.width = `${leftMinWidth}px`;
     } else {
-      const distributedWidth = elementWidth / panes.value.length;
-      if(panes.value[0]?.max && (distributedWidth > panes.value[0].max)) {
-        newDragPos = panes.value[0].max;
-      } else if(panes.value[1]?.max && (distributedWidth > panes.value[1].max)) {
-        newDragPos = elementWidth-panes.value[1].max;
-      } else if(panes.value[0]?.min && (distributedWidth < panes.value[0].min)) {
-        newDragPos = panes.value[0].min;
-      } else if(panes.value[1]?.min && (distributedWidth < panes.value[1].min)) {
-        newDragPos = elementWidth-panes.value[1].min;
-      } else {
-        newDragPos = distributedWidth;
-      }
+      setLeftPrimary();
+      leftPane.value.el.style.width = `${currDrag}px`;
     }
-    updatePane(0, newDragPos)
-    updatePane(1, elementWidth-newDragPos)
-    dragPos = newDragPos;
-    emit('resize', [panes.value[0].size, panes.value[1].size])
+
+    const rightOffset = containerClientRect.value.width - rightMinWidth;
+    if (currDrag > rightOffset) {
+      setRightPrimary();
+      rightPane.value.el.style.width = `${rightMinWidth}px`;
+    } else {
+      setLeftPrimary();
+    }
   }
+
+  splitter.value.style.left = `${
+    leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
+  }px`;
 };
 
-const updatePane = (index, value) => {
-  panes.value[index].size = value;
-  panes.value[index].el.setAttribute('style', `width: ${panes.value[index].size}px`);
-}
+const containerClientRect = computed(() =>
+  containerRef.value.getBoundingClientRect()
+);
 
 const getCurrentMouseDrag = (e) => {
-  const rect = containerRef.value.getBoundingClientRect()
-  const { clientX, clientY } = ('ontouchstart' in window && e.touches) ? e.touches[0] : e
-
+  const { clientX } = 'ontouchstart' in window && e.touches ? e.touches[0] : e;
   return {
-    x: clientX - rect.left,
-    y: clientY - rect.top
+    x: clientX - containerClientRect.value.left,
+  };
+};
+
+const registerPane = (pane) => {
+  panes.value.push(pane);
+};
+
+const setLeftPrimary = () => {
+  rightPane.value.el.style = '';
+  rightPane.value.el.classList.add('flex-1');
+  leftPane.value.el.classList.remove('flex-1');
+};
+
+const setRightPrimary = () => {
+  leftPane.value.el.style = '';
+  leftPane.value.el.classList.add('flex-1');
+  rightPane.value.el.classList.remove('flex-1');
+};
+
+const initialSetup = () => {
+  if (primaryPaneIndex !== 0) leftIsPrimary = false;
+  validateMinProps();
+  splitter.value.style.left = `${
+    leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
+  }px`;
+};
+
+const validateMinProps = () => {
+  const containerWidth = containerClientRect.value.width;
+
+  //calculate pixels from percentages
+  if (panes.value[0].min + panes.value[1].min > 100) {
+    leftMinWidth = containerWidth / 2;
+    rightMinWidth = containerWidth / 2;
+    console.warn(
+      'prop "min" values provided breach 100%. Both now set to 50%.'
+    );
+  } else {
+    const leftMin = panes.value[0].min || 10; //90% is maximum allowed so this will allocate a sensible default
+    const rightMin = panes.value[1].min || 10;
+    leftMinWidth = containerWidth * (leftMin / 100);
+    rightMinWidth = containerWidth * (rightMin / 100);
   }
 };
 
+onMounted(() => {
+  panes.value
+    .map((p) => p.el)
+    .forEach((p, index) => {
+      if (!primaryPaneIndex && p.primary) primaryPaneIndex = index;
+      resizeObserver.observe(p);
+    });
 
-const registerPane  = (pane)  => {
-  panes.value.push(pane);  
-  resizePanes();  
-};
+  validateMinProps();
+  initialSetup();
+  handleResize();
 
-provide('resizable-pane',  {
+  window.addEventListener('resize', (e) => {
+    initialSetup();
+    handleResize();
+  });
+});
+
+provide('resizable-pane', {
   registerPane,
-})
-
-
-
+});
 </script>
