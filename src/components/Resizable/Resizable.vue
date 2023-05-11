@@ -91,6 +91,7 @@ const startDrag = () => {
 const endDrag = () => {
   dragging = false;
   handleResize();
+  window.dispatchEvent(new Event('resize'));
 };
 
 const drag = (e) => {
