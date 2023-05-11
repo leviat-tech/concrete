@@ -124,7 +124,6 @@ const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 
 const isDirty = ref(false);
-const localValue = ref(null);
 const inputRef = ref(null);
 
 const value = computed({
@@ -142,6 +141,8 @@ const value = computed({
   },
 });
 
+const localValue = ref(value.value);
+
 const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
 const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
 
@@ -150,7 +151,7 @@ const focus = () => inputRef.value.focus();
 const select = () => inputRef.value.select();
 defineExpose({ focus, blur, select });
 
-const convertToDisplayValue = (v) => {
+function convertToDisplayValue(v) {
   if (v === undefined || v === null || v === '') return null;
   let value = null;
   if (!isNumber(v)) value = v;
@@ -162,7 +163,7 @@ const convertToDisplayValue = (v) => {
     : parseFloat(value.toFixed(props.precision), 10);
 };
 
-const convertFromDisplayValue = (v) => {
+function convertFromDisplayValue(v) {
   if (v === undefined || v === null || v === '') return null;
   let value = null;
   if (!isNumber(v)) return v;
