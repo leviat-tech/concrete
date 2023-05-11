@@ -135,6 +135,38 @@
             </div>
           </CFormSection>
         </div>
+        <div>
+          <CViewportContainer
+            :options="['top', 'bottom']"
+            :aspect-ratio="2"
+            ref="viewportContainer"
+          >
+            <CViewport
+              viewport-id="top"
+              :options="[{ label: 'Cross Section', value: 'top' }]"
+            >
+              <template v-slot:tools>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" :stateful="false">
+                  <XMarkIcon />
+                </CTool>
+              </template>
+              <div class="h-64 w-full bg-blue-300"></div>
+            </CViewport>
+
+            <CViewport
+              viewport-id="bottom"
+              :options="[{ label: 'Side View', value: 'bottom' }]"
+            >
+              <template v-slot:tools>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" :stateful="false">
+                  <XMarkIcon />
+                </CTool>
+              </template>
+              <div class="h-64 w-full bg-red-300"></div>
+            </CViewport>
+
+          </CViewportContainer>
+        </div>
       </div>
     </div>
   </div>
