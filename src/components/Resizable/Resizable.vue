@@ -170,7 +170,7 @@ const validateMinProps = () => {
       'prop "min" values provided breach 100%. Both now set to 50%.'
     );
   } else {
-    const leftMin = panes.value[0].min || 50;
+    const leftMin = panes.value[0].min || 10; //90% is maximum allowed so this will allocate a sensible default
     const rightMin = panes.value[1].min || 10;
     leftMinWidth = containerWidth * (leftMin / 100);
     rightMinWidth = containerWidth * (rightMin / 100);
