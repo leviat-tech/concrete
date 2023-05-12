@@ -1,20 +1,19 @@
 <template>
   <div>
-    OPEN: {{ isOpen }}
+    {{ isOpen }}
     <Disclosure
       as="div"
-      v-slot="{ open }"
+      v-slot="{ open: isOpen }"
       class="concrete__accordion"
       :class="textClass"
-      :defaultOpen="isOpen"
     >
-      <DisclosureButton class="w-full text-left" @click="onClick(!open)">
+      <DisclosureButton class="w-full text-left" @click="onClick()">
         <div v-if="title" class="flex items-center font-bold">
           <TriangleIcon
             :class="[
               iconClass,
               transitionClass,
-              open ? 'rotate-180' : 'rotate-90',
+              isOpen ? 'rotate-180' : 'rotate-90',
             ]"
             class="flex-none mr-2"
           />
@@ -22,7 +21,7 @@
           <span v-else :class="titleClass">{{ title }}</span>
         </div>
 
-        <slot v-else name="title" :open="open" />
+        <slot v-else name="title" :open="isOpen" />
       </DisclosureButton>
 
       <DisclosurePanel static>
@@ -32,7 +31,7 @@
           :style="{ height }"
         >
           <div ref="content">
-            <slot :open="open" />
+            <slot :open="isOpen" />
           </div>
         </div>
       </DisclosurePanel>
@@ -43,16 +42,13 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
-import { ref, onMounted, inject } from 'vue';
+import { ref, inject } from 'vue';
 import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
 import { useSizeProp } from '../../composables/props.js';
 import { useSizeValue } from '../../composables/forms.js';
 import { textSizeClassMap } from '../../composables/styles.js';
 
 const { accordionState } = inject('concrete', {});
-
-const isOpen = ref(false);
-const hasAccordionId = props.accordionId !== '';
 
 const props = defineProps({
   defaultOpen: { type: Boolean, default: false },
@@ -62,6 +58,19 @@ const props = defineProps({
   titleClass: String,
   accordionId: { type: String, required: false },
 });
+
+let isOpen = ref(false);
+
+if (props.accordionId) {
+  if (accordionState.hasOwnProperty(props.accordionId)) {
+    isOpen.value = accordionState[props.accordionId];
+  } else {
+    accordionState[props.accordionId] = props.defaultOpen;
+    isOpen.value = props.defaultOpen;
+  }
+} else {
+  isOpen.value = props.defaultOpen;
+}
 
 const emit = defineEmits(['opened', 'closed']);
 
@@ -82,34 +91,19 @@ const iconClass = {
   lg: 'w-4 h-4',
 }[size];
 
-const onClick = (open) => {
-  isOpen.value = open;
+const onClick = () => {
+  isOpen.value = !isOpen.value;
   accordionState[props.accordionId] = isOpen.value;
 
   const contentHeight = content.value.getBoundingClientRect().height;
   height.value = contentHeight + 'px';
 
-  if (isOpen.value) {
+  if (isOpen) {
     setTimeout(() => (height.value = 'auto'), TRANSITION_TIME);
-
     emit('opened');
   } else {
     setTimeout(() => (height.value = '0'));
     emit('closed');
   }
-
-  console.warn(
-    'C',
-    accordionState[props.accordionId],
-    accordionState,
-    isOpen.value
-  );
 };
-
-if (hasAccordionId && !accordionState.hasOwnProperty(props.accordionId)) {
-  accordionState[props.accordionId] = props.defaultOpen;
-  isOpen.value = accordionState[props.accordionId];
-} else {
-  isOpen.value = props.defaultOpen;
-}
 </script>
