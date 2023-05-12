@@ -1,42 +1,40 @@
 <template>
-  <div>
-    {{ isOpen }}
-    <Disclosure
-      as="div"
-      v-slot="{ open: isOpen }"
-      class="concrete__accordion"
-      :class="textClass"
-    >
-      <DisclosureButton class="w-full text-left" @click="onClick()">
-        <div v-if="title" class="flex items-center font-bold">
-          <TriangleIcon
-            :class="[
-              iconClass,
-              transitionClass,
-              isOpen ? 'rotate-180' : 'rotate-90',
-            ]"
-            class="flex-none mr-2"
-          />
-          <slot name="customTitle" v-if="$slots.customTitle" />
-          <span v-else :class="titleClass">{{ title }}</span>
-        </div>
+  <Disclosure
+    as="div"
+    v-slot="{ open }"
+    class="concrete__accordion"
+    :class="textClass"
+    :defaultOpen="isOpen"
+  >
+    <DisclosureButton class="w-full text-left" @click="onClick()">
+      <div v-if="title" class="flex items-center font-bold">
+        <TriangleIcon
+          :class="[
+            iconClass,
+            transitionClass,
+            open ? 'rotate-180' : 'rotate-90',
+          ]"
+          class="flex-none mr-2"
+        />
+        <slot name="customTitle" v-if="$slots.customTitle" />
+        <span v-else :class="titleClass">{{ title }}</span>
+      </div>
 
-        <slot v-else name="title" :open="isOpen" />
-      </DisclosureButton>
+      <slot v-else name="title" :open="open" />
+    </DisclosureButton>
 
-      <DisclosurePanel static>
-        <div
-          class="overflow-x-hidden overflow-y-auto"
-          :class="transition && transitionClass"
-          :style="{ height }"
-        >
-          <div ref="content">
-            <slot :open="isOpen" />
-          </div>
+    <DisclosurePanel static>
+      <div
+        class="overflow-x-hidden overflow-y-auto"
+        :class="transition && transitionClass"
+        :style="{ height }"
+      >
+        <div ref="content">
+          <slot :open="open" />
         </div>
-      </DisclosurePanel>
-    </Disclosure>
-  </div>
+      </div>
+    </DisclosurePanel>
+  </Disclosure>
 </template>
 
 <script setup>
@@ -59,22 +57,11 @@ const props = defineProps({
   accordionId: { type: String, required: false },
 });
 
-let isOpen = ref(false);
-
-if (props.accordionId) {
-  if (accordionState.hasOwnProperty(props.accordionId)) {
-    isOpen.value = accordionState[props.accordionId];
-  } else {
-    accordionState[props.accordionId] = props.defaultOpen;
-    isOpen.value = props.defaultOpen;
-  }
-} else {
-  isOpen.value = props.defaultOpen;
-}
+let isOpen = accordionState[props.accordionId] ?? props.defaultOpen;
 
 const emit = defineEmits(['opened', 'closed']);
 
-const initialHeight = isOpen.value ? 'auto' : 0;
+const initialHeight = isOpen ? 'auto' : 0;
 const height = ref(initialHeight);
 const content = ref(null);
 const TRANSITION_TIME = props.transition ? 400 : 0;
@@ -92,8 +79,8 @@ const iconClass = {
 }[size];
 
 const onClick = () => {
-  isOpen.value = !isOpen.value;
-  accordionState[props.accordionId] = isOpen.value;
+  isOpen = !isOpen;
+  if (props.accordionId) accordionState[props.accordionId] = isOpen;
 
   const contentHeight = content.value.getBoundingClientRect().height;
   height.value = contentHeight + 'px';
