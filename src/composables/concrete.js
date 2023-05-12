@@ -1,4 +1,4 @@
-import { inject, ref } from 'vue';
+import { inject } from 'vue';
 
 export const defaultOptions = {
   size: 'md',
@@ -10,8 +10,6 @@ export const defaultOptions = {
   wrapFormInputs: true,
   accordionState: reactive({}),
 };
-
-export const accordionState = ref(null);
 
 export const useConcrete = () => {
   return inject('concrete', defaultOptions);
