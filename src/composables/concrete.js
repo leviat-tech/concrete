@@ -8,11 +8,11 @@ export const defaultOptions = {
   inputHandler: null,
   inputIdToValue: null,
   wrapFormInputs: true,
-}
+  accordionState: reactive({}),
+};
 
 export const accordionState = ref(null);
 
 export const useConcrete = () => {
   return inject('concrete', defaultOptions);
-}
-
+};
