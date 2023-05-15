@@ -4,9 +4,9 @@
     v-slot="{ open }"
     class="concrete__accordion"
     :class="textClass"
-    :defaultOpen="defaultOpen"
+    :defaultOpen="isOpen"
   >
-    <DisclosureButton class="w-full text-left" @click="onClick(!open)">
+    <DisclosureButton class="w-full text-left" @click="onClick()">
       <div v-if="title" class="flex items-center font-bold">
         <TriangleIcon
           :class="[
@@ -40,11 +40,13 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
 import { useSizeProp } from '../../composables/props.js';
 import { useSizeValue } from '../../composables/forms.js';
 import { textSizeClassMap } from '../../composables/styles.js';
+
+const { accordionState } = inject('concrete', {});
 
 const props = defineProps({
   defaultOpen: { type: Boolean, default: false },
@@ -52,11 +54,14 @@ const props = defineProps({
   size: useSizeProp('lg'),
   title: String,
   titleClass: String,
+  accordionId: { type: String, required: false },
 });
+
+let isOpen = accordionState[props.accordionId] ?? props.defaultOpen;
 
 const emit = defineEmits(['opened', 'closed']);
 
-const initialHeight = props.defaultOpen ? 'auto' : 0;
+const initialHeight = isOpen ? 'auto' : 0;
 const height = ref(initialHeight);
 const content = ref(null);
 const TRANSITION_TIME = props.transition ? 400 : 0;
@@ -73,17 +78,19 @@ const iconClass = {
   lg: 'w-4 h-4',
 }[size];
 
-const onClick = (open) => {
+const onClick = () => {
+  isOpen = !isOpen;
+  if (props.accordionId) accordionState[props.accordionId] = isOpen;
+
   const contentHeight = content.value.getBoundingClientRect().height;
   height.value = contentHeight + 'px';
 
-  if (open) {
+  if (isOpen) {
     setTimeout(() => (height.value = 'auto'), TRANSITION_TIME);
     emit('opened');
   } else {
     setTimeout(() => (height.value = '0'));
     emit('closed');
   }
-    
 };
 </script>
