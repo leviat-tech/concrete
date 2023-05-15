@@ -1,4 +1,4 @@
-import { inject } from 'vue';
+import { inject, reactive } from 'vue';
 
 export const defaultOptions = {
   size: 'md',
