@@ -2,7 +2,7 @@
   <Disclosure
     as="div"
     v-slot="{ open }"
-    class="concrete__accordion"
+    class="concrete__accordion relative z-10"
     :class="textClass"
     :defaultOpen="isOpen"
   >
@@ -25,7 +25,7 @@
 
     <DisclosurePanel static>
       <div
-        class="overflow-x-hidden overflow-y-auto"
+        class="relative z-10 overflow-visible"
         :class="transition && transitionClass"
         :style="{ height }"
       >
