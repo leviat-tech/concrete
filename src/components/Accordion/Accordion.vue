@@ -89,11 +89,14 @@ const onClick = () => {
 
   if (isOpen) {
     styles.height = height.value;
-    setTimeout(() => (styles.overflow = 'visible',styles.height='auto'), TRANSITION_TIME);
+    setTimeout(
+      () => ((styles.overflow = 'visible'), (styles.height = 'auto')),
+      TRANSITION_TIME
+    );
     emit('opened');
   } else {
     styles.overflow = 'hidden';
-    styles.height='0';
+    styles.height = '0';
     emit('closed');
   }
 };
