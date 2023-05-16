@@ -110,6 +110,15 @@
                   ></CListbox>
                 </div>
               </div>
+              <div>
+                <div class="bg-blue-300 p-1 mb-1">Autocomplete</div>
+                <CAutoComplete
+                  :options="['a', 'b']"
+                  size="sm"
+                  placeholder="Enter 'a' or 'b'"
+                >
+                </CAutoComplete>
+              </div>
             </div>
           </CFormSection>
           <CFormSection class="">

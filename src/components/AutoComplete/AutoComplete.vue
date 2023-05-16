@@ -48,6 +48,12 @@
           <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
           <slot name="suffix" class="z-10" />
         </div>
+        <transition
+          enter-from-class="transition opacity-0 duration-150 ease-in -translate-y-4"
+          leave-to-class="transition opacity-0 duration-150 ease-in -translate-y-4"
+          enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
+          name="listbox"
+        >
         <ComboboxOptions
           class="
             absolute
@@ -89,6 +95,7 @@
             </li>
           </ComboboxOption>
         </ComboboxOptions>
+        </transition>
       </div>
     </Combobox>
   </component>
