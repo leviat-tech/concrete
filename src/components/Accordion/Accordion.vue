@@ -62,8 +62,9 @@ let isOpen = accordionState[props.accordionId] ?? props.defaultOpen;
 const emit = defineEmits(['opened', 'closed']);
 
 const initialHeight = isOpen ? 'auto' : 0;
+const initialOverflow = isOpen ? 'visible' : 'hidden';
 const height = ref(initialHeight);
-let styles = reactive({ height: initialHeight, overflow: 'hidden' });
+let styles = reactive({ height: initialHeight, overflow: initialOverflow });
 const content = ref(null);
 const TRANSITION_TIME = props.transition ? 400 : 0;
 
