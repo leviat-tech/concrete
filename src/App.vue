@@ -113,7 +113,7 @@
               <div>
                 <div class="bg-blue-300 p-1 mb-1">Autocomplete</div>
                 <CAutoComplete
-                  :options="['a', 'b']"
+                  :options="['a', 'b', 'aa', 'bb', 'ab']"
                   size="sm"
                   placeholder="Enter 'a' or 'b'"
                 >
