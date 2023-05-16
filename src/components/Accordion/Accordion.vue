@@ -25,9 +25,9 @@
 
     <DisclosurePanel static>
       <div
-        class="relative z-10 overflow-visible"
+        class="relative z-10 overflow-hidden"
         :class="transition && transitionClass"
-        :style="{ height }"
+        :style="styles"
       >
         <div ref="content">
           <slot :open="open" />
@@ -40,7 +40,7 @@
 <script setup>
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
-import { ref, inject } from 'vue';
+import { ref, inject, reactive } from 'vue';
 import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
 import { useSizeProp } from '../../composables/props.js';
 import { useSizeValue } from '../../composables/forms.js';
@@ -63,6 +63,7 @@ const emit = defineEmits(['opened', 'closed']);
 
 const initialHeight = isOpen ? 'auto' : 0;
 const height = ref(initialHeight);
+let styles = reactive({ height: initialHeight, overflow: 'hidden' });
 const content = ref(null);
 const TRANSITION_TIME = props.transition ? 400 : 0;
 
@@ -83,13 +84,15 @@ const onClick = () => {
   if (props.accordionId) accordionState[props.accordionId] = isOpen;
 
   const contentHeight = content.value.getBoundingClientRect().height;
-  height.value = contentHeight + 'px';
+  height.value = isOpen ? `${contentHeight}px` : '0';
 
   if (isOpen) {
-    setTimeout(() => (height.value = 'auto'), TRANSITION_TIME);
+    styles.height = height.value;
+    setTimeout(() => (styles.overflow = 'visible'), TRANSITION_TIME);
     emit('opened');
   } else {
-    setTimeout(() => (height.value = '0'));
+    styles.height = '0';
+    setTimeout(() => (styles.overflow = 'hidden'));
     emit('closed');
   }
 };
