@@ -1,7 +1,7 @@
 <template>
   <div
     ref="containerRef"
-    class="concrete__resizable relative overflow-hidden w-full"
+    class="concrete__resizable relative overflow-hidden"
     draggable="false"
     @mousemove="drag"
     @mouseup="endDrag"
