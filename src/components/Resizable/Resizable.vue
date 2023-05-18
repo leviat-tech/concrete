@@ -58,7 +58,7 @@ let leftMinWidth;
 let rightMinWidth;
 let currDrag;
 let primaryPaneIndex;
-let leftIsPrimary = true;
+let leftIsPrimary;
 let dragging = false;
 
 const leftPane = computed(() => panes.value[0]);
@@ -70,9 +70,9 @@ const resizeObserver = new ResizeObserver((entries) => {
 
 const splitterClass = computed(() => {
   return {
-    thin: 'w-1 bg-gray-300',
-    thick: 'seperator-img w-3 bg-gray-300',
-    default: 'w-3 bg-transparent hover:bg-gray-300 hover:opacity-40',
+    thin: 'w-1 bg-steel',
+    thick: 'seperator-img w-3 bg-steel',
+    default: 'w-2 bg-transparent hover:bg-steel-dark hover:opacity-40',
   }[props.splitter];
 });
 
@@ -101,34 +101,6 @@ const drag = (e) => {
   }
 };
 
-const handleResize = () => {
-  if (currDrag) {
-    if (currDrag < leftMinWidth) {
-      setLeftPrimary();
-      leftPane.value.el.style.width = `${leftMinWidth}px`;
-    } else {
-      setLeftPrimary();
-      leftPane.value.el.style.width = `${currDrag}px`;
-    }
-
-    const rightOffset = containerClientRect.value.width - rightMinWidth;
-    if (currDrag > rightOffset) {
-      setRightPrimary();
-      rightPane.value.el.style.width = `${rightMinWidth}px`;
-    } else {
-      setLeftPrimary();
-    }
-  }
-
-  splitter.value.style.left = `${
-    leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
-  }px`;
-};
-
-const containerClientRect = computed(() =>
-  containerRef.value.getBoundingClientRect()
-);
-
 const getCurrentMouseDrag = (e) => {
   const { clientX } = 'ontouchstart' in window && e.touches ? e.touches[0] : e;
   return {
@@ -136,25 +108,45 @@ const getCurrentMouseDrag = (e) => {
   };
 };
 
+const containerClientRect = computed(() =>
+  containerRef.value.getBoundingClientRect()
+);
+
 const registerPane = (pane) => {
   panes.value.push(pane);
 };
 
-const setLeftPrimary = () => {
-  rightPane.value.el.style = '';
-  rightPane.value.el.classList.add('flex-1');
-  leftPane.value.el.classList.remove('flex-1');
+const handleResize = () => {
+  setPaneWidths();
+
+  splitter.value.style.left = `${
+    leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
+  }px`;
 };
 
-const setRightPrimary = () => {
-  leftPane.value.el.style = '';
-  leftPane.value.el.classList.add('flex-1');
-  rightPane.value.el.classList.remove('flex-1');
+const setPaneWidths = () => {
+  const containerWidth = containerClientRect.value.width;
+
+  if (leftIsPrimary) {
+    leftPane.value.el.style.flexGrow = '';
+    rightPane.value.el.style.flexGrow = '1';
+    leftPane.value.el.style.flexBasis =
+      currDrag > leftMinWidth ? `${currDrag}px` : `${leftMinWidth}px`;
+  } else {
+    leftPane.value.el.style.flexGrow = '1';
+    rightPane.value.el.style.flexGrow = '';
+    rightPane.value.el.style.flexBasis =
+      currDrag > containerWidth - rightMinWidth
+        ? `${currDrag}px`
+        : `${rightMinWidth}px`;
+  }
 };
 
 const initialSetup = () => {
   if (primaryPaneIndex !== 0) leftIsPrimary = false;
+
   validateMinProps();
+
   splitter.value.style.left = `${
     leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
   }px`;
@@ -163,28 +155,47 @@ const initialSetup = () => {
 const validateMinProps = () => {
   const containerWidth = containerClientRect.value.width;
 
-  //calculate pixels from percentages
-  if (panes.value[0].min + panes.value[1].min > 100) {
-    leftMinWidth = containerWidth / 2;
-    rightMinWidth = containerWidth / 2;
-    console.warn(
-      'prop "min" values provided breach 100%. Both now set to 50%.'
-    );
+  if (leftIsPrimary) {
+    rightMinWidth = rightPane.value.min || containerWidth / 2;
+
+    if (leftPane.value.usePercent) {
+      //percent
+      leftMinWidth =
+        leftPane.value.min > 90
+          ? containerWidth * 0.9
+          : containerWidth * (leftPane.value.min / 100);
+    } else {
+      //pixels
+      leftMinWidth = leftPane.value.min || containerWidth / 2;
+    }
   } else {
-    const leftMin = panes.value[0].min || 10; //90% is maximum allowed so this will allocate a sensible default
-    const rightMin = panes.value[1].min || 10;
-    leftMinWidth = containerWidth * (leftMin / 100);
-    rightMinWidth = containerWidth * (rightMin / 100);
+    leftMinWidth = leftPane.value.min || containerWidth / 2;
+    if (rightPane.value.usePercent) {
+      //percent
+      rightMinWidth =
+        rightPane.value.min > 90
+          ? containerWidth * 0.9
+          : containerWidth * (rightPane.value.min / 100);
+    } else {
+      //pixels
+      rightMinWidth = rightPane.value.min || containerWidth / 2;
+    }
   }
 };
 
 onMounted(() => {
-  panes.value
-    .map((p) => p.el)
-    .forEach((p, index) => {
-      if (!primaryPaneIndex && p.primary) primaryPaneIndex = index;
-      resizeObserver.observe(p);
-    });
+  const unitsRegex = /px|%/;
+
+  panes.value.forEach((pane, index) => {
+    pane.usePercent = pane.min?.includes('%');
+
+    pane.min = +pane.min?.replace(unitsRegex, '');
+
+    if (!primaryPaneIndex && pane.primary) primaryPaneIndex = index;
+    leftIsPrimary = primaryPaneIndex === 0;
+
+    resizeObserver.observe(pane.el);
+  });
 
   validateMinProps();
   initialSetup();
