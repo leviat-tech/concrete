@@ -57,8 +57,8 @@ const containerRef = ref(null);
 let leftMinWidth;
 let rightMinWidth;
 let currDrag;
-let primaryPaneIndex;
-let leftIsPrimary;
+let primaryPaneIndex = 0;
+let leftIsPrimary = true;
 let dragging = false;
 
 const leftPane = computed(() => panes.value[0]);
@@ -156,7 +156,7 @@ const validateMinProps = () => {
   const containerWidth = containerClientRect.value.width;
 
   if (leftIsPrimary) {
-    rightMinWidth = rightPane.value.min || containerWidth / 2;
+    rightMinWidth = rightPane.value.min || containerWidth * 0.25;
 
     if (leftPane.value.usePercent) {
       //percent
@@ -166,10 +166,10 @@ const validateMinProps = () => {
           : containerWidth * (leftPane.value.min / 100);
     } else {
       //pixels
-      leftMinWidth = leftPane.value.min || containerWidth / 2;
+      leftMinWidth = leftPane.value.min || containerWidth * 0.25;
     }
   } else {
-    leftMinWidth = leftPane.value.min || containerWidth / 2;
+    leftMinWidth = leftPane.value.min || containerWidth * 0.25;
     if (rightPane.value.usePercent) {
       //percent
       rightMinWidth =
@@ -178,7 +178,7 @@ const validateMinProps = () => {
           : containerWidth * (rightPane.value.min / 100);
     } else {
       //pixels
-      rightMinWidth = rightPane.value.min || containerWidth / 2;
+      rightMinWidth = rightPane.value.min || containerWidth * 0.25;
     }
   }
 };
