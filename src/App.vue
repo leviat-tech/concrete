@@ -96,6 +96,28 @@
                   </div>
                   <CListbox :options="[]"></CListbox>
                 </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">Listbox with options</div>
+                  <CListbox
+                    :options="[
+                      'Option 1',
+                      'Option 2',
+                      'Option 3',
+                      'Option 4',
+                      'Option 5',
+                    ]"
+                  ></CListbox>
+                </div>
+              </div>
+              <div>
+                <div class="bg-blue-300 p-1 mb-1">Autocomplete</div>
+                <CAutoComplete
+                  :options="['a', 'b', 'aa', 'bb', 'ab']"
+                  size="sm"
+                  placeholder="Enter 'a' or 'b'"
+                >
+                </CAutoComplete>
               </div>
             </div>
           </CFormSection>
@@ -104,34 +126,101 @@
               <div class="grid grid-cols-2 w-80 gap-x-8">
                 <CCheckbox v-model="checkValue" label="Default 1" />
                 <CCheckbox v-model="checkValue2" label="Default 2" />
-                <CCheckbox v-model="checkValue3" label="Default 3" :disabled="true" />
-                <CCheckbox v-model="checkValue4" label="Default 4" :disabled="true" />
+                <CCheckbox
+                  v-model="checkValue3"
+                  label="Default 3"
+                  :disabled="true"
+                />
+                <CCheckbox
+                  v-model="checkValue4"
+                  label="Default 4"
+                  :disabled="true"
+                />
               </div>
               <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox v-model="checkValue" label="Indigo 1" color="indigo" />
-                <CCheckbox v-model="checkValue2" label="Indigo 2" color="indigo" />
-                <CCheckbox v-model="checkValue3" label="Indigo 3" color="indigo" :disabled="true" />
-                <CCheckbox v-model="checkValue4" label="Indigo 4" color="indigo" :disabled="true" />
+                <CCheckbox
+                  v-model="checkValue"
+                  label="Indigo 1"
+                  color="indigo"
+                />
+                <CCheckbox
+                  v-model="checkValue2"
+                  label="Indigo 2"
+                  color="indigo"
+                />
+                <CCheckbox
+                  v-model="checkValue3"
+                  label="Indigo 3"
+                  color="indigo"
+                  :disabled="true"
+                />
+                <CCheckbox
+                  v-model="checkValue4"
+                  label="Indigo 4"
+                  color="indigo"
+                  :disabled="true"
+                />
               </div>
               <div class="grid grid-cols-2 w-80 gap-x-8">
                 <CCheckbox v-model="checkValue" label="Sky 1" color="sky" />
                 <CCheckbox v-model="checkValue2" label="Sky 2" color="sky" />
-                <CCheckbox v-model="checkValue3" label="Sky 3" color="sky" :disabled="true" />
-                <CCheckbox v-model="checkValue4" label="Sky 4" color="sky" :disabled="true" />
+                <CCheckbox
+                  v-model="checkValue3"
+                  label="Sky 3"
+                  color="sky"
+                  :disabled="true"
+                />
+                <CCheckbox
+                  v-model="checkValue4"
+                  label="Sky 4"
+                  color="sky"
+                  :disabled="true"
+                />
               </div>
               <div class="grid grid-cols-2 w-80 gap-x-8">
                 <CCheckbox v-model="checkValue" label="Steel 1" color="steel" />
-                <CCheckbox v-model="checkValue2" label="Steel 2" color="steel" />
-                <CCheckbox v-model="checkValue3" label="Steel 3" color="steel" :disabled="true" />
-                <CCheckbox v-model="checkValue4" label="Steel 4" color="steel" :disabled="true" />
+                <CCheckbox
+                  v-model="checkValue2"
+                  label="Steel 2"
+                  color="steel"
+                />
+                <CCheckbox
+                  v-model="checkValue3"
+                  label="Steel 3"
+                  color="steel"
+                  :disabled="true"
+                />
+                <CCheckbox
+                  v-model="checkValue4"
+                  label="Steel 4"
+                  color="steel"
+                  :disabled="true"
+                />
               </div>
               <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox v-model="checkValue" label="Transparent 1" :transparent="true" />
-                <CCheckbox v-model="checkValue2" label="Transparent 2" :transparent="true" />
-                <CCheckbox v-model="checkValue3" label="Transparent 3" :transparent="true" :disabled="true" />
-                <CCheckbox v-model="checkValue4" label="Transparent 4" :transparent="true" :disabled="true" />
+                <CCheckbox
+                  v-model="checkValue"
+                  label="Transparent 1"
+                  :transparent="true"
+                />
+                <CCheckbox
+                  v-model="checkValue2"
+                  label="Transparent 2"
+                  :transparent="true"
+                />
+                <CCheckbox
+                  v-model="checkValue3"
+                  label="Transparent 3"
+                  :transparent="true"
+                  :disabled="true"
+                />
+                <CCheckbox
+                  v-model="checkValue4"
+                  label="Transparent 4"
+                  :transparent="true"
+                  :disabled="true"
+                />
               </div>
-
             </div>
           </CFormSection>
         </div>
@@ -146,7 +235,11 @@
               :options="[{ label: 'Cross Section', value: 'top' }]"
             >
               <template v-slot:tools>
-                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" :stateful="false">
+                <CTool
+                  name="Zoom to Fit"
+                  tool-id="zoom-to-fit"
+                  :stateful="false"
+                >
                   <XMarkIcon />
                 </CTool>
               </template>
@@ -158,13 +251,16 @@
               :options="[{ label: 'Side View', value: 'bottom' }]"
             >
               <template v-slot:tools>
-                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" :stateful="false">
+                <CTool
+                  name="Zoom to Fit"
+                  tool-id="zoom-to-fit"
+                  :stateful="false"
+                >
                   <XMarkIcon />
                 </CTool>
               </template>
               <div class="h-64 w-full bg-red-300"></div>
             </CViewport>
-
           </CViewportContainer>
         </div>
       </div>

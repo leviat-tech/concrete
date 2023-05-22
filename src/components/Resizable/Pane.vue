@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete__pane flex-1" ref="paneRef">
+  <div class="concrete__pane" ref="paneRef">
     <slot />
   </div>
 </template>
@@ -8,7 +8,7 @@
 import { inject, ref, onMounted } from 'vue';
 
 const props = defineProps({
-  min: { type: Number, default: null, validator: (prop) => prop <= 90 },
+  min: { type: String, default: null },
   primary: { type: Boolean, default: false },
 });
 

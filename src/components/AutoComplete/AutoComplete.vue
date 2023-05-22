@@ -48,47 +48,54 @@
           <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
           <slot name="suffix" class="z-10" />
         </div>
-        <ComboboxOptions
-          class="
-            absolute
-            z-10
-            mt-1
-            w-full
-            bg-white
-            shadow-lg
-            py-1
-            text-base
-            ring-1 ring-black ring-opacity-5
-            overflow-auto
-            focus:outline-none
-            sm:text-sm
-          "
+        <transition
+          enter-from-class="transition opacity-0 duration-150 ease-in -translate-y-4"
+          leave-to-class="transition-opacity opacity-0 duration-150"
+          enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
+          name="listbox"
         >
-          <div
-            v-if="filteredOptions.length === 0 && searchValue !== ''"
-            class="cursor-default select-none relative py-2 pl-3 pr-9 z-20"
-            :class="textSizeClass"
+          <ComboboxOptions
+            class="
+              absolute
+              z-10
+              mt-1
+              w-full
+              bg-white
+              shadow-lg
+              py-1
+              text-base
+              ring-1 ring-black ring-opacity-5
+              overflow-auto
+              focus:outline-none
+              sm:text-sm
+            "
           >
-            {{ props.searchFailedMessage }}
-          </div>
-
-          <ComboboxOption
-            v-for="option in filteredOptions"
-            :key="option.key"
-            :value="option.value"
-            v-slot="{ active }"
-          >
-            <li
-              :class="[
-                active ? 'text-white bg-indigo' : 'text-gray-900',
-                textSizeClass,
-              ]"
+            <div
+              v-if="filteredOptions.length === 0 && searchValue !== ''"
               class="cursor-default select-none relative py-2 pl-3 pr-9 z-20"
+              :class="textSizeClass"
             >
-              {{ option.key }}
-            </li>
-          </ComboboxOption>
-        </ComboboxOptions>
+              {{ props.searchFailedMessage }}
+            </div>
+
+            <ComboboxOption
+              v-for="option in filteredOptions"
+              :key="option.key"
+              :value="option.value"
+              v-slot="{ active }"
+            >
+              <li
+                :class="[
+                  active ? 'text-white bg-indigo' : 'text-gray-900',
+                  textSizeClass,
+                ]"
+                class="cursor-default select-none relative py-2 pl-3 pr-9 z-20"
+              >
+                {{ option.key }}
+              </li>
+            </ComboboxOption>
+          </ComboboxOptions>
+        </transition>
       </div>
     </Combobox>
   </component>

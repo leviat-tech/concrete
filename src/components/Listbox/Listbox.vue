@@ -1,7 +1,17 @@
 <template>
   <component
     :is="wrap ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, disabled, labelFormatter, message, stacked, noLabel }"
+    v-bind="{
+      id,
+      label,
+      size,
+      color,
+      disabled,
+      labelFormatter,
+      message,
+      stacked,
+      noLabel,
+    }"
   >
     <Listbox
       as="div"
@@ -12,59 +22,107 @@
       class="concrete__listbox"
     >
       <div :class="['relative', disabledClass]">
-        <div class="inline-flex  w-full">
+        <div class="inline-flex w-full">
           <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
             <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
-            <slot name="prefix" class="z-10"/>
-            <ListboxButton ref="buttonRef" :id="id"
-                           :class="[inputStaticClasses, bgColorClass, inputColorClass, mergedSizeClass, cursorClass ]">
-              <span class="block-truncate" :class="selectedLabel || 'text-gray-400'">{{ selectedLabel || placeholder }}</span>
-              <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <ChevronUpDownIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
+            <slot name="prefix" class="z-10" />
+            <ListboxButton
+              ref="buttonRef"
+              :id="id"
+              :class="[
+                inputStaticClasses,
+                bgColorClass,
+                inputColorClass,
+                mergedSizeClass,
+                cursorClass,
+              ]"
+            >
+              <span
+                class="block-truncate"
+                :class="selectedLabel || 'text-gray-400'"
+                >{{ selectedLabel || placeholder }}</span
+              >
+              <span
+                class="
+                  absolute
+                  inset-y-0
+                  right-0
+                  flex
+                  items-center
+                  pr-2
+                  pointer-events-none
+                "
+              >
+                <ChevronUpDownIcon
+                  :class="[iconColorClass, iconSizeClass]"
+                  aria-hidden="true"
+                />
               </span>
             </ListboxButton>
-            <input type="hidden" :value="selectedLabel" data-selected>
+            <input type="hidden" :value="selectedLabel" data-selected />
             <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
-            <slot name="suffix" class="z-10"/>
+            <slot name="suffix" class="z-10" />
           </div>
         </div>
 
-        <div v-show="open">
-          <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-            <ListboxOptions
-              static
-              class="absolute z-30 mt-1 w-full bg-white shadow-lg py-1 ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none"
-              :class="[optionsSizeClass, maxOptionsHeightClass]"
+        <transition
+          enter-from-class="transition opacity-0 duration-150 ease-in -translate-y-6"
+          leave-to-class="transition-opacity opacity-0 duration-150"
+          enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
+          name="listbox"
+        >
+          <ListboxOptions
+            class="absolute z-30 w-full bg-white shadow-lg focus:outline-none"
+            :class="[optionsSizeClass, maxOptionsHeightClass]"
+          >
+            <ListboxOption
+              as="template"
+              v-for="option in localOptions"
+              :key="option.value"
+              :value="option.value"
+              :disabled="option.disabled"
+              v-slot="{ active, selected }"
             >
-              <ListboxOption
-                as="template"
-                v-for="option in localOptions"
-                :key="option.value"
-                :value="option.value"
-                :disabled="option.disabled"
-                v-slot="{ active, selected }"
+              <li
+                :class="[
+                  active ? 'text-white bg-indigo' : 'text-gray-900',
+                  'cursor-default select-none relative py-2 pl-3 pr-8',
+                ]"
               >
-                <li :class="[active ? 'text-white bg-indigo' : 'text-gray-900', 'cursor-default select-none relative py-2 pl-3 pr-8']">
-                  <span :class="[selected ? 'font-semibold' : 'font-normal', 'block truncate']">
-                    {{ option.label }}
-                  </span>
+                <span
+                  :class="[
+                    selected ? 'font-semibold' : 'font-normal',
+                    'block truncate',
+                  ]"
+                >
+                  {{ option.label }}
+                </span>
 
-                  <span v-if="selected" :class="[active ? 'text-white' : 'text-indigo', 'absolute inset-y-0 right-0 flex items-center pr-4']">
-                    <CheckIcon class="h-5 w-5" aria-hidden="true" />
-                  </span>
-                </li>
-              </ListboxOption>
-            </ListboxOptions>
-          </transition>
-        </div>
+                <span
+                  v-if="selected"
+                  :class="[
+                    active ? 'text-white' : 'text-indigo',
+                    'absolute inset-y-0 right-0 flex items-center pr-4',
+                  ]"
+                >
+                  <CheckIcon class="h-5 w-5" aria-hidden="true" />
+                </span>
+              </li>
+            </ListboxOption>
+          </ListboxOptions>
+        </transition>
       </div>
     </Listbox>
   </component>
 </template>
 
 <script setup>
-
-import { Listbox, ListboxButton, ListboxOptions, ListboxOption, } from '@headlessui/vue';
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+} from '@headlessui/vue';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
@@ -73,14 +131,14 @@ import {
   useInputColorClassValue,
   inputStaticClasses,
   useInputClasses,
-  useCursorClass
+  useCursorClass,
 } from '../../composables/styles.js';
 import {
   useNoWrapValue,
   useSizeValue,
   useStackedValue,
   useInputValue,
-  useRegisterInput
+  useRegisterInput,
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
@@ -92,7 +150,9 @@ const props = defineProps({
   modelValue: [String, Object, Array],
   options: {
     type: Array,
-    default(rawProps) { return [] },
+    default(rawProps) {
+      return [];
+    },
   },
   multiple: { type: Boolean, default: false },
   formatter: { type: Function, default: null },
@@ -102,22 +162,20 @@ const props = defineProps({
     type: String,
     default: 'md',
     validator(value) {
-      return ['auto', 'xs', 'sm', 'md', 'lg'].includes(value)
-    }
+      return ['auto', 'xs', 'sm', 'md', 'lg'].includes(value);
+    },
   },
   onChange: { type: Function, default: null },
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);
 
-const {
-  mergedSizeClass,
-  inputColorClass,
-  bgColorClass,
-} = useInputClasses(props);
-const disabledClass = computed(() => isDisabled.value && 'opacity-60')
-const cursorClass = computed(() => isDisabled.value? 'cursor-not-allowed' : 'cursor-pointer');
-
+const { mergedSizeClass, inputColorClass, bgColorClass } =
+  useInputClasses(props);
+const disabledClass = computed(() => isDisabled.value && 'opacity-60');
+const cursorClass = computed(() =>
+  isDisabled.value ? 'cursor-not-allowed' : 'cursor-pointer'
+);
 
 const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
@@ -136,38 +194,44 @@ const selectedValue = computed({
     localValue.value = value;
     emit('update:modelValue', value);
     onChange();
-  }
+  },
 });
 
 const isDisabled = computed(() => {
   return props.disabled || !localOptions.value.length;
-})
+});
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
-const focus = () => {  buttonRef.value.$el.focus(); }
+const focus = () => {
+  buttonRef.value.$el.focus();
+};
 defineExpose({ focus });
 
 const localOptions = computed(() => {
   return props.options.map((option) => {
-    const opt = isPlainObject(option) ? option : { label: option, value: option };
-    return props.formatter ? { ...opt, label: props.formatter(opt.label || opt.value) } : opt;
+    const opt = isPlainObject(option)
+      ? option
+      : { label: option, value: option };
+    return props.formatter
+      ? { ...opt, label: props.formatter(opt.label || opt.value) }
+      : opt;
   });
 });
 
 const selectedLabel = computed(() => {
-  let sv = selectedValue.value
+  let sv = selectedValue.value;
 
-  if(!props.multiple) {
+  if (!props.multiple) {
     if (isPlainObject(sv)) {
       return props.formatter ? props.formatter(sv) : sv;
     }
     sv = [selectedValue.value];
   }
   const labels = sv
-    .filter(selectedItem => selectedItem != null)
+    .filter((selectedItem) => selectedItem != null)
     .map((selectedItem) => {
       return localOptions.value.find((option) => {
-        return isEqual(option.value, selectedItem)
+        return isEqual(option.value, selectedItem);
       })?.label;
     });
 
@@ -179,7 +243,7 @@ const optionsSizeClass = {
   sm: 'text-sm',
   md: 'text-base',
   lg: 'text-lg',
-}[size]
+}[size];
 
 const iconSizeClass = {
   xs: 'h-3 w-3',
@@ -209,5 +273,4 @@ const iconColorClass = computed(() => {
 });
 
 useRegisterInput(props, buttonRef);
-
 </script>
