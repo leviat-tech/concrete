@@ -19,7 +19,6 @@
       :disabled="isDisabled"
       :multiple="multiple"
       v-slot="{ open }"
-      class="concrete__listbox"
     >
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
