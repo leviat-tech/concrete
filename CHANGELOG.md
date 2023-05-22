@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/leviat-tech/concrete/compare/v2.3.0...v2.4.0) (2023-05-22)
+
+
+### Features
+
+* release please auth token added ([#163](https://github.com/leviat-tech/concrete/issues/163)) ([416c897](https://github.com/leviat-tech/concrete/commit/416c897c106c482ce87c6e8ef91243b20ac750e1))
+
 ## [2.3.0](https://github.com/leviat-tech/concrete/compare/v2.2.0...v2.3.0) (2023-05-22)
 
 
