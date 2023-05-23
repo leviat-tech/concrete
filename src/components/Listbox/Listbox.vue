@@ -19,7 +19,7 @@
       :disabled="isDisabled"
       :multiple="multiple"
       v-slot="{ open }"
-      class="concrete__listbox x"
+      class="concrete__listbox"
     >
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
@@ -67,7 +67,7 @@
 
         <transition
           enter-from-class="transition opacity-0 duration-150 ease-in -translate-y-6"
-          leave-to-class="transition-opacity opacity-0 duration-150"
+          leave-to-class="transition opacity-0 duration-150"
           enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
           name="listbox"
         >
