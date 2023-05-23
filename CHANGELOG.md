@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.3](https://github.com/leviat-tech/concrete/compare/v2.5.2...v2.5.3) (2023-05-23)
+
+
+### Bug Fixes
+
+* trivial change to trigger release ([#179](https://github.com/leviat-tech/concrete/issues/179)) ([4656690](https://github.com/leviat-tech/concrete/commit/4656690bbf4cbe16fb8514d8c3009ea3424d3e78))
+
 ## [2.5.2](https://github.com/leviat-tech/concrete/compare/v2.5.1...v2.5.2) (2023-05-23)
 
 
