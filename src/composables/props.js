@@ -29,5 +29,5 @@ export const formElementProps = {
   size: useSizeProp(),
   prefix: String,
   suffix: String,
-  info: String,
+  tooltip: String,
 }

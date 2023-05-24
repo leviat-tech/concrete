@@ -11,7 +11,7 @@
       message,
       stacked,
       noLabel,
-      info
+      tooltip
     }"
     :class="inputColorClass"
   >

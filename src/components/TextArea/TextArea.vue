@@ -11,7 +11,7 @@
       message,
       stacked,
       noLabel,
-      info,
+      tooltip,
     }"
   >
     <div class="flex w-full" :class="colorClass">

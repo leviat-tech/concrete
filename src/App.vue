@@ -229,21 +229,21 @@
             <CTextInput
               label="Stacked"
               :stacked="true"
-              info="This text element contains information text to help the user understand it's purpose"
+              tooltip="This text element contains information text to help the user understand it's purpose"
             />
             <CTextInput
               label="Stacked"
               :stacked="true"
             />
             <CTextInput
-              info="This text element contains information text to help the user understand it's purpose"
+              tooltip="This text element contains information text to help the user understand it's purpose"
               label="Inline"
             />
             <CTextInput
               label="Inline"
             />
             <CTextInput
-              info="This text element contains information text to help the user understand it's purpose"
+              tooltip="This text element contains information text to help the user understand it's purpose"
             />
             <CTextInput
             />

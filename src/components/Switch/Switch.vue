@@ -12,7 +12,7 @@
       stacked,
       noLabel,
       expandInput: false,
-      info,
+      tooltip,
     }"
   >
     <div class="concrete__switch">

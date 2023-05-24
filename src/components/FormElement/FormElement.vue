@@ -5,12 +5,9 @@
   >
     <div
       :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, disabledClass]"
-      v-if="label || info"
+      v-if="label || props.tooltip"
     >
-      <div class="flex w-full" :class="{ 'justify-between' : stacked }">
-        <div v-if="info && !stacked" :title="info" class="pr-2">
-          <CIcon :size="size" type="information-circle" color="default" class="bg-indigo-dark text-indigo-lightest rounded-2xl cursor-pointer" />
-        </div>
+      <div class="flex w-full" :class="{ 'justify-between' : stacked, 'flex-row-reverse' : !stacked }">
         <label
           class="leading-5 whitespace-nowrap"
           :class="[lineClampClass, labelClass]"
@@ -18,9 +15,7 @@
         >
           {{ label }}
         </label>
-        <div v-if="info && stacked" :title="info" class="float-right">
-          <CIcon :size="size" type="information-circle" color="default" class="bg-indigo-dark text-indigo-lightest rounded-2xl cursor-pointer" />
-        </div>
+        <CTooltipIcon v-if="props.tooltip" class="pr-2" :size="size" v-tooltip="props.tooltip"/>
       </div>
     </div>
     <div :class="{ 'w-full': expandInput }">
@@ -56,7 +51,7 @@ const props = defineProps({
   noLabel: { type: Boolean },
   labelOrder: { type: Number },
   labelClass: String,
-  info: String,
+  tooltip: String,
 });
 
 const LABEL_ORDER_CLASSES = {

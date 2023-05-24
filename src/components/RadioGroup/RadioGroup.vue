@@ -12,7 +12,7 @@
       message,
       stacked,
       noLabel,
-      info,
+      tooltip,
     }"
   >
     <div
