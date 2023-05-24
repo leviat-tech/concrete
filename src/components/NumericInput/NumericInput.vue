@@ -11,6 +11,7 @@
       message,
       stacked,
       noLabel,
+      info,
     }"
     :class="inputColorClass"
   >

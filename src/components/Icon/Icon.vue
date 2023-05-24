@@ -52,6 +52,7 @@ import {
   MagnifyingGlassPlusIcon,
   MagnifyingGlassMinusIcon,
   InformationCircleIcon,
+  QuestionMarkCircleIcon,
 } from '@heroicons/vue/24/outline';
 
 import { colorProp, useSizeProp } from '../../composables/props';
@@ -126,6 +127,7 @@ export const icons = {
   'zoom-in': MagnifyingGlassPlusIcon,
   'zoom-out': MagnifyingGlassMinusIcon,
   'information-circle': InformationCircleIcon,
+  'question-circle': QuestionMarkCircleIcon,
 };
 
 export default {
