@@ -13,7 +13,8 @@
       noLabel,
       expandInput: false,
       labelOrder: reverseLabels ? 1 : 0,
-      labelClass
+      labelClass,
+      tooltip,
     }"
     :class="{ '!justify-start': reverseLabels }"
   >

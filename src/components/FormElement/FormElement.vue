@@ -5,15 +5,18 @@
   >
     <div
       :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, disabledClass]"
-      v-if="label"
+      v-if="label || props.tooltip"
     >
-      <label
-        class="leading-5 whitespace-nowrap"
-        :class="[lineClampClass, labelClass]"
-        :for="id"
-      >
-        {{ label }}
-      </label>
+      <div class="flex w-full" :class="{ 'justify-between' : stacked, 'flex-row-reverse' : !stacked }">
+        <label
+          class="leading-5 whitespace-nowrap"
+          :class="[lineClampClass, labelClass]"
+          :for="id"
+        >
+          {{ label }}
+        </label>
+        <CTooltipIcon v-if="props.tooltip" class="pr-2" :size="size" v-tooltip="props.tooltip"/>
+      </div>
     </div>
     <div :class="{ 'w-full': expandInput }">
       <slot></slot>
@@ -48,6 +51,7 @@ const props = defineProps({
   noLabel: { type: Boolean },
   labelOrder: { type: Number },
   labelClass: String,
+  tooltip: String,
 });
 
 const LABEL_ORDER_CLASSES = {
@@ -89,8 +93,10 @@ const messageClass = computed(() => {
 });
 
 const stackedClass = stacked
-  ? 'mb-1 truncate'
-  : 'flex basis-1/2 flex-col justify-center pr-6';
+  ? 'mb-1 truncate flex justify-between'
+  : (label)
+    ? 'flex basis-1/2 flex-col justify-center pr-6'
+    : 'flex flex-col justify-center pr-2';
 
 const labelOrderClass = computed(() => {
   return props.labelOrder ? LABEL_ORDER_CLASSES[props.labelOrder] : '';

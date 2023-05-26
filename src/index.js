@@ -17,6 +17,7 @@ import CFormSection from './components/FormSection/FormSection.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFragment from './components/Fragment/Fragment.vue';
+import CTooltipIcon from './components/TooltipIcon/TooltipIcon.vue';
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
@@ -62,6 +63,7 @@ const allComponents = {
   CTool,
   CToolbar,
   CToolGroup,
+  CTooltipIcon,
   CViewport,
   CViewportContainer,
   CResizable,
@@ -122,6 +124,7 @@ export {
   CTool,
   CToolbar,
   CToolGroup,
+  CTooltipIcon,
   CViewport,
   CViewportContainer,
   CResizable,
