@@ -225,7 +225,7 @@
           </CFormSection>
         </div>
         <div class="my-32 p-4">
-          <div class="grid grid-cols-4 gap-8">
+          <div class="grid grid-cols-4 gap-8 divide-x">
             <CTextInput
               label="Stacked"
               :stacked="true"
@@ -246,6 +246,25 @@
               tooltip="This text element contains information text to help the user understand it's purpose"
             />
             <CTextInput
+            />
+          </div>
+          
+          <div class="grid grid-cols-4 gap-8 divide-x">
+            <CTextInput
+              label="Bigger label to test multi line styling"
+              :stacked="true"
+              tooltip="This text element contains information text to help the user understand it's purpose"
+            />
+            <CTextInput
+              label="Bigger label to test multi line styling"
+              :stacked="true"
+            />
+            <CTextInput
+              tooltip="This text element contains information text to help the user understand it's purpose"
+              label="Bigger label to test multi line styling"
+            />
+            <CTextInput
+              label="Bigger label to test multi line styling"
             />
           </div>
         </div>
