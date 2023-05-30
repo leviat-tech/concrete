@@ -7,15 +7,15 @@
       :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, disabledClass]"
       v-if="label || props.tooltip"
     >
-      <div class="flex w-full" :class="{ 'justify-between' : stacked, 'flex-row-reverse' : !stacked }">
+      <div class="flex w-full" :class="{ 'justify-between' : stacked, 'flex-row-reverse' : !stacked && props.tooltip }">
         <label
-          class="leading-5 whitespace-nowrap"
+          class="leading-5 whitespace-nowrap w-full"
           :class="[lineClampClass, labelClass]"
           :for="id"
         >
           {{ label }}
         </label>
-        <CTooltipIcon v-if="props.tooltip" class="pr-2" :size="size" v-tooltip="props.tooltip"/>
+        <CTooltipIcon v-if="props.tooltip" :class="{ 'pr-2' : !stacked }" :size="size" v-tooltip="props.tooltip"/>
       </div>
     </div>
     <div :class="{ 'w-full': expandInput }">
