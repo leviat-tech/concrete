@@ -34,6 +34,8 @@ import { CResizable, CPane } from './components/Resizable';
 
 import { defaultOptions } from './composables/concrete';
 
+import tooltip from './directives/tooltip.js';
+
 const allComponents = {
   CAccordion,
   CButton,
@@ -81,6 +83,7 @@ const install = (app, userOptions = {}) => {
     options.registeredInputs = reactive({});
   }
 
+  app.directive("tooltip", tooltip);
   app.provide('concrete', options);
 
   const componentsToInclude = options.components || Object.keys(allComponents);
