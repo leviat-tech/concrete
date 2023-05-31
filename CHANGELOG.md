@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.1](https://github.com/leviat-tech/concrete/compare/v2.6.0...v2.6.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* modal custom classes/listbox overflow ([#186](https://github.com/leviat-tech/concrete/issues/186)) ([4b6be27](https://github.com/leviat-tech/concrete/commit/4b6be27f2882cbb91ccfa234cf6e9078c6605b24))
+
 ## [2.6.0](https://github.com/leviat-tech/concrete/compare/v2.5.4...v2.6.0) (2023-05-26)
 
 
