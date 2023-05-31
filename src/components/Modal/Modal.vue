@@ -3,10 +3,10 @@
     <div
       v-if="show"
       ref="modal"
-      class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500 p-4"
+      class="fixed w-full h-full left-0 top-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500 p-4"      
       @click.self="onClose" @keydown.esc="onClose" aria-modal="true" role="dialog">
       <div class="concrete-modal max-w-full bg-white rounded shadow duration-300 ellipsis overflow-auto max-h-full"
-        :class="widthClass">
+        :class="[widthClass,customClasses]">
 
         <!-- header -->
         <div class="flex items-center justify-between border-b text-lg text-gray-500" :class="{ title }">
@@ -39,6 +39,7 @@ const props = defineProps({
     type: String,
     validator: (prop) => ['md', 'lg', undefined].includes(prop),
   },
+  customClasses: { type: String, default: null, },
 });
 
 const emit = defineEmits(['close']);
