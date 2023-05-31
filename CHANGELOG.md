@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/leviat-tech/concrete/compare/v2.5.4...v2.6.0) (2023-05-26)
+
+
+### Features
+
+* tooltip ([86ae3ab](https://github.com/leviat-tech/concrete/commit/86ae3ab54d31eb008f8b883d510ba4831c411727))
+
 ## [2.5.4](https://github.com/leviat-tech/concrete/compare/v2.5.3...v2.5.4) (2023-05-23)
 
 

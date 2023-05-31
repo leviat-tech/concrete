@@ -2,6 +2,7 @@ import { createApp, reactive } from 'vue';
 import App from './App.vue';
 import './index.css';
 import concrete from './index.js';
+import tooltip from './directives/tooltip.js';
 
 const store = reactive({
   firstname: 'John',
@@ -34,6 +35,7 @@ const statusStore = reactive({
 window.statusStore = statusStore;
 
 const app = createApp(App);
+app.directive("tooltip", tooltip);
 concrete.install(app, {
   size: 'md',
   inputIdToValue: (id) => {

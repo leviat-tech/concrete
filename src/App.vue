@@ -224,44 +224,30 @@
             </div>
           </CFormSection>
         </div>
-        <div>
-          <CViewportContainer
-            :options="['top', 'bottom']"
-            :aspect-ratio="2"
-            ref="viewportContainer"
-          >
-            <CViewport
-              viewport-id="top"
-              :options="[{ label: 'Cross Section', value: 'top' }]"
-            >
-              <template v-slot:tools>
-                <CTool
-                  name="Zoom to Fit"
-                  tool-id="zoom-to-fit"
-                  :stateful="false"
-                >
-                  <XMarkIcon />
-                </CTool>
-              </template>
-              <div class="h-64 w-full bg-blue-300"></div>
-            </CViewport>
-
-            <CViewport
-              viewport-id="bottom"
-              :options="[{ label: 'Side View', value: 'bottom' }]"
-            >
-              <template v-slot:tools>
-                <CTool
-                  name="Zoom to Fit"
-                  tool-id="zoom-to-fit"
-                  :stateful="false"
-                >
-                  <XMarkIcon />
-                </CTool>
-              </template>
-              <div class="h-64 w-full bg-red-300"></div>
-            </CViewport>
-          </CViewportContainer>
+        <div class="my-32 p-4">
+          <div class="grid grid-cols-4 gap-8">
+            <CTextInput
+              label="Stacked"
+              :stacked="true"
+              tooltip="This text element contains information text to help the user understand it's purpose"
+            />
+            <CTextInput
+              label="Stacked"
+              :stacked="true"
+            />
+            <CTextInput
+              tooltip="This text element contains information text to help the user understand it's purpose"
+              label="Inline"
+            />
+            <CTextInput
+              label="Inline"
+            />
+            <CTextInput
+              tooltip="This text element contains information text to help the user understand it's purpose"
+            />
+            <CTextInput
+            />
+          </div>
         </div>
       </div>
     </div>
