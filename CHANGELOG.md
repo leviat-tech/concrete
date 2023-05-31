@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.2](https://github.com/leviat-tech/concrete/compare/v2.6.1...v2.6.2) (2023-05-31)
+
+
+### Bug Fixes
+
+* add tooltip directive to concrete install ([dd952de](https://github.com/leviat-tech/concrete/commit/dd952de53c817e431146664d3563ab0485a63149))
+* alignment of labels on inliine form elements is corrected ([4190ca4](https://github.com/leviat-tech/concrete/commit/4190ca431abdc3c29b60f8a50f67047ab304dc7c))
+
 ## [2.6.1](https://github.com/leviat-tech/concrete/compare/v2.6.0...v2.6.1) (2023-05-31)
 
 
