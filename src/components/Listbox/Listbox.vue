@@ -72,7 +72,7 @@
           name="listbox"
         >
           <ListboxOptions
-            class="absolute z-30 w-full bg-white shadow-lg focus:outline-none"
+            class="absolute z-30 w-full bg-white shadow-lg focus:outline-none overflow-y-visible"
             :class="[optionsSizeClass, maxOptionsHeightClass]"
           >
             <ListboxOption
