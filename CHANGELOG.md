@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.3](https://github.com/leviat-tech/concrete/compare/v2.6.2...v2.6.3) (2023-06-01)
+
+
+### Bug Fixes
+
+* reapplied overflow to listbox ([#189](https://github.com/leviat-tech/concrete/issues/189)) ([391334c](https://github.com/leviat-tech/concrete/commit/391334c8550c05887e7ea7efc1b95b8aaa4fc27d))
+
 ## [2.6.2](https://github.com/leviat-tech/concrete/compare/v2.6.1...v2.6.2) (2023-05-31)
 
 
