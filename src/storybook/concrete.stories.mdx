@@ -55,6 +55,8 @@ The Concrete Vue plugin accepts the following options
 | inputIdToValue | function(id: string)                               | `null`  |
 | registerInputs | function(id: string, el: HTMLElement) \| boolean   | `null`  |
 | inputGetStatus | function(id: string)                               | `null`  |
+| wrapFormInputs | boolean                                            | `true`  |
+| customUnits    | array                                              | `null`  |
 
 ## Options
 
@@ -101,7 +103,48 @@ e.g. connecting them to store functionality
 const store = useStore();
 
 app.use(Concrete, {
-  inputHandler: (id, value) => store.updateEntity(id, value);
+  inputHandler: (id, value) => store.updateEntity(id, value)
+});
+```
+
+**wrapFormInputs**
+
+Specifies whether inputs should be wrapped in a `<FormElement>` component by default (default `true`).
+This option can be overridden by components using the `no-wrap` prop.
+
+```javascript dark
+app.use(Concrete, {
+  wrapFormInputs: false
+});
+```
+
+**customUnits**
+
+This option allows you to pass multiple unit conversions into concrete to be used in conjunction with `<CNumericInput>`'s `unit` prop.
+Best practice dictates that all numeric values should be stored as SI values. However, it is often more appropriate and familiar for users to use converted units in the UI.
+Concrete provides many of the common conversions out of the box, but for when a unit does not exist you can pass in your own conversions as an option.
+`customUnits` should be an array of items each containing the following properties:
+- `unit: string` - the unit you wish to add. This will also be the value you specify in the `unit` prop of the numeric input.
+- `siUnit: string` - the SI unit related to the unit you are adding
+- `conversions: object` - an object containing the following properties to convert to and from SI respectively:
+  - `toSI: function(convertedValue: Big)` - function for converting the converted value back to SI
+  - `fromSI: function(siValue: Big)` - function for converting the SI value to the custom units
+
+**PLEASE NOTE** - the values passed into `toSI/fromSI` are not number types, but a `Big` instance, used to prevent rounding issues with Javascript floats.
+Therefore, when converting values the `times` and `div` methods should be used.
+
+See the following example for adding a nanometers conversion
+
+```javascript dark
+app.use(Concrete, {
+  customUnits: [{
+    unit: 'nm',
+    siUnit: 'm',
+    conversions: {
+      toSI: (nm) => nm.div(1000000000),
+      fromSI: (m) => m.times(1000000000),
+    }
+  }]
 });
 ```
 
