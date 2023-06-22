@@ -33,8 +33,8 @@ import { CTable, CInputCell } from './components/Table';
 import { CResizable, CPane } from './components/Resizable';
 
 import { defaultOptions } from './composables/concrete';
-
-import tooltip from './directives/tooltip.js';
+import { defineCustomUnits } from './utils/units';
+import tooltip from './directives/tooltip';
 
 const allComponents = {
   CAccordion,
@@ -86,6 +86,12 @@ const install = (app, userOptions = {}) => {
   app.directive("tooltip", tooltip);
   app.provide('concrete', options);
 
+  if (userOptions.customUnits?.length > 0) {
+    userOptions.customUnits.forEach(({ unit, siUnit, conversions }) => {
+      defineCustomUnits(unit, siUnit, conversions);
+    });
+  }
+
   const componentsToInclude = options.components || Object.keys(allComponents);
 
   componentsToInclude.forEach((componentName) => {
@@ -127,7 +133,6 @@ export {
   CTool,
   CToolbar,
   CToolGroup,
-  CTooltipIcon,
   CViewport,
   CViewportContainer,
   CResizable,
