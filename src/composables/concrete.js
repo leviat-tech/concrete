@@ -10,6 +10,7 @@ export const defaultOptions = {
   inputIdToValue: null,
   wrapFormInputs: true,
   accordionState: reactive({}),
+  customUnits: null,
 };
 
 export const useConcrete = () => {
