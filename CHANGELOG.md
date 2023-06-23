@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.0](https://github.com/leviat-tech/concrete/compare/v2.6.3...v2.7.0) (2023-06-23)
+
+
+### Features
+
+* add customUnits option ([efde04b](https://github.com/leviat-tech/concrete/commit/efde04bcbd57b2970a82806f8c8b75c640486570))
+
 ## [2.6.3](https://github.com/leviat-tech/concrete/compare/v2.6.2...v2.6.3) (2023-06-01)
 
 
