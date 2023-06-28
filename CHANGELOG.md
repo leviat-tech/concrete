@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.1](https://github.com/leviat-tech/concrete/compare/v2.7.0...v2.7.1) (2023-06-28)
+
+
+### Bug Fixes
+
+* fixed listbox overflow issue with accordion ([#194](https://github.com/leviat-tech/concrete/issues/194)) ([db70d5d](https://github.com/leviat-tech/concrete/commit/db70d5d212a761d170f3787c0bd511c6ef3a6cfb))
+
 ## [2.7.0](https://github.com/leviat-tech/concrete/compare/v2.6.3...v2.7.0) (2023-06-23)
 
 
