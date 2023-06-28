@@ -11,7 +11,7 @@
       message,
       stacked,
       noLabel,
-      tooltip
+      tooltip,
     }"
   >
     <Listbox
