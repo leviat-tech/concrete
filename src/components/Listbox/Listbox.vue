@@ -11,7 +11,6 @@
       message,
       stacked,
       noLabel,
-      tooltip,
     }"
   >
     <Listbox
@@ -73,7 +72,7 @@
           name="listbox"
         >
           <ListboxOptions
-            class="absolute z-30 w-full bg-white shadow-lg focus:outline-none overflow-y-auto"
+            class="absolute z-50 w-full bg-white shadow-lg focus:outline-none overflow-y-auto"
             :class="[optionsSizeClass, maxOptionsHeightClass]"
           >
             <ListboxOption
