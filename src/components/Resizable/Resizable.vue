@@ -118,10 +118,11 @@ const registerPane = (pane) => {
 
 const handleResize = () => {
   setPaneWidths();
-
+  if(splitter.value){
   splitter.value.style.left = `${
     leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
   }px`;
+}
 };
 
 const setPaneWidths = () => {
@@ -146,10 +147,11 @@ const initialSetup = () => {
   if (primaryPaneIndex !== 0) leftIsPrimary = false;
 
   validateMinProps();
-
+  if(splitter.value){
   splitter.value.style.left = `${
     leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
   }px`;
+}
 };
 
 const validateMinProps = () => {
