@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.2](https://github.com/leviat-tech/concrete/compare/v2.7.1...v2.7.2) (2023-06-29)
+
+
+### Bug Fixes
+
+* resize bug ([#196](https://github.com/leviat-tech/concrete/issues/196)) ([a46b9d9](https://github.com/leviat-tech/concrete/commit/a46b9d995d623d11e49dcf74bee8324c54ce4f0a))
+
 ## [2.7.1](https://github.com/leviat-tech/concrete/compare/v2.7.0...v2.7.1) (2023-06-28)
 
 
