@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.3](https://github.com/leviat-tech/concrete/compare/v2.7.2...v2.7.3) (2023-07-03)
+
+
+### Bug Fixes
+
+* revised checkbox sizing ([#198](https://github.com/leviat-tech/concrete/issues/198)) ([8afac9d](https://github.com/leviat-tech/concrete/commit/8afac9d2e7a82fb7a269a9e555758db39f130081))
+
 ## [2.7.2](https://github.com/leviat-tech/concrete/compare/v2.7.1...v2.7.2) (2023-06-29)
 
 
