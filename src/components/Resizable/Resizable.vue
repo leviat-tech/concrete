@@ -29,7 +29,7 @@
   -ms-user-select: none;
   user-select: none;
   cursor: col-resize;
-  z-index: 69;
+  z-index: 2;
   height: 100%;
 }
 
@@ -97,6 +97,8 @@ const endDrag = () => {
 const drag = (e) => {
   if (dragging) {
     currDrag = getCurrentMouseDrag(e).x;
+    
+  handleResize();
     splitter.value.style.left = `${currDrag - splitterWidth.value}px`;
   }
 };
