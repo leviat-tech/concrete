@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.4](https://github.com/leviat-tech/concrete/compare/v2.7.3...v2.7.4) (2023-07-05)
+
+
+### Bug Fixes
+
+* redraw on drag ([#200](https://github.com/leviat-tech/concrete/issues/200)) ([30b22d8](https://github.com/leviat-tech/concrete/commit/30b22d84972405b919699ae2dd0bbbba6ad0f992))
+
 ## [2.7.3](https://github.com/leviat-tech/concrete/compare/v2.7.2...v2.7.3) (2023-07-03)
 
 
