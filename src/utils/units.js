@@ -102,6 +102,8 @@ export function defineCustomUnits(unit, siUnit, { fromSI, toSI }) {
     throw new Error(`Cannot add unit ${siUnit} as it already exists`);
   }
 
+  unitToSIMap[unit] = siUnit;
+
   conversions[unit] = { [siUnit]: fromSI };
 
   // If SI unit already exists add to existing SI property.
