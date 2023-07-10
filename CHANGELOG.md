@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.5](https://github.com/leviat-tech/concrete/compare/v2.7.4...v2.7.5) (2023-07-10)
+
+
+### Bug Fixes
+
+* custom units ([38eaa85](https://github.com/leviat-tech/concrete/commit/38eaa8551a5afd08d4606f918b15b0c9f07b5839))
+
 ## [2.7.4](https://github.com/leviat-tech/concrete/compare/v2.7.3...v2.7.4) (2023-07-05)
 
 
