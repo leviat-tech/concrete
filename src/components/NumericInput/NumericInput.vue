@@ -179,8 +179,11 @@ const inputSpinnerClass = props.noSpinner
   : '';
 
 const cursorClass = useCursorClass(props);
-const paddingClass =
-  props.readOnly || props.disabled || props.noSpinner ? '' : 'mr-5';
+const paddingClass =computed({
+  get() {
+    return props.readOnly || props.disabled || props.noSpinner ? '' : 'mr-5';
+  }
+});
 
 useRegisterInput(props, inputRef);
 </script>
