@@ -227,46 +227,51 @@
         <div class="my-32 p-4">
           <div class="grid grid-cols-4 gap-8 divide-x">
             <CTextInput
-              label="Stacked"
+              label="Large Stacked"
               :stacked="true"
+              size="lg"
               tooltip="This text element contains information text to help the user understand it's purpose"
             />
             <CTextInput
-              label="Stacked"
+              label="Medium Stacked"
               :stacked="true"
-            />
-            <CTextInput
-              tooltip="This text element contains information text to help the user understand it's purpose"
-              label="Inline"
-            />
-            <CTextInput
-              label="Inline"
-            />
-            <CTextInput
+              size="md"
               tooltip="This text element contains information text to help the user understand it's purpose"
             />
             <CTextInput
+              label="Small Stacked"
+              :stacked="true"
+              size="sm"
+              tooltip="This text element contains information text to help the user understand it's purpose"
+            />
+            <CTextInput
+              label="Extra Small Stacked"
+              :stacked="true"
+              size="xs"
+              tooltip="This text element contains information text to help the user understand it's purpose"
+            />
+            <CTextInput
+              tooltip="This text element contains information text to help the user understand it's purpose"
+              label="Large Inline"
+              size="lg"
+            />
+            <CTextInput
+              tooltip="This text element contains information text to help the user understand it's purpose"
+              label="Medium Inline"
+              size="md"
+            />
+            <CTextInput
+              tooltip="This text element contains information text to help the user understand it's purpose"
+              label="Small Inline"
+              size="sm"
+            />
+            <CTextInput
+              tooltip="This text element contains information text to help the user understand it's purpose"
+              label="Extra Small Inline"
+              size="xs"
             />
           </div>
           
-          <div class="grid grid-cols-4 gap-8 divide-x">
-            <CTextInput
-              label="Bigger label to test multi line styling"
-              :stacked="true"
-              tooltip="This text element contains information text to help the user understand it's purpose"
-            />
-            <CTextInput
-              label="Bigger label to test multi line styling"
-              :stacked="true"
-            />
-            <CTextInput
-              tooltip="This text element contains information text to help the user understand it's purpose"
-              label="Bigger label to test multi line styling"
-            />
-            <CTextInput
-              label="Bigger label to test multi line styling"
-            />
-          </div>
         </div>
       </div>
     </div>
