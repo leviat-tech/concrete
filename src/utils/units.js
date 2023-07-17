@@ -28,12 +28,15 @@ const conversions = {
   },
   'N/m': {
     'kN/m': (knm) => knm.times(1000),
+    't/m': (tm) => tm.times(10000),
   },
   'kN/m': {
     'N/m': (nm) => nm.div(1000),
+    't/m': (tm) => tm.times(10),
   },
   't/m': {
     'N/m': (nm) => nm.div(10000),
+    'kN/m': (knm) => knm.div(10),
   },
   'kN/m²': {
     'N/m²': (nm2) => nm2.div(1000),
