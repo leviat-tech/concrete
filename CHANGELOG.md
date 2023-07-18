@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.7.6](https://github.com/leviat-tech/concrete/compare/v2.7.5...v2.7.6) (2023-07-18)
+
+
+### Bug Fixes
+
+* add conversions between t/m, N/m, and kN/m ([063d889](https://github.com/leviat-tech/concrete/commit/063d88991eccb1e977dfec664f9522efb05679bf))
+* adjust tooltip icon styling to improve visibility across sizes ([3e2ac91](https://github.com/leviat-tech/concrete/commit/3e2ac91fc8053088b93f9c8790a8f53c102b012f))
+
 ## [2.7.5](https://github.com/leviat-tech/concrete/compare/v2.7.4...v2.7.5) (2023-07-10)
 
 
