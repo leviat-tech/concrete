@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.0](https://github.com/leviat-tech/concrete/compare/v2.7.6...v2.8.0) (2023-07-25)
+
+
+### Features
+
+* add printer icon ([#209](https://github.com/leviat-tech/concrete/issues/209)) ([1191f39](https://github.com/leviat-tech/concrete/commit/1191f397d073112554570e596fffad42749376b9))
+
 ## [2.7.6](https://github.com/leviat-tech/concrete/compare/v2.7.5...v2.7.6) (2023-07-18)
 
 
