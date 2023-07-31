@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.8.1](https://github.com/leviat-tech/concrete/compare/v2.8.0...v2.8.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* add color to text area ([#211](https://github.com/leviat-tech/concrete/issues/211)) ([bbc1565](https://github.com/leviat-tech/concrete/commit/bbc1565a7c1744a3250be931b557d2730b68ef4f))
+
 ## [2.8.0](https://github.com/leviat-tech/concrete/compare/v2.7.6...v2.8.0) (2023-07-25)
 
 
