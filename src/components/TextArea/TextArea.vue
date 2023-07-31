@@ -13,6 +13,7 @@
       noLabel,
       tooltip,
     }"
+    :class="inputColorClass"
   >
     <div class="flex w-full" :class="colorClass">
       <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
