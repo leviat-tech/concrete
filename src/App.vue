@@ -100,13 +100,7 @@
                 <div>
                   <div class="bg-blue-300 p-1 mb-1">Listbox with options</div>
                   <CListbox
-                    :options="[
-                      'Option 1',
-                      'Option 2',
-                      'Option 3',
-                      'Option 4',
-                      'Option 5',
-                    ]"
+                  :options="Options"
                   ></CListbox>
                 </div>
               </div>
@@ -223,6 +217,21 @@
               </div>
             </div>
           </CFormSection>
+          <CFormSection>
+            <CRadioGroup
+                v-model="RadioGroupValue"
+                  label="Radio group"
+                  :options="Options"
+                  :size="md"
+                />
+              <CButtonGroup
+                v-model="ButtonGroupValue"
+                label="Button group 01"
+                color="indigo"
+                :options="Options"
+                :size="md"
+              />
+          </CFormSection>
         </div>
         <div class="my-32 p-4">
           <div class="grid grid-cols-4 gap-8 divide-x">
@@ -286,6 +295,7 @@ import CSwitch from './components/Switch/Switch.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
 import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
 import CButton from './components/Button/Button.vue';
+import CButtonGroup from './components/ButtonGroup/ButtonGroup.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
@@ -301,6 +311,7 @@ export default {
     CCheckbox,
     CRadioGroup,
     CButton,
+    CButtonGroup,
     CInputAffix,
     CFormElement,
     CFormSection,
@@ -327,6 +338,15 @@ export default {
       checkValue2: true,
       checkValue3: false,
       checkValue4: true,
+      RadioGroupValue: 'Option 2',
+      ButtonGroupValue: 'Option 2',
+      Options: [
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Option 4',
+        'Option 5',
+      ],
       value2: 'Male',
       leftPaneSize: null,
       birthMonthOptions: [
