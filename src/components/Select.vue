@@ -187,6 +187,7 @@ export default {
   },
   destroyed() {
     this.observer.disconnect();
+    this.popper.destroy()
   },
   methods: {
     handleFocus() {
