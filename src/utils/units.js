@@ -19,6 +19,7 @@ const conversions = {
   },
   N: {
     kN: (kN) => kN.times(1000),
+    MN: (kN) => MN.times(1000000),
   },
   kN: {
     N: (N) => N.div(1000),
