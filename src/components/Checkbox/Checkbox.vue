@@ -13,7 +13,8 @@
       noLabel,
       expandInput: false,
       labelOrder: reverseLabels ? 1 : 0,
-      labelClass
+      labelClass,
+      tooltip,
     }"
     :class="{ '!justify-start': reverseLabels }"
   >
@@ -27,11 +28,16 @@
         :disabled="disabled"
         :id="id"
         v-model="enabled"
-        class="items-center border border-gray-300 focus:ring focus:outline-none"
+        class="
+          items-center
+          border border-gray-300
+          focus:ring
+          focus:outline-none
+        "
         :class="[`h-${sized} w-${sized}`, cursorClass, styleClass]"
       >
-        <span class="flex justify-center transition-opacity p-1">
-          <CheckIcon v-if="enabled" :class="checkIconClass" />
+        <span class="flex justify-center transition-opacity p-[2px]">
+          <CheckIcon v-if="enabled" />
         </span>
       </Switch>
     </div>
@@ -55,7 +61,6 @@ import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { useCursorClass } from '../../composables/styles.js';
 
-
 const props = defineProps({
   ...formElementProps,
   modelValue: { type: Boolean, default: undefined },
@@ -72,7 +77,7 @@ const size = useSizeValue(props.size);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 
-const switchRef = ref(null);  
+const switchRef = ref(null);
 const isDirty = ref(false);
 const localValue = ref(null);
 
@@ -91,15 +96,14 @@ const enabled = computed({
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
 const cursorClass = useCursorClass(props, 'cursor-pointer');
-const sized = { xs: 4, sm: 6, md: 8, lg: 10 }[size];
+const sized = { xs: 5, sm: 7, md: 10, lg: 12 }[size];
 
 const styleClass = computed(() => {
-  const colour = (props.color) ? props.color : 'default';  
-  const style = (props.transparent) ? 'transparent' : colour;  
+  const colour = props.color ? props.color : 'default';
+  const style = props.transparent ? 'transparent' : colour;
   if (props.disabled) {
     return 'bg-gray-200 text-gray-400';
-  }
-  else if (enabled.value) {
+  } else if (enabled.value) {
     return {
       default: 'bg-indigo text-white focus:ring-indigo-light',
       indigo: 'bg-indigo text-white focus:ring-indigo-light',
@@ -121,19 +125,6 @@ const styleClass = computed(() => {
       danger: 'bg-white  focus:ring-danger-light',
     }[style];
   }
-});
-
-const checkIconClass = computed(() => {
-  return '';
-  return {
-    default: 'text-indigo',
-    indigo: 'text-indigo',
-    sky: 'text-sky',
-    steel: 'text-steel',
-    success: 'text-success',
-    warning: 'text-warning',
-    danger: 'text-danger',
-  }[props.color];
 });
 
 useRegisterInput(props, switchRef);

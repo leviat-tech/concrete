@@ -29,7 +29,7 @@
   -ms-user-select: none;
   user-select: none;
   cursor: col-resize;
-  z-index: 69;
+  z-index: 2;
   height: 100%;
 }
 
@@ -97,6 +97,8 @@ const endDrag = () => {
 const drag = (e) => {
   if (dragging) {
     currDrag = getCurrentMouseDrag(e).x;
+    
+  handleResize();
     splitter.value.style.left = `${currDrag - splitterWidth.value}px`;
   }
 };
@@ -118,10 +120,11 @@ const registerPane = (pane) => {
 
 const handleResize = () => {
   setPaneWidths();
-
+  if(splitter.value){
   splitter.value.style.left = `${
     leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
   }px`;
+}
 };
 
 const setPaneWidths = () => {
@@ -146,10 +149,11 @@ const initialSetup = () => {
   if (primaryPaneIndex !== 0) leftIsPrimary = false;
 
   validateMinProps();
-
+  if(splitter.value){
   splitter.value.style.left = `${
     leftPane.value.el.getBoundingClientRect().width - splitterWidth.value
   }px`;
+}
 };
 
 const validateMinProps = () => {

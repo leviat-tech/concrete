@@ -12,6 +12,7 @@
       message,
       stacked,
       noLabel,
+      tooltip,
     }"
   >
     <Combobox
@@ -50,7 +51,7 @@
         </div>
         <transition
           enter-from-class="transition opacity-0 duration-150 ease-in -translate-y-4"
-          leave-to-class="transition-opacity opacity-0 duration-150"
+          leave-to-class="transition opacity-0 duration-150"
           enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
           name="listbox"
         >

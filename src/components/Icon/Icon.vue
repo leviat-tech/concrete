@@ -52,6 +52,8 @@ import {
   MagnifyingGlassPlusIcon,
   MagnifyingGlassMinusIcon,
   InformationCircleIcon,
+  QuestionMarkCircleIcon,
+  PrinterIcon,
 } from '@heroicons/vue/24/outline';
 
 import { colorProp, useSizeProp } from '../../composables/props';
@@ -109,7 +111,7 @@ export const icons = {
   'plus-circle': PlusCircleIcon,
   'pointer-outline': PointerOutlineIcon,
   'pointer-solid': PointerSolidIcon,
-  // polygon: Polygon,
+  printer: PrinterIcon,
   redo: RedoIcon,
   save: ArrowDownOnSquareIcon,
   search: MagnifyingGlassIcon,
@@ -126,6 +128,7 @@ export const icons = {
   'zoom-in': MagnifyingGlassPlusIcon,
   'zoom-out': MagnifyingGlassMinusIcon,
   'information-circle': InformationCircleIcon,
+  'question-circle': QuestionMarkCircleIcon,
 };
 
 export default {

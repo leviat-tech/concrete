@@ -1,7 +1,19 @@
 <template>
   <component
     :is="wrap ? CFormElement : CFragment"
-    v-bind="{ id, label, size, color, disabled, labelFormatter, message, stacked, noLabel }"
+    v-bind="{
+      id,
+      label,
+      size,
+      color,
+      disabled,
+      labelFormatter,
+      message,
+      stacked,
+      noLabel,
+      tooltip,
+    }"
+    :class="inputColorClass"
   >
     <div class="flex w-full" :class="colorClass">
       <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>

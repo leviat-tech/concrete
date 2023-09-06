@@ -19,6 +19,7 @@ const conversions = {
   },
   N: {
     kN: (kN) => kN.times(1000),
+    MN: (kN) => MN.times(1000000),
   },
   kN: {
     N: (N) => N.div(1000),
@@ -28,12 +29,15 @@ const conversions = {
   },
   'N/m': {
     'kN/m': (knm) => knm.times(1000),
+    't/m': (tm) => tm.times(10000),
   },
   'kN/m': {
     'N/m': (nm) => nm.div(1000),
+    't/m': (tm) => tm.times(10),
   },
   't/m': {
     'N/m': (nm) => nm.div(10000),
+    'kN/m': (knm) => knm.div(10),
   },
   'kN/m²': {
     'N/m²': (nm2) => nm2.div(1000),
@@ -43,6 +47,10 @@ const conversions = {
   },
   'N/m³': {
     'kN/m³': (knm3) => knm3.times(1000),
+    'N/mm³': (knm3) => knm3.div(1000000000),
+  },
+  'N/mm³': {
+    'N/m³': (nm3) => nm3.times(1000000000),
   },
   'kN/m³': {
     'N/m³': (nm3) => nm3.div(1000),
@@ -65,7 +73,7 @@ const conversions = {
   },
 };
 
-const SI = {
+const unitToSIMap = {
   m: 'm',
   mm: 'm',
   cm: 'm',
@@ -76,20 +84,38 @@ const SI = {
   't/m': 'N/m',
   N: 'N',
   kN: 'N',
-  'kN/m³': 'N/m³',
-  'kN/m²': 'N/m²',
   K: 'K',
   'W/m*K': 'W/m*K',
   MN: 'N',
   kNm: 'Nm',
   MNm: 'Nm',
+  'kN/m²': 'N/m²',
   'N/mm²': 'N/m²',
+  'N/m³': 'N/m³',
+  'kN/m³': 'N/m³',
+  'N/mm³': 'N/m³',
   MPa: 'N/m²',
 };
 
 const aliases = {
   '°': 'deg',
 };
+
+export function defineCustomUnits(unit, siUnit, { fromSI, toSI }) {
+  if (unitToSIMap[unit]) {
+    throw new Error(`Cannot add unit ${siUnit} as it already exists`);
+  }
+
+  unitToSIMap[unit] = siUnit;
+
+  conversions[unit] = { [siUnit]: fromSI };
+
+  // If SI unit already exists add to existing SI property.
+  // Otherwise, create a new property on the conversions object
+  if (!conversions[siUnit]) conversions[siUnit] = {};
+
+  conversions[siUnit][unit] = toSI;
+}
 
 export function convert(quantity, _from, _to) {
   if (quantity === null) return quantity;
@@ -103,20 +129,20 @@ export function convert(quantity, _from, _to) {
 
 export function convertFromSI(quantity, _unit) {
   const unit = aliases[_unit] || _unit; // eslint-disable-line
-  if (!SI[unit]) {
+  if (!unitToSIMap[unit]) {
     throw new Error(`no SI unit available for ${unit}`);
   }
-  if (SI[unit] === unit) return quantity;
-  return convert(quantity, SI[unit], unit);
+  if (unitToSIMap[unit] === unit) return quantity;
+  return convert(quantity, unitToSIMap[unit], unit);
 }
 
 export function convertToSI(quantity, _unit) {
   const unit = aliases[_unit] || _unit; // eslint-disable-line
-  if (!SI[unit]) {
+  if (!unitToSIMap[unit]) {
     throw new Error(`no SI unit available for ${unit}`);
   }
-  if (SI[unit] === unit) return quantity;
-  return convert(quantity, unit, SI[unit]);
+  if (unitToSIMap[unit] === unit) return quantity;
+  return convert(quantity, unit, unitToSIMap[unit]);
 }
 
 export function isNumber(value) {

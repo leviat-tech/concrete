@@ -1,0 +1,71 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CButtonGroup from '../ButtonGroup.vue';
+
+<Meta
+  title="Components/Input/ButtonGroup"
+  component={CButtonGroup}
+  argTypes={{
+    size: {
+      options: ['lg', 'md', 'sm', 'xs'],
+      control: { type: 'select' },
+    },
+    color: {
+      options: [
+        'default',
+        'indigo',
+        'sky',
+        'steel',
+        'success',
+        'warning',
+        'danger',
+      ],
+      control: { type: 'select' },
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    columns: {
+      control: 'number',
+    },
+  }}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CButtonGroup },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      value: null,
+    };
+  },
+  template:
+    '<CButtonGroup id="ButtonGroup" v-bind="args" v-model="value"></CButtonGroup>',
+});
+
+# ButtonGroup
+
+<Canvas withSource="open">
+  <Story
+    name="Overview"
+    height="200px"
+    args={{
+      id: 'ButtonGroup',
+      options: ['Pugh', 'Barney', 'McGrew', 'Cuthbert', 'Diddle', 'Gruff'],
+      onChange: null,
+      colour: 'sky',
+      formatter: (l) => l.toUpperCase(),
+    }}
+  >
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable story="Overview" />
+
+## Columns

@@ -17,6 +17,7 @@ import CFormSection from './components/FormSection/FormSection.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFragment from './components/Fragment/Fragment.vue';
+import CTooltipIcon from './components/TooltipIcon/TooltipIcon.vue';
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
@@ -32,6 +33,8 @@ import { CTable, CInputCell } from './components/Table';
 import { CResizable, CPane } from './components/Resizable';
 
 import { defaultOptions } from './composables/concrete';
+import { defineCustomUnits } from './utils/units';
+import tooltip from './directives/tooltip';
 
 const allComponents = {
   CAccordion,
@@ -62,6 +65,7 @@ const allComponents = {
   CTool,
   CToolbar,
   CToolGroup,
+  CTooltipIcon,
   CViewport,
   CViewportContainer,
   CResizable,
@@ -79,7 +83,14 @@ const install = (app, userOptions = {}) => {
     options.registeredInputs = reactive({});
   }
 
+  app.directive("tooltip", tooltip);
   app.provide('concrete', options);
+
+  if (userOptions.customUnits?.length > 0) {
+    userOptions.customUnits.forEach(({ unit, siUnit, conversions }) => {
+      defineCustomUnits(unit, siUnit, conversions);
+    });
+  }
 
   const componentsToInclude = options.components || Object.keys(allComponents);
 

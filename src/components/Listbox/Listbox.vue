@@ -11,6 +11,7 @@
       message,
       stacked,
       noLabel,
+      tooltip,
     }"
   >
     <Listbox
@@ -67,12 +68,12 @@
 
         <transition
           enter-from-class="transition opacity-0 duration-150 ease-in -translate-y-6"
-          leave-to-class="transition-opacity opacity-0 duration-150"
+          leave-to-class="transition opacity-0 duration-150"
           enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
           name="listbox"
         >
           <ListboxOptions
-            class="absolute z-30 w-full bg-white shadow-lg focus:outline-none"
+            class="absolute z-30 w-full bg-white shadow-lg focus:outline-none overflow-y-auto"
             :class="[optionsSizeClass, maxOptionsHeightClass]"
           >
             <ListboxOption
