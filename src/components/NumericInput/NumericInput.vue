@@ -12,6 +12,7 @@
       stacked,
       noLabel,
       tooltip,
+      overrideCssStyles
     }"
     :class="inputColorClass"
   >
@@ -32,6 +33,7 @@
           cursorClass,
           bgColorClass,
           inputSpinnerClass,
+          overrideCssStyles
         ]"
         :placeholder="placeholder"
         :disabled="disabled"
@@ -107,6 +109,7 @@ const props = defineProps({
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
   noSpinner: { type: Boolean, default: false },
+  overrideCssStyles: { type: String},
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
