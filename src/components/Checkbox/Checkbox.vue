@@ -15,12 +15,13 @@
       labelOrder: reverseLabels ? 1 : 0,
       labelClass,
       tooltip,
+      cssClass
     }"
-    :class="{ '!justify-start': reverseLabels }"
+    :class="{ '!justify-center': reverseLabels }"
   >
     <div
-      class="concrete__checkbox flex pt-1 mr-2"
-      :class="[reverseLabels && 'order-1']"
+      class="concrete__checkbox flex pt-1 px-2"
+      :class="[reverseLabels && 'order-1',cssClass]"
     >
       <span class="sr-only">{{ srLabel }}</span>
       <Switch
@@ -69,6 +70,7 @@ const props = defineProps({
   onChange: { type: Function, default: null },
   reverseLabels: { type: Boolean, default: false },
   labelClass: String,
+  cssClass: String,
 });
 
 const emit = defineEmits(['update:modelValue', 'change']);

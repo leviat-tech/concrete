@@ -11,7 +11,8 @@
       message,
       stacked,
       noLabel,
-      tooltip
+      tooltip,
+      overrideCssStyles
     }"
     :class="inputColorClass"
   >
@@ -24,7 +25,8 @@
         :id="id"
         v-model="value"
         type="text"
-        :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass ]"
+        :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass,
+          overrideCssStyles ]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"
@@ -39,7 +41,7 @@
 </template>
 
 <script setup>
-import { computed, ref, inject, useSlots } from 'vue';
+import { computed, ref } from 'vue';
 import { formElementProps } from '../../composables/props.js';
 import { inputStaticClasses, useInputClasses, useCursorClass } from '../../composables/styles';
 import {
@@ -62,6 +64,7 @@ const props = defineProps({
   transparent: { type: Boolean, default: false },
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
+  overrideCssStyles: { type: String},
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
