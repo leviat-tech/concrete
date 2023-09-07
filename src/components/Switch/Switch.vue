@@ -94,17 +94,17 @@ const enabled = computed({
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
 const switchSizeClass = {
-  xs: 'h-6 w-12',
-  sm: 'h-8 w-16',
-  md: 'h-10 w-20',
-  lg: 'h-12 w-24',
+  xs: 'h-4 w-6',
+  sm: 'h-6 w-10',
+  md: 'h-8 w-14',
+  lg: 'h-10 w-[4.5rem]'
 }[size];
 
 const dotSizeClass = {
-  xs: 'h-5 w-5',
-  sm: 'h-7 w-7',
-  md: 'h-9 w-9',
-  lg: 'h-11 w-11',
+  xs: 'h-3 w-3',
+  sm: 'h-5 w-5',
+  md: 'h-7 w-7',
+  lg: 'h-9 w-9',
 }[size];
 
 const iconSizeClass = {
@@ -117,10 +117,10 @@ const iconSizeClass = {
 const dotTranslateClass = computed(() => {
   if(!enabled.value) return 'translate-x-0';
   return {
-    xs: 'translate-x-6',
-    sm: 'translate-x-8',
-    md: 'translate-x-10',
-    lg: 'translate-x-12',
+    xs: 'translate-x-2',
+    sm: 'translate-x-4',
+    md: 'translate-x-6',
+    lg: 'translate-x-8',
   }[size];
 });
 
