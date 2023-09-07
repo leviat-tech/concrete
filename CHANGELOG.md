@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.9.0](https://github.com/leviat-tech/concrete/compare/v2.8.1...v2.9.0) (2023-09-07)
+
+
+### Features
+
+* allow override css for inputs ([553d902](https://github.com/leviat-tech/concrete/commit/553d9020e6211c16c4ad9d7222edf1dbfebdbfb7))
+* ButtonGroup Component ([#213](https://github.com/leviat-tech/concrete/issues/213)) ([217e386](https://github.com/leviat-tech/concrete/commit/217e386f6dcee222d56ffa3cd94beda124cd29ea))
+
+
+### Bug Fixes
+
+* convert 'MN' to 'N' ([#216](https://github.com/leviat-tech/concrete/issues/216)) ([fb4c76c](https://github.com/leviat-tech/concrete/commit/fb4c76c2efe41684c5f0cda8cfbe926c0f50d68a))
+
 ## [2.8.1](https://github.com/leviat-tech/concrete/compare/v2.8.0...v2.8.1) (2023-07-31)
 
 
