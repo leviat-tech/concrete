@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.9.1](https://github.com/leviat-tech/concrete/compare/v2.9.0...v2.9.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* conversion between N and MN ([#218](https://github.com/leviat-tech/concrete/issues/218)) ([2073f99](https://github.com/leviat-tech/concrete/commit/2073f99027921881819dde65320f625283374628))
+* reverse checkbox center ([f21b6fa](https://github.com/leviat-tech/concrete/commit/f21b6faff263bc82a8d163a33a399541671620eb))
+
 ## [2.9.0](https://github.com/leviat-tech/concrete/compare/v2.8.1...v2.9.0) (2023-09-07)
 
 
