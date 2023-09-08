@@ -27,7 +27,7 @@
           :class="layoutClass"
         >
           <RadioGroupOption
-            v-for="option in options"
+            v-for="option in opts"
             :key="option"
             :value="option"
             v-slot="{ checked }"
@@ -69,6 +69,7 @@
     useInputValue,
     useRegisterInput,
     useStackedValue,
+    useInputIdToOptions
   } from '../../composables/forms.js';
   import { useEventHandler } from '../../composables/events.js';
   
@@ -119,5 +120,7 @@
   function getFormattedText(option) {
     return props.formatter ? props.formatter(option) : option;
   };
+
+  const opts = computed(() => useInputIdToOptions(props));
   </script>
   

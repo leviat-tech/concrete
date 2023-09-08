@@ -128,3 +128,10 @@ export const useInputStatus = (props) => {
     }
   })
 }
+
+export const useInputIdToOptions = (props) => {
+  if (props.options?.length) return props.options;
+
+  const { inputIdToOptions } = useConcrete();
+  return inputIdToOptions?.(props.id) || [];
+}

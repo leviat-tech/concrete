@@ -140,6 +140,7 @@ import {
   useStackedValue,
   useInputValue,
   useRegisterInput,
+  useInputIdToOptions
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
@@ -209,7 +210,9 @@ const focus = () => {
 defineExpose({ focus });
 
 const localOptions = computed(() => {
-  return props.options.map((option) => {
+  const options = useInputIdToOptions(props);
+
+  return options.map((option) => {
     const opt = isPlainObject(option)
       ? option
       : { label: option, value: option };
