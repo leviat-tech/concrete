@@ -17,7 +17,7 @@
       tooltip,
       cssClass
     }"
-    :class="{ '!justify-center': reverseLabels }"
+    :class="{ '!justify-start': reverseLabels }"
   >
     <div
       class="concrete__checkbox flex pt-1 px-2"
