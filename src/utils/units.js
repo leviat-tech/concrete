@@ -19,13 +19,13 @@ const conversions = {
   },
   N: {
     kN: (kN) => kN.times(1000),
-    MN: (kN) => MN.times(1000000),
+    MN: (MN) => MN.times(1000000),
   },
   kN: {
     N: (N) => N.div(1000),
   },
   MN: {
-    N: (n) => n.div(1000000),
+    N: (N) => N.div(1000000),
   },
   'N/m': {
     'kN/m': (knm) => knm.times(1000),
