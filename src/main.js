@@ -4,6 +4,8 @@ import './index.css';
 import concrete from './index.js';
 import tooltip from './directives/tooltip.js';
 
+const options = ['Option 1', 'Option 2', 'Option 3'];
+
 const store = reactive({
   firstname: 'John',
   lastname: 'Smith',
@@ -15,6 +17,9 @@ const store = reactive({
   nationality: 'United Kingdom',
   enableNotifications: false,
   isAdmin: false,
+  buttonGroup: options,
+  radioGroup: options,
+  options: options
 });
 
 const statusStore = reactive({
@@ -45,6 +50,9 @@ concrete.install(app, {
     if (!Object.hasOwn(store, id)) return;
 
     store[id] = value;
+  },
+  inputIdToOptions: (_id) => {
+    return options;
   },
   registerInputs: (id, el) => {
     console.log(`Registered input with id '${id}'`);

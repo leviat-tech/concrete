@@ -27,7 +27,7 @@
         :class="layoutClass"
       >
         <RadioGroupOption
-          v-for="option in options"
+          v-for="option in opts"
           :key="option"
           :value="option"
           v-slot="{ checked }"
@@ -79,6 +79,7 @@ import {
   useInputValue,
   useRegisterInput,
   useStackedValue,
+  useInputIdToOptions
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 
@@ -135,4 +136,6 @@ const labelClasses = computed(() => {
   if (!props.reverseLabels) return;
   return 'order-2 !ml-0 mr-2';
 });
+
+const opts = computed(() => useInputIdToOptions(props));
 </script>

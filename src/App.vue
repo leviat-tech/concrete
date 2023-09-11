@@ -92,9 +92,16 @@
 
                 <div>
                   <div class="bg-blue-300 p-1 mb-1">
-                    Listbox with no options (disabled)
+                    Listbox with no options and id (disabled)
                   </div>
-                  <CListbox :options="[]"></CListbox>
+                  <CListbox></CListbox>
+                </div>
+
+                <div>
+                  <div class="bg-blue-300 p-1 mb-1">
+                    Listbox with options from id
+                  </div>
+                  <CListbox id="options"></CListbox>
                 </div>
 
                 <div>
@@ -232,6 +239,21 @@
                 :size="md"
               />
           </CFormSection>
+          <CFormSection>
+            <CRadioGroup
+                v-model="RadioGroupIdOptions"
+                label="Radio group values form id"
+                id="radioGroup"
+                :size="md"
+                />
+              <CButtonGroup
+                v-model="ButtonGroupIdOptions"
+                label="Button group values from id"
+                color="indigo"
+                id="buttonGroup"
+                :size="md"
+              />
+          </CFormSection>
         </div>
         <div class="my-32 p-4">
           <div class="grid grid-cols-4 gap-8 divide-x">
@@ -340,6 +362,8 @@ export default {
       checkValue4: true,
       RadioGroupValue: 'Option 2',
       ButtonGroupValue: 'Option 2',
+      RadioGroupIdOptions: 'Option 2',
+      ButtonGroupIdOptions: 'Option 2',
       Options: [
         'Option 1',
         'Option 2',
