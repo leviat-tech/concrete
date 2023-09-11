@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.10.0](https://github.com/leviat-tech/concrete/compare/v2.9.1...v2.10.0) (2023-09-11)
+
+
+### Features
+
+* automatically generate options from input id ([5d6ce93](https://github.com/leviat-tech/concrete/commit/5d6ce9350523c25bfd647a9856e3003c9ae286c1))
+
+
+### Bug Fixes
+
+* switch sizing is changed ([8adc7ed](https://github.com/leviat-tech/concrete/commit/8adc7ed4067e670fcb7b826d8e7b53fb571493f6))
+
 ## [2.9.1](https://github.com/leviat-tech/concrete/compare/v2.9.0...v2.9.1) (2023-09-08)
 
 
