@@ -125,7 +125,7 @@
           <CFormSection class="">
             <div class="flex space-x-16">
               <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox v-model="checkValue" label="Default 1" />
+                <CCheckbox v-model="checkValue" label="Default 1" id="1234" />
                 <CCheckbox v-model="checkValue2" label="Default 2" />
                 <CCheckbox
                   v-model="checkValue3"

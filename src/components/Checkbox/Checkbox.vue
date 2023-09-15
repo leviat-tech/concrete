@@ -2,7 +2,7 @@
   <component
     :is="wrap ? CFormElement : CFragment"
     v-bind="{
-      id,
+      id: id ? id : autoId,
       label,
       size,
       color,
@@ -58,6 +58,7 @@ import {
   useSizeValue,
   useStackedValue,
 } from '../../composables/forms';
+import { v4 as uuidv4 } from 'uuid';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { useCursorClass } from '../../composables/styles.js';
@@ -73,6 +74,7 @@ const props = defineProps({
   cssClass: String,
 });
 
+const autoId = uuidv4();
 const emit = defineEmits(['update:modelValue', 'change']);
 
 const size = useSizeValue(props.size);
@@ -135,6 +137,6 @@ useRegisterInput(props, switchRef);
 // so we need to override headless UI's default id
 // after the component is mounted
 onMounted(() => {
-  switchRef.value.el.id = props.id;
+  switchRef.value.el.id = props.id ? props.id : autoId;
 });
 </script>
