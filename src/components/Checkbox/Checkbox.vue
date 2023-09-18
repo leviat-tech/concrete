@@ -35,6 +35,7 @@
         class="
           items-center
           border border-gray-300
+          focus:outline-none
         "
         :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
@@ -138,7 +139,7 @@ useRegisterInput(props, switchRef);
 const onMouseDown = (_event) => preventOutline.value = true;
 const onKeyUp = (_event) => preventOutline.value = false;
 
-const outlineClass = computed(() => preventOutline.value ? 'focus:outline-none' : 'focus:ring');
+const outlineClass = computed(() => !preventOutline.value && 'focus:ring');
 
 // The Switch component does not accept an id prop
 // so we need to override headless UI's default id
