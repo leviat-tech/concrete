@@ -28,15 +28,14 @@
         ref="switchRef"
         :disabled="disabled"
         :id="id"
-        @click="onClick"
+        @mousedown="onMouseDown"
+        @mouseup="onMouseUp"
         v-model="enabled"
         class="
           items-center
           border border-gray-300
-          focus:ring
-          focus:outline-none
         "
-        :class="[`h-${sized} w-${sized}`, cursorClass, styleClass]"
+        :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
         <span class="flex justify-center transition-opacity p-[2px]">
           <CheckIcon v-if="enabled" />
@@ -85,6 +84,7 @@ const wrap = !useNoWrapValue(props);
 const switchRef = ref(null);
 const isDirty = ref(false);
 const localValue = ref(null);
+const preventOutline = ref(null);
 
 const enabled = computed({
   get() {
@@ -134,7 +134,19 @@ const styleClass = computed(() => {
 
 useRegisterInput(props, switchRef);
 
-const onClick = (_event) => switchRef.value.el.blur();
+const onMouseDown = (_event) => preventOutline.value = true;
+const onMouseUp = (_event) => {
+  preventOutline.value = false;
+  switchRef.value.el.blur();
+};
+
+const outlineClass = computed(() => {
+  if(preventOutline.value) {
+    return 'focus:outline-none'
+  } else {
+    return 'focus:ring'
+  }
+});
 
 // The Switch component does not accept an id prop
 // so we need to override headless UI's default id
