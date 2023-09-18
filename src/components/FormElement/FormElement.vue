@@ -12,6 +12,7 @@
           class="leading-5 whitespace-nowrap w-full"
           :class="[lineClampClass, labelClass]"
           :for="id"
+          @mousedown="props.onMouseDown?.()"
         >
           {{ label }}
         </label>
@@ -52,6 +53,7 @@ const props = defineProps({
   labelOrder: { type: Number },
   labelClass: String,
   tooltip: String,
+  onMouseDown: Function
 });
 
 const LABEL_ORDER_CLASSES = {

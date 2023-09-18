@@ -15,7 +15,8 @@
       labelOrder: reverseLabels ? 1 : 0,
       labelClass,
       tooltip,
-      cssClass
+      cssClass,
+      onMouseDown
     }"
     :class="{ '!justify-start': reverseLabels }"
   >
@@ -29,7 +30,7 @@
         :disabled="disabled"
         :id="id"
         @mousedown="onMouseDown"
-        @mouseup="onMouseUp"
+        @keyup.tab="onKeyUp"
         v-model="enabled"
         class="
           items-center
@@ -135,10 +136,7 @@ const styleClass = computed(() => {
 useRegisterInput(props, switchRef);
 
 const onMouseDown = (_event) => preventOutline.value = true;
-const onMouseUp = (_event) => {
-  preventOutline.value = false;
-  switchRef.value.el.blur();
-};
+const onKeyUp = (_event) => preventOutline.value = false;
 
 const outlineClass = computed(() => preventOutline.value ? 'focus:outline-none' : 'focus:ring');
 
