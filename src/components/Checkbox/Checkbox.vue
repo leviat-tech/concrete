@@ -140,13 +140,7 @@ const onMouseUp = (_event) => {
   switchRef.value.el.blur();
 };
 
-const outlineClass = computed(() => {
-  if(preventOutline.value) {
-    return 'focus:outline-none'
-  } else {
-    return 'focus:ring'
-  }
-});
+const outlineClass = computed(() => preventOutline.value ? 'focus:outline-none' : 'focus:ring');
 
 // The Switch component does not accept an id prop
 // so we need to override headless UI's default id
