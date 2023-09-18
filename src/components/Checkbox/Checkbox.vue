@@ -28,6 +28,7 @@
         ref="switchRef"
         :disabled="disabled"
         :id="id"
+        @click="onClick"
         v-model="enabled"
         class="
           items-center
@@ -132,6 +133,8 @@ const styleClass = computed(() => {
 });
 
 useRegisterInput(props, switchRef);
+
+const onClick = (_event) => switchRef.value.el.blur();
 
 // The Switch component does not accept an id prop
 // so we need to override headless UI's default id
