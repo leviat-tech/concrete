@@ -15,7 +15,8 @@
       labelOrder: reverseLabels ? 1 : 0,
       labelClass,
       tooltip,
-      cssClass
+      cssClass,
+      onMouseDown
     }"
     :class="{ '!justify-start': reverseLabels }"
   >
@@ -28,14 +29,15 @@
         ref="switchRef"
         :disabled="disabled"
         :id="id"
+        @mousedown="onMouseDown"
+        @keyup.tab="onKeyUp"
         v-model="enabled"
         class="
           items-center
           border border-gray-300
-          focus:ring
           focus:outline-none
         "
-        :class="[`h-${sized} w-${sized}`, cursorClass, styleClass]"
+        :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
         <span class="flex justify-center transition-opacity p-[2px]">
           <CheckIcon v-if="enabled" />
@@ -84,6 +86,7 @@ const wrap = !useNoWrapValue(props);
 const switchRef = ref(null);
 const isDirty = ref(false);
 const localValue = ref(null);
+const preventOutline = ref(null);
 
 const enabled = computed({
   get() {
@@ -132,6 +135,11 @@ const styleClass = computed(() => {
 });
 
 useRegisterInput(props, switchRef);
+
+const onMouseDown = (_event) => preventOutline.value = true;
+const onKeyUp = (_event) => preventOutline.value = false;
+
+const outlineClass = computed(() => !preventOutline.value && 'focus:ring');
 
 // The Switch component does not accept an id prop
 // so we need to override headless UI's default id
