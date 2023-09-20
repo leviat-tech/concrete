@@ -61,7 +61,11 @@ export const componentTemplate = (args) => ({
       return Object.values(this.team);
     },
     columns() {
-      return [{ id: 'name', sortable: true }, { id: 'role' }];
+      return [
+        { id: 'name', sortable: true }, { id: 'role' }, 
+        {id: 'subTest', label: {name: 'V', sub: '1234', space: ' ', unit: '[kN]' }},
+        {id: 'supTest', label: {name: 'S', sup: '1234', space: ' ', unit: '[kN]' }}
+      ];
     },
   },
   template: `
