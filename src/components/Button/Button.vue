@@ -6,9 +6,7 @@
     @click="$emit('click', $event)"
     class="concrete__button"
   >
-    <div>
-      <slot />
-    </div>
+    <slot />
   </button>
 </template>
 

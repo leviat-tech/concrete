@@ -21,13 +21,13 @@ export const componentTemplate = (args) => ({
   },
   data() {
     const team = {
-      1: { id: 1, name: 'lee', role: 'developer', isSelected: false },
-      2: { id: 2, name: 'matt', role: 'developer', isSelected: true },
-      3: { id: 3, name: 'dan', role: 'developer', isSelected: false },
-      4: { id: 4, name: 'yaming', role: 'developer', isSelected: false },
-      5: { id: 5, name: 'pete', role: 'developer', isSelected: false },
-      6: { id: 6, name: 'calum', role: 'developer', isSelected: false },
-      7: { id: 7, name: 'robi', role: 'developer', isSelected: false },
+      1: { id: 1, name: 'lee', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      2: { id: 2, name: 'matt', role: 'developer', labelHtml:'Sub and Super script', isSelected: true },
+      3: { id: 3, name: 'dan', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      4: { id: 4, name: 'yaming', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      5: { id: 5, name: 'pete', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      6: { id: 6, name: 'calum', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      7: { id: 7, name: 'robi', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
     };
     return { team };
   },
@@ -61,7 +61,10 @@ export const componentTemplate = (args) => ({
       return Object.values(this.team);
     },
     columns() {
-      return [{ id: 'name', sortable: true }, { id: 'role' }];
+      return [
+        { id: 'name', sortable: true }, { id: 'role' }, 
+        {id: 'labelHtml', label: {html: '<span>V<sup>3</sup><sub>Ed</sub>[kN]</span>' }},
+      ];
     },
   },
   template: `
