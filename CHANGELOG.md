@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.11.0](https://github.com/leviat-tech/concrete/compare/v2.10.0...v2.11.0) (2023-09-20)
+
+
+### Features
+
+* checkbox label clickable ([#225](https://github.com/leviat-tech/concrete/issues/225)) ([e7c8809](https://github.com/leviat-tech/concrete/commit/e7c8809c59d71c47f11a0ef7cf21b144388b4071))
+* enable label with subscript or superscript in table header ([#228](https://github.com/leviat-tech/concrete/issues/228)) ([a5d9e4e](https://github.com/leviat-tech/concrete/commit/a5d9e4e965c7ac53f4e63f35d7a64bf86429add6))
+
+
+### Bug Fixes
+
+* remove checkout outline on click ([#227](https://github.com/leviat-tech/concrete/issues/227)) ([9e0b6f2](https://github.com/leviat-tech/concrete/commit/9e0b6f2b4fd870d5a5a0169f48209e58c5214637))
+
 ## [2.10.0](https://github.com/leviat-tech/concrete/compare/v2.9.1...v2.10.0) (2023-09-11)
 
 
