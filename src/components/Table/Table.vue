@@ -13,11 +13,7 @@
             @click="() => col.sortable && toggleSort(col.id)"
           >
             <slot :name="`${col.id}.header`">
-              <span v-if="col.label?.name" v-for="(label, propertyName) in col.label">
-                <sup v-if="propertyName === 'sup'">{{label}} </sup>
-                <sub v-else-if="propertyName === 'sub'">{{label}} </sub>
-                <span v-else>{{label}}</span>
-              </span>
+              <span v-if="col.label?.html" v-html="col.label?.html"></span>
               <span v-else :class="col.label || 'uppercase'">
                 {{ col.label || startCase(col.id) }}
               </span>
