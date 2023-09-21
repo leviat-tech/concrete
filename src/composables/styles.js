@@ -32,7 +32,7 @@ const colorClassMap = {
   danger: 'border-danger-light text-danger-darkest',
 };
 
-const layoutClasses = 'block truncate z-20 w-full border text-left'
+const layoutClasses = 'block truncate hover:text-clip z-20 w-full border text-left'
 const focusClasses = 'focus:outline-none focus:ring-1 focus:border-indigo-light focus:ring-indigo-light';
 export const inputStaticClasses = [layoutClasses, focusClasses].join(' ' +
   '');
