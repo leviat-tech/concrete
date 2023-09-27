@@ -135,3 +135,8 @@ export const useInputIdToOptions = (props) => {
   const { inputIdToOptions } = useConcrete();
   return inputIdToOptions?.(props.id) || [];
 }
+
+export const useDefaultSpinner = (props) => {
+  const concrete = useConcrete();
+  return concrete.defaultSpinner;
+}

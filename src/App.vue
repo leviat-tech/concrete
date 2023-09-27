@@ -120,7 +120,28 @@
                 >
                 </CAutoComplete>
               </div>
+              <div>
+                <div class="bg-blue-300 p-1 mb-1">Numeric Inputs</div>
+                <CNumericInput
+                label="Spinner (no override, default)"
+                unit="mm"
+                >
+              </CNumericInput>
+                <CNumericInput
+                label="No Spinner (override, default)"
+                unit="mm"
+                :spinner="false"
+                >
+                </CNumericInput>
+                <CNumericInput
+                label="Spinner (override, default)"
+                unit="mm"
+                :spinner="true"
+                >
+                </CNumericInput>
+              </div>
             </div>
+
           </CFormSection>
           <CFormSection class="">
             <div class="flex space-x-16">
