@@ -11,6 +11,7 @@ export const defaultOptions = {
   wrapFormInputs: true,
   accordionState: reactive({}),
   customUnits: null,
+  defaultSpinner: true,
 };
 
 export const useConcrete = () => {

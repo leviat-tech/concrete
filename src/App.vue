@@ -123,47 +123,19 @@
               <div>
                 <div class="bg-blue-300 p-1 mb-1">Numeric Inputs</div>
                 <CNumericInput
-                label="Spinner (default)"
+                label="Spinner (no override, default)"
                 unit="mm"
                 >
               </CNumericInput>
                 <CNumericInput
-                label="No Spinner (override default)"
+                label="No Spinner (override, default)"
                 unit="mm"
                 :spinner="false"
                 >
                 </CNumericInput>
                 <CNumericInput
-                label="Spinner (override default)"
+                label="Spinner (override, default)"
                 unit="mm"
-                :spinner="true"
-                >
-                </CNumericInput>
-                <CNumericInput
-                label="No Spinner (override noSpinner=true)"
-                unit="mm"
-                :no-spinner="true"
-                :spinner="false"
-                >
-                </CNumericInput>
-                <CNumericInput
-                label="Spinner (override noSpinner=true)"
-                unit="mm"
-                :no-spinner="true"
-                :spinner="true"
-                >
-                </CNumericInput>
-                <CNumericInput
-                label="No Spinner (override noSpinner=false)"
-                unit="mm"
-                :no-spinner="false"
-                :spinner="false"
-                >
-                </CNumericInput>
-                <CNumericInput
-                label="Spinner (override noSpinner=false)"
-                unit="mm"
-                :no-spinner="false"
                 :spinner="true"
                 >
                 </CNumericInput>

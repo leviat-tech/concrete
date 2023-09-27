@@ -89,6 +89,7 @@ import {
   useNoWrapValue,
   useInputValue,
   useRegisterInput,
+  useDefaultSpinner,
 } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
 
@@ -109,7 +110,6 @@ const props = defineProps({
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
   spinner: {type: Boolean, default: null },
-  noSpinner: { type: Boolean, default: false },
   overrideCssStyles: { type: String},
 });
 
@@ -178,7 +178,7 @@ function convertFromDisplayValue(v) {
   return value;
 };
 
-const enableSpinner = !(props.spinner===undefined ||  props.spinner===null) ? props.spinner : !props.noSpinner;
+const enableSpinner = !(props.spinner===undefined ||  props.spinner===null) ? props.spinner : useDefaultSpinner(props);
 
 const inputSpinnerClass = computed(() => {
   return enableSpinner
