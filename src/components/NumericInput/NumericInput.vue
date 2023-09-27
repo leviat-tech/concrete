@@ -108,6 +108,7 @@ const props = defineProps({
   from: { type: String, default: null },
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
+  spinner: {type: Boolean, default: null },
   noSpinner: { type: Boolean, default: false },
   overrideCssStyles: { type: String},
 });
@@ -177,13 +178,18 @@ function convertFromDisplayValue(v) {
   return value;
 };
 
-const inputSpinnerClass = props.noSpinner
-  ? '[-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none'
-  : '';
+const enableSpinner = !(props.spinner===undefined ||  props.spinner===null) ? props.spinner : !props.noSpinner;
+
+const inputSpinnerClass = computed(() => {
+  return enableSpinner
+  ? ''
+  : '[-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none'
+});
+
 
 const cursorClass = useCursorClass(props);
 const paddingClass = computed(() => {
-  return props.readOnly || props.disabled || props.noSpinner ? '' : 'mr-5';
+  return props.readOnly || props.disabled || !enableSpinner ? '' : 'mr-5';
 });
 
 useRegisterInput(props, inputRef);
