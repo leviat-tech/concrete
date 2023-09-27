@@ -178,7 +178,7 @@ function convertFromDisplayValue(v) {
   return value;
 };
 
-const enableSpinner = !(props.spinner===undefined ||  props.spinner===null) ? props.spinner : useDefaultSpinner(props);
+const enableSpinner = (typeof props.spinner === 'boolean') ? props.spinner : useDefaultSpinner(props);
 
 const inputSpinnerClass = computed(() => {
   return enableSpinner
