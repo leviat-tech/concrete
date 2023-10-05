@@ -1,9 +1,5 @@
-<!-- create a cell like component-->
-<!-- 1) create a label like view of the value -->
-<!-- 2) create a label like view of the value when selected
-            border colour change, on first click/selected-->
-<!-- 3) create an input view of the value when edited
-            border colour change, on second click/selected = true, -->
+<!-- when editing the cell data, it is not saving the changes, 
+  it is reverting back to original value when exiting the cell component-->
 <template>
   <component>
     <div>
