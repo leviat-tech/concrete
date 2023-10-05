@@ -4,6 +4,27 @@
       <div class="divide-y divide-gray-300">
         <div class="px-4">
           <CFormSection title="Form Element Test">
+            <div class="bg-blue-300 p-1 mb-1">Concrete Table Component</div>
+            <CFormSection>
+              <CTable
+                :rows="tableTeam"
+                :columns="tableColumns"
+                @add="add"
+                @edit="edit"
+                @delete="delete tableTeam[$event.id]"
+                prepend-class="w-12"
+              >
+                <template #prepend="row">
+                  <input type="checkbox" v-model="row.isSelected" />
+                </template>
+                <template #name="props">
+                  <CInputCell v-bind="props" />
+                </template>
+                <template #role="props">
+                  <CInputCell v-bind="props" />
+                </template>
+              </CTable>
+            </CFormSection>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
               <div class="space-y-4">
                 <div>
@@ -106,9 +127,7 @@
 
                 <div>
                   <div class="bg-blue-300 p-1 mb-1">Listbox with options</div>
-                  <CListbox
-                  :options="Options"
-                  ></CListbox>
+                  <CListbox :options="Options"></CListbox>
                 </div>
               </div>
               <div>
@@ -122,26 +141,22 @@
               </div>
               <div>
                 <div class="bg-blue-300 p-1 mb-1">Numeric Inputs</div>
+                <CNumericInput label="Spinner (no override, default)" unit="mm">
+                </CNumericInput>
                 <CNumericInput
-                label="Spinner (no override, default)"
-                unit="mm"
-                >
-              </CNumericInput>
-                <CNumericInput
-                label="No Spinner (override, default)"
-                unit="mm"
-                :spinner="false"
+                  label="No Spinner (override, default)"
+                  unit="mm"
+                  :spinner="false"
                 >
                 </CNumericInput>
                 <CNumericInput
-                label="Spinner (override, default)"
-                unit="mm"
-                :spinner="true"
+                  label="Spinner (override, default)"
+                  unit="mm"
+                  :spinner="true"
                 >
                 </CNumericInput>
               </div>
             </div>
-
           </CFormSection>
           <CFormSection class="">
             <div class="flex space-x-16">
@@ -247,33 +262,33 @@
           </CFormSection>
           <CFormSection>
             <CRadioGroup
-                v-model="RadioGroupValue"
-                  label="Radio group"
-                  :options="Options"
-                  :size="md"
-                />
-              <CButtonGroup
-                v-model="ButtonGroupValue"
-                label="Button group 01"
-                color="indigo"
-                :options="Options"
-                :size="md"
-              />
+              v-model="RadioGroupValue"
+              label="Radio group"
+              :options="Options"
+              :size="md"
+            />
+            <CButtonGroup
+              v-model="ButtonGroupValue"
+              label="Button group 01"
+              color="indigo"
+              :options="Options"
+              :size="md"
+            />
           </CFormSection>
           <CFormSection>
             <CRadioGroup
-                v-model="RadioGroupIdOptions"
-                label="Radio group values form id"
-                id="radioGroup"
-                :size="md"
-                />
-              <CButtonGroup
-                v-model="ButtonGroupIdOptions"
-                label="Button group values from id"
-                color="indigo"
-                id="buttonGroup"
-                :size="md"
-              />
+              v-model="RadioGroupIdOptions"
+              label="Radio group values form id"
+              id="radioGroup"
+              :size="md"
+            />
+            <CButtonGroup
+              v-model="ButtonGroupIdOptions"
+              label="Button group values from id"
+              color="indigo"
+              id="buttonGroup"
+              :size="md"
+            />
           </CFormSection>
         </div>
         <div class="my-32 p-4">
@@ -323,7 +338,6 @@
               size="xs"
             />
           </div>
-          
         </div>
       </div>
     </div>
@@ -331,19 +345,21 @@
 </template>
 
 <script>
-import CTextInput from './components/TextInput/TextInput.vue';
-import CNumericInput from './components/NumericInput/NumericInput.vue';
-import CListbox from './components/Listbox/Listbox.vue';
-import CSwitch from './components/Switch/Switch.vue';
-import CCheckbox from './components/Checkbox/Checkbox.vue';
-import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
-import CButton from './components/Button/Button.vue';
-import CButtonGroup from './components/ButtonGroup/ButtonGroup.vue';
-import CInputAffix from './components/InputAffix/InputAffix.vue';
-import CFormElement from './components/FormElement/FormElement.vue';
-import CFormSection from './components/FormSection/FormSection.vue';
-import { CResizable, CPane } from './components/Resizable';
-import { XMarkIcon } from '@heroicons/vue/24/solid';
+import CTextInput from "./components/TextInput/TextInput.vue";
+import CNumericInput from "./components/NumericInput/NumericInput.vue";
+import CListbox from "./components/Listbox/Listbox.vue";
+import CSwitch from "./components/Switch/Switch.vue";
+import CCheckbox from "./components/Checkbox/Checkbox.vue";
+import CRadioGroup from "./components/RadioGroup/RadioGroup.vue";
+import CButton from "./components/Button/Button.vue";
+import CButtonGroup from "./components/ButtonGroup/ButtonGroup.vue";
+import CInputAffix from "./components/InputAffix/InputAffix.vue";
+import CFormElement from "./components/FormElement/FormElement.vue";
+import CFormSection from "./components/FormSection/FormSection.vue";
+import CTable from "./components/Table/Table.vue";
+import CInputCell from "./components/Table/InputCell.vue";
+import { CResizable, CPane } from "./components/Resizable";
+import { XMarkIcon } from "@heroicons/vue/24/solid";
 
 export default {
   components: {
@@ -358,6 +374,7 @@ export default {
     CInputAffix,
     CFormElement,
     CFormSection,
+    CTable,
     CResizable,
     CPane,
     XMarkIcon,
@@ -368,7 +385,7 @@ export default {
         firstName: null,
         lastName: null,
         emailAddress: null,
-        country: 'United Kingdom',
+        country: "United Kingdom",
         phoneNo: null,
         birthDay: null,
         birthMonth: null,
@@ -381,42 +398,116 @@ export default {
       checkValue2: true,
       checkValue3: false,
       checkValue4: true,
-      RadioGroupValue: 'Option 2',
-      ButtonGroupValue: 'Option 2',
-      RadioGroupIdOptions: 'Option 2',
-      ButtonGroupIdOptions: 'Option 2',
-      Options: [
-        'Option 1',
-        'Option 2',
-        'Option 3',
-        'Option 4',
-        'Option 5',
-      ],
-      value2: 'Male',
+      RadioGroupValue: "Option 2",
+      ButtonGroupValue: "Option 2",
+      RadioGroupIdOptions: "Option 2",
+      ButtonGroupIdOptions: "Option 2",
+      Options: ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
+      value2: "Male",
       leftPaneSize: null,
       birthMonthOptions: [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
       ],
+      tableColumns: [{ id: "name", sortable: true }, { id: "role" }],
+      tableTeam: {
+        1: {
+          id: 1,
+          name: "lee",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        2: {
+          id: 2,
+          name: "matt",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: true,
+        },
+        3: {
+          id: 3,
+          name: "dan",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        4: {
+          id: 4,
+          name: "yaming",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        5: {
+          id: 5,
+          name: "pete",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        6: {
+          id: 6,
+          name: "calum",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        7: {
+          id: 7,
+          name: "justin",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        8: {
+          id: 8,
+          name: "nikita",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        9: {
+          id: 9,
+          name: "kamil",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        10: {
+          id: 10,
+          name: "nikola",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+        11: {
+          id: 11,
+          name: "marina",
+          role: "developer",
+          labelHtml: "Sub and Super script",
+          isSelected: false,
+        },
+      },
       errors: {
-        emailAddress: 'Not a valid email address',
-        serviceLevel: 'You cant afford it',
+        emailAddress: "Not a valid email address",
+        serviceLevel: "You cant afford it",
       },
     };
   },
   computed: {
     leftPaneClass() {
-      return this.leftPaneSize > 500 ? 'grid-cols-2' : 'grid-cols-1';
+      return this.leftPaneSize > 500 ? "grid-cols-2" : "grid-cols-1";
     },
   },
   methods: {
@@ -430,13 +521,13 @@ export default {
       this.$refs.testid.blur();
     },
     handleBlur(value) {
-      console.log('rerender if necessary');
+      console.log("rerender if necessary");
       alert(
-        'This is a custom handler for the localHandler input. Value: ' + value
+        "This is a custom handler for the localHandler input. Value: " + value
       );
     },
     getInputColor(ref) {
-      return ref ? 'danger' : 'default';
+      return ref ? "danger" : "default";
     },
   },
 };

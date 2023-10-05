@@ -42,21 +42,26 @@
           <slot name="prepend" v-bind="row" />
         </td>
 
-        <td
-          v-for="(col, j) in columns"
-          :class="cellClass || 'py-3 px-2'"
-          :key="`col${j}`"
-        >
-          <slot
+        <td v-for="(col, j) in columns" :key="`col${j}`">
+          <CTableCell
+            :id="col.id + '_' + row.id"
+            :model-value="row[col.id]"
+            @keydown="onKeyDown"
+          />
+          <!-- <slot
+            :readOnly="col.id + '_' + row.id !== temp"
+            @dblclick="onDblClick"
+
             :name="col.id"
-            :value="editingRow?._index === i ? editingRow[col.id] : row[col.id]"
+            :value="(editingRow?._index === i ? editingRow[col.id] : row[col.id])"
             @edit="editingRow[col.id] = $event"
+            @click="onSelect(col.id, row.id, row[col.id])"
             :is-editing="editingRow?._index === i"
             :error="(editingRow?._index === i && errors[col.id]) || undefined"
             :row="row"
           >
-            {{ col?.formatter?.(row[col.id], row) || get(row, col.id) }}
-          </slot>
+          {{ col?.formatter?.(row[col.id], row) || get(row, col.id)  }}
+          </slot> -->
         </td>
 
         <td v-if="editingRow?._index === i">
@@ -135,10 +140,11 @@
 </template>
 
 <script setup>
-import { omit, orderBy, get, startCase } from 'lodash-es';
-import { ref, computed, watch, useAttrs } from 'vue';
-import CIcon from '../Icon/Icon.vue';
-import CPagination from './Pagination.vue';
+import { omit, orderBy, get, startCase } from "lodash-es";
+import { ref, computed, watch, useAttrs } from "vue";
+import CIcon from "../Icon/Icon.vue";
+import CPagination from "./Pagination.vue";
+import CTableCell from "./TableCell.vue";
 
 // TODO: add priority when sorting w/ multiple columns
 const props = defineProps({
@@ -157,12 +163,115 @@ const props = defineProps({
   tableClass: String,
 });
 
-const emit = defineEmits(['change', 'click']);
+function onBlur() {}
+
+const emit = defineEmits(["change", "click"]);
 const attrs = useAttrs();
 
 const editingRow = ref(null);
 const addingRow = ref(null);
 const errors = ref({});
+
+const temp = computed(() => {
+  console.log(document.activeElement.id);
+  return "name_4";
+});
+
+function onDblClick() {
+  console.log(document.activeElement.id);
+  console.log("Parent double click event");
+  document.activeElement.readOnly = false;
+}
+
+const onKeyDown = (e) => {
+  if (e.key.startsWith("Arrow")) {
+    // disable the key arrow press window scrolling
+    // but can't find a way to enable it...
+    window.addEventListener(
+      "keydown",
+      function (e) {
+        if (
+          ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) >
+          -1
+        ) {
+          e.preventDefault();
+        }
+      },
+      false
+    );
+    onArrowKeys(e.key);
+  }
+  return e.key;
+};
+
+function onArrowKeys(key) {
+  const cellId = getNextCellId(
+    props.columns,
+    _rows._value,
+    document.activeElement.id,
+    key
+  );
+  document.getElementById(cellId).focus();
+}
+
+function getNextCellId(columns, rows, selectedId, arrowKeyDirection) {
+  const colId = getColId(columns, selectedId, arrowKeyDirection);
+  const rowId = getRowId(rows, selectedId, arrowKeyDirection);
+  return colId + "_" + rowId;
+}
+
+function getColId(array, selectedId, arrowKeyDirection) {
+  const idDir = getColIdDir(arrowKeyDirection);
+  let arrayIdCurr;
+  for (let i = 0; i < array.length; i++) {
+    if (selectedId.startsWith(array[i].id + "_")) {
+      arrayIdCurr = i;
+      break;
+    }
+  }
+  return getIdDestination(array, arrayIdCurr, idDir);
+}
+
+function getRowId(array, selectedId, arrowKeyDirection) {
+  const idDir = getRowIdDir(arrowKeyDirection);
+  let arrayIdCurr;
+  for (let i = 0; i < array.length; i++) {
+    if (selectedId.endsWith("_" + array[i].id)) {
+      arrayIdCurr = i;
+      break;
+    }
+  }
+  return getIdDestination(array, arrayIdCurr, idDir);
+}
+
+function getColIdDir(arrowKeyDirection) {
+  switch (arrowKeyDirection) {
+    case "ArrowLeft":
+      return -1;
+    case "ArrowRight":
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function getRowIdDir(arrowKeyDirection) {
+  switch (arrowKeyDirection) {
+    case "ArrowUp":
+      return -1;
+    case "ArrowDown":
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function getIdDestination(array, arrayIdCurr, idDir) {
+  const idDest = arrayIdCurr + idDir;
+  const arrayIdDest =
+    idDest >= 0 && idDest <= array.length - 1 ? idDest : arrayIdCurr;
+  return array[arrayIdDest].id;
+}
 
 function beginAddingRow() {
   addingRow.value = {};
@@ -175,24 +284,24 @@ function beginEditingRow(row, index) {
 }
 
 function saveEdit() {
-  const data = omit(editingRow.value, '_index');
+  const data = omit(editingRow.value, "_index");
   const success = () => (editingRow.value = null);
   const error = (_errors) => {
     errors.value = _errors;
   };
-  emit('edit', { data, success, error });
+  emit("edit", { data, success, error });
 }
 
 function saveAdd() {
   const data = addingRow.value;
   const success = () => (addingRow.value = null);
   const error = (_errors) => (errors.value = _errors);
-  emit('add', { data, success, error });
+  emit("add", { data, success, error });
 }
 
 const _columns = computed(() => {
   return props.columns.map((col) =>
-    typeof col === 'string' ? { id: col } : col
+    typeof col === "string" ? { id: col } : col
   );
 });
 
@@ -211,14 +320,14 @@ watch(
 
 function toggleSort(colId) {
   const currentSort = localSort.value[colId];
-  if (currentSort === 'asc') {
-    localSort.value[colId] = 'desc';
-  } else if (currentSort === 'desc') {
+  if (currentSort === "asc") {
+    localSort.value[colId] = "desc";
+  } else if (currentSort === "desc") {
     localSort.value[colId] = null;
   } else {
-    localSort.value[colId] = 'asc';
+    localSort.value[colId] = "asc";
   }
-  emit('change', { sort: localSort.value, pageNumber: localPageNumber.value });
+  emit("change", { sort: localSort.value, pageNumber: localPageNumber.value });
 }
 
 const localPageNumber = ref(props.pageNumber || 1);
@@ -229,7 +338,7 @@ watch(
 
 function selectPageNumber(newPageNumber) {
   localPageNumber.value = newPageNumber;
-  emit('change', { sort: localSort.value, pageNumber: localPageNumber.value });
+  emit("change", { sort: localSort.value, pageNumber: localPageNumber.value });
 }
 
 const _rows = computed(() => {
