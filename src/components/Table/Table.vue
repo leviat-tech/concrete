@@ -49,9 +49,6 @@
             @keydown="onKeyDown"
           />
           <!-- <slot
-            :readOnly="col.id + '_' + row.id !== temp"
-            @dblclick="onDblClick"
-
             :name="col.id"
             :value="(editingRow?._index === i ? editingRow[col.id] : row[col.id])"
             @edit="editingRow[col.id] = $event"
