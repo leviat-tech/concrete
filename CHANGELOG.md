@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.0](https://github.com/leviat-tech/concrete/compare/v2.11.0...v2.12.0) (2023-09-27)
+
+
+### Features
+
+* prop.spinner added to override prop.noSpinner ([#230](https://github.com/leviat-tech/concrete/issues/230)) ([e472f53](https://github.com/leviat-tech/concrete/commit/e472f539fdeb146e02eb995e8311b7d386d09c56))
+
 ## [2.11.0](https://github.com/leviat-tech/concrete/compare/v2.10.0...v2.11.0) (2023-09-20)
 
 
