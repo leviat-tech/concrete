@@ -24,9 +24,6 @@ const bgColorClassRowEdit = "border-b border-blue-500 bg-transparent text-blue-5
 const bgColorClassTransparent = "border-transparent text-black bg-transparent";
 
 const bgColorClassCell = computed(() => {
-  console.log(props.isEditingRow);
-  console.log(props.isCellsEditable);
-  console.log(isEditable.value);
   if (props.isEditingRow) {
     isEditable.value = true;
     return bgColorClassRowEdit;
@@ -41,11 +38,16 @@ const bgColorClassCell = computed(() => {
 })
 const emit = defineEmits(['edit'])
 
-function onClick() {
-  console.log('on click event for input cell')
+function onKeyDownEnter() {
   isEditable.value = true;
 }
-function onFocusOut() {
+function onKeyDownEscape() {
+  isEditable.value = false;
+}
+function onClick() {
+  isEditable.value = true;
+}
+function onBlur() {
   isEditable.value = false;
 }
 
@@ -57,7 +59,6 @@ function onFocusOut() {
       { 'text-red-500 border-red-500': error }, 
       bgColorClassCell,
       inputStaticClasses,
-      mergedSizeClass,
       inputColorClass,
       disabledClass,
       overrideCssStyles,
@@ -67,8 +68,10 @@ function onFocusOut() {
     :value="value"
     :type="typeof value === 'number' ? 'number' : 'text'"
     @input="(e) => emit('edit', e.target.value)"
-    @focusout="onFocusOut"
+    @blur="onBlur"
     @click="onClick"
+    @keydown.enter="onKeyDownEnter"
+    @keydown.escape="onKeyDownEscape"
   />
   <span v-else :class="{ 'text-red-500': error }"> {{ value }} </span>
 </template>
