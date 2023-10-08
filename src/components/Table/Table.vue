@@ -38,27 +38,26 @@
         ]"
         @click="editingRow?._index !== i && emit('click', row)"
       >
-        <td v-if="$slots.prepend">
+      <td v-if="$slots.prepend">
           <slot name="prepend" v-bind="row" />
         </td>
 
         <td v-for="(col, j) in columns" :key="`col${j}`">
-          <CTableCell
-            :id="col.id + '_' + row.id"
-            :model-value="row[col.id]"
-            @keydown="onKeyDown"
-          />
-          <!-- <slot
+          <slot
             :name="col.id"
+            :id="col.id + '_' + row.id"
             :value="(editingRow?._index === i ? editingRow[col.id] : row[col.id])"
-            @edit="editingRow[col.id] = $event"
-            @click="onSelect(col.id, row.id, row[col.id])"
-            :is-editing="editingRow?._index === i"
+            :is-cells-editable="props.isCellsEditable"
+            :is-editing-row="isEditingRow(i) && !props.isCellsEditable"
+            :is-editing-cell="isEditingCell(i, col.id) && props.isCellsEditable"
             :error="(editingRow?._index === i && errors[col.id]) || undefined"
             :row="row"
+            @edit="editingRow[col.id] = $event"
+            @click="beginEditingCell(row, i, col.id, row.id)"
+            @keydown="onKeyDown($event, col.id + '_' + row.id)"
           >
           {{ col?.formatter?.(row[col.id], row) || get(row, col.id)  }}
-          </slot> -->
+          </slot>
         </td>
 
         <td v-if="editingRow?._index === i">
@@ -98,7 +97,7 @@
           <slot
             :name="col.id"
             :value="addingRow[col.id]"
-            :isEditing="true"
+            :isEditingRow="true"
             @edit="addingRow[col.id] = $event"
             :error="(addingRow && errors[col.id]) || undefined"
             :row="addingRow"
@@ -141,7 +140,6 @@ import { omit, orderBy, get, startCase } from "lodash-es";
 import { ref, computed, watch, useAttrs } from "vue";
 import CIcon from "../Icon/Icon.vue";
 import CPagination from "./Pagination.vue";
-import CTableCell from "./TableCell.vue";
 
 // TODO: add priority when sorting w/ multiple columns
 const props = defineProps({
@@ -158,6 +156,7 @@ const props = defineProps({
   cellClass: String,
   headerClass: String,
   tableClass: String,
+  isCellsEditable: Boolean
 });
 
 function onBlur() {}
@@ -165,22 +164,21 @@ function onBlur() {}
 const emit = defineEmits(["change", "click"]);
 const attrs = useAttrs();
 
+const editingCell = ref(null);
 const editingRow = ref(null);
 const addingRow = ref(null);
 const errors = ref({});
 
-const temp = computed(() => {
-  console.log(document.activeElement.id);
-  return "name_4";
-});
 
-function onDblClick() {
-  console.log(document.activeElement.id);
-  console.log("Parent double click event");
-  document.activeElement.readOnly = false;
-}
-
-const onKeyDown = (e) => {
+const onKeyDown = (e, id) => {
+  console.log(props.isCellsEditable);
+  console.log(e.key);
+  if (e.key === 'Escape') {
+    editingCell.value = null;
+  }
+  // if (editingCell.value?._elementId === id) {
+  //   return;
+  // }
   if (e.key.startsWith("Arrow")) {
     // disable the key arrow press window scrolling
     // but can't find a way to enable it...
@@ -275,11 +273,23 @@ function beginAddingRow() {
   editingRow.value = null;
 }
 
+function isEditingRow(i) {
+  return editingRow.value?._index === i;
+}
+
+function isEditingCell(i, colId) {
+  return props.isCellsEditable && editingCell.value?._index === i && editingCell.value?._colId === colId;
+}
+
 function beginEditingRow(row, index) {
   editingRow.value = { ...row, _index: index };
   addingRow.value = null;
 }
-
+function beginEditingCell(row, index, colId, rowId) {
+  editingCell.value =  { ...row, _index: index, _colId: colId, _elementId: colId + '_' + rowId}
+  editingRow.value = null
+  addingRow.value = null;
+}
 function saveEdit() {
   const data = omit(editingRow.value, "_index");
   const success = () => (editingRow.value = null);

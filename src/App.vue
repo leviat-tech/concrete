@@ -7,8 +7,9 @@
             <div class="bg-blue-300 p-1 mb-1">Concrete Table Component</div>
             <CFormSection>
               <CTable
-                :rows="tableTeam"
-                :columns="tableColumns"
+                :rows="rows"
+                :columns="columns"
+                :isCellsEditable="true"
                 @add="add"
                 @edit="edit"
                 @delete="delete tableTeam[$event.id]"
@@ -419,7 +420,6 @@ export default {
         "November",
         "December",
       ],
-      tableColumns: [{ id: "name", sortable: true }, { id: "role" }],
       tableTeam: {
         1: {
           id: 1,
@@ -509,6 +509,19 @@ export default {
     leftPaneClass() {
       return this.leftPaneSize > 500 ? "grid-cols-2" : "grid-cols-1";
     },
+    rows() {
+      return Object.values(this.tableTeam);
+    },
+    columns() {
+      return [
+        { id: "name", sortable: true },
+        { id: "role" },
+        {
+          id: "labelHtml",
+          label: { html: "<span>V<sup>3</sup><sub>Ed</sub>[kN]</span>" },
+        },
+      ];
+    },
   },
   methods: {
     resizePanes(data) {
@@ -528,6 +541,29 @@ export default {
     },
     getInputColor(ref) {
       return ref ? "danger" : "default";
+    },
+    add({ data, success, error }) {
+      if (data.name && data.role) {
+        const id = Date.now();
+        this.team[id] = { ...data, id };
+        success();
+      } else {
+        error({
+          name: !data.name && 'name is required',
+          role: !data.role && 'role is required',
+        });
+      }
+    },
+    edit({ data, success, error }) {
+      if (data.name && data.role) {
+        this.team[data.id] = data;
+        success();
+      } else {
+        error({
+          name: !data.name && 'name is required',
+          role: !data.role && 'role is required',
+        });
+      }
     },
   },
 };
