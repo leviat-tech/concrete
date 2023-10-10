@@ -46,7 +46,7 @@ function onKeyDownEscape() {
   isEditable.value = false;
 }
 function onClick() {
-  if (props.parentEvent === "blur" && onClickCount <= 0) {
+  if ((props.parentEvent === "blur" || props.parentEvent === "") && onClickCount <= 0) {
     onClickCount += 1;
   } else {
     isEditable.value = onClickCount > 0;

@@ -293,7 +293,6 @@ function beginEditingRow(row, index) {
 }
 
 async function beginEditingCell(row, index, colId, rowId) {
-  await nextTick();
   editingCell.value = {
     ...row,
     _index: index,
