@@ -38,7 +38,7 @@
         ]"
         @click="editingRow?._index !== i && emit('click', row)"
       >
-      <td v-if="$slots.prepend">
+        <td v-if="$slots.prepend">
           <slot name="prepend" v-bind="row" />
         </td>
 
@@ -46,17 +46,19 @@
           <slot
             :name="col.id"
             :id="col.id + '_' + row.id"
-            :value="(editingRow?._index === i ? editingRow[col.id] : row[col.id])"
+            :value="editingRow?._index === i ? editingRow[col.id] : row[col.id]"
             :is-cells-editable="props.isCellsEditable"
             :is-editing-row="isEditingRow(i) && !props.isCellsEditable"
             :is-editing-cell="isEditingCell(i, col.id) && props.isCellsEditable"
+            :parent-event="triggeringEvent"
             :error="(editingRow?._index === i && errors[col.id]) || undefined"
             :row="row"
             @edit="editingRow[col.id] = $event"
             @click="beginEditingCell(row, i, col.id, row.id)"
             @keydown="onKeyDown($event, col.id + '_' + row.id)"
+            @blur="onBlur"
           >
-          {{ col?.formatter?.(row[col.id], row) || get(row, col.id)  }}
+            {{ col?.formatter?.(row[col.id], row) || get(row, col.id) }}
           </slot>
         </td>
 
@@ -137,7 +139,7 @@
 
 <script setup>
 import { omit, orderBy, get, startCase } from "lodash-es";
-import { ref, computed, watch, useAttrs } from "vue";
+import { ref, computed, watch, useAttrs, nextTick } from "vue";
 import CIcon from "../Icon/Icon.vue";
 import CPagination from "./Pagination.vue";
 
@@ -156,10 +158,8 @@ const props = defineProps({
   cellClass: String,
   headerClass: String,
   tableClass: String,
-  isCellsEditable: Boolean
+  isCellsEditable: Boolean,
 });
-
-function onBlur() {}
 
 const emit = defineEmits(["change", "click"]);
 const attrs = useAttrs();
@@ -167,39 +167,41 @@ const attrs = useAttrs();
 const editingCell = ref(null);
 const editingRow = ref(null);
 const addingRow = ref(null);
+
 const errors = ref({});
+const triggeringEvent = ref("");
 
-
-const onKeyDown = (e, id) => {
-  console.log(props.isCellsEditable);
-  console.log(e.key);
-  if (e.key === 'Escape') {
-    editingCell.value = null;
-  }
-  // if (editingCell.value?._elementId === id) {
-  //   return;
-  // }
+async function onBlur() {
+  triggeringEvent.value = "blur";
+  await nextTick();
+}
+const onKeyDown = (e) => {
   if (e.key.startsWith("Arrow")) {
     // disable the key arrow press window scrolling
     // but can't find a way to enable it...
-    window.addEventListener(
-      "keydown",
-      function (e) {
-        if (
-          ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) >
-          -1
-        ) {
-          e.preventDefault();
-        }
-      },
-      false
-    );
+    // window.addEventListener(
+    //   "keydown",
+    //   function (e) {
+    //     if (
+    //       ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) >
+    //       -1
+    //     ) {
+    //       e.preventDefault();
+    //     }
+    //   },
+    //   false
+    // );
     onArrowKeys(e.key);
   }
   return e.key;
 };
 
-function onArrowKeys(key) {
+async function onArrowKeys(key) {
+  triggeringEvent.value = "keyDown";
+  await nextTick();
+  if (!document.activeElement.readOnly) {
+    return key;
+  };
   const cellId = getNextCellId(
     props.columns,
     _rows._value,
@@ -278,18 +280,30 @@ function isEditingRow(i) {
 }
 
 function isEditingCell(i, colId) {
-  return props.isCellsEditable && editingCell.value?._index === i && editingCell.value?._colId === colId;
+  return (
+    props.isCellsEditable &&
+    editingCell.value?._index === i &&
+    editingCell.value?._colId === colId
+  );
 }
 
 function beginEditingRow(row, index) {
   editingRow.value = { ...row, _index: index };
   addingRow.value = null;
 }
-function beginEditingCell(row, index, colId, rowId) {
-  editingCell.value =  { ...row, _index: index, _colId: colId, _elementId: colId + '_' + rowId}
-  editingRow.value = null
+
+async function beginEditingCell(row, index, colId, rowId) {
+  await nextTick();
+  editingCell.value = {
+    ...row,
+    _index: index,
+    _colId: colId,
+    _elementId: colId + "_" + rowId,
+  };
+  editingRow.value = null;
   addingRow.value = null;
 }
+
 function saveEdit() {
   const data = omit(editingRow.value, "_index");
   const success = () => (editingRow.value = null);

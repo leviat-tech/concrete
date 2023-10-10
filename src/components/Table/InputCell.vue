@@ -1,17 +1,14 @@
 <script setup>
-import { computed, ref } from "vue";
-import {
-  inputStaticClasses,
-  useInputClasses,
-} from "../../composables/styles";
-const { mergedSizeClass, inputColorClass, bgColorClass, disabledClass } =
-  useInputClasses(props);
+import { computed, ref, nextTick } from "vue";
+import { inputStaticClasses, useInputClasses } from "../../composables/styles";
+const { inputColorClass, bgColorClass, disabledClass } = useInputClasses(props);
 
-  const props = defineProps({
+const props = defineProps({
   value: [String, Number],
   isEditingRow: Boolean,
   isEditingCell: Boolean,
   isCellsEditable: Boolean,
+  parentEvent: String,
   row: Object,
   error: String,
   overrideCssStyles: { type: String },
@@ -20,55 +17,62 @@ const { mergedSizeClass, inputColorClass, bgColorClass, disabledClass } =
 // create edit view
 // add Escape key event
 let isEditable = ref(false);
-const bgColorClassRowEdit = "border-b border-blue-500 bg-transparent text-blue-500 outline-none"
+let isSelected = ref(false);
+const bgColorClassRowEdit =
+  "border-b border-blue-500 bg-transparent text-blue-500 outline-none";
 const bgColorClassTransparent = "border-transparent text-black bg-transparent";
-
 const bgColorClassCell = computed(() => {
-  if (props.isEditingRow) {
-    isEditable.value = true;
+  if (props.isCellsEditable) {
+    const inputClass = [inputStaticClasses, inputColorClass, disabledClass];
+    if (isEditable.value) {
+      return [bgColorClass, ...inputClass];
+    } else {
+      return [bgColorClassTransparent, ...inputClass];
+    }
+  } else {
     return bgColorClassRowEdit;
   }
-  else if (props.isCellsEditable && isEditable.value) {
-    return bgColorClass;
-  }
-  else if (props.isCellsEditable ) {
-    isEditable.value = false;
-    return bgColorClassTransparent;
-  }
-})
-const emit = defineEmits(['edit'])
+});
+const emit = defineEmits(["edit"]);
+
+let onClickCount = 0;
 
 function onKeyDownEnter() {
-  isEditable.value = true;
+  isEditable.value = onClickCount > 0;
+  onClickCount += 1;
 }
 function onKeyDownEscape() {
+  onClickCount = 0;
   isEditable.value = false;
 }
 function onClick() {
-  isEditable.value = true;
+  if (props.parentEvent === "blur" && onClickCount <= 0) {
+    onClickCount += 1;
+  } else {
+    isEditable.value = onClickCount > 0;
+  }
 }
-function onBlur() {
+async function onBlur() {
+  onClickCount = 0;
   isEditable.value = false;
 }
-
+function onFocus() {
+  if (props.parentEvent === "keyDown") {
+    onClickCount += 1;
+  }
+}
 </script>
 
 <template>
   <input
-    :class="[
-      { 'text-red-500 border-red-500': error }, 
-      bgColorClassCell,
-      inputStaticClasses,
-      inputColorClass,
-      disabledClass,
-      overrideCssStyles,
-    ]"
+    :class="[{ 'text-red-500 border-red-500': error }, bgColorClassCell]"
     v-if="isEditingRow || isCellsEditable || isEditingCell"
     :readOnly="!isEditable"
     :value="value"
     :type="typeof value === 'number' ? 'number' : 'text'"
     @input="(e) => emit('edit', e.target.value)"
     @blur="onBlur"
+    @focus="onFocus"
     @click="onClick"
     @keydown.enter="onKeyDownEnter"
     @keydown.escape="onKeyDownEscape"
