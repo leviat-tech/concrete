@@ -178,6 +178,7 @@ async function onBlur() {
 const onKeyDown = (e) => {
   if (e.key.startsWith("Arrow")) {
     // disable the key arrow press window scrolling
+    // also disables the arrow key default for navigating the cell input when it has focus
     // but can't find a way to enable it...
     // window.addEventListener(
     //   "keydown",
