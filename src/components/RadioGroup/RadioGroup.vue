@@ -16,11 +16,11 @@
     }"
   >
     <div
-      class="flex bg-steel-lightest p-0.5 w-full border border-steel"
+      class="inline-flex items-center bg-white border border-steel"
       :class="[textSizeClass, disabledClass]"
     >
       <RadioGroup
-        class="concrete__radiogroup"
+        class="concrete__radiogroup space-x-2 px-3"
         v-model="value"
         ref="el"
         :disabled="disabled"
@@ -32,16 +32,16 @@
           :value="option"
           v-slot="{ checked }"
         >
-          <div class="flex cursor-pointer mr-4">
+          <div class="flex cursor-pointer p-1 select-none">
             <span
-              class="ml-2 self-center grow text-right"
+              class="self-center grow text-right"
               :class="[inputColorClass, labelClasses]"
             >
               {{ props.formatter ? props.formatter(option) : option }}</span
             >
             <svg
               :class="[
-                heightClass,
+                iconSizeClass,
                 svgColour,
                 reverseLabels ? 'order-1' : '',
               ]"
@@ -79,7 +79,7 @@ import {
   useInputValue,
   useRegisterInput,
   useStackedValue,
-  useInputIdToOptions
+  useInputIdToOptions, useSizeValue
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 
@@ -110,6 +110,8 @@ const isDirty = ref(false);
 const localValue = ref(null);
 const el = ref(null);
 
+const size = useSizeValue(props.size);
+
 const emit = defineEmits(['update:modelValue', 'change']);
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 useRegisterInput(props, el);
@@ -117,8 +119,11 @@ useRegisterInput(props, el);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 
-const { inputColorClass, disabledClass, textSizeClass, heightClass } =
+const { inputColorClass, disabledClass, textSizeClass, heightClass, mergedSizeClass } =
   useInputClasses(props);
+
+const iconSizeClass = size === 'xs' ? 'w-6 h-6' : heightClass;
+
 
 const layoutClass = computed(() => {
   if (props.columns > 0) return `grid grid-flow-row grid-cols-${props.columns}`;

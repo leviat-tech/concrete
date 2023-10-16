@@ -67,13 +67,12 @@
         </div>
 
         <transition
-          enter-from-class="transition opacity-0 duration-150 ease-in -translate-y-6"
-          leave-to-class="transition opacity-0 duration-150"
-          enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
+          enter-from-class="opacity-0 -mt-4"
+          leave-to-class="opacity-0"
           name="listbox"
         >
           <ListboxOptions
-            class="absolute z-30 w-full bg-white shadow-lg focus:outline-none overflow-y-auto"
+            class="transition-all mt-1 duration-200 absolute z-30 w-full bg-white shadow-lg outline-none overflow-y-auto"
             :class="[optionsSizeClass, maxOptionsHeightClass]"
           >
             <ListboxOption
@@ -86,26 +85,15 @@
             >
               <li
                 :class="[
-                  active ? 'text-white bg-indigo' : 'text-gray-900',
-                  'cursor-default select-none relative py-2 pl-3 pr-8',
+                  option.disabled ? 'text-opacity-50' : 'cursor-pointer hover:bg-gray-50',
+                  'select-none relative py-2 pl-3 pr-8 text-black',
                 ]"
               >
-                <span
-                  :class="[
-                    selected ? 'font-semibold' : 'font-normal',
-                    'block truncate',
-                  ]"
-                >
+                <div class="truncate" :class="selected ? 'font-semibold' : 'font-normal'">
                   {{ option.label }}
-                </span>
+                </div>
 
-                <span
-                  v-if="selected"
-                  :class="[
-                    active ? 'text-white' : 'text-indigo',
-                    'absolute inset-y-0 right-0 flex items-center pr-4',
-                  ]"
-                >
+                <span v-if="selected" class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <CheckIcon class="h-5 w-5" aria-hidden="true" />
                 </span>
               </li>

@@ -18,11 +18,12 @@
       cssClass,
       onMouseDown
     }"
+    class="flex items-center"
     :class="{ '!justify-start': reverseLabels }"
   >
     <div
-      class="concrete__checkbox flex pt-1 px-2"
-      :class="[reverseLabels && 'order-1',cssClass]"
+      class="concrete__checkbox flex px-2"
+      :class="[reverseLabels ? 'order-1 pr-2' : 'px-2', cssClass]"
     >
       <span class="sr-only">{{ srLabel }}</span>
       <Switch
@@ -33,14 +34,18 @@
         @keyup.tab="onKeyUp"
         v-model="enabled"
         class="
+        transition-all
+        duration-100
           items-center
           border border-gray-300
           focus:outline-none
         "
         :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
-        <span class="flex justify-center transition-opacity p-[2px]">
-          <CheckIcon v-if="enabled" />
+        <span class="flex justify-center transition-opacity p-px">
+          <transition>
+            <CheckIcon v-if="enabled" class="transition delay-200"/>
+          </transition>
         </span>
       </Switch>
     </div>
@@ -103,7 +108,7 @@ const enabled = computed({
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
 const cursorClass = useCursorClass(props, 'cursor-pointer');
-const sized = { xs: 5, sm: 7, md: 10, lg: 12 }[size];
+const sized = { xs: 4, sm: 5, md: 7, lg: 10 }[size];
 
 const styleClass = computed(() => {
   const colour = props.color ? props.color : 'default';
@@ -112,24 +117,24 @@ const styleClass = computed(() => {
     return 'bg-gray-200 text-gray-400';
   } else if (enabled.value) {
     return {
-      default: 'bg-indigo text-white focus:ring-indigo-light',
-      indigo: 'bg-indigo text-white focus:ring-indigo-light',
-      sky: 'bg-sky text-white focus:ring-sky-light',
-      steel: 'bg-steel text-white focus:ring-steel-light',
-      success: 'bg-success text-white focus:ring-success-light',
-      warning: 'bg-warning text-white focus:ring-warning-light',
-      danger: 'bg-danger text-white focus:ring-danger-light',
+      default: 'bg-indigo border-indigo text-white focus:ring-indigo-light',
+      indigo: 'bg-indigo border-indigo text-white focus:ring-indigo-light',
+      sky: 'bg-sky border-sky text-white focus:ring-sky-light',
+      steel: 'bg-steel border-steel text-white focus:ring-steel-light',
+      success: 'bg-success border-success text-white focus:ring-success-light',
+      warning: 'bg-warning border-warning text-white focus:ring-warning-light',
+      danger: 'bg-danger border-danger text-white focus:ring-danger-light',
     }[colour];
   } else {
     return {
-      transparent: 'bg-transparent focus:ring-indigo-light',
-      default: 'bg-white  focus:ring-indigo-light',
-      indigo: 'bg-white  focus:ring-indigo-light',
-      sky: 'bg-white  focus:ring-sky-light',
-      steel: 'bg-white  focus:ring-steel-light',
-      success: 'bg-white  focus:ring-success-light',
-      warning: 'bg-white  focus:ring-warning-light',
-      danger: 'bg-white  focus:ring-danger-light',
+      transparent: 'bg-transparent text-white focus:ring-indigo-light',
+      default: 'bg-white text-white focus:ring-indigo-light',
+      indigo: 'bg-white text-white focus:ring-indigo-light',
+      sky: 'bg-white text-white focus:ring-sky-light',
+      steel: 'bg-white text-white focus:ring-steel-light',
+      success: 'bg-white text-white focus:ring-success-light',
+      warning: 'bg-white text-white focus:ring-warning-light',
+      danger: 'bg-white text-white focus:ring-danger-light',
     }[style];
   }
 });
