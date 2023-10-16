@@ -2,7 +2,7 @@ import { computed } from 'vue';
 import { useInputStatus, useSizeValue } from './forms';
 
 const heightClassMap = {
-  xs: 'h-6',
+  xs: 'h-8',
   sm: 'h-8',
   md: 'h-10',
   lg: 'h-12',
