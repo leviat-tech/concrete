@@ -16,8 +16,8 @@
       }"
     >
       <div
-        class="flex bg-steel-lightest p-0.5 w-full border border-steel"
-        :class="[textSizeClass, disabledClass]"
+        class="flex pb-px pr-px"
+        :class="[disabledClass]"
       >
         <RadioGroup
           class="concrete__buttongroup"
@@ -36,17 +36,11 @@
               :class="[inputColorClass]"
             >
             <CButton
+              class="-mb-px -mr-px"
                 :id=option
-                :color=getColor(checked)
-                :class="[size]"
-                v-if="!checked"
-                >{{ getFormattedText(option) }}
-              </CButton>
-              <CButton
-                :id=option
-                :color=getColor(checked)
-                :class="[size]"
-                v-if="checked"
+                :color="color"
+                :fill="checked ? 'solid' : 'outline'"
+                :size="size"
                 >{{ getFormattedText(option) }}
               </CButton>
           </span>
@@ -69,10 +63,10 @@
     useInputValue,
     useRegisterInput,
     useStackedValue,
-    useInputIdToOptions
+    useInputIdToOptions, useSizeValue
   } from '../../composables/forms.js';
   import { useEventHandler } from '../../composables/events.js';
-  
+
   const props = defineProps({
     ...formElementProps,
     modelValue: [String, Object, Array],
@@ -94,33 +88,34 @@
       onChange();
     },
   });
-  
+
   const isDirty = ref(false);
   const localValue = ref(null);
   const el = ref(null);
-  
+
+  const size = useSizeValue(props.size);
+
   const emit = defineEmits(['update:modelValue', 'change']);
   const onChange = useEventHandler('change', props, emit, localValue, isDirty);
   useRegisterInput(props, el);
-  
+
   const stacked = useStackedValue(props.stacked);
   const wrap = !useNoWrapValue(props);
-  
-  const { inputColorClass, disabledClass, textSizeClass, heightClass } =
+
+  const { inputColorClass, disabledClass } =
     useInputClasses(props);
-  
+
   const layoutClass = computed(() => {
     if (props.columns > 0) return `grid grid-flow-row grid-cols-${props.columns}`;
-  
-    return 'flex flex-wrap justify-end';
+
+    return 'flex flex-wrap';
   });
   function getColor(checked) {
     return checked ? props.color : 'steel';
-  };
+  }
   function getFormattedText(option) {
     return props.formatter ? props.formatter(option) : option;
-  };
+  }
 
   const opts = computed(() => useInputIdToOptions(props));
   </script>
-  

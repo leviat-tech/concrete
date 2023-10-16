@@ -2,6 +2,7 @@ import { reactive } from 'vue';
 
 // Inputs and Form Components
 import CButton from './components/Button/Button.vue';
+import CButtonGroup from './components/ButtonGroup/ButtonGroup.vue';
 import CSwitch from './components/Switch/Switch.vue';
 import CTextInput from './components/TextInput/TextInput.vue';
 import CTextArea from './components/TextArea/TextArea.vue';
@@ -39,6 +40,7 @@ import tooltip from './directives/tooltip';
 const allComponents = {
   CAccordion,
   CButton,
+  CButtonGroup,
   CCheckbox,
   CDraggablePath,
   CDraggablePoint,
@@ -107,6 +109,7 @@ export default {
 export {
   CAccordion,
   CButton,
+  CButtonGroup,
   CCheckbox,
   CDraggablePath,
   CDraggablePoint,
