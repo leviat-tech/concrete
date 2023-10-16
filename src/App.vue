@@ -107,7 +107,8 @@
                 <div>
                   <div class="bg-blue-300 p-1 mb-1">Listbox with options</div>
                   <CListbox
-                  :options="Options"
+                    v-model="ListboxValue"
+                    :options="OptionsObjects"
                   ></CListbox>
                 </div>
               </div>
@@ -115,7 +116,6 @@
                 <div class="bg-blue-300 p-1 mb-1">Autocomplete</div>
                 <CAutoComplete
                   :options="['a', 'b', 'aa', 'bb', 'ab']"
-                  size="sm"
                   placeholder="Enter 'a' or 'b'"
                 >
                 </CAutoComplete>
@@ -246,34 +246,30 @@
             </div>
           </CFormSection>
           <CFormSection>
-            <CRadioGroup
+            <div class="space-y-2">
+              <CRadioGroup
                 v-model="RadioGroupValue"
-                  label="Radio group"
-                  :options="Options"
-                  :size="md"
-                />
+                label="Radio group"
+                :options="Options"
+              />
               <CButtonGroup
                 v-model="ButtonGroupValue"
                 label="Button group 01"
                 color="indigo"
                 :options="Options"
-                :size="md"
               />
-          </CFormSection>
-          <CFormSection>
-            <CRadioGroup
+              <CRadioGroup
                 v-model="RadioGroupIdOptions"
                 label="Radio group values form id"
                 id="radioGroup"
-                :size="md"
-                />
+              />
               <CButtonGroup
                 v-model="ButtonGroupIdOptions"
                 label="Button group values from id"
                 color="indigo"
                 id="buttonGroup"
-                :size="md"
               />
+            </div>
           </CFormSection>
         </div>
         <div class="my-32 p-4">
@@ -323,7 +319,7 @@
               size="xs"
             />
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -342,7 +338,7 @@ import CButtonGroup from './components/ButtonGroup/ButtonGroup.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
-import { CResizable, CPane } from './components/Resizable';
+import { CPane, CResizable } from './components/Resizable';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 export default {
@@ -381,6 +377,7 @@ export default {
       checkValue2: true,
       checkValue3: false,
       checkValue4: true,
+      ListboxValue: 'Option 3',
       RadioGroupValue: 'Option 2',
       ButtonGroupValue: 'Option 2',
       RadioGroupIdOptions: 'Option 2',
@@ -391,6 +388,38 @@ export default {
         'Option 3',
         'Option 4',
         'Option 5',
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Option 4',
+        'Option 5',
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Option 4',
+        'Option 5',
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Option 4',
+        'Option 5',
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Option 4',
+        'Option 5',
+        'Option 1',
+        'Option 2',
+        'Option 3',
+        'Option 4',
+        'Option 5',
+      ],
+      OptionsObjects: [
+        { label: 'Option 1', value: 'Option 1', disabled: false },
+        { label: 'Option 2', value: 'Option 2', disabled: false },
+        { label: 'Option 3', value: 'Option 3', disabled: false },
+        { label: 'Option 4', value: 'Option 4', disabled: true },
+        { label: 'Option 5', value: 'Option 5', disabled: false },
       ],
       value2: 'Male',
       leftPaneSize: null,

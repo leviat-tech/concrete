@@ -40,9 +40,7 @@ const statusStore = reactive({
 window.statusStore = statusStore;
 
 const app = createApp(App);
-app.directive("tooltip", tooltip);
 concrete.install(app, {
-  size: 'md',
   inputIdToValue: (id) => {
     return store[id]
   },
@@ -51,8 +49,8 @@ concrete.install(app, {
 
     store[id] = value;
   },
-  inputIdToOptions: (_id) => {
-    return options;
+  inputIdToOptions: (id) => {
+    return id ? options : [];
   },
   registerInputs: (id, el) => {
     console.log(`Registered input with id '${id}'`);
