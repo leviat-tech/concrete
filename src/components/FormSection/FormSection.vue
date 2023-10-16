@@ -12,7 +12,7 @@
       </div>
     </slot>
 
-    <div class="w-full">
+    <div class="w-full" :class="innerClass">
       <slot />
     </div>
   </div>
@@ -31,6 +31,7 @@ const props = defineProps({
   title: { type: String, default: '' },
   underline: { type: Boolean, default: false },
   stacked: { type: Boolean },
+  innerClass: String,
 });
 
 const { inputColorClass, textSizeClass } = useInputClasses(props);
