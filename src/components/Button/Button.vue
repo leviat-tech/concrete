@@ -35,7 +35,7 @@ const emit = defineEmits(['click']);
 const size = useSizeValue(props.size);
 
 const sizeClass = {
-  xs: 'h-6 text-xs py-0.5',
+  xs: 'h-8 text-xs py-0.5',
   sm: 'h-8 text-sm py-1',
   md: 'h-10 text-base py-2',
   lg: 'h-12 text-lg py-2',
@@ -44,48 +44,49 @@ const sizeClass = {
 const cursorClass = useCursorClass(props);
 const paddingClass = (props.customPadding) ? '' : 'px-4';
 
-const color = (!props.color || props.color === 'default') ? 'indigo' : props.color;
+const color = computed(() => (!props.color || props.color === 'default') ? 'indigo' : props.color);
 const colorClass = computed(() => {
+  const colorValue = color.value;
+
   let className = '';
   if(props.fill === 'solid') {
     className += 'border';
     if(props.disabled) {
-      className += ` border-${color}-light bg-${color}-light text-${color}-lightest`;
+      className += ` border-${colorValue}-light bg-${colorValue}-light text-${colorValue}-lightest`;
     }
     else {
-      className += ` text-white hover:border-${color}-dark hover:bg-${color}-dark`;
-      if (props.active) { 
-        className += ` border-${color}-darkest bg-${color}-darkest `;
+      className += ` text-white hover:border-${colorValue}-dark hover:bg-${colorValue}-dark`;
+      if (props.active) {
+        className += ` border-${colorValue}-darkest bg-${colorValue}-darkest `;
       }
       else {
-        className += ` border-${color} bg-${color} `;
+        className += ` border-${colorValue} bg-${colorValue} `;
       }
     }
   } else if (props.fill === 'outline') {
     className += 'border';
     if(props.disabled) {
-      className += ` border-${color}-lightest text-${color}-lightest`;
+      className += ` border-${colorValue}-lightest text-${colorValue}-lightest`;
     }
     else {
-      className += ` hover:text-white hover:bg-${color}`;
-      if (props.active) { 
-        className += `  bg-${color}-darkest border-${color}-darkest text-white`;
+      if (props.active) {
+        className += `  bg-${colorValue}-darkest border-${colorValue}-darkest text-white`;
       }
       else {
-        className += ` border-${color} text-${color}`;
+        className += ` border-${colorValue} text-${colorValue}`;
       }
     }
   } else {
     if(props.disabled) {
-      className += `text-${color}-light`;
+      className += `text-${colorValue}-light`;
     }
     else {
-      className += `text-${color} hover:text-${color}-dark`;
-      if (props.active) { 
-        className += `  text-${color}-darkest `;
+      className += `text-${colorValue} hover:text-${colorValue}-dark`;
+      if (props.active) {
+        className += `  text-${colorValue}-darkest `;
       }
       else {
-        className += ` text-${color}`;
+        className += ` text-${colorValue}`;
       }
     }
   }
