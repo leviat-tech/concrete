@@ -16,13 +16,13 @@
           ]"
           class="flex-none mr-2"
         />
-        <slot name="customTitle" v-if="$slots.customTitle" />
-        <span v-else :class="titleClass">{{ title }}</span>
+        <span :class="titleClass">{{ title }}</span>
       </div>
 
       <slot v-else name="title" :open="open" />
     </DisclosureButton>
 
+        <slot name="customTitle" v-if="$slots.customTitle" />
     <DisclosurePanel static>
       <div
         class="relative overflow-y-auto"
