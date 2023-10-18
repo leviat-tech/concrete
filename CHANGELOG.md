@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.13.0](https://github.com/leviat-tech/concrete/compare/v2.12.0...v2.13.0) (2023-10-18)
+
+
+### Features
+
+* add innerClass to CFormSection ([0c32d26](https://github.com/leviat-tech/concrete/commit/0c32d26692f6c15aff4866e2e5dc73a1016a8f96))
+
+
+### Bug Fixes
+
+* fixed incorrect placement of customTitle slot ([#234](https://github.com/leviat-tech/concrete/issues/234)) ([8ba99a2](https://github.com/leviat-tech/concrete/commit/8ba99a2d0daa0750d0c9494684229e535ef9299a))
+* improve ButtonGroup styling and add to exports ([b190290](https://github.com/leviat-tech/concrete/commit/b1902907145966ab6a376b59be7fe418ff92cd80))
+* improve Checkbox, Listbox and RadioGroup styling ([9fab3cf](https://github.com/leviat-tech/concrete/commit/9fab3cffa9ac885e928cd723f68a38bf3766a892))
+* remove fill on hover on outlined buttons ([8e9182d](https://github.com/leviat-tech/concrete/commit/8e9182d97bddb5472a102f9824d3688b0676bbd1))
+* update xs default height ([af55eea](https://github.com/leviat-tech/concrete/commit/af55eea8e9878e8d76f80e9224a824e9aafdceff))
+
 ## [2.12.0](https://github.com/leviat-tech/concrete/compare/v2.11.0...v2.12.0) (2023-09-27)
 
 
