@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.13.1](https://github.com/leviat-tech/concrete/compare/v2.13.0...v2.13.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* allow numbers on listbox model values ([d114dec](https://github.com/leviat-tech/concrete/commit/d114dec4f24683db09214a788eba406313c9cdd0))
+
 ## [2.13.0](https://github.com/leviat-tech/concrete/compare/v2.12.0...v2.13.0) (2023-10-18)
 
 
