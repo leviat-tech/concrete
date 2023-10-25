@@ -137,7 +137,7 @@ import CInputAffix from '../InputAffix/InputAffix.vue';
 
 const props = defineProps({
   ...formElementProps,
-  modelValue: [String, Object, Array],
+  modelValue: [String, Object, Array, Number],
   options: {
     type: Array,
     default(rawProps) {
