@@ -4,6 +4,8 @@ const conversions = {
   m: {
     mm: (mm) => mm.div(1000.0),
     cm: (cm) => cm.div(100.0),
+    in: (inch) => inch.div(39.37007874),
+    ft: (ft) => ft.div(3.280839895),
   },
   mm: {
     m: (m) => m.times(1000.0),
@@ -71,6 +73,12 @@ const conversions = {
   MPa: {
     'N/m²': (nm2) => nm2.times(1000000),
   },
+  in: {
+    m: (inch) => inch.times(39.37007874),
+  },
+  ft: {
+    m: (ft) => ft.times(3.280839895),
+  },
 };
 
 const unitToSIMap = {
@@ -95,6 +103,8 @@ const unitToSIMap = {
   'kN/m³': 'N/m³',
   'N/mm³': 'N/m³',
   MPa: 'N/m²',
+  in: 'm',
+  ft: 'm',
 };
 
 const aliases = {
