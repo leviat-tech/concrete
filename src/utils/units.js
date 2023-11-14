@@ -65,7 +65,7 @@ const conversions = {
   Nm: {
     kNm: (knm) => knm.times(1000),
     MNm: (mnm) => mnm.times(1000000),
-    'lbf in': (lbfin) => lbfin.times(0.1129848290276167),
+    lbfin: (lbfin) => lbfin.times(0.1129848290276167),
   },
   MNm: {
     Nm: (nm) => nm.div(1000000),
@@ -86,7 +86,7 @@ const conversions = {
     N: (lbf) => lbf.div(4.4482216152605),
     kN: (lbf) => lbf.div(0.0044482216152605),
   },
-  'lbf in': {
+  lbfin: {
     Nm: (lbf) => lbf.div(0.1129848290276167),
   },
   kip: {
