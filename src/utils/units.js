@@ -25,8 +25,8 @@ const conversions = {
   },
   kN: {
     N: (N) => N.div(1000),
-    lbf: (lbf) => lbf.div(224.809),
-    kip: (kip) => kip.div(0.224809),
+    lbf: (lbf) => lbf.div(224.8089431),
+    kip: (kip) => kip.div(0.224809)
   },
   MN: {
     N: (N) => N.div(1000000),
@@ -81,13 +81,13 @@ const conversions = {
   ft: {
     m: (ft) => ft.div(0.3048),
   },
-  lbf: {
-    kN: (lbf) => lbf.times(224.809),
+  lbf:{
+    kN: (lbf) => lbf.times(224.8089431),
   },
-  'lbf in': {
-    lbf: (lbf) => lbf.div(224.809),
+  'lbf in':{
+    lbf: (lbf)=>lbf.div(224.809)
   },
-  kip: (kip) => kip.times(0.224809),
+  kip: (kip) => kip.times(0.224809)
 };
 
 const unitToSIMap = {
@@ -112,10 +112,11 @@ const unitToSIMap = {
   'kN/m³': 'N/m³',
   'N/mm³': 'N/m³',
   MPa: 'N/m²',
-  in: 'm',
-  ft: 'm',
-  lbf: 'kN',
-  'lbf in': 'lbf',
+  in:'m',
+  ft:'m',
+  lbf:'kN',
+  'lbf in':'lbf',
+  kip:'kN'
 };
 
 const aliases = {
