@@ -118,8 +118,8 @@ const unitToSIMap = {
   MPa: 'N/m²',
   in: 'm',
   ft: 'm',
-  lbf: 'kN',
-  lbfin: 'lbf', //need to clarify conversion with Subas
+  lbf: 'N',
+  lbfin: 'Nm', //need to clarify conversion with Subas
   kip: 'kN',
 };
 
