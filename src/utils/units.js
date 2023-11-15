@@ -93,9 +93,11 @@ const conversions = {
   },
   lbfin: {
     Nm: (lbf) => lbf.div(lbfin_Nm),
+    kNm: (lbf) => lbf.div(lbfin_Nm).times(1000),
   },
   kip: {
     N: (kip) => kip.div(lbf_N).div(1000),
+    kN: (kip) => kip.div(lbf_N),
   },
 };
 
