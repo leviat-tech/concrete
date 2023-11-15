@@ -120,7 +120,7 @@ const unitToSIMap = {
   ft:'m',
   lbf:'N',
   lbfin:'Nm', //need to clarify conversion with Subas
-  kip:'kN'
+  kip:'N'
 };
 
 const aliases = {
