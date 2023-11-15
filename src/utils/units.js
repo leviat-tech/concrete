@@ -1,11 +1,16 @@
 import Big from 'big.js';
 
+const lbf_N = 4.4482216152605;
+const in_M = 0.0254;
+const ft_M = 0.3048;
+const lbfin_Nm = 0.1129848290276167;
+
 const conversions = {
   m: {
     mm: (mm) => mm.div(1000.0),
     cm: (cm) => cm.div(100.0),
-    in: (inch) => inch.times(0.0254),
-    ft: (ft) => ft.times(0.3048),
+    in: (inch) => inch.times(in_M),
+    ft: (ft) => ft.times(ft_M),
   },
   mm: {
     m: (m) => m.times(1000.0),
@@ -22,11 +27,11 @@ const conversions = {
   N: {
     kN: (kN) => kN.times(1000),
     MN: (MN) => MN.times(1000000),
-    kip: (kip) => kip.times(4.4482216152605),
+    lbf: (lbf) => lbf.times(lbf_N),
+    kip: (kip) => kip.times(lbf_N).times(1000),
   },
   kN: {
     N: (N) => N.div(1000),
-    lbf: (lbf) => lbf.time(0.0044482216152605),
   },
   MN: {
     N: (N) => N.div(1000000),
@@ -65,7 +70,7 @@ const conversions = {
   Nm: {
     kNm: (knm) => knm.times(1000),
     MNm: (mnm) => mnm.times(1000000),
-    lbfin:(lbfin)=> lbfin.times(0.1129848290276167)
+    lbfin: (lbfin) => lbfin.times(LBFIN_NM),
   },
   MNm: {
     Nm: (nm) => nm.div(1000000),
@@ -77,21 +82,21 @@ const conversions = {
     'N/m²': (nm2) => nm2.times(1000000),
   },
   in: {
-    m: (inch) => inch.div(0.0254),
+    m: (inch) => inch.div(in_M),
   },
   ft: {
-    m: (ft) => ft.div(0.3048),
+    m: (ft) => ft.div(ft_M),
   },
-  lbf:{
-    N: (lbf) => lbf.div(4.4482216152605),
-    kN: (lbf) => lbf.div(0.0044482216152605),
+  lbf: {
+    N: (lbf) => lbf.div(lbf_N),
+    kN: (lbf) => lbf.div(lbf_N).div(1000),
   },
-  lbfin:{
-   Nm: (lbf)=>lbf.div(0.1129848290276167)
+  lbfin: {
+    Nm: (lbf) => lbf.div(lbfin_Nm),
   },
   kip: {
-    N: (kip) => kip.div(4.4482216152605),
- }
+    N: (kip) => kip.div(lbf_N).div(1000),
+  },
 };
 
 const unitToSIMap = {
@@ -116,11 +121,11 @@ const unitToSIMap = {
   'kN/m³': 'N/m³',
   'N/mm³': 'N/m³',
   MPa: 'N/m²',
-  in:'m',
-  ft:'m',
-  lbf:'N',
-  lbfin:'Nm', //need to clarify conversion with Subas
-  kip:'N'
+  in: 'm',
+  ft: 'm',
+  lbf: 'N',
+  lbfin: 'Nm', //need to clarify conversion with Subas
+  kip: 'N',
 };
 
 const aliases = {
