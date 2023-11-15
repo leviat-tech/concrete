@@ -93,6 +93,8 @@ import {
 } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
 
+const concreteOptions = inject('concrete');
+
 const props = defineProps({
   ...formElementProps,
   modelValue: Number,
@@ -111,10 +113,14 @@ const props = defineProps({
   onBlur: { type: Function, default: null },
   spinner: {type: Boolean, default: null },
   overrideCssStyles: { type: String},
+  unitSystem: {type:String, default:'metric'}
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
+const {inputPrecision} = concreteOptions.decimalPrecision[props.unitSystem];
+
+console.warn('N', props.unitSystem);
 const {
   mergedSizeClass,
   hPaddingClass,
@@ -163,8 +169,9 @@ function convertToDisplayValue(v) {
   if (props.unit) value = convertFromSI(v, props.unit);
   if (props.from && props.to) value = convert(v, props.from, props.to);
   if (value === null) value = Number(v);
+  console.warn("P",inputPrecision)
   return props.precision === null
-    ? value
+    ? inputPrecision ? parseFloat(value.toFixed(inputPrecision), 10) : value
     : parseFloat(value.toFixed(props.precision), 10);
 };
 
