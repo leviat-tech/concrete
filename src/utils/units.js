@@ -70,7 +70,7 @@ const conversions = {
   Nm: {
     kNm: (knm) => knm.times(1000),
     MNm: (mnm) => mnm.times(1000000),
-    lbfin: (lbfin) => lbfin.times(LBFIN_NM),
+    lbfin:(lbfin)=> lbfin.times(lbfin_Nm)
   },
   MNm: {
     Nm: (nm) => nm.div(1000000),
@@ -87,16 +87,16 @@ const conversions = {
   ft: {
     m: (ft) => ft.div(ft_M),
   },
-  lbf: {
+  lbf:{
     N: (lbf) => lbf.div(lbf_N),
     kN: (lbf) => lbf.div(lbf_N).div(1000),
   },
-  lbfin: {
-    Nm: (lbf) => lbf.div(lbfin_Nm),
+  lbfin:{
+   Nm: (lbf)=>lbf.div(lbfin_Nm)
   },
   kip: {
     N: (kip) => kip.div(lbf_N).div(1000),
-  },
+ }
 };
 
 const unitToSIMap = {
@@ -121,11 +121,11 @@ const unitToSIMap = {
   'kN/m³': 'N/m³',
   'N/mm³': 'N/m³',
   MPa: 'N/m²',
-  in: 'm',
-  ft: 'm',
-  lbf: 'N',
-  lbfin: 'Nm', //need to clarify conversion with Subas
-  kip: 'N',
+  in:'m',
+  ft:'m',
+  lbf:'N',
+  lbfin:'Nm', //need to clarify conversion with Subas
+  kip:'N'
 };
 
 const aliases = {
