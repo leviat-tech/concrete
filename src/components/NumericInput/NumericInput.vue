@@ -118,8 +118,8 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
-let inputPrecision;
-if (decimalPrecision) inputPrecision = decimalPrecision[props.unitSystem];
+let numericInputPrecision;
+if (decimalPrecision) numericInputPrecision = decimalPrecision[props.unitSystem].inputPrecision;
 
 const {
   mergedSizeClass,
@@ -169,11 +169,10 @@ function convertToDisplayValue(v) {
   if (props.unit) value = convertFromSI(v, props.unit);
   if (props.from && props.to) value = convert(v, props.from, props.to);
   if (value === null) value = Number(v);
-  return props.precision === null
-    ? inputPrecision
-      ? parseFloat(value.toFixed(inputPrecision), 10)
-      : value
-    : parseFloat(value.toFixed(props.precision), 10);
+
+  if(props.precision === null && !numericInputPrecision) return value;
+  if (props.precision !== null) return parseFloat(value.toFixed(props.precision), 10);  
+  if(numericInputPrecision) return parseFloat(value.toFixed(numericInputPrecision), 10);
 }
 
 function convertFromDisplayValue(v) {
