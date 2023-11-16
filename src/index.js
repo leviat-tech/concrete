@@ -85,7 +85,7 @@ const install = (app, userOptions = {}) => {
     options.registeredInputs = reactive({});
   }
 
-  app.directive("tooltip", tooltip);
+  app.directive('tooltip', tooltip);
   app.provide('concrete', options);
 
   if (userOptions.customUnits?.length > 0) {

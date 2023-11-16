@@ -1,9 +1,16 @@
 import Big from 'big.js';
 
+const lbf_N = 4.4482216152605;
+const in_M = 0.0254;
+const ft_M = 0.3048;
+const lbfin_Nm = 0.1129848290276167;
+
 const conversions = {
   m: {
     mm: (mm) => mm.div(1000.0),
     cm: (cm) => cm.div(100.0),
+    in: (inch) => inch.times(in_M),
+    ft: (ft) => ft.times(ft_M),
   },
   mm: {
     m: (m) => m.times(1000.0),
@@ -20,6 +27,8 @@ const conversions = {
   N: {
     kN: (kN) => kN.times(1000),
     MN: (MN) => MN.times(1000000),
+    lbf: (lbf) => lbf.times(lbf_N),
+    kip: (kip) => kip.times(lbf_N).times(1000),
   },
   kN: {
     N: (N) => N.div(1000),
@@ -61,6 +70,7 @@ const conversions = {
   Nm: {
     kNm: (knm) => knm.times(1000),
     MNm: (mnm) => mnm.times(1000000),
+    lbfin: (lbfin) => lbfin.times(lbfin_Nm),
   },
   MNm: {
     Nm: (nm) => nm.div(1000000),
@@ -70,6 +80,24 @@ const conversions = {
   },
   MPa: {
     'N/m²': (nm2) => nm2.times(1000000),
+  },
+  in: {
+    m: (inch) => inch.div(in_M),
+  },
+  ft: {
+    m: (ft) => ft.div(ft_M),
+  },
+  lbf: {
+    N: (lbf) => lbf.div(lbf_N),
+    kN: (lbf) => lbf.div(lbf_N).div(1000),
+  },
+  lbfin: {
+    Nm: (lbf) => lbf.div(lbfin_Nm),
+    kNm: (lbf) => lbf.div(lbfin_Nm).times(1000),
+  },
+  kip: {
+    N: (kip) => kip.div(lbf_N).div(1000),
+    kN: (kip) => kip.div(lbf_N),
   },
 };
 
@@ -95,6 +123,11 @@ const unitToSIMap = {
   'kN/m³': 'N/m³',
   'N/mm³': 'N/m³',
   MPa: 'N/m²',
+  in: 'm',
+  ft: 'm',
+  lbf: 'N',
+  lbfin: 'Nm',
+  kip: 'N',
 };
 
 const aliases = {
