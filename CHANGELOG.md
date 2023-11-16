@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.14.0](https://github.com/leviat-tech/concrete/compare/v2.13.1...v2.14.0) (2023-11-16)
+
+
+### Features
+
+* add imperial units for inches, feet, lbf, lbf inches and kip ([#237](https://github.com/leviat-tech/concrete/issues/237)) ([213fcb5](https://github.com/leviat-tech/concrete/commit/213fcb5624b99c3d8f3d2a52f4d73c171bbe0b0d))
+
 ## [2.13.1](https://github.com/leviat-tech/concrete/compare/v2.13.0...v2.13.1) (2023-10-25)
 
 
