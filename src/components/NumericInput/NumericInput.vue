@@ -93,8 +93,7 @@ import {
 } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
 
-const concreteOptions = inject('concrete');
-const { decimalPrecision } = concreteOptions;
+const { decimalPrecision } = inject('concrete');
 
 let inputPrecision;
 if (decimalPrecision) inputPrecision = decimalPrecision[props.unitSystem];
