@@ -12,7 +12,7 @@
       stacked,
       noLabel,
       tooltip,
-      overrideCssStyles
+      overrideCssStyles,
     }"
     :class="inputColorClass"
   >
@@ -33,7 +33,7 @@
           cursorClass,
           bgColorClass,
           inputSpinnerClass,
-          overrideCssStyles
+          overrideCssStyles,
         ]"
         :placeholder="placeholder"
         :disabled="disabled"
@@ -94,6 +94,10 @@ import {
 import { useEventHandler } from '../../composables/events';
 
 const concreteOptions = inject('concrete');
+const { decimalPrecision } = concreteOptions;
+
+let inputPrecision;
+if (decimalPrecision) inputPrecision = decimalPrecision[props.unitSystem];
 
 const props = defineProps({
   ...formElementProps,
@@ -111,14 +115,12 @@ const props = defineProps({
   from: { type: String, default: null },
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
-  spinner: {type: Boolean, default: null },
-  overrideCssStyles: { type: String},
-  unitSystem: {type:String, default:'metric'}
+  spinner: { type: Boolean, default: null },
+  overrideCssStyles: { type: String },
+  unitSystem: { type: String, default: 'metric' },
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
-
-const {inputPrecision} = concreteOptions.decimalPrecision[props.unitSystem];
 
 const {
   mergedSizeClass,
@@ -169,9 +171,11 @@ function convertToDisplayValue(v) {
   if (props.from && props.to) value = convert(v, props.from, props.to);
   if (value === null) value = Number(v);
   return props.precision === null
-    ? inputPrecision ? parseFloat(value.toFixed(inputPrecision), 10) : value
+    ? inputPrecision
+      ? parseFloat(value.toFixed(inputPrecision), 10)
+      : value
     : parseFloat(value.toFixed(props.precision), 10);
-};
+}
 
 function convertFromDisplayValue(v) {
   if (v === undefined || v === null || v === '') return null;
@@ -181,16 +185,16 @@ function convertFromDisplayValue(v) {
   if (props.from && props.to) value = convert(Number(v), props.to, props.from);
   if (value === null) value = Number(v);
   return value;
-};
+}
 
-const enableSpinner = (typeof props.spinner === 'boolean') ? props.spinner : useDefaultSpinner(props);
+const enableSpinner =
+  typeof props.spinner === 'boolean' ? props.spinner : useDefaultSpinner(props);
 
 const inputSpinnerClass = computed(() => {
   return enableSpinner
-  ? ''
-  : '[-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none'
+    ? ''
+    : '[-moz-appearance:_textfield] [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none';
 });
-
 
 const cursorClass = useCursorClass(props);
 const paddingClass = computed(() => {
