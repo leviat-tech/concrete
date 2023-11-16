@@ -95,9 +95,6 @@ import { useEventHandler } from '../../composables/events';
 
 const { decimalPrecision } = inject('concrete');
 
-let inputPrecision;
-if (decimalPrecision) inputPrecision = decimalPrecision[props.unitSystem];
-
 const props = defineProps({
   ...formElementProps,
   modelValue: Number,
@@ -120,6 +117,9 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
+
+let inputPrecision;
+if (decimalPrecision) inputPrecision = decimalPrecision[props.unitSystem];
 
 const {
   mergedSizeClass,
