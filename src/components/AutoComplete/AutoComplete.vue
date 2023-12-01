@@ -20,6 +20,7 @@
       class="concrete__autocomplete"
       v-model="displayValue"
       :disabled="disabled"
+      v-slot="{ open }"
     >
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full cursor-default text-left">
@@ -30,8 +31,8 @@
             ref="inputRef"
             @change="searchValue = $event.target.value"
             @click="$event.target.select()"
-            @blur="$emit('blur'); isActive=false"
-            @focus="$emit('focus'); isActive=true"
+            @blur="$emit('blur')"
+            @focus="$emit('focus')"
             :placeholder="placeholder"
             :class="[
               inputStaticClasses,
@@ -55,22 +56,21 @@
           enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
           name="listbox"
         >
-          <ComboboxOptions
-          :class="[
-              'absolute',
-              isActive ? 'z-30' : 'z-10',
-              'mt-1',
-              'w-full',
-              'bg-white',
-              'shadow-lg',
-              'py-1',
-              'text-base',
-              'ring-1 ring-black ring-opacity-5',
-              'overflow-auto',
-              'focus:outline-none',
-              'sm:text-sm',
-          ]"
-            
+        <ComboboxOptions
+          class="
+            absolute
+            mt-1
+            w-full
+            bg-white
+            shadow-lg
+            py-1
+            text-base
+            ring-1 ring-black ring-opacity-5
+            overflow-auto
+            focus:outline-none
+            sm:text-sm
+          "
+          :class="open ? 'z-30' : 'z-10'"
           >
             <div
               v-if="filteredOptions.length === 0 && searchValue !== ''"
@@ -164,7 +164,6 @@ const inputRef = ref(null);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 const isDirty = ref(false);
-const isActive =ref(false)
 const localValue = ref('');
 const searchValue = ref('');
 
