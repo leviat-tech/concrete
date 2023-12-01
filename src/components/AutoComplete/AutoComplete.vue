@@ -30,8 +30,8 @@
             ref="inputRef"
             @change="searchValue = $event.target.value"
             @click="$event.target.select()"
-            @blur="$emit('blur')"
-            @focus="$emit('focus')"
+            @blur="$emit('blur'); isActive=false"
+            @focus="$emit('focus'); isActive=true"
             :placeholder="placeholder"
             :class="[
               inputStaticClasses,
@@ -56,20 +56,21 @@
           name="listbox"
         >
           <ComboboxOptions
-            class="
-              absolute
-              z-10
-              mt-1
-              w-full
-              bg-white
-              shadow-lg
-              py-1
-              text-base
-              ring-1 ring-black ring-opacity-5
-              overflow-auto
-              focus:outline-none
-              sm:text-sm
-            "
+          :class="[
+              'absolute',
+              isActive ? 'z-30' : 'z-10',
+              'mt-1',
+              'w-full',
+              'bg-white',
+              'shadow-lg',
+              'py-1',
+              'text-base',
+              'ring-1 ring-black ring-opacity-5',
+              'overflow-auto',
+              'focus:outline-none',
+              'sm:text-sm',
+          ]"
+            
           >
             <div
               v-if="filteredOptions.length === 0 && searchValue !== ''"
@@ -163,6 +164,7 @@ const inputRef = ref(null);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 const isDirty = ref(false);
+const isActive =ref(false)
 const localValue = ref('');
 const searchValue = ref('');
 
