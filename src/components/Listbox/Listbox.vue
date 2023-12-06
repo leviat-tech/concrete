@@ -24,7 +24,10 @@
     >
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
-          <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
+          <div
+            class="relative z-0 inline-flex w-full items-center"
+            :class="inputColorClass"
+          >
             <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
             <slot name="prefix" class="z-10" />
             <ListboxButton
@@ -38,27 +41,32 @@
                 cursorClass,
               ]"
             >
-              <span
-                class="block-truncate"
-                :class="selectedLabel || 'text-gray-400'"
-                >{{ selectedLabel || placeholder }}</span
-              >
-              <span
-                class="
-                  absolute
-                  inset-y-0
-                  right-0
-                  flex
-                  items-center
-                  pr-2
-                  pointer-events-none
-                "
-              >
-                <ChevronUpDownIcon
-                  :class="[iconColorClass, iconSizeClass]"
-                  aria-hidden="true"
-                />
-              </span>
+              <div class="flex items-center">
+                <slot name="buttonPrefix" />
+                <span
+                  class="block-truncate"
+                  :class="selectedLabel || 'text-gray-400'"
+                >
+                  {{ selectedLabel || placeholder }}
+                </span>
+
+                <span
+                  class="
+                    absolute
+                    inset-y-0
+                    right-0
+                    flex
+                    items-center
+                    pr-2
+                    pointer-events-none
+                  "
+                >
+                  <ChevronUpDownIcon
+                    :class="[iconColorClass, iconSizeClass]"
+                    aria-hidden="true"
+                  />
+                </span>
+              </div>
             </ListboxButton>
             <input type="hidden" :value="selectedLabel" data-selected />
             <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
@@ -72,7 +80,18 @@
           name="listbox"
         >
           <ListboxOptions
-            class="transition-all mt-1 duration-200 absolute z-30 w-full bg-white shadow-lg outline-none overflow-y-auto"
+            class="
+              transition-all
+              mt-1
+              duration-200
+              absolute
+              z-30
+              w-full
+              bg-white
+              shadow-lg
+              outline-none
+              overflow-y-auto
+            "
             :class="[optionsSizeClass, maxOptionsHeightClass]"
           >
             <ListboxOption
@@ -85,15 +104,28 @@
             >
               <li
                 :class="[
-                  option.disabled ? 'text-opacity-50' : 'cursor-pointer hover:bg-gray-50',
+                  option.disabled
+                    ? 'text-opacity-50'
+                    : 'cursor-pointer hover:bg-gray-50',
                   'select-none relative py-2 pl-3 pr-8 text-black',
                 ]"
               >
-                <div class="truncate" :class="selected ? 'font-semibold' : 'font-normal'">
+                <div
+                  class="truncate flex items-center"
+                  :class="selected ? 'font-semibold' : 'font-normal'"
+                >
+                  <slot
+                    v-if="$slots.optionPrefix"
+                    name="optionPrefix"
+                    :option="option"
+                  />
                   {{ option.label }}
                 </div>
 
-                <span v-if="selected" class="absolute inset-y-0 right-0 flex items-center pr-4">
+                <span
+                  v-if="selected"
+                  class="absolute inset-y-0 right-0 flex items-center pr-4"
+                >
                   <CheckIcon class="h-5 w-5" aria-hidden="true" />
                 </span>
               </li>
@@ -117,10 +149,8 @@ import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
 import { formElementProps } from '../../composables/props.js';
 import {
-  useInputColorClassValue,
   inputStaticClasses,
   useInputClasses,
-  useCursorClass,
 } from '../../composables/styles.js';
 import {
   useNoWrapValue,
@@ -128,7 +158,7 @@ import {
   useStackedValue,
   useInputValue,
   useRegisterInput,
-  useInputIdToOptions
+  useInputIdToOptions,
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
