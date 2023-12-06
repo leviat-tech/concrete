@@ -40,6 +40,7 @@
                 mergedSizeClass,
                 cursorClass,
               ]"
+              class="!flex items-center"
             >
               <div class="flex items-center">
                 <slot name="buttonPrefix" />
