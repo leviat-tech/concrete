@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.15.1](https://github.com/leviat-tech/concrete/compare/v2.15.0...v2.15.1) (2023-12-07)
+
+
+### Bug Fixes
+
+* remove unwanted output line ([#242](https://github.com/leviat-tech/concrete/issues/242)) ([e1c3316](https://github.com/leviat-tech/concrete/commit/e1c331697eeb24dd205bd0494932c7ef08102429))
+
 ## [2.15.0](https://github.com/leviat-tech/concrete/compare/v2.14.0...v2.15.0) (2023-12-07)
 
 
