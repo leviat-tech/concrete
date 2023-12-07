@@ -22,9 +22,13 @@
       v-slot="{ open }"
       class="concrete__listbox"
     >
+      {{ selectedValue }}
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
-          <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
+          <div
+            class="relative z-0 inline-flex w-full items-center"
+            :class="inputColorClass"
+          >
             <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
             <slot name="prefix" class="z-10" />
             <ListboxButton
@@ -36,13 +40,18 @@
                 inputColorClass,
                 mergedSizeClass,
                 cursorClass,
+                open && 'ring-1 border-indigo-light'
               ]"
+              class="!flex items-center"
             >
+              <slot name="buttonPrefix" />
               <span
                 class="block-truncate"
                 :class="selectedLabel || 'text-gray-400'"
-                >{{ selectedLabel || placeholder }}</span
               >
+                {{ selectedLabel || placeholder }}
+              </span>
+
               <span
                 class="
                   absolute
@@ -67,13 +76,23 @@
         </div>
 
         <transition
-          enter-from-class="opacity-0 -mt-4"
+          enter-from-class="opacity-0 mt-0 mb-0"
           leave-to-class="opacity-0"
           name="listbox"
         >
           <ListboxOptions
-            class="transition-all mt-1 duration-200 absolute z-30 w-full bg-white shadow-lg outline-none overflow-y-auto"
-            :class="[optionsSizeClass, maxOptionsHeightClass]"
+            class="
+              transition-all
+              duration-100
+              absolute
+              z-30
+              w-full
+              bg-white
+              shadow-lg
+              outline-none
+              overflow-y-auto
+            "
+            :class="[optionsSizeClass, maxOptionsHeightClass, getOptionsClass()]"
           >
             <ListboxOption
               as="template"
@@ -85,17 +104,24 @@
             >
               <li
                 :class="[
-                  option.disabled ? 'text-opacity-50' : 'cursor-pointer hover:bg-gray-50',
-                  'select-none relative py-2 pl-3 pr-8 text-black',
+                  option.disabled
+                    ? 'text-opacity-50'
+                    : 'cursor-pointer',
+                  'select-none relative py-2 px-3 text-black',
+                  active && 'bg-steel-light'
                 ]"
               >
-                <div class="truncate" :class="selected ? 'font-semibold' : 'font-normal'">
+                <div
+                  class="truncate flex items-center"
+                  :class="selected ? 'font-semibold' : 'font-normal'"
+                >
+                  <slot
+                    v-if="$slots.optionPrefix"
+                    name="optionPrefix"
+                    :option="option"
+                  />
                   {{ option.label }}
                 </div>
-
-                <span v-if="selected" class="absolute inset-y-0 right-0 flex items-center pr-4">
-                  <CheckIcon class="h-5 w-5" aria-hidden="true" />
-                </span>
               </li>
             </ListboxOption>
           </ListboxOptions>
@@ -128,7 +154,7 @@ import {
   useStackedValue,
   useInputValue,
   useRegisterInput,
-  useInputIdToOptions
+  useInputIdToOptions,
 } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
@@ -263,6 +289,18 @@ const iconColorClass = computed(() => {
     danger: 'text-danger-light',
   }[props.color];
 });
+
+function getOptionsClass() {
+  const el = buttonRef.value?.el;
+
+  if (!el) return;
+
+  const screenHeight = window.innerHeight;
+  const elPostionOnScreen = el.getBoundingClientRect().top;
+  const isOptionsBelowInput = elPostionOnScreen > screenHeight / 2;
+
+  return isOptionsBelowInput ? 'bottom-full mb-1' : 'top-full mt-1';
+}
 
 useRegisterInput(props, buttonRef);
 </script>
