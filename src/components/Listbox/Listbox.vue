@@ -22,6 +22,7 @@
       v-slot="{ open }"
       class="concrete__listbox"
     >
+      {{ selectedValue }}
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
           <div
@@ -39,6 +40,7 @@
                 inputColorClass,
                 mergedSizeClass,
                 cursorClass,
+                open && 'ring-1 border-indigo-light'
               ]"
               class="!flex items-center"
             >
@@ -74,15 +76,14 @@
         </div>
 
         <transition
-          enter-from-class="opacity-0 -mt-4"
+          enter-from-class="opacity-0 mt-0 mb-0"
           leave-to-class="opacity-0"
           name="listbox"
         >
           <ListboxOptions
             class="
               transition-all
-              mt-1
-              duration-200
+              duration-100
               absolute
               z-30
               w-full
@@ -91,7 +92,7 @@
               outline-none
               overflow-y-auto
             "
-            :class="[optionsSizeClass, maxOptionsHeightClass]"
+            :class="[optionsSizeClass, maxOptionsHeightClass, getOptionsClass()]"
           >
             <ListboxOption
               as="template"
@@ -100,14 +101,14 @@
               :value="option.value"
               :disabled="option.disabled"
               v-slot="{ active, selected }"
-              :class="selectedValue === option.value ? 'bg-steel-light' : ''"
             >
               <li
                 :class="[
                   option.disabled
                     ? 'text-opacity-50'
-                    : 'cursor-pointer hover:bg-gray-50',
+                    : 'cursor-pointer',
                   'select-none relative py-2 px-3 text-black',
+                  active && 'bg-steel-light'
                 ]"
               >
                 <div
@@ -288,6 +289,18 @@ const iconColorClass = computed(() => {
     danger: 'text-danger-light',
   }[props.color];
 });
+
+function getOptionsClass() {
+  const el = buttonRef.value?.el;
+
+  if (!el) return;
+
+  const screenHeight = window.innerHeight;
+  const elPostionOnScreen = el.getBoundingClientRect().top;
+  const isOptionsBelowInput = elPostionOnScreen > screenHeight / 2;
+
+  return isOptionsBelowInput ? 'bottom-full mb-1' : 'top-full mt-1';
+}
 
 useRegisterInput(props, buttonRef);
 </script>
