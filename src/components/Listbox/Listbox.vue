@@ -100,13 +100,14 @@
               :value="option.value"
               :disabled="option.disabled"
               v-slot="{ active, selected }"
+              :class="selectedValue === option.value ? 'bg-steel-light' : ''"
             >
               <li
                 :class="[
                   option.disabled
                     ? 'text-opacity-50'
                     : 'cursor-pointer hover:bg-gray-50',
-                  'select-none relative py-2 pl-3 pr-8 text-black',
+                  'select-none relative py-2 px-3 text-black',
                 ]"
               >
                 <div
@@ -120,13 +121,6 @@
                   />
                   {{ option.label }}
                 </div>
-
-                <span
-                  v-if="selected"
-                  class="absolute inset-y-0 right-0 flex items-center pr-2"
-                >
-                  <CheckIcon class="h-5 w-5" aria-hidden="true" />
-                </span>
               </li>
             </ListboxOption>
           </ListboxOptions>
