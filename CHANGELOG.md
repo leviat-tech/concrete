@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.15.0](https://github.com/leviat-tech/concrete/compare/v2.14.0...v2.15.0) (2023-12-07)
+
+
+### Features
+
+* add slot before label ([#241](https://github.com/leviat-tech/concrete/issues/241)) ([74fc469](https://github.com/leviat-tech/concrete/commit/74fc4691e9a0c0e60850d7dbded8b14d2e905aed))
+
+
+### Bug Fixes
+
+* AutoComplete Options List z order ([a05ad91](https://github.com/leviat-tech/concrete/commit/a05ad91ed34ca8b56b47c23e0a5835809c9024a0))
+
 ## [2.14.0](https://github.com/leviat-tech/concrete/compare/v2.13.1...v2.14.0) (2023-11-16)
 
 
