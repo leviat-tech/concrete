@@ -22,7 +22,6 @@
       v-slot="{ open }"
       class="concrete__listbox"
     >
-      {{ selectedValue }}
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
           <div
@@ -40,7 +39,7 @@
                 inputColorClass,
                 mergedSizeClass,
                 cursorClass,
-                open && 'ring-1 border-indigo-light'
+                open && 'ring-1 border-indigo-light',
               ]"
               class="!flex items-center"
             >
@@ -92,7 +91,11 @@
               outline-none
               overflow-y-auto
             "
-            :class="[optionsSizeClass, maxOptionsHeightClass, getOptionsClass()]"
+            :class="[
+              optionsSizeClass,
+              maxOptionsHeightClass,
+              getOptionsClass(),
+            ]"
           >
             <ListboxOption
               as="template"
@@ -104,11 +107,9 @@
             >
               <li
                 :class="[
-                  option.disabled
-                    ? 'text-opacity-50'
-                    : 'cursor-pointer',
+                  option.disabled ? 'text-opacity-50' : 'cursor-pointer',
                   'select-none relative py-2 px-3 text-black',
-                  active && 'bg-steel-light'
+                  active && 'bg-steel-light',
                 ]"
               >
                 <div
