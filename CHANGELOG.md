@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.15.2](https://github.com/leviat-tech/concrete/compare/v2.15.1...v2.15.2) (2023-12-14)
+
+
+### Bug Fixes
+
+* add Nm to unit to SI map ([a5f9436](https://github.com/leviat-tech/concrete/commit/a5f9436149ffc01ad7de9b11d28f5f7e274d7220))
+
 ## [2.15.1](https://github.com/leviat-tech/concrete/compare/v2.15.0...v2.15.1) (2023-12-07)
 
 
