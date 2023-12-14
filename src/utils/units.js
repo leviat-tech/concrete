@@ -115,6 +115,7 @@ const unitToSIMap = {
   K: 'K',
   'W/m*K': 'W/m*K',
   MN: 'N',
+  Nm: 'Nm',
   kNm: 'Nm',
   MNm: 'Nm',
   'kN/m²': 'N/m²',
