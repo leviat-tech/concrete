@@ -20,7 +20,7 @@
       :class="[textSizeClass, disabledClass]"
     >
       <RadioGroup
-        class="concrete__radiogroup space-x-2 px-3"
+        class="concrete__radiogroup space-x-2"
         v-model="value"
         ref="el"
         :disabled="disabled"
@@ -112,6 +112,8 @@ const el = ref(null);
 
 const size = useSizeValue(props.size);
 
+const xPadding = computed(()=> props.reverseLabels ? '' : 'px-1')
+
 const emit = defineEmits(['update:modelValue', 'change']);
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 useRegisterInput(props, el);
@@ -119,7 +121,7 @@ useRegisterInput(props, el);
 const stacked = useStackedValue(props.stacked);
 const wrap = !useNoWrapValue(props);
 
-const { inputColorClass, disabledClass, textSizeClass, heightClass, mergedSizeClass } =
+const { inputColorClass, disabledClass, textSizeClass, heightClass } =
   useInputClasses(props);
 
 const iconSizeClass = size === 'xs' ? 'w-6 h-6' : heightClass;
@@ -127,8 +129,7 @@ const iconSizeClass = size === 'xs' ? 'w-6 h-6' : heightClass;
 
 const layoutClass = computed(() => {
   if (props.columns > 0) return `grid grid-flow-row grid-cols-${props.columns}`;
-
-  return 'flex flex-wrap justify-end';
+  return `flex flex-wrap justify-end ${props.reverseLabels ? '' : 'px-1'}`;
 });
 
 const svgColour = computed(() => {
