@@ -43,8 +43,8 @@
         :max="maximum"
         @keydown.enter="onEnter"
         @blur="onBlur"
-        @change="onChange($event)"
-      />      
+        @change.prevent="onChange($event)"
+      />
       <div
         v-if="!noUnits"
         :class="[
@@ -115,13 +115,14 @@ const props = defineProps({
   spinner: { type: Boolean, default: null },
   overrideCssStyles: { type: String },
   unitSystem: { type: String, default: 'metric' },
-  nullable:{ type: Boolean, default: false },
+  nullable: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
 let unitPrecision;
-if (decimalPrecision) unitPrecision = decimalPrecision[props.unitSystem].inputPrecision;
+if (decimalPrecision)
+  unitPrecision = decimalPrecision[props.unitSystem].inputPrecision;
 
 const {
   mergedSizeClass,
@@ -139,6 +140,16 @@ const wrap = !useNoWrapValue(props);
 const isDirty = ref(false);
 const inputRef = ref(null);
 
+const sanitizeInput = (val) => {
+  if (val === '') {
+    let sanitized = 0;
+    if (props.minimum) sanitized = props.minimum;
+    if (props.nullable) sanitized = null;
+    return sanitized;
+  }
+  return val;
+};
+
 const value = computed({
   get() {
     const val = useInputValue(props);
@@ -146,7 +157,9 @@ const value = computed({
     return converted;
   },
   set(value) {
-    const newValue = convertFromDisplayValue(value);
+    let newValue = sanitizeInput(value);
+    newValue = convertFromDisplayValue(newValue);
+
     if (localValue.value === newValue) return;
     localValue.value = newValue;
     isDirty.value = true;
@@ -156,17 +169,14 @@ const value = computed({
 
 const localValue = ref(value.value);
 
-const onChange = (event)=>{
-  if(event.target.value === '') {
-    let cleansed = 0;
-    if(props.nullable) cleansed = null;
-    if(props.minimum) cleansed = props.minimum;
-    value.value = cleansed;
-  }  
-}
+const onChange = (event) => {
+  const sanitized = sanitizeInput(event.target.value);
+  event.target.value = sanitized;
+  return sanitized;
+};
 
 const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
-const onBlur =  useEventHandler('blur', props, emit, localValue, isDirty);
+const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
 
 const blur = () => inputRef.value.blur();
 const focus = () => inputRef.value.focus();
@@ -174,8 +184,8 @@ const select = () => inputRef.value.select();
 defineExpose({ focus, blur, select });
 
 function convertToDisplayValue(v) {
-  if (v === undefined || v === null || v === '') return null
-  
+  if (v === undefined || v === null || v === '') return null;
+
   let value = null;
   if (!isNumber(v)) value = v;
   if (props.unit) value = convertFromSI(v, props.unit);
@@ -183,7 +193,7 @@ function convertToDisplayValue(v) {
   if (value === null) value = Number(v);
 
   const precision = props.precision ?? unitPrecision;
-  return precision ? parseFloat(value.toFixed(precision ), 10) : value;
+  return precision ? parseFloat(value.toFixed(precision), 10) : value;
 }
 
 function convertFromDisplayValue(v) {
