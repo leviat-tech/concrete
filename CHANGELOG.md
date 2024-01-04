@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.15.3](https://github.com/leviat-tech/concrete/compare/v2.15.2...v2.15.3) (2024-01-04)
+
+
+### Bug Fixes
+
+* improved radio button layout ([7256c99](https://github.com/leviat-tech/concrete/commit/7256c99234557bc8821e454fddac48bda9f33b67))
+* improved radio button layout ([#247](https://github.com/leviat-tech/concrete/issues/247)) ([0c09660](https://github.com/leviat-tech/concrete/commit/0c096607b841d6a79d4ce759d4140121244591ac))
+
 ## [2.15.2](https://github.com/leviat-tech/concrete/compare/v2.15.1...v2.15.2) (2023-12-14)
 
 
