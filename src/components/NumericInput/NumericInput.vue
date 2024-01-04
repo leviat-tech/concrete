@@ -43,7 +43,8 @@
         :max="maximum"
         @keydown.enter="onEnter"
         @blur="onBlur"
-      />
+        @change="onChange($event)"
+      />      
       <div
         v-if="!noUnits"
         :class="[
@@ -114,6 +115,7 @@ const props = defineProps({
   spinner: { type: Boolean, default: null },
   overrideCssStyles: { type: String },
   unitSystem: { type: String, default: 'metric' },
+  nullable:{ type: Boolean, default: false },
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
@@ -140,8 +142,8 @@ const inputRef = ref(null);
 const value = computed({
   get() {
     const val = useInputValue(props);
-
-    return convertToDisplayValue(val);
+    const converted = convertToDisplayValue(val);
+    return converted;
   },
   set(value) {
     const newValue = convertFromDisplayValue(value);
@@ -154,8 +156,17 @@ const value = computed({
 
 const localValue = ref(value.value);
 
+const onChange = (event)=>{
+  if(event.target.value === '') {
+    let cleansed = 0;
+    if(props.nullable) cleansed = null;
+    if(props.minimum) cleansed = props.minimum;
+    value.value = cleansed;
+  }  
+}
+
 const onEnter = useEventHandler('enter', props, emit, localValue, isDirty);
-const onBlur = useEventHandler('blur', props, emit, localValue, isDirty);
+const onBlur =  useEventHandler('blur', props, emit, localValue, isDirty);
 
 const blur = () => inputRef.value.blur();
 const focus = () => inputRef.value.focus();
@@ -163,7 +174,8 @@ const select = () => inputRef.value.select();
 defineExpose({ focus, blur, select });
 
 function convertToDisplayValue(v) {
-  if (v === undefined || v === null || v === '') return null;
+  if (v === undefined || v === null || v === '') return null
+  
   let value = null;
   if (!isNumber(v)) value = v;
   if (props.unit) value = convertFromSI(v, props.unit);
@@ -176,6 +188,7 @@ function convertToDisplayValue(v) {
 
 function convertFromDisplayValue(v) {
   if (v === undefined || v === null || v === '') return null;
+
   let value = null;
   if (!isNumber(v)) return v;
   if (props.unit) value = convertToSI(Number(v), props.unit);
