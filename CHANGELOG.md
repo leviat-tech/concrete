@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.15.4](https://github.com/leviat-tech/concrete/compare/v2.15.3...v2.15.4) (2024-01-05)
+
+
+### Bug Fixes
+
+* default empty text to zero ([#248](https://github.com/leviat-tech/concrete/issues/248)) ([8816e75](https://github.com/leviat-tech/concrete/commit/8816e7571b3910bb630bdfc3552019f3b6e425fd))
+
 ## [2.15.3](https://github.com/leviat-tech/concrete/compare/v2.15.2...v2.15.3) (2024-01-04)
 
 
