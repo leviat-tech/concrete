@@ -87,7 +87,12 @@
                   <div class="bg-blue-300 p-1 mb-1">
                     Input with prefix and suffix
                   </div>
-                  <CTextInput id="Width" prefix="w" suffix="mm" />
+                  <CNumericInput
+                    id="width"
+                    prefix="w"
+                    suffix="mm"
+                    :minimum="200"
+                  />
                 </div>
 
                 <div>
@@ -122,26 +127,22 @@
               </div>
               <div>
                 <div class="bg-blue-300 p-1 mb-1">Numeric Inputs</div>
+                <CNumericInput label="Spinner (no override, default)" unit="mm">
+                </CNumericInput>
                 <CNumericInput
-                label="Spinner (no override, default)"
-                unit="mm"
-                >
-              </CNumericInput>
-                <CNumericInput
-                label="No Spinner (override, default)"
-                unit="mm"
-                :spinner="false"
+                  label="No Spinner (override, default)"
+                  unit="mm"
+                  :spinner="false"
                 >
                 </CNumericInput>
                 <CNumericInput
-                label="Spinner (override, default)"
-                unit="mm"
-                :spinner="true"
+                  label="Spinner (override, default)"
+                  unit="mm"
+                  :spinner="true"
                 >
                 </CNumericInput>
               </div>
             </div>
-
           </CFormSection>
           <CFormSection class="">
             <div class="flex space-x-16">
@@ -319,7 +320,6 @@
               size="xs"
             />
           </div>
-
         </div>
       </div>
     </div>
@@ -382,13 +382,7 @@ export default {
       ButtonGroupValue: 'Option 2',
       RadioGroupIdOptions: 'Option 2',
       ButtonGroupIdOptions: 'Option 2',
-      Options: [
-        'Option 1',
-        'Option 2',
-        'Option 3',
-        'Option 4',
-        'Option 5',
-      ],
+      Options: ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'],
       OptionsObjects: [
         { label: 'Option 1', value: 'Option 1', disabled: false },
         { label: 'Option 2', value: 'Option 2', disabled: false },
