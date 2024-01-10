@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.16.0](https://github.com/leviat-tech/concrete/compare/v2.15.4...v2.16.0) (2024-01-10)
+
+
+### Features
+
+* add area units and imperial unit of moment 'lbfft' (Pound-force-Foot) ([#250](https://github.com/leviat-tech/concrete/issues/250)) ([01eaec4](https://github.com/leviat-tech/concrete/commit/01eaec4cf82f3c9d4b4f20f9b308818d8a081c48))
+* expose class property of the buttons in the buttongroup control ([776daf4](https://github.com/leviat-tech/concrete/commit/776daf4a61ed6880b75606445af8648c02b96a14))
+
 ## [2.15.4](https://github.com/leviat-tech/concrete/compare/v2.15.3...v2.15.4) (2024-01-05)
 
 
