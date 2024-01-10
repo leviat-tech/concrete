@@ -257,7 +257,7 @@
                 label=" "
                 color="indigo"
                 :options="Options"
-                classOptions="pl-1 pr-1 pb-1 pt-1"
+                buttonClass="pl-1 pr-1 pb-1 pt-1"
               />
               <CRadioGroup
                 v-model="RadioGroupIdOptions"
