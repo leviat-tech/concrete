@@ -4,6 +4,7 @@ const lbf_N = 4.4482216152605;
 const in_M = 0.0254;
 const ft_M = 0.3048;
 const lbfin_Nm = 0.1129848290276167;
+const lbfft_Nm = 1.355818;
 
 const conversions = {
   m: {
@@ -17,6 +18,18 @@ const conversions = {
   },
   cm: {
     m: (m) => m.times(100.0),
+  },
+  'm²': {
+    'mm²': (mm2) => mm2.div(1000000.0),
+    'cm²': (cm2) => cm2.div(10000.0),
+    'in²': (inch2) => inch2.times(in_M).times(in_M),
+    'ft²': (ft2) => ft2.times(ft_M).times(ft_M),
+  },
+  'mm²': {
+    'm²': (m2) => m2.times(1000000.0),
+  },
+  'cm²': {
+    'm²': (m2) => m2.times(10000.0),
   },
   rad: {
     deg: (deg) => deg.times(Math.PI).div(180.0),
@@ -71,6 +84,7 @@ const conversions = {
     kNm: (knm) => knm.times(1000),
     MNm: (mnm) => mnm.times(1000000),
     lbfin: (lbfin) => lbfin.times(lbfin_Nm),
+    lbfft: (lbfin) => lbfin.times(lbfft_Nm),
   },
   MNm: {
     Nm: (nm) => nm.div(1000000),
@@ -87,6 +101,12 @@ const conversions = {
   ft: {
     m: (ft) => ft.div(ft_M),
   },
+  'in²': {
+    'm²': (m2) => m2.div(in_M).div(in_M),
+  },
+  'ft²': {
+    'm²': (m2) => m2.div(ft_M).div(ft_M),
+  },
   lbf: {
     N: (lbf) => lbf.div(lbf_N),
     kN: (lbf) => lbf.div(lbf_N).div(1000),
@@ -94,6 +114,10 @@ const conversions = {
   lbfin: {
     Nm: (lbf) => lbf.div(lbfin_Nm),
     kNm: (lbf) => lbf.div(lbfin_Nm).times(1000),
+  },
+  lbfft: {
+    Nm: (lbf) => lbf.div(lbfft_Nm),
+    kNm: (lbf) => lbf.div(lbfft_Nm).times(1000),
   },
   kip: {
     N: (kip) => kip.div(lbf_N).div(1000),
@@ -105,6 +129,9 @@ const unitToSIMap = {
   m: 'm',
   mm: 'm',
   cm: 'm',
+  'm²': 'm²',
+  'cm²': 'm²',
+  'mm²': 'm²',
   rad: 'rad',
   deg: 'rad',
   'N/m': 'N/m',
@@ -126,8 +153,11 @@ const unitToSIMap = {
   MPa: 'N/m²',
   in: 'm',
   ft: 'm',
+  'in²': 'm²',
+  'ft²': 'm²',
   lbf: 'N',
   lbfin: 'Nm',
+  lbfft: 'Nm',
   kip: 'N',
 };
 
