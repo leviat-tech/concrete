@@ -13,6 +13,7 @@
         stacked,
         noLabel,
         tooltip,
+        buttonClass,
       }"
     >
       <div
@@ -37,6 +38,7 @@
             >
             <CButton
               class="-mb-px -mr-px"
+              :class="[buttonClass]"
                 :id=option
                 :color="color"
                 :fill="checked ? 'solid' : 'outline'"
@@ -75,6 +77,7 @@
     transparent: { type: Boolean, default: false },
     columns: { type: Number, default: 0 },
     onChange: { type: Function, default: null },
+    buttonClass: [String, Object, Array],
   });
 
   const value = computed({
@@ -94,7 +97,7 @@
   const el = ref(null);
 
   const size = useSizeValue(props.size);
-
+  const buttonClass = props.buttonClass
   const emit = defineEmits(['update:modelValue', 'change']);
   const onChange = useEventHandler('change', props, emit, localValue, isDirty);
   useRegisterInput(props, el);
