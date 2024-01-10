@@ -254,9 +254,10 @@
               />
               <CButtonGroup
                 v-model="ButtonGroupValue"
-                label="Button group 01"
+                label=" "
                 color="indigo"
                 :options="Options"
+                classOptions="pl-1 pr-1 pb-1 pt-1"
               />
               <CRadioGroup
                 v-model="RadioGroupIdOptions"
