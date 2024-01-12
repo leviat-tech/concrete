@@ -252,6 +252,7 @@
                 v-model="RadioGroupValue"
                 label="Radio group"
                 :options="Options"
+                optionsClass="pl-2 pr-2 pb-2 pt-2"
               />
               <CButtonGroup
                 v-model="ButtonGroupValue"
