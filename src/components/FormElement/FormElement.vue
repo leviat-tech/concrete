@@ -13,9 +13,8 @@
           :class="[lineClampClass, labelClass]"
           :for="id"
           @mousedown="props.onMouseDown?.()"
-        >
-          {{ label }}
-        </label>
+          v-html="label"
+        />
         <CTooltipIcon v-if="props.tooltip" :class="{ 'pr-2' : !stacked }" :size="size" v-tooltip="props.tooltip"/>
       </div>
     </div>
