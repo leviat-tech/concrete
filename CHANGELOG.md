@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.17.0](https://github.com/leviat-tech/concrete/compare/v2.16.0...v2.17.0) (2024-01-17)
+
+
+### Features
+
+* optionsClass property added ([#253](https://github.com/leviat-tech/concrete/issues/253)) ([911b9bf](https://github.com/leviat-tech/concrete/commit/911b9bf36433c1875ef329a569e390a67a4c0267))
+
+
+### Bug Fixes
+
+* removed unwanted padding ([#256](https://github.com/leviat-tech/concrete/issues/256)) ([f7a0107](https://github.com/leviat-tech/concrete/commit/f7a0107f359503687f3738fef259c2ac512a4ae6))
+
 ## [2.16.0](https://github.com/leviat-tech/concrete/compare/v2.15.4...v2.16.0) (2024-01-10)
 
 
