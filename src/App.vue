@@ -141,6 +141,10 @@
                   :spinner="true"
                 >
                 </CNumericInput>
+                <CNumericInput label="Label with <sup>SupScript</sup>" unit="mm">
+                </CNumericInput>
+                <CNumericInput label="Label with <sub>SubScript</sub>" unit="mm">
+                </CNumericInput>
               </div>
             </div>
           </CFormSection>
