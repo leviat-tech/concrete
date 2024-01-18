@@ -69,6 +69,8 @@
             overflow-auto
             focus:outline-none
             sm:text-sm
+            h-[184px]
+            overflow-x-scroll
           "
           :class="open ? 'z-30' : 'z-10'"
           >
