@@ -15,11 +15,6 @@ NPM:
 npm install --save @crhio/concrete
 ```
 
-yarn:
-```
-yarn add @crhio/concrete
-```
-
 Add it to your project, either at the project level:
 ```
 import Vue from 'vue';
@@ -40,6 +35,17 @@ export default {
   },
   // ...
 }
+```
+
+## Development
+
+**This version of Concrete does not work with Node >= 16.**
+
+Use nvm to switch to v14 in order to successfully install the dependencies. Then run the following commands:
+
+```
+npm i
+npm run dev
 ```
 
 ## Documentation

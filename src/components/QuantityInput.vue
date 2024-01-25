@@ -16,7 +16,7 @@
       </div>
       <input
         ref="input"
-        v-model="valproxy"
+        v-model.lazy="valproxy"
         :class="[ size, theme ]"
         :placeholder="placeholder"
         :disabled="disabled"
