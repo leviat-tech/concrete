@@ -80,6 +80,9 @@ const conversions = {
   'kg/m³': {
     'g/m³': (nm3) => nm3.times(1000),
   },
+  'g/m³': {
+    'kg/m³': (nm3) => nm3.div(1000),
+  },
   kNm: {
     Nm: (nm) => nm.div(1000),
   },
@@ -153,6 +156,7 @@ const unitToSIMap = {
   'N/m³': 'N/m³',
   'kN/m³': 'N/m³',
   'kg/m³': 'g/m³',
+  'g/m³': 'kg/m³',
   'N/mm³': 'N/m³',
   MPa: 'N/m²',
   in: 'm',
