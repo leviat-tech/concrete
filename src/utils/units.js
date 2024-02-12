@@ -78,10 +78,10 @@ const conversions = {
     'N/m³': (nm3) => nm3.div(1000),
   },
   'kg/m³': {
-    'g/m³': (gm3) => gm3.times(1000),
+    'g/m³': (gm3) => gm3.div(1000),
   },
   'g/m³': {
-    'kg/m³': (kgm3) => kgm3.div(1000),
+    'kg/m³': (kgm3) => kgm3.times(1000),
   },
   kNm: {
     Nm: (nm) => nm.div(1000),
