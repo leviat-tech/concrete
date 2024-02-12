@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.18.0](https://github.com/leviat-tech/concrete/compare/v2.17.0...v2.18.0) (2024-02-12)
+
+
+### Features
+
+* enable ub and sup script for input labels ([#255](https://github.com/leviat-tech/concrete/issues/255)) ([57be9ba](https://github.com/leviat-tech/concrete/commit/57be9baa422e15fab32efd72f8994e1e811e783a))
+
+
+### Bug Fixes
+
+* add g/m3 and kg/m3 to units ([535a14b](https://github.com/leviat-tech/concrete/commit/535a14b5652462ca1d2ecd35a680a1f12cb767fd))
+
 ## [2.17.0](https://github.com/leviat-tech/concrete/compare/v2.16.0...v2.17.0) (2024-01-17)
 
 
