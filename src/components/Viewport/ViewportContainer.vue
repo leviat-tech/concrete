@@ -1,14 +1,21 @@
 <template>
   <div
     ref="viewportContainer"
-    class="concrete__viewport-container w-full h-full flex items-center justify-center overflow-hidden"
+    class="
+      concrete__viewport-container
+      w-full
+      h-full
+      flex
+      items-center
+      justify-center
+      overflow-hidden
+    "
     :class="{ 'grid bg-gray-200': !fullWidth }"
     :style="{ 'grid-template-columns': colStyle }"
   >
     <slot />
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 .concrete__viewport-container {
@@ -50,12 +57,12 @@ function columns(ar, aspectRatio, options) {
   return Math.max(high, 1);
 }
 
-
 export default {
   name: 'CViewportContainer',
   props: {
     options: { type: Array, default: () => [] },
     modelValue: { type: [String, Number], default: null },
+    forceFullWidth: { type: Boolean },
 
     // A target aspect ratio for each viewport;
     // Used to determine how to tile multiple viewports.
@@ -72,7 +79,11 @@ export default {
   },
   computed: {
     fullWidth() {
-      return this.reactive.maximized || this.options.length < 2;
+      return (
+        this.forceFullWidth ||
+        this.reactive.maximized ||
+        this.options.length < 2
+      );
     },
     colStyle() {
       return `repeat(${this.cols}, minmax(0, 1fr))`;
