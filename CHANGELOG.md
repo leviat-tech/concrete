@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.0](https://github.com/leviat-tech/concrete/compare/v2.18.0...v2.19.0) (2024-02-27)
+
+
+### Features
+
+* added full width prop to viewport container ([#260](https://github.com/leviat-tech/concrete/issues/260)) ([cd12749](https://github.com/leviat-tech/concrete/commit/cd12749ced09101ca8b8c71f9e2a19bcd6e2531e))
+
 ## [2.18.0](https://github.com/leviat-tech/concrete/compare/v2.17.0...v2.18.0) (2024-02-12)
 
 
