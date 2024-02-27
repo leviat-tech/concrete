@@ -56,6 +56,7 @@ export default {
   props: {
     options: { type: Array, default: () => [] },
     modelValue: { type: [String, Number], default: null },
+    forceFullWidth:{ type:Boolean },
 
     // A target aspect ratio for each viewport;
     // Used to determine how to tile multiple viewports.
@@ -72,10 +73,10 @@ export default {
   },
   computed: {
     fullWidth() {
-      return this.reactive.maximized || this.options.length < 2;
+      return this.forceFullWidth || this.reactive.maximized || this.options.length < 2;
     },
     colStyle() {
-      return `repeat(${this.cols}, minmax(0, 1fr))`;
+      return `repeat(${this.cols}, minmax(${this.forceFullWidth ? '1fr' : '0'}}, 1fr))`;
     },
   },
   watch: {
