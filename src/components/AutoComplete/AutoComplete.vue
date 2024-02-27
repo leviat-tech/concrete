@@ -69,7 +69,7 @@
               overflow-auto
               focus:outline-none
               sm:text-sm
-              h-[9lh]
+              h-[10lh]
               overflow-x-scroll
             "
             :class="open ? 'z-30' : 'z-10'"
