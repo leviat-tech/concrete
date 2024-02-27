@@ -86,9 +86,7 @@ export default {
       );
     },
     colStyle() {
-      return `repeat(${this.cols}, minmax(${
-        this.forceFullWidth ? '1fr' : '0'
-      }}, 1fr))`;
+      return `repeat(${this.cols}, minmax(0, 1fr))`;
     },
   },
   watch: {
