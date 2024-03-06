@@ -18,12 +18,12 @@
       cssClass,
       onMouseDown
     }"
-    class="flex items-center"
+    class="flex relative items-center"
     :class="{ '!justify-start': reverseLabels }"
   >
     <div
-      class="concrete__checkbox flex px-2"
-      :class="[reverseLabels ? 'order-1 pr-2' : 'px-2', cssClass]"
+      class="concrete__checkbox flex"
+      :class="[reverseLabels ? 'order-1 pr-2' : 'pl-2', cssClass]"
     >
       <span class="sr-only">{{ srLabel }}</span>
       <Switch
