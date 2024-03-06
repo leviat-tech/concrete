@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.1](https://github.com/leviat-tech/concrete/compare/v2.19.0...v2.19.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* add relative class to checkbox div ([36ac237](https://github.com/leviat-tech/concrete/commit/36ac237e84c8b529379f911cb6c92b2f8bef7739))
+
 ## [2.19.0](https://github.com/leviat-tech/concrete/compare/v2.18.0...v2.19.0) (2024-02-27)
 
 
