@@ -19,6 +19,7 @@
       :stroke-opacity="computedStrokeOpacity"
       :stroke-width="strokeWidth"
       :d="path"
+      :stroke-dasharray="strokeDasharray"
     />
   </g>
 </template>
@@ -42,6 +43,7 @@ export default {
     hoverStrokeOpacity: { type: Number, default: 1 },
     hitboxOpacity: { type: Number, default: 0.1 },
     activeStrokeOpacity: { type: Number, default: 1 },
+    strokeDasharray: { type: String, default: 'none' },
   },
   data() {
     return {
