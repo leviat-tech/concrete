@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.20.0](https://github.com/leviat-tech/concrete/compare/v2.19.1...v2.20.0) (2024-03-21)
+
+
+### Features
+
+* add dash array prop for DraggablePath ([bb6a260](https://github.com/leviat-tech/concrete/commit/bb6a2606d785d410b164cd869ee0e2fd942ee55a))
+
 ## [2.19.1](https://github.com/leviat-tech/concrete/compare/v2.19.0...v2.19.1) (2024-03-06)
 
 
