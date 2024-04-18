@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.21.0](https://github.com/leviat-tech/concrete/compare/v2.20.0...v2.21.0) (2024-04-18)
+
+
+### Features
+
+* revise listbox styling ([99d9f33](https://github.com/leviat-tech/concrete/commit/99d9f330b7a30ff21c711e5f36d0f4ff456fe69e))
+* revise listbox styling ([#268](https://github.com/leviat-tech/concrete/issues/268)) ([1d5ae11](https://github.com/leviat-tech/concrete/commit/1d5ae11489caec4a56ab3638d11ec8038d1426f2))
+
 ## [2.20.0](https://github.com/leviat-tech/concrete/compare/v2.19.1...v2.20.0) (2024-03-21)
 
 
