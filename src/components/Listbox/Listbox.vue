@@ -87,8 +87,8 @@
               z-30
               w-full
               bg-white
-              shadow-lg shadow-steel-dark
-              ring-1 ring-steel
+              shadow-lg
+              outline-none
               overflow-y-auto
             "
             :class="[
