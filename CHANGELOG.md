@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.21.1](https://github.com/leviat-tech/concrete/compare/v2.21.0...v2.21.1) (2024-05-06)
+
+
+### Bug Fixes
+
+* add layers icon ([#269](https://github.com/leviat-tech/concrete/issues/269)) ([9b17eaf](https://github.com/leviat-tech/concrete/commit/9b17eaf2255f357c82622934758a79a2431c7ca7))
+
 ## [2.21.0](https://github.com/leviat-tech/concrete/compare/v2.20.0...v2.21.0) (2024-04-18)
 
 
