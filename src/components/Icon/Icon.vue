@@ -68,6 +68,7 @@ import CompressIcon from './icons/CompressIcon.vue';
 import FunctionIcon from './icons/FunctionIcon.vue';
 import RedoIcon from './icons/RedoIcon.vue';
 import UndoIcon from './icons/UndoIcon.vue';
+import Layers from './icons/Layers.vue';
 import { useSizeValue } from '../../composables/forms';
 
 export const icons = {
@@ -129,6 +130,7 @@ export const icons = {
   'zoom-out': MagnifyingGlassMinusIcon,
   'information-circle': InformationCircleIcon,
   'question-circle': QuestionMarkCircleIcon,
+  'layers': Layers
 };
 
 export default {
