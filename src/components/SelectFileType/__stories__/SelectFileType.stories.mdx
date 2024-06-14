@@ -1,0 +1,38 @@
+import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
+import CSelectFileType from '../SelectFileType.vue';
+
+<Meta
+  title="Components/Input/SelectFileType"
+  component={CSelectFileType}
+/>
+
+<!--- Component template -->
+
+export const componentTemplate = (args) => ({
+  components: { CSelectFileType },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      point: { x: 50, y: 50 },
+    };
+  },
+  methods: {},
+  template: `<CSelectFileType v-bind="args"></CSelectFileType>
+`,
+});
+
+<!--- Component documentation -->
+
+# SelectFileType
+
+<Canvas withSource="open">
+  <Story name="Overview" args={{}}>
+    {componentTemplate.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable story="Overview" />

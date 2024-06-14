@@ -262,7 +262,7 @@
                 v-model="ButtonGroupValue"
                 label=" "
                 color="indigo"
-                :options="Options"
+                :options="111111"
                 buttonClass="pl-1 pr-1 pb-1 pt-1"
               />
               <CRadioGroup
@@ -275,6 +275,18 @@
                 label="Button group values from id"
                 color="indigo"
                 id="buttonGroup"
+              />
+            </div>
+          </CFormSection>
+          <CFormSection>
+            <div class="flex flex-row justify-left items-center w-full relative">
+              <CFormElement label="Select File Type" class="basis-1/3"></CFormElement>
+              <CSelectFileType
+              v-for="file in fileTypes"
+              :label="file.label"
+              :extension="file.extension"
+              :selected="file.selected"
+              @select="file.selected=!file.selected"
               />
             </div>
           </CFormSection>
@@ -345,6 +357,7 @@ import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 import { CPane, CResizable } from './components/Resizable';
+import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 export default {
@@ -362,6 +375,7 @@ export default {
     CFormSection,
     CResizable,
     CPane,
+    CSelectFileType,
     XMarkIcon,
   },
   data() {
@@ -411,6 +425,11 @@ export default {
         'October',
         'November',
         'December',
+      ],
+      fileTypes: [
+        {extension: '.pdf', label: 'Example1', selected: false},
+        {extension: '.json', label: 'Example2', selected: false},
+        {extension: '.dxf', label: 'Example3', selected: false}
       ],
       errors: {
         emailAddress: 'Not a valid email address',
