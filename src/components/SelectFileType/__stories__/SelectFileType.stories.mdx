@@ -1,5 +1,6 @@
 import { ArgsTable, Story, Canvas, Meta, Source } from '@storybook/addon-docs';
 import CSelectFileType from '../SelectFileType.vue';
+import CSelectFileTypeItem from '../SelectFileTypeItem.vue';
 
 <Meta
   title="Components/Input/SelectFileType"
@@ -9,7 +10,7 @@ import CSelectFileType from '../SelectFileType.vue';
 <!--- Component template -->
 
 export const componentTemplate = (args) => ({
-  components: { CSelectFileType },
+  components: { CSelectFileType, CSelectFileTypeItem },
   setup() {
     return { args };
   },
@@ -28,7 +29,17 @@ export const componentTemplate = (args) => ({
 # SelectFileType
 
 <Canvas withSource="open">
-  <Story name="Overview" args={{}}>
+  <Story 
+  name="Overview" 
+  args={{
+      types: [
+        {ext: '.ext1', label: 'Label1'},
+        {ext: '.ext2', label: 'Label2'},
+        {ext: '.ext3', label: 'Label3'}
+      ],
+      currentFileType: '.ext1'
+  }}
+  >
     {componentTemplate.bind({})}
   </Story>
 </Canvas>

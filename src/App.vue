@@ -282,11 +282,12 @@
             <div class="flex flex-row justify-left items-center w-full relative">
               <CFormElement label="Select File Type" class="basis-1/3"></CFormElement>
               <CSelectFileType
-              v-for="file in fileTypes"
-              :label="file.label"
-              :extension="file.extension"
-              :selected="file.selected"
-              @select="file.selected=!file.selected"
+              :types="[
+                {ext: '.pdf', label: 'Example1'},
+                {ext: '.json', label: 'Example2'},
+                {ext: '.dxf', label: 'Example3'}
+              ]"
+              v-model:currentFileType="currentFileType"
               />
             </div>
           </CFormSection>
@@ -358,6 +359,7 @@ import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 import { CPane, CResizable } from './components/Resizable';
 import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
+import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 export default {
@@ -376,6 +378,7 @@ export default {
     CResizable,
     CPane,
     CSelectFileType,
+    CSelectFileTypeItem,
     XMarkIcon,
   },
   data() {
@@ -426,15 +429,11 @@ export default {
         'November',
         'December',
       ],
-      fileTypes: [
-        {extension: '.pdf', label: 'Example1', selected: false},
-        {extension: '.json', label: 'Example2', selected: false},
-        {extension: '.dxf', label: 'Example3', selected: false}
-      ],
       errors: {
         emailAddress: 'Not a valid email address',
         serviceLevel: 'You cant afford it',
       },
+      currentFileType: ''
     };
   },
   computed: {
