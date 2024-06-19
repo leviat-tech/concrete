@@ -262,7 +262,7 @@
                 v-model="ButtonGroupValue"
                 label=" "
                 color="indigo"
-                :options="111111"
+                :options="Options"
                 buttonClass="pl-1 pr-1 pb-1 pt-1"
               />
               <CRadioGroup
