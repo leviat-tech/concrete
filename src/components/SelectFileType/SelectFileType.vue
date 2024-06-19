@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex justify-center space-x-3 select-none">
     <CSelectFileTypeItem
     v-for="type in types"
     :selected="type.ext === currentFileType"
