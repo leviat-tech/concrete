@@ -279,7 +279,7 @@
             </div>
           </CFormSection>
           <CFormSection>
-            <div class="flex flex-row justify-left items-center w-full relative">
+            <div class="flex flex-row">
               <CFormElement label="Select File Type" class="basis-1/3"></CFormElement>
               <CSelectFileType
               :types="[
