@@ -1,12 +1,13 @@
 <template>
-  <CSelectFileTypeItem
-  v-for="type in types"
-  :selected="type.ext === currentFileType"
-  :label="type.label"
-  :ext="type.ext"
-  @click="currentFileType = type.ext"
-  >
-  </CSelectFileTypeItem>
+  <div>
+    <CSelectFileTypeItem
+    v-for="type in types"
+    :selected="type.ext === currentFileType"
+    :label="type.label"
+    :ext="type.ext"
+    @click="currentFileType = type.ext"
+    />
+  </div>
 
 </template>
 <script setup>
