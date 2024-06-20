@@ -11,6 +11,8 @@ import CListbox from './components/Listbox/Listbox.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
 import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
 import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
+import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
+import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -72,6 +74,8 @@ const allComponents = {
   CViewportContainer,
   CResizable,
   CPane,
+  CSelectFileType,
+  CSelectFileTypeItem
 };
 
 const install = (app, userOptions = {}) => {
@@ -140,4 +144,6 @@ export {
   CViewportContainer,
   CResizable,
   CPane,
+  CSelectFileType,
+  CSelectFileTypeItem
 };
