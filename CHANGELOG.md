@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.22.0](https://github.com/leviat-tech/concrete/compare/v2.21.1...v2.22.0) (2024-06-21)
+
+
+### Features
+
+* add spinner prop to button ([#273](https://github.com/leviat-tech/concrete/issues/273)) ([da9d9e8](https://github.com/leviat-tech/concrete/commit/da9d9e8a2de7bd15f214e37adc88c124e8725a5e))
+* SE-106 Added select file type component ([a4f2a29](https://github.com/leviat-tech/concrete/commit/a4f2a29ff418894cb8519e14dc2d220d325d46ef))
+* SE-106 Renders a list of file type items ([e4b19f8](https://github.com/leviat-tech/concrete/commit/e4b19f857bdc97aad119ff3b5e50087c1659330d))
+
+
+### Bug Fixes
+
+* SE-106 Amended radio group options misinput. ([7b38080](https://github.com/leviat-tech/concrete/commit/7b380806e54aae4560ccb00164bfac94b566af31))
+
 ## [2.21.1](https://github.com/leviat-tech/concrete/compare/v2.21.0...v2.21.1) (2024-05-06)
 
 
