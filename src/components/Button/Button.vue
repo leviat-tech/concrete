@@ -1,13 +1,13 @@
 <template>
   <button
     :id="id"
-    :class="[ ...flexClass, sizeClass, colorClass, cursorClass, paddingClass]"
-    :disabled="disabled || loading"
+    :class="[...flexClass, sizeClass, colorClass, cursorClass, paddingClass]"
+    :disabled="disabled || spinner?.rotating"
     @click="$emit('click', $event)"
     class="concrete__button"
   >
   <slot />
-  <CIcon v-if="loading" type="sync" spin :size="size"/>
+  <CIcon v-if="spinner" :type="spinnerType" :spin="spinner.rotating" :size="size"/>
   </button>
 </template>
 
@@ -31,13 +31,32 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   active: { type: Boolean, default: false },
   customPadding: { type: Boolean, default: false },
-  loading: { type: Boolean, default: false }
+  spinner: { 
+    type: Object,
+    /*
+    { 
+      type: String [
+        static_icon_type, // 'sync' as default 
+        dynamic_icon_type
+      ], 
+      rotating: Boolean // required
+    }
+    */ 
+  }
 });
 
 const emit = defineEmits(['click']);
 const size = useSizeValue(props.size);
 
-const flexClass = ['flex', 'gap-1', 'items-center'];
+// spinner
+const [ staticType = 'sync', dynamicType ] = props.spinner?.type || [];
+const spinnerType = computed(() => {
+  if(dynamicType) return props.spinner?.rotating ? dynamicType : staticType;
+  return staticType;
+})
+
+
+const flexClass = ['flex', 'gap-1', 'items-center', 'justify-items-center'];
 
 const sizeClass = {
   xs: 'h-8 text-xs py-0.5',
