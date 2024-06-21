@@ -153,6 +153,7 @@ export default {
     }
 
     const sizes = {
+      xs: 'w-3',
       sm: 'w-4',
       md: 'w-6',
       lg: 'w-8',

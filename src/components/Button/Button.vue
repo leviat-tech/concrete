@@ -1,12 +1,13 @@
 <template>
   <button
     :id="id"
-    :class="[sizeClass, colorClass, cursorClass, paddingClass]"
-    :disabled="disabled"
+    :class="[...flexClass, sizeClass, colorClass, cursorClass, paddingClass]"
+    :disabled="disabled || spinner?.rotating"
     @click="$emit('click', $event)"
     class="concrete__button"
   >
-    <slot />
+  <slot />
+  <CIcon v-if="spinner" :type="spinnerType" :spin="spinner.rotating" :size="size"/>
   </button>
 </template>
 
@@ -16,6 +17,7 @@ import { computed } from 'vue';
 import { useSizeProp, colorProp } from '../../composables/props.js';
 import { useSizeValue } from '../../composables/forms';
 import { useCursorClass } from '../../composables/styles.js';
+import CIcon from '../Icon/Icon.vue';
 
 const props = defineProps({
   id: { type: String, default: null },
@@ -29,10 +31,32 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   active: { type: Boolean, default: false },
   customPadding: { type: Boolean, default: false },
+  spinner: { 
+    type: Object,
+    /*
+    { 
+      type: String [
+        static_icon_type, // 'sync' as default 
+        dynamic_icon_type
+      ], 
+      rotating: Boolean // required
+    }
+    */ 
+  }
 });
 
 const emit = defineEmits(['click']);
 const size = useSizeValue(props.size);
+
+// spinner
+const [ staticType = 'sync', dynamicType ] = props.spinner?.type || [];
+const spinnerType = computed(() => {
+  if(dynamicType) return props.spinner?.rotating ? dynamicType : staticType;
+  return staticType;
+})
+
+
+const flexClass = ['flex', 'gap-1', 'items-center', 'justify-items-center'];
 
 const sizeClass = {
   xs: 'h-8 text-xs py-0.5',
