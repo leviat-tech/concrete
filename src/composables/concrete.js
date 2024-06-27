@@ -1,7 +1,7 @@
 
 import { inject, reactive } from 'vue';
 
-export const defaultOptions = {
+export const concreteConfig = {
   size: 'md',
   stacked: false,
   components: null,
@@ -15,5 +15,5 @@ export const defaultOptions = {
 };
 
 export const useConcrete = () => {
-  return inject('concrete', defaultOptions);
+  return inject('concrete', concreteConfig);
 };
