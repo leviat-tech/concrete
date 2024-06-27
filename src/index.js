@@ -35,7 +35,8 @@ import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
 import { CTable, CInputCell } from './components/Table';
 import { CResizable, CPane } from './components/Resizable';
 
-import { defaultOptions } from './composables/concrete';
+// Other modules
+import {concreteConfig} from './composables/concrete';
 import { defineCustomUnits } from './utils/units';
 import tooltip from './directives/tooltip';
 
@@ -78,27 +79,24 @@ const allComponents = {
   CSelectFileTypeItem
 };
 
-const install = (app, userOptions = {}) => {
-  const options = {
-    ...defaultOptions,
-    ...userOptions,
-  };
+const install = (app, userConfig = {}) => {
+  Object.assign(concreteConfig, userConfig);
 
   // Create an internal input registry if the option is set
-  if (userOptions.registerInputs === true) {
-    options.registeredInputs = reactive({});
+  if (userConfig.registerInputs === true) {
+    concreteConfig.registeredInputs = reactive({});
   }
 
   app.directive('tooltip', tooltip);
-  app.provide('concrete', options);
+  app.provide('concrete', concreteConfig);
 
-  if (userOptions.customUnits?.length > 0) {
-    userOptions.customUnits.forEach(({ unit, siUnit, conversions }) => {
+  if (userConfig.customUnits?.length > 0) {
+    userConfig.customUnits.forEach(({ unit, siUnit, conversions }) => {
       defineCustomUnits(unit, siUnit, conversions);
     });
   }
 
-  const componentsToInclude = options.components || Object.keys(allComponents);
+  const componentsToInclude = concreteConfig.components || Object.keys(allComponents);
 
   componentsToInclude.forEach((componentName) => {
     const component = allComponents[componentName];
