@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.22.1](https://github.com/leviat-tech/concrete/compare/v2.22.0...v2.22.1) (2024-06-28)
+
+
+### Bug Fixes
+
+* composable inside computed not working after vue update ([0d6f63c](https://github.com/leviat-tech/concrete/commit/0d6f63c18ab93b72332e667d3a8e7e7155be337b))
+
 ## [2.22.0](https://github.com/leviat-tech/concrete/compare/v2.21.1...v2.22.0) (2024-06-21)
 
 
