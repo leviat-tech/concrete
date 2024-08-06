@@ -1,8 +1,9 @@
-import { concreteConfig as concrete } from './concrete';
+import { useConcrete, concreteConfig } from './concrete';
 import { computed, inject, onMounted, onUnmounted, watch } from 'vue';
 import logger from '../utils/logger.js';
 
 export const useFormLabel = (props) => {
+  const concrete = useConcrete();
   const noLabel = ( props.noLabel || (!props.id && !props.label) );
   const formSection = inject('form-section', { size: null });
   const formatter = props.labelFormatter || formSection.labelFormatter || concrete.labelFormatter;
@@ -10,23 +11,26 @@ export const useFormLabel = (props) => {
 }
 
 export const useNoWrapValue = (props) => {
+  const concrete = useConcrete();
   return (props.noWrap || !concrete.wrapFormInputs);
 }
 
 export const useSizeValue = (sizeProp) => {
+  const concrete = useConcrete();
   const formSection = inject('form-section', { size: null });
   const formElement = inject('form-element', { size: null });
   return sizeProp || formElement.size || formSection.size || concrete.size || 'md';
 }
 
 export const useStackedValue = (stackedProp) => {
+  const concrete = useConcrete();
   const formSection = inject('form-section', { stacked: null });
   const formElement = inject('form-element', { stacked: null });
   return stackedProp || formElement.stacked || formSection.stacked || concrete.stacked || false;
 }
 
 export const useInputValue = (props) => {
-  const { inputIdToValue } = concrete;
+  const { inputIdToValue } = concreteConfig;
   if (props.modelValue !== undefined || !props.id || !inputIdToValue) return props.modelValue;
   return inputIdToValue(props.id)
 }
@@ -35,12 +39,13 @@ function getInputElementFromRef(inputRef) {
   const input = inputRef.value;
   const el = (input instanceof HTMLElement) ? input : input.el;
   if (!(el instanceof HTMLElement)) {
-    logger.warn(`Could not register input with id '${id}'`);
+    logger.warn('Could not register input');
   }
   return el;
 }
 
 export const useRegisterInput = (props, inputRef) => {
+  const concrete = useConcrete();
   const { id } = props;
   const { registerInputs, registeredInputs } = concrete;
   if (!id || !inputRef || !registerInputs) return;
@@ -89,6 +94,7 @@ export const useRegisterInput = (props, inputRef) => {
 }
 
 export const useInputStatus = (props) => {
+  const concrete = useConcrete();
   const { inputGetStatus } = concrete;
   const colorTypeMap = {
     info: 'default',
@@ -128,10 +134,11 @@ export const useInputStatus = (props) => {
 export const useInputIdToOptions = (props) => {
   if (props.options?.length) return props.options;
 
-  const { inputIdToOptions } = concrete;
+  const { inputIdToOptions } = concreteConfig;
   return inputIdToOptions?.(props.id) || [];
 }
 
 export const useDefaultSpinner = () => {
+  const concrete = useConcrete();
   return concrete.defaultSpinner;
 }
