@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.0](https://github.com/leviat-tech/concrete/compare/v2.22.3...v2.23.0) (2024-08-06)
+
+
+### Features
+
+* enable html in prefix and suffix ([2578a64](https://github.com/leviat-tech/concrete/commit/2578a6467f2db88e86663303137bec90b53080d5))
+
 ## [2.22.3](https://github.com/leviat-tech/concrete/compare/v2.22.2...v2.22.3) (2024-08-06)
 
 
