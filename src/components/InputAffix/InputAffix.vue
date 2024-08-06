@@ -7,7 +7,7 @@
 
 <script setup>
 import { colorProp, useSizeProp } from '../../composables/props.js';
-import { useSizeValue } from '../../composables/forms.js';
+import { useConcreteForms } from '../../composables/forms.js';
 import { inject } from 'vue';
 
 const props = defineProps({
@@ -21,7 +21,7 @@ const props = defineProps({
   },
 });
 
-const size = useSizeValue(props.size);
+const size = useConcreteForms().getSizeValue(props.size);
 const userClassProp = props.type + 'Class';
 const userClass = inject(userClassProp, '');
 

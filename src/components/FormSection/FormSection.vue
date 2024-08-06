@@ -21,7 +21,7 @@
 <script setup>
 import { provide } from 'vue';
 import { colorProp, useSizeProp } from '../../composables/props';
-import { useSizeValue, useStackedValue } from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 import { useInputClasses } from '../../composables/styles';
 
 const props = defineProps({
@@ -34,10 +34,11 @@ const props = defineProps({
   innerClass: String,
 });
 
+const { getSizeValue, getStackedValue } = useConcreteForms();
 const { inputColorClass, textSizeClass } = useInputClasses(props);
 
-const size = useSizeValue(props.size);
-const stacked = useStackedValue(props.stacked);
+const size = getSizeValue(props.size);
+const stacked = getStackedValue(props.stacked);
 provide('form-section', { stacked, size });
 
 const underlineClass = props.underline ? 'border-b' : '';

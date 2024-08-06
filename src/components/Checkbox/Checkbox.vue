@@ -58,13 +58,7 @@ import { CheckIcon } from '@heroicons/vue/20/solid';
 import { computed, onMounted, ref } from 'vue';
 import { useEventHandler } from '../../composables/events.js';
 import { formElementProps } from '../../composables/props.js';
-import {
-  useNoWrapValue,
-  useInputValue,
-  useRegisterInput,
-  useSizeValue,
-  useStackedValue,
-} from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 import { v4 as uuidv4 } from 'uuid';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -81,12 +75,20 @@ const props = defineProps({
   cssClass: String,
 });
 
+const {
+  getNoWrapValue,
+  getInputValue,
+  registerInput,
+  getSizeValue,
+  getStackedValue,
+} = useConcreteForms();
+
 const autoId = uuidv4();
 const emit = defineEmits(['update:modelValue', 'change']);
 
-const size = useSizeValue(props.size);
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const size = getSizeValue(props.size);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 
 const switchRef = ref(null);
 const isDirty = ref(false);
@@ -95,7 +97,7 @@ const preventOutline = ref(null);
 
 const enabled = computed({
   get() {
-    return useInputValue(props);
+    return getInputValue(props);
   },
   set(value) {
     isDirty.value = true;
@@ -139,7 +141,7 @@ const styleClass = computed(() => {
   }
 });
 
-useRegisterInput(props, switchRef);
+registerInput(props, switchRef);
 
 const onMouseDown = (_event) => preventOutline.value = true;
 const onKeyUp = (_event) => preventOutline.value = false;

@@ -144,19 +144,10 @@ import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
 import { formElementProps } from '../../composables/props.js';
 import {
-  useInputColorClassValue,
   inputStaticClasses,
   useInputClasses,
-  useCursorClass,
 } from '../../composables/styles.js';
-import {
-  useNoWrapValue,
-  useSizeValue,
-  useStackedValue,
-  useInputValue,
-  useRegisterInput,
-  useInputIdToOptions,
-} from '../../composables/forms.js';
+import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -185,6 +176,15 @@ const props = defineProps({
   onChange: { type: Function, default: null },
 });
 
+const {
+  getNoWrapValue,
+  getSizeValue,
+  getStackedValue,
+  getInputValue,
+  registerInput,
+  getInputIdToOptions,
+} = useConcreteForms();
+
 const emit = defineEmits(['update:modelValue', 'change']);
 
 const { mergedSizeClass, inputColorClass, bgColorClass } =
@@ -194,9 +194,9 @@ const cursorClass = computed(() =>
   isDisabled.value ? 'cursor-not-allowed' : 'cursor-pointer'
 );
 
-const size = useSizeValue(props.size);
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const size = getSizeValue(props.size);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 
 const isDirty = ref(false);
 const localValue = ref(null);
@@ -204,7 +204,7 @@ const buttonRef = ref(null);
 
 const selectedValue = computed({
   get() {
-    return useInputValue(props);
+    return getInputValue(props);
   },
   set(value) {
     isDirty.value = true;
@@ -225,7 +225,7 @@ const focus = () => {
 defineExpose({ focus });
 
 const localOptions = computed(() => {
-  const options = useInputIdToOptions(props);
+  const options = getInputIdToOptions(props);
 
   return options.map((option) => {
     const opt = isPlainObject(option)
@@ -303,5 +303,5 @@ function getOptionsClass() {
   return isOptionsBelowInput ? 'bottom-full mb-1' : 'top-full mt-1';
 }
 
-useRegisterInput(props, buttonRef);
+registerInput(props, buttonRef);
 </script>

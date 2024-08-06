@@ -84,14 +84,7 @@ import {
   inputStaticClasses,
   useCursorClass,
 } from '../../composables/styles';
-import {
-  useSizeValue,
-  useStackedValue,
-  useNoWrapValue,
-  useInputValue,
-  useRegisterInput,
-  useDefaultSpinner,
-} from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
 
 const { decimalPrecision } = inject('concrete');
@@ -120,6 +113,15 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
+const {
+  getSizeValue,
+  getStackedValue,
+  getNoWrapValue,
+  getInputValue,
+  registerInput,
+  getDefaultSpinner,
+} = useConcreteForms();
+
 let unitPrecision;
 if (decimalPrecision)
   unitPrecision = decimalPrecision[props.unitSystem].inputPrecision;
@@ -133,9 +135,9 @@ const {
   textSizeClass,
 } = useInputClasses(props);
 
-const size = useSizeValue(props.size);
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const size = getSizeValue(props.size);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 
 const isDirty = ref(false);
 const inputRef = ref(null);
@@ -152,7 +154,7 @@ const sanitizeInput = (val) => {
 
 const value = computed({
   get() {
-    const val = useInputValue(props);
+    const val = getInputValue(props);
     const converted = convertToDisplayValue(val);
     return converted;
   },
@@ -208,7 +210,7 @@ function convertFromDisplayValue(v) {
 }
 
 const enableSpinner =
-  typeof props.spinner === 'boolean' ? props.spinner : useDefaultSpinner(props);
+  typeof props.spinner === 'boolean' ? props.spinner : getDefaultSpinner(props);
 
 const inputSpinnerClass = computed(() => {
   return enableSpinner
@@ -221,5 +223,5 @@ const paddingClass = computed(() => {
   return props.readOnly || props.disabled || !enableSpinner ? '' : 'mr-5';
 });
 
-useRegisterInput(props, inputRef);
+registerInput(props, inputRef);
 </script>

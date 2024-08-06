@@ -30,12 +30,7 @@
 <script setup>
 import { computed, provide } from 'vue';
 import { colorProp, useSizeProp } from '../../composables/props';
-import {
-  useFormLabel,
-  useSizeValue,
-  useStackedValue,
-  useInputStatus,
-} from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 import { useInputClasses } from '../../composables/styles';
 
 const props = defineProps({
@@ -55,6 +50,13 @@ const props = defineProps({
   onMouseDown: Function
 });
 
+const {
+  getFormLabel,
+  getSizeValue,
+  getStackedValue,
+  getInputStatus,
+} = useConcreteForms();
+
 const LABEL_ORDER_CLASSES = {
   [0]: 'order-0 !basis-auto',
   [1]: 'order-1 !basis-auto',
@@ -62,10 +64,10 @@ const LABEL_ORDER_CLASSES = {
 
 const { textSizeClass, heightClass, disabledClass } = useInputClasses(props);
 
-const label = useFormLabel(props);
-const size = useSizeValue(props.size);
-const stacked = useStackedValue(props.stacked);
-const status = useInputStatus(props);
+const label = getFormLabel(props);
+const size = getSizeValue(props.size);
+const stacked = getStackedValue(props.stacked);
+const status = getInputStatus(props);
 
 provide('form-section', { stacked, size });
 provide('form-element', { size, color: props.color });

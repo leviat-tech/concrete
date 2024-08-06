@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import { useInputStatus, useSizeValue } from './forms';
+import { useConcreteForms } from './forms';
 
 const heightClassMap = {
   xs: 'h-8',
@@ -38,7 +38,7 @@ export const inputStaticClasses = [layoutClasses, focusClasses].join(' ' +
   '');
 
 export const useInputColorClassValue = (props) => {
-  const status = useInputStatus(props);
+  const status = useConcreteForms().getInputStatus(props);
 
   return computed(() => {
     return colorClassMap[status.value?.color]
@@ -50,7 +50,7 @@ export const useCursorClass = (props, enabledCursorClass) => {
 }
 
 export const useInputClasses = (props) => {
-  const size = useSizeValue(props.size);
+  const size = useConcreteForms().getSizeValue(props.size);
   const heightClass = heightClassMap[size];
   const textSizeClass = textSizeClassMap[size];
   const hPaddingClass = hPaddingClassMap[size];

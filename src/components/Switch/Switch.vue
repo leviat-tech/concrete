@@ -50,13 +50,7 @@ import { Switch } from '@headlessui/vue';
 import { CheckIcon, XMarkIcon } from '@heroicons/vue/24/solid';
 import { computed, ref, inject, onMounted } from 'vue';
 import { formElementProps } from '../../composables/props.js';
-import {
-  useSizeValue,
-  useStackedValue,
-  useNoWrapValue,
-  useInputValue,
-  useRegisterInput
-} from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -69,11 +63,19 @@ const props = defineProps({
   onChange: { type: Function, default: null },
 });
 
+const {
+  getSizeValue,
+  getStackedValue,
+  getNoWrapValue,
+  getInputValue,
+  registerInput
+} = useConcreteForms();
+
 const emit = defineEmits(['update:modelValue', 'change']);
 
-const size = useSizeValue(props.size);
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const size = getSizeValue(props.size);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 
 const switchRef = ref(null);
 const isDirty = ref(false);
@@ -81,7 +83,7 @@ const localValue = ref(null);
 
 const enabled = computed({
   get() {
-    return useInputValue(props);
+    return getInputValue(props);
   },
   set(value) {
     isDirty.value = true;
@@ -149,7 +151,7 @@ const checkIconClass = computed(() => {
   }[props.color];
 });
 
-useRegisterInput(props, switchRef);
+registerInput(props, switchRef);
 
 // The Switch component does not accept an id prop
 // so we need to override headless UI's default id

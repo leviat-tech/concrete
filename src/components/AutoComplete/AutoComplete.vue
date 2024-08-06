@@ -124,13 +124,7 @@ import {
   useSizeProp,
 } from '../../composables/props';
 import { inputStaticClasses, useInputClasses } from '../../composables/styles';
-import {
-  useNoWrapValue,
-  useInputValue,
-  useRegisterInput,
-  useSizeValue,
-  useStackedValue,
-} from '../../composables/forms.js';
+import { useConcreteForms } from "../../composables/forms.js";
 import { useEventHandler } from '../../composables/events.js';
 import { isPlainObject } from 'lodash-es';
 
@@ -158,11 +152,19 @@ const props = defineProps({
   onBlur: { type: Function, default: null },
 });
 
+const {
+  getNoWrapValue,
+  getInputValue,
+  registerInput,
+  getSizeValue,
+  getStackedValue,
+} = useConcreteForms();
+
 const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur']);
 
 const inputRef = ref(null);
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 const isDirty = ref(false);
 const localValue = ref('');
 const searchValue = ref('');
@@ -177,7 +179,7 @@ const {
 
 const displayValue = computed({
   get() {
-    const val = useInputValue(props);
+    const val = getInputValue(props);
     return props.formatter ? props.formatter(val) : val;
   },
   set(value) {
@@ -197,7 +199,7 @@ const localOptions = computed(() => {
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
 
-const size = useSizeValue(props.size);
+const size = getSizeValue(props.size);
 const hPaddingClass = {
   xs: 'pl-3 pr-6',
   sm: 'pl-3 pr-8',
@@ -229,5 +231,5 @@ const filteredOptions = computed(() => {
         .slice(0, props.listSize);
 });
 
-useRegisterInput(props, inputRef);
+registerInput(props, inputRef);
 </script>

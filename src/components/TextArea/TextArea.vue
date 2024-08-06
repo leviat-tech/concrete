@@ -45,12 +45,7 @@ import {
   formElementProps,
   useSizeProp,
 } from '../../composables/props.js';
-import {
-  useStackedValue,
-  useNoWrapValue,
-  useRegisterInput,
-  useInputValue, useSizeValue
-} from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 
 import {
   useInputColorClassValue,
@@ -80,10 +75,18 @@ const props = defineProps({
   rows: { type: Number, default: 10 },
 });
 
+const {
+  getStackedValue,
+  getNoWrapValue,
+  registerInput,
+  getInputValue,
+  getSizeValue
+} = useConcreteForms();
+
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 const isDirty = ref(false);
 const localValue = ref('');
 
@@ -98,7 +101,7 @@ const colorClass = useInputColorClassValue(props);
 
 const value = computed({
   get() {
-    return useInputValue(props);
+    return getInputValue(props);
   },
   set(val) {
     localValue.value = val;
@@ -107,7 +110,7 @@ const value = computed({
   },
 });
 
-const size = useSizeValue(props.size);
+const size = getSizeValue(props.size);
 const paddingYClass = {
   xs: 'py-0.5',
   sm: 'py-1',
@@ -125,5 +128,5 @@ const select = () => inputRef.value.select();
 
 defineExpose({ focus, blur, select});
 
-useRegisterInput(props, inputRef);
+registerInput(props, inputRef);
 </script>

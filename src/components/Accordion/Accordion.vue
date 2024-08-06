@@ -43,7 +43,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 import { ref, inject, reactive } from 'vue';
 import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
 import { useSizeProp } from '../../composables/props.js';
-import { useSizeValue } from '../../composables/forms.js';
+import { useConcreteForms } from '../../composables/forms.js';
 import { textSizeClassMap } from '../../composables/styles.js';
 
 const { accordionState } = inject('concrete', {});
@@ -71,7 +71,7 @@ const styles = reactive({
 const content = ref(null);
 const TRANSITION_TIME = props.transition ? 400 : 0;
 
-const size = useSizeValue(props.size);
+const size = useConcreteForms().getSizeValue(props.size);
 
 const textClass = textSizeClassMap[size];
 const transitionClass = props.transition ? 'transition-all' : '';

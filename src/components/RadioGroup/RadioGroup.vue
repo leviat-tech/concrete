@@ -78,14 +78,7 @@ import CFragment from '../Fragment/Fragment.vue';
 import { computed, ref } from 'vue';
 import { formElementProps } from '../../composables/props';
 import { useInputClasses } from '../../composables/styles';
-import {
-  useNoWrapValue,
-  useInputValue,
-  useRegisterInput,
-  useStackedValue,
-  useInputIdToOptions,
-  useSizeValue,
-} from '../../composables/forms.js';
+import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 
 const props = defineProps({
@@ -100,9 +93,18 @@ const props = defineProps({
   optionsClass: [String, Object, Array],
 });
 
+const {
+  getNoWrapValue,
+  getInputValue,
+  registerInput,
+  getStackedValue,
+  getInputIdToOptions,
+  getSizeValue,
+} = useConcreteForms();
+
 const value = computed({
   get() {
-    return useInputValue(props);
+    return getInputValue(props);
   },
   set(value) {
     isDirty.value = true;
@@ -116,15 +118,15 @@ const isDirty = ref(false);
 const localValue = ref(null);
 const el = ref(null);
 
-const size = useSizeValue(props.size);
+const size = getSizeValue(props.size);
 const optionsClass = props.optionsClass;
 
 const emit = defineEmits(['update:modelValue', 'change']);
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
-useRegisterInput(props, el);
+registerInput(props, el);
 
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 
 const { inputColorClass, disabledClass, textSizeClass, heightClass } =
   useInputClasses(props);
@@ -147,5 +149,5 @@ const labelClasses = computed(() => {
   return 'order-2 !ml-0 mr-2';
 });
 
-const opts = computed(() => useInputIdToOptions(props));
+const opts = computed(() => getInputIdToOptions(props));
 </script>

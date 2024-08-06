@@ -44,13 +44,7 @@
 import { computed, ref } from 'vue';
 import { formElementProps } from '../../composables/props.js';
 import { inputStaticClasses, useInputClasses, useCursorClass } from '../../composables/styles';
-import {
-  useSizeValue,
-  useStackedValue,
-  useNoWrapValue,
-  useInputValue,
-  useRegisterInput,
-} from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -67,6 +61,14 @@ const props = defineProps({
   overrideCssStyles: { type: String},
 });
 
+const {
+  getSizeValue,
+  getStackedValue,
+  getNoWrapValue,
+  getInputValue,
+  registerInput,
+} = useConcreteForms();
+
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
 const {
@@ -78,9 +80,9 @@ const {
 const cursorClass = useCursorClass(props);
 
 
-const size = useSizeValue(props.size);
-const stacked = useStackedValue(props.stacked);
-const wrap = !useNoWrapValue(props);
+const size = getSizeValue(props.size);
+const stacked = getStackedValue(props.stacked);
+const wrap = !getNoWrapValue(props);
 
 const isDirty = ref(false);
 const inputRef = ref(null);
@@ -88,7 +90,7 @@ const localValue = ref('');
 
 const value = computed({
   get() {
-    return useInputValue(props);
+    return getInputValue(props);
   },
   set(val) {
     localValue.value = val;
@@ -106,6 +108,6 @@ const select = () => inputRef.value.select();
 
 defineExpose({ focus, blur, select });
 
-useRegisterInput(props, inputRef);
+registerInput(props, inputRef);
 
 </script>

@@ -15,7 +15,7 @@
 <script setup>
 import { computed } from 'vue';
 import { useSizeProp, colorProp } from '../../composables/props.js';
-import { useSizeValue } from '../../composables/forms';
+import { useConcreteForms } from '../../composables/forms';
 import { useCursorClass } from '../../composables/styles.js';
 import CIcon from '../Icon/Icon.vue';
 
@@ -46,7 +46,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['click']);
-const size = useSizeValue(props.size);
+const size = useConcreteForms().getSizeValue(props.size);
 
 // spinner
 const [ staticType = 'sync', dynamicType ] = props.spinner?.type || [];
