@@ -28,7 +28,7 @@
             class="relative z-0 inline-flex w-full items-center"
             :class="inputColorClass"
           >
-            <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
+            <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
             <slot name="prefix" class="z-10" />
             <ListboxButton
               ref="buttonRef"
@@ -69,7 +69,7 @@
               </span>
             </ListboxButton>
             <input type="hidden" :value="selectedLabel" data-selected />
-            <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
+            <CInputAffix v-if="suffix" type="suffix" v-html="suffix" />
             <slot name="suffix" class="z-10" />
           </div>
         </div>

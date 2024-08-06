@@ -24,7 +24,7 @@
     >
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full cursor-default text-left">
-          <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
+          <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
           <slot name="prefix" class="z-10" />
           <ComboboxInput
             :id="id"
@@ -47,7 +47,7 @@
           >
             <ChevronUpDownIcon class="w-5" :class="inputColorClass" />
           </ComboboxButton>
-          <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
+          <CInputAffix v-if="suffix" type="suffix" v-html="suffix" />
           <slot name="suffix" class="z-10" />
         </div>
         <transition

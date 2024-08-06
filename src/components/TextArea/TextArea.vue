@@ -16,7 +16,7 @@
     :class="inputColorClass"
   >
     <div class="flex w-full" :class="colorClass">
-      <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
+      <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
       <slot name="prefix" class="z-10"/>
       <textarea
         ref="inputRef"
@@ -32,7 +32,7 @@
         @keydown.enter="onEnter"
         @blur="onBlur"
       />
-      <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
+      <CInputAffix v-if="suffix" type="suffix" v-html="suffix" />
       <slot name="suffix" class="z-10"/>
     </div>
   </component>

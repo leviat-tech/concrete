@@ -17,7 +17,7 @@
     :class="inputColorClass"
   >
     <div class="flex w-full relative concrete__numeric-input">
-      <CInputAffix v-if="prefix" type="prefix">{{ prefix }}</CInputAffix>
+      <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
       <slot name="prefix" class="z-10" />
       <input
         ref="inputRef"
@@ -61,7 +61,7 @@
           {{ to || unit }}
         </div>
       </div>
-      <CInputAffix v-if="suffix" type="suffix">{{ suffix }}</CInputAffix>
+      <CInputAffix v-if="suffix" type="suffix" v-html="suffix" />
       <slot name="suffix" class="z-10" />
     </div>
   </component>
