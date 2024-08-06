@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.22.2](https://github.com/leviat-tech/concrete/compare/v2.22.1...v2.22.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* label formatter config option not working ([8aec6f3](https://github.com/leviat-tech/concrete/commit/8aec6f3b79618e17b317596e1d46dda94520ea3f))
+
 ## [2.22.1](https://github.com/leviat-tech/concrete/compare/v2.22.0...v2.22.1) (2024-06-28)
 
 
