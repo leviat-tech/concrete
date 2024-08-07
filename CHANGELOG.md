@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.24.0](https://github.com/leviat-tech/concrete/compare/v2.23.0...v2.24.0) (2024-08-07)
+
+
+### Features
+
+* added columns override to viewport container ([6c4e315](https://github.com/leviat-tech/concrete/commit/6c4e315e6f4073882827855e02268693e53fbe4f))
+
 ## [2.23.0](https://github.com/leviat-tech/concrete/compare/v2.22.3...v2.23.0) (2024-08-06)
 
 
