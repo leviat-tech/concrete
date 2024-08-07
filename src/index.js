@@ -21,9 +21,11 @@ import CFormElement from './components/FormElement/FormElement.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFragment from './components/Fragment/Fragment.vue';
 import CTooltipIcon from './components/TooltipIcon/TooltipIcon.vue';
+import CStatusIndicator from './components/StatusIndicator/StatusIndicator.vue'
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
+import CPopupMenu from './components/PopupMenu/PopupMenu.vue'
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
@@ -76,7 +78,9 @@ const allComponents = {
   CResizable,
   CPane,
   CSelectFileType,
-  CSelectFileTypeItem
+  CSelectFileTypeItem,
+  CStatusIndicator,
+  CPopupMenu
 };
 
 const install = (app, userConfig = {}) => {
@@ -143,5 +147,7 @@ export {
   CResizable,
   CPane,
   CSelectFileType,
-  CSelectFileTypeItem
+  CSelectFileTypeItem,
+  CStatusIndicator,
+  CPopupMenu
 };
