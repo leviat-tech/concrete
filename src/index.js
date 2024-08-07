@@ -13,6 +13,7 @@ import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
 import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
 import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
 import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
+import CEditableDiv from './components/EditableDiv/EditableDiv.vue'
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -80,7 +81,8 @@ const allComponents = {
   CSelectFileType,
   CSelectFileTypeItem,
   CStatusIndicator,
-  CPopupMenu
+  CPopupMenu,
+  CEditableDiv,
 };
 
 const install = (app, userConfig = {}) => {
@@ -149,5 +151,6 @@ export {
   CSelectFileType,
   CSelectFileTypeItem,
   CStatusIndicator,
-  CPopupMenu
+  CPopupMenu,
+  CEditableDiv
 };
