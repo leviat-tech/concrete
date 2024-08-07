@@ -1,7 +1,5 @@
 <template>
-  <div
-    ref="viewportContainer"
-    class="
+  <div ref="viewportContainer" class="
       concrete__viewport-container
       w-full
       h-full
@@ -9,10 +7,7 @@
       items-center
       justify-center
       overflow-hidden
-    "
-    :class="{ 'grid bg-gray-200': !fullWidth }"
-    :style="{ 'grid-template-columns': colStyle }"
-  >
+    " :class="{ 'grid bg-gray-200': !fullWidth }" :style="{ 'grid-template-columns': colStyle }">
     <slot />
   </div>
 </template>
@@ -63,6 +58,7 @@ export default {
     options: { type: Array, default: () => [] },
     modelValue: { type: [String, Number], default: null },
     forceFullWidth: { type: Boolean },
+    columns: { type: Number, default: null },
 
     // A target aspect ratio for each viewport;
     // Used to determine how to tile multiple viewports.
@@ -121,6 +117,10 @@ export default {
       this.$emit('update:modelValue', this.reactive.maximized);
     },
     setCols() {
+      if (this.columns !== null) {
+        this.cols = this.columns;
+        return;
+      }
       const width = this.$refs.viewportContainer.clientWidth || 1;
       const height = this.$refs.viewportContainer.clientHeight || 1;
       const ar = width / height;
