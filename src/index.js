@@ -13,6 +13,7 @@ import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
 import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
 import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
 import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
+import CEditableDiv from './components/EditableDiv/EditableDiv.vue'
 
 // Low Level Components
 import CIcon from './components/Icon/Icon.vue';
@@ -21,9 +22,11 @@ import CFormElement from './components/FormElement/FormElement.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFragment from './components/Fragment/Fragment.vue';
 import CTooltipIcon from './components/TooltipIcon/TooltipIcon.vue';
+import CStatusIndicator from './components/StatusIndicator/StatusIndicator.vue'
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
+import CPopupMenu from './components/PopupMenu/PopupMenu.vue'
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/StatusBar/StatusBar.vue';
 import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
@@ -76,7 +79,10 @@ const allComponents = {
   CResizable,
   CPane,
   CSelectFileType,
-  CSelectFileTypeItem
+  CSelectFileTypeItem,
+  CStatusIndicator,
+  CPopupMenu,
+  CEditableDiv,
 };
 
 const install = (app, userConfig = {}) => {
@@ -143,5 +149,8 @@ export {
   CResizable,
   CPane,
   CSelectFileType,
-  CSelectFileTypeItem
+  CSelectFileTypeItem,
+  CStatusIndicator,
+  CPopupMenu,
+  CEditableDiv
 };
