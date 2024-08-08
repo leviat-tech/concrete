@@ -280,15 +280,9 @@
           </CFormSection>
           <CFormSection>
             <div class="flex flex-row">
-              <CFormElement label="Select File Type" class="basis-1/3"></CFormElement>
-              <CSelectFileType
-              :types="[
-                {ext: '.pdf', label: 'Example1'},
-                {ext: '.json', label: 'Example2'},
-                {ext: '.dxf', label: 'Example3'}
-              ]"
-              v-model:currentFileType="currentFileType"
-              />
+              <CFormElement label="Select File Type">
+                <CSelectFileType :types="fileTypes" v-model:currentFileType="currentFileType"/>
+              </CFormElement>
             </div>
           </CFormSection>
         </div>
@@ -362,6 +356,12 @@ import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
 import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
+const fileTypes = [
+  {ext: '.pdf', label: 'Example1', val: 'item1' },
+  {ext: '.json', label: 'Example2', val: 'item2' },
+  {ext: '.dxf', label: 'Example3', val: 'item3' }
+];
+
 export default {
   components: {
     CNumericInput,
@@ -395,6 +395,7 @@ export default {
         isAdmin: false,
         recieveNotifications: false,
       },
+      fileTypes,
       value: null,
       checkValue: false,
       checkValue2: true,
@@ -433,7 +434,7 @@ export default {
         emailAddress: 'Not a valid email address',
         serviceLevel: 'You cant afford it',
       },
-      currentFileType: ''
+      currentFileType: fileTypes[0]
     };
   },
   computed: {

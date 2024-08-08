@@ -1,13 +1,14 @@
 <template>
-    <div 
-        class="inline-flex items-center border border-steel text-center h-24 w-24 rounded-md border-2 relative cursor-pointer overflow-hidden justify-center"
-        :class="selected ? 'bg-indigo fill-white' : ' bg-white fill-gray-500'">
+    <div
+        class="inline-flex items-center border text-center h-24 w-24 rounded-sm relative cursor-pointer overflow-hidden justify-center"
+        :class="selected ? 'bg-indigo border-indigo fill-white' : ' bg-white border-steel fill-gray-500'"
+    >
         <div>
             <div class="flex justify-center items-center">
                 <slot>
 
                 <svg 
-                    class="h-12 w-12 text-white font-bold hover:cursor-pointer"
+                    class="h-12 w-12 text-white font-bold"
                     :class="selected ? 'fill-white' : 'fill-steel-dark'"
                     xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 -960 960 960" 
