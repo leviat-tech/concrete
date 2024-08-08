@@ -4,23 +4,24 @@
 
 <script setup>
 import { computed } from 'vue';
-import ENTITY_STATUSES from './statuses'
+import STATUSES from './statuses'
 
 const props = defineProps({
   status: {
     type: String,
-    default: ENTITY_STATUSES[0],
-    validator: (val) => [...ENTITY_STATUSES].includes(val),
+    default: STATUSES.NO_STATUS,
+    validator: (val) => Object.values(STATUSES).includes(val),
   },
 });
 
 const statusClass = computed(() => {
   const statusClasses = {
-    no_solution: 'bg-danger',
-    approved: 'bg-success-light',
-    not_calculated: 'bg-steel',
+    [STATUSES.ERROR]: 'bg-danger',
+    [STATUSES.WARNING]: 'bg-warning',
+    [STATUSES.NO_STATUS]: 'bg-steel',
+    [STATUSES.SUCCESS]: 'bg-success',
   };
 
-  return statusClasses[props.status || ENTITY_STATUSES[0]];
+  return statusClasses[props.status || STATUSES.NO_STATUS];
 });
 </script>

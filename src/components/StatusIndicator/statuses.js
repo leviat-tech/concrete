@@ -1,3 +1,8 @@
-const ENTITY_STATUSES = ['not_calculated', 'approved', 'no_solution'];
+const STATUSES = {
+  ERROR: 'error',
+  WARNING: 'warning',
+  SUCCESS: 'success',
+  NO_STATUS: 'no_status',
+};
 
-export default ENTITY_STATUSES
+export default STATUSES;
