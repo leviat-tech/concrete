@@ -15,7 +15,6 @@
 
 <script setup>
   import { ref } from 'vue';
-  import { transact } from '@crhio/leviate';
 
   const props = defineProps({
     modelValue: String,
@@ -59,9 +58,7 @@
     selection.removeAllRanges();
 
     if (shouldUpdate) {
-      transact(() => {
-        emit('update:modelValue', el.value.innerHTML);
-      });
+      emit('update:modelValue', el.value.innerHTML);
     } else {
       el.value.innerHTML = props.modelValue;
     }
