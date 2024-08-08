@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.25.0](https://github.com/leviat-tech/concrete/compare/v2.24.0...v2.25.0) (2024-08-08)
+
+
+### Features
+
+* add status indicato,  popup menu and editable div ([4178bed](https://github.com/leviat-tech/concrete/commit/4178bedeb51d01ac0bec542e655d8ee938d44ea7))
+
+
+### Bug Fixes
+
+* **SelectFileType:** allow multiple file types with same extension ([2eabb24](https://github.com/leviat-tech/concrete/commit/2eabb2456c90eb3c8a6bc075443f2c36c2485466))
+
 ## [2.24.0](https://github.com/leviat-tech/concrete/compare/v2.23.0...v2.24.0) (2024-08-07)
 
 
