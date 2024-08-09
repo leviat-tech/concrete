@@ -16,7 +16,7 @@
         :class="`absolute text-black top-3 right-3 z-20 w-44 py-2 bg-white shadow-xl transition duration-150 origin-top-right ${menuContainerClasses}`"
       >
         <MenuItem v-for="(slot, index) in $slots.default?.()" :key="index" as="div">
-          <SlotRenderer :slot="slot" />
+          <SlotRenderer :child="slot" />
         </MenuItem>
       </MenuItems>
     </Transition>
