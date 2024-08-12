@@ -281,7 +281,8 @@
           <CFormSection>
             <div class="flex flex-row">
               <CFormElement label="Select File Type">
-                <CSelectFileType :types="fileTypes" v-model:currentFileType="currentFileType"/>
+                <CSelectFileType :types="fileTypes" v-model:currentFileType="currentFileType" class="w-[
+                px]"/>
               </CFormElement>
             </div>
           </CFormSection>
@@ -358,8 +359,9 @@ import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 const fileTypes = [
   {ext: '.pdf', label: 'Example1', val: 'item1' },
-  {ext: '.json', label: 'Example2', val: 'item2' },
-  {ext: '.dxf', label: 'Example3', val: 'item3' }
+  {ext: '.pdf', label: 'PDF - Alternate type', val: 'item2' },
+  {ext: '.json', label: 'Example2', val: 'item3' },
+  {ext: '.dxf', label: 'Example3', val: 'item4' }
 ];
 
 export default {

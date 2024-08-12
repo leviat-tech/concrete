@@ -1,11 +1,11 @@
 <template>
   <div class="flex space-x-3 select-none">
     <CSelectFileTypeItem
-    v-for="type in types"
-    :selected="type === currentFileType"
+    v-for="(type, i) in types"
+    :selected="i === currentFileType"
     :label="type.label"
     :ext="type.ext"
-    @click="currentFileType = type"
+    @click="currentFileType = i"
     />
   </div>
 
@@ -15,7 +15,7 @@ import CSelectFileTypeItem from './SelectFileTypeItem.vue';
 
 const props = defineProps({
         types: {
-            Type: Array,
+            Type: [Array, Object],
             default: []
         },
         currentFileType: {
