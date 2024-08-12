@@ -161,7 +161,7 @@ export default {
       '2xl': 'w-12',
       '3xl': 'w-16',
     };
-    const size = this.size || this.concrete.size;
+    const size = this.size;
     const sizeClass = sizes[size];
     const colorClass = this.color && `text-${this.color}`;
     const classes = ['flex-none', colorClass, sizeClass, 'text-sm'];
