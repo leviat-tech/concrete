@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.25.3](https://github.com/leviat-tech/concrete/compare/v2.25.2...v2.25.3) (2024-08-12)
+
+
+### Bug Fixes
+
+* remove inherent size from icon ([632dab4](https://github.com/leviat-tech/concrete/commit/632dab43cb68158f6fcba65bf980aa2d3b11b1cc))
+
 ## [2.25.2](https://github.com/leviat-tech/concrete/compare/v2.25.1...v2.25.2) (2024-08-12)
 
 
