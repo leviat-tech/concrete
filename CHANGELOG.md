@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.25.2](https://github.com/leviat-tech/concrete/compare/v2.25.1...v2.25.2) (2024-08-12)
+
+
+### Bug Fixes
+
+* select file type and remove inherent size from icon ([07036ea](https://github.com/leviat-tech/concrete/commit/07036ea83add1ca7fc4150ed1ca8e3b0c1f74c71))
+
 ## [2.25.1](https://github.com/leviat-tech/concrete/compare/v2.25.0...v2.25.1) (2024-08-09)
 
 
