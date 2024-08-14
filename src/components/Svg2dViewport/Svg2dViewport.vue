@@ -372,6 +372,6 @@ export default {
       this.viewport.el.height = this.$refs.svg.clientHeight;
     },
   },
-  expose: ['zoomToExtents'],
+  expose: ['viewport', 'zoomToExtents'],
 };
 </script>
