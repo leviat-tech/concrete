@@ -1,13 +1,16 @@
-import { withSource } from './withSource';
+import transformSnippet from './transformSnippet';
 import '../src/index.css';
 import Concrete from '../src';
 
-import { app } from '@storybook/vue3';
-app.use(Concrete);
+import { setup } from '@storybook/vue3';
+
+setup(app => {
+  app.use(Concrete);
+});
 
 export const parameters = {
   viewMode: 'docs',
-  actions: { argTypesRegex: '^on[A-Z].*' },
+  // actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -16,6 +19,12 @@ export const parameters = {
   },
   docs: {
     inlineStories: true,
+    source: {
+      transform: transformSnippet
+    },
+    canvas: {
+      sourceState: 'shown'
+    }
   },
   layout: 'centered',
   options: {
@@ -37,6 +46,10 @@ const marginDecorator = (story) => ({
 });
 
 export const decorators = [
-  withSource,
+  // transformSnippet,
   marginDecorator,
 ]
+
+export default {
+  tags: ['autodocs']
+}

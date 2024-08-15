@@ -25,3 +25,5 @@ yarn-error.log*
 *.sw?
 .vs
 .env
+
+*storybook.log

@@ -56,6 +56,14 @@ import {
   PrinterIcon,
 } from '@heroicons/vue/24/outline';
 
+import {
+  CheckCircleIcon as CheckIconSolid,
+  ExclamationCircleIcon as ExclamationCircleIconSolid,
+  InformationCircleIcon as InfoCircleIconSolid,
+  MinusCircleIcon as MinusCircleIconSolid,
+  XCircleIcon as TimesCircleIconSolid,
+} from '@heroicons/vue/20/solid'
+
 import { colorProp, useSizeProp } from '../../composables/props';
 import logger from '../../utils/logger';
 
@@ -78,6 +86,7 @@ export const icons = {
   'arrow-up': ArrowUpIcon,
   cancel: NoSymbolIcon,
   check: CheckIcon,
+  'check-solid': CheckIconSolid,
   'check-circle': CheckCircleIcon,
   'chevron-down': ChevronDownIcon,
   'chevron-left': ChevronLeftIcon,
@@ -104,6 +113,7 @@ export const icons = {
   'long-arrow-right': ArrowLongRightIcon,
   'long-arrow-up': ArrowLongUpIcon,
   minus: MinusIcon,
+  'minus-solid': MinusCircleIconSolid,
   'minus-circle': MinusCircleIcon,
   pause: PauseIcon,
   pencil: PencilIcon,
@@ -125,10 +135,13 @@ export const icons = {
   unlock: LockOpenIcon,
   upload: ArrowUpTrayIcon,
   warning: ExclamationTriangleIcon,
+  'warning-solid': ExclamationCircleIconSolid,
   error: ExclamationCircleIcon,
+  'error-solid': TimesCircleIconSolid,
   'zoom-in': MagnifyingGlassPlusIcon,
   'zoom-out': MagnifyingGlassMinusIcon,
   'information-circle': InformationCircleIcon,
+  'information-solid': InfoCircleIconSolid,
   'question-circle': QuestionMarkCircleIcon,
   'layers': Layers
 };

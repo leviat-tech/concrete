@@ -22,13 +22,13 @@ import CFormElement from './components/FormElement/FormElement.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFragment from './components/Fragment/Fragment.vue';
 import CTooltipIcon from './components/TooltipIcon/TooltipIcon.vue';
-import CStatusIndicator from './components/StatusIndicator/StatusIndicator.vue'
+import CStatusIndicator from './components/Status/StatusIndicator.vue'
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
 import CPopupMenu from './components/PopupMenu/PopupMenu.vue'
 import CAccordion from './components/Accordion/Accordion.vue';
-import CStatusBar from './components/StatusBar/StatusBar.vue';
+import CStatusBar from './components/Status/StatusBar.vue';
 import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
@@ -58,7 +58,6 @@ const allComponents = {
   CListbox,
   CModal,
   CNumericInput,
-  CStatusBar,
   CSwitch,
   CTextInput,
   CAutoComplete,
@@ -80,6 +79,7 @@ const allComponents = {
   CPane,
   CSelectFileType,
   CSelectFileTypeItem,
+  CStatusBar,
   CStatusIndicator,
   CPopupMenu,
   CEditableDiv,
