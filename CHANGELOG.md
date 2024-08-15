@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.26.0](https://github.com/leviat-tech/concrete/compare/v2.25.3...v2.26.0) (2024-08-15)
+
+
+### Features
+
+* add StatusMessage and enhancements for StatusIndicator ([a75b224](https://github.com/leviat-tech/concrete/commit/a75b2242e5298b49f7986d2e51c068e9c3c81129))
+
+
+### Bug Fixes
+
+* **Svg2dViewport:** expose viewport ([caca818](https://github.com/leviat-tech/concrete/commit/caca818cf1f6ce0aa81c38ce006e0e83eb3dee09))
+
 ## [2.25.3](https://github.com/leviat-tech/concrete/compare/v2.25.2...v2.25.3) (2024-08-12)
 
 
