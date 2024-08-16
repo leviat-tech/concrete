@@ -29,6 +29,7 @@ import CModal from './components/Modal/Modal.vue';
 import CPopupMenu from './components/PopupMenu/PopupMenu.vue'
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/Status/StatusBar.vue';
+import CStatusMessage from './components/Status/StatusMessage.vue';
 import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
@@ -81,6 +82,7 @@ const allComponents = {
   CSelectFileTypeItem,
   CStatusBar,
   CStatusIndicator,
+  CStatusMessage,
   CPopupMenu,
   CEditableDiv,
 };

@@ -10,18 +10,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+type Status = 'error' | 'warning' | 'info' | 'success';
+
 import STATUSES from './statuses'
 import StatusIndicator from './StatusIndicator.vue';
 
-const props = defineProps({
-  status: {
-    type: String,
-    default: STATUSES.NO_STATUS,
-    validator: (val) => Object.values(STATUSES).includes(val),
-  },
+const props = defineProps<{
+  status: Status,
   text: String,
-});
+}>();
 
 const borderClassMap = {
   [STATUSES.INFO]: 'border-blue-500',
