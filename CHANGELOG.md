@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.26.1](https://github.com/leviat-tech/concrete/compare/v2.26.0...v2.26.1) (2024-08-16)
+
+
+### Bug Fixes
+
+* add slot to status message and add missing stories ([dbe0052](https://github.com/leviat-tech/concrete/commit/dbe0052601f73fcc13c22c48c2e94f821209c47e))
+
 ## [2.26.0](https://github.com/leviat-tech/concrete/compare/v2.25.3...v2.26.0) (2024-08-15)
 
 
