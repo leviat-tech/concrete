@@ -144,6 +144,7 @@ export {
   CTabPanel,
   CTabLabel,
   CTool,
+  CTooltipIcon,
   CToolbar,
   CToolGroup,
   CViewport,
@@ -153,6 +154,7 @@ export {
   CSelectFileType,
   CSelectFileTypeItem,
   CStatusIndicator,
+  CStatusMessage,
   CPopupMenu,
   CEditableDiv
 };
