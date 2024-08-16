@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.26.2](https://github.com/leviat-tech/concrete/compare/v2.26.1...v2.26.2) (2024-08-16)
+
+
+### Bug Fixes
+
+* add StatusMessage to exports ([03f0a53](https://github.com/leviat-tech/concrete/commit/03f0a53e4fb67c9dc81ac88487576b24cc263ce3))
+
 ## [2.26.1](https://github.com/leviat-tech/concrete/compare/v2.26.0...v2.26.1) (2024-08-16)
 
 
