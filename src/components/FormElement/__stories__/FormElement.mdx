@@ -1,0 +1,34 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CFormElement from '../FormElement.vue';
+import CTextInput from '../../TextInput/TextInput.vue';
+import * as FormElementStories from './FormElement.stories';
+
+<Meta of={FormElementStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CFormElement, CTextInput },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template:
+    '<CFormElement label="Full name"><div class="flex space-x-2"><CTextInput v-bind="args" no-label ></CTextInput><CTextInput v-bind="args" no-label></CTextInput></div></CFormElement>',
+});
+
+# Form Element
+
+<Canvas transformSnippet="open">
+  <Story of={FormElementStories.Overview} />
+</Canvas>
+
+## Overview
+
+Internal FormElement component to wrap CInputs.
+
+(Using CCheckbox as example component to show how it works)
+
+## Props
+
+<Controls />

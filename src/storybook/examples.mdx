@@ -1,0 +1,36 @@
+import CNumericInput from '../components/NumericInput/NumericInput.vue';
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as ExamplesStories from './examples.stories';
+
+<Meta of={ExamplesStories} />
+
+# Examples
+
+This page contains examples of the Concrete Vue plugin options in action
+
+## Global Input Handler
+
+For the following example we have registered a global input handler like so:
+
+```javascript dark
+app.use(Concrete, {
+  inputHandler: (id, value) => alert(`Input with id '${id}' was changed to ${value}`),
+});
+```
+
+Now this handler will be fired everytime one of Concrete's input components is blurred, or the enter key is pressed.
+
+*The blur handler has been disabled for this example due to conflicting behaviour with the alert box.*
+
+<Canvas transformSnippet="open">
+  <Story of={ExamplesStories.GlobalInputHandler} />
+</Canvas>
+
+## Local Input Handler
+
+In this example the same global handler registration has taken place, but we are overriding the default behaviour by
+passing in a custom handler.
+
+<Canvas transformSnippet="open">
+  <Story of={ExamplesStories.LocalInputHandler} />
+</Canvas>

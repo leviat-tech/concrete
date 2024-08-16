@@ -1,0 +1,34 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CFragment from '../Fragment.vue';
+import CCheckbox from '../../Checkbox/Checkbox.vue';
+import * as FragmentStories from './Fragment.stories';
+
+<Meta of={FragmentStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CFragment, CCheckbox },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template:
+    '<CFragment v-bind="args"><CCheckbox v-bind="args" :wrap="false" v-model="value"></CCheckbox></CFragment>',
+});
+
+# Fragment
+
+<Canvas transformSnippet="open">
+  <Story of={FragmentStories.Overview} />
+</Canvas>
+
+## Overview
+
+Internal Fragment component to wrap components in slot.
+
+(Using CCheckbox as example component to show how it works)
+
+## Props
+
+<Controls />

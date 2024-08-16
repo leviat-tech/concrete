@@ -1,0 +1,49 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CTabs from '../Tabs.vue';
+import * as TabsStories from './Tabs.stories';
+
+import * as stories from './Tabs.stories.js';
+
+<Meta of={TabsStories} />
+
+# Tabs
+
+### with label prop
+
+<Canvas transformSnippet="open">
+  <Story of={TabsStories.Overview} />
+</Canvas>
+
+## Overview
+
+Tabs component provides a way to view tabbed/paned content.
+
+### Labels
+
+You can either provide labels as an array of strings using the prop :labels , or as a slot #labels
+When using the slot, be sure to use only CTabLabel component
+
+### with label slot
+
+<Canvas transformSnippet="open">
+  <Story of={TabsStories.LabelSlots} />
+</Canvas>
+
+### Using `v-model`
+
+The Tabs component can be controlled by passing in `v-model`
+
+<Canvas transformSnippet="open">
+  <Story of={TabsStories.VModel} />
+</Canvas>
+
+### Content
+
+You can provide using the slot #panels
+When using the slot, be sure to only use CTabPanel component
+
+Making sure to add relevant classes and style accordingly for height, padding overflow etc on CTabPanel
+
+## Props
+
+<Controls />

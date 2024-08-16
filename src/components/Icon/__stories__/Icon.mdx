@@ -1,0 +1,20 @@
+import { Controls, Story, Canvas, Meta } from '@storybook/blocks';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
+<Canvas transformSnippet="open">
+  <Story of={IconStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Icons Reference
+
+<Canvas>
+  <Story of={IconStories.IconsReference} />
+</Canvas>

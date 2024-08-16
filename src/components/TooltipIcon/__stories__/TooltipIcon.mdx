@@ -1,0 +1,28 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CTooltipIcon from '../TooltipIcon.vue';
+import * as TooltipIconStories from './TooltipIcon.stories';
+
+<Meta of={TooltipIconStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CTooltipIcon },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      toopltip: 'Example of a tooltip',
+    };
+  },
+  template: '<CTooltipIcon v-bind="args" v-tooltip="tooltip"></CTooltipIcon>',
+});
+
+# Tooltip Icon
+
+<Canvas transformSnippet="open">
+  <Story of={TooltipIconStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

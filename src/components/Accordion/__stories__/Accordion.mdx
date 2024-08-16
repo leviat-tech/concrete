@@ -1,0 +1,58 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CAccordion from '../Accordion.vue';
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CAccordion },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { show: args.show };
+  },
+  template: `
+<CAccordion v-bind="args">
+  <div class="py-2 px-6">{{args.content}}</div>
+</CAccordion>
+  `,
+});
+
+# Accordion
+
+<Canvas transformSnippet="open">
+  <Story of={AccordionStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Variants
+
+### Using the Title slot
+
+export const componentTitleSlotTemplate = (args) => ({
+  components: { CAccordion },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { show: args.show };
+  },
+  template: `
+<CAccordion v-bind="args">
+  <template #title>
+    <div class="p-3 bg-sky hover:bg-sky-dark transition-color duration-100 text-white">This uses the title slot</div>
+  </template>
+  <div class="p-3 bg-sky-lightest">{{args.content}}</div>
+</CAccordion>
+  `,
+});
+
+<Canvas transformSnippet="open">
+  <Story of={AccordionStories.TitleSlot} />
+</Canvas>
+
+<Controls />

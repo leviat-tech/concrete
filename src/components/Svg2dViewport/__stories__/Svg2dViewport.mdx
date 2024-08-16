@@ -1,0 +1,43 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CSvg2dViewport from '../Svg2dViewport.vue';
+import { CViewportContainer } from '../../Viewport';
+import * as Svg2DViewportStories from './Svg2dViewport.stories';
+
+<Meta of={Svg2DViewportStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CSvg2dViewport, CViewportContainer },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      extents: {
+        xmin: 0,
+        ymin: 0,
+        xmax: 100,
+        ymax: 100,
+      },
+      currentTool: 'select',
+      value: { x: 50, y: 50 },
+      viewport: 'default',
+    };
+  },
+  methods: {},
+  template: `
+    <CViewportContainer>
+      <CSvg2dViewport :extents="extents" :currentTool="currentTool" :value="value">
+        <circle r="20" :cx="value.x" :cy="value.y"/>
+      </CSvg2dViewport>
+    </CViewportContainer>`,
+});
+
+# SVG 2d Viewport
+
+<Canvas transformSnippet="open">
+  <Story of={Svg2DViewportStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

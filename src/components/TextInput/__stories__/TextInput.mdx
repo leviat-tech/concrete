@@ -1,0 +1,24 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CTextInput from '../TextInput.vue';
+import * as TextInputStories from './TextInput.stories';
+
+<Meta of={TextInputStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CTextInput },
+  setup() {
+    return { args };
+  },
+  data: () => ({ value: '' }),
+  template: '<CTextInput v-bind="args" id="text-input" v-model="value"/>',
+});
+
+# Text Input
+
+<Canvas transformSnippet="open">
+  <Story of={TextInputStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

@@ -1,0 +1,34 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CAutocomplete from '../AutoComplete.vue';
+import * as AutoCompleteStories from './AutoComplete.stories';
+
+<Meta of={AutoCompleteStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CAutocomplete },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      value: null,
+    };
+  },
+  template: '<CAutocomplete v-bind="args" v-model="value"></CAutocomplete>',
+});
+
+# AutoComplete
+
+<Canvas transformSnippet="open">
+  <Story of={AutoCompleteStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## With Formatter
+
+<Canvas transformSnippet="open">
+  <Story of={AutoCompleteStories.Formatter} />
+</Canvas>

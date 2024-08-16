@@ -1,0 +1,59 @@
+import CNumericInput from '../components/NumericInput/NumericInput.vue';
+import { Meta, Canvas, Story } from '@storybook/blocks';
+import * as FormelementsStories from './formelements.stories';
+
+<Meta of={FormelementsStories} />
+
+# Form Elements
+
+All form inputs have the ability to wrap them selves in a form element component.
+By default form inputs will use the `wrapFormInputs` property in the concrete options unless the `noWrap` property has been set on the form input.
+
+```javascript dark
+// entry.js
+app.use(Concrete, {
+  wrapFormInputs: true // default value
+});
+```
+
+## Examples
+
+#### Basic
+
+<Canvas transformSnippet="open" />
+
+#### No Wrap
+
+<Canvas transformSnippet="open" />
+
+#### Label
+
+<Canvas transformSnippet="open" />
+
+#### Label and No Wrap
+
+<Canvas transformSnippet="open" />
+
+#### Label and No Label
+
+<Canvas transformSnippet="open" />
+
+#### ID
+
+<Canvas transformSnippet="open" />
+
+#### ID and No Wrap
+
+<Canvas transformSnippet="open" />
+
+#### ID and No Label
+
+<Canvas transformSnippet="open" />
+
+#### ID and Label
+
+<Canvas transformSnippet="open" />
+
+#### ID and Label and Label Formatter
+
+<Canvas transformSnippet="open" />

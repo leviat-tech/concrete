@@ -1,0 +1,23 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CButton from '../Button.vue';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CButton },
+  setup() {
+    return { args };
+  },
+  template: '<CButton v-bind="args">{{args.content}}</CButton>',
+});
+
+# Button
+
+<Canvas transformSnippet="open">
+  <Story of={ButtonStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

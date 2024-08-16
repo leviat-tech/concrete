@@ -1,0 +1,47 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import { CViewportContainer, CViewport, CViewportTools } from '..';
+import * as ViewportStories from './Viewport.stories';
+
+<Meta of={ViewportStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CViewport, CViewportContainer, CViewportTools },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      extents: {
+        type: Object,
+        default: () => ({
+          xmin: 0,
+          ymin: 0,
+          xmax: 400,
+          ymax: 400,
+        }),
+      },
+      currentTool: 'select',
+      value: { x: 50, y: 50 },
+      viewport: 'default',
+    };
+  },
+  methods: {},
+  template: `<CViewportContainer :options="['test3', 'test4']">
+    <CViewport viewportId="test" modelValue="test">
+      <div class="bg-indigo w-12 h-12 text-sky-lightest">Test</div>
+    </CViewport>
+    <CViewport viewportId="test2" modelValue="test2">
+      <div class="bg-sky w-12 h-12 text-indigo-darkest">Test</div>
+    </CViewport>
+  </CViewportContainer>`,
+});
+
+# Viewport
+
+<Canvas transformSnippet="open">
+  <Story of={ViewportStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

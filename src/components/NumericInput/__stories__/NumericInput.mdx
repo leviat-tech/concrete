@@ -1,0 +1,23 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CNumericInput from '../NumericInput.vue';
+import * as NumericInputStories from './NumericInput.stories';
+
+<Meta of={NumericInputStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CNumericInput },
+  setup() {
+    return { args };
+  },
+  template: '<CNumericInput v-bind="args" id="numeric-input" />',
+});
+
+# Numeric Input
+
+<Canvas transformSnippet="open">
+  <Story of={NumericInputStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

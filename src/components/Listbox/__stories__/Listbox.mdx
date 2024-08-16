@@ -1,0 +1,91 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CListbox from '../Listbox.vue';
+import * as ListboxStories from './Listbox.stories';
+
+<Meta of={ListboxStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CListbox },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      value: null,
+    };
+  },
+  template: '<CListbox v-bind="args" v-model="value"></CListbox>',
+});
+
+export const componentTemplateMultiple = (args) => ({
+  components: { CListbox },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      value: [],
+    };
+  },
+  template: '<CListbox v-bind="args" v-model="value"></CListbox>',
+});
+
+# Listbox
+
+<Canvas transformSnippet="none">
+  <Story of={ListboxStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Usage
+
+<Source
+  language="html"
+  dark
+  format={false}
+  code={`
+const value = null;
+const options = ['Listbox', 'Test', 'Values', 'Storybook'];
+<CListbox v-model="value" id="listbox-single" :options="options"></CListbox>
+`}
+/>
+
+# Variants
+
+## Multiple Select
+
+<Canvas transformSnippet="none">
+  <Story of={ListboxStories.Multiple} />
+</Canvas>
+
+<Source
+  language="html"
+  dark
+  format={false}
+  code={`
+const value = [];
+const options = ['Listbox', 'Test', 'Values', 'Storybook'];
+<CListbox v-model="value" id="listbox-multiple" :options="options" :multiple="true"></CListbox>
+`}
+/>
+
+## Formatted Labels
+
+<Canvas transformSnippet="none">
+  <Story of={ListboxStories.Formatted} />
+</Canvas>
+
+<Source
+  language="html"
+  dark
+  format={false}
+  code={`
+const value = null;
+const options = ['Listbox', 'Test', 'Values', 'Storybook'];
+const formatter = (l) => l.toUpperCase();
+<CListbox v-model="value" id="listbox-multiple" :options="options" :formatter="formatter"></CListbox>
+`}
+/>

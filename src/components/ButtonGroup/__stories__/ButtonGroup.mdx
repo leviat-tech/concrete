@@ -1,0 +1,31 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CButtonGroup from '../ButtonGroup.vue';
+import * as ButtonGroupStories from './ButtonGroup.stories';
+
+<Meta of={ButtonGroupStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CButtonGroup },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      value: null,
+    };
+  },
+  template:
+    '<CButtonGroup id="ButtonGroup" v-bind="args" v-model="value"></CButtonGroup>',
+});
+
+# ButtonGroup
+
+<Canvas transformSnippet="open">
+  <Story of={ButtonGroupStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Columns

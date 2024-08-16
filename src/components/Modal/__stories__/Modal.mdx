@@ -1,0 +1,33 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CModal from '../Modal.vue';
+import CButton from '../../Button/Button.vue';
+import * as ModalStories from './Modal.stories';
+
+<Meta of={ModalStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CModal, CButton },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { show: args.show };
+  },
+  template: `
+<CButton @click="show = true">Click to open modal</CButton>
+<CModal v-bind="args" :show="show" @close="show = false" :title="args.title">
+  <div class="flex items-center">{{ args.content }}</div>
+  <CButton v-if="!args.closeable" class="mt-4" @click="show = false">Dismiss</CButton>
+</CModal>
+  `,
+});
+
+# Modal
+
+<Canvas transformSnippet="open">
+  <Story of={ModalStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

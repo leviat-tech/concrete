@@ -1,0 +1,31 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CRadioGroup from '../RadioGroup.vue';
+import * as RadioGroupStories from './RadioGroup.stories';
+
+<Meta of={RadioGroupStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CRadioGroup },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      value: null,
+    };
+  },
+  template:
+    '<CRadioGroup id="RadioGroup" v-bind="args" v-model="value"></CRadioGroup>',
+});
+
+# RadioGroup
+
+<Canvas transformSnippet="open">
+  <Story of={RadioGroupStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Columns

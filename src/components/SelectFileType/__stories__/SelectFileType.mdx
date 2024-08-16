@@ -1,0 +1,31 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CSelectFileType from '../SelectFileType.vue';
+import CSelectFileTypeItem from '../SelectFileTypeItem.vue';
+import * as SelectFileTypeStories from './SelectFileType.stories';
+
+<Meta of={SelectFileTypeStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CSelectFileType, CSelectFileTypeItem },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      point: { x: 50, y: 50 },
+    };
+  },
+  methods: {},
+  template: `<CSelectFileType v-bind="args"></CSelectFileType>
+`,
+});
+
+# SelectFileType
+
+<Canvas transformSnippet="open">
+  <Story of={SelectFileTypeStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

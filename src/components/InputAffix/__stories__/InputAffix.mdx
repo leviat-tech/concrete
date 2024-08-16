@@ -1,0 +1,38 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CInputAffix from '../InputAffix.vue';
+import CTextInput from '../../TextInput/TextInput.vue';
+import * as InputAffixStories from './InputAffix.stories';
+
+<Meta of={InputAffixStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CInputAffix, CTextInput },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template: `
+<CTextInput class="" size="md">
+    <template v-slot:prefix>
+      <CInputAffix>+44</CInputAffix>
+    </template>
+  </CTextInput>`,
+});
+
+# Input Affix
+
+<Canvas transformSnippet="open">
+  <Story of={InputAffixStories.Overview} />
+</Canvas>
+
+## Overview
+
+Internal Affix component to append before the start of inputs
+
+(Using checkbox to show the affix))
+
+## Props
+
+<Controls />

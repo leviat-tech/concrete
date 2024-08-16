@@ -1,0 +1,37 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import { CResizable, CPane } from '..';
+import * as ResizableStories from './Resizable.stories';
+
+<Meta of={ResizableStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CResizable, CPane },
+  setup() {
+    return { args };
+  },
+  data() {
+    return {
+      point: { x: 50, y: 50 },
+    };
+  },
+  methods: {},
+  template: `<CResizable v-bind="args" class="my-8 bg-sky-light h-96 flex ">
+  <CPane class="border-r-2 border-indigo" primary :min="35">
+    <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
+  </CPane>
+  <CPane class="" :min="20">
+    <div class="text-2xl bg-danger-lightest text-danger font-bold text-center h-96 py-32">2</div>
+  </CPane>
+</CResizable>
+`,
+});
+
+# Resizable
+
+<Canvas transformSnippet="open">
+  <Story of={ResizableStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

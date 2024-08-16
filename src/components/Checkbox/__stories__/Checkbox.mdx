@@ -1,0 +1,26 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CCheckbox from '../Checkbox.vue';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CCheckbox },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template: '<CCheckbox v-bind="args" v-model="value"></CCheckbox>',
+});
+
+# Checkbox
+
+<Canvas transformSnippet="open">
+  <Story of={CheckboxStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

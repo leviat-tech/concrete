@@ -1,0 +1,30 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CSwitch from '../Switch.vue';
+import * as SwitchStories from './Switch.stories';
+
+<Meta of={SwitchStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CSwitch },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template: '<CSwitch v-bind="args" v-model="value"></CSwitch>',
+});
+
+# Switch
+
+<Canvas transformSnippet="none">
+  <Story of={SwitchStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
+
+## Usage
+
+<Source language="html" dark format={false} code={`<CSwitch v-model="modelValue" />`} />

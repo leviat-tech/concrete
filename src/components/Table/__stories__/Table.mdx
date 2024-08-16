@@ -1,0 +1,89 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CTable from '../Table.vue';
+import CInputCell from '../InputCell.vue';
+import * as TableStories from './Table.stories';
+
+<Meta of={TableStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CTable, CInputCell },
+  setup() {
+    return { args };
+  },
+  data() {
+    const team = {
+      1: { id: 1, name: 'lee', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      2: { id: 2, name: 'matt', role: 'developer', labelHtml:'Sub and Super script', isSelected: true },
+      3: { id: 3, name: 'dan', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      4: { id: 4, name: 'yaming', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      5: { id: 5, name: 'pete', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      6: { id: 6, name: 'calum', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+      7: { id: 7, name: 'robi', role: 'developer', labelHtml:'Sub and Super script', isSelected: false },
+    };
+    return { team };
+  },
+  methods: {
+    add({ data, success, error }) {
+      if (data.name && data.role) {
+        const id = Date.now();
+        this.team[id] = { ...data, id };
+        success();
+      } else {
+        error({
+          name: !data.name && 'name is required',
+          role: !data.role && 'role is required',
+        });
+      }
+    },
+    edit({ data, success, error }) {
+      if (data.name && data.role) {
+        this.team[data.id] = data;
+        success();
+      } else {
+        error({
+          name: !data.name && 'name is required',
+          role: !data.role && 'role is required',
+        });
+      }
+    },
+  },
+  computed: {
+    rows() {
+      return Object.values(this.team);
+    },
+    columns() {
+      return [
+        { id: 'name', sortable: true }, { id: 'role' },
+        {id: 'labelHtml', label: {html: '<span>V<sup>3</sup><sub>Ed</sub>[kN]</span>' }},
+      ];
+    },
+  },
+  template: `
+    <CTable
+      v-bind="args"
+      :rows="rows" :columns="columns"
+      @add="add" @edit="edit" @delete="delete team[$event.id]"
+      prepend-class="w-12"
+    >
+      <template #prepend="row">
+        <input type="checkbox" v-model="row.isSelected">
+      </template>
+      <template #name="props">
+        <CInputCell v-bind="props" />
+      </template>
+      <template #role="props">
+        <CInputCell v-bind="props" />
+      </template>
+    </CTable>
+  `,
+});
+
+# Table
+
+<Canvas transformSnippet="open">
+  <Story of={TableStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />

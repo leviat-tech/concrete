@@ -1,0 +1,24 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CTextArea from '../TextArea.vue';
+import * as TextAreaStories from './TextArea.stories';
+
+<Meta of={TextAreaStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CTextArea },
+  setup() {
+    return { args };
+  },
+  data: () => ({ value: '' }),
+  template: '<CTextArea v-bind="args" id="text-area" v-model="value"/>',
+});
+
+# Text Area
+
+<Canvas transformSnippet="open">
+  <Story of={TextAreaStories.Overview} />
+</Canvas>
+
+## Props
+
+<Controls />
