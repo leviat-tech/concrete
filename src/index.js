@@ -30,6 +30,7 @@ import CPopupMenu from './components/PopupMenu/PopupMenu.vue'
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/Status/StatusBar.vue';
 import CStatusMessage from './components/Status/StatusMessage.vue';
+import CAccordionWrapper from './components/AccordionWrapper/AccordionWrapper.vue'
 import { CTabs, CTabPanel, CTabLabel } from './components/Tabs';
 import { CToolbar, CToolGroup, CTool } from './components/Toolbar';
 import { CViewportContainer, CViewport } from './components/Viewport';
@@ -85,6 +86,7 @@ const allComponents = {
   CStatusMessage,
   CPopupMenu,
   CEditableDiv,
+  CAccordionWrapper,
 };
 
 const install = (app, userConfig = {}) => {
@@ -156,5 +158,6 @@ export {
   CStatusIndicator,
   CStatusMessage,
   CPopupMenu,
-  CEditableDiv
+  CEditableDiv,
+  CAccordionWrapper
 };
