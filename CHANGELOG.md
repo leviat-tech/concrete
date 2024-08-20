@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.27.1](https://github.com/leviat-tech/concrete/compare/v2.27.0...v2.27.1) (2024-08-20)
+
+
+### Bug Fixes
+
+* watch toolbar current tool for changes ([10107e6](https://github.com/leviat-tech/concrete/commit/10107e64d141fef847aad0665b6713d978f53526))
+
 ## [2.27.0](https://github.com/leviat-tech/concrete/compare/v2.26.3...v2.27.0) (2024-08-20)
 
 
