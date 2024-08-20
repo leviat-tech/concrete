@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.27.0](https://github.com/leviat-tech/concrete/compare/v2.26.3...v2.27.0) (2024-08-20)
+
+
+### Features
+
+* add CAccordionWrapper ([caf6bea](https://github.com/leviat-tech/concrete/commit/caf6bea18870c6057ec0c4e3898c322f7eb0f2ed))
+
+
+### Bug Fixes
+
+* allow input precision to be 0 ([d52f8f3](https://github.com/leviat-tech/concrete/commit/d52f8f3e2778075fd048ec4af2f8d9521de5a958))
+
 ## [2.26.3](https://github.com/leviat-tech/concrete/compare/v2.26.2...v2.26.3) (2024-08-16)
 
 
