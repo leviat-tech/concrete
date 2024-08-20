@@ -195,7 +195,7 @@ function convertToDisplayValue(v) {
   if (value === null) value = Number(v);
 
   const precision = props.precision ?? unitPrecision;
-  return precision ? parseFloat(value.toFixed(precision), 10) : value;
+  return typeof precision === 'number' ? parseFloat(value.toFixed(precision), 10) : value;
 }
 
 function convertFromDisplayValue(v) {
