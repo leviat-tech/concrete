@@ -25,4 +25,8 @@ const toolId = computed({
 
 provide('concreteSelectedTool', toolId);
 
+watch(() => props.modelValue, (val) => {
+  selectedTool.value = val;
+})
+
 </script>
