@@ -64,7 +64,7 @@ export default {
       }[this.color];
     },
     hoveredStrokeColor() {
-      if(!this.hovered && !this.active) return 'stroke-black'
+      if(!this.hovered && !this.active) return this.strokeColor
       return {
         default: 'stroke-black',
         indigo: 'stroke-indigo',

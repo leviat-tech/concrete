@@ -38,7 +38,7 @@
                     Input with formElement - label
                   </div>
                   <CTextInput label="Test Label" />
-                  <StatusMessage status=""
+                  <StatusMessage status=""/>
                 </div>
 
                 <div>

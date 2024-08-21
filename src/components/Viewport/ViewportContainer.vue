@@ -91,6 +91,12 @@ export default {
         this.reactive.maximized = nv;
       },
     },
+    columns: {
+      handler() {
+        this.setCols();
+      },
+      immediate: true
+    },
   },
   provide() {
     return {
