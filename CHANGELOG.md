@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.27.2](https://github.com/leviat-tech/concrete/compare/v2.27.1...v2.27.2) (2024-08-21)
+
+
+### Bug Fixes
+
+* react to columns property change in ViewPortContainer ([afae2b8](https://github.com/leviat-tech/concrete/commit/afae2b8b8a5cd508de328821389e722b10c49adc))
+* use stroke color parameter in draggablePath ([afae2b8](https://github.com/leviat-tech/concrete/commit/afae2b8b8a5cd508de328821389e722b10c49adc))
+
 ## [2.27.1](https://github.com/leviat-tech/concrete/compare/v2.27.0...v2.27.1) (2024-08-20)
 
 
