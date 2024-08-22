@@ -49,9 +49,6 @@ const conversions = {
   g: {
     kg: (kg) => kg.times(1000),
   },
-  kg: {
-    g: (g) => g,
-  },
   MN: {
     N: (N) => N.div(1000000),
   },
@@ -156,7 +153,7 @@ const unitToSIMap = {
   'N/m': 'N/m',
   'kN/m': 'N/m',
   't/m': 'N/m',
-  kg: 'g',
+  kg: 'kg',
   g: 'kg',
   N: 'N',
   kN: 'N',
