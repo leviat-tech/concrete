@@ -153,7 +153,7 @@ const unitToSIMap = {
   rad: 'rad',
   deg: 'rad',
   'g/m': 'g/m',
-  'kg/m': 'g/m',
+  'kg/m': 'kg/m',
   'N/m': 'N/m',
   'kN/m': 'N/m',
   't/m': 'N/m',
