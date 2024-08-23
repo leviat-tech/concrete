@@ -11,6 +11,7 @@ import CListbox from './components/Listbox/Listbox.vue';
 import CCheckbox from './components/Checkbox/Checkbox.vue';
 import CAutoComplete from './components/AutoComplete/AutoComplete.vue';
 import CRadioGroup from './components/RadioGroup/RadioGroup.vue';
+import CProgressBar from './components/ProgressBar/ProgressBar.vue';
 import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
 import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
 import CEditableDiv from './components/EditableDiv/EditableDiv.vue'
@@ -63,6 +64,7 @@ const allComponents = {
   CSwitch,
   CTextInput,
   CAutoComplete,
+  CProgressBar,
   CRadioGroup,
   CTable,
   CInputCell,
@@ -137,6 +139,7 @@ export {
   CSwitch,
   CTextInput,
   CAutoComplete,
+  CProgressBar,
   CRadioGroup,
   CSvg2dViewport,
   CTable,

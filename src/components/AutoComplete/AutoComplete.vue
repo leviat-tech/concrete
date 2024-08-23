@@ -17,13 +17,13 @@
   >
     <Combobox
       as="div"
-      class="concrete__autocomplete"
+      class="concrete__autocomplete h-full"
       v-model="displayValue"
       :disabled="disabled"
       v-slot="{ open }"
     >
-      <div :class="['relative', disabledClass]">
-        <div class="inline-flex w-full cursor-default text-left">
+      <div :class="['h-full relative', disabledClass]">
+        <div class="inline-flex w-full h-full cursor-default text-left" :class="inputColorClass">
           <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
           <slot name="prefix" class="z-10" />
           <ComboboxInput
@@ -33,6 +33,7 @@
             @click="$event.target.select()"
             @blur="$emit('blur')"
             @focus="$emit('focus')"
+            :disabled="disabled"
             :placeholder="placeholder"
             :class="[
               inputStaticClasses,

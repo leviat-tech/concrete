@@ -1,4 +1,5 @@
 import CTextArea from "../TextArea.vue";
+import { formElementProps } from '../../../storybook/argTypes';
 
 const componentTemplate = (args) => ({
   components: { CTextArea },
@@ -14,60 +15,10 @@ export default {
   component: CTextArea,
 
   argTypes: {
-    size: {
-      options: ["lg", "md", "sm", "xs"],
-
-      control: {
-        type: "select",
-      },
-
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
+    ...formElementProps,
 
     rows: {
       control: "range",
-    },
-
-    color: {
-      options: [
-        "default",
-        "indigo",
-        "sky",
-        "steel",
-        "success",
-        "warning",
-        "danger",
-      ],
-
-      control: {
-        type: "select",
-      },
-
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-
-    disabled: {
-      control: "boolean",
-    },
-
-    readOnly: {
-      control: "boolean",
-    },
-
-    transparent: {
-      control: "boolean",
-    },
-
-    placeholder: {
-      control: "text",
     },
 
     onEnter: {
@@ -79,26 +30,6 @@ export default {
     onBlur: {
       table: {
         disable: true,
-      },
-    },
-
-    prefix: {
-      control: false,
-
-      table: {
-        type: {
-          summary: "slot",
-        },
-      },
-    },
-
-    suffix: {
-      control: false,
-
-      table: {
-        type: {
-          summary: "slot",
-        },
       },
     },
   },

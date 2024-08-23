@@ -1,4 +1,5 @@
 import CAutocomplete from "../AutoComplete.vue";
+import { formElementProps } from '../../../storybook/argTypes';
 
 const componentTemplate = (args) => ({
   components: { CAutocomplete },
@@ -18,37 +19,7 @@ export default {
   component: CAutocomplete,
 
   argTypes: {
-    size: {
-      options: ["lg", "md", "sm", "xs"],
-
-      control: {
-        type: "select",
-      },
-    },
-
-    color: {
-      options: [
-        "default",
-        "indigo",
-        "sky",
-        "steel",
-        "success",
-        "warning",
-        "danger",
-      ],
-
-      control: {
-        type: "select",
-      },
-    },
-
-    placeholder: {
-      control: "text",
-    },
-
-    disabled: {
-      control: "boolean",
-    },
+    ...formElementProps,
   },
 };
 

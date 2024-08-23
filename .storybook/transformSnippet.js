@@ -17,7 +17,7 @@ export default function formatCode(codeBlock, ctx) {
   }
 
   const propToSource = (key, val) => {
-    if (key === 'model-value') return '';
+    if (key === 'model-value' && !argTypes.modelValue.showInTemplate) return '';
 
     const type = typeof val
     switch (type) {
@@ -29,6 +29,8 @@ export default function formatCode(codeBlock, ctx) {
         return `:${key}="${val}"`
     }
   }
+
+  console.log(ctx);
 
   const replacing = /v-bind="[^"]+"/;
 

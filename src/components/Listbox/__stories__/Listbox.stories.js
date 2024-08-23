@@ -1,4 +1,5 @@
 import CListbox from "../Listbox.vue";
+import { formElementProps } from '../../../storybook/argTypes';
 
 const componentTemplate = (args) => ({
   components: { CListbox },
@@ -31,41 +32,7 @@ export default {
   component: CListbox,
 
   argTypes: {
-    size: {
-      options: ["lg", "md", "sm", "xs"],
-
-      control: {
-        type: "select",
-      },
-    },
-
-    color: {
-      options: [
-        "default",
-        "indigo",
-        "sky",
-        "steel",
-        "success",
-        "warning",
-        "danger",
-      ],
-
-      control: {
-        type: "select",
-      },
-    },
-
-    placeholder: {
-      control: "text",
-    },
-
-    disabled: {
-      control: "boolean",
-    },
-
-    transparent: {
-      control: "boolean",
-    },
+    ...formElementProps,
 
     optionListSize: {
       options: ["lg", "md", "sm", "xs", "auto"],

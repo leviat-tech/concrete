@@ -31,17 +31,17 @@ const props = defineProps({
   disabled: { type: Boolean, default: false },
   active: { type: Boolean, default: false },
   customPadding: { type: Boolean, default: false },
-  spinner: { 
+  spinner: {
     type: Object,
     /*
-    { 
+    {
       type: String [
-        static_icon_type, // 'sync' as default 
+        static_icon_type, // 'sync' as default
         dynamic_icon_type
-      ], 
+      ],
       rotating: Boolean // required
     }
-    */ 
+    */
   }
 });
 

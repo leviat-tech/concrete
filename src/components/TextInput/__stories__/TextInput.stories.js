@@ -1,4 +1,5 @@
 import CTextInput from "../TextInput.vue";
+import { formElementProps } from '../../../storybook/argTypes';
 
 const componentTemplate = (args) => ({
   components: { CTextInput },
@@ -6,7 +7,7 @@ const componentTemplate = (args) => ({
     return { args };
   },
   data: () => ({ value: "" }),
-  template: '<CTextInput v-bind="args" id="text-input" v-model="value"/>',
+  template: '<CTextInput v-bind="args" v-model="value"/>',
 });
 
 export default {
@@ -14,57 +15,7 @@ export default {
   component: CTextInput,
 
   argTypes: {
-    size: {
-      options: ["lg", "md", "sm", "xs"],
-
-      control: {
-        type: "select",
-      },
-
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-
-    color: {
-      options: [
-        "default",
-        "indigo",
-        "sky",
-        "steel",
-        "success",
-        "warning",
-        "danger",
-      ],
-
-      control: {
-        type: "select",
-      },
-
-      table: {
-        type: {
-          summary: "string",
-        },
-      },
-    },
-
-    disabled: {
-      control: "boolean",
-    },
-
-    readOnly: {
-      control: "boolean",
-    },
-
-    transparent: {
-      control: "boolean",
-    },
-
-    placeholder: {
-      control: "text",
-    },
+    ...formElementProps,
 
     onEnter: {
       table: {
@@ -77,26 +28,6 @@ export default {
         disable: true,
       },
     },
-
-    prefix: {
-      control: false,
-
-      table: {
-        type: {
-          summary: "slot",
-        },
-      },
-    },
-
-    suffix: {
-      control: false,
-
-      table: {
-        type: {
-          summary: "slot",
-        },
-      },
-    },
   },
 };
 
@@ -105,6 +36,7 @@ export const Overview = {
   name: "Overview",
 
   args: {
+    id: 'text-input',
     size: "md",
     color: "default",
     disabled: false,

@@ -33,7 +33,7 @@ const colorClassMap = {
 };
 
 const layoutClasses = 'block truncate z-20 w-full border text-left'
-const focusClasses = 'focus:outline-none focus:ring-1 focus:border-indigo-light ring-indigo-light';
+const focusClasses = 'focus:outline-none focus:ring-0 focus:border-indigo-light';
 export const inputStaticClasses = [layoutClasses, focusClasses].join(' ' +
   '');
 

@@ -39,7 +39,7 @@
                 inputColorClass,
                 mergedSizeClass,
                 cursorClass,
-                open && 'ring-1 border-indigo-light',
+                open && 'border-indigo-light',
               ]"
               class="!flex items-center"
             >

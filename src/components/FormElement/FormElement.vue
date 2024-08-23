@@ -4,7 +4,7 @@
     :class="{ 'flex flex-row justify-between w-full': !stacked }"
   >
     <div
-      :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, disabledClass]"
+      :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, inputColorClass, disabledClass]"
       v-if="label || props.tooltip"
     >
       <div class="flex w-full" :class="{ 'justify-between' : stacked, 'flex-row-reverse' : !stacked && props.tooltip }">
@@ -62,7 +62,7 @@ const LABEL_ORDER_CLASSES = {
   [1]: 'order-1 !basis-auto',
 };
 
-const { textSizeClass, heightClass, disabledClass } = useInputClasses(props);
+const { textSizeClass, heightClass, disabledClass, inputColorClass } = useInputClasses(props);
 
 const label = getFormLabel(props);
 const size = getSizeValue(props.size);

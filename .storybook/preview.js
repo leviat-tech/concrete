@@ -42,7 +42,7 @@ export const parameters = {
 
 const marginDecorator = (story) => ({
   components: { story },
-  template: '<div style="margin: 0.5em;"><story /></div>'
+  template: '<div style="margin: 0.5em; min-width: 420px;"><story /></div>'
 });
 
 export const decorators = [

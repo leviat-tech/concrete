@@ -16,7 +16,7 @@
     }"
     :class="inputColorClass"
   >
-    <div class="flex w-full concrete__text-input">
+    <div class="flex w-full h-full concrete__text-input" :class="[inputColorClass, disabledClass]">
       <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
       <slot name="prefix" class="z-10"/>
 

@@ -1,4 +1,5 @@
 import CNumericInput from "../NumericInput.vue";
+import { formElementProps } from '../../../storybook/argTypes';
 
 const componentTemplate = (args) => ({
   components: { CNumericInput },
@@ -13,45 +14,7 @@ export default {
   component: CNumericInput,
 
   argTypes: {
-    size: {
-      options: ["lg", "md", "sm", "xs"],
-
-      control: {
-        type: "select",
-      },
-    },
-
-    color: {
-      options: [
-        "default",
-        "indigo",
-        "sky",
-        "steel",
-        "success",
-        "warning",
-        "danger",
-      ],
-
-      control: {
-        type: "select",
-      },
-    },
-
-    disabled: {
-      control: "boolean",
-    },
-
-    readOnly: {
-      control: "boolean",
-    },
-
-    transparent: {
-      control: "boolean",
-    },
-
-    placeholder: {
-      control: "text",
-    },
+    ...formElementProps,
 
     onEnter: {
       table: {
