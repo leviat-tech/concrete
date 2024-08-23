@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.29.0](https://github.com/leviat-tech/concrete/compare/v2.28.0...v2.29.0) (2024-08-23)
+
+
+### Features
+
+* additional units kg, g, kg/m, g/m ([9aa1c49](https://github.com/leviat-tech/concrete/commit/9aa1c49ce6ebe881b00a2edf80c2d70bff526fdc))
+
+
+### Bug Fixes
+
+* update input affix styling ([483d98d](https://github.com/leviat-tech/concrete/commit/483d98da805141144a16e0901d063c965d364192))
+
 ## [2.28.0](https://github.com/leviat-tech/concrete/compare/v2.27.2...v2.28.0) (2024-08-23)
 
 
