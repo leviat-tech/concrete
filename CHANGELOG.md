@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.28.0](https://github.com/leviat-tech/concrete/compare/v2.27.2...v2.28.0) (2024-08-23)
+
+
+### Features
+
+* add progress bar ([a441a4e](https://github.com/leviat-tech/concrete/commit/a441a4ecb03afda63f853796f323d7698f0a5a89))
+
 ## [2.27.2](https://github.com/leviat-tech/concrete/compare/v2.27.1...v2.27.2) (2024-08-21)
 
 
