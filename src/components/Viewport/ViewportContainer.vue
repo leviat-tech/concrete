@@ -127,8 +127,8 @@ export default {
         this.cols = this.columns;
         return;
       }
-      const width = this.$refs.viewportContainer.clientWidth || 1;
-      const height = this.$refs.viewportContainer.clientHeight || 1;
+      const width = this.$refs.viewportContainer?.clientWidth || 1;
+      const height = this.$refs.viewportContainer?.clientHeight || 1;
       const ar = width / height;
 
       this.cols = columns(ar, this.aspectRatio, this.options.length);
