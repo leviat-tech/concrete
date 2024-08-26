@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.29.1](https://github.com/leviat-tech/concrete/compare/v2.29.0...v2.29.1) (2024-08-26)
+
+
+### Bug Fixes
+
+* optional check for viewport ([#298](https://github.com/leviat-tech/concrete/issues/298)) ([3af71b1](https://github.com/leviat-tech/concrete/commit/3af71b139408fb5fa4bf6c8a2c20a09a88f7e699))
+
 ## [2.29.0](https://github.com/leviat-tech/concrete/compare/v2.28.0...v2.29.0) (2024-08-23)
 
 
