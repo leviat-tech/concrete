@@ -239,19 +239,27 @@ const localOptions = computed(() => {
 
 const selectedLabel = computed(() => {
   let sv = selectedValue.value;
+  const { formatter } = props;
 
   if (!props.multiple) {
-    if (isPlainObject(sv)) {
-      return props.formatter ? props.formatter(sv) : sv;
+    if (formatter) {
+      return formatter(sv);
+    } else {
+      return isPlainObject(sv) ? sv.label : sv;
     }
-    sv = [selectedValue.value];
   }
-  const labels = sv
+
+  const arrVal = Array.isArray(sv) ? sv : [sv];
+  const labels = arrVal
     .filter((selectedItem) => selectedItem != null)
     .map((selectedItem) => {
-      return localOptions.value.find((option) => {
+      const item = localOptions.value.find((option) => {
         return isEqual(option.value, selectedItem);
-      })?.label;
+      });
+
+      if (!item) return;
+
+      return formatter ? formatter(item) : item.label;
     });
 
   return labels.join(', ');

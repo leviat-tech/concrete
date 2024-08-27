@@ -30,8 +30,6 @@ export default function formatCode(codeBlock, ctx) {
     }
   }
 
-  console.log(ctx);
-
   const replacing = /v-bind="[^"]+"/;
 
   return codeBlock
