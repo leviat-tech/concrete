@@ -60,6 +60,12 @@ const conversions = {
     'N/m': (nm) => nm.div(1000),
     't/m': (tm) => tm.times(10),
   },
+  'kNm/m': {
+    'Nm/m': (nm) => nm.div(1000),
+  },
+  'Nm/m': {
+    'kNm/m': (knm) => knm.times(1000),
+  },
   't/m': {
     'N/m': (nm) => nm.div(10000),
     'kN/m': (knm) => knm.div(10),
@@ -179,6 +185,10 @@ const unitToSIMap = {
   lbfin: 'Nm',
   lbfft: 'Nm',
   kip: 'N',
+  'Nm/m': 'Nm/m',
+  'kNm/m': 'Nm/m',
+  'N/m²': 'N/m²',
+  'kN/m²': 'N/m²'
 };
 
 const aliases = {
