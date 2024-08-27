@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.29.2](https://github.com/leviat-tech/concrete/compare/v2.29.1...v2.29.2) (2024-08-27)
+
+
+### Bug Fixes
+
+* add new units ([0f3ae22](https://github.com/leviat-tech/concrete/commit/0f3ae227dd9d760decc383c65e691cd0d700a3a4))
+* support formatting null values in listbox ([7cb210b](https://github.com/leviat-tech/concrete/commit/7cb210b0a18cba0ed0f5849a7ec9370d6e0dd745))
+
 ## [2.29.1](https://github.com/leviat-tech/concrete/compare/v2.29.0...v2.29.1) (2024-08-26)
 
 
