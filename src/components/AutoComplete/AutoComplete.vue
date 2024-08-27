@@ -57,21 +57,23 @@
           enter-to-class="ease-in duration-300 ease-out opacity-100 translate-y-0"
           name="listbox"
         >
-        <ComboboxOptions
-          class="
-            absolute
-            mt-1
-            w-full
-            bg-white
-            shadow-lg
-            py-1
-            text-base
-            ring-1 ring-black ring-opacity-5
-            overflow-auto
-            focus:outline-none
-            sm:text-sm
-          "
-          :class="open ? 'z-30' : 'z-10'"
+          <ComboboxOptions
+            class="
+              absolute
+              mt-1
+              w-full
+              bg-white
+              shadow-lg
+              py-1
+              text-base
+              ring-1 ring-black ring-opacity-5
+              overflow-auto
+              focus:outline-none
+              sm:text-sm
+              h-[10lh]
+              overflow-x-scroll
+            "
+            :class="open ? 'z-30' : 'z-10'"
           >
             <div
               v-if="filteredOptions.length === 0 && searchValue !== ''"
