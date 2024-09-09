@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.30.0](https://github.com/leviat-tech/concrete/compare/v2.29.2...v2.30.0) (2024-09-09)
+
+
+### Features
+
+* add imperial moment units ([#303](https://github.com/leviat-tech/concrete/issues/303)) ([e421fd9](https://github.com/leviat-tech/concrete/commit/e421fd9c726b16bc2a9ee73706c153d9a69e6162))
+
 ## [2.29.2](https://github.com/leviat-tech/concrete/compare/v2.29.1...v2.29.2) (2024-08-27)
 
 
