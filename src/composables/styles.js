@@ -41,7 +41,7 @@ export const useInputColorClassValue = (props) => {
   const status = useConcreteForms().getInputStatus(props);
 
   return computed(() => {
-    return colorClassMap[status.value?.color]
+    return colorClassMap[status.value?.color] || colorClassMap.default;
   });
 }
 
