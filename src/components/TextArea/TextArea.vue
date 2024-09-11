@@ -15,7 +15,7 @@
     }"
     :class="inputColorClass"
   >
-    <div class="flex w-full h-full" :class="[colorClass, disabledClass]">
+    <div class="flex w-full" :class="[colorClass, disabledClass]">
       <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
       <slot name="prefix" class="z-10"/>
       <textarea

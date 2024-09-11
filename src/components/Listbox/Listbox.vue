@@ -25,7 +25,7 @@
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
           <div
-            class="relative z-0 inline-flex w-full items-center"
+            class="relative z-0 inline-flex w-full"
             :class="inputColorClass"
           >
             <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
@@ -41,7 +41,7 @@
                 cursorClass,
                 open && 'border-indigo-light',
               ]"
-              class="!flex items-center"
+              class="!flex items-center pr-8"
             >
               <slot name="buttonPrefix" />
               <span
@@ -51,21 +51,8 @@
                 {{ selectedLabel || placeholder }}
               </span>
 
-              <span
-                class="
-                  absolute
-                  inset-y-0
-                  right-0
-                  flex
-                  items-center
-                  pr-2
-                  pointer-events-none
-                "
-              >
-                <ChevronUpDownIcon
-                  :class="[iconColorClass, iconSizeClass]"
-                  aria-hidden="true"
-                />
+              <span class=" absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <ChevronUpDownIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true"  />
               </span>
             </ListboxButton>
             <input type="hidden" :value="selectedLabel" data-selected />
@@ -121,7 +108,7 @@
                     name="optionPrefix"
                     :option="option"
                   />
-                  {{ option.label }}
+                  {{ formatter(option.label || option.value) }}
                 </div>
               </li>
             </ListboxOption>
@@ -202,6 +189,10 @@ const isDirty = ref(false);
 const localValue = ref(null);
 const buttonRef = ref(null);
 
+const formatter = (value) => {
+  return props.formatter ? props.formatter(value) : value;
+}
+
 const selectedValue = computed({
   get() {
     return getInputValue(props);
@@ -213,6 +204,14 @@ const selectedValue = computed({
     onChange();
   },
 });
+
+const getOptionFromValue = (value) => {
+  const item = localOptions.value.find((option) => {
+    return isEqual(option.value, value);
+  });
+
+  return formatter(item?.label);
+}
 
 const isDisabled = computed(() => {
   return props.disabled || !localOptions.value.length;
@@ -228,41 +227,24 @@ const localOptions = computed(() => {
   const options = getInputIdToOptions(props);
 
   return options.map((option) => {
-    const opt = isPlainObject(option)
+    return isPlainObject(option)
       ? option
       : { label: option, value: option };
-    return props.formatter
-      ? { ...opt, label: props.formatter(opt.label || opt.value) }
-      : opt;
   });
 });
 
 const selectedLabel = computed(() => {
   let sv = selectedValue.value;
-  const { formatter } = props;
 
   if (!props.multiple) {
-    if (formatter) {
-      return formatter(sv);
-    } else {
-      return isPlainObject(sv) ? sv.label : sv;
-    }
+    return getOptionFromValue(sv);
   }
 
   const arrVal = Array.isArray(sv) ? sv : [sv];
-  const labels = arrVal
+  return arrVal
     .filter((selectedItem) => selectedItem != null)
-    .map((selectedItem) => {
-      const item = localOptions.value.find((option) => {
-        return isEqual(option.value, selectedItem);
-      });
-
-      if (!item) return;
-
-      return formatter ? formatter(item) : item.label;
-    });
-
-  return labels.join(', ');
+    .map(getOptionFromValue)
+    .join(', ');
 });
 
 const optionsSizeClass = {

@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete__input-affix h-full relative inline-flex items-center text-inherit px-3 border border-inherit whitespace-nowrap bg-black bg-opacity-[0.03]"
+  <div class="concrete__input-affix relative inline-flex items-center text-inherit px-3 border border-inherit whitespace-nowrap bg-black bg-opacity-[0.03]"
        :class="[sizeClass, typeClass, userClass]">
     <slot />
   </div>
