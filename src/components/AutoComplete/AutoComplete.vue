@@ -17,13 +17,13 @@
   >
     <Combobox
       as="div"
-      class="concrete__autocomplete h-full"
+      class="concrete__autocomplete"
       v-model="displayValue"
       :disabled="disabled"
       v-slot="{ open }"
     >
       <div :class="['h-full relative', disabledClass]">
-        <div class="inline-flex w-full h-full cursor-default text-left" :class="inputColorClass">
+        <div class="inline-flex w-full cursor-default text-left" :class="inputColorClass">
           <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
           <slot name="prefix" class="z-10" />
           <ComboboxInput
