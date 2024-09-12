@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.30.1](https://github.com/leviat-tech/concrete/compare/v2.30.0...v2.30.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* autocomplete styling ([8e35cd7](https://github.com/leviat-tech/concrete/commit/8e35cd7a7204bb7f22c45369ffebb6de6d66f00e))
+* listbox options and inputs layout and styling ([30bf8f5](https://github.com/leviat-tech/concrete/commit/30bf8f5286ad6dca4cff80d6021f0bac85843750))
+
 ## [2.30.0](https://github.com/leviat-tech/concrete/compare/v2.29.2...v2.30.0) (2024-09-09)
 
 
