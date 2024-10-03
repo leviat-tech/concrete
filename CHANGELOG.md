@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.30.2](https://github.com/leviat-tech/concrete/compare/v2.30.1...v2.30.2) (2024-10-02)
+
+
+### Bug Fixes
+
+* add tbody to table ([#307](https://github.com/leviat-tech/concrete/issues/307)) ([a8a8168](https://github.com/leviat-tech/concrete/commit/a8a8168b0478f28b15b8be22029061160697e5be))
+
 ## [2.30.1](https://github.com/leviat-tech/concrete/compare/v2.30.0...v2.30.1) (2024-09-12)
 
 
