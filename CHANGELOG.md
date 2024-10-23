@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.31.0](https://github.com/leviat-tech/concrete/compare/v2.30.2...v2.31.0) (2024-10-23)
+
+
+### Features
+
+* enable subscript/superscript in text of status bar ([#310](https://github.com/leviat-tech/concrete/issues/310)) ([ed15ed7](https://github.com/leviat-tech/concrete/commit/ed15ed750f801e8f50fdd7241a5f0681d338b752))
+
 ## [2.30.2](https://github.com/leviat-tech/concrete/compare/v2.30.1...v2.30.2) (2024-10-02)
 
 
