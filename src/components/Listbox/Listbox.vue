@@ -161,6 +161,7 @@ const props = defineProps({
     },
   },
   onChange: { type: Function, default: null },
+  checkEquality: { type: Function, default: isEqual},
 });
 
 const {
@@ -207,7 +208,7 @@ const selectedValue = computed({
 
 const getOptionFromValue = (value) => {
   const item = localOptions.value.find((option) => {
-    return isEqual(option.value, value);
+    return props.checkEquality(option.value, value);
   });
 
   return formatter(item?.label);
