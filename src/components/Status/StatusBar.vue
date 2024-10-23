@@ -13,9 +13,7 @@
           :key="item.id">
         <div class="flex items-center p-3 flex-1" @click="$emit('click', item.id)">
           <component :is="item.icon" class="flex-none mr-2" :style="{ width: 24, height: 24 }"/>
-          <div>
-            {{ item.text }}
-          </div>
+          <div v-html="item.text"></div>
         </div>
         <button class="ml-8 uppercase p-3" @click="$emit('dismiss', i)">
           <CIcon type="times" size="sm"/>
