@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.32.0](https://github.com/leviat-tech/concrete/compare/v2.31.0...v2.32.0) (2024-10-23)
+
+
+### Features
+
+* add optional equality check func for Listbox ([#312](https://github.com/leviat-tech/concrete/issues/312)) ([3b24f31](https://github.com/leviat-tech/concrete/commit/3b24f312c8cd89bf352bcd5cd6981b79240307b5))
+
 ## [2.31.0](https://github.com/leviat-tech/concrete/compare/v2.30.2...v2.31.0) (2024-10-23)
 
 
