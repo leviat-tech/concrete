@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.32.1](https://github.com/leviat-tech/concrete/compare/v2.32.0...v2.32.1) (2024-11-05)
+
+
+### Bug Fixes
+
+* enable wrapping on whitespace in text area ([#309](https://github.com/leviat-tech/concrete/issues/309)) ([d5dac71](https://github.com/leviat-tech/concrete/commit/d5dac71fc676b3bbbc75c8cfd601ef9641a9917f))
+
 ## [2.32.0](https://github.com/leviat-tech/concrete/compare/v2.31.0...v2.32.0) (2024-10-23)
 
 
