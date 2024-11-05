@@ -25,7 +25,7 @@
         v-model="value"
         type="text"
         class="h-auto"
-        :class="[inputStaticClasses, mergedSizeClass, paddingYClass, inputColorClass, disabledClass, cursorClass, bgColorClass]"
+        :class="[localInputStaticClasses, mergedSizeClass, paddingYClass, inputColorClass, disabledClass, cursorClass, bgColorClass]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"
@@ -49,7 +49,6 @@ import { useConcreteForms } from '../../composables/forms';
 
 import {
   useInputColorClassValue,
-  inputStaticClasses,
   useInputClasses,
   useCursorClass
 } from '../../composables/styles.js';
@@ -98,6 +97,7 @@ const {
 } = useInputClasses(props);
 const cursorClass = useCursorClass(props);
 const colorClass = useInputColorClassValue(props);
+const localInputStaticClasses = 'block z-20 w-full border text-left focus:outline-none focus:ring-0 focus:border-indigo-light';
 
 const value = computed({
   get() {
