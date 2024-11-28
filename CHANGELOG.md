@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.32.2](https://github.com/leviat-tech/concrete/compare/v2.32.1...v2.32.2) (2024-11-28)
+
+
+### Bug Fixes
+
+* remove redundant scss references ([02eec73](https://github.com/leviat-tech/concrete/commit/02eec73fcad9927344c0f3ae418f62a83bc96e3f))
+
 ## [2.32.1](https://github.com/leviat-tech/concrete/compare/v2.32.0...v2.32.1) (2024-11-05)
 
 
