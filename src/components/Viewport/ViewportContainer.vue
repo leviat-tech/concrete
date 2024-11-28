@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .concrete__viewport-container {
   gap: 1px;
 }

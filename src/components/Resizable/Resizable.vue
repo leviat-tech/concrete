@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 .separator {
   /* Prevent the browser's built-in drag from interfering */
   -moz-user-select: none;
@@ -97,7 +97,7 @@ const endDrag = () => {
 const drag = (e) => {
   if (dragging) {
     currDrag = getCurrentMouseDrag(e).x;
-    
+
   handleResize();
     splitter.value.style.left = `${currDrag - splitterWidth.value}px`;
   }
