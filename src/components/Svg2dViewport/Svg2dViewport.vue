@@ -11,7 +11,7 @@
   >
     <svg
       ref="svg"
-      class="flex-1"
+      class="flex-1 -scale-y-100"
       :viewBox="vbString"
       @click="handleClick"
       @mousewheel.passive="handleMousewheel"
@@ -23,8 +23,7 @@
       <g
         ref="contents"
         class="drawing-contents"
-        :transform="`translate(${dragOffset.x} ${dragOffset.y})
-                     scale(${viewport.zoomScale} -${viewport.zoomScale})`"
+        :transform="`translate(${dragOffset.x} ${dragOffset.y})`"
       >
         <slot />
       </g>
@@ -56,6 +55,18 @@ function domToSVGCoords(el, pt) {
   return { x, y };
 }
 
+function calculateNewOffset (oldLength, newLength, oldMinPoint, currentPoint) {
+  const difference = newLength - oldLength;
+  const percentOffset = (currentPoint - oldMinPoint) / oldLength;
+  const svgOffset = difference * percentOffset;
+  return oldMinPoint - svgOffset;
+};
+
+const ZOOM_LIMITS = {
+  MIN: 1e-5,
+  MAX: 0.1,
+};
+
 export default {
   props: {
     extents: {
@@ -81,7 +92,6 @@ export default {
       zoomProps: null,
       screenPt: { x: 0, y: 0 },
       viewport: {
-        zoomScale: 1,
         viewBox: {
           minX: 0,
           minY: 0,
@@ -110,20 +120,13 @@ export default {
       const { minX, minY, width, height } = this.viewport.viewBox; // eslint-disable-line
       return `${minX} ${minY} ${width} ${height}`;
     },
+    aspectRatio() {
+      return this.viewport.el.width / this.viewport.el.height;
+    },
 
     // A factor which, when multiplied to a dimension in screen px, will yield the size in SVG units
     pxToSvgUnits() {
-      const viewAspectRatio =
-        this.viewport.viewBox.width / this.viewport.viewBox.height;
-      const elAspectRatio = this.viewport.el.width / this.viewport.el.height;
-
-      return viewAspectRatio > elAspectRatio
-        ? this.viewport.viewBox.width /
-            this.viewport.el.width /
-            this.viewport.zoomScale
-        : this.viewport.viewBox.height /
-            this.viewport.el.height /
-            this.viewport.zoomScale;
+      return this.viewport.viewBox.width / this.viewport.el.width;
     },
 
     maximized() {
@@ -160,6 +163,7 @@ export default {
     document.addEventListener('pointerleave', this.documentMouseleave);
     // monitor svg screen size
     this.resizeHandler();
+    this.zoomToExtents();
     window.addEventListener('resize', this.resizeHandler);
   },
   beforeUnmount() {
@@ -172,35 +176,31 @@ export default {
       this.zoomTo(this.extents);
     },
     zoomTo({ xmin, ymin, xmax, ymax }) {
-      // eslint-disable-line
-      const size = {
-        width: xmax - xmin,
-        height: ymax - ymin,
+      const width = xmax - xmin;
+      const height = ymax - ymin;
+
+      let newWidth, newHeight;
+
+      // Ensure new height and width maintains the correct aspect ratio
+      if (this.aspectRatio > width / height) {
+        // Stretch horizontally
+        newWidth = this.aspectRatio * height;
+        newHeight = height;
+      } else {
+        // Stretch vertically
+        newWidth = width;
+        newHeight = width / this.aspectRatio;
+      }
+
+      const widthDifference = newWidth - width;
+      const heightDifference = newHeight - height;
+
+      this.viewport.viewBox = {
+        minX: xmin - widthDifference / 2,
+        minY: ymin - heightDifference / 2,
+        width: newWidth,
+        height: newHeight,
       };
-
-      const contentAspectRatio = size.width / size.height;
-      const viewAspectRatio =
-        this.viewport.viewBox.width / this.viewport.viewBox.height;
-
-      const zoomScale =
-        contentAspectRatio > viewAspectRatio
-          ? this.viewport.viewBox.width / size.width
-          : this.viewport.viewBox.height / size.height;
-
-      const center = {
-        x: (xmin + (xmax - xmin) / 2) * zoomScale,
-        y: -(ymin + (ymax - ymin) / 2) * zoomScale,
-      };
-
-      const viewBox = {
-        minX: center.x - this.viewport.viewBox.width / 2,
-        minY: center.y - this.viewport.viewBox.height / 2,
-        width: this.viewport.viewBox.width,
-        height: this.viewport.viewBox.height,
-      };
-
-      this.viewport.viewBox = viewBox;
-      this.viewport.zoomScale = zoomScale;
     },
     setMousePt(e) {
       this.hoverPt.x = e.clientX; // current point in screen units
@@ -283,93 +283,63 @@ export default {
       this.zoomProps = {
         screenPt: this.screenPt,
         point: this.currentPoint,
-        scale: this.viewport.zoomScale,
         viewBox: this.viewport.viewBox,
       };
     },
+    zoomAtPoint(point, zoomFactor) {
+      if (
+        (zoomFactor < 1 && this.pxToSvgUnits.value <= ZOOM_LIMITS.MIN) ||
+        (zoomFactor > 1 && this.pxToSvgUnits.value > ZOOM_LIMITS.MAX)
+      )
+        return;
+
+      const { x, y } = point;
+
+      const oldMinX = this.viewport.viewBox.minX;
+      const oldMinY = this.viewport.viewBox.minY;
+      const oldWidth = this.viewport.viewBox.width;
+      const oldHeight = this.viewport.viewBox.height;
+
+      const newWidth = oldWidth * zoomFactor;
+      const newHeight = oldHeight * zoomFactor;
+
+      const newMinX = calculateNewOffset(oldWidth, newWidth, oldMinX, x);
+      const newMinY = calculateNewOffset(oldHeight, newHeight, oldMinY, y);
+
+      this.viewport.viewBox = {
+        minX: newMinX,
+        minY: newMinY,
+        width: newWidth,
+        height: newHeight,
+      };
+    },
     zoom() {
-      const { y: screenY } = this.screenPt;
-      const rect = this.$refs.svg.getBoundingClientRect();
+      const scaleAmount = 1.05;
+      const zoomFactor = this.zoomProps < this.screenPt.y ? scaleAmount : 1 / scaleAmount;
 
-      const zoomPct = (this.zoomProps.screenPt.y - screenY) / rect.height;
+      this.zoomProps.screenY = this.screenPt.y;
 
-      // Don't zoom to less than zero scale!
-      const zoomScale =
-        zoomPct > 1
-          ? (1 + zoomPct * 2) * this.zoomProps.scale
-          : (1 + zoomPct) * this.zoomProps.scale;
-
-      // get current mouse x,y coordinates in SVG-space units from dragStart
-      const { x, y } = this.zoomProps.point;
-
-      const viewOffset = {
-        x: this.zoomProps.viewBox.minX / this.zoomProps.scale,
-        y: -this.zoomProps.viewBox.minY / this.zoomProps.scale,
-      };
-
-      const mouseOffset = {
-        x: x - viewOffset.x,
-        y: y - viewOffset.y,
-      };
-
-      const newMouseOffset = {
-        x: mouseOffset.x / (zoomScale / this.zoomProps.scale),
-        y: mouseOffset.y / (zoomScale / this.zoomProps.scale),
-      };
-      const newViewOffset = {
-        x: x - newMouseOffset.x,
-        y: y - newMouseOffset.y,
-      };
-      const viewBox = {
-        minX: newViewOffset.x * zoomScale,
-        minY: -newViewOffset.y * zoomScale,
-        width: this.zoomProps.viewBox.width,
-        height: this.zoomProps.viewBox.height,
-      };
-      this.viewport.zoomScale = zoomScale;
-      this.viewport.viewBox = viewBox;
+      this.zoomAtPoint(this.zoomProps.point, zoomFactor);
     },
     zoomend() {
       this.isZooming = false;
     },
 
     handleMousewheel(e) {
-      const zoomScale =
-        e.deltaY > 0
-          ? this.viewport.zoomScale / 1.1
-          : this.viewport.zoomScale / (1 / 1.1);
+      const scaleAmount = 1.1;
+      const zoomFactor = e.deltaY > 0 ? scaleAmount : 1 / scaleAmount;
 
-      const viewOffset = {
-        x: this.viewport.viewBox.minX / this.viewport.zoomScale,
-        y: -this.viewport.viewBox.minY / this.viewport.zoomScale,
-      };
-
-      const mouseOffset = {
-        x: this.currentPoint.x - viewOffset.x,
-        y: this.currentPoint.y - viewOffset.y,
-      };
-
-      const newMouseOffset = {
-        x: mouseOffset.x / (zoomScale / this.viewport.zoomScale),
-        y: mouseOffset.y / (zoomScale / this.viewport.zoomScale),
-      };
-      const newViewOffset = {
-        x: this.currentPoint.x - newMouseOffset.x,
-        y: this.currentPoint.y - newMouseOffset.y,
-      };
-      const viewBox = {
-        minX: newViewOffset.x * zoomScale,
-        minY: -newViewOffset.y * zoomScale,
-        width: this.viewport.viewBox.width,
-        height: this.viewport.viewBox.height,
-      };
-      this.viewport.zoomScale = zoomScale;
-      this.viewport.viewBox = viewBox;
+      this.setMousePt(e);
+      this.zoomAtPoint(this.currentPoint, zoomFactor);
     },
 
     resizeHandler() {
       this.viewport.el.width = this.$refs.svg.clientWidth;
       this.viewport.el.height = this.$refs.svg.clientHeight;
+
+      const ratio = this.viewport.el.width / this.viewport.el.height;
+
+      this.viewport.viewBox.height = this.viewport.viewBox.width / ratio;
     },
   },
   expose: ['viewport', 'zoomToExtents'],
