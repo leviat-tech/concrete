@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.32.3](https://github.com/leviat-tech/concrete/compare/v2.32.2...v2.32.3) (2025-01-16)
+
+
+### Bug Fixes
+
+* viewport zooming and aspect ratio issues ([6e87533](https://github.com/leviat-tech/concrete/commit/6e8753345c2489a2cfbef7c314a55bdf6199e763))
+
 ## [2.32.2](https://github.com/leviat-tech/concrete/compare/v2.32.1...v2.32.2) (2024-11-28)
 
 
