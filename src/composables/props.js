@@ -1,6 +1,6 @@
 export const colorProp = {
   type: String,
-  validator: (prop) => ['default', 'indigo', 'sky', 'steel', 'success', 'warning', 'danger'].includes(prop),
+  validator: (prop) => ['default', 'base', 'brand', 'info', 'magic', 'success', 'warning', 'danger'].includes(prop),
 }
 
 export const useSizeProp = (maxSize = 'lg') => {

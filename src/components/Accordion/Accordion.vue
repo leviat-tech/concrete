@@ -7,18 +7,11 @@
     :defaultOpen="isOpen"
   >
     <DisclosureButton class="w-full text-left" @click="onClick()">
-      <div v-if="title" class="flex items-center font-bold">
-        <TriangleIcon
-          :class="[
-            iconClass,
-            transitionClass,
-            open ? 'rotate-180' : 'rotate-90',
-          ]"
-          class="flex-none mr-2"
-        />
-        <span :class="titleClass">{{ title }}</span>
+      <div v-if="title" class="flex items-center" :class="{ 'border-b border-base-300' : underline}">
+        <ChevronDownIcon v-if="open" :class="[iconClass, transitionClass]" class="flex-none mr-2" />
+        <ChevronRightIcon v-else :class="[iconClass, transitionClass]" class="flex-none mr-2" />
+        <CHeading :size="headingSize" :title="title" />
       </div>
-
       <slot v-else name="title" :open="open" />
     </DisclosureButton>
 
@@ -45,6 +38,8 @@ import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
 import { useSizeProp } from '../../composables/props.js';
 import { useConcreteForms } from '../../composables/forms.js';
 import { textSizeClassMap } from '../../composables/styles.js';
+import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
+import CHeading from '../Heading/Heading.vue';
 
 const { accordionState } = inject('concrete', {});
 
@@ -55,6 +50,8 @@ const props = defineProps({
   title: String,
   titleClass: String,
   accordionId: { type: String, required: false },
+  headingSize: {type: Number, default: 2 },
+  underline: { type: Boolean, default: false }
 });
 
 let isOpen = accordionState[props.accordionId] ?? props.defaultOpen;

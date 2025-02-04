@@ -1,0 +1,31 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CStack from '../Stack.vue';
+import * as StackStories from './Stack.stories';
+
+<Meta of={StackStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CStack },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template:
+    '<CStack v-bind="args"></CStack>',
+});
+
+# Form Element
+
+<Canvas transformSnippet="open">
+  <Story of={StackStories.Overview} />
+</Canvas>
+
+## Overview
+
+Internal Stack component to be used to group related form elements in a section.
+
+## Props
+
+<Controls />
