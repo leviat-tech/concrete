@@ -36,6 +36,7 @@
           cursorClass,
           bgColorClass,
           inputSpinnerClass,
+          roundedClass,
           overrideCssStyles,
         ]"
         :placeholder="placeholder"
@@ -51,7 +52,7 @@
       <div
         v-if="!noUnits"
         :class="[
-          'absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none',
+          'absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none font-normal opacity-70',
           paddingClass,
         ]"
       >
@@ -72,7 +73,13 @@ import { computed, inject, ref } from 'vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
-import { useInputClasses, inputStaticClasses, useCursorClass } from '../../composables/styles';
+import { formElementProps } from '../../composables/props.js';
+import {
+  useInputClasses,
+  inputStaticClasses,
+  useCursorClass,
+  useRoundedClass,
+} from '../../composables/styles';
 import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
 import FormElementProps from '../../types/FormElementProps';
@@ -126,6 +133,8 @@ const {
   disabledClass,
   textSizeClass,
 } = useInputClasses(props);
+
+const roundedClass = useRoundedClass(props);
 
 const size = getSizeValue(props.size);
 const stacked = getStackedValue(props.stacked);

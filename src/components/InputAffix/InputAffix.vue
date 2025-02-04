@@ -1,6 +1,6 @@
 <template>
-  <div class="concrete__input-affix relative inline-flex items-center text-inherit px-3 border border-inherit whitespace-nowrap bg-black bg-opacity-[0.03]"
-       :class="[sizeClass, typeClass, userClass]">
+  <div class="concrete__input-affix relative inline-flex items-center px-3 border border-inherit whitespace-nowrap bg-base-100"
+       :class="[sizeClass, typeClass, userClass, roundedClass]">
     <slot />
   </div>
 </template>
@@ -24,6 +24,12 @@ const props = defineProps({
 const size = useConcreteForms().getSizeValue(props.size);
 const userClassProp = props.type + 'Class';
 const userClass = inject(userClassProp, '');
+
+const roundedClass = {
+  prefix: 'rounded-l-input',
+  suffix: 'rounded-r-input',
+  other: '',
+}[props.type];
 
 const sizeClass = {
   xs: 'text-xs',

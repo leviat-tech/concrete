@@ -33,7 +33,7 @@
         @mousedown="onMouseDown"
         @keyup.tab="onKeyUp"
         v-model="enabled"
-        class="transition-all duration-100 items-center border border-gray-300 focus:outline-none"
+        class="transition-all duration-100 items-center border border-base-300 focus:outline-none hover:ring-1 hover:ring-entity-active rounded-input focus:ring-entity-active"
         :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
         <span class="flex justify-center transition-opacity p-px">
@@ -113,27 +113,25 @@ const styleClass = computed(() => {
   const colour = props.color ? props.color : 'default';
   const style = props.transparent ? 'transparent' : colour;
   if (props.disabled) {
-    return 'bg-gray-200 text-gray-400';
+    return 'bg-gray-200 text-gray-400 hover:ring-0';
   } else if (enabled.value) {
     return {
-      default: 'bg-indigo border-indigo text-white focus:ring-indigo-light',
-      indigo: 'bg-indigo border-indigo text-white focus:ring-indigo-light',
-      sky: 'bg-sky border-sky text-white focus:ring-sky-light',
-      steel: 'bg-steel border-steel text-white focus:ring-steel-light',
-      success: 'bg-success border-success text-white focus:ring-success-light',
-      warning: 'bg-warning border-warning text-white focus:ring-warning-light',
-      danger: 'bg-danger border-danger text-white focus:ring-danger-light',
+      default: 'bg-white border-base-300 text-base-800',
+      info: 'bg-info-500 border-info-500 text-white',
+      magic: 'bg-magic-500 border-magic-500 text-white',
+      success: 'bg-success-500 border-success-500 text-white',
+      warning: 'bg-warning-500 border-warning-500 text-white',
+      danger: 'bg-danger-500 border-danger-500 text-white',
     }[colour];
   } else {
     return {
-      transparent: 'bg-transparent text-white focus:ring-indigo-light',
-      default: 'bg-white text-white focus:ring-indigo-light',
-      indigo: 'bg-white text-white focus:ring-indigo-light',
-      sky: 'bg-white text-white focus:ring-sky-light',
-      steel: 'bg-white text-white focus:ring-steel-light',
-      success: 'bg-white text-white focus:ring-success-light',
-      warning: 'bg-white text-white focus:ring-warning-light',
-      danger: 'bg-white text-white focus:ring-danger-light',
+      transparent: 'bg-transparent text-white',
+      default: 'bg-white text-white',
+      info: 'bg-white text-white',
+      magic: 'bg-white text-white',
+      success: 'bg-white text-white',
+      warning: 'bg-white text-white',
+      danger: 'bg-white text-white',
     }[style];
   }
 });

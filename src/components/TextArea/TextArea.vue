@@ -71,7 +71,7 @@ const props = defineProps({
 
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
-  rows: { type: Number, default: 10 },
+  rows: { type: Number, default: 4 },
 });
 
 const {
@@ -97,7 +97,8 @@ const {
 } = useInputClasses(props);
 const cursorClass = useCursorClass(props);
 const colorClass = useInputColorClassValue(props);
-const localInputStaticClasses = 'block z-20 w-full border text-left focus:outline-none focus:ring-0 focus:border-indigo-light';
+const localInputStaticClasses = 'block z-20 w-full border font-normal text-left focus:outline-none focus:ring-1 focus:border-brand-700 hover:border-base-600 rounded-input';
+
 
 const value = computed({
   get() {

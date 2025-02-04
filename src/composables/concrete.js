@@ -2,7 +2,8 @@
 import { inject, reactive } from 'vue';
 
 export const concreteConfig = {
-  size: 'md',
+  size: 'sm',
+  labelWidth: 'md',
   stacked: false,
   components: null,
   labelFormatter: (props) => props.label || props.id,
@@ -11,7 +12,7 @@ export const concreteConfig = {
   wrapFormInputs: true,
   accordionState: reactive({}),
   customUnits: null,
-  defaultSpinner: true,
+  defaultSpinner: false,
 };
 
 export const useConcrete = () => {
