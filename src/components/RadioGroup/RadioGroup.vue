@@ -17,7 +17,7 @@
     }"
   >
     <div
-      class="inline-flex items-center bg-white border border-steel"
+      class="inline-flex items-center bg-white border border-base-300 rounded-input"
       :class="[textSizeClass, disabledClass]"
     >
       <RadioGroup
@@ -138,10 +138,16 @@ const layoutClass = computed(() => {
   return `flex flex-wrap justify-end ${props.reverseLabels ? '' : 'px-1'}`;
 });
 
+const colour = props.color ? props.color : 'default';
 const svgColour = computed(() => {
-  return props.color
-    ? 'stroke-' + props.color + ' fill-' + props.color
-    : 'stroke-black fill-black';
+  return {
+      default: 'fill-base-800 stroke-base-800',
+      info: 'fill-info-500 stroke-info-500',
+      magic: 'fill-magic-500 stroke-magic-500',
+      success: 'fill-success-500 stroke-success-500',
+      warning: 'fill-warning-500 stroke-warning-500',
+      danger: 'fill-danger-500 stroke-danger-500',
+    }[colour];
 });
 
 const labelClasses = computed(() => {

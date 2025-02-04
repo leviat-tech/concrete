@@ -39,6 +39,7 @@
                 inputColorClass,
                 mergedSizeClass,
                 cursorClass,
+                roundedClass,
                 open && 'border-indigo-light',
               ]"
               class="!flex items-center pr-8"
@@ -133,6 +134,7 @@ import { formElementProps } from '../../composables/props.js';
 import {
   inputStaticClasses,
   useInputClasses,
+  useRoundedClass,
 } from '../../composables/styles.js';
 import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
@@ -177,6 +179,7 @@ const emit = defineEmits(['update:modelValue', 'change']);
 
 const { mergedSizeClass, inputColorClass, bgColorClass } =
   useInputClasses(props);
+const roundedClass = useRoundedClass(props);
 const disabledClass = computed(() => isDisabled.value && 'opacity-60');
 const cursorClass = computed(() =>
   isDisabled.value ? 'cursor-not-allowed' : 'cursor-pointer'

@@ -33,6 +33,7 @@
           cursorClass,
           bgColorClass,
           inputSpinnerClass,
+          roundedClass,
           overrideCssStyles,
         ]"
         :placeholder="placeholder"
@@ -48,7 +49,7 @@
       <div
         v-if="!noUnits"
         :class="[
-          'absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none',
+          'absolute inset-y-0 z-20 right-0 flex items-center pointer-events-none font-normal opacity-70',
           paddingClass,
         ]"
       >
@@ -83,6 +84,7 @@ import {
   useInputClasses,
   inputStaticClasses,
   useCursorClass,
+  useRoundedClass,
 } from '../../composables/styles';
 import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
@@ -134,6 +136,8 @@ const {
   disabledClass,
   textSizeClass,
 } = useInputClasses(props);
+
+const roundedClass = useRoundedClass(props);
 
 const size = getSizeValue(props.size);
 const stacked = getStackedValue(props.stacked);

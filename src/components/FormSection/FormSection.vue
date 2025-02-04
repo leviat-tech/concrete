@@ -1,28 +1,25 @@
 <template>
-  <div class="w-full concrete__form-section">
+  <div class="w-full concrete__form-section space-y-4">
     <slot name="title">
-      <div
-        class="flex justify-between w-full mb-2"
-        :class="[underlineClass, inputColorClass, textSizeClass]"
-      >
-        <h4 v-if="title" class="text-base text-sky-dark font-bold">
-          {{ title }}
-        </h4>
+      <CHeading v-if="title" :title="title" :color="color" :underline="underline" :size="headingSize">
         <slot name="toolbar"></slot>
-      </div>
+      </CHeading>
     </slot>
 
-    <div class="w-full" :class="innerClass">
+    
+    <CStack :class="innerClass">
       <slot />
-    </div>
+    </CStack>
   </div>
 </template>
+
 
 <script setup>
 import { provide } from 'vue';
 import { colorProp, useSizeProp } from '../../composables/props';
 import { useConcreteForms } from '../../composables/forms';
-import { useInputClasses } from '../../composables/styles';
+import CHeading from '../Heading/Heading.vue';
+import CStack from '../Stack/Stack.vue';
 
 const props = defineProps({
   color: colorProp,
@@ -32,14 +29,13 @@ const props = defineProps({
   underline: { type: Boolean, default: false },
   stacked: { type: Boolean },
   innerClass: String,
+  headingSize: {type: Number, default: 1 },
 });
 
 const { getSizeValue, getStackedValue } = useConcreteForms();
-const { inputColorClass, textSizeClass } = useInputClasses(props);
 
 const size = getSizeValue(props.size);
 const stacked = getStackedValue(props.stacked);
 provide('form-section', { stacked, size });
 
-const underlineClass = props.underline ? 'border-b' : '';
 </script>

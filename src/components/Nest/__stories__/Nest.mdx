@@ -1,0 +1,31 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CNest from '../Nest.vue';
+import * as NestStories from './Nest.stories';
+
+<Meta of={NestStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CNest },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template:
+    '<CNest v-bind="args"></CNest>',
+});
+
+# Form Element
+
+<Canvas transformSnippet="open">
+  <Story of={NestStories.Overview} />
+</Canvas>
+
+## Overview
+
+Internal Nest component to be used to group related form elements in a section.
+
+## Props
+
+<Controls />

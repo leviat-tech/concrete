@@ -1,3 +1,130 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --colors-white: 255 255 255;
+    --colors-black: 0 0 0;
+    --colors-base-50: 244 245 245;
+    --colors-base-100: 236 238 238;
+    --colors-base-200: 217 221 222;
+    --colors-base-300: 195 201 203;
+    --colors-base-400: 176 184 186;
+    --colors-base-500: 157 167 169;
+    --colors-base-600: 122 135 138;
+    --colors-base-700: 91 101 103;
+    --colors-base-800: 62 69 71;
+    --colors-base-900: 31 35 35;
+    --colors-base-950: 14 16 16;
+    --colors-brand-50: 237 249 252;
+    --colors-brand-100: 218 243 251;
+    --colors-brand-200: 175 230 248;
+    --colors-brand-300: 110 213 247;
+    --colors-brand-400: 14 188 246;
+    --colors-brand-500: 0 157 211;
+    --colors-brand-600: 7 142 187;
+    --colors-brand-700: 10 125 164;
+    --colors-brand-800: 12 105 136;
+    --colors-brand-900: 11 75 96;
+    --colors-brand-950: 10 52 66;
+    --colors-info-50: 235 241 249;
+    --colors-info-100: 211 225 243;
+    --colors-info-200: 172 197 231;
+    --colors-info-300: 128 167 219;
+    --colors-info-400: 88 140 208;
+    --colors-info-500: 53 111 187;
+    --colors-info-600: 43 90 151;
+    --colors-info-700: 32 66 111;
+    --colors-info-800: 21 45 75;
+    --colors-info-900: 10 21 36;
+    --colors-info-950: 6 12 20;
+    --colors-success-50: 245 249 240;
+    --colors-success-100: 232 244 220;
+    --colors-success-200: 206 234 179;
+    --colors-success-300: 169 222 120;
+    --colors-success-400: 125 210 45;
+    --colors-success-500: 105 184 30;
+    --colors-success-600: 97 164 35;
+    --colors-success-700: 87 144 35;
+    --colors-success-800: 75 119 34;
+    --colors-success-900: 53 81 26;
+    --colors-success-950: 43 63 24;
+    --colors-warning-50: 249 247 240;
+    --colors-warning-100: 245 238 224;
+    --colors-warning-200: 235 219 183;
+    --colors-warning-300: 226 196 131;
+    --colors-warning-400: 215 168 65;
+    --colors-warning-500: 188 138 30;
+    --colors-warning-600: 169 126 35;
+    --colors-warning-700: 144 109 34;
+    --colors-warning-800: 120 92 33;
+    --colors-warning-900: 85 67 27;
+    --colors-warning-950: 59 48 22;
+    --colors-danger-50: 251 243 243;
+    --colors-danger-100: 249 231 231;
+    --colors-danger-200: 243 201 201;
+    --colors-danger-300: 238 165 165;
+    --colors-danger-400: 231 111 111;
+    --colors-danger-500: 193 23 23;
+    --colors-danger-600: 175 29 29;
+    --colors-danger-700: 145 28 28;
+    --colors-danger-800: 120 28 28;
+    --colors-danger-900: 76 20 20;
+    --colors-danger-950: 46 15 15;
+    --colors-magic-50: 245 237 247;
+    --colors-magic-100: 232 216 237;
+    --colors-magic-200: 211 181 222;
+    --colors-magic-300: 189 143 204;
+    --colors-magic-400: 168 108 188;
+    --colors-magic-500: 143 75 165;
+    --colors-magic-600: 115 61 133;
+    --colors-magic-700: 85 45 98;
+    --colors-magic-800: 58 30 67;
+    --colors-magic-900: 27 14 32;
+    --colors-magic-950: 15 8 18;
+  }
+
+}
+
+/*
+"surface-background": "var(--colors-white)",
+"panel-border": "var(--colors-base-300)",
+"panel-background": "var(--colors-base-50)",
+"panel-background-hover": "var(--colors-base-100)",
+"panel-text": "var(--colors-base-800)",
+"panel-text-hover": "var(--colors-base-900)",
+"panel-icon": "var(--colors-base-600)",
+"panel-icon-hover": "var(--colors-base-700)",
+"tool-border-active": "var(--colors-base-600)",
+"tool-background-active": "var(--colors-white)",
+"entity-background": "var(--colors-white)",
+"entity-text": "var(--colors-base-800)",
+"tab-button-background": "var(--colors-base-50)",
+"tab-button-background-hover": "var(--colors-base-100)",
+"tab-button-text": "var(--colors-base-700)",
+"tab-button-text-active": "var(--colors-base-900)",
+"accordion-button-background": "var(--colors-white)",
+"accordion-button-background-hover": "var(--colors-base-50)",
+"accordion-button-text": "var(--colors-black)",
+"accordion-button-text-active": "var(--colors-brand-950)",
+"accordion-button-active": "var(--entity-active)",
+"accordion-content-background": "var(--colors-base-50)",
+"input-background": "var(--colors-white)",
+"input-border": "var(--colors-base-300)",
+"input-border-focus": "var(--colors-brand-700)",
+"input-border-hover": "var(--colors-base-600)",
+"input-border-danger": "var(--status-danger)",
+"input-border-warning": "var(--status-warning)",
+"input-border-success": "var(--status-success)",
+"input-text": "var(--panel-text)",
+"input-text-focus": "var(--panel-text)",
+"input-text-hover": "var(--panel-text)",
+"input-text-danger": "var(--panel-text)",
+"input-text-warning": "var(--panel-text)",
+"input-text-success": "var(--panel-text)",
+"input-background-disabled": "var(--colors-base-50)",
+"input-border-disabled": "var(--colors-base-300)",
+"input-text-disabled": "var(--colors-base-500)",
+"input-affix-background": "var(--colors-base-100)"
+*/
