@@ -36,6 +36,7 @@
                 inputColorClass,
                 mergedSizeClass,
                 cursorClass,
+                roundedClass,
                 open && 'border-indigo-light',
               ]"
               class="!flex items-center pr-8"
@@ -115,7 +116,12 @@ import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headless
 import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
-import { inputStaticClasses, useInputClasses } from '../../composables/styles.js';
+import { formElementProps } from '../../composables/props.js';
+import {
+  inputStaticClasses,
+  useInputClasses,
+  useRoundedClass,
+} from '../../composables/styles.js';
 import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
@@ -156,7 +162,9 @@ const {
 
 const emit = defineEmits(['update:modelValue', 'change', 'options-focused', 'options-blured']);
 
-const { mergedSizeClass, inputColorClass, bgColorClass } = useInputClasses(props);
+const { mergedSizeClass, inputColorClass, bgColorClass } =
+  useInputClasses(props);
+const roundedClass = useRoundedClass(props);
 const disabledClass = computed(() => isDisabled.value && 'opacity-60');
 const cursorClass = computed(() => (isDisabled.value ? 'cursor-not-allowed' : 'cursor-pointer'));
 

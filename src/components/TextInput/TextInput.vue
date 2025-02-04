@@ -25,8 +25,7 @@
         :id="id"
         v-model="value"
         type="text"
-        :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass,
-          overrideCssStyles ]"
+        :class="[inputStaticClasses, mergedSizeClass, inputColorClass, disabledClass, cursorClass, bgColorClass, roundedClass, overrideCssStyles]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"
@@ -43,7 +42,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { formElementProps } from '../../composables/props.js';
-import { inputStaticClasses, useInputClasses, useCursorClass } from '../../composables/styles';
+import { inputStaticClasses, useInputClasses, useCursorClass, useRoundedClass } from '../../composables/styles';
 import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
@@ -78,6 +77,7 @@ const {
   disabledClass,
 } = useInputClasses(props);
 const cursorClass = useCursorClass(props);
+const roundedClass = useRoundedClass(props);
 
 
 const size = getSizeValue(props.size);
