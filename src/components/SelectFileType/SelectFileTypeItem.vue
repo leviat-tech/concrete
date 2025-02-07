@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-1 flex flex-col items-center justify-center border rounded-input cursor-pointer p-4"
+    class="flex-1 flex flex-col items-center justify-center border rounded-button cursor-pointer p-4"
     :class="selected ? 'bg-indigo border-indigo text-white' : ' bg-white border-steel text-steel-dark'"
   >
     <div class="flex justify-center items-center">
