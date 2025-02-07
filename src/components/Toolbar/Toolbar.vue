@@ -1,5 +1,5 @@
 <template>
-  <div class="concrete__toolbar flex items-center h-8 p-1 min-h-12">
+  <div class="concrete__toolbar flex items-center h-8 space-x-2">
     <slot />
   </div>
 </template>
