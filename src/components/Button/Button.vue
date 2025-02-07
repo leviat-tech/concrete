@@ -72,7 +72,7 @@ const paddingClass = computed(() => props.customPadding ? '' : 'px-4');
 const fillWidthClass = computed(() => props.fillWidth ? 'w-full' : '');
 
 const classMap = {
-  'solid': 'border text-white rounded-input',
+  'solid': 'border text-white rounded-button',
 
   'solid-base-enabled': ' hover:border-base-700 hover:bg-base-700',
   'solid-base-default': ' border-base-500 bg-base-500',
@@ -102,7 +102,7 @@ const classMap = {
   'solid-danger-default': ' border-danger-500 bg-danger-500',
   'solid-danger-active': ' border-danger-800 bg-danger-800',
 
-  'outline': 'border rounded-sm',
+  'outline': 'border rounded-button',
 
   'outline-base-enabled': ' hover:border-base-700 hover:bg-base-700 hover:text-white',
   'outline-base-default': ' border-base-500 text-base-500',

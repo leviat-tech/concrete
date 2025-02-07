@@ -1640,7 +1640,296 @@
           </div>
         </div>
       </div>
+
+
+
+      <div class="bg-white space-y-8 p-8 w-1/2">
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="md" class="rounded-button text-entity-active hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="md" class="rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="md" class="rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="md" class="rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="rounded-button text-entity-active hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+        
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="border border-entity-active p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="border border-base-500 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="border border-base-500 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="border border-base-500 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="border border-entity-active p-1 rounded-button text-entity-active hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="border border-base-500 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="border border-base-500 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="border border-base-500 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="border border-entity-active p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="border border-base-300 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="border border-base-300 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="border border-base-300 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="border border-entity-active p-1 rounded-button text-entity-active hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="border border-base-300 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="border border-base-300 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="border border-base-300 p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="border border-entity-active p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="border-t-2 border-entity-active p-1 text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <CIcon type="pointer-outline" size="lg" class="border border-base-600 rounded-button p-1 text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="hand" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="zoom-in" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              <CIcon type="expand" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <div class="space-x-2 flex">
+              <div class="flex border border-base-600 rounded-button divide-x divide-base-600">
+                <div class="border-b-2 border-entity-active px-1">
+                  <CIcon type="pointer-outline" size="lg" class=" p-1 text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+                
+                </div>
+                <div class="pb-0.5 px-1">
+                  <CIcon type="hand" size="lg" class="p-1 text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+                </div>
+                <div class="pb-0.5 px-1">
+                  <CIcon type="zoom-in" size="lg" class="p-1 text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+              
+                </div>
+              </div>
+              <CIcon type="expand" size="lg" class="border border-transparent p-1 rounded-button text-base-600 hover:text-base-800 outline-none cursor-pointer" />
+            </div>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <CToolbar>
+              <CToolGroup class="">
+                <CTool name="Select" tool-id="select" icon="pointer-outline" stateful />
+                <CTool name="Pan" tool-id="pan" icon="hand" stateful disabled />
+                <CTool name="Zoom" tool-id="zoom" icon="zoom-in" stateful />
+              </CToolGroup>
+              <CToolGroup class="" dividerLeft>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" icon="expand" :stateful="false" />
+              </CToolGroup>
+            </CToolbar>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <CToolbar>
+              <CToolGroup class="">
+                <CTool name="Select" tool-id="select" icon="pointer-outline" stateful color="info" />
+                <CTool name="Pan" tool-id="pan" icon="hand" stateful disabled color="info" />
+                <CTool name="Zoom" tool-id="zoom" icon="zoom-in" stateful color="info" />
+              </CToolGroup>
+              <CToolGroup class="" dividerLeft>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" icon="expand" :stateful="false" color="info" />
+              </CToolGroup>
+            </CToolbar>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <CToolbar>
+              <CToolGroup class="">
+                <CTool name="Select" tool-id="select" icon="pointer-outline" stateful color="magic" />
+                <CTool name="Pan" tool-id="pan" icon="hand" stateful disabled color="magic" />
+                <CTool name="Zoom" tool-id="zoom" icon="zoom-in" stateful color="magic" />
+              </CToolGroup>
+              <CToolGroup class="" dividerLeft>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" icon="expand" :stateful="false" color="magic" />
+              </CToolGroup>
+            </CToolbar>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <CToolbar>
+              <CToolGroup class="">
+                <CTool name="Select" tool-id="select" icon="pointer-outline" stateful color="success" />
+                <CTool name="Pan" tool-id="pan" icon="hand" stateful disabled color="success" />
+                <CTool name="Zoom" tool-id="zoom" icon="zoom-in" stateful color="success" />
+              </CToolGroup>
+              <CToolGroup class="" dividerLeft>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" icon="expand" :stateful="false" color="success" />
+              </CToolGroup>
+            </CToolbar>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <CToolbar>
+              <CToolGroup class="">
+                <CTool name="Select" tool-id="select" icon="pointer-outline" stateful color="warning" />
+                <CTool name="Pan" tool-id="pan" icon="hand" stateful disabled color="warning" />
+                <CTool name="Zoom" tool-id="zoom" icon="zoom-in" stateful color="warning" />
+              </CToolGroup>
+              <CToolGroup class="" dividerLeft>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" icon="expand" :stateful="false" color="warning" />
+              </CToolGroup>
+            </CToolbar>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <CToolbar>
+              <CToolGroup class="">
+                <CTool name="Select" tool-id="select" icon="pointer-outline" stateful color="danger" />
+                <CTool name="Pan" tool-id="pan" icon="hand" stateful disabled color="danger" />
+                <CTool name="Zoom" tool-id="zoom" icon="zoom-in" stateful color="danger" />
+              </CToolGroup>
+              <CToolGroup class="" dividerLeft>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" icon="expand" :stateful="false" color="danger" />
+              </CToolGroup>
+            </CToolbar>
+            <CButton color="magic" class="">Calculate</CButton>
+          </div>
+        </div>
+
+
+
+        <div class="bg-base-50 h-12 border-b border-base-300 flex items-center">
+          <div class="flex w-full items-center justify-between px-2">
+            <CToolbar>
+              <CToolGroup class="">
+                <CTool name="Select" tool-id="select" stateful>
+                  <svg viewBox="5 5 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="19.7217" cy="21.0225" r="1.5" stroke="black"/>
+  <line x1="20.7217" y1="21.0225" x2="31.7217" y2="21.0225" stroke="black"/>
+  <line x1="7.72168" y1="21.0225" x2="18.7217" y2="21.0225" stroke="black"/>
+  <line x1="21.7217" y1="15.5225" x2="30.7217" y2="15.5225" stroke="#0619C9"/>
+  <line x1="26.2217" y1="11.0225" x2="26.2217" y2="20.0225" stroke="#0619C9"/>
+</svg>
+
+                </CTool>
+                <CTool name="Pan" tool-id="pan" stateful disabled>
+                  <svg viewBox="5 5 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.5 21.0003C21.5 21.829 20.8283 22.5007 20 22.5007C19.1717 22.5007 18.5 21.829 18.5 21.0003C18.5 20.1716 19.1717 19.5 20 19.5C20.8283 19.5 21.5 20.1716 21.5 21.0003Z" stroke="black"/>
+<line x1="21" y1="21.001" x2="32" y2="21.001" stroke="black"/>
+<line x1="8" y1="21.001" x2="19" y2="21.001" stroke="black"/>
+<path d="M23 18.0005L17 24.0015M23 24.0015L17 18.0005" stroke="#C90606"/>
+</svg>
+
+                </CTool>
+                <CTool name="Zoom" tool-id="zoom" stateful>
+                  <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M5 20 H35" stroke="black" stroke-width="2"/>
+  <path d="M25 10 L35 20 L25 30" stroke="black" stroke-width="2"/>
+  <path d="M5 5 V35" stroke="red" stroke-width="2"/>
+</svg></CTool>
+              </CToolGroup>
+              <CToolGroup class="" dividerLeft>
+                <CTool name="Zoom to Fit" tool-id="zoom-to-fit" :stateful="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 40 40">
+<path fill="black" d="M11.5 22H28.5V27H29.5C29.7761 27 30 27.2239 30 27.5C30 27.7761 29.7761 28 29.5 28H26.5C26.2239 28 26 27.7761 26 27.5C26 27.2239 26.2239 27 26.5 27H27.5V23H12.5V27H13.5C13.7761 27 14 27.2239 14 27.5C14 27.7761 13.7761 28 13.5 28H10.5C10.2239 28 10 27.7761 10 27.5C10 27.2239 10.2239 27 10.5 27H11.5V22Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+<path fill="#0619C9" d="M15.5 19.931L14 22L12.5 19.931H13.7402V16.2069C13.7402 16.0926 13.8565 16 14 16C14.1435 16 14.2598 16.0926 14.2598 16.2069V19.931H15.5Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+<path fill="#0619C9" d="M19.5 19.931L18 22L16.5 19.931H17.7402V16.2069C17.7402 16.0926 17.8565 16 18 16C18.1435 16 18.2598 16.0926 18.2598 16.2069V19.931H19.5Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+<path fill="#0619C9" d="M23.5 19.931L22 22L20.5 19.931H21.7402V16.2069C21.7402 16.0926 21.8565 16 22 16C22.1435 16 22.2598 16.0926 22.2598 16.2069V19.931H23.5Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+<path fill="#0619C9" d="M27.5 19.931L26 22L24.5 19.931H25.7402V16.2069C25.7402 16.0926 25.8565 16 26 16C26.1435 16 26.2598 16.0926 26.2598 16.2069V19.931H27.5Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+<path fill="#0619C9" d="M13.75 15.75H26.25V16.25H13.75V15.75Z" clip-rule="evenodd" fill-rule="evenodd"></path>
+<path stroke-width="0.5" stroke="#C90606" d="M18.6667 11H16L18 13L16 15H18.6667"></path>
+<path stroke-width="0.5" stroke="#C90606" d="M25 11L21 15M21 11L25 15"></path>
+</svg>
+
+                </CTool>
+              </CToolGroup>
+            </CToolbar>
+            <CButton color="magic" class="">Calculate <CIcon type="bolt" size="sm" /></CButton>
+          </div>
+        </div>
+
+
+      </div>
+
+
     </div>
+
+    
 
   </div>
 </template>
@@ -1664,7 +1953,7 @@ import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
 import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
-import { CTool } from './components/Toolbar';
+import { CTool, CToolGroup } from './components/Toolbar';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
 
 const fileTypes = ref([

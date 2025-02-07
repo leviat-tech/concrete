@@ -54,6 +54,7 @@ import {
   InformationCircleIcon,
   QuestionMarkCircleIcon,
   PrinterIcon,
+  BoltIcon,
 } from '@heroicons/vue/24/outline';
 
 import {
@@ -84,6 +85,7 @@ export const icons = {
   'arrow-left': ArrowLeftIcon,
   'arrow-right': ArrowRightIcon,
   'arrow-up': ArrowUpIcon,
+  bolt: BoltIcon,
   cancel: NoSymbolIcon,
   check: CheckIcon,
   'check-solid': CheckIconSolid,
