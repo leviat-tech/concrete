@@ -102,6 +102,7 @@ export const Formatted = {
 
   args: {
     options: ["Listbox", "Test", "Values", "Storybook"],
-    formatter: (l) => l.toUpperCase(),
+    formatter: (l) => l?.toUpperCase(),
+    multiple: true,
   },
 };
