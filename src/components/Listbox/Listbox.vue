@@ -72,7 +72,6 @@
               duration-100
               absolute
               z-30
-              w-full
               bg-white
               shadow-lg shadow-steel-dark
               ring-1 ring-steel
@@ -81,6 +80,7 @@
             :class="[
               optionsSizeClass,
               maxOptionsHeightClass,
+              optionsWidthClass,
               getOptionsClass(),
             ]"
           >
@@ -158,6 +158,13 @@ const props = defineProps({
     default: 'md',
     validator(value) {
       return ['auto', 'xs', 'sm', 'md', 'lg'].includes(value);
+    },
+  },
+  optionListWidth: {
+    type: String,
+    default: 'full',
+    validator(value) {
+      return ['auto', 'full', 'min', 'max'].includes(value);
     },
   },
   onChange: { type: Function, default: null },
@@ -269,6 +276,13 @@ const maxOptionsHeightClass = {
   md: 'max-h-60',
   lg: 'max-h-96',
 }[props.optionListSize || 'md'];
+
+const optionsWidthClass = {
+  auto: 'w-auto',
+  full: 'w-full',
+  min: 'w-min',
+  max: 'w-max'
+}[props.optionListWidth]
 
 const iconColorClass = computed(() => {
   return {
