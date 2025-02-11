@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.33.0](https://github.com/leviat-tech/concrete/compare/v2.32.3...v2.33.0) (2025-02-11)
+
+
+### Features
+
+* add support for options with group headers ([56a4f16](https://github.com/leviat-tech/concrete/commit/56a4f16d8c0ca5178431b6cdd5c4a8ece30cdf84))
+* add width class prop for options ([203777b](https://github.com/leviat-tech/concrete/commit/203777be3b3d8a016e805bc70a8531204590be59))
+
+
+### Bug Fixes
+
+* formatted story ([38c610e](https://github.com/leviat-tech/concrete/commit/38c610e345a6e35ff5671252f45bd8f61d267023))
+
 ## [2.32.3](https://github.com/leviat-tech/concrete/compare/v2.32.2...v2.32.3) (2025-01-16)
 
 
