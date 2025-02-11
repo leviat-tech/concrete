@@ -2,7 +2,7 @@
   <div
     ref="el"
     class="p-0.5 select-none"
-    :class="isEditing && 'bg-gray-100 text-black'"
+    :class="isEditing && 'bg-base-100 text-black'"
     :contenteditable="isEditing && !readOnly"
     @dblclick="onEdit"
     @keydown.enter="onBlur(true)"

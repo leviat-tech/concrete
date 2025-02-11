@@ -40,13 +40,14 @@
               mergedSizeClass,
               bgColorClass,
               inputColorClass,
+              roundedClass,
             ]"
           />
           <ComboboxButton
             class="absolute inset-y-0 right-0 flex items-center z-30 pr-2"
             v-if="showButtons"
           >
-            <ChevronUpDownIcon class="w-5" :class="inputColorClass" />
+            <ChevronUpDownIcon class="w-5" :class="iconColorClass" />
           </ComboboxButton>
           <CInputAffix v-if="suffix" type="suffix" v-html="suffix" />
           <slot name="suffix" class="z-10" />
@@ -89,7 +90,7 @@
             >
               <li
                 :class="[
-                  active ? 'text-white bg-indigo' : 'text-gray-900',
+                  active ? 'bg-base-50' : 'text-base-900',
                   textSizeClass,
                 ]"
                 class="cursor-default select-none relative py-2 pl-3 pr-9 z-20"
@@ -124,7 +125,7 @@ import {
   formElementProps,
   useSizeProp,
 } from '../../composables/props';
-import { inputStaticClasses, useInputClasses } from '../../composables/styles';
+import { inputStaticClasses, useInputClasses, useRoundedClass } from '../../composables/styles';
 import { useConcreteForms } from "../../composables/forms.js";
 import { useEventHandler } from '../../composables/events.js';
 import { isPlainObject } from 'lodash-es';
@@ -177,6 +178,7 @@ const {
   disabledClass,
   textSizeClass,
 } = useInputClasses(props);
+const roundedClass = useRoundedClass(props);
 
 const displayValue = computed({
   get() {
@@ -210,13 +212,12 @@ const hPaddingClass = {
 
 const iconColorClass = computed(() => {
   return {
-    default: 'text-gray-400',
-    indigo: 'text-indigo-light',
-    sky: 'text-sky-light',
-    steel: 'text-steel-light',
-    success: 'text-success-light',
-    warning: 'text-warning-light',
-    danger: 'text-danger-light',
+    default: 'text-base-600',
+    info: 'text-status-info',
+    magic: 'text-status-magic',
+    success: 'text-status-success',
+    warning: 'text-status-warning',
+    danger: 'text-status-danger',
   }[props.color];
 });
 

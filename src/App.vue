@@ -1,1280 +1,5 @@
 <template>
   <div class="">
-    <div class="bg-gray-100 h-full w-full py-2 divide-x divide-gray-300 space-y-16"> 
-      <!--
-      <CFormSection title="Form Element Test" class="" size="sm">
-        <div class="divide-y divide-gray-300 space-y-4 pb-16">
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="w-12">
-              <div>Base</div>
-            </div>
-            <div class="space-y-1">
-              <div>50</div>
-              <div class="bg-base-50 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>100</div>
-              <div class="bg-base-100 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>200</div>
-              <div class="bg-base-200 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>300</div>
-              <div class="bg-base-300 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>400</div>
-              <div class="bg-base-400 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>500</div>
-              <div class="bg-base-500 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>600</div>
-              <div class="bg-base-600 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>700</div>
-              <div class="bg-base-700 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>800</div>
-              <div class="bg-base-800 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>900</div>
-              <div class="bg-base-900 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>950</div>
-              <div class="bg-base-950 w-12 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="w-12">
-              <div>Brand</div>
-            </div>
-            <div class="space-y-1">
-              <div>50</div>
-              <div class="bg-brand-50 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>100</div>
-              <div class="bg-brand-100 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>200</div>
-              <div class="bg-brand-200 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>300</div>
-              <div class="bg-brand-300 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>400</div>
-              <div class="bg-brand-400 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>500</div>
-              <div class="bg-brand-500 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>600</div>
-              <div class="bg-brand-600 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>700</div>
-              <div class="bg-brand-700 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>800</div>
-              <div class="bg-brand-800 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>900</div>
-              <div class="bg-brand-900 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>950</div>
-              <div class="bg-brand-950 w-12 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="w-12">
-              <div>Info</div>
-            </div>
-            <div class="space-y-1">
-              <div>50</div>
-              <div class="bg-info-50 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>100</div>
-              <div class="bg-info-100 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>200</div>
-              <div class="bg-info-200 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>300</div>
-              <div class="bg-info-300 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>400</div>
-              <div class="bg-info-400 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>500</div>
-              <div class="bg-info-500 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>600</div>
-              <div class="bg-info-600 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>700</div>
-              <div class="bg-info-700 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>800</div>
-              <div class="bg-info-800 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>900</div>
-              <div class="bg-info-900 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>950</div>
-              <div class="bg-info-950 w-12 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="w-12">
-              <div>Magic</div>
-            </div>
-            <div class="space-y-1">
-              <div>50</div>
-              <div class="bg-magic-50 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>100</div>
-              <div class="bg-magic-100 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>200</div>
-              <div class="bg-magic-200 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>300</div>
-              <div class="bg-magic-300 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>400</div>
-              <div class="bg-magic-400 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>500</div>
-              <div class="bg-magic-500 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>600</div>
-              <div class="bg-magic-600 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>700</div>
-              <div class="bg-magic-700 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>800</div>
-              <div class="bg-magic-800 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>900</div>
-              <div class="bg-magic-900 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>950</div>
-              <div class="bg-magic-950 w-12 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="w-12">
-              <div>Success</div>
-            </div>
-            <div class="space-y-1">
-              <div>50</div>
-              <div class="bg-success-50 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>100</div>
-              <div class="bg-success-100 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>200</div>
-              <div class="bg-success-200 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>300</div>
-              <div class="bg-success-300 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>400</div>
-              <div class="bg-success-400 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>500</div>
-              <div class="bg-success-500 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>600</div>
-              <div class="bg-success-600 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>700</div>
-              <div class="bg-success-700 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>800</div>
-              <div class="bg-success-800 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>900</div>
-              <div class="bg-success-900 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>950</div>
-              <div class="bg-success-950 w-12 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="w-12">
-              <div>Warning</div>
-            </div>
-            <div class="space-y-1">
-              <div>50</div>
-              <div class="bg-warning-50 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>100</div>
-              <div class="bg-warning-100 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>200</div>
-              <div class="bg-warning-200 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>300</div>
-              <div class="bg-warning-300 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>400</div>
-              <div class="bg-warning-400 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>500</div>
-              <div class="bg-warning-500 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>600</div>
-              <div class="bg-warning-600 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>700</div>
-              <div class="bg-warning-700 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>800</div>
-              <div class="bg-warning-800 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>900</div>
-              <div class="bg-warning-900 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>950</div>
-              <div class="bg-warning-950 w-12 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="w-12">
-              <div>Danger</div>
-            </div>
-            <div class="space-y-1">
-              <div>50</div>
-              <div class="bg-danger-50 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>100</div>
-              <div class="bg-danger-100 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>200</div>
-              <div class="bg-danger-200 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>300</div>
-              <div class="bg-danger-300 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>400</div>
-              <div class="bg-danger-400 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>500</div>
-              <div class="bg-danger-500 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>600</div>
-              <div class="bg-danger-600 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>700</div>
-              <div class="bg-danger-700 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>800</div>
-              <div class="bg-danger-800 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>900</div>
-              <div class="bg-danger-900 w-12 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>950</div>
-              <div class="bg-danger-950 w-12 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs font-semibold pt-4">
-            <div class="space-y-1">
-              <div>Entity Active</div>
-              <div class="bg-entity-active w-24 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>Status Success</div>
-              <div class="bg-status-success w-24 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>Status Warning</div>
-              <div class="bg-status-warning w-24 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>Status Danger</div>
-              <div class="bg-status-danger w-24 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>Status Info</div>
-              <div class="bg-status-info w-24 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>Status Magic</div>
-              <div class="bg-status-magic w-24 h-6"></div>
-            </div>
-            <div class="space-y-1">
-              <div>Status Unknown</div>
-              <div class="bg-status-unknown w-24 h-6"></div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs pt-4">
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Default</div>
-              <div class="">
-                <CTextInput v-model="textTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Success</div>
-              <div class="">
-                <CTextInput color="success" v-model="textTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Warning</div>
-              <div class="">
-                <CTextInput color="warning" v-model="textTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Danger</div>
-              <div class="">
-                <CTextInput color="danger" v-model="textTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Info</div>
-              <div class="">
-                <CTextInput color="info" v-model="textTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Magic</div>
-              <div class="">
-                <CTextInput color="magic" v-model="textTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Disabled</div>
-              <div class="">
-                <CTextInput disabled :wrap="false" v-model="textTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Text Input Disabled</div>
-              <div class="">
-                <CTextInput disabled :wrap="false" v-model="textTest1" color="danger" />
-              </div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs pt-4">
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Default</div>
-              <div class="">
-                <CNumericInput v-model="numericTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Success</div>
-              <div class="">
-                <CNumericInput color="success" v-model="numericTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Warning</div>
-              <div class="">
-                <CNumericInput color="warning" v-model="numericTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Danger</div>
-              <div class="">
-                <CNumericInput color="danger" v-model="numericTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Info</div>
-              <div class="">
-                <CNumericInput color="info" v-model="numericTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Magic</div>
-              <div class="">
-                <CNumericInput color="magic" v-model="numericTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Disabled</div>
-              <div class="">
-                <CNumericInput disabled :wrap="false" v-model="numericTest1" />
-              </div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs pt-4">
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input</div>
-              <div class="">
-                <CNumericInput v-model="numericTest1" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input with Units</div>
-              <div class="">
-                <CNumericInput v-model="numericTest1" unit="mm" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input with Spinner</div>
-              <div class="">
-                <CNumericInput v-model="numericTest1" spinner />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input with Units and Spinner</div>
-              <div class="">
-                <CNumericInput v-model="numericTest1" unit="kN/m³" spinner />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input with Units and Spinner and Disabled</div>
-              <div class="">
-                <CNumericInput v-model="numericTest1" unit="kN/m³" spinner disabled/>
-              </div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs pt-4">
-            <div class="space-y-1 ">
-              <div class="font-semibold">Checkbox Default</div>
-              <div class="">
-                <CCheckbox v-model="boolTest1" no-label />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Checkbox Success</div>
-              <div class="">
-                <CCheckbox color="success" v-model="boolTest1" no-label />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Checkbox Warning</div>
-              <div class="">
-                <CCheckbox color="warning" v-model="boolTest1" no-label />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Checkbox Danger</div>
-              <div class="">
-                <CCheckbox color="danger" v-model="boolTest1" no-label />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Checkbox Info</div>
-              <div class="">
-                <CCheckbox color="info" v-model="boolTest1" no-label />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Checkbox Magic</div>
-              <div class="">
-                <CCheckbox color="magic" v-model="boolTest1" no-label />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Checkbox Disabled</div>
-              <div class="">
-                <CCheckbox disabled :wrap="false" v-model="boolTest1" no-label />
-              </div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs pt-4">
-            <div class="space-y-1 ">
-              <div class="font-semibold">Prefix</div>
-              <div class="">              
-                <CNumericInput v-model="numericTest1" prefix="w" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Suffix</div>
-              <div class="">              
-                <CNumericInput v-model="numericTest1" suffix="mm" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Both</div>
-              <div class="">              
-                <CNumericInput v-model="numericTest1" prefix="w" suffix="mm" />
-              </div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs pt-4">
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Default</div>
-              <div class="">
-                <CNumericInput v-model="numericTest1" prefix="test" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Success</div>
-              <div class="">
-                <CNumericInput color="success" v-model="numericTest1" prefix="test" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Warning</div>
-              <div class="">
-                <CNumericInput color="warning" v-model="numericTest1" prefix="test" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Danger</div>
-              <div class="">
-                <CNumericInput color="danger" v-model="numericTest1" prefix="test" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Info</div>
-              <div class="">
-                <CNumericInput color="info" v-model="numericTest1" prefix="test" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Magic</div>
-              <div class="">
-                <CNumericInput color="magic" v-model="numericTest1" prefix="test" />
-              </div>
-            </div>
-            <div class="space-y-1 ">
-              <div class="font-semibold">Numeric Input Disabled</div>
-              <div class="">
-                <CNumericInput disabled :wrap="false" v-model="numericTest1" prefix="test" />
-              </div>
-            </div>
-          </div>
-          <div class="px-4 flex space-x-8 text-xs pt-4">
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 and then a massive label" message="test" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label" />
-            </div>
-          </div>
-          <div class="p-4 text-xs grid grid-cols-6 gap-8">
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1" :stacked="true" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label" :stacked="true" message="test" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 and then a massive label"  :stacked="true" message="test" />
-            </div>
-          </div>
-          <div class="p-4 text-xs grid grid-cols-3 gap-8">
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1" :stacked="true" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label" :stacked="true" message="test" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 and then a massive label"  :stacked="true" message="test" />
-            </div>
-          </div>
-          <div class="p-4 text-xs grid grid-cols-12 gap-8">
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1" :stacked="true" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label" :stacked="true" message="test" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 and then a massive label"  :stacked="true" message="test" />
-            </div>
-          </div>
-          
-          <div class="p-4 text-xs grid grid-cols-6 gap-8">
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1"  />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label"  message="test" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 and then a massive label" message="test" />
-            </div>
-          </div>
-          <div class="p-4 text-xs grid grid-cols-3 gap-8">
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label"  message="test" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 and then a massive label"   message="test" />
-            </div>
-          </div>
-          <div class="p-4 text-xs grid grid-cols-12 gap-8">
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 bigger label" message="test" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Text test 1 and then a massive label"  message="test" />
-            </div>
-          </div>
-          <div class="p-4 text-xs grid grid-cols-4 gap-8">
-            <div class="">
-              <CTextInput v-model="textTest1"  />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" no-label />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Label 1" />
-            </div>
-            <div class="">
-              <CTextInput v-model="textTest1" label="Label 2"  />
-            </div>
-          </div>
-          <div class="p-4 text-xs grid grid-cols-6 gap-8">
-            <div class="">
-              <CListbox v-model="textTest1" :options="['test','untest','retest']"  />
-            </div>
-            <div class="">
-              <CListbox v-model="textTest1" label="Label 1" :options="['test','untest','retest']" />
-            </div>
-            <div class="">
-              <CListbox v-model="textTest1" label="Label 2" stacked :options="['test','untest','retest']"  />
-            </div>
-          </div>
-        </div>
-      </CFormSection>
-      
-      <div class="divide-y divide-gray-300">
-        <div class="px-4">
-          <CFormSection title="Form Element Test">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-4 py-4">
-              <div class="space-y-4">
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input</div>
-                  <CTextInput />
-                </div>
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with label</div>
-                  <CTextInput label="Test Label" />
-                </div>
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with no-wrap</div>
-                  <CTextInput no-wrap />
-                </div>
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with no-wrap and label
-                  </div>
-                  <CTextInput no-wrap label="Test Label" />
-                </div>
-                <hr />
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with formElement - no label
-                  </div>
-                  <CTextInput />
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with formElement - label
-                  </div>
-                  <CTextInput label="Test Label" />
-                  <StatusMessage status=""/>
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with label and no label
-                  </div>
-                  <CTextInput label="Test Label" no-label />
-                </div>
-              </div>
-              <div class="space-y-4">
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">Input with id</div>
-                  <CTextInput id="firstname" />
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with id and no wrap
-                  </div>
-                  <CTextInput id="firstname" no-wrap />
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with id and no label
-                  </div>
-                  <CTextInput id="firstname" no-label />
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with id and label
-                  </div>
-                  <CTextInput id="firstname" label="First Name" />
-                </div>
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with id and labelFormatter
-                  </div>
-                  <CTextInput
-                    id="firstname"
-                    :labelFormatter="(props) => props.id.toUpperCase()"
-                  />
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Input with prefix and suffix
-                  </div>
-                  <CNumericInput
-                    id="width"
-                    prefix="w"
-                    suffix="mm"
-                    :minimum="200"
-                  />
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Listbox with no options and id (disabled)
-                  </div>
-                  <CListbox></CListbox>
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">
-                    Listbox with options from id
-                  </div>
-                  <CListbox id="options"></CListbox>
-                </div>
-
-                <div>
-                  <div class="bg-blue-300 p-1 mb-1">Listbox with options</div>
-                  <CListbox
-                    v-model="ListboxValue"
-                    :options="OptionsObjects"
-                  ></CListbox>
-                </div>
-              </div>
-              <div>
-                <div class="bg-blue-300 p-1 mb-1">Autocomplete</div>
-                <CAutoComplete
-                  :options="['a', 'b', 'aa', 'bb', 'ab']"
-                  placeholder="Enter 'a' or 'b'"
-                >
-                </CAutoComplete>
-              </div>
-              <div>
-                <div class="bg-blue-300 p-1 mb-1">Numeric Inputs</div>
-                <CNumericInput label="Spinner (no override, default)" unit="mm">
-                </CNumericInput>
-                <CNumericInput
-                  label="No Spinner (override, default)"
-                  unit="mm"
-                  :spinner="false"
-                >
-                </CNumericInput>
-                <CNumericInput
-                  label="Spinner (override, default)"
-                  unit="mm"
-                  :spinner="true"
-                >
-                </CNumericInput>
-                <CNumericInput label="Label with <sup>SupScript</sup>" unit="mm">
-                </CNumericInput>
-                <CNumericInput label="Label with <sub>SubScript</sub>" unit="mm">
-                </CNumericInput>
-              </div>
-            </div>
-          </CFormSection>
-          <CFormSection class="">
-            <div class="flex space-x-16">
-              <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox v-model="checkValue" label="Default 1" id="1234" />
-                <CCheckbox v-model="checkValue2" label="Default 2" />
-                <CCheckbox
-                  v-model="checkValue3"
-                  label="Default 3"
-                  :disabled="true"
-                />
-                <CCheckbox
-                  v-model="checkValue4"
-                  label="Default 4"
-                  :disabled="true"
-                />
-              </div>
-              <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox
-                  v-model="checkValue"
-                  label="Indigo 1"
-                  color="indigo"
-                />
-                <CCheckbox
-                  v-model="checkValue2"
-                  label="Indigo 2"
-                  color="indigo"
-                />
-                <CCheckbox
-                  v-model="checkValue3"
-                  label="Indigo 3"
-                  color="indigo"
-                  :disabled="true"
-                />
-                <CCheckbox
-                  v-model="checkValue4"
-                  label="Indigo 4"
-                  color="indigo"
-                  :disabled="true"
-                />
-              </div>
-              <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox v-model="checkValue" label="Sky 1" color="sky" />
-                <CCheckbox v-model="checkValue2" label="Sky 2" color="sky" />
-                <CCheckbox
-                  v-model="checkValue3"
-                  label="Sky 3"
-                  color="sky"
-                  :disabled="true"
-                />
-                <CCheckbox
-                  v-model="checkValue4"
-                  label="Sky 4"
-                  color="sky"
-                  :disabled="true"
-                />
-              </div>
-              <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox v-model="checkValue" label="Steel 1" color="steel" />
-                <CCheckbox
-                  v-model="checkValue2"
-                  label="Steel 2"
-                  color="steel"
-                />
-                <CCheckbox
-                  v-model="checkValue3"
-                  label="Steel 3"
-                  color="steel"
-                  :disabled="true"
-                />
-                <CCheckbox
-                  v-model="checkValue4"
-                  label="Steel 4"
-                  color="steel"
-                  :disabled="true"
-                />
-              </div>
-              <div class="grid grid-cols-2 w-80 gap-x-8">
-                <CCheckbox
-                  v-model="checkValue"
-                  label="Transparent 1"
-                  :transparent="true"
-                />
-                <CCheckbox
-                  v-model="checkValue2"
-                  label="Transparent 2"
-                  :transparent="true"
-                />
-                <CCheckbox
-                  v-model="checkValue3"
-                  label="Transparent 3"
-                  :transparent="true"
-                  :disabled="true"
-                />
-                <CCheckbox
-                  v-model="checkValue4"
-                  label="Transparent 4"
-                  :transparent="true"
-                  :disabled="true"
-                />
-              </div>
-            </div>
-          </CFormSection>
-          <CFormSection>
-            <div class="space-y-2">
-              <CRadioGroup
-                v-model="RadioGroupValue"
-                label="Radio group"
-                :options="Options"
-                optionsClass="pl-2 pr-2 pb-2 pt-2"
-              />
-              <CButtonGroup
-                v-model="ButtonGroupValue"
-                label=" "
-                color="indigo"
-                :options="Options"
-                buttonClass="pl-1 pr-1 pb-1 pt-1"
-              />
-              <CRadioGroup
-                v-model="RadioGroupIdOptions"
-                label="Radio group values form id"
-                id="radioGroup"
-              />
-              <CButtonGroup
-                v-model="ButtonGroupIdOptions"
-                label="Button group values from id"
-                color="indigo"
-                id="buttonGroup"
-              />
-            </div>
-          </CFormSection>
-          <CFormSection>
-            <div class="flex flex-row">
-              <CFormElement label="Select File Type">
-                <CSelectFileType :types="fileTypes" v-model:currentFileType="currentFileType" class="w-[
-                px]"/>
-              </CFormElement>
-            </div>
-          </CFormSection>
-        </div>
-        <div class="my-32 p-4">
-          <div class="grid grid-cols-4 gap-8 divide-x">
-            <CTextInput
-              label="Large Stacked"
-              :stacked="true"
-              size="lg"
-              tooltip="This text element contains information text to help the user understand it's purpose"
-            />
-            <CTextInput
-              label="Medium Stacked"
-              :stacked="true"
-              size="md"
-              tooltip="This text element contains information text to help the user understand it's purpose"
-            />
-            <CTextInput
-              label="Small Stacked"
-              :stacked="true"
-              size="sm"
-              tooltip="This text element contains information text to help the user understand it's purpose"
-            />
-            <CTextInput
-              label="Extra Small Stacked"
-              :stacked="true"
-              size="xs"
-              tooltip="This text element contains information text to help the user understand it's purpose"
-            />
-            <CTextInput
-              tooltip="This text element contains information text to help the user understand it's purpose"
-              label="Large Inline"
-              size="lg"
-            />
-            <CTextInput
-              tooltip="This text element contains information text to help the user understand it's purpose"
-              label="Medium Inline"
-              size="md"
-            />
-            <CTextInput
-              tooltip="This text element contains information text to help the user understand it's purpose"
-              label="Small Inline"
-              size="sm"
-            />
-            <CTextInput
-              tooltip="This text element contains information text to help the user understand it's purpose"
-              label="Extra Small Inline"
-              size="xs"
-            />
-          </div>
-        </div>
-      </div>
-      -->
-    </div>
-
-    <div class="w-full bg-base-50 grid grid-cols-3 gap-16 p-16">
-      <div class="w-full bg-white p-4 space-y-8">
-        <CFormSection title="Info">
-          <CNumericInput label="Quantity" />
-          <CTextInput label="Description"/>
-          <CTextInput label="Remark"/>
-        </CFormSection>
-        <CFormSection title="Facing Layer">
-          <CListbox label="Concrete Grade" />
-          <CNumericInput label="Thickness" units="mm" />
-          <CFormElement label="Coordinates" :hasMultipleInputs="true">
-            <CNumericInput prefix="x" />
-            <CNumericInput prefix="y" />
-          </CFormElement>
-          <CNumericInput label="Specific Weight" />
-          <CHeading :size="2" title="Shapes" />
-          <CNest>
-            <CAccordion title="Shape 1" :defaultOpen="true" :headingSize="3">
-              <CFormSection>
-              <CHeading :size="4" title="Perimeter" />
-              <CStack>
-                <CFormElement labelWidth="xxs" label="1" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-                <CFormElement labelWidth="xxs" label="2" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-                <CFormElement labelWidth="xxs" label="3" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-                <CFormElement labelWidth="xxs" label="4" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-              </CStack>
-              <CHeading :size="3" title="Openings" />
-              <CNest>
-                <CAccordion title="Opening 1" :defaultOpen="true" :headingSize="3">
-                  <CFormSection>
-                    <CHeading :size="4" title="Vertices" />
-                    <CStack>
-                      <CFormElement labelWidth="xxs" label="1" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CFormElement labelWidth="xxs" label="2" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CFormElement labelWidth="xxs" label="3" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CFormElement labelWidth="xxs" label="4" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CNumericInput label="Specific Weight" />
-                      <CNumericInput label="Windload" />
-                    </CStack>
-                  </CFormSection>
-                </CAccordion>
-              </CNest>
-              </CFormSection>
-            </CAccordion>
-          </CNest>
-        </CFormSection>
-      </div>
-      
-      <div class="w-full bg-white p-4 space-y-8">
-        <CFormSection title="Info">
-          <CNumericInput label="Quantity" />
-          <CTextInput label="Description"/>
-          <CTextInput label="Remark"/>
-        </CFormSection>
-        <CFormSection title="Facing Layer">
-          <CListbox label="Concrete Grade" />
-          <CNumericInput label="Thickness" units="mm" />
-          <CFormElement label="Coordinates" :hasMultipleInputs="true">
-            <CNumericInput prefix="x" />
-            <CNumericInput prefix="y" />
-          </CFormElement>
-          <CNumericInput label="Specific Weight" />
-          <CHeading :size="2" title="Shapes" />
-          <CNest>
-            <CAccordion title="Shape 1" :defaultOpen="true" :headingSize="3">
-              <CFormSection>
-                <CHeading :size="4" title="Perimeter" />
-                <CStack>
-                  <CFormElement labelWidth="xxs" label="1" :hasMultipleInputs="true">
-                    <CNumericInput prefix="x" />
-                    <CNumericInput prefix="y" />
-                  </CFormElement>
-                  <CFormElement labelWidth="xxs" label="2" :hasMultipleInputs="true">
-                    <CNumericInput prefix="x" />
-                    <CNumericInput prefix="y" />
-                  </CFormElement>
-                  <CFormElement labelWidth="xxs" label="3" :hasMultipleInputs="true">
-                    <CNumericInput prefix="x" />
-                    <CNumericInput prefix="y" />
-                  </CFormElement>
-                  <CFormElement labelWidth="xxs" label="4" :hasMultipleInputs="true">
-                    <CNumericInput prefix="x" />
-                    <CNumericInput prefix="y" />
-                  </CFormElement>
-                </CStack>
-                <CHeading :size="3" title="Openings" />
-                <CNest>
-                  <CAccordion title="Opening 1" :defaultOpen="true" :headingSize="3">
-                    <CFormSection>
-                      <CHeading :size="4" title="Vertices" />
-                      <CStack>
-                        <CFormElement labelWidth="xxs" label="1" :hasMultipleInputs="true">
-                          <CNumericInput prefix="x" />
-                          <CNumericInput prefix="y" />
-                        </CFormElement>
-                        <CFormElement labelWidth="xxs" label="2" :hasMultipleInputs="true">
-                          <CNumericInput prefix="x" />
-                          <CNumericInput prefix="y" />
-                        </CFormElement>
-                        <CFormElement labelWidth="xxs" label="3" :hasMultipleInputs="true">
-                          <CNumericInput prefix="x" />
-                          <CNumericInput prefix="y" />
-                        </CFormElement>
-                        <CFormElement labelWidth="xxs" label="4" :hasMultipleInputs="true">
-                          <CNumericInput prefix="x" />
-                          <CNumericInput prefix="y" />
-                        </CFormElement>
-                        <CNumericInput label="Specific Weight" />
-                        <CNumericInput label="Windload" />
-                      </CStack>
-                    </CFormSection>
-                  </CAccordion>
-                </CNest>
-              </CFormSection>
-            </CAccordion>
-          </CNest>
-        </CFormSection>
-      </div>
-      
-      <div class="w-full bg-white p-4 space-y-8">
-        <CFormSection title="Info">
-          <CNumericInput label="Quantity" />
-          <CTextInput label="Description"/>
-          <CTextInput label="Remark"/>
-        </CFormSection>
-        <CFormSection title="Facing Layer">
-          <CListbox label="Concrete Grade" />
-          <CNumericInput label="Thickness" units="mm" />
-          <CFormElement label="Coordinates" :hasMultipleInputs="true">
-            <CNumericInput prefix="x" />
-            <CNumericInput prefix="y" />
-          </CFormElement>
-          <CNumericInput label="Specific Weight" />
-          <CHeading :size="2" title="Shapes" />
-          <CNest>
-            <CAccordion title="Shape 1" :defaultOpen="true" :headingSize="3">
-              <CFormSection>
-              <CHeading :size="4" title="Perimeter" />
-              <CStack>
-                <CFormElement labelWidth="xxs" label="1" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-                <CFormElement labelWidth="xxs" label="2" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-                <CFormElement labelWidth="xxs" label="3" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-                <CFormElement labelWidth="xxs" label="4" :hasMultipleInputs="true">
-                  <CNumericInput prefix="x" />
-                  <CNumericInput prefix="y" />
-                </CFormElement>
-              </CStack>
-              <CHeading :size="3" title="Openings" />
-              <CNest>
-                <CAccordion title="Opening 1" :defaultOpen="true" :headingSize="3">
-                  <CFormSection>
-                    <CHeading :size="4" title="Vertices" />
-                    <CStack>
-                      <CFormElement labelWidth="xxs" label="1" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CFormElement labelWidth="xxs" label="2" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CFormElement labelWidth="xxs" label="3" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CFormElement labelWidth="xxs" label="4" :hasMultipleInputs="true">
-                        <CNumericInput prefix="x" />
-                        <CNumericInput prefix="y" />
-                      </CFormElement>
-                      <CNumericInput label="Specific Weight" />
-                      <CNumericInput label="Windload" />
-                    </CStack>
-                  </CFormSection>
-                </CAccordion>
-              </CNest>
-              </CFormSection>
-            </CAccordion>
-          </CNest>
-        </CFormSection>
-      </div>
-    </div>
-
-    
     <div class="bg-base-50 p-16 space-y-16">
       
       <div class="bg-white space-y-8 p-8 w-2/3">
@@ -1517,6 +242,32 @@
         </div>
       </div>
 
+      
+      <div class="bg-white space-y-8 p-8 w-1/2">
+        <div class="font-bold text-2xl text-brand-800">Switch</div>
+        <div class="grid grid-cols-2 gap-8">
+          <div class="space-y-2">
+            <CSwitch label="Default" v-model="checkValue" />
+            <CSwitch label="Info" color="info" v-model="checkValue" />
+            <CSwitch label="Magic" color="magic" v-model="checkValue" />
+            <CSwitch label="Success" color="success" v-model="checkValue"  />
+            <CSwitch label="Warning" color="warning" v-model="checkValue" />
+            <CSwitch label="Danger" color="danger" v-model="checkValue" />
+          </div>
+          <div class="space-y-2">
+            <CSwitch no-label v-model="checkValue" />
+            <CSwitch label="Info" color="info" message="Example Message" v-model="checkValue" />
+            <CSwitch label="Magic" color="magic" readOnly v-model="checkValue" />
+            <CSwitch label="Success" color="success" disabled v-model="checkValue" />
+            <CSwitch label="Warning" color="warning" reverseLabels v-model="checkValue" labelClass="text-left pl-2" />
+            <div class="bg-pink-300 p-8" >
+              <CSwitch label="Transparent" transparent color="info" v-model="checkValue" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <div class="bg-white space-y-8 p-8 w-1/2">
         <div class="font-bold text-2xl text-brand-800">Listbox</div>
         <div class="grid grid-cols-2 gap-8">
@@ -1539,6 +290,31 @@
           </div>
         </div>
       </div>
+      
+
+      <div class="bg-white space-y-8 p-8 w-1/2">
+        <div class="font-bold text-2xl text-brand-800">Autocomplete</div>
+        <div class="grid grid-cols-2 gap-8">
+          <div class="space-y-2">
+            <CAutoComplete label="Default" message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Info" color="info" message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Magic" color="magic" message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Success" color="success" message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Warning" color="warning" message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Danger" color="danger" message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+          </div>
+          <div class="space-y-8">
+            <CAutoComplete message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Info" color="info" message="Example Message" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Disabled" color="success" disabled :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <CAutoComplete label="Warning" color="warning" placeholder="Placeholder" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            <div class="bg-pink-300 p-8" >
+              <CAutoComplete label="Transparent" transparent color="info" :options="['Option 1', 'Option 2']" v-model="ListboxValue" />
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <div class="bg-white space-y-8 p-8 w-1/2">
         <div class="font-bold text-2xl text-brand-800">Text Area</div>
@@ -1923,8 +699,193 @@
           </div>
         </div>
 
+        
 
       </div>
+
+
+      <div class="bg-white space-y-8 p-8 w-1/2">
+        <!-- Collapsed -->
+        <div class="text-xs">
+          <div class="bg-base-50 h-12 w-full justify-between flex items-center border-t border-base-300 px-2">
+            <div class="pl-2 font-bold">Activity</div>
+            <div class="cursor-pointer text-base-700 hover:text-base-900">
+              <ChevronUpIcon class="h-6 w-6 p-0.5" />
+            </div>
+            <div>
+              <div class="flex space-x-2 pr-2">
+                <div class="">1</div>
+                <div class="">!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Open -->
+        <div class="text-xs">
+          <div class="bg-base-50 h-12 w-full justify-between flex items-center border-t border-base-300 px-2">
+            <div class="pl-2 font-bold">Activity</div>
+            <div class="cursor-pointer text-base-700 hover:text-base-900">
+              <ChevronDownIcon class="h-6 w-6 p-0.5"/>
+            </div>
+            <div>
+              <div class="flex space-x-2" v-if="true">
+                <div class="cursor-pointer" v-if="true"><ArrowsPointingOutIcon class="h-6 w-6 p-0.5" /></div>
+                <div class="cursor-pointer" v-if="true"><FunnelIcon class="h-6 w-6 p-0.5" /></div>
+              </div>
+              <div class="flex space-x-2 pr-2" v-else>
+                <div class="">1</div>
+                <div class="">!</div>
+              </div>
+            </div>
+          </div>
+          <div class="h-48 flex" v-if="true">
+            <div class="border-t border-base-300 w-full p-2 space-y-2 overflow-y-auto">
+              <div class="flex justify-between items-center w-full bg-base-50 h-11" v-for="message in messages">
+                <div class="flex space-x-2 items-center">
+                  <div :class="`bg-${message.type}-500`" class="w-3 h-11"></div>
+                  <div class="rounded-full w-6 h-6 p-0.5" :class="`bg-${message.type}-500`">
+                    <div></div>
+                  </div>
+                  <div>{{ message.content }}</div>
+                </div>
+                <div class="text-right px-2 text-base-700">
+                  <div class="">
+                    {{  message.date }}
+                  </div>
+                  <div class="">
+                    {{  message.time }}
+                  </div>
+                </div>
+              </div>
+              <div class="bg-fuchsia-50 justify-between flex py-0.5">
+                <div class="">Displaying # of # messages</div>
+                <div class="">Load More</div>
+              </div>
+            </div>
+            <div class="w-10 px-2 py-2 flex flex-col justify-between transition-all ease-in-out duration-150 bg-base-50 border-l border-base-300" v-if="true">
+              <div class="h-6 w-6 bg-fuchsia-500"></div>
+              <div class="h-6 w-6 bg-fuchsia-500"></div>
+              <div class="h-6 w-6 bg-fuchsia-500"></div>
+              <div class="h-6 w-6 bg-fuchsia-500"></div>
+              <div class="h-6 w-6 bg-fuchsia-500"></div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="text-xs">
+          <div class="bg-base-50 h-12 w-full items-center border-t border-base-300 px-2 grid grid-cols-10">
+            <div class="pl-2 font-bold col-span-4">Activity</div>
+            <div class="cursor-pointer text-base-600 hover:text-base-800 col-span-2 flex justify-center">
+              <ChevronDownIcon class="h-6 w-6"/>
+            </div>
+            <div class="col-span-4 flex justify-end">
+              <div class="flex space-x-2" v-if="false">
+                <div class="cursor-pointer hover:text-base-800 text-base-600" v-if="true"><ArrowsPointingOutIcon class="h-6 w-6" /></div>
+                <div class="cursor-pointer hover:text-base-800 text-base-600" v-if="true"><FunnelIcon class="h-6 w-6" /></div>
+              </div>
+              <div class="flex -space-x-1" v-else>
+                <div class="" v-for="value, key in { danger: 2, warning: 1, magic: 3, info: 1, unknown: 8, success: 17 }">
+                  <div :class="`rounded-full px-2 bg-status-${key} text-white py-1 font-medium min-w-6 text-center`">{{ value }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="h-48 flex " v-if="true">
+            <div class="border-t border-base-300 w-full p-2 space-y-2 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-base-100 [&::-webkit-scrollbar-thumb]:bg-base-400">
+              <CStatusMessage v-for="message in messages" :status="message.type" :content="message.content" :timestamp="message.timestamp" />
+              <div class="bg-fuchsia-50 justify-between flex py-0.5">
+                <div class="">Displaying # of # messages</div>
+                <div class="">Load More</div>
+              </div>
+            </div>
+            <div class="w-11 px-2 py-2 flex flex-col justify-between transition-all ease-in-out duration-150 bg-base-50 border-l border-base-300" v-if="true">
+              <CCheckbox no-label color="danger" v-model="boolTest1" class="-ml-1.5" colorUnchecked />
+              <CCheckbox no-label color="warning" v-model="boolTest1" class="-ml-1.5" colorUnchecked />
+              <CCheckbox no-label color="success" v-model="boolTest1" class="-ml-1.5" colorUnchecked />
+              <CCheckbox no-label color="magic" v-model="boolTest1" class="-ml-1.5" colorUnchecked />
+              <CCheckbox no-label color="info" v-model="boolTest1" class="-ml-1.5" colorUnchecked />
+              <CCheckbox no-label v-model="boolTest1" class="-ml-1.5" colorUnchecked />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="bg-white p-8 flex space-x-8">
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+          />
+        </svg>
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+            color="base"
+          />
+        </svg>
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+            color="brand"
+          />
+        </svg>
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+            color="info"
+          />
+        </svg>
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+            color="magic"
+          />
+        </svg>
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+            color="success"
+          />
+        </svg>
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+            color="warning"
+          />
+        </svg>
+        <svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
+          <CDraggablePoint
+            :point="point"
+            @dragging="(pt) => point = pt"
+            @drag-end="(pt) => point = pt"
+            color="danger"
+          />
+        </svg>
+      </div>
+
+
+      <div class="bg-white p-8 flex space-x-8">
+        <CSelectFileType :types="[{ label:'Test 1', ext: 'json' }, { label:'Test 2', ext: 'pdf' }]" selected="0" />
+      </div>
+
+      
 
 
     </div>
@@ -1953,8 +914,10 @@ import CFormElement from './components/FormElement/FormElement.vue';
 import CFormSection from './components/FormSection/FormSection.vue';
 import CSelectFileType from './components/SelectFileType/SelectFileType.vue';
 import CSelectFileTypeItem from './components/SelectFileType/SelectFileTypeItem.vue';
+import CDraggablePoint from './components/DraggablePoint/DraggablePoint.vue';
 import { CTool, CToolGroup } from './components/Toolbar';
 import { XMarkIcon } from '@heroicons/vue/24/solid';
+import { ChevronDownIcon, ChevronUpIcon, FunnelIcon, ArrowsPointingOutIcon } from '@heroicons/vue/24/outline';
 
 const fileTypes = ref([
   {ext: '.pdf', label: 'Example1', val: 'item1' },
@@ -1967,7 +930,7 @@ const currentFileType = ref(fileTypes[0]);
 const textTest1 = ref('test');
 const numericTest1 = ref(3);
 const boolTest1 = ref(true);
-
+const point = ref({ x: 50, y: 50 })
 const form1 =  ref({
   firstName: null,
   lastName: null,
@@ -1980,6 +943,19 @@ const form1 =  ref({
   isAdmin: false,
   recieveNotifications: false,
 });
+
+const messages = [
+  { type: 'success', timestamp: 1738951249000, content: 'Entity 1011: Successfully generated product' },
+  { type: 'magic', timestamp: 1738951231000, content: 'Entity 1011: Calculating product' },
+  { type: 'unknown', timestamp: 1738951231000, content: 'Configuration Loaded' },
+  { type: 'warning', timestamp: 1738951249000, content: 'Entity 1011: Successfully generated product' },
+  { type: 'danger', timestamp: 1738951231000, content: '<b>Entity 1011:</b> Calculating product' },
+  { type: 'info', timestamp: 1738951231000, content: 'Configuration Loaded' },
+  { timestamp: 1738951231000, content: 'Configuration Loaded' },
+  { content: 'Configuration Loaded' },
+  { },
+]
+
 
 const value =  ref(null);
 

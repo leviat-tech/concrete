@@ -25,7 +25,7 @@ const MessageTemplate = (args) => ({
       <StatusMessage status="warning" text="This is a warning status message"/>
       <StatusMessage status="success" text="This is a success status message"/>
       <StatusMessage text="This is a status message with extra content in the slot">
-        <div class="text-gray-400 text-xs">{{ new Date().toLocaleString() }}</div>
+        <div class="text-base-400 text-xs">{{ new Date().toLocaleString() }}</div>
       </StatusMessage>
       
       <div class="py-2">Try it for yourself:</div>
