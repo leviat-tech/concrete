@@ -89,13 +89,17 @@
               v-for="option in localOptions"
               :key="option.value"
               :value="option.value"
-              :disabled="option.disabled"
+              :disabled="option.disabled || option.groupHeader"
               v-slot="{ active, selected }"
             >
+              <li v-if="option.groupHeader" class="peer is-header px-3" :class="option.class">
+                {{ option.groupHeader }}
+              </li>
               <li
+                v-else
                 :class="[
                   option.disabled ? 'text-opacity-50' : 'cursor-pointer',
-                  'select-none relative py-2 px-3 text-black',
+                  'select-none relative py-2 px-3 peer-[.is-header]:pl-5 text-black',
                   active && 'bg-steel-light',
                 ]"
               >

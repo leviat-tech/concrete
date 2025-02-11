@@ -89,3 +89,31 @@ const formatter = (l) => l.toUpperCase();
 <CListbox v-model="value" id="listbox-multiple" :options="options" :formatter="formatter"></CListbox>
 `}
 />
+
+## With Group Headers
+
+<Canvas transformSnippet="none">
+  <Story of={ListboxStories.WithGroupHeaders} />
+</Canvas>
+
+<Source
+  language="html"
+  dark
+  format={false}
+  code={`
+const value = null;
+const options = [
+      //no header
+      "Listbox", 
+      { groupHeader: 'Header!' }, 
+      "Test 1", 
+      "Test 2", 
+      { groupHeader: 'Another Header!!', class: 'italic' }, 
+      "Values 1", 
+      "Values 2", 
+      { groupHeader: 'And Another Header!!', class: 'underline' }, 
+      "Storybook"
+    ];
+<CListbox v-model="value" id="listbox-withGroupHeaders" :options="options"></CListbox>
+`}
+/>
