@@ -30,9 +30,9 @@ export default {
     color: {
       options: [
         "default",
-        "indigo",
-        "sky",
-        "steel",
+        "brand",
+        "info",
+        "magic",
         "success",
         "warning",
         "danger",

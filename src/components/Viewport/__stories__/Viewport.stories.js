@@ -24,10 +24,10 @@ const componentTemplate = (args) => ({
   methods: {},
   template: `<CViewportContainer :options="['test3', 'test4']">
     <CViewport viewportId="test" modelValue="test">
-      <div class="bg-indigo w-12 h-12 text-sky-lightest">Test</div>
+      <div class="bg-magic-800 w-12 h-12 text-sky-lightest">Test</div>
     </CViewport>
     <CViewport viewportId="test2" modelValue="test2">
-      <div class="bg-sky w-12 h-12 text-indigo-darkest">Test</div>
+      <div class="bg-sky w-12 h-12 text-magic-950">Test</div>
     </CViewport>
   </CViewportContainer>`,
 });

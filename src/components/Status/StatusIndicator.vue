@@ -1,6 +1,6 @@
 <template>
   <div class="flex-none flex items-center justify-center" :class="[colorClass, roundedClass, sizeClass]">
-    <Icon v-if="icon" :type="iconType" :class="fillClassMap[status || STATUSES.NO_STATUS]" class="w-full"/>
+    <Icon v-if="icon && iconType != null" :type="iconType" :class="fillClassMap[status || STATUSES.NO_STATUS]" class="w-full"/>
   </div>
 </template>
 
@@ -20,26 +20,28 @@ const props = defineProps({
 });
 
 const bgClassMap = {
-  [STATUSES.INFO]: 'bg-blue-500',
-  [STATUSES.ERROR]: 'bg-danger',
-  [STATUSES.WARNING]: 'bg-warning',
-  [STATUSES.NO_STATUS]: 'bg-steel',
-  [STATUSES.SUCCESS]: 'bg-success',
+  [STATUSES.INFO]: 'bg-status-info',
+  [STATUSES.MAGIC]: 'bg-status-magic',
+  [STATUSES.DANGER]: 'bg-status-danger',
+  [STATUSES.WARNING]: 'bg-status-warning',
+  [STATUSES.NO_STATUS]: 'bg-status-unknown',
+  [STATUSES.SUCCESS]: 'bg-status-success',
 };
 
 const fillClassMap = {
-  [STATUSES.INFO]: 'fill-blue-500',
-  [STATUSES.ERROR]: 'fill-danger',
-  [STATUSES.WARNING]: 'fill-warning',
-  [STATUSES.NO_STATUS]: 'fill-steel',
-  [STATUSES.SUCCESS]: 'fill-success',
+  [STATUSES.INFO]: 'fill-status-info',
+  [STATUSES.MAGIC]: 'fill-status-magic',
+  [STATUSES.DANGER]: 'fill-status-danger',
+  [STATUSES.WARNING]: 'fill-status-warning',
+  [STATUSES.NO_STATUS]: 'fill-status-unknown',
+  [STATUSES.SUCCESS]: 'fill-status-success',
 }
 
 const iconTypeMap = {
   [STATUSES.INFO]: 'information-solid',
-  [STATUSES.ERROR]: 'error-solid',
+  [STATUSES.MAGIC]: 'bolt-solid',
+  [STATUSES.DANGER]: 'error-solid',
   [STATUSES.WARNING]: 'warning-solid',
-  [STATUSES.NO_STATUS]: 'minus-solid',
   [STATUSES.SUCCESS]: 'check-solid',
 }
 
