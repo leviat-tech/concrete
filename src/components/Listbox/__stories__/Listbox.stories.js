@@ -106,3 +106,25 @@ export const Formatted = {
     multiple: true,
   },
 };
+
+export const WithGroupHeaders = {
+  render: componentTemplate.bind({}),
+  name: "With Group Headers",
+  height: "250px",
+
+  args: {
+    options: [
+      //no header
+      "Listbox", 
+      { groupHeader: 'Header!' }, 
+      "Test 1", 
+      "Test 2", 
+      { groupHeader: 'Another Header!!', class: 'italic'  }, 
+      "Values 1", 
+      "Values 2", 
+      { groupHeader: 'And Another Header!!', class: 'underline'  }, 
+      "Storybook"
+    ],
+    optionListSize: 'lg'
+  },
+};
