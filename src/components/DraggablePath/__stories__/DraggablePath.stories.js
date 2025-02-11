@@ -23,7 +23,7 @@ const componentTemplate = (args) => ({
     },
   },
   methods: {},
-  template: `<svg class="bg-gray-200" viewBox="0 0 100 100" width="200" height="200">
+  template: `<svg class="bg-base-200" viewBox="0 0 100 100" width="200" height="200">
   <CDraggablePath
     :path="path"
     @drag-start="(pt) => offset = pt"
@@ -50,9 +50,8 @@ export default {
     color: {
       options: [
         "default",
-        "indigo",
-        "sky",
-        "steel",
+        "info",
+        "magic",
         "success",
         "warning",
         "danger",

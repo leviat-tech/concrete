@@ -1,8 +1,10 @@
 const STATUSES = {
   INFO: 'info',
-  ERROR: 'error',
+  MAGIC: 'magic',
+  DANGER: 'danger',
   WARNING: 'warning',
   SUCCESS: 'success',
+  UNKNOWN: 'unknown',
   NO_STATUS: 'no_status',
 };
 
