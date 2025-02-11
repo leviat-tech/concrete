@@ -9,7 +9,7 @@
         :class="[widthClass,customClasses]">
 
         <!-- header -->
-        <div class="flex items-center justify-between border-b text-lg text-gray-500" :class="{ title }">
+        <div class="flex items-center justify-between border-b text-lg text-base-500" :class="{ title }">
           <div class="py-4 px-6">{{ title }}</div>
           <button v-if="closeable" class="p-4 mr-2" @click="onClose" @focus="focusModal"
             @keydown.tab.prevent="focusModal" ref="closeButton" @keydown.esc="onClose">

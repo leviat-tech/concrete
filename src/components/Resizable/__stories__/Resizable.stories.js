@@ -12,7 +12,7 @@ const componentTemplate = (args) => ({
   },
   methods: {},
   template: `<CResizable v-bind="args" class="my-8 bg-sky-light h-96 flex ">
-  <CPane class="border-r-2 border-indigo" primary :min="35">
+  <CPane class="border-r-2 border-base-300" primary :min="35">
     <div class="text-2xl bg-success-lightest text-success font-bold text-center h-96 py-32">1</div>
   </CPane>
   <CPane class="" :min="20">

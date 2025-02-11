@@ -63,6 +63,7 @@ import {
   InformationCircleIcon as InfoCircleIconSolid,
   MinusCircleIcon as MinusCircleIconSolid,
   XCircleIcon as TimesCircleIconSolid,
+  BoltIcon as BoltIconSolid,
 } from '@heroicons/vue/20/solid'
 
 import { colorProp, useSizeProp } from '../../composables/props';
@@ -145,7 +146,8 @@ export const icons = {
   'information-circle': InformationCircleIcon,
   'information-solid': InfoCircleIconSolid,
   'question-circle': QuestionMarkCircleIcon,
-  'layers': Layers
+  'layers': Layers,
+  'bolt-solid': BoltIconSolid,
 };
 
 export default {

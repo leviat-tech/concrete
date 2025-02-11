@@ -25,7 +25,14 @@ export default {
     },
 
     color: {
-      options: ["indigo", "sky", "steel", "success", "warning", "danger"],
+      options: [
+        "default",
+        "info",
+        "magic",
+        "success",
+        "warning",
+        "danger",
+      ],
 
       control: {
         type: "select",
@@ -54,7 +61,7 @@ export const Overview = {
 
   args: {
     size: "md",
-    color: "indigo",
+    color: "default",
     displayIcons: false,
     srLabel: "Switch",
   },

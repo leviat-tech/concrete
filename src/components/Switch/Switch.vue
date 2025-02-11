@@ -126,29 +126,30 @@ const dotTranslateClass = computed(() => {
   }[size];
 });
 
+
+const colour = computed(() => props.color ? props.color : 'default');
+
 const bgColorClass = computed(() => {
-  if(!enabled.value) return 'bg-gray-300';
+  if(!enabled.value) return 'bg-base-300 focus:ring-base-300';
   return {
-    default: 'bg-indigo focus:ring-indigo-light',
-    indigo: 'bg-indigo focus:ring-indigo-light',
-    sky: 'bg-sky focus:ring-sky-light',
-    steel: 'bg-steel focus:ring-steel-light',
-    success: 'bg-success focus:ring-success-light',
-    warning: 'bg-warning focus:ring-warning-light',
-    danger: 'bg-danger focus:ring-danger-light',
-  }[props.color];
+    default: 'bg-entity-active focus:ring-entity-active',
+    info: 'bg-status-info focus:ring-status-info',
+    magic: 'bg-status-magic focus:ring-status-magic',
+    success: 'bg-status-success focus:ring-status-success',
+    warning: 'bg-status-warning focus:ring-status-warning',
+    danger: 'bg-status-danger focus:ring-status-danger',
+  }[colour.value];
 });
 
 const checkIconClass = computed(() => {
   return {
-    default: 'text-indigo',
-    indigo: 'text-indigo',
-    sky: 'text-sky',
-    steel: 'text-steel',
-    success: 'text-success',
-    warning: 'text-warning',
-    danger: 'text-danger',
-  }[props.color];
+    default: 'text-base-600',
+    info: 'text-status-info',
+    magic: 'text-status-magic',
+    success: 'text-status-success',
+    warning: 'text-status-warning',
+    danger: 'text-status-danger',
+  }[color.value];
 });
 
 registerInput(props, switchRef);

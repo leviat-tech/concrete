@@ -2,7 +2,7 @@
   <div class="flex flex-col w-full overflow-x-auto">
     <table class="table-auto" :class="tableClass">
       <tbody>
-        <tr class="text-left border-b text-xs text-gray-600">
+        <tr class="text-left border-b text-xs text-base-600">
           <th v-if="$slots.prepend" :class="prependClass" />
           <th
             v-for="col in columns"
@@ -22,7 +22,7 @@
             </span>
             <span v-if="localSort[col.id] === 'asc'"> &#8593; </span>
             <span v-else-if="localSort[col.id] === 'desc'"> &#8595; </span>
-            <span v-else-if="col.sortable" class="text-gray-400"> &#8645; </span>
+            <span v-else-if="col.sortable" class="text-base-400"> &#8645; </span>
           </th>
           <th v-if="attrs.onEdit || attrs.onAdd" class="w-12" />
           <th v-if="attrs.onEdit || attrs.onAdd || attrs.onDelete" class="w-12" />
@@ -34,7 +34,7 @@
           :key="`row${i}`"
           :class="[
             attrs.onClick && editingRow?._index !== i && 'cursor-pointer',
-            editingRow?._index === i && 'bg-gray-100',
+            editingRow?._index === i && 'bg-base-100',
             rowClass || 'border-b',
           ]"
           @click="editingRow?._index !== i && emit('click', row)"
@@ -90,7 +90,7 @@
           </td>
         </tr>
 
-        <tr v-if="addingRow" class="border-b bg-gray-100">
+        <tr v-if="addingRow" class="border-b bg-base-100">
           <td v-if="$slots.prepend" />
   
           <td v-for="(col, j) in columns" :key="`col${j}`" class="py-3 pl-1">

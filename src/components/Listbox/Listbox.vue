@@ -40,14 +40,14 @@
                 mergedSizeClass,
                 cursorClass,
                 roundedClass,
-                open && 'border-indigo-light',
+                open && 'border-entity-active',
               ]"
               class="!flex items-center pr-8"
             >
               <slot name="buttonPrefix" />
               <span
                 class="block-truncate"
-                :class="selectedLabel || 'text-gray-400'"
+                :class="selectedLabel || 'text-base-400'"
               >
                 {{ selectedLabel || placeholder }}
               </span>
@@ -75,9 +75,10 @@
               z-30
               w-full
               bg-white
-              shadow-lg shadow-steel-dark
-              ring-1 ring-steel
+              shadow-lg shadow-base-600
+              ring-1 ring-base-300
               overflow-y-auto
+              rounded-input
             "
             :class="[
               optionsSizeClass,
@@ -97,7 +98,7 @@
                 :class="[
                   option.disabled ? 'text-opacity-50' : 'cursor-pointer',
                   'select-none relative py-2 px-3 text-black',
-                  active && 'bg-steel-light',
+                  active && 'bg-base-50',
                 ]"
               >
                 <div
@@ -275,13 +276,12 @@ const maxOptionsHeightClass = {
 
 const iconColorClass = computed(() => {
   return {
-    default: 'text-gray-400',
-    indigo: 'text-indigo-light',
-    sky: 'text-sky-light',
-    steel: 'text-steel-light',
-    success: 'text-success-light',
-    warning: 'text-warning-light',
-    danger: 'text-danger-light',
+    default: 'text-base-600',
+    info: 'text-status-info',
+    magic: 'text-status-magic',
+    success: 'text-status-success',
+    warning: 'text-status-warning',
+    danger: 'text-status-danger',
   }[props.color];
 });
 

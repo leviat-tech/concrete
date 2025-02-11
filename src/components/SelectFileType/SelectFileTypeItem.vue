@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex-1 flex flex-col items-center justify-center border rounded-button cursor-pointer p-4"
-    :class="selected ? 'bg-indigo border-indigo text-white' : ' bg-white border-steel text-steel-dark'"
+    :class="selected ? 'bg-entity-active border-entity-active text-white' : ' bg-white border-base-300 text-base-600'"
   >
     <div class="flex justify-center items-center">
       <svg class="h-12 w-12 font-bold fill-current" viewBox="0 -960 960 960">
@@ -13,7 +13,7 @@
           <text
             x="225" y="127"
             font-size="10rem"
-            :class="selected ? 'fill-indigo' : 'fill-white'"
+            :class="selected ? 'fill-entity-active' : 'fill-white'"
             text-anchor="middle"
             dominant-baseline="middle"
           >
