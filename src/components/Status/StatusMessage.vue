@@ -35,15 +35,17 @@ const props = defineProps<{
 const cStatus = computed(() => (props.status) ? props.status : 'no_status');
 
 const showIcon = computed(() => ['unknown', 'no_status'].includes(cStatus.value) === false )
-const borderClassMap = {
-  [STATUSES.INFO]: 'border-status-info',
-  [STATUSES.MAGIC]: 'border-status-magic',
-  [STATUSES.SUCCESS]: 'border-status-success',
-  [STATUSES.WARNING]: 'border-status-warning',
-  [STATUSES.DANGER]: 'border-status-danger',
-  [STATUSES.UNKNOWN]: 'border-status-unknown',
-  [STATUSES.NO_STATUS]: 'border-base-100',
-}[cStatus.value];
+const borderClassMap = computed(() => {
+  return {
+    [STATUSES.INFO]: 'border-status-info',
+    [STATUSES.MAGIC]: 'border-status-magic',
+    [STATUSES.SUCCESS]: 'border-status-success',
+    [STATUSES.WARNING]: 'border-status-warning',
+    [STATUSES.DANGER]: 'border-status-danger',
+    [STATUSES.UNKNOWN]: 'border-status-unknown',
+    [STATUSES.NO_STATUS]: 'border-base-100',
+  }[cStatus.value]
+});
 
 const loggedAt = computed(() => {
   if(props.timestamp) {
