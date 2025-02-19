@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+    },
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules/"]
+}
