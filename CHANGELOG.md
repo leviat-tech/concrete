@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.34.0](https://github.com/leviat-tech/concrete/compare/v2.33.0...v2.34.0) (2025-02-20)
+
+
+### Features
+
+* emit focus and blur for Listbox options ([#322](https://github.com/leviat-tech/concrete/issues/322)) ([853762d](https://github.com/leviat-tech/concrete/commit/853762d3491bec1f844cbc56ef8ef3b36cad3ead))
+
 ## [2.33.0](https://github.com/leviat-tech/concrete/compare/v2.32.3...v2.33.0) (2025-02-11)
 
 
