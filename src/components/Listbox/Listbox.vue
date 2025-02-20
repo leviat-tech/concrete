@@ -83,6 +83,8 @@
               optionsWidthClass,
               getOptionsClass(),
             ]"
+            @focus="$emit('options-focused')"
+            @blur="$emit('options-blured')"
           >
             <ListboxOption
               as="template"
@@ -184,7 +186,7 @@ const {
   getInputIdToOptions,
 } = useConcreteForms();
 
-const emit = defineEmits(['update:modelValue', 'change']);
+const emit = defineEmits(['update:modelValue', 'change', 'options-focused', 'options-blured']);
 
 const { mergedSizeClass, inputColorClass, bgColorClass } =
   useInputClasses(props);
