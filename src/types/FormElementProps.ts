@@ -1,0 +1,15 @@
+export default interface FormElementProps {
+    id?: string,
+    disabled?: boolean,
+    noLabel?: boolean,
+    noWrap?: boolean,
+    stacked?: boolean,
+    label?: string,
+    labelFormatter?: (val: string) => string,
+    message?: [string, Object],
+    color?: 'default' | 'indigo' | 'sky' | 'steel' | 'success' | 'warning' | 'danger',
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl',
+    prefix?: string,
+    suffix?: string,
+    tooltip?: string,
+}
