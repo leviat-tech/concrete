@@ -125,13 +125,14 @@ export default {
     setCols() {
       if (this.columns !== null) {
         this.cols = this.columns;
-        return;
-      }
-      const width = this.$refs.viewportContainer?.clientWidth || 1;
-      const height = this.$refs.viewportContainer?.clientHeight || 1;
-      const ar = width / height;
+      } else {
+        const width = this.$refs.viewportContainer?.clientWidth || 1;
+        const height = this.$refs.viewportContainer?.clientHeight || 1;
+        const ar = width / height;
 
-      this.cols = columns(ar, this.aspectRatio, this.options.length);
+        this.cols = columns(ar, this.aspectRatio, this.options.length);
+      }
+      this.$emit('resize');
     },
   },
 };
