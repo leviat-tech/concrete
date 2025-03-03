@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.35.0](https://github.com/leviat-tech/concrete/compare/v2.34.0...v2.35.0) (2025-03-03)
+
+
+### Features
+
+* add resize emit to viewport container ([0534ca2](https://github.com/leviat-tech/concrete/commit/0534ca25c63b8cfd7774071bf61f2cfa86e18cfe))
+
 ## [2.34.0](https://github.com/leviat-tech/concrete/compare/v2.33.0...v2.34.0) (2025-02-20)
 
 
