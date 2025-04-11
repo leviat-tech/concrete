@@ -46,7 +46,7 @@
   </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Switch } from '@headlessui/vue';
 import { CheckIcon } from '@heroicons/vue/20/solid';
 import { computed, onMounted, ref } from 'vue';
@@ -57,18 +57,27 @@ import { v4 as uuidv4 } from 'uuid';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { useCursorClass } from '../../composables/styles.js';
+import FormElementProps from '../../types/FormElementProps.ts';
 
-const props = defineProps({
-  ...formElementProps,
-  modelValue: { type: Boolean, default: undefined },
-  transparent: { type: Boolean, default: false },
-  srLabel: { type: String, default: 'Switch' },
-  onChange: { type: Function, default: null },
-  reverseLabels: { type: Boolean, default: false },
-  labelClass: String,
-  cssClass: String,
-  colorUnchecked: { type: Boolean, default: false },
-});
+interface Props extends FormElementProps {
+    size?: 'xs' | 'sm' | 'md' | 'lg',
+    srLabel?: string;
+    cssClass?: String;
+    onChange?: Function;
+    labelClass?: String;
+    modelValue?: boolean;
+    transparent?: boolean;
+    reverseLabels?: boolean;
+    colorUnchecked?: boolean;
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    srLabel: 'Switch',
+    transparent: false,
+    onChange: () => {},
+    reverseLabels: false,
+    colorUnchecked: false,
+  });
 
 const {
   getNoWrapValue,
