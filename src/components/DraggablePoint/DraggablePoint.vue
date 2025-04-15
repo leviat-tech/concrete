@@ -36,15 +36,15 @@ export default {
       if(this.disabled) {
         return 'cursor-auto';
       }
-
       return {
         default: 'hover:stroke-black/20 hover:fill-gray-900',
-        indigo: 'hover:stroke-indigo/20 hover:fill-indigo',
-        sky: 'hover:stroke-sky/20 hover:fill-sky',
-        steel: 'hover:stroke-steel/20 hover:fill-steel',
-        success: 'hover:stroke-success/20 hover:fill-success',
-        warning: 'hover:stroke-warning/20 hover:fill-warning',
-        danger: 'hover:stroke-danger/20 hover:fill-danger',
+        base: 'hover:stroke-black/20 hover:fill-gray-900',
+        brand: 'hover:stroke-entity-active/20 hover:fill-entity-active',
+        success: 'hover:stroke-status-success/20 hover:fill-status-success',
+        warning: 'hover:stroke-status-warning/20 hover:fill-status-warning',
+        danger: 'hover:stroke-status-danger/20 hover:fill-status-danger',
+        magic: 'hover:stroke-status-magic/20 hover:fill-status-magic',
+        info: 'hover:stroke-status-info/20 hover:fill-status-info',
       }[this.color];
     }
 

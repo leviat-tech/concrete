@@ -14,7 +14,7 @@
       tooltip,
     }"
   >
-    <div class="relative border border-gray-300 bg-white" :class="heightClass">
+    <div class="relative border border-base-300 bg-white" :class="heightClass">
       <div
         v-if="percentageValue > 0.01 && !isFetching"
         class="absolute h-full left-0 ring-1 transition-all duration-500"

@@ -33,13 +33,7 @@
         @mousedown="onMouseDown"
         @keyup.tab="onKeyUp"
         v-model="enabled"
-        class="
-        transition-all
-        duration-100
-          items-center
-          border border-gray-300
-          focus:outline-none
-        "
+        class="transition-all duration-100 items-center border focus:outline-none hover:ring-1 hover:ring-entity-active rounded-input focus:ring-entity-active"
         :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
         <span class="flex justify-center transition-opacity p-px">
@@ -52,7 +46,7 @@
   </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Switch } from '@headlessui/vue';
 import { CheckIcon } from '@heroicons/vue/20/solid';
 import { computed, onMounted, ref } from 'vue';
@@ -63,17 +57,27 @@ import { v4 as uuidv4 } from 'uuid';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { useCursorClass } from '../../composables/styles.js';
+import FormElementProps from '../../types/FormElementProps.ts';
 
-const props = defineProps({
-  ...formElementProps,
-  modelValue: { type: Boolean, default: undefined },
-  transparent: { type: Boolean, default: false },
-  srLabel: { type: String, default: 'Switch' },
-  onChange: { type: Function, default: null },
-  reverseLabels: { type: Boolean, default: false },
-  labelClass: String,
-  cssClass: String,
-});
+interface Props extends FormElementProps {
+    size?: 'xs' | 'sm' | 'md' | 'lg',
+    srLabel?: string;
+    cssClass?: String;
+    onChange?: Function;
+    labelClass?: String;
+    modelValue?: boolean;
+    transparent?: boolean;
+    reverseLabels?: boolean;
+    colorUnchecked?: boolean;
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    srLabel: 'Switch',
+    transparent: false,
+    onChange: () => {},
+    reverseLabels: false,
+    colorUnchecked: false,
+  });
 
 const {
   getNoWrapValue,
@@ -116,27 +120,34 @@ const styleClass = computed(() => {
   const colour = props.color ? props.color : 'default';
   const style = props.transparent ? 'transparent' : colour;
   if (props.disabled) {
-    return 'bg-gray-200 text-gray-400';
+    return 'border-base-200 bg-base-200 text-base-400 hover:ring-0';
   } else if (enabled.value) {
     return {
-      default: 'bg-indigo border-indigo text-white focus:ring-indigo-light',
-      indigo: 'bg-indigo border-indigo text-white focus:ring-indigo-light',
-      sky: 'bg-sky border-sky text-white focus:ring-sky-light',
-      steel: 'bg-steel border-steel text-white focus:ring-steel-light',
-      success: 'bg-success border-success text-white focus:ring-success-light',
-      warning: 'bg-warning border-warning text-white focus:ring-warning-light',
-      danger: 'bg-danger border-danger text-white focus:ring-danger-light',
+      default: 'bg-white border-base-300 text-base-800',
+      info: 'bg-info-500 border-info-500 text-white',
+      magic: 'bg-magic-500 border-magic-500 text-white',
+      success: 'bg-success-500 border-success-500 text-white',
+      warning: 'bg-warning-500 border-warning-500 text-white',
+      danger: 'bg-danger-500 border-danger-500 text-white',
+    }[colour];
+  } else if (props.colorUnchecked) {
+    return {
+      default: 'bg-white border-base-300 text-base-800',
+      info: 'bg-white border-info-500 text-white',
+      magic: 'bg-white border-magic-500 text-white',
+      success: 'bg-white border-success-500 text-white',
+      warning: 'bg-white border-warning-500 text-white',
+      danger: 'bg-white border-danger-500 text-white',
     }[colour];
   } else {
     return {
-      transparent: 'bg-transparent text-white focus:ring-indigo-light',
-      default: 'bg-white text-white focus:ring-indigo-light',
-      indigo: 'bg-white text-white focus:ring-indigo-light',
-      sky: 'bg-white text-white focus:ring-sky-light',
-      steel: 'bg-white text-white focus:ring-steel-light',
-      success: 'bg-white text-white focus:ring-success-light',
-      warning: 'bg-white text-white focus:ring-warning-light',
-      danger: 'bg-white text-white focus:ring-danger-light',
+      transparent: 'border-base-300 bg-transparent text-white',
+      default: 'border-base-300 bg-white text-white',
+      info: 'border-base-300 bg-white text-white',
+      magic: 'border-base-300 bg-white text-white',
+      success: 'border-base-300 bg-white text-white',
+      warning: 'border-base-300 bg-white text-white',
+      danger: 'border-base-300 bg-white text-white',
     }[style];
   }
 });

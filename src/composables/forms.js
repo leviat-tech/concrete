@@ -29,6 +29,11 @@ export const useConcreteForms = () => {
       const formElement = inject('form-element', { size: null });
       return sizeProp || formElement.size || formSection.size || concrete.size || 'md';
     },
+    getLabelWidthValue: (labelWidthProp) => {
+      const formSection = inject('form-section', { labelWidth: null });
+      const formElement = inject('form-element', { labelWidth: null });
+      return labelWidthProp || formElement.labelWidth || formSection.labelWidth || concrete.labelWidth || 'md';
+    },
     getStackedValue: (stackedProp) => {
       const formSection = inject('form-section', { stacked: null });
       const formElement = inject('form-element', { stacked: null });

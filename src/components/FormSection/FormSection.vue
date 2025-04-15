@@ -1,45 +1,47 @@
 <template>
-  <div class="w-full concrete__form-section">
+  <div class="w-full concrete__form-section space-y-4">
     <slot name="title">
-      <div
-        class="flex justify-between w-full mb-2"
-        :class="[underlineClass, inputColorClass, textSizeClass]"
+      <CHeading
+        v-if="title"
+        :title="title"
+        :color="color"
+        :underline="underline"
+        :size="headingSize"
       >
-        <h4 v-if="title" class="text-base text-sky-dark font-bold">
-          {{ title }}
-        </h4>
         <slot name="toolbar"></slot>
-      </div>
+      </CHeading>
     </slot>
 
-    <div class="w-full" :class="innerClass">
+    <CStack :class="innerClass">
       <slot />
-    </div>
+    </CStack>
   </div>
 </template>
 
-<script setup>
-import { provide } from 'vue';
-import { colorProp, useSizeProp } from '../../composables/props';
-import { useConcreteForms } from '../../composables/forms';
-import { useInputClasses } from '../../composables/styles';
+<script setup lang="ts">
+  import { provide } from 'vue';
+  import { colorProp, useSizeProp } from '../../composables/props';
+  import { useConcreteForms } from '../../composables/forms';
+  import CHeading from '../Heading/Heading.vue';
+  import CStack from '../Stack/Stack.vue';
+  import FormElementProps from '../../types/FormElementProps.ts';
 
-const props = defineProps({
-  color: colorProp,
-  size: useSizeProp(),
-  labelFormatter: Function,
-  title: { type: String, default: '' },
-  underline: { type: Boolean, default: false },
-  stacked: { type: Boolean },
-  innerClass: String,
-});
+  interface Props extends FormElementProps {
+    title?: string;
+    underline?: boolean;
+    innerClass?: string;
+    headingSize?: number;
+  }
 
-const { getSizeValue, getStackedValue } = useConcreteForms();
-const { inputColorClass, textSizeClass } = useInputClasses(props);
+  const props = withDefaults(defineProps<Props>(), {
+    title: '',
+    headingSize: 1,
+    underline: false,
+  });
 
-const size = getSizeValue(props.size);
-const stacked = getStackedValue(props.stacked);
-provide('form-section', { stacked, size });
+  const { getSizeValue, getStackedValue } = useConcreteForms();
 
-const underlineClass = props.underline ? 'border-b' : '';
+  const size = getSizeValue(props.size);
+  const stacked = getStackedValue(props.stacked);
+  provide('form-section', { stacked, size });
 </script>

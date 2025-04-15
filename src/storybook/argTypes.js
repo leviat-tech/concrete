@@ -9,9 +9,8 @@ export const size = {
 export const color = {
   options: [
     'default',
-    'indigo',
-    'sky',
-    'steel',
+    'info',
+    'magic',
     'success',
     'warning',
     'danger',
