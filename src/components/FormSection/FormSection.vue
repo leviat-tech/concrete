@@ -18,20 +18,23 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { provide } from 'vue';
-import { colorProp, useSizeProp } from '../../composables/props';
 import { useConcreteForms } from '../../composables/forms';
 import { useInputClasses } from '../../composables/styles';
+import FormElementProps from '../../types/FormElementProps';
 
-const props = defineProps({
-  color: colorProp,
-  size: useSizeProp(),
-  labelFormatter: Function,
-  title: { type: String, default: '' },
-  underline: { type: Boolean, default: false },
-  stacked: { type: Boolean },
-  innerClass: String,
+interface Props extends FormElementProps {
+  title?: string;
+  underline?: boolean;
+  innerClass?: string;
+  headingSize?: number;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  headingSize: 1,
+  underline: false,
 });
 
 const { getSizeValue, getStackedValue } = useConcreteForms();

@@ -24,10 +24,7 @@
     >
       <div :class="['relative', disabledClass]">
         <div class="inline-flex w-full">
-          <div
-            class="relative z-0 inline-flex w-full"
-            :class="inputColorClass"
-          >
+          <div class="relative z-0 inline-flex w-full" :class="inputColorClass">
             <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
             <slot name="prefix" class="z-10" />
             <ListboxButton
@@ -44,15 +41,12 @@
               class="!flex items-center pr-8"
             >
               <slot name="buttonPrefix" />
-              <span
-                class="block-truncate"
-                :class="selectedLabel || 'text-gray-400'"
-              >
+              <span class="block-truncate" :class="selectedLabel || 'text-gray-400'">
                 {{ selectedLabel || placeholder }}
               </span>
 
-              <span class=" absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <ChevronUpDownIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true"  />
+              <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <ChevronUpDownIcon :class="[iconColorClass, iconSizeClass]" aria-hidden="true" />
               </span>
             </ListboxButton>
             <input type="hidden" :value="selectedLabel" data-selected />
@@ -77,12 +71,7 @@
               ring-1 ring-steel
               overflow-y-auto
             "
-            :class="[
-              optionsSizeClass,
-              maxOptionsHeightClass,
-              optionsWidthClass,
-              getOptionsClass(),
-            ]"
+            :class="[optionsSizeClass, maxOptionsHeightClass, optionsWidthClass, getOptionsClass()]"
             @focus="$emit('options-focused')"
             @blur="$emit('options-blured')"
           >
@@ -109,11 +98,7 @@
                   class="truncate flex items-center"
                   :class="selected ? 'font-semibold' : 'font-normal'"
                 >
-                  <slot
-                    v-if="$slots.optionPrefix"
-                    name="optionPrefix"
-                    :option="option"
-                  />
+                  <slot v-if="$slots.optionPrefix" name="optionPrefix" :option="option" />
                   {{ formatter(option.label || option.value) }}
                 </div>
               </li>
@@ -125,56 +110,39 @@
   </component>
 </template>
 
-<script setup>
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-} from '@headlessui/vue';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/24/solid';
+<script setup lang="ts">
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
+import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
-import { formElementProps } from '../../composables/props.js';
-import {
-  inputStaticClasses,
-  useInputClasses,
-} from '../../composables/styles.js';
+import { inputStaticClasses, useInputClasses } from '../../composables/styles.js';
 import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
+import FormElementProps from '../../types/FormElementProps';
 
-const props = defineProps({
-  ...formElementProps,
-  modelValue: [String, Object, Array, Number],
-  options: {
-    type: Array,
-    default(rawProps) {
-      return [];
-    },
-  },
-  multiple: { type: Boolean, default: false },
-  formatter: { type: Function, default: null },
-  placeholder: { type: String, default: 'Select option' },
-  transparent: { type: Boolean, default: false },
-  optionListSize: {
-    type: String,
-    default: 'md',
-    validator(value) {
-      return ['auto', 'xs', 'sm', 'md', 'lg'].includes(value);
-    },
-  },
-  optionListWidth: {
-    type: String,
-    default: 'full',
-    validator(value) {
-      return ['auto', 'full', 'min', 'max'].includes(value);
-    },
-  },
-  onChange: { type: Function, default: null },
-  checkEquality: { type: Function, default: isEqual},
+interface Props extends FormElementProps {
+  // TODO what types should we accept
+  modelValue?: any;
+  options?: any;
+  multiple?: boolean;
+  formatter?: () => {};
+  placeholder?: string;
+  transparent?: boolean;
+  optionListSize?: 'auto' | 'xs' | 'sm' | 'md' | 'lg';
+  optionListWidth?: 'auto' | 'full' | 'min' | 'max';
+  onChange?: () => {};
+  checkEquality?: () => {};
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  options: [],
+  optionListSize: 'md',
+  optionListWidth: 'full',
+  placeholder: 'Select option',
+  checkEquality: isEqual,
 });
 
 const {
@@ -188,12 +156,9 @@ const {
 
 const emit = defineEmits(['update:modelValue', 'change', 'options-focused', 'options-blured']);
 
-const { mergedSizeClass, inputColorClass, bgColorClass } =
-  useInputClasses(props);
+const { mergedSizeClass, inputColorClass, bgColorClass } = useInputClasses(props);
 const disabledClass = computed(() => isDisabled.value && 'opacity-60');
-const cursorClass = computed(() =>
-  isDisabled.value ? 'cursor-not-allowed' : 'cursor-pointer'
-);
+const cursorClass = computed(() => (isDisabled.value ? 'cursor-not-allowed' : 'cursor-pointer'));
 
 const size = getSizeValue(props.size);
 const stacked = getStackedValue(props.stacked);
@@ -205,7 +170,7 @@ const buttonRef = ref(null);
 
 const formatter = (value) => {
   return props.formatter ? props.formatter(value) : value;
-}
+};
 
 const selectedValue = computed({
   get() {
@@ -225,7 +190,7 @@ const getOptionFromValue = (value) => {
   });
 
   return formatter(item?.label);
-}
+};
 
 const isDisabled = computed(() => {
   return props.disabled || !localOptions.value.length;
@@ -241,9 +206,7 @@ const localOptions = computed(() => {
   const options = getInputIdToOptions(props);
 
   return options.map((option) => {
-    return isPlainObject(option)
-      ? option
-      : { label: option, value: option };
+    return isPlainObject(option) ? option : { label: option, value: option };
   });
 });
 
@@ -287,8 +250,8 @@ const optionsWidthClass = {
   auto: 'w-auto',
   full: 'w-full',
   min: 'w-min',
-  max: 'w-max'
-}[props.optionListWidth]
+  max: 'w-max',
+}[props.optionListWidth];
 
 const iconColorClass = computed(() => {
   return {

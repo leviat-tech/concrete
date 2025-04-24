@@ -16,7 +16,7 @@
       labelClass,
       tooltip,
       cssClass,
-      onMouseDown
+      onMouseDown,
     }"
     class="flex relative items-center"
     :class="{ '!justify-start': reverseLabels }"
@@ -33,18 +33,12 @@
         @mousedown="onMouseDown"
         @keyup.tab="onKeyUp"
         v-model="enabled"
-        class="
-        transition-all
-        duration-100
-          items-center
-          border border-gray-300
-          focus:outline-none
-        "
+        class="transition-all duration-100 items-center border border-gray-300 focus:outline-none"
         :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
         <span class="flex justify-center transition-opacity p-px">
           <transition>
-            <CheckIcon v-if="enabled" class="transition delay-200"/>
+            <CheckIcon v-if="enabled" class="transition delay-200" />
           </transition>
         </span>
       </Switch>
@@ -52,36 +46,40 @@
   </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Switch } from '@headlessui/vue';
 import { CheckIcon } from '@heroicons/vue/20/solid';
 import { computed, onMounted, ref } from 'vue';
 import { useEventHandler } from '../../composables/events.js';
-import { formElementProps } from '../../composables/props.js';
 import { useConcreteForms } from '../../composables/forms';
 import { v4 as uuidv4 } from 'uuid';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { useCursorClass } from '../../composables/styles.js';
+import FormElementProps from '../../types/FormElementProps.js';
 
-const props = defineProps({
-  ...formElementProps,
-  modelValue: { type: Boolean, default: undefined },
-  transparent: { type: Boolean, default: false },
-  srLabel: { type: String, default: 'Switch' },
-  onChange: { type: Function, default: null },
-  reverseLabels: { type: Boolean, default: false },
-  labelClass: String,
-  cssClass: String,
+interface Props extends FormElementProps {
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  srLabel?: string;
+  cssClass?: String;
+  onChange?: Function;
+  labelClass?: String;
+  modelValue?: boolean;
+  transparent?: boolean;
+  reverseLabels?: boolean;
+  colorUnchecked?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  srLabel: 'Switch',
+  transparent: false,
+  onChange: () => {},
+  reverseLabels: false,
+  colorUnchecked: false,
 });
 
-const {
-  getNoWrapValue,
-  getInputValue,
-  registerInput,
-  getSizeValue,
-  getStackedValue,
-} = useConcreteForms();
+const { getNoWrapValue, getInputValue, registerInput, getSizeValue, getStackedValue } =
+  useConcreteForms();
 
 const autoId = uuidv4();
 const emit = defineEmits(['update:modelValue', 'change']);
@@ -143,8 +141,8 @@ const styleClass = computed(() => {
 
 registerInput(props, switchRef);
 
-const onMouseDown = (_event) => preventOutline.value = true;
-const onKeyUp = (_event) => preventOutline.value = false;
+const onMouseDown = (_event) => (preventOutline.value = true);
+const onKeyUp = (_event) => (preventOutline.value = false);
 
 const outlineClass = computed(() => !preventOutline.value && 'focus:ring');
 
