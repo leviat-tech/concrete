@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.35.1](https://github.com/leviat-tech/concrete/compare/v2.35.0...v2.35.1) (2025-04-24)
+
+
+### Bug Fixes
+
+* change props definition ([#327](https://github.com/leviat-tech/concrete/issues/327)) ([7464b18](https://github.com/leviat-tech/concrete/commit/7464b18b6463af6d13814b6aa8dce45a5ebf4435))
+
 ## [2.35.0](https://github.com/leviat-tech/concrete/compare/v2.34.0...v2.35.0) (2025-03-03)
 
 
