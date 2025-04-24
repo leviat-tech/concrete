@@ -16,7 +16,10 @@
     }"
     :class="inputColorClass"
   >
-    <div class="flex w-full relative concrete__numeric-input" :class="[inputColorClass, disabledClass]">
+    <div
+      class="flex w-full relative concrete__numeric-input"
+      :class="[inputColorClass, disabledClass]"
+    >
       <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
       <slot name="prefix" class="z-10" />
       <input
@@ -53,11 +56,7 @@
         ]"
       >
         <!-- unit -->
-        <div
-          v-if="to || unit"
-          class="unit"
-          :class="[textSizeClass, hPaddingClass]"
-        >
+        <div v-if="to || unit" class="unit" :class="[textSizeClass, hPaddingClass]">
           {{ to || unit }}
         </div>
       </div>
@@ -67,48 +66,42 @@
   </component>
 </template>
 
-<script setup>
-import {
-  convert,
-  convertFromSI,
-  convertToSI,
-  isNumber,
-} from '../..//utils/units';
+<script setup lang="ts">
+import { convert, convertFromSI, convertToSI, isNumber } from '../..//utils/units';
 import { computed, inject, ref } from 'vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
-import { formElementProps } from '../../composables/props.js';
-import {
-  useInputClasses,
-  inputStaticClasses,
-  useCursorClass,
-} from '../../composables/styles';
+import { useInputClasses, inputStaticClasses, useCursorClass } from '../../composables/styles';
 import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events';
+import FormElementProps from '../../types/FormElementProps';
 
 const { decimalPrecision } = inject('concrete');
 
-const props = defineProps({
-  ...formElementProps,
-  modelValue: Number,
-  readOnly: { type: Boolean, default: false },
-  placeholder: { type: String, default: '' },
-  transparent: { type: Boolean, default: false },
-  precision: { type: Number, default: null },
-  unit: { type: String, default: null },
-  noUnits: { type: Boolean, default: false },
-  maximum: { type: Number, default: null },
-  minimum: { type: Number, default: null },
-  step: { type: Number, default: null },
-  to: { type: String, default: null },
-  from: { type: String, default: null },
-  onEnter: { type: Function, default: null },
-  onBlur: { type: Function, default: null },
-  spinner: { type: Boolean, default: null },
-  overrideCssStyles: { type: String },
-  unitSystem: { type: String, default: 'metric' },
-  nullable: { type: Boolean, default: false },
+interface Props extends FormElementProps {
+  to?: string;
+  unit?: string;
+  step?: number;
+  from?: string;
+  maximum?: number;
+  minimum?: number;
+  spinner?: boolean;
+  noUnits?: boolean;
+  precision?: number;
+  readOnly?: boolean;
+  nullable?: boolean;
+  unitSystem?: string;
+  modelValue?: number;
+  placeholder?: string;
+  transparent?: boolean;
+  overrideCssStyles?: string;
+  onBlur?: () => {};
+  onEnter?: () => {};
+}
+const props = withDefaults(defineProps<Props>(), {
+  placeholder: '',
+  unitSystem: 'metric',
 });
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
@@ -123,8 +116,7 @@ const {
 } = useConcreteForms();
 
 let unitPrecision;
-if (decimalPrecision)
-  unitPrecision = decimalPrecision[props.unitSystem].inputPrecision;
+if (decimalPrecision) unitPrecision = decimalPrecision[props.unitSystem].inputPrecision;
 
 const {
   mergedSizeClass,
@@ -209,8 +201,7 @@ function convertFromDisplayValue(v) {
   return value;
 }
 
-const enableSpinner =
-  typeof props.spinner === 'boolean' ? props.spinner : getDefaultSpinner(props);
+const enableSpinner = typeof props.spinner === 'boolean' ? props.spinner : getDefaultSpinner(props);
 
 const inputSpinnerClass = computed(() => {
   return enableSpinner
