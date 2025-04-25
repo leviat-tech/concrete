@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.35.3](https://github.com/leviat-tech/concrete/compare/v2.35.2...v2.35.3) (2025-04-25)
+
+
+### Bug Fixes
+
+* default values for checkbox ([#331](https://github.com/leviat-tech/concrete/issues/331)) ([1116b73](https://github.com/leviat-tech/concrete/commit/1116b73f42ba2ead72a6111233da4c6e2db0b8ba))
+
 ## [2.35.2](https://github.com/leviat-tech/concrete/compare/v2.35.1...v2.35.2) (2025-04-25)
 
 
