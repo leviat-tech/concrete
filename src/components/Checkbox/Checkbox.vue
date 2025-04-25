@@ -67,15 +67,14 @@ interface Props extends FormElementProps {
   modelValue?: boolean;
   transparent?: boolean;
   reverseLabels?: boolean;
-  colorUnchecked?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   srLabel: 'Switch',
   transparent: false,
-  onChange: () => {},
+  onChange: undefined,
+  modelValue: undefined,
   reverseLabels: false,
-  colorUnchecked: false,
 });
 
 const { getNoWrapValue, getInputValue, registerInput, getSizeValue, getStackedValue } =
