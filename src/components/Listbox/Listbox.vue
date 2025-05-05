@@ -42,10 +42,7 @@
               class="!flex items-center pr-8"
             >
               <slot name="buttonPrefix" />
-              <span
-                class="block-truncate"
-                :class="selectedLabel || 'text-base-400'"
-              >
+              <span class="block-truncate" :class="selectedLabel || 'text-base-400'">
                 {{ selectedLabel || placeholder }}
               </span>
 
@@ -70,29 +67,24 @@
               duration-100
               absolute
               z-30
+              w-full
               bg-white
               shadow-lg shadow-base-600
               ring-1 ring-base-300
               overflow-y-auto
               rounded-input
             "
-            :class="[optionsSizeClass, maxOptionsHeightClass, optionsWidthClass, getOptionsClass()]"
-            @focus="$emit('options-focused')"
-            @blur="$emit('options-blured')"
+            :class="[optionsSizeClass, maxOptionsHeightClass, getOptionsClass()]"
           >
             <ListboxOption
               as="template"
               v-for="option in localOptions"
               :key="option.value"
               :value="option.value"
-              :disabled="option.disabled || option.groupHeader"
+              :disabled="option.disabled"
               v-slot="{ active, selected }"
             >
-              <li v-if="option.groupHeader" class="peer is-header px-3" :class="option.class">
-                {{ option.groupHeader }}
-              </li>
               <li
-                v-else
                 :class="[
                   option.disabled ? 'text-opacity-50' : 'cursor-pointer',
                   'select-none relative py-2 px-3 text-black',
@@ -117,21 +109,18 @@
 
 <script setup lang="ts">
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
-import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
 import { formElementProps } from '../../composables/props.js';
-import {
-  inputStaticClasses,
-  useInputClasses,
-  useRoundedClass,
-} from '../../composables/styles.js';
+import { inputStaticClasses, useInputClasses, useRoundedClass } from '../../composables/styles.js';
 import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
 import FormElementProps from '../../types/FormElementProps';
+
 
 interface Props extends FormElementProps {
   // TODO what types should we accept
@@ -164,10 +153,9 @@ const {
   getInputIdToOptions,
 } = useConcreteForms();
 
-const emit = defineEmits(['update:modelValue', 'change', 'options-focused', 'options-blured']);
+const emit = defineEmits(['update:modelValue', 'change']);
 
-const { mergedSizeClass, inputColorClass, bgColorClass } =
-  useInputClasses(props);
+const { mergedSizeClass, inputColorClass, bgColorClass } = useInputClasses(props);
 const roundedClass = useRoundedClass(props);
 const disabledClass = computed(() => isDisabled.value && 'opacity-60');
 const cursorClass = computed(() => (isDisabled.value ? 'cursor-not-allowed' : 'cursor-pointer'));
@@ -257,13 +245,6 @@ const maxOptionsHeightClass = {
   md: 'max-h-60',
   lg: 'max-h-96',
 }[props.optionListSize || 'md'];
-
-const optionsWidthClass = {
-  auto: 'w-auto',
-  full: 'w-full',
-  min: 'w-min',
-  max: 'w-max',
-}[props.optionListWidth];
 
 const iconColorClass = computed(() => {
   return {

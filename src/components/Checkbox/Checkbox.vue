@@ -56,26 +56,28 @@ import { v4 as uuidv4 } from 'uuid';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { useCursorClass } from '../../composables/styles.js';
-import FormElementProps from '../../types/FormElementProps.js';
+import FormElementProps from '../../types/FormElementProps.ts';
 
 interface Props extends FormElementProps {
-  size?: 'xs' | 'sm' | 'md' | 'lg';
-  srLabel?: string;
-  cssClass?: String;
-  onChange?: Function;
-  labelClass?: String;
-  modelValue?: boolean;
-  transparent?: boolean;
-  reverseLabels?: boolean;
-}
+    size?: 'xs' | 'sm' | 'md' | 'lg',
+    srLabel?: string;
+    cssClass?: String;
+    onChange?: Function;
+    labelClass?: String;
+    modelValue?: boolean;
+    transparent?: boolean;
+    reverseLabels?: boolean;
+    colorUnchecked?: boolean;
+  }
 
-const props = withDefaults(defineProps<Props>(), {
-  srLabel: 'Switch',
-  transparent: false,
-  onChange: undefined,
-  modelValue: undefined,
-  reverseLabels: false,
-});
+  const props = withDefaults(defineProps<Props>(), {
+    srLabel: 'Switch',
+    transparent: false,
+    onChange: undefined,
+    modelValue: undefined,
+    reverseLabels: false,
+    colorUnchecked: false,
+  });
 
 const { getNoWrapValue, getInputValue, registerInput, getSizeValue, getStackedValue } =
   useConcreteForms();
