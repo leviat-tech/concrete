@@ -14,7 +14,7 @@
   "dependencies": {
     "@crhio/leviat-tailwind-configuration": "^1.2.1",
     "@headlessui/tailwindcss": "^0.1.0",
-    "@headlessui/vue": "^1.6.7",
+    "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.0.13",
     "big.js": "^6.2.1",
     "d3-drag": "^3.0.0",
