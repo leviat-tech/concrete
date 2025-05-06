@@ -23,21 +23,17 @@
   </Menu>
 </template>
 
-<script setup>
-  import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
-  import { EllipsisVerticalIcon } from '@heroicons/vue/24/outline';
-  import SlotRenderer from '../SlotRenderer.vue';
+<script setup lang="ts">
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
+import { EllipsisVerticalIcon } from '@heroicons/vue/24/outline';
+import SlotRenderer from '../SlotRenderer.vue';
 
-  defineProps({
-    title: String,
-    modelValue: Boolean,
-    menuButtonClasses: {
-      type: String,
-      default: '',
-    },
-    menuContainerClasses: {
-      type: String,
-      default: '',
-    },
-  });
+interface Props {
+  title?: string;
+  modelValue?: boolean;
+  menuButtonClasses?: string;
+  menuContainerClasses?: string;
+}
+
+defineProps<Props>();
 </script>

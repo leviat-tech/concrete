@@ -6,6 +6,6 @@ const STATUSES = {
   SUCCESS: 'success',
   UNKNOWN: 'unknown',
   NO_STATUS: 'no_status',
-};
+} as const;
 
 export default STATUSES;
