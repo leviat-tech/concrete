@@ -1,22 +1,30 @@
 <template>
-  <div class="flex-none flex items-center justify-center" :class="[colorClass, roundedClass, sizeClass]">
-    <Icon v-if="icon && iconType != null" :type="iconType" :class="fillClassMap[status || STATUSES.NO_STATUS]" class="w-full"/>
+  <div
+    class="flex-none flex items-center justify-center"
+    :class="[colorClass, roundedClass, sizeClass]"
+  >
+    <Icon
+      v-if="icon && iconType != null"
+      :type="iconType"
+      :class="fillClassMap[status || STATUSES.NO_STATUS]"
+      class="w-full"
+    />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
 import Icon from '../Icon/Icon.vue';
-import STATUSES from './statuses'
+import STATUSES from './statuses';
 
-const props = defineProps({
-  status: {
-    type: String,
-    default: STATUSES.NO_STATUS,
-    validator: (val) => Object.values(STATUSES).includes(val),
-  },
-  rounded: Boolean,
-  icon: Boolean,
+interface Props {
+  status?: typeof STATUSES[keyof typeof STATUSES];
+  rounded?: boolean;
+  icon?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  status: STATUSES.NO_STATUS,
 });
 
 const bgClassMap = {
@@ -35,7 +43,7 @@ const fillClassMap = {
   [STATUSES.WARNING]: 'fill-status-warning',
   [STATUSES.NO_STATUS]: 'fill-status-unknown',
   [STATUSES.SUCCESS]: 'fill-status-success',
-}
+};
 
 const iconTypeMap = {
   [STATUSES.INFO]: 'information-solid',
@@ -43,9 +51,9 @@ const iconTypeMap = {
   [STATUSES.DANGER]: 'error-solid',
   [STATUSES.WARNING]: 'warning-solid',
   [STATUSES.SUCCESS]: 'check-solid',
-}
+};
 
-const sizeClass = computed(() => props.icon ? 'w-5 h-5' : 'w-2 h-2')
+const sizeClass = computed(() => (props.icon ? 'w-5 h-5' : 'w-2 h-2'));
 
 const roundedClass = computed(() => {
   return props.rounded || props.icon ? 'rounded-full' : '';
@@ -57,5 +65,5 @@ const colorClass = computed(() => {
 
 const iconType = computed(() => {
   return props.icon ? iconTypeMap[props.status || STATUSES.NO_STATUS] : '';
-})
+});
 </script>
