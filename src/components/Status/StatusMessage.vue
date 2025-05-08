@@ -6,7 +6,6 @@
       <StatusIndicator :status="cStatus" :icon="showIcon" v-if="showIcon" />
       <div class="mx-2" v-html="content" />
     </div>
-    <slot />
     <div class="text-right px-2 text-base-700" v-if="loggedAt">
       <div class="">
         {{  loggedAt.date }}
@@ -15,6 +14,7 @@
         {{  loggedAt.time }}
       </div>
     </div>
+    <slot />
   </div>
 </template>
 

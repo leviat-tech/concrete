@@ -16,7 +16,10 @@
     }"
     :class="inputColorClass"
   >
-    <div class="flex w-full relative concrete__text-input" :class="[inputColorClass, disabledClass]">
+    <div
+      class="flex w-full relative concrete__text-input"
+      :class="[inputColorClass, disabledClass]"
+    >
       <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
       <slot name="prefix" class="z-10" />
 
@@ -83,7 +86,7 @@ const props = defineProps({
   onEnter: { type: Function, default: null },
   onBlur: { type: Function, default: null },
   overrideCssStyles: { type: String },
-  unit: String
+  unit: String,
 });
 
 const { getSizeValue, getStackedValue, getNoWrapValue, getInputValue, registerInput } =
@@ -91,7 +94,14 @@ const { getSizeValue, getStackedValue, getNoWrapValue, getInputValue, registerIn
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
-const { mergedSizeClass, inputColorClass, bgColorClass, disabledClass, textSizeClass } = useInputClasses(props);
+const {
+  mergedSizeClass,
+  inputColorClass,
+  bgColorClass,
+  disabledClass,
+  textSizeClass,
+  hPaddingClass,
+} = useInputClasses(props);
 const cursorClass = useCursorClass(props);
 const roundedClass = useRoundedClass(props);
 
