@@ -33,7 +33,16 @@
         @mousedown="onMouseDown"
         @keyup.tab="onKeyUp"
         v-model="enabled"
-        class="transition-all duration-100 items-center border focus:outline-none hover:ring-1 hover:ring-entity-active rounded-input focus:ring-entity-active"
+        class="
+          transition-all
+          duration-100
+          items-center
+          border
+          focus:outline-none
+          hover:ring-1 hover:ring-entity-active
+          rounded-input
+          focus:ring-entity-active
+        "
         :class="[`h-${sized} w-${sized}`, outlineClass, cursorClass, styleClass]"
       >
         <span class="flex justify-center transition-opacity p-px">
@@ -59,25 +68,25 @@ import { useCursorClass } from '../../composables/styles.js';
 import FormElementProps from '../../types/FormElementProps.ts';
 
 interface Props extends FormElementProps {
-    size?: 'xs' | 'sm' | 'md' | 'lg',
-    srLabel?: string;
-    cssClass?: String;
-    onChange?: Function;
-    labelClass?: String;
-    modelValue?: boolean;
-    transparent?: boolean;
-    reverseLabels?: boolean;
-    colorUnchecked?: boolean;
-  }
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  srLabel?: string;
+  cssClass?: String;
+  onChange?: Function;
+  labelClass?: String;
+  modelValue?: boolean;
+  transparent?: boolean;
+  reverseLabels?: boolean;
+  colorUnchecked?: boolean;
+}
 
-  const props = withDefaults(defineProps<Props>(), {
-    srLabel: 'Switch',
-    transparent: false,
-    onChange: undefined,
-    modelValue: undefined,
-    reverseLabels: false,
-    colorUnchecked: false,
-  });
+const props = withDefaults(defineProps<Props>(), {
+  srLabel: 'Switch',
+  transparent: false,
+  onChange: undefined,
+  modelValue: undefined,
+  reverseLabels: false,
+  colorUnchecked: false,
+});
 
 const { getNoWrapValue, getInputValue, registerInput, getSizeValue, getStackedValue } =
   useConcreteForms();
