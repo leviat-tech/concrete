@@ -30,6 +30,7 @@ import CNest from './components/Nest/Nest.vue';
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
+import CConfirmationModal from './components/Modal/ConfirmationModal.vue';
 import CPopupMenu from './components/PopupMenu/PopupMenu.vue'
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/Status/StatusBar.vue';
@@ -95,6 +96,7 @@ const allComponents = {
   CHeading,
   CStack,
   CNest,
+  CConfirmationModal,
 };
 
 const install = (app, userConfig = {}) => {

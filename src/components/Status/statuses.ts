@@ -1,4 +1,5 @@
 const STATUSES = {
+  ALL: 'all',
   INFO: 'info',
   MAGIC: 'magic',
   DANGER: 'danger',
