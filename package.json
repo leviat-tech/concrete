@@ -1,7 +1,11 @@
 {
   "name": "@crhio/concrete",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "src"
+  ],
   "scripts": {
     "dev": "vite",
     "dev:clean": "vite --force",
