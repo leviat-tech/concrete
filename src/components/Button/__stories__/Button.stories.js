@@ -22,7 +22,7 @@ export default {
     },
 
     color: {
-      options: ["indigo", "sky", "steel", "success", "warning", "danger"],
+      options: ["default", "brand", "info", "magic", "success", "warning", "danger"],
 
       control: {
         type: "select",
@@ -62,7 +62,7 @@ export const Overview = {
   args: {
     content: "Button",
     size: "md",
-    color: "indigo",
+    color: "brand",
     fill: "solid",
     disabled: false,
     active: false,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CIcon :size="props.size" type="information-circle" color="default" class=" text-indigo cursor-pointer" :class="size" />
+    <CIcon :size="props.size" type="information-circle" color="default" class=" text-info-700 cursor-pointer" :class="size" />
   </div>
 </template>
 

@@ -7,7 +7,7 @@
       items-center
       justify-center
       overflow-hidden
-    " :class="{ 'grid bg-gray-200': !fullWidth }" :style="{ 'grid-template-columns': colStyle }">
+    " :class="{ 'grid bg-base-200': !fullWidth }" :style="{ 'grid-template-columns': colStyle }">
     <slot />
   </div>
 </template>

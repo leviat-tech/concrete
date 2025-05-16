@@ -23,10 +23,14 @@ import CFormElement from './components/FormElement/FormElement.vue';
 import CInputAffix from './components/InputAffix/InputAffix.vue';
 import CFragment from './components/Fragment/Fragment.vue';
 import CTooltipIcon from './components/TooltipIcon/TooltipIcon.vue';
-import CStatusIndicator from './components/Status/StatusIndicator.vue'
+import CStatusIndicator from './components/Status/StatusIndicator.vue';
+import CHeading from './components/Heading/Heading.vue';
+import CStack from './components/Stack/Stack.vue';
+import CNest from './components/Nest/Nest.vue';
 
 // High Level Components
 import CModal from './components/Modal/Modal.vue';
+import CConfirmationModal from './components/Modal/ConfirmationModal.vue';
 import CPopupMenu from './components/PopupMenu/PopupMenu.vue'
 import CAccordion from './components/Accordion/Accordion.vue';
 import CStatusBar from './components/Status/StatusBar.vue';
@@ -89,6 +93,10 @@ const allComponents = {
   CPopupMenu,
   CEditableDiv,
   CAccordionWrapper,
+  CHeading,
+  CStack,
+  CNest,
+  CConfirmationModal,
 };
 
 const install = (app, userConfig = {}) => {
@@ -162,5 +170,8 @@ export {
   CStatusMessage,
   CPopupMenu,
   CEditableDiv,
-  CAccordionWrapper
+  CAccordionWrapper,
+  CHeading,
+  CStack,
+  CNest,
 };

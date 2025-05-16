@@ -20,7 +20,7 @@
         <slot />
       </c-tool-group>
     </c-toolbar>
-    <div v-if="options.length === 1" class="concrete-viewport-label text-gray-600 px-2">
+    <div v-if="options.length === 1" class="concrete-viewport-label text-base-600 px-2">
       {{ options[0].label }}
     </div>
   </div>

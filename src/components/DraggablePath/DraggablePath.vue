@@ -55,24 +55,22 @@ export default {
     strokeColor() {
       return {
         default: 'stroke-black',
-        indigo: 'stroke-indigo',
-        sky: 'stroke-sky',
-        steel: 'stroke-steel',
-        success: 'stroke-success',
-        warning: 'stroke-warning',
-        danger: 'stroke-danger',
+        info: 'stroke-status-info',
+        magic: 'stroke-status-magic',
+        success: 'stroke-status-success',
+        warning: 'stroke-status-warning',
+        danger: 'stroke-status-danger',
       }[this.color];
     },
     hoveredStrokeColor() {
       if(!this.hovered && !this.active) return this.strokeColor
       return {
         default: 'stroke-black',
-        indigo: 'stroke-indigo',
-        sky: 'stroke-sky',
-        steel: 'stroke-steel',
-        success: 'stroke-success',
-        warning: 'stroke-warning',
-        danger: 'stroke-danger',
+        info: 'stroke-status-info',
+        magic: 'stroke-status-magic',
+        success: 'stroke-status-success',
+        warning: 'stroke-status-warning',
+        danger: 'stroke-status-danger',
       }[this.color];
     },
     computedStrokeOpacity() {

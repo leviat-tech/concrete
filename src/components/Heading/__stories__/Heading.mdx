@@ -1,0 +1,31 @@
+import { Controls, Story, Canvas, Meta, Source } from '@storybook/blocks';
+import CHeading from '../Heading.vue';
+import * as HeadingStories from './Heading.stories';
+
+<Meta of={HeadingStories} />
+
+export const componentTemplate = (args) => ({
+  components: { CHeading },
+  setup() {
+    return { args };
+  },
+  data() {
+    return { value: true };
+  },
+  template:
+    '<CHeading v-bind="args"></CHeading>',
+});
+
+# Form Element
+
+<Canvas transformSnippet="open">
+  <Story of={HeadingStories.Overview} />
+</Canvas>
+
+## Overview
+
+Internal Heading component to be used individual or as part of Form Sections.
+
+## Props
+
+<Controls />
