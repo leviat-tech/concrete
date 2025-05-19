@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.35.5](https://github.com/leviat-tech/concrete/compare/v2.35.4...v2.35.5) (2025-05-19)
+
+
+### Bug Fixes
+
+* types for common components ([#335](https://github.com/leviat-tech/concrete/issues/335)) ([b0f9d2e](https://github.com/leviat-tech/concrete/commit/b0f9d2e981fe256ba8de7387a31ad92b670ffc88))
+
 ## [2.35.4](https://github.com/leviat-tech/concrete/compare/v2.35.3...v2.35.4) (2025-05-05)
 
 
