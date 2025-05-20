@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { convert, convertFromSI, convertToSI, isNumber } from '../..//utils/units';
+import { convert, convertFromSI, convertToSI, isNumber } from '../../utils/units';
 import { computed, inject, ref } from 'vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
