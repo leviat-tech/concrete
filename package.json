@@ -1,6 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "version": "2.35.5",
+  "version": "3.0.10",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "files": [
@@ -44,6 +44,7 @@
     "@storybook/vue3": "^8.2.9",
     "@storybook/vue3-vite": "^8.2.9",
     "@tailwindcss/line-clamp": "^0.4.0",
+    "@types/big.js": "^6.2.2",
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",

@@ -121,7 +121,6 @@ import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
 import FormElementProps from '../../types/FormElementProps';
 
-
 interface Props extends FormElementProps {
   // TODO what types should we accept
   modelValue?: any;
@@ -132,7 +131,7 @@ interface Props extends FormElementProps {
   transparent?: boolean;
   optionListSize?: 'auto' | 'xs' | 'sm' | 'md' | 'lg';
   optionListWidth?: 'auto' | 'full' | 'min' | 'max';
-  onChange?: () => {};
+  onChange?: (val: any) => {};
   checkEquality?: () => {};
 }
 

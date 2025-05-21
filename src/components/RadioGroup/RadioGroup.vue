@@ -27,28 +27,13 @@
         :disabled="disabled"
         :class="layoutClass"
       >
-        <RadioGroupOption
-          v-for="option in opts"
-          :key="option"
-          :value="option"
-          v-slot="{ checked }"
-        >
-          <div
-            class="flex cursor-pointer p-1 select-none"
-            :class="[optionsClass]"
-          >
-            <span
-              class="self-center grow text-right"
-              :class="[inputColorClass, labelClasses]"
-            >
+        <RadioGroupOption v-for="option in opts" :key="option" :value="option" v-slot="{ checked }">
+          <div class="flex cursor-pointer p-1 select-none" :class="[optionsClass]">
+            <span class="self-center grow text-right" :class="[inputColorClass, labelClasses]">
               {{ props.formatter ? props.formatter(option) : option }}</span
             >
             <svg
-              :class="[
-                iconSizeClass,
-                svgColour,
-                reverseLabels ? 'order-1' : '',
-              ]"
+              :class="[iconSizeClass, svgColour, reverseLabels ? 'order-1' : '']"
               class="self-center"
               viewBox="0 0 20 20"
             >
@@ -71,26 +56,28 @@
   </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { RadioGroup, RadioGroupOption } from '@headlessui/vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import { computed, ref } from 'vue';
-import { formElementProps } from '../../composables/props';
 import { useInputClasses } from '../../composables/styles';
 import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
+import FormElementProps from 'types/FormElementProps';
 
-const props = defineProps({
-  ...formElementProps,
-  modelValue: [String, Object, Array],
-  options: { type: Array },
-  formatter: { type: Function, default: null },
-  transparent: { type: Boolean, default: false },
-  columns: { type: Number, default: 0 },
-  onChange: { type: Function, default: null },
-  reverseLabels: { type: Boolean, default: false },
-  optionsClass: [String, Object, Array],
+interface Props extends FormElementProps {
+  columns?: number;
+  modelValue?: any;
+  options: Array<string>
+  reverseLabels?: boolean;
+  optionsClass?: string | object;
+  formatter?: () => {};
+  onChange?: (val: any) => void;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  columns: 0,
 });
 
 const {
@@ -128,8 +115,7 @@ registerInput(props, el);
 const stacked = getStackedValue(props.stacked);
 const wrap = !getNoWrapValue(props);
 
-const { inputColorClass, disabledClass, textSizeClass, heightClass } =
-  useInputClasses(props);
+const { inputColorClass, disabledClass, textSizeClass, heightClass } = useInputClasses(props);
 
 const iconSizeClass = size === 'xs' ? 'w-6 h-6' : heightClass;
 
@@ -141,13 +127,13 @@ const layoutClass = computed(() => {
 const colour = props.color ? props.color : 'default';
 const svgColour = computed(() => {
   return {
-      default: 'fill-base-800 stroke-base-800',
-      info: 'fill-info-500 stroke-info-500',
-      magic: 'fill-magic-500 stroke-magic-500',
-      success: 'fill-success-500 stroke-success-500',
-      warning: 'fill-warning-500 stroke-warning-500',
-      danger: 'fill-danger-500 stroke-danger-500',
-    }[colour];
+    default: 'fill-base-800 stroke-base-800',
+    info: 'fill-info-500 stroke-info-500',
+    magic: 'fill-magic-500 stroke-magic-500',
+    success: 'fill-success-500 stroke-success-500',
+    warning: 'fill-warning-500 stroke-warning-500',
+    danger: 'fill-danger-500 stroke-danger-500',
+  }[colour];
 });
 
 const labelClasses = computed(() => {

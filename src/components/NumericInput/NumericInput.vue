@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { convert, convertFromSI, convertToSI, isNumber } from '../../utils/units';
+import { AvailableUnits, convert, convertFromSI, convertToSI, isNumber } from '../../utils/units.ts';
 import { computed, inject, ref } from 'vue';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
@@ -88,7 +88,7 @@ const { decimalPrecision } = inject('concrete');
 
 interface Props extends FormElementProps {
   to?: string;
-  unit?: string;
+  unit?: AvailableUnits;
   step?: number;
   from?: string;
   maximum?: number;
