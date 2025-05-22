@@ -1,6 +1,6 @@
 {
   "name": "@crhio/concrete",
-  "version": "3.0.10",
+  "version": "2.35.6",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "files": [
