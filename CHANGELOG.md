@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.35.6](https://github.com/leviat-tech/concrete/compare/v2.35.5...v2.35.6) (2025-05-22)
+
+
+### Bug Fixes
+
+* change units extension ([#337](https://github.com/leviat-tech/concrete/issues/337)) ([d133f24](https://github.com/leviat-tech/concrete/commit/d133f2466ecabb16de632fe2172e508c4234a91f))
+* types for units ([#339](https://github.com/leviat-tech/concrete/issues/339)) ([f3fae32](https://github.com/leviat-tech/concrete/commit/f3fae3235934328df6a73ade34bc1c6b4ef16cd0))
+
 ## [2.35.5](https://github.com/leviat-tech/concrete/compare/v2.35.4...v2.35.5) (2025-05-19)
 
 
