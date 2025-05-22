@@ -6,7 +6,7 @@ export default interface FormElementProps {
     stacked?: boolean,
     label?: string,
     labelFormatter?: (val: string) => string,
-    message?: [string, Object],
+    message?: string,
     color?: 'default' | 'indigo' | 'sky' | 'steel' | 'success' | 'warning' | 'danger',
     size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl',
     prefix?: string,
