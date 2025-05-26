@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.15.5](https://github.com/leviat-tech/concrete/compare/v2.15.4...v2.15.5) (2024-01-06)
+
+
+### Features
+* add input emitter to autocomplete field
+
+
 ## [2.15.4](https://github.com/leviat-tech/concrete/compare/v2.15.3...v2.15.4) (2024-01-05)
 
 
