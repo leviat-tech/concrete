@@ -30,6 +30,7 @@
             :id="id"
             ref="inputRef"
             @change="searchValue = $event.target.value"
+            @input="onInput"
             @click="$event.target.select()"
             @blur="$emit('blur')"
             @focus="$emit('focus')"
@@ -158,7 +159,7 @@ const props = defineProps({
   onBlur: { type: Function, default: null },
 });
 
-const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur']);
+const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur', 'search']);
 
 const inputRef = ref(null);
 const stacked = useStackedValue(props.stacked);
@@ -196,6 +197,11 @@ const localOptions = computed(() => {
 });
 
 const onChange = useEventHandler('change', props, emit, localValue, isDirty);
+
+const onInput = (event) => {
+  searchValue.value = event.target.value;
+  emit('search', searchValue.value);
+};
 
 const size = useSizeValue(props.size);
 const hPaddingClass = {
