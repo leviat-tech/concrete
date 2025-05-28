@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.11](https://github.com/leviat-tech/concrete/compare/v2.35.6...v3.0.11) (2025-05-28)
+
+
+### Miscellaneous Chores
+
+* **main:** release 3.0.11 ([71280cc](https://github.com/leviat-tech/concrete/commit/71280cc9046c689bb36277fb313d67a3a15fffeb))
+
 ## [2.35.6](https://github.com/leviat-tech/concrete/compare/v2.35.5...v2.35.6) (2025-05-22)
 
 
