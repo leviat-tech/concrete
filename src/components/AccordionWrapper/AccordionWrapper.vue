@@ -19,15 +19,19 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
 
-
-const props = defineProps({
-  title: { type: String, required: true },
-  defaultOpen: { type: Boolean, default: true },
-  accordionId: { type: String, required: false },
-});
+const props = withDefaults(
+  defineProps<{
+    title: string;
+    defaultOpen?: boolean;
+    accordionId?: string;
+  }>(),
+  {
+    defaultOpen: true,
+  }
+);
 
 const dataCyTitle = props.title.trim().toLowerCase().replace(/ /g, '_');
 const dataCy = computed(() => `${dataCyTitle}__accordion_toggle`);
