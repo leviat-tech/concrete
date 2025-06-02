@@ -8,6 +8,7 @@ import type CNumericInput from './components/NumericInput/NumericInput.vue';
 import type CStatusIndicator from './components/Status/StatusIndicator.vue';
 import type CConfirmationModal from './components/Modal/ConfirmationModal.vue';
 import type CSelectFileType from './components/SelectFileType/SelectFileType.vue';
+import type CAccordionWrapper from './components/AccordionWrapper/AccordionWrapper.vue';
 
 declare module 'vue' {
   export interface GlobalComponents {
@@ -20,6 +21,7 @@ declare module 'vue' {
     CNumericInput: typeof CNumericInput;
     CSelectFileType: typeof CSelectFileType;
     CStatusIndicator: typeof CStatusIndicator;
+    CAccordionWrapper: typeof CAccordionWrapper;
     CConfirmationModal: typeof CConfirmationModal;
   }
 }
