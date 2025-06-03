@@ -180,7 +180,7 @@
             <CTextInput message="Example Message" />
             <CTextInput label="Info" color="info" message="Example Message" />
             <CTextInput label="Magic" color="magic" readOnly />
-            <CTextInput label="Success" color="success" disabled />
+            <CTextInput label="Disabled" color="success" disabled model-value="Disabled text" />
             <CTextInput label="Warning" color="warning" placeholder="Placeholder"/>
             <div class="bg-pink-300 p-8" >
               <CTextInput label="Transparent" transparent color="info"/>

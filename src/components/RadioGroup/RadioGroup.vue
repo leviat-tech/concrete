@@ -64,7 +64,7 @@ import { computed, ref } from 'vue';
 import { useInputClasses } from '../../composables/styles';
 import { useConcreteForms } from '../../composables/forms.js';
 import { useEventHandler } from '../../composables/events.js';
-import FormElementProps from 'types/FormElementProps';
+import FormElementProps from '../../types/FormElementProps';
 
 interface Props extends FormElementProps {
   columns?: number;

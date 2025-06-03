@@ -83,6 +83,6 @@ export const useInputClasses = (props) => {
     mergedSizeClass,
     inputColorClass: inputColorClass.value,
     bgColorClass: (props.transparent) ? 'bg-transparent' : 'bg-white',
-    disabledClass: computed(() => props.disabled && 'opacity-60'),
+    disabledClass: computed(() => props.disabled && 'opacity-90'),
   }
 }
