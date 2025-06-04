@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.12](https://github.com/leviat-tech/concrete/compare/v3.0.11...v3.0.12) (2025-06-04)
+
+
+### Bug Fixes
+
+* disabled state color ([#342](https://github.com/leviat-tech/concrete/issues/342)) ([9339327](https://github.com/leviat-tech/concrete/commit/933932767378732cb65309c7e350099e2a3c0e9a))
+
 ## [3.0.11](https://github.com/leviat-tech/concrete/compare/v2.35.6...v3.0.11) (2025-05-28)
 
 
