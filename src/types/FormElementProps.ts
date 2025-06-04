@@ -1,3 +1,7 @@
+export type AvailableSizes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl'
+
+export type AvailableColors = 'default' | 'indigo' | 'sky' | 'steel' | 'success' | 'warning' | 'danger'
+
 export default interface FormElementProps {
     id?: string,
     disabled?: boolean,
@@ -7,8 +11,8 @@ export default interface FormElementProps {
     label?: string,
     labelFormatter?: (val: string) => string,
     message?: string,
-    color?: 'default' | 'indigo' | 'sky' | 'steel' | 'success' | 'warning' | 'danger',
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl',
+    color?: AvailableColors,
+    size?: AvailableSizes,
     prefix?: string,
     suffix?: string,
     tooltip?: string,
