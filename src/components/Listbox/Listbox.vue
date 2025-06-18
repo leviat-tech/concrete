@@ -95,8 +95,18 @@
                   class="truncate flex items-center"
                   :class="selected ? 'font-semibold' : 'font-normal'"
                 >
-                  <slot v-if="$slots.optionPrefix" name="optionPrefix" :option="option" />
-                  {{ formatter(option.label || option.value) }}
+                  <!-- Support for custom option slot -->
+                  <slot
+                    v-if="$slots.option"
+                    name="option"
+                    :option="option"
+                    :active="active"
+                    :selected="selected"
+                  />
+                  <template v-else>
+                    <slot v-if="$slots.optionPrefix" name="optionPrefix" :option="option" />
+                    {{ formatter(option.label || option.value) }}
+                  </template>
                 </div>
               </li>
             </ListboxOption>
