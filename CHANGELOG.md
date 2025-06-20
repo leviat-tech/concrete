@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.13](https://github.com/leviat-tech/concrete/compare/v3.0.12...v3.0.13) (2025-06-20)
+
+
+### Bug Fixes
+
+* support for custom option slot in CListbox ([#344](https://github.com/leviat-tech/concrete/issues/344)) ([7efd806](https://github.com/leviat-tech/concrete/commit/7efd8067ecfbeba85db7f2b9511cbd5a6b20bf12))
+
 ## [3.0.12](https://github.com/leviat-tech/concrete/compare/v3.0.11...v3.0.12) (2025-06-04)
 
 
