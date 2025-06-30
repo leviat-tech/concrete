@@ -2,7 +2,8 @@
   <div class="border-b border-steel border-dotted mb-2">
     <CAccordion
       :default-open="defaultOpen"
-      :title="$L(title)"
+      :localized="localTitle"
+      :title="localTitle ? title : $L(title)"
       size="md"
       class="pb-2"
       transition
@@ -27,6 +28,7 @@ const props = withDefaults(
     title: string;
     defaultOpen?: boolean;
     accordionId?: string;
+    localTitle?: boolean;
   }>(),
   {
     defaultOpen: true,
