@@ -14,7 +14,7 @@ const props = withDefaults(
     isOpen: boolean;
     titleKey: string;
     bodyKey: string;
-    overrideText: string;
+    overrideText?: string;
     onConfirm: () => void;
   }>(),
   {

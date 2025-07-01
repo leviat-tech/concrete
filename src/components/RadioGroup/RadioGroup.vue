@@ -72,7 +72,7 @@ interface Props extends FormElementProps {
   options: Array<string>
   reverseLabels?: boolean;
   optionsClass?: string | object;
-  formatter?: () => {};
+  formatter?: (val: string) => void;
   onChange?: (val: any) => void;
 }
 

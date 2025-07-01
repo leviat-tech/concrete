@@ -1,7 +1,7 @@
 <template>
   <div
     class="concrete__form-element"
-    :class="{ 'flex flex-row justify-between w-full': !stacked }"
+    :class="{ 'flex flex-row justify-between w-full items-center': !stacked }"
   >
     <div
       :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, inputColorClass, disabledClass]"
