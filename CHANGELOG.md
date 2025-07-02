@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.15](https://github.com/leviat-tech/concrete/compare/v3.0.14...v3.0.15) (2025-07-02)
+
+
+### Bug Fixes
+
+* enable to disable a switch ([#349](https://github.com/leviat-tech/concrete/issues/349)) ([8e58da6](https://github.com/leviat-tech/concrete/commit/8e58da65df5397895f1370689b1ae489c1245c1e))
+
 ## [3.0.14](https://github.com/leviat-tech/concrete/compare/v3.0.13...v3.0.14) (2025-07-02)
 
 
