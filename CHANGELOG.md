@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.14](https://github.com/leviat-tech/concrete/compare/v3.0.13...v3.0.14) (2025-07-02)
+
+
+### Bug Fixes
+
+* enable localized titles to be adopted ([#346](https://github.com/leviat-tech/concrete/issues/346)) ([a303db0](https://github.com/leviat-tech/concrete/commit/a303db0e71bf2c1227080cb4b65015b72e9664af))
+
 ## [3.0.13](https://github.com/leviat-tech/concrete/compare/v3.0.12...v3.0.13) (2025-06-20)
 
 
