@@ -18,6 +18,7 @@
     <div class="concrete__switch">
       <Switch
         ref="switchRef"
+        :disabled="disabled"
         v-model="enabled"
         class="inline-flex flex-shrink-0 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
         :class="[bgColorClass, switchSizeClass]">
@@ -149,7 +150,7 @@ const checkIconClass = computed(() => {
     success: 'text-status-success',
     warning: 'text-status-warning',
     danger: 'text-status-danger',
-  }[color.value];
+  }[colour.value];
 });
 
 registerInput(props, switchRef);

@@ -82,7 +82,7 @@ import Layers from './icons/Layers.vue';
 
 import { AvailableColors, AvailableSizes } from '../../types/FormElementProps';
 
-export const icons = {
+const icons = {
   'arrow-down': ArrowDownIcon,
   'arrow-left': ArrowLeftIcon,
   'arrow-right': ArrowRightIcon,
