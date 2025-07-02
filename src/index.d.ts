@@ -1,3 +1,4 @@
+import type CIcon from './components/Icon/Icon.vue';
 import type CButton from './components/Button/Button.vue';
 import type CListbox from './components/Listbox/Listbox.vue';
 import type CCheckbox from './components/Checkbox/Checkbox.vue';
@@ -12,6 +13,7 @@ import type CAccordionWrapper from './components/AccordionWrapper/AccordionWrapp
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CIcon: typeof CIcon;
     CButton: typeof CButton;
     CListbox: typeof CListbox;
     CCheckbox: typeof CCheckbox;

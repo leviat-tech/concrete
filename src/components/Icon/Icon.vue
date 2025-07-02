@@ -1,5 +1,11 @@
-<script>
-import { h } from 'vue';
+<template>
+  <slot v-if="$slots.default" />
+
+  <component v-else :is="iconComponent" :class="classes" />
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
 
 import {
   ArrowDownIcon,
@@ -64,14 +70,8 @@ import {
   MinusCircleIcon as MinusCircleIconSolid,
   XCircleIcon as TimesCircleIconSolid,
   BoltIcon as BoltIconSolid,
-} from '@heroicons/vue/20/solid'
+} from '@heroicons/vue/20/solid';
 
-import { colorProp, useSizeProp } from '../../composables/props';
-import logger from '../../utils/logger';
-
-// TODO: add these missing icons
-// import Polygon from '../../assets/icons/polygon.svg';
-// import Pen from '../../assets/icons/pen.svg';
 import PointerOutlineIcon from './icons/PointerOutlineIcon.vue';
 import PointerSolidIcon from './icons/PointerSolidIcon.vue';
 import CompressIcon from './icons/CompressIcon.vue';
@@ -79,7 +79,8 @@ import FunctionIcon from './icons/FunctionIcon.vue';
 import RedoIcon from './icons/RedoIcon.vue';
 import UndoIcon from './icons/UndoIcon.vue';
 import Layers from './icons/Layers.vue';
-import { useConcreteForms } from '../../composables/forms';
+
+import { AvailableColors, AvailableSizes } from '../../types/FormElementProps';
 
 export const icons = {
   'arrow-down': ArrowDownIcon,
@@ -146,57 +147,53 @@ export const icons = {
   'information-circle': InformationCircleIcon,
   'information-solid': InfoCircleIconSolid,
   'question-circle': QuestionMarkCircleIcon,
-  'layers': Layers,
+  layers: Layers,
   'bolt-solid': BoltIconSolid,
 };
 
-export default {
-  name: 'CIcon',
-  props: {
-    type: String,
-    color: colorProp,
-    size: useSizeProp('3xl'),
-    spin: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  render() {
-    const icon = icons[this.type];
+const props =
+  defineProps<{
+    spin?: boolean;
+    size: AvailableSizes;
+    color?: AvailableColors;
+    type: keyof typeof icons;
+  }>();
 
-    if (!icon) {
-      logger.warn(`CIcon - invalid icon type (${this.type})`);
-      return null;
-    }
+const sizeClass = computed(() => {
+  const sizes: Record<AvailableSizes, string> = {
+    xs: 'w-3',
+    sm: 'w-4',
+    md: 'w-6',
+    lg: 'w-8',
+    xl: 'w-10',
+    '2xl': 'w-12',
+    '3xl': 'w-16',
+  };
+  return sizes[props.size];
+});
 
-    const sizes = {
-      xs: 'w-3',
-      sm: 'w-4',
-      md: 'w-6',
-      lg: 'w-8',
-      xl: 'w-10',
-      '2xl': 'w-12',
-      '3xl': 'w-16',
-    };
-    const size = this.size;
-    const sizeClass = sizes[size];
-    const colorClass = this.color && `text-${this.color}`;
-    const classes = ['flex-none', colorClass, sizeClass, 'text-sm'];
+const iconComponent = computed(() => {
+  const icon = icons[props.type];
 
-    if (this.spin) {
-      classes.push('animate-spin');
-    }
-
-    return this.$slots.default
-      ? this.$slots.default()[0]
-      : h(icon, {
-          class: classes,
-        });
-  },
-  inject: {
-    concrete: {
-      from: 'concrete'
-    }
+  if (!icon) {
+    console.warn(`CIcon - invalid icon type (${props.type})`);
   }
-};
+  return icon;
+});
+
+const classes = computed(() => {
+  const base = ['flex-none', 'text-sm'];
+  if (colorClass.value) {
+    base.push(colorClass.value);
+  }
+  if (sizeClass.value) {
+    base.push(sizeClass.value);
+  }
+  if (props.spin) {
+    base.push('animate-spin');
+  }
+  return base;
+});
+
+const colorClass = computed(() => props.color && `text-${props.color}`);
 </script>

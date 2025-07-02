@@ -99,12 +99,12 @@ interface Props extends FormElementProps {
   readOnly?: boolean;
   nullable?: boolean;
   unitSystem?: string;
-  modelValue?: number;
+  modelValue?: number | null;
   placeholder?: string;
   transparent?: boolean;
   overrideCssStyles?: string;
-  onBlur?: () => {};
-  onEnter?: () => {};
+  onBlur?: (val: number) => void;
+  onEnter?: (val: number) => void;
 }
 const props = withDefaults(defineProps<Props>(), {
   placeholder: '',
