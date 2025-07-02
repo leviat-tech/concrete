@@ -1,4 +1,5 @@
-import CIcon, { icons } from "../Icon.vue";
+import CIcon from "../Icon.vue";
+import { icons } from "../icons.js";
 
 const allIconsTemplate = (args) => ({
   components: { CIcon },

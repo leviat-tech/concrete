@@ -248,8 +248,8 @@
         <div class="grid grid-cols-2 gap-8">
           <div class="space-y-2">
             <CSwitch label="Default" v-model="checkValue" />
-            <CSwitch label="Info" color="info" v-model="checkValue" disabled="true" />
-            <CSwitch label="Magic" color="magic" v-model="checkValue" displayIcons="true" size="sm"/>
+            <CSwitch label="Info" color="info" v-model="checkValue" disabled />
+            <CSwitch label="Magic" color="magic" v-model="checkValue" displayIcons size="sm"/>
             <CSwitch label="Success" color="success" v-model="checkValue"  />
             <CSwitch label="Warning" color="warning" v-model="checkValue" />
             <CSwitch label="Danger" color="danger" v-model="checkValue" />
