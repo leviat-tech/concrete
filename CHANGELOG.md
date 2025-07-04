@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.16](https://github.com/leviat-tech/concrete/compare/v3.0.15...v3.0.16) (2025-07-04)
+
+
+### Bug Fixes
+
+* add conversion of GPa and cm4 ([#351](https://github.com/leviat-tech/concrete/issues/351)) ([88d14ff](https://github.com/leviat-tech/concrete/commit/88d14ff726953c8e6956f5011efd50ef05e9edeb))
+
 ## [3.0.15](https://github.com/leviat-tech/concrete/compare/v3.0.14...v3.0.15) (2025-07-02)
 
 
