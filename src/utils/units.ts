@@ -12,6 +12,7 @@ const conversions = {
   MN: { N: (N: Big): Big => N.div(1000000) },
   MNm: { Nm: (nm: Big): Big => nm.div(1000000) },
   MPa: { 'N/m²': (nm2: Big): Big => nm2.div(1000000) },
+  GPa: { 'N/m²': (nm2: Big): Big => nm2.div(1000000000) },
   N: {
     kN: (kN: Big): Big => kN.times(1000),
     MN: (MN: Big): Big => MN.times(1000000),
@@ -25,6 +26,7 @@ const conversions = {
   'N/m²': {
     'kN/m²': (knm2: Big): Big => knm2.times(1000),
     MPa: (mpa: Big): Big => mpa.times(1000000),
+    GPa: (gpa: Big): Big => gpa.times(1000000000),
     'kPa': (pa: Big): Big => pa.times(1000),
   },
   'N/m³': {
@@ -65,6 +67,9 @@ const conversions = {
   },
   'cm²': {
     'm²': (m2: Big): Big => m2.times(10000.0),
+  },
+  'cm⁴': {
+    'm⁴': (m4: Big): Big => m4.times(100000000.0),
   },
   deg: {
     rad: (rad: Big): Big => rad.times(180.0).div(Math.PI),
@@ -157,6 +162,7 @@ const conversions = {
   'm²': {
     'mm²': (mm2: Big): Big => mm2.div(1000000.0),
     'cm²': (cm2: Big): Big => cm2.div(10000.0),
+    'cm⁴': (cm4: Big): Big => cm4.div(100000000.0),
     'in²': (inch2: Big): Big => inch2.times(in_M).times(in_M),
     'ft²': (ft2: Big): Big => ft2.times(ft_M).times(ft_M),
   },
@@ -186,6 +192,7 @@ const unitToSIMap = {
   'MN': 'N',
   'MNm': 'Nm',
   'MPa': 'N/m²',
+  'GPa': 'N/m²',
   'N': 'N',
   'N/m': 'N/m',
   'N/mm²': 'N/m²',
@@ -199,6 +206,7 @@ const unitToSIMap = {
   'W/m*K': 'W/m*K',
   'cm': 'm',
   'cm²': 'm²',
+  'cm⁴': 'm⁴',
   'deg': 'rad',
   'ft': 'm',
   'ft²': 'm²',
