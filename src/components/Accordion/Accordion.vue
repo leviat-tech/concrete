@@ -7,21 +7,21 @@
     :defaultOpen="isOpen"
   >
     <DisclosureButton class="w-full text-left" @click="onClick()">
-      <div v-if="title" class="flex items-center" :class="{ 'border-b border-base-300' : underline}">
+      <div
+        v-if="title"
+        class="flex items-center"
+        :class="{ 'border-b border-base-300': underline }"
+      >
         <ChevronDownIcon v-if="open" :class="[iconClass, transitionClass]" class="flex-none mr-2" />
         <ChevronRightIcon v-else :class="[iconClass, transitionClass]" class="flex-none mr-2" />
-        <CHeading :size="headingSize" :title="title" />
+        <CHeading :size="headingSize" :title="title" :class="titleClass" />
       </div>
       <slot v-else name="title" :open="open" />
     </DisclosureButton>
 
-        <slot name="customTitle" v-if="$slots.customTitle" />
+    <slot name="customTitle" v-if="$slots.customTitle" />
     <DisclosurePanel static>
-      <div
-        class="relative overflow-y-auto"
-        :class="transition && transitionClass"
-        :style="styles"
-      >
+      <div class="relative overflow-y-auto" :class="transition && transitionClass" :style="styles">
         <div ref="content">
           <slot :open="open" />
         </div>
@@ -30,7 +30,7 @@
   </Disclosure>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
 import { ref, inject, reactive } from 'vue';
@@ -40,18 +40,27 @@ import { useConcreteForms } from '../../composables/forms.js';
 import { textSizeClassMap } from '../../composables/styles.js';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
 import CHeading from '../Heading/Heading.vue';
+import { AvailableSizes } from 'types/FormElementProps.js';
 
 const { accordionState } = inject('concrete', {});
 
-const props = defineProps({
-  defaultOpen: { type: Boolean, default: false },
-  transition: Boolean,
-  size: useSizeProp('lg'),
-  title: String,
-  titleClass: String,
-  accordionId: { type: String, required: false },
-  headingSize: {type: Number, default: 2 },
-  underline: { type: Boolean, default: false }
+interface Props {
+  title: string;
+  titleClass?: string;
+  headingSize?: number;
+  underline?: boolean;
+  transition?: boolean;
+  accordionId?: string;
+  defaultOpen?: boolean;
+  size?: AvailableSizes;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: 'lg',
+  headingSize: 2,
+  underline: false,
+  defaultOpen: false,
+  titleClass: 'text-sky-dark',
 });
 
 let isOpen = accordionState[props.accordionId] ?? props.defaultOpen;
@@ -89,10 +98,7 @@ const onClick = () => {
 
   if (isOpen) {
     styles.height = height.value;
-    setTimeout(
-      () => ((styles.overflow = 'visible'), (styles.height = 'auto')),
-      TRANSITION_TIME
-    );
+    setTimeout(() => ((styles.overflow = 'visible'), (styles.height = 'auto')), TRANSITION_TIME);
     emit('opened');
   } else {
     styles.overflow = 'hidden';

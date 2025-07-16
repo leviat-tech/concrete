@@ -3,6 +3,7 @@ import type CButton from './components/Button/Button.vue';
 import type CListbox from './components/Listbox/Listbox.vue';
 import type CCheckbox from './components/Checkbox/Checkbox.vue';
 import type CPopupMenu from './components/PopupMenu/PopupMenu.vue';
+import type CAccordion from './components/Accordion/Accordion.vue';
 import type CRadioGroup from './components/RadioGroup/RadioGroup.vue';
 import type CFromSection from './components/FormSection/FormSection.vue';
 import type CNumericInput from './components/NumericInput/NumericInput.vue';
@@ -17,6 +18,7 @@ declare module 'vue' {
     CButton: typeof CButton;
     CListbox: typeof CListbox;
     CCheckbox: typeof CCheckbox;
+    CAccordion: typeof CAccordion;
     CPopupMenu: typeof CPopupMenu;
     CRadioGroup: typeof CRadioGroup;
     CFormSection: typeof CFromSection;
