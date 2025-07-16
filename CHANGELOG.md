@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.17](https://github.com/leviat-tech/concrete/compare/v3.0.16...v3.0.17) (2025-07-16)
+
+
+### Bug Fixes
+
+* accordion props ([#353](https://github.com/leviat-tech/concrete/issues/353)) ([5872ef8](https://github.com/leviat-tech/concrete/commit/5872ef80e0a0e1b43f2d0637212f1557ab54c6bd))
+
 ## [3.0.16](https://github.com/leviat-tech/concrete/compare/v3.0.15...v3.0.16) (2025-07-04)
 
 
