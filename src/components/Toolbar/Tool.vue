@@ -38,7 +38,7 @@ const props = defineProps({
 
 const emit = defineEmits(['click']);
 
-const selectedTool = inject('concreteSelectedTool');
+const selectedTool = inject('concreteSelectedTool', null);
 const isActive = props.stateful ? computed(() => selectedTool.value === props.toolId) : false;
 const mousedown = ref(false);
 
