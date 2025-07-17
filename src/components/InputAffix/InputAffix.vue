@@ -1,6 +1,6 @@
 <template>
   <div class="concrete__input-affix relative inline-flex items-center px-3 border border-inherit whitespace-nowrap bg-base-100"
-       :class="[sizeClass, typeClass, userClass, roundedClass]">
+       :class="[sizeClass, typeClass, userClass, roundedClass, widthClass]">
     <slot />
   </div>
 </template>
@@ -19,6 +19,11 @@ const props = defineProps({
     default: 'prefix',
     validator: (prop) => ['prefix', 'suffix', 'other'].includes(prop),
   },
+  fixedWidth: {
+    type: String,
+    default: 'none',
+    validator: (prop) => ['none', 'xs', 'sm', 'md', 'lg', 'xl'].includes(prop),
+  }
 });
 
 const size = useConcreteForms().getSizeValue(props.size);
@@ -37,6 +42,14 @@ const sizeClass = {
   md: 'text-base',
   lg: 'text-lg',
 }[size];
+
+const widthClass = {
+  none: '',
+  xs: 'w-8',
+  sm: 'w-12',
+  md: 'w-16',
+  lg: 'w-20',
+}[props.fixedWidth];
 
 const typeClass = {
   prefix: 'border-r-0',
