@@ -31,16 +31,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref, inject, reactive } from 'vue';
+import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
-import { ref, inject, reactive } from 'vue';
-import TriangleIcon from '../Icon/icons/TriangleIcon.vue';
-import { useSizeProp } from '../../composables/props.js';
-import { useConcreteForms } from '../../composables/forms.js';
-import { textSizeClassMap } from '../../composables/styles.js';
-import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
 import CHeading from '../Heading/Heading.vue';
 import { AvailableSizes } from 'types/FormElementProps.js';
+import { useConcreteForms } from '../../composables/forms.js';
+import { textSizeClassMap } from '../../composables/styles.js';
 
 const { accordionState } = inject('concrete', {});
 

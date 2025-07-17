@@ -2,9 +2,9 @@
   <div class="">
     <div class="bg-base-50 p-16 space-y-16">
       
-      <div class="bg-white space-y-8 p-8 w-2/3">
+      <div class="bg-white space-y-8 p-8 w-full">
         <div class="font-bold text-2xl text-brand-800">Button</div>
-        <div class="grid grid-cols-5 gap-8">
+        <div class="grid grid-cols-5 gap-2">
           <div class="space-y-2">
             <CButton color="default">Solid Default</CButton>
             <CButton color="brand">Solid Brand</CButton>
@@ -13,6 +13,7 @@
             <CButton color="success">Solid Success</CButton>
             <CButton color="warning" >Solid Warning</CButton>
             <CButton color="danger" >Solid Danger</CButton>
+            <CButton color="danger" disabled>Solid Disabled</CButton>
           </div>
           <div class="space-y-2">
             <CButton color="default" fill="outline">Outline Default</CButton>
@@ -22,6 +23,8 @@
             <CButton color="success" fill="outline">Outline Success</CButton>
             <CButton color="warning" fill="outline" >Outline Warning</CButton>
             <CButton color="danger" fill="outline">Outline Danger</CButton>
+            <CButton color="danger" disabled fill="outline">Outline Disabled</CButton>
+
           </div>
           <div class="space-y-2">
             <CButton color="default" fill="ghost">Ghost Default</CButton>
@@ -30,8 +33,10 @@
             <CButton color="magic" fill="ghost">Ghost Magic</CButton>
             <CButton color="success" fill="ghost">Ghost Success</CButton>
             <CButton color="warning" fill="ghost" >Ghost Warning</CButton>
-            <CButton color="danger" fill="ghost" active>Ghost Danger</CButton>
+            <CButton color="danger" fill="ghost">Ghost Danger</CButton>
+            <CButton color="danger" disabled fill="ghost">Ghost Disabled</CButton>
           </div>
+
           <div class="space-y-2">
             <CButton size="xs">Size XS</CButton>
             <CButton size="sm">Size SM</CButton>
@@ -41,8 +46,6 @@
           <div class="space-y-2">
             <CButton color="default" fillWidth>Fill Width</CButton>
             <CButton color="default" :spinner="spinnerData">Spinner</CButton>
-            <CButton color="default" fillWidth :spinner="spinnerData">Fill Width Spinner</CButton>
-            <CButton disabled>Disabled Info</CButton>
             <CButton active>Active</CButton>
           </div>
         </div>
@@ -50,7 +53,7 @@
       
       <div class="bg-white space-y-8 p-8 w-2/3">
         <div class="font-bold text-2xl text-brand-800">Accordion</div>
-        <div class="grid grid-cols-4 gap-8">
+        <div class="grid grid-cols-4 gap-2">
           <div class="space-y-2">
             <CAccordion title="Underlined" :headingSize="4" underline>
               <CFormSection>
@@ -959,7 +962,7 @@ const messages = [
 
 const value =  ref(null);
 
-const spinnerData = { rotating: true, type: ['sync', 'sync'] };
+const spinnerData = { rotating: true, type: ['sync'] };
 
 const checkValue =  ref(false);
 const checkValue2 =  ref(true);

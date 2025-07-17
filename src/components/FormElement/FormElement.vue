@@ -4,10 +4,27 @@
     :class="{ 'flex flex-row justify-between w-full items-center': !stacked }"
   >
     <div
-      :class="[stackedClass, sizeClass, textSizeClass, labelOrderClass, inputColorClass, disabledClass]"
+      :class="[
+        stackedClass,
+        sizeClass,
+        textSizeClass,
+        labelOrderClass,
+        inputColorClass,
+        disabledClass,
+      ]"
       v-if="label || props.tooltip"
     >
-      <div class="flex" :class="[{ 'justify-between' : stacked, 'text-right' : !stacked, 'flex-row-reverse' : !stacked && props.tooltip }, labelWidthClass]">
+      <div
+        class="flex"
+        :class="[
+          {
+            'justify-between': stacked,
+            'text-right': !stacked,
+            'flex-row-reverse': !stacked && props.tooltip,
+          },
+          labelWidthClass,
+        ]"
+      >
         <label
           class="leading-5 w-full"
           :class="[lineClampClass, labelClass]"
@@ -15,7 +32,12 @@
           @mousedown="props.onMouseDown?.()"
           v-html="label"
         />
-        <CTooltipIcon v-if="props.tooltip" :class="{ 'pr-2' : !stacked }" :size="size" v-tooltip="props.tooltip" />
+        <CTooltipIcon
+          v-if="props.tooltip"
+          :class="{ 'pr-2': !stacked }"
+          :size="size"
+          v-tooltip="props.tooltip"
+        />
       </div>
     </div>
     <div :class="{ 'w-full': expandInput }">
@@ -30,38 +52,29 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, provide } from 'vue';
-import { colorProp, useSizeProp } from '../../composables/props';
+
+import FormElementProps from 'types/FormElementProps';
 import { useConcreteForms } from '../../composables/forms';
 import { useInputClasses } from '../../composables/styles';
 
-const props = defineProps({
-  id: String,
-  label: String,
-  labelFormatter: Function,
-  message: String,
-  stacked: { type: Boolean },
-  expandInput: { type: Boolean, default: true },
-  color: colorProp,
-  disabled: { type: Boolean, default: false },
-  size: useSizeProp(),
-  noLabel: { type: Boolean },
-  labelOrder: { type: Number },
-  labelClass: String,
-  tooltip: String,
-  onMouseDown: Function,
-  labelWidth: String,
-  hasMultipleInputs: { type: Boolean, default: false },
+interface Props extends FormElementProps {
+  labelOrder: number;
+  labelWidth: string;
+  labelClass: string;
+  expandInput: boolean;
+  onMouseDown: () => void;
+  hasMultipleInputs: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  expandInput: true,
+  hasMultipleInputs: false,
 });
 
-const {
-  getFormLabel,
-  getSizeValue,
-  getStackedValue,
-  getInputStatus,
-  getLabelWidthValue,
-} = useConcreteForms();
+const { getFormLabel, getSizeValue, getStackedValue, getInputStatus, getLabelWidthValue } =
+  useConcreteForms();
 
 const LABEL_ORDER_CLASSES = {
   [0]: 'order-0 !basis-auto',
@@ -87,7 +100,6 @@ const lineClampClass = {
   lg: 'line-clamp-2',
   stacked: 'py-0.5 align-baseline',
 }[sizeCheck];
-
 
 const widthCheck = stacked ? 'stacked' : labelWidth;
 const labelWidthClass = {
@@ -115,7 +127,7 @@ const messageClass = computed(() => {
 });
 
 const stackedClass = computed(() => {
-  if(stacked) {
+  if (stacked) {
     return 'mb-1 truncate flex justify-between';
   }
   return 'flex flex-col justify-center pr-4';

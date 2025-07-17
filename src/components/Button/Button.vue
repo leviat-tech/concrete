@@ -1,7 +1,15 @@
 <template>
   <button
     :id="id"
-    :class="[...flexClass, sizeClass, colorClass, cursorClass, paddingClass, fillWidthClass]"
+    :class="[
+      ...flexClass,
+      sizeClass,
+      colorClass,
+      cursorClass,
+      paddingClass,
+      fillWidthClass,
+      { 'opacity-50': disabled },
+    ]"
     :disabled="disabled || spinner?.rotating"
     @click="$emit('click', $event)"
     class="concrete__button"
@@ -13,14 +21,18 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+
+import CIcon from '../Icon/Icon.vue';
+import { icons } from 'components/Icon/icons.js';
+import FormElementProps from '../../types/FormElementProps';
 import { useConcreteForms } from '../../composables/forms';
 import { useCursorClass } from '../../composables/styles.js';
-import CIcon from '../Icon/Icon.vue';
-import FormElementProps from '../../types/FormElementProps';
+
+type IconType = keyof typeof icons;
 
 interface Props extends FormElementProps {
   spinner?: {
-    type: string;
+    type: IconType[];
     rotating: boolean;
   };
   active?: boolean;
