@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.18](https://github.com/leviat-tech/concrete/compare/v3.0.17...v3.0.18) (2025-07-18)
+
+
+### Bug Fixes
+
+* add fixed width option to input affix and pass default value to inject in tool ([76e18d1](https://github.com/leviat-tech/concrete/commit/76e18d1c71d1cc8c7016a97818056af4819a9bef))
+* disabled state ([#357](https://github.com/leviat-tech/concrete/issues/357)) ([56f87dc](https://github.com/leviat-tech/concrete/commit/56f87dc3993de856120bd2ca64bccbde7af12d30))
+
 ## [3.0.17](https://github.com/leviat-tech/concrete/compare/v3.0.16...v3.0.17) (2025-07-16)
 
 
