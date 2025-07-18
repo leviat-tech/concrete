@@ -7,6 +7,8 @@ const lbfin_Nm = 0.1129848290276167;
 const lbfft_Nm = 1.355818;
 const kipin_Nm = 112.984829;
 const kipft_Nm = 1355.817948;
+const kg_N = 9.80665;
+
 
 const conversions = {
   MN: { N: (N: Big): Big => N.div(1000000) },
@@ -18,6 +20,7 @@ const conversions = {
     MN: (MN: Big): Big => MN.times(1000000),
     lbf: (lbf: Big): Big => lbf.times(lbf_N),
     kip: (kip: Big): Big => kip.times(lbf_N).times(1000),
+    kg: (kg: Big): Big => kg.times(kg_N),
   },
   'N/m': {
     'kN/m': (knm: Big): Big => knm.times(1000),
@@ -32,6 +35,7 @@ const conversions = {
   'N/m³': {
     'kN/m³': (knm3: Big): Big => knm3.times(1000),
     'N/mm³': (knm3: Big): Big => knm3.div(1000000000),
+    'kg/m³': (kgm3: Big): Big => kgm3.times(kg_N),
   },
   'N/mm²': {
     'N/m²': (nm2: Big): Big => nm2.times(1000000),
