@@ -5,6 +5,7 @@ import type CCheckbox from './components/Checkbox/Checkbox.vue';
 import type CPopupMenu from './components/PopupMenu/PopupMenu.vue';
 import type CAccordion from './components/Accordion/Accordion.vue';
 import type CRadioGroup from './components/RadioGroup/RadioGroup.vue';
+import type CFromElement from './components/FormElement/FormElement.vue';
 import type CFromSection from './components/FormSection/FormSection.vue';
 import type CNumericInput from './components/NumericInput/NumericInput.vue';
 import type CStatusIndicator from './components/Status/StatusIndicator.vue';
@@ -21,6 +22,7 @@ declare module 'vue' {
     CAccordion: typeof CAccordion;
     CPopupMenu: typeof CPopupMenu;
     CRadioGroup: typeof CRadioGroup;
+    CFromElement: typeof CFromElement;
     CFormSection: typeof CFromSection;
     CNumericInput: typeof CNumericInput;
     CSelectFileType: typeof CSelectFileType;

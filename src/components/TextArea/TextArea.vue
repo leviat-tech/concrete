@@ -17,7 +17,7 @@
   >
     <div class="flex w-full" :class="[colorClass, disabledClass]">
       <CInputAffix v-if="prefix" type="prefix" v-html="prefix" />
-      <slot name="prefix" class="z-10"/>
+      <slot name="prefix" class="z-10" />
       <textarea
         ref="inputRef"
         :id="id"
@@ -25,7 +25,15 @@
         v-model="value"
         type="text"
         class="h-auto"
-        :class="[localInputStaticClasses, mergedSizeClass, paddingYClass, inputColorClass, disabledClass, cursorClass, bgColorClass]"
+        :class="[
+          localInputStaticClasses,
+          mergedSizeClass,
+          paddingYClass,
+          inputColorClass,
+          disabledClass,
+          cursorClass,
+          bgColorClass,
+        ]"
         :placeholder="placeholder"
         :disabled="disabled"
         :readonly="readOnly"
@@ -33,54 +41,42 @@
         @blur="onBlur"
       />
       <CInputAffix v-if="suffix" type="suffix" v-html="suffix" />
-      <slot name="suffix" class="z-10"/>
+      <slot name="suffix" class="z-10" />
     </div>
   </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue';
-import {
-  colorProp,
-  formElementProps,
-  useSizeProp,
-} from '../../composables/props.js';
-import { useConcreteForms } from '../../composables/forms';
 
 import {
   useInputColorClassValue,
   useInputClasses,
-  useCursorClass
+  useCursorClass,
 } from '../../composables/styles.js';
-import { useEventHandler } from '../../composables/events.js';
-import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
-import CInputAffix from '../InputAffix/InputAffix.vue';
+import FormElementProps from 'types/FormElementProps.js';
+import CFormElement from '../FormElement/FormElement.vue';
+import { useConcreteForms } from '../../composables/forms';
+import { useEventHandler } from '../../composables/events.js';
 
-const props = defineProps({
-  ...formElementProps,
+interface Props extends FormElementProps {
+  rows: number;
+  modelValue?: any;
+  readOnly: boolean;
+  placeholder: string;
+  onEnter: (val: string) => void;
+  onBlur: (val: string) => void;
+}
 
-  id: { type: String, default: null },
-  modelValue: String,
-  color: colorProp,
-  size: useSizeProp(),
-  disabled: { type: Boolean, default: false },
-  readOnly: { type: Boolean, default: false },
-  placeholder: { type: String, default: '' },
-  transparent: { type: Boolean, default: false },
-
-  onEnter: { type: Function, default: null },
-  onBlur: { type: Function, default: null },
-  rows: { type: Number, default: 4 },
+const props = withDefaults(defineProps<Props>(), {
+  rows: 4,
+  readOnly: false,
+  placeholder: '',
 });
 
-const {
-  getStackedValue,
-  getNoWrapValue,
-  registerInput,
-  getInputValue,
-  getSizeValue
-} = useConcreteForms();
+const { getStackedValue, getNoWrapValue, registerInput, getInputValue, getSizeValue } =
+  useConcreteForms();
 
 const emit = defineEmits(['update:modelValue', 'enter', 'blur']);
 
@@ -89,16 +85,11 @@ const wrap = !getNoWrapValue(props);
 const isDirty = ref(false);
 const localValue = ref('');
 
-const {
-  mergedSizeClass,
-  inputColorClass,
-  bgColorClass,
-  disabledClass,
-} = useInputClasses(props);
+const { mergedSizeClass, inputColorClass, bgColorClass, disabledClass } = useInputClasses(props);
 const cursorClass = useCursorClass(props);
 const colorClass = useInputColorClassValue(props);
-const localInputStaticClasses = 'block z-20 w-full border font-normal text-left focus:outline-none focus:ring-1 focus:border-brand-700 hover:border-base-600 rounded-input';
-
+const localInputStaticClasses =
+  'block z-20 w-full border font-normal text-left focus:outline-none focus:ring-1 focus:border-brand-700 hover:border-base-600 rounded-input';
 
 const value = computed({
   get() {
@@ -127,7 +118,7 @@ const blur = () => inputRef.value.blur();
 const focus = () => inputRef.value.focus();
 const select = () => inputRef.value.select();
 
-defineExpose({ focus, blur, select});
+defineExpose({ focus, blur, select });
 
 registerInput(props, inputRef);
 </script>
