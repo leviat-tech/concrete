@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.19](https://github.com/leviat-tech/concrete/compare/v3.0.18...v3.0.19) (2025-07-18)
+
+
+### Bug Fixes
+
+* version ([#358](https://github.com/leviat-tech/concrete/issues/358)) ([a0eaae3](https://github.com/leviat-tech/concrete/commit/a0eaae3f80b90debc1992abacf6457be3e33bbc9))
+
 ## [3.0.18](https://github.com/leviat-tech/concrete/compare/v3.0.17...v3.0.18) (2025-07-18)
 
 
