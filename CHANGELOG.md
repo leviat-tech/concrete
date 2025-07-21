@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/leviat-tech/concrete/compare/v3.0.19...v3.1.0) (2025-07-21)
+
+
+### Features
+
+* add kg to N conversion ([c2e18a3](https://github.com/leviat-tech/concrete/commit/c2e18a301a7bdf848920e657572e605db391e840))
+
 ## [3.0.19](https://github.com/leviat-tech/concrete/compare/v3.0.18...v3.0.19) (2025-07-18)
 
 
