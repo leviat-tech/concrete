@@ -62,7 +62,7 @@
   </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue';
 import { formElementProps } from '../../composables/props.js';
 import {
@@ -76,17 +76,25 @@ import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
+import FormElementProps from 'types/FormElementProps.js';
+import { AvailableUnits } from 'utils/units.js';
 
-const props = defineProps({
-  ...formElementProps,
-  modelValue: String,
-  readOnly: { type: Boolean, default: false },
-  placeholder: { type: String, default: '' },
-  transparent: { type: Boolean, default: false },
-  onEnter: { type: Function, default: null },
-  onBlur: { type: Function, default: null },
-  overrideCssStyles: { type: String },
-  unit: String,
+interface Props extends FormElementProps {
+  to?: string;
+  noUnits?: boolean;
+  readOnly?: boolean;
+  modelValue?: string;
+  placeholder?: string;
+  unit?: AvailableUnits;
+  transparent?: boolean;
+  overrideCssStyles?: string;
+  onBlur?: (val: string) => void;
+  onEnter?: (val: string) => void;
+}
+const props = withDefaults(defineProps<Props>(), {
+  readOnly: false,
+  placeholder: '',
+  transparent: false,
 });
 
 const { getSizeValue, getStackedValue, getNoWrapValue, getInputValue, registerInput } =

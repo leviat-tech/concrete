@@ -70,7 +70,7 @@ import FormElementProps from '../../types/FormElementProps';
 interface Props extends FormElementProps {
   columns?: number;
   modelValue?: any;
-  options: Array<string>;
+  options?: Array<string>;
   reverseLabels?: boolean;
   optionsClass?: string | object;
   formatter?: (val: string) => void;

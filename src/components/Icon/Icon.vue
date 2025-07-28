@@ -11,13 +11,18 @@ import { icons } from './icons';
 
 import { AvailableColors, AvailableSizes } from '../../types/FormElementProps';
 
-const props =
+const props = withDefaults(
   defineProps<{
     spin?: boolean;
-    size: AvailableSizes;
+    size?: AvailableSizes;
     color?: AvailableColors;
     type: keyof typeof icons;
-  }>();
+  }>(),
+  {
+    size: 'md',
+    color: 'default',
+  }
+);
 
 const sizeClass = computed(() => {
   const sizes: Record<AvailableSizes, string> = {

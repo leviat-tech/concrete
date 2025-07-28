@@ -43,7 +43,7 @@ import { textSizeClassMap } from '../../composables/styles.js';
 const { accordionState } = inject('concrete', {});
 
 interface Props {
-  title: string;
+  title?: string;
   titleClass?: string;
   headingSize?: number;
   underline?: boolean;
