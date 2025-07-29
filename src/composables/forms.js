@@ -1,10 +1,11 @@
-import { useConcrete } from './concrete';
 import { computed, inject, onMounted, onUnmounted, watch } from 'vue';
+
+import { useConcrete } from './concrete';
 import logger from '../utils/logger.js';
 
 function getInputElementFromRef(inputRef) {
   const input = inputRef.value;
-  const el = (input instanceof HTMLElement) ? input : input.el;
+  const el = input instanceof HTMLElement ? input : input.el;
   if (!(el instanceof HTMLElement)) {
     logger.warn('Could not register input');
   }
@@ -13,16 +14,17 @@ function getInputElementFromRef(inputRef) {
 
 export const useConcreteForms = () => {
   const concrete = useConcrete();
-  
+
   return {
     getFormLabel: (props) => {
-      const noLabel = ( props.noLabel || (!props.id && !props.label) );
+      const noLabel = props.noLabel || (!props.id && !props.label);
       const formSection = inject('form-section', { size: null });
-      const formatter = props.labelFormatter || formSection.labelFormatter || concrete.labelFormatter;
-      return (!noLabel) ? formatter(props) : null;
+      const formatter =
+        props.labelFormatter || formSection.labelFormatter || concrete.labelFormatter;
+      return !noLabel ? formatter(props) : null;
     },
     getNoWrapValue: (props) => {
-      return (props.noWrap || !concrete.wrapFormInputs);
+      return props.noWrap || !concrete.wrapFormInputs;
     },
     getSizeValue: (sizeProp) => {
       const formSection = inject('form-section', { size: null });
@@ -32,7 +34,13 @@ export const useConcreteForms = () => {
     getLabelWidthValue: (labelWidthProp) => {
       const formSection = inject('form-section', { labelWidth: null });
       const formElement = inject('form-element', { labelWidth: null });
-      return labelWidthProp || formElement.labelWidth || formSection.labelWidth || concrete.labelWidth || 'md';
+      return (
+        labelWidthProp ||
+        formElement.labelWidth ||
+        formSection.labelWidth ||
+        concrete.labelWidth ||
+        'md'
+      );
     },
     getStackedValue: (stackedProp) => {
       const formSection = inject('form-section', { stacked: null });
@@ -42,13 +50,13 @@ export const useConcreteForms = () => {
     getInputValue: (props) => {
       const { inputIdToValue } = concrete;
       if (props.modelValue !== undefined || !props.id || !inputIdToValue) return props.modelValue;
-      return inputIdToValue(props.id)
+      return inputIdToValue(props.id);
     },
     registerInput: (props, inputRef) => {
       const { id } = props;
       const { registerInputs, registeredInputs } = concrete;
       if (!id || !inputRef || !registerInputs) return;
-      const isCustomHandler = (typeof registerInputs === 'function');
+      const isCustomHandler = typeof registerInputs === 'function';
       let currentId = id;
       let unregisterInput;
 
@@ -79,9 +87,9 @@ export const useConcreteForms = () => {
           }
 
           delete registeredInputs[prevId];
-          registeredInputs[nextId] = el
+          registeredInputs[nextId] = el;
         }
-      )
+      );
 
       onUnmounted(() => {
         if (isCustomHandler) {
@@ -97,7 +105,7 @@ export const useConcreteForms = () => {
         info: 'default',
         warning: 'warning',
         error: 'danger',
-      }
+      };
 
       return computed(() => {
         const defaultStatus = { color: props.color || 'default' };
@@ -125,7 +133,7 @@ export const useConcreteForms = () => {
           const color = type ? colorTypeMap[type] : colorTypeMap.error;
           return { message, color: props.color || color };
         }
-      })
+      });
     },
     getInputIdToOptions: (props) => {
       if (props.options?.length) return props.options;
@@ -136,5 +144,5 @@ export const useConcreteForms = () => {
     getDefaultSpinner: () => {
       return concrete.defaultSpinner;
     },
-  }
-}
+  };
+};

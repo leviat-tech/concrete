@@ -55,17 +55,17 @@
 <script setup lang="ts">
 import { computed, provide } from 'vue';
 
-import FormElementProps from 'types/FormElementProps';
+import FormElementProps from '../../types/FormElementProps';
 import { useConcreteForms } from '../../composables/forms';
 import { useInputClasses } from '../../composables/styles';
 
 interface Props extends FormElementProps {
-  labelOrder: number;
-  labelWidth: string;
-  labelClass: string;
-  expandInput: boolean;
-  onMouseDown: () => void;
-  hasMultipleInputs: boolean;
+  labelOrder?: number;
+  labelWidth?: string;
+  labelClass?: string;
+  expandInput?: boolean;
+  onMouseDown?: () => void;
+  hasMultipleInputs?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
