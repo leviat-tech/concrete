@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/leviat-tech/concrete/compare/v3.1.0...v3.1.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* LA warnings ([#362](https://github.com/leviat-tech/concrete/issues/362)) ([ab5baf6](https://github.com/leviat-tech/concrete/commit/ab5baf63b4c1f195352942ec8fd21a3638e27262))
+
 ## [3.1.0](https://github.com/leviat-tech/concrete/compare/v3.0.19...v3.1.0) (2025-07-21)
 
 
