@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.2](https://github.com/leviat-tech/concrete/compare/v3.1.1...v3.1.2) (2025-09-08)
+
+
+### Bug Fixes
+
+* update viewport container ([#364](https://github.com/leviat-tech/concrete/issues/364)) ([d6b4878](https://github.com/leviat-tech/concrete/commit/d6b4878c5b30366f2a445a420b64ee579098d506))
+
 ## [3.1.1](https://github.com/leviat-tech/concrete/compare/v3.1.0...v3.1.1) (2025-07-29)
 
 
