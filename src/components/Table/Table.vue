@@ -4,11 +4,7 @@
       <tbody>
         <tr class="text-left border-b text-xs text-base-600">
           <th v-if="$slots.prepend" :class="prependClass" />
-          <th
-            v-for="col in columns"
-            :key="col.id"
-            :class="headerClass || 'pb-3 pl-1'"
-          >
+          <th v-for="col in columns" :key="col.id" :class="headerClass || 'pb-3 pl-1'">
             <span
               :class="{ 'cursor-pointer': col.sortable }"
               @click="() => col.sortable && toggleSort(col.id)"
@@ -42,12 +38,8 @@
           <td v-if="$slots.prepend">
             <slot name="prepend" v-bind="row" />
           </td>
-  
-          <td
-            v-for="(col, j) in columns"
-            :class="cellClass || 'py-3 px-2'"
-            :key="`col${j}`"
-          >
+
+          <td v-for="(col, j) in columns" :class="cellClass || 'py-3 px-2'" :key="`col${j}`">
             <slot
               :name="col.id"
               :value="editingRow?._index === i ? editingRow[col.id] : row[col.id]"
@@ -59,7 +51,7 @@
               {{ col?.formatter?.(row[col.id], row) || get(row, col.id) }}
             </slot>
           </td>
-  
+
           <td v-if="editingRow?._index === i">
             <span class="cursor-pointer" @click.stop="saveEdit">
               <c-icon type="save" size="sm" />
@@ -70,13 +62,13 @@
               <c-icon type="edit" size="sm" />
             </span>
           </td>
-  
+
           <td v-if="editingRow?._index === i">
             <span class="cursor-pointer" @click.stop="editingRow = null">
               <c-icon type="cancel" size="sm" />
             </span>
           </td>
-  
+
           <td v-else-if="attrs.onDelete">
             <div class="flex items-center">
               <span class="cursor-pointer" @click.stop="emit('delete', row)">
@@ -84,7 +76,7 @@
               </span>
             </div>
           </td>
-  
+
           <td v-if="$slots.append">
             <slot name="append" v-bind="row" />
           </td>
@@ -92,7 +84,7 @@
 
         <tr v-if="addingRow" class="border-b bg-base-100">
           <td v-if="$slots.prepend" />
-  
+
           <td v-for="(col, j) in columns" :key="`col${j}`" class="py-3 pl-1">
             <slot
               :name="col.id"
@@ -114,7 +106,6 @@
             </span>
           </td>
         </tr>
-
       </tbody>
     </table>
     <div
@@ -137,28 +128,33 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { omit, orderBy, get, startCase } from 'lodash-es';
 import { ref, computed, watch, useAttrs } from 'vue';
 import CIcon from '../Icon/Icon.vue';
 import CPagination from './Pagination.vue';
 
 // TODO: add priority when sorting w/ multiple columns
-const props = defineProps({
-  rows: Array,
-  columns: Array,
-  server: Boolean,
-  resultCount: Number, // only needed for server side
-  pageNumber: Number, // only needed for server side
-  sort: Object, // only needed for server side
-  pageLimit: Number,
-  prependClass: String,
-  appendClass: String,
-  rowClass: String,
-  cellClass: String,
-  headerClass: String,
-  tableClass: String,
-});
+const props = withDefaults(
+  defineProps<{
+    rows?: any[];
+    sort?: any;
+    columns?: Array<{ id: string; label: string }>;
+    server?: boolean;
+    rowClass?: string;
+    pageLimit?: number;
+    cellClass?: string;
+    pageNumber?: number;
+    tableClass?: string;
+    resultCount?: number;
+    headerClass?: string;
+    appendClass?: string;
+    prependClass?: string;
+  }>(),
+  {
+    server: false,
+  }
+);
 
 const emit = defineEmits(['change', 'click']);
 const attrs = useAttrs();
@@ -194,17 +190,11 @@ function saveAdd() {
 }
 
 const _columns = computed(() => {
-  return props.columns.map((col) =>
-    typeof col === 'string' ? { id: col } : col
-  );
+  return props.columns.map((col) => (typeof col === 'string' ? { id: col } : col));
 });
 
 const localSort = ref(
-  props.sort ||
-    _columns.value.reduce(
-      (acc, col) => ({ ...acc, [col.id]: col.defaultSort }),
-      {}
-    )
+  props.sort || _columns.value.reduce((acc, col) => ({ ...acc, [col.id]: col.defaultSort }), {})
 );
 
 watch(
@@ -239,9 +229,7 @@ const _rows = computed(() => {
   if (props.server) {
     return props.rows;
   }
-  const sortColIds = _columns.value
-    .filter((col) => localSort.value[col.id])
-    .map((col) => col.id);
+  const sortColIds = _columns.value.filter((col) => localSort.value[col.id]).map((col) => col.id);
 
   const sortOrders = sortColIds.map((colId) => localSort.value[colId]);
   const sorted = orderBy(props.rows, sortColIds, sortOrders);
