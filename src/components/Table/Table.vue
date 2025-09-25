@@ -139,7 +139,7 @@ const props = withDefaults(
   defineProps<{
     rows?: any[];
     sort?: any;
-    columns?: Array<{ id: string; label: string }> | Array<string>;
+    columns?: Array<{ id: string; label?: string }> | Array<string>;
     server?: boolean;
     rowClass?: string;
     pageLimit?: number;
