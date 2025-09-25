@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.1.3](https://github.com/leviat-tech/concrete/compare/v3.1.2...v3.1.3) (2025-09-25)
+
+
+### Bug Fixes
+
+* CTable props ([2232a66](https://github.com/leviat-tech/concrete/commit/2232a66df8ac5a87de0cd32581a341adda1deb1c))
+* pr comment ([1bbe85f](https://github.com/leviat-tech/concrete/commit/1bbe85f19030a9251ae89d6f6dae1d97d1062c9f))
+
 ## [3.1.2](https://github.com/leviat-tech/concrete/compare/v3.1.1...v3.1.2) (2025-09-08)
 
 
