@@ -33,6 +33,7 @@
             @click="$event.target.select()"
             @blur="$emit('blur')"
             @focus="$emit('focus')"
+            @input="onInput"
             :disabled="disabled"
             :placeholder="placeholder"
             :class="[
@@ -162,7 +163,7 @@ const {
   getStackedValue,
 } = useConcreteForms();
 
-const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur']);
+const emit = defineEmits(['update:modelValue', 'change', 'focus', 'blur', 'search']);
 
 const inputRef = ref(null);
 const stacked = getStackedValue(props.stacked);
@@ -192,6 +193,11 @@ const displayValue = computed({
     onChange();
   },
 });
+
+const onInput = (event) => {
+  searchValue.value = event.target.value;
+  emit('search', searchValue.value);
+};
 
 const localOptions = computed(() => {
   return props.options.map((o) => {
