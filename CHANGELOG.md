@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.4](https://github.com/leviat-tech/concrete/compare/v3.1.3...v3.1.4) (2025-10-02)
+
+
+### Bug Fixes
+
+* issue with autocomplete input not triggering API calls on when typing ([#368](https://github.com/leviat-tech/concrete/issues/368)) ([5d38fa5](https://github.com/leviat-tech/concrete/commit/5d38fa565c09d73f5473552bb443203b493b1006))
+
 ## [3.1.3](https://github.com/leviat-tech/concrete/compare/v3.1.2...v3.1.3) (2025-09-25)
 
 
