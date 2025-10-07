@@ -73,7 +73,7 @@
             focus:outline-none
             sm:text-sm
           "
-          :class="open ? 'z-30' : 'z-10'"
+          :class="open ? 'z-40' : 'z-10'"
           >
             <div
               v-if="filteredOptions.length === 0 && searchValue !== ''"
