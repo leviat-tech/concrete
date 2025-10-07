@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.5](https://github.com/leviat-tech/concrete/compare/v3.1.4...v3.1.5) (2025-10-07)
+
+
+### Bug Fixes
+
+* autocomplete z-index ([#370](https://github.com/leviat-tech/concrete/issues/370)) ([7ee1164](https://github.com/leviat-tech/concrete/commit/7ee1164a06dcc2cd6a3e4af2ba5d6fce9c59af3c))
+
 ## [3.1.4](https://github.com/leviat-tech/concrete/compare/v3.1.3...v3.1.4) (2025-10-02)
 
 
