@@ -17,9 +17,9 @@
 import { computed, inject, ref } from 'vue';
 
 import CIcon from '../Icon/Icon.vue';
-import { icons } from 'components/Icon/icons.js';
+import { icons } from '../../components/Icon/icons.js';
 import { useConcreteForms } from '../../composables/forms';
-import { AvailableColors, AvailableSizes } from 'types/FormElementProps.js';
+import { AvailableColors, AvailableSizes } from '../../types/FormElementProps.js';
 
 interface Props {
   name?: string;
