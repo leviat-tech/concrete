@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.6](https://github.com/leviat-tech/concrete/compare/v3.1.5...v3.1.6) (2025-10-29)
+
+
+### Bug Fixes
+
+* space ([#373](https://github.com/leviat-tech/concrete/issues/373)) ([dd77d3e](https://github.com/leviat-tech/concrete/commit/dd77d3ef27368aae20916e1c39cf7e240bf89c20))
+
 ## [3.1.5](https://github.com/leviat-tech/concrete/compare/v3.1.4...v3.1.5) (2025-10-07)
 
 
