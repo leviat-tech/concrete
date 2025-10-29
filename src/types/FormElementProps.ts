@@ -16,4 +16,5 @@ export default interface FormElementProps {
     prefix?: string,
     suffix?: string,
     tooltip?: string,
+    overrideCssStyles?: string
 }

@@ -45,6 +45,7 @@
     "@storybook/vue3-vite": "^8.2.9",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@types/big.js": "^6.2.2",
+    "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",

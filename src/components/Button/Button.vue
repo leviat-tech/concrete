@@ -23,7 +23,7 @@
 import { computed } from 'vue';
 
 import CIcon from '../Icon/Icon.vue';
-import { icons } from 'components/Icon/icons.js';
+import { icons } from '../../components/Icon/icons.js';
 import FormElementProps from '../../types/FormElementProps';
 import { useConcreteForms } from '../../composables/forms';
 import { useCursorClass } from '../../composables/styles.js';
@@ -166,7 +166,7 @@ const color = computed(() => (!props.color || props.color === 'default' ? 'base'
 const colorClass = computed(() => {
   const c = color.value;
   let className = '';
-  const disabledClass = 'opacity-50';
+  const disabledClass = 'opacity-50 rounded-button ';
   if (props.fill === 'solid') {
     className += classMap.solid;
     className += props.disabled ? disabledClass : classMap[`solid-${c}-enabled`];

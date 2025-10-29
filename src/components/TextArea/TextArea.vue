@@ -55,7 +55,7 @@ import {
   useCursorClass,
 } from '../../composables/styles.js';
 import CFragment from '../Fragment/Fragment.vue';
-import FormElementProps from 'types/FormElementProps.js';
+import FormElementProps from '../../types/FormElementProps';
 import CFormElement from '../FormElement/FormElement.vue';
 import { useConcreteForms } from '../../composables/forms';
 import { useEventHandler } from '../../composables/events.js';
