@@ -33,16 +33,16 @@
               :class="[
                 inputStaticClasses,
                 bgColorClass,
-                inputColorClass,
                 mergedSizeClass,
                 cursorClass,
                 roundedClass,
+                'border-base-500',
                 open && 'border-entity-active',
               ]"
               class="!flex items-center pr-8"
             >
               <slot name="buttonPrefix" />
-              <span class="block-truncate" :class="selectedLabel || 'text-base-400'">
+              <span class="block-truncate" :class="selectedLabel">
                 {{ selectedLabel || placeholder }}
               </span>
 
@@ -67,14 +67,13 @@
               duration-100
               absolute
               z-30
-              w-full
               bg-white
               shadow-lg shadow-base-600
               ring-1 ring-base-300
               overflow-y-auto
               rounded-input
             "
-            :class="[optionsSizeClass, maxOptionsHeightClass, getOptionsClass()]"
+            :class="[optionsSizeClass, maxOptionsHeightClass, getOptionsClass(), optionListWidth]"
           >
             <ListboxOption
               as="template"
@@ -82,6 +81,7 @@
               :key="option.value"
               :value="option.value"
               :disabled="option.disabled"
+              :class="option.class"
               v-slot="{ active, selected }"
             >
               <li
@@ -118,39 +118,46 @@
 </template>
 
 <script setup lang="ts">
-import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/24/solid';
 import { computed, ref } from 'vue';
 import { isPlainObject, isEqual } from 'lodash-es';
-import { formElementProps } from '../../composables/props.js';
-import { inputStaticClasses, useInputClasses, useRoundedClass } from '../../composables/styles.js';
-import { useConcreteForms } from '../../composables/forms.js';
-import { useEventHandler } from '../../composables/events.js';
-import CFormElement from '../FormElement/FormElement.vue';
+import { ChevronUpDownIcon } from '@heroicons/vue/24/solid';
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue';
+
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
+import CFormElement from '../FormElement/FormElement.vue';
 import FormElementProps from '../../types/FormElementProps';
+import { useConcreteForms } from '../../composables/forms.js';
+import { useEventHandler } from '../../composables/events.js';
+import { inputStaticClasses, useInputClasses, useRoundedClass } from '../../composables/styles.js';
+
+export interface Option {
+  label: string;
+  value: any;
+  disabled?: boolean;
+  class?: string;
+}
 
 interface Props extends FormElementProps {
-  // TODO what types should we accept
+  options: Option[] | string[];
+
   modelValue?: any;
-  options?: any;
   multiple?: boolean;
-  formatter?: () => {};
   placeholder?: string;
   transparent?: boolean;
-  optionListSize?: 'auto' | 'xs' | 'sm' | 'md' | 'lg';
-  optionListWidth?: 'auto' | 'full' | 'min' | 'max';
   onChange?: (val: any) => {};
-  checkEquality?: () => {};
+  formatter?: (val: string) => void;
+  checkEquality?: (a: any, b: any) => boolean;
+  optionListSize?: 'auto' | 'xs' | 'sm' | 'md' | 'lg';
+  optionListWidth?: 'auto' | 'w-full' | 'w-min' | 'w-max';
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  options: [],
+  options: () => [],
   optionListSize: 'md',
-  optionListWidth: 'full',
-  placeholder: 'Select option',
   checkEquality: isEqual,
+  optionListWidth: 'w-full',
+  placeholder: 'Select option',
 });
 
 const {

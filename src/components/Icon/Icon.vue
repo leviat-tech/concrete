@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-import { icons } from './icons';
+import { icons } from './icons.js';
 
 import { AvailableColors, AvailableSizes } from '../../types/FormElementProps';
 

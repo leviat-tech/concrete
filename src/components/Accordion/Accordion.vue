@@ -36,7 +36,7 @@ import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/vue/24/outline';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 
 import CHeading from '../Heading/Heading.vue';
-import { AvailableSizes } from 'types/FormElementProps.js';
+import { AvailableSizes } from '../../types/FormElementProps.js';
 import { useConcreteForms } from '../../composables/forms.js';
 import { textSizeClassMap } from '../../composables/styles.js';
 

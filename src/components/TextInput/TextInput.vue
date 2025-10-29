@@ -64,7 +64,6 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { formElementProps } from '../../composables/props.js';
 import {
   inputStaticClasses,
   useInputClasses,
@@ -76,8 +75,8 @@ import { useEventHandler } from '../../composables/events.js';
 import CFormElement from '../FormElement/FormElement.vue';
 import CFragment from '../Fragment/Fragment.vue';
 import CInputAffix from '../InputAffix/InputAffix.vue';
-import FormElementProps from 'types/FormElementProps.js';
-import { AvailableUnits } from 'utils/units.js';
+import FormElementProps from '../../types/FormElementProps.js';
+import { AvailableUnits } from '../../utils/units.js';
 
 interface Props extends FormElementProps {
   to?: string;
