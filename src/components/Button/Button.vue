@@ -166,7 +166,7 @@ const color = computed(() => (!props.color || props.color === 'default' ? 'base'
 const colorClass = computed(() => {
   const c = color.value;
   let className = '';
-  const disabledClass = 'opacity-50 rounded-button';
+  const disabledClass = 'opacity-50 rounded-button ';
   if (props.fill === 'solid') {
     className += classMap.solid;
     className += props.disabled ? disabledClass : classMap[`solid-${c}-enabled`];
